@@ -1,0 +1,152 @@
+﻿[
+  {
+    "updated_at": "2016-03-31T00:20:00Z",
+    "show": {
+      "title": "Aikatsu Stars!",
+      "year": 2016,
+      "ids": {
+        "trakt": 106488,
+        "slug": "aikatsu-stars",
+        "tvdb": 309143,
+        "imdb": null,
+        "tmdb": 65929,
+        "tvrage": null
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:01:55Z",
+    "show": {
+      "title": "The Larry Sanders Show",
+      "year": 1992,
+      "ids": {
+        "trakt": 1902,
+        "slug": "the-larry-sanders-show",
+        "tvdb": 73007,
+        "imdb": "tt0103466",
+        "tmdb": 1915,
+        "tvrage": 5909
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:37:21Z",
+    "show": {
+      "title": "Dream On",
+      "year": 1990,
+      "ids": {
+        "trakt": 1083,
+        "slug": "dream-on",
+        "tvdb": 71436,
+        "imdb": "tt0098780",
+        "tmdb": 1088,
+        "tvrage": 3382
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:03:20Z",
+    "show": {
+      "title": "Pawn Stars",
+      "year": 2009,
+      "ids": {
+        "trakt": 21654,
+        "slug": "pawn-stars",
+        "tvdb": 111051,
+        "imdb": "tt1492088",
+        "tmdb": 21755,
+        "tvrage": 23281
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:32:34Z",
+    "show": {
+      "title": "Brotherhood : Final Fantasy XV",
+      "year": 2016,
+      "ids": {
+        "trakt": 106773,
+        "slug": "brotherhood-final-fantasy-xv",
+        "tvdb": 309668,
+        "imdb": null,
+        "tmdb": null,
+        "tvrage": null
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:04:33Z",
+    "show": {
+      "title": "Spartacus: Gods of the Arena",
+      "year": 2011,
+      "ids": {
+        "trakt": 37741,
+        "slug": "spartacus-gods-of-the-arena",
+        "tvdb": 271742,
+        "imdb": "tt1758429",
+        "tmdb": 37899,
+        "tvrage": 26886
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:23Z",
+    "show": {
+      "title": "Unhitched",
+      "year": 2008,
+      "ids": {
+        "trakt": 15071,
+        "slug": "unhitched",
+        "tvdb": 81452,
+        "imdb": "tt0915414",
+        "tmdb": 15136,
+        "tvrage": 15787
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:35Z",
+    "show": {
+      "title": "The Family",
+      "year": 2016,
+      "ids": {
+        "trakt": 98886,
+        "slug": "the-family-2016",
+        "tvdb": 295516,
+        "imdb": "tt4428038",
+        "tmdb": 62814,
+        "tvrage": 47545
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:44Z",
+    "show": {
+      "title": "Miss Guided",
+      "year": 2008,
+      "ids": {
+        "trakt": 5228,
+        "slug": "miss-guided",
+        "tvdb": 81550,
+        "imdb": "tt0876235",
+        "tmdb": 5255,
+        "tvrage": 15728
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:46Z",
+    "show": {
+      "title": "After the Rains and Dreams",
+      "year": 2005,
+      "ids": {
+        "trakt": 35722,
+        "slug": "after-the-rains-and-dreams",
+        "tvdb": 105791,
+        "imdb": "tt0940899",
+        "tmdb": 35877,
+        "tvrage": 13742
+      }
+    }
+  }
+]

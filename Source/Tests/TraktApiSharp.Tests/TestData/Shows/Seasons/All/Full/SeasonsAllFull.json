@@ -1,0 +1,107 @@
+﻿[
+  {
+    "number": 0,
+    "ids": {
+      "trakt": 3962,
+      "tvdb": 137481,
+      "tmdb": 3627,
+      "tvrage": null
+    },
+    "rating": 9.0597,
+    "votes": 67,
+    "episode_count": 14,
+    "aired_episodes": 14,
+    "overview": null,
+    "first_aired": "2010-12-06T02:00:00Z"
+  },
+  {
+    "number": 1,
+    "ids": {
+      "trakt": 3963,
+      "tvdb": 364731,
+      "tmdb": 3624,
+      "tvrage": null
+    },
+    "rating": 9.12881,
+    "votes": 1149,
+    "episode_count": 10,
+    "aired_episodes": 10,
+    "overview": "Il Re dei Sette Regni di Westeros, Robert Baratheon, si reca a Grande Inverno, per chiedere al suo amico Ned Stark di accettare la carica di Primo Cavaliere. Inoltre il Re propone un matrimonio tra suo figlio Joffrey, erede al trono di spade e la figlia di Ned, Sansa. Da questo incontro prende il via una serie di eventi che porterà Ned, Sansa e Arya ad Approdo del Re, mentre il resto della famiglia Stark rimane a Grande Inverno per controllare il territorio. I delicati equilibri politici si infrangono quando qualcuno cerca di far tacere definitivamente il piccolo Bran Stark, colpevole di aver scoperto un terribile segreto. Lady Catelyn Stark riceve conferma dei suoi sospetti e accusa i Lannister del misfatto, evento scatenante che darà il via a una serie di conflitti. Intanto al di là del Mare Stretto, Viserys Targaryen, figlio del Re Folle Aerys II, deposto da Robert Baratheon, dà sua sorella Daenerys in sposa a Khal Drogo, un potente condottiero che gli promette un esercito per riappropriarsi del trono dei Sette Regni.",
+    "first_aired": "2011-04-18T01:00:00Z"
+  },
+  {
+    "number": 2,
+    "ids": {
+      "trakt": 3964,
+      "tvdb": 473271,
+      "tmdb": 3625,
+      "tvrage": null
+    },
+    "rating": 9.0882,
+    "votes": 941,
+    "episode_count": 10,
+    "aired_episodes": 10,
+    "overview": "The second season of the epic fantasy drama television series Game of Thrones premiered in the United States on HBO on April 1, 2012, and concluded on June 3, 2012. Like the first season, it consists of ten episodes. It mostly covers the events of A Clash of Kings, the second book of the A Song of Ice and Fire novels by George R. R. Martin, of which the series is an adaptation.",
+    "first_aired": "2012-04-02T01:00:00Z"
+  },
+  {
+    "number": 3,
+    "ids": {
+      "trakt": 3965,
+      "tvdb": 488434,
+      "tmdb": 3626,
+      "tvrage": null
+    },
+    "rating": 9.20993,
+    "votes": 886,
+    "episode_count": 10,
+    "aired_episodes": 10,
+    "overview": "The third season of the epic fantasy drama television series Game of Thrones premiered on March 31, 2013 on HBO. HBO renewed the series for a third season on April 10, 2012, nine days after the second season's premiere. Production began in July 2012.\n\nLike the other seasons, the third season consists of ten episodes. It is based roughly on the first half of A Storm of Swords of which the series is an adaptation.",
+    "first_aired": "2013-04-01T01:00:00Z"
+  },
+  {
+    "number": 4,
+    "ids": {
+      "trakt": 3966,
+      "tvdb": 522882,
+      "tmdb": 3628,
+      "tvrage": null
+    },
+    "rating": 9.16144,
+    "votes": 892,
+    "episode_count": 10,
+    "aired_episodes": 10,
+    "overview": "The War of the Five Kings is drawing to a close, but new intrigues and plots are in motion, and the surviving factions must contend with enemies not only outside their ranks, but within.",
+    "first_aired": "2014-04-07T01:00:00Z"
+  },
+  {
+    "number": 5,
+    "ids": {
+      "trakt": 3967,
+      "tvdb": null,
+      "tmdb": 62090,
+      "tvrage": null
+    },
+    "rating": 8.47452,
+    "votes": 942,
+    "episode_count": 10,
+    "aired_episodes": 10,
+    "overview": "The War of the Five Kings, once thought to be drawing to a close, is instead entering a new and more chaotic phase. Westeros is on the brink of collapse, and many are seizing what they can while the realm implodes, like a corpse making a feast for crows.",
+    "first_aired": "2015-04-13T01:00:00Z"
+  },
+  {
+    "number": 6,
+    "ids": {
+      "trakt": 114727,
+      "tvdb": 651357,
+      "tmdb": 71881,
+      "tvrage": null
+    },
+    "rating": 8.92994,
+    "votes": 157,
+    "episode_count": 10,
+    "aired_episodes": 0,
+    "overview": null,
+    "first_aired": "2016-04-25T01:00:00Z"
+  }
+]

@@ -1,0 +1,182 @@
+﻿[
+  {
+    "watcher_count": 7662,
+    "play_count": 230463,
+    "collected_count": 232144,
+    "collector_count": 1793,
+    "show": {
+      "title": "The Big Bang Theory",
+      "year": 2007,
+      "ids": {
+        "trakt": 1409,
+        "slug": "the-big-bang-theory",
+        "tvdb": 80379,
+        "imdb": "tt0898266",
+        "tmdb": 1418,
+        "tvrage": 8511
+      }
+    }
+  },
+  {
+    "watcher_count": 1162,
+    "play_count": 222223,
+    "collected_count": 256621,
+    "collector_count": 675,
+    "show": {
+      "title": "The Daily Show with Trevor Noah",
+      "year": 1996,
+      "ids": {
+        "trakt": 2211,
+        "slug": "the-daily-show-with-trevor-noah",
+        "tvdb": 71256,
+        "imdb": "tt0115147",
+        "tmdb": 2224,
+        "tvrage": 5714
+      }
+    }
+  },
+  {
+    "watcher_count": 32741,
+    "play_count": 182782,
+    "collected_count": 162624,
+    "collector_count": 10375,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      }
+    }
+  },
+  {
+    "watcher_count": 8372,
+    "play_count": 132185,
+    "collected_count": 133094,
+    "collector_count": 3210,
+    "show": {
+      "title": "Supernatural",
+      "year": 2005,
+      "ids": {
+        "trakt": 1611,
+        "slug": "supernatural",
+        "tvdb": 78901,
+        "imdb": "tt0460681",
+        "tmdb": 1622,
+        "tvrage": 5410
+      }
+    }
+  },
+  {
+    "watcher_count": 2766,
+    "play_count": 128750,
+    "collected_count": 261335,
+    "collector_count": 675,
+    "show": {
+      "title": "The Simpsons",
+      "year": 1989,
+      "ids": {
+        "trakt": 455,
+        "slug": "the-simpsons",
+        "tvdb": 71663,
+        "imdb": "tt0096697",
+        "tmdb": 456,
+        "tvrage": 6190
+      }
+    }
+  },
+  {
+    "watcher_count": 16611,
+    "play_count": 121749,
+    "collected_count": 45378,
+    "collector_count": 2428,
+    "show": {
+      "title": "Marvel's Daredevil",
+      "year": 2015,
+      "ids": {
+        "trakt": 77938,
+        "slug": "marvel-s-daredevil",
+        "tvdb": 281662,
+        "imdb": "tt3322312",
+        "tmdb": 61889,
+        "tvrage": 38796
+      }
+    }
+  },
+  {
+    "watcher_count": 19840,
+    "play_count": 119340,
+    "collected_count": 91203,
+    "collector_count": 6326,
+    "show": {
+      "title": "Arrow",
+      "year": 2012,
+      "ids": {
+        "trakt": 1403,
+        "slug": "arrow",
+        "tvdb": 257655,
+        "imdb": "tt2193021",
+        "tmdb": 1412,
+        "tvrage": 30715
+      }
+    }
+  },
+  {
+    "watcher_count": 14833,
+    "play_count": 111479,
+    "collected_count": 103217,
+    "collector_count": 5348,
+    "show": {
+      "title": "Modern Family",
+      "year": 2009,
+      "ids": {
+        "trakt": 1412,
+        "slug": "modern-family",
+        "tvdb": 95011,
+        "imdb": "tt1442437",
+        "tmdb": 1421,
+        "tvrage": 22622
+      }
+    }
+  },
+  {
+    "watcher_count": 8743,
+    "play_count": 108043,
+    "collected_count": 124644,
+    "collector_count": 3182,
+    "show": {
+      "title": "Grey's Anatomy",
+      "year": 2005,
+      "ids": {
+        "trakt": 1407,
+        "slug": "grey-s-anatomy",
+        "tvdb": 73762,
+        "imdb": "tt0413573",
+        "tmdb": 1416,
+        "tvrage": 3741
+      }
+    }
+  },
+  {
+    "watcher_count": 1284,
+    "play_count": 95980,
+    "collected_count": 35559,
+    "collector_count": 272,
+    "show": {
+      "title": "One Piece",
+      "year": 1999,
+      "ids": {
+        "trakt": 37696,
+        "slug": "one-piece",
+        "tvdb": 81797,
+        "imdb": "tt0388629",
+        "tmdb": 37854,
+        "tvrage": 8205
+      }
+    }
+  }
+]

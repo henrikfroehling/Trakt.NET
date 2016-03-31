@@ -1,0 +1,828 @@
+﻿[
+  {
+    "title": "Sherlock",
+    "year": 2010,
+    "ids": {
+      "trakt": 19792,
+      "slug": "sherlock",
+      "tvdb": 176941,
+      "imdb": "tt1475582",
+      "tmdb": 19885,
+      "tvrage": 23433
+    },
+    "overview": "Sherlock is a British television crime drama that presents a contemporary adaptation of Sir Arthur Conan Doyle's Sherlock Holmes detective stories. Created by Steven Moffat and Mark Gatiss, it stars Benedict Cumberbatch as Sherlock Holmes and Martin Freeman as Doctor John Watson.",
+    "first_aired": "2010-07-25T07:00:00Z",
+    "airs": {
+      "day": "Sunday",
+      "time": "20:30",
+      "timezone": "Europe/London"
+    },
+    "runtime": 90,
+    "certification": "TV-14",
+    "network": "BBC One",
+    "country": "gb",
+    "trailer": "http://youtube.com/watch?v=JP5Dr63TbSU",
+    "homepage": "http://www.bbc.co.uk/programmes/b018ttws",
+    "status": "returning series",
+    "rating": 9.26179,
+    "votes": 22178,
+    "updated_at": "2016-03-31T10:40:30Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "ru",
+      "zh",
+      "hu",
+      "pt",
+      "es",
+      "bg",
+      "tr",
+      "sk",
+      "nl",
+      "fr",
+      "he",
+      "ja",
+      "de",
+      "el",
+      "it",
+      "sv",
+      "ko",
+      "pl",
+      "hr",
+      "bs",
+      "cs",
+      "da",
+      "fi",
+      "vi",
+      "lt",
+      "sr",
+      "ro",
+      "fa"
+    ],
+    "genres": [
+      "drama",
+      "crime",
+      "mystery",
+      "adventure",
+      "thriller"
+    ],
+    "aired_episodes": 9,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/fanarts/original/605985cad2.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/019/792/fanarts/medium/605985cad2.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/019/792/fanarts/thumb/605985cad2.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/posters/original/6311e0343c.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/019/792/posters/medium/6311e0343c.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/019/792/posters/thumb/6311e0343c.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/logos/original/cf63398f03.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/cleararts/original/0339c5f877.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/banners/original/ca665b6d1d.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/thumbs/original/79e863da08.jpg"
+      }
+    }
+  },
+  {
+    "title": "The Shannara Chronicles",
+    "year": 2016,
+    "ids": {
+      "trakt": 93993,
+      "slug": "the-shannara-chronicles",
+      "tvdb": 289096,
+      "imdb": "tt1051220",
+      "tmdb": 64122,
+      "tvrage": 48764
+    },
+    "overview": "The Shannara Chronicles roughly follows the storylines set out in The Elfstones of Shannara, set about 300 years after the War of the Races—which ceased magic and confined the demons on the Forbidding, locked by an ancient tree called the Ellcrys. The series chronicles the journey of Wil, Amberle and Eretria, who must fight, with the guidance of the last druid, Allanon, to protect the Ellcrys from dying and unleashing all the demons to the Four Lands",
+    "first_aired": "2016-01-06T03:00:00Z",
+    "airs": {
+      "day": "Tuesday",
+      "time": "22:00",
+      "timezone": "America/New_York"
+    },
+    "runtime": 45,
+    "certification": "TV-14",
+    "network": "MTV (US)",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=seFWKNtkSDo",
+    "homepage": "http://www.mtv.com/shows/shannara/",
+    "status": "returning series",
+    "rating": 7.83861,
+    "votes": 948,
+    "updated_at": "2016-03-27T10:36:42Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "hu",
+      "es",
+      "fr",
+      "ru",
+      "el",
+      "tr",
+      "de",
+      "bs",
+      "cs",
+      "da",
+      "pt",
+      "nl",
+      "zh",
+      "it",
+      "uk",
+      "ko",
+      "he",
+      "th",
+      "sv"
+    ],
+    "genres": [
+      "fantasy",
+      "adventure",
+      "action",
+      "science-fiction"
+    ],
+    "aired_episodes": 10,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/093/993/fanarts/original/9646221563.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/093/993/fanarts/medium/9646221563.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/093/993/fanarts/thumb/9646221563.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/093/993/posters/original/e285d6f547.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/093/993/posters/medium/e285d6f547.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/093/993/posters/thumb/e285d6f547.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/093/993/logos/original/bd31d50488.png"
+      },
+      "clearart": {
+        "full": null
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/093/993/banners/original/66f14867c4.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/093/993/thumbs/original/ae41f3c01e.jpg"
+      }
+    }
+  },
+  {
+    "title": "The Magicians",
+    "year": 2015,
+    "ids": {
+      "trakt": 100940,
+      "slug": "the-magicians-2015",
+      "tvdb": 299139,
+      "imdb": "tt4254242",
+      "tmdb": 64432,
+      "tvrage": 43586
+    },
+    "overview": "The series centers on Quentin, a brilliant grad student chosen to attend Brakebills College for Magical Pedagogy, a secret upstate New York university specializing in magic. He and his 20-something friends soon discover that the magical fantasy world they read about as children is all too real – and poses grave danger to humanity.",
+    "first_aired": "2015-12-17T02:00:00Z",
+    "airs": {
+      "day": "Monday",
+      "time": "21:00",
+      "timezone": "America/New_York"
+    },
+    "runtime": 45,
+    "certification": "TV-14",
+    "network": "Syfy",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=3-OJQF9XszY",
+    "homepage": "http://www.syfy.com/themagicians",
+    "status": "returning series",
+    "rating": 7.73956,
+    "votes": 407,
+    "updated_at": "2016-03-31T11:18:46Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "pl",
+      "el",
+      "ro",
+      "es",
+      "zh",
+      "hu",
+      "ru",
+      "pt",
+      "bs",
+      "uk",
+      "tr"
+    ],
+    "genres": [
+      "drama",
+      "fantasy",
+      "horror"
+    ],
+    "aired_episodes": 11,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/100/940/fanarts/original/942afe5cda.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/100/940/fanarts/medium/942afe5cda.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/100/940/fanarts/thumb/942afe5cda.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/100/940/posters/original/9b14e4fd90.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/100/940/posters/medium/9b14e4fd90.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/100/940/posters/thumb/9b14e4fd90.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/100/940/logos/original/e36f4def9d.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/100/940/cleararts/original/8d31435e32.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/100/940/banners/original/eefcc48f89.jpg"
+      },
+      "thumb": {
+        "full": null
+      }
+    }
+  },
+  {
+    "title": "11.22.63",
+    "year": 2016,
+    "ids": {
+      "trakt": 102771,
+      "slug": "11-22-63",
+      "tvdb": 301824,
+      "imdb": "tt2879552",
+      "tmdb": 64464,
+      "tvrage": 45210
+    },
+    "overview": "Imagine having the power to change history. Would you journey down the \"rabbit hole\"? This event series follows Jake Epping, an ordinary high school teacher, presented with the unthinkable mission of traveling back in time to prevent the assassination of John F. Kennedy on November 22, 1963. Jake travels to the past in order to solve the most enduring mystery of the 20th century: who killed JFK, and could it have been stopped? But as Jake will learn, the past does not want to be changed. And trying to divert the course of history may prove fatal.",
+    "first_aired": "2016-02-15T05:01:00Z",
+    "airs": {
+      "day": "Monday",
+      "time": "00:01",
+      "timezone": "America/New_York"
+    },
+    "runtime": 54,
+    "certification": "TV-MA",
+    "network": "Hulu",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=NXUx__qQGew",
+    "homepage": "http://www.hulu.com/112263",
+    "status": "returning series",
+    "rating": 8.34325,
+    "votes": 437,
+    "updated_at": "2016-03-31T11:13:08Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "fr",
+      "bs",
+      "he",
+      "pl",
+      "el",
+      "ru",
+      "pt",
+      "bg",
+      "cs",
+      "nl",
+      "de",
+      "es",
+      "hu"
+    ],
+    "genres": [
+      "science-fiction",
+      "drama",
+      "fantasy"
+    ],
+    "aired_episodes": 7,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/fanarts/original/3c06324bd8.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/771/fanarts/medium/3c06324bd8.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/771/fanarts/thumb/3c06324bd8.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/posters/original/e9cfb8f315.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/771/posters/medium/e9cfb8f315.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/771/posters/thumb/e9cfb8f315.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/logos/original/47016c0f0c.png"
+      },
+      "clearart": {
+        "full": null
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/banners/original/054bcdc241.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/thumbs/original/a8234a4ad9.jpg"
+      }
+    }
+  },
+  {
+    "title": "Beowulf: Return to the Shieldlands",
+    "year": 2016,
+    "ids": {
+      "trakt": 102467,
+      "slug": "beowulf-return-to-the-shieldlands",
+      "tvdb": 301347,
+      "imdb": "tt4520906",
+      "tmdb": 64593,
+      "tvrage": 50729
+    },
+    "overview": "Beowulf is a series about courage, greed, betrayal, revenge, loyalty, power, man versus wilderness and, of course love. It is a series that explores the notion of good and evil, heroes and villains. However, beyond these wider political undercurrents and inner personal turmoils are the excitement, danger and sense of adventure that any great Western has. Epic fights, thrilling chases, raids, celebrations and battles are an essential part of the promise.",
+    "first_aired": "2016-01-03T19:00:00Z",
+    "airs": {
+      "day": "Sunday",
+      "time": "19:00",
+      "timezone": "Europe/London"
+    },
+    "runtime": 45,
+    "certification": "TV-PG",
+    "network": "ITV",
+    "country": "gb",
+    "trailer": null,
+    "homepage": "http://www.itv.com/hub/beowulf-return-to-the-shieldlands",
+    "status": "returning series",
+    "rating": 6.36905,
+    "votes": 84,
+    "updated_at": "2016-03-30T12:34:55Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "el",
+      "bs",
+      "es",
+      "ru",
+      "zh",
+      "pt",
+      "tr",
+      "cs",
+      "he",
+      "fr",
+      "ms"
+    ],
+    "genres": [
+      "action",
+      "adventure",
+      "drama",
+      "fantasy"
+    ],
+    "aired_episodes": 13,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/102/467/fanarts/original/81fa0ad5ec.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/467/fanarts/medium/81fa0ad5ec.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/467/fanarts/thumb/81fa0ad5ec.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/102/467/posters/original/689179d552.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/467/posters/medium/689179d552.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/467/posters/thumb/689179d552.jpg"
+      },
+      "logo": {
+        "full": null
+      },
+      "clearart": {
+        "full": null
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/102/467/banners/original/7a0bed8522.jpg"
+      },
+      "thumb": {
+        "full": null
+      }
+    }
+  },
+  {
+    "title": "Battlestar Galactica",
+    "year": 2005,
+    "ids": {
+      "trakt": 1959,
+      "slug": "battlestar-galactica-2005",
+      "tvdb": 73545,
+      "imdb": "tt0407362",
+      "tmdb": 1972,
+      "tvrage": 2730
+    },
+    "overview": "In a distant part of the universe, a civilization of humans live on planets known as the Twelve Colonies. In the past, the Colonies have been at war with a cybernetic race known as the Cylons. 40 years after the first war the Cylons launch a devastating attack on the Colonies. The only military ship that survived the attack takes up the task of leading a small fugitive fleet of survivors into space in search of a fabled refuge known as Earth.",
+    "first_aired": "2005-01-14T00:00:00Z",
+    "airs": {
+      "day": null,
+      "time": null,
+      "timezone": "America/New_York"
+    },
+    "runtime": 44,
+    "certification": "TV-14",
+    "network": "SciFi",
+    "country": "us",
+    "trailer": null,
+    "homepage": "http://www.syfy.com/battlestar/",
+    "status": "ended",
+    "rating": 9.05559,
+    "votes": 9120,
+    "updated_at": "2016-03-26T10:44:38Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "es",
+      "de",
+      "he",
+      "it",
+      "fr",
+      "pt",
+      "zh",
+      "ru",
+      "hu",
+      "bs",
+      "cs",
+      "da",
+      "ar",
+      "ro",
+      "el",
+      "sv"
+    ],
+    "genres": [
+      "drama",
+      "action",
+      "adventure",
+      "fantasy",
+      "science-fiction"
+    ],
+    "aired_episodes": 73,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/fanarts/original/bcad3f0092.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/001/959/fanarts/medium/bcad3f0092.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/959/fanarts/thumb/bcad3f0092.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/posters/original/a0dbd3fcf1.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/001/959/posters/medium/a0dbd3fcf1.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/959/posters/thumb/a0dbd3fcf1.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/logos/original/354c64bfb8.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/cleararts/original/14bf078155.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/banners/original/1e7e97a0e1.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/001/959/thumbs/original/c21b39ce94.jpg"
+      }
+    }
+  },
+  {
+    "title": "Outlander",
+    "year": 2014,
+    "ids": {
+      "trakt": 56212,
+      "slug": "outlander",
+      "tvdb": 270408,
+      "imdb": "tt3006802",
+      "tmdb": 56570,
+      "tvrage": 36202
+    },
+    "overview": "Follows the story of Claire Randall, a married combat nurse from 1945 who is mysteriously swept back in time to 1743, where she is immediately thrown into an unknown world where her life is threatened. When she is forced to marry Jamie Fraser, a chivalrous and romantic young Scottish warrior, a passionate relationship is ignited that tears Claire's heart between two vastly different men in two irreconcilable lives. ",
+    "first_aired": "2014-08-10T01:00:00Z",
+    "airs": {
+      "day": "Saturday",
+      "time": "21:00",
+      "timezone": "America/New_York"
+    },
+    "runtime": 60,
+    "certification": "TV-MA",
+    "network": "Starz!",
+    "country": "us",
+    "trailer": null,
+    "homepage": "http://www.starz.com/originals/outlander",
+    "status": "returning series",
+    "rating": 8.34597,
+    "votes": 1688,
+    "updated_at": "2016-03-31T10:56:16Z",
+    "language": "en",
+    "available_translations": [
+      "de",
+      "en",
+      "fr",
+      "tr",
+      "pt",
+      "es",
+      "nl",
+      "ko",
+      "zh",
+      "cs",
+      "el",
+      "hu",
+      "ru",
+      "bs",
+      "hr",
+      "id",
+      "pl",
+      "sk",
+      "it",
+      "sv",
+      "ro"
+    ],
+    "genres": [
+      "drama",
+      "adventure",
+      "fantasy",
+      "romance"
+    ],
+    "aired_episodes": 16,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/fanarts/original/dd96afe82a.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/056/212/fanarts/medium/dd96afe82a.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/056/212/fanarts/thumb/dd96afe82a.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/posters/original/de850d570c.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/056/212/posters/medium/de850d570c.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/056/212/posters/thumb/de850d570c.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/logos/original/e41fe56800.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/cleararts/original/87f740eb57.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/banners/original/97fba1188b.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/056/212/thumbs/original/fa50574b87.jpg"
+      }
+    }
+  },
+  {
+    "title": "Dexter",
+    "year": 2006,
+    "ids": {
+      "trakt": 1396,
+      "slug": "dexter",
+      "tvdb": 79349,
+      "imdb": "tt0773262",
+      "tmdb": 1405,
+      "tvrage": null
+    },
+    "overview": "He's smart, he's good looking, and he's got a great sense of humor. He's Dexter Morgan, everyone's favorite serial killer. As a Miami forensics expert, he spends his days solving crimes, & nights committing them. But Dexter lives by a strict code of honor that is both his saving grace and lifelong burden. Torn between his deadly compulsion and his desire for true happiness, Dexter is a man in profound conflict with the world and himself.",
+    "first_aired": "2006-10-01T00:00:00Z",
+    "airs": {
+      "day": null,
+      "time": null,
+      "timezone": "America/New_York"
+    },
+    "runtime": 60,
+    "certification": "TV-MA",
+    "network": "Showtime",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=u2Xgcd3lq8",
+    "homepage": "http://www.sho.com/sho/dexter/home",
+    "status": "ended",
+    "rating": 8.75402,
+    "votes": 24112,
+    "updated_at": "2016-03-31T10:38:12Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "nl",
+      "es",
+      "de",
+      "ru",
+      "fr",
+      "bg",
+      "pt",
+      "he",
+      "da",
+      "hu",
+      "sv",
+      "pl",
+      "el",
+      "cs",
+      "zh",
+      "hr",
+      "bs",
+      "it",
+      "tr",
+      "ro"
+    ],
+    "genres": [
+      "drama",
+      "mystery",
+      "crime",
+      "suspense",
+      "thriller"
+    ],
+    "aired_episodes": 96,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/fanarts/original/3c810f5c41.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/001/396/fanarts/medium/3c810f5c41.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/396/fanarts/thumb/3c810f5c41.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/posters/original/af1b16f10c.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/001/396/posters/medium/af1b16f10c.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/396/posters/thumb/af1b16f10c.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/logos/original/a123c07a62.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/cleararts/original/6ed9624120.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/banners/original/eb9edd8c25.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/001/396/thumbs/original/ef8cd20f71.jpg"
+      }
+    }
+  },
+  {
+    "title": "Band of Brothers",
+    "year": 2001,
+    "ids": {
+      "trakt": 4589,
+      "slug": "band-of-brothers",
+      "tvdb": 74205,
+      "imdb": "tt0185906",
+      "tmdb": 4613,
+      "tvrage": 2708
+    },
+    "overview": "The miniseries follows Easy Company, an army unit during World War II, from their initial training at Camp Toccoa to the conclusion of the war. The series is based on the book written by the late Stephen E. Ambrose. \n\nBand of Brothers is executive produced by Steven Spielberg and Tom Hanks, the series won 6 Emmy Awards. ",
+    "first_aired": "2001-09-09T07:00:00Z",
+    "airs": {
+      "day": null,
+      "time": null,
+      "timezone": "America/New_York"
+    },
+    "runtime": 90,
+    "certification": "TV-MA",
+    "network": "HBO",
+    "country": "us",
+    "trailer": null,
+    "homepage": "http://www.hbo.com/band-of-brothers",
+    "status": "ended",
+    "rating": 9.4161,
+    "votes": 7354,
+    "updated_at": "2016-03-24T10:36:37Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "nl",
+      "fr",
+      "de",
+      "cs",
+      "da",
+      "tr",
+      "zh",
+      "es",
+      "hu",
+      "pl",
+      "ro",
+      "hr",
+      "pt",
+      "ru",
+      "bs",
+      "it",
+      "he",
+      "fi",
+      "el",
+      "no",
+      "bg",
+      "sv"
+    ],
+    "genres": [
+      "drama",
+      "war",
+      "action",
+      "adventure"
+    ],
+    "aired_episodes": 10,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/fanarts/original/3e24c4deec.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/004/589/fanarts/medium/3e24c4deec.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/004/589/fanarts/thumb/3e24c4deec.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/posters/original/9f4cde5d16.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/004/589/posters/medium/9f4cde5d16.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/004/589/posters/thumb/9f4cde5d16.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/logos/original/e6b1205882.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/cleararts/original/868fb6f529.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/banners/original/7ef8161199.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/004/589/thumbs/original/093f703f67.jpg"
+      }
+    }
+  },
+  {
+    "title": "Under the Dome",
+    "year": 2013,
+    "ids": {
+      "trakt": 46073,
+      "slug": "under-the-dome",
+      "tvdb": 264492,
+      "imdb": "tt1553656",
+      "tmdb": 46331,
+      "tvrage": 25988
+    },
+    "overview": "An invisible and mysterious force field descends upon a small fictional town in the United States, trapping residents inside, cut off from the rest of civilization. The trapped townsfolk must discover the secrets and purpose of the \"dome\" and its origins, while coming to learn more than they ever knew about each other.",
+    "first_aired": "2013-06-24T07:00:00Z",
+    "airs": {
+      "day": "Thursday",
+      "time": "22:00",
+      "timezone": "America/New_York"
+    },
+    "runtime": 45,
+    "certification": "TV-14",
+    "network": "CBS",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=f_Y5YeYrqUk",
+    "homepage": "http://www.cbs.com/shows/under-the-dome/",
+    "status": "ended",
+    "rating": 6.98413,
+    "votes": 9139,
+    "updated_at": "2016-03-30T10:41:36Z",
+    "language": "en",
+    "available_translations": [
+      "nl",
+      "en",
+      "it",
+      "ro",
+      "pl",
+      "fr",
+      "zh",
+      "da",
+      "es",
+      "cs",
+      "th",
+      "tr",
+      "pt",
+      "el",
+      "ru",
+      "de",
+      "fi",
+      "hu",
+      "hr",
+      "bs",
+      "lt",
+      "sv",
+      "uk",
+      "fa",
+      "he"
+    ],
+    "genres": [
+      "drama",
+      "mystery",
+      "fantasy",
+      "science-fiction",
+      "horror"
+    ],
+    "aired_episodes": 39,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/fanarts/original/66a7162eb1.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/046/073/fanarts/medium/66a7162eb1.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/046/073/fanarts/thumb/66a7162eb1.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/posters/original/7a17e4fed4.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/046/073/posters/medium/7a17e4fed4.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/046/073/posters/thumb/7a17e4fed4.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/logos/original/38cecd2707.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/cleararts/original/d37b8ccb47.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/banners/original/91eab3b5b2.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/046/073/thumbs/original/fc7863dea5.jpg"
+      }
+    }
+  }
+]

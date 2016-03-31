@@ -1,0 +1,182 @@
+﻿[
+  {
+    "watcher_count": 32741,
+    "play_count": 182782,
+    "collected_count": 162624,
+    "collector_count": 10375,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      }
+    }
+  },
+  {
+    "watcher_count": 23521,
+    "play_count": 78410,
+    "collected_count": 53609,
+    "collector_count": 7151,
+    "show": {
+      "title": "The Flash",
+      "year": 2014,
+      "ids": {
+        "trakt": 60300,
+        "slug": "the-flash-2014",
+        "tvdb": 279121,
+        "imdb": "tt3107288",
+        "tmdb": 60735,
+        "tvrage": 36939
+      }
+    }
+  },
+  {
+    "watcher_count": 16056,
+    "play_count": 43068,
+    "collected_count": 24827,
+    "collector_count": 7067,
+    "show": {
+      "title": "Better Call Saul",
+      "year": 2015,
+      "ids": {
+        "trakt": 59660,
+        "slug": "better-call-saul",
+        "tvdb": 273181,
+        "imdb": "tt3032476",
+        "tmdb": 60059,
+        "tvrage": 37780
+      }
+    }
+  },
+  {
+    "watcher_count": 13422,
+    "play_count": 50752,
+    "collected_count": 44041,
+    "collector_count": 6671,
+    "show": {
+      "title": "Gotham",
+      "year": 2014,
+      "ids": {
+        "trakt": 60278,
+        "slug": "gotham",
+        "tvdb": 274431,
+        "imdb": "tt3749900",
+        "tmdb": 60708,
+        "tvrage": 38049
+      }
+    }
+  },
+  {
+    "watcher_count": 12590,
+    "play_count": 44121,
+    "collected_count": 44907,
+    "collector_count": 6512,
+    "show": {
+      "title": "Vikings",
+      "year": 2013,
+      "ids": {
+        "trakt": 43973,
+        "slug": "vikings",
+        "tvdb": 260449,
+        "imdb": "tt2306299",
+        "tmdb": 44217,
+        "tvrage": 31136
+      }
+    }
+  },
+  {
+    "watcher_count": 15857,
+    "play_count": 69497,
+    "collected_count": 52975,
+    "collector_count": 6348,
+    "show": {
+      "title": "Marvel's Agents of S.H.I.E.L.D.",
+      "year": 2013,
+      "ids": {
+        "trakt": 1394,
+        "slug": "marvel-s-agents-of-s-h-i-e-l-d",
+        "tvdb": 263365,
+        "imdb": "tt2364582",
+        "tmdb": 1403,
+        "tvrage": 32656
+      }
+    }
+  },
+  {
+    "watcher_count": 19840,
+    "play_count": 119340,
+    "collected_count": 91203,
+    "collector_count": 6326,
+    "show": {
+      "title": "Arrow",
+      "year": 2012,
+      "ids": {
+        "trakt": 1403,
+        "slug": "arrow",
+        "tvdb": 257655,
+        "imdb": "tt2193021",
+        "tmdb": 1412,
+        "tvrage": 30715
+      }
+    }
+  },
+  {
+    "watcher_count": 14833,
+    "play_count": 111479,
+    "collected_count": 103217,
+    "collector_count": 5348,
+    "show": {
+      "title": "Modern Family",
+      "year": 2009,
+      "ids": {
+        "trakt": 1412,
+        "slug": "modern-family",
+        "tvdb": 95011,
+        "imdb": "tt1442437",
+        "tmdb": 1421,
+        "tvrage": 22622
+      }
+    }
+  },
+  {
+    "watcher_count": 10281,
+    "play_count": 25673,
+    "collected_count": 18402,
+    "collector_count": 5235,
+    "show": {
+      "title": "Blindspot",
+      "year": 2015,
+      "ids": {
+        "trakt": 98980,
+        "slug": "blindspot",
+        "tvdb": 295647,
+        "imdb": "tt4474344",
+        "tmdb": 62710,
+        "tvrage": 44628
+      }
+    }
+  },
+  {
+    "watcher_count": 12975,
+    "play_count": 33037,
+    "collected_count": 18800,
+    "collector_count": 5010,
+    "show": {
+      "title": "Supergirl",
+      "year": 2015,
+      "ids": {
+        "trakt": 99046,
+        "slug": "supergirl",
+        "tvdb": 295759,
+        "imdb": "tt4016454",
+        "tmdb": 62688,
+        "tvrage": 44824
+      }
+    }
+  }
+]

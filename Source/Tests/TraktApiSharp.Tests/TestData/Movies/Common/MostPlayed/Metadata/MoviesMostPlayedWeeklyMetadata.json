@@ -1,0 +1,152 @@
+﻿[
+  {
+    "watcher_count": 8518,
+    "play_count": 11976,
+    "collected_count": 3627,
+    "movie": {
+      "title": "Star Wars: The Force Awakens",
+      "year": 2015,
+      "ids": {
+        "trakt": 94024,
+        "slug": "star-wars-the-force-awakens-2015",
+        "imdb": "tt2488496",
+        "tmdb": 140607
+      }
+    }
+  },
+  {
+    "watcher_count": 6268,
+    "play_count": 9347,
+    "collected_count": 2104,
+    "movie": {
+      "title": "Deadpool",
+      "year": 2016,
+      "ids": {
+        "trakt": 190430,
+        "slug": "deadpool-2016",
+        "imdb": "tt1431045",
+        "tmdb": 293660
+      }
+    }
+  },
+  {
+    "watcher_count": 5397,
+    "play_count": 8400,
+    "collected_count": 1733,
+    "movie": {
+      "title": "Batman v Superman: Dawn of Justice",
+      "year": 2016,
+      "ids": {
+        "trakt": 129583,
+        "slug": "batman-v-superman-dawn-of-justice-2016",
+        "imdb": "tt2975590",
+        "tmdb": 209112
+      }
+    }
+  },
+  {
+    "watcher_count": 3593,
+    "play_count": 4848,
+    "collected_count": 1104,
+    "movie": {
+      "title": "The Hunger Games: Mockingjay - Part 2",
+      "year": 2015,
+      "ids": {
+        "trakt": 89543,
+        "slug": "the-hunger-games-mockingjay-part-2-2015",
+        "imdb": "tt1951266",
+        "tmdb": 131634
+      }
+    }
+  },
+  {
+    "watcher_count": 2590,
+    "play_count": 3632,
+    "collected_count": 814,
+    "movie": {
+      "title": "The 5th Wave",
+      "year": 2016,
+      "ids": {
+        "trakt": 195238,
+        "slug": "the-5th-wave-2016",
+        "imdb": "tt2304933",
+        "tmdb": 299687
+      }
+    }
+  },
+  {
+    "watcher_count": 2449,
+    "play_count": 3571,
+    "collected_count": 754,
+    "movie": {
+      "title": "Daddy's Home",
+      "year": 2015,
+      "ids": {
+        "trakt": 172017,
+        "slug": "daddy-s-home-2015",
+        "imdb": "tt1528854",
+        "tmdb": 274167
+      }
+    }
+  },
+  {
+    "watcher_count": 992,
+    "play_count": 3105,
+    "collected_count": 534,
+    "movie": {
+      "title": "London Has Fallen",
+      "year": 2016,
+      "ids": {
+        "trakt": 166247,
+        "slug": "london-has-fallen-2016",
+        "imdb": "tt3300542",
+        "tmdb": 267860
+      }
+    }
+  },
+  {
+    "watcher_count": 2245,
+    "play_count": 3002,
+    "collected_count": 1131,
+    "movie": {
+      "title": "The Revenant",
+      "year": 2015,
+      "ids": {
+        "trakt": 179334,
+        "slug": "the-revenant-2015",
+        "imdb": "tt1663202",
+        "tmdb": 281957
+      }
+    }
+  },
+  {
+    "watcher_count": 2251,
+    "play_count": 2834,
+    "collected_count": 951,
+    "movie": {
+      "title": "Kung Fu Panda 3",
+      "year": 2016,
+      "ids": {
+        "trakt": 93870,
+        "slug": "kung-fu-panda-3-2016",
+        "imdb": "tt2267968",
+        "tmdb": 140300
+      }
+    }
+  },
+  {
+    "watcher_count": 966,
+    "play_count": 2380,
+    "collected_count": 440,
+    "movie": {
+      "title": "Zootopia",
+      "year": 2016,
+      "ids": {
+        "trakt": 167397,
+        "slug": "zootopia-2016",
+        "imdb": "tt2948356",
+        "tmdb": 269149
+      }
+    }
+  }
+]

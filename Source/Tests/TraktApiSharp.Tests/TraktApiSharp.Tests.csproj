@@ -59,6 +59,44 @@
       <Name>TraktApiSharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestData\Genres\Movies.json" />
+    <None Include="TestData\Genres\Shows.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeComments.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeRatings.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeStatistics.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryFull.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryImages.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryMetadata.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryMinimal.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeWatchingUsers.json" />
+    <None Include="TestData\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json" />
+    <None Include="TestData\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Full\SeasonsAllFull.json" />
+    <None Include="TestData\Shows\Seasons\All\Full\SeasonsAllFullWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Images\SeasonsAllImages.json" />
+    <None Include="TestData\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Metadata\SeasonsAllMetadata.json" />
+    <None Include="TestData\Shows\Seasons\All\Metadata\SeasonsAllMetadataWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
+    <None Include="TestData\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\FullAndImages\SeasonsSingleFullAndImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\FullAndImages\SeasonsSingleFullAndImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\Full\SeasonsSingleFull.json" />
+    <None Include="TestData\Shows\Seasons\Single\Full\SeasonsSingleFullWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\Images\SeasonsSingleImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\Images\SeasonsSingleImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\Metadata\SeasonsSingleMetadata.json" />
+    <None Include="TestData\Shows\Seasons\Single\Metadata\SeasonsSingleMetadataWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\Minimal\SeasonsSingleMinimal.json" />
+    <None Include="TestData\Shows\Seasons\Single\Minimal\SeasonsSingleMinimalWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonComments.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonRatings.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonStatistics.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonWatchingUsers.json" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

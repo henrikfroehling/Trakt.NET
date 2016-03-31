@@ -1,0 +1,147 @@
+﻿{
+  "cast": [
+    {
+      "character": "Tyrion Lannister",
+      "person": {
+        "name": "Peter Dinklage",
+        "ids": {
+          "trakt": 412933,
+          "slug": "peter-dinklage",
+          "imdb": "nm0227759",
+          "tmdb": 22970,
+          "tvrage": 34516
+        }
+      }
+    },
+    {
+      "character": "Jaime Lannister",
+      "person": {
+        "name": "Nikolaj Coster-Waldau",
+        "ids": {
+          "trakt": 414839,
+          "slug": "nikolaj-coster-waldau",
+          "imdb": "nm0182666",
+          "tmdb": 12795,
+          "tvrage": 180684
+        }
+      }
+    },
+    {
+      "character": "Cersei Baratheon",
+      "person": {
+        "name": "Lena Headey",
+        "ids": {
+          "trakt": 9739,
+          "slug": "lena-headey",
+          "imdb": "nm0372176",
+          "tmdb": 17286,
+          "tvrage": 98569
+        }
+      }
+    },
+    {
+      "character": "Daenerys Targaryen",
+      "person": {
+        "name": "Emilia Clarke",
+        "ids": {
+          "trakt": 436511,
+          "slug": "emilia-clarke",
+          "imdb": "nm3592338",
+          "tmdb": 1223786,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Jon Snow",
+      "person": {
+        "name": "Kit Harington",
+        "ids": {
+          "trakt": 436512,
+          "slug": "kit-harington",
+          "imdb": "nm3229685",
+          "tmdb": 239019,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Sansa Stark",
+      "person": {
+        "name": "Sophie Turner",
+        "ids": {
+          "trakt": 436539,
+          "slug": "sophie-turner",
+          "imdb": "nm3849842",
+          "tmdb": 1001657,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Arya Stark",
+      "person": {
+        "name": "Maisie Williams",
+        "ids": {
+          "trakt": 436541,
+          "slug": "maisie-williams",
+          "imdb": "nm3586035",
+          "tmdb": 1181313,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Bronn",
+      "person": {
+        "name": "Jerome Flynn",
+        "ids": {
+          "trakt": 436590,
+          "slug": "jerome-flynn",
+          "imdb": "nm0283492",
+          "tmdb": 195930,
+          "tvrage": 65682
+        }
+      }
+    },
+    {
+      "character": "Bran Stark",
+      "person": {
+        "name": "Isaac Hempstead Wright",
+        "ids": {
+          "trakt": 436592,
+          "slug": "isaac-hempstead-wright",
+          "imdb": "nm3652842",
+          "tmdb": 239020,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Lord Varys",
+      "person": {
+        "name": "Conleth Hill",
+        "ids": {
+          "trakt": 432873,
+          "slug": "conleth-hill",
+          "imdb": "nm0384152",
+          "tmdb": 84423,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Samwell Tarly",
+      "person": {
+        "name": "John Bradley",
+        "ids": {
+          "trakt": 413734,
+          "slug": "john-bradley-ff703964-4593-4530-a7f6-c83a7f367e88",
+          "imdb": "nm4263213",
+          "tmdb": 1010135,
+          "tvrage": null
+        }
+      }
+    }
+  ]
+}

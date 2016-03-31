@@ -1,0 +1,182 @@
+﻿[
+  {
+    "watcher_count": 121702,
+    "play_count": 12678824,
+    "collected_count": 5164906,
+    "collector_count": 46088,
+    "show": {
+      "title": "The Big Bang Theory",
+      "year": 2007,
+      "ids": {
+        "trakt": 1409,
+        "slug": "the-big-bang-theory",
+        "tvdb": 80379,
+        "imdb": "tt0898266",
+        "tmdb": 1418,
+        "tvrage": 8511
+      }
+    }
+  },
+  {
+    "watcher_count": 39855,
+    "play_count": 9060397,
+    "collected_count": 5868870,
+    "collector_count": 18236,
+    "show": {
+      "title": "The Simpsons",
+      "year": 1989,
+      "ids": {
+        "trakt": 455,
+        "slug": "the-simpsons",
+        "tvdb": 71663,
+        "imdb": "tt0096697",
+        "tmdb": 456,
+        "tvrage": 6190
+      }
+    }
+  },
+  {
+    "watcher_count": 6321,
+    "play_count": 8158380,
+    "collected_count": 4782748,
+    "collector_count": 3412,
+    "show": {
+      "title": "The Daily Show with Trevor Noah",
+      "year": 1996,
+      "ids": {
+        "trakt": 2211,
+        "slug": "the-daily-show-with-trevor-noah",
+        "tvdb": 71256,
+        "imdb": "tt0115147",
+        "tmdb": 2224,
+        "tvrage": 5714
+      }
+    }
+  },
+  {
+    "watcher_count": 39077,
+    "play_count": 6939002,
+    "collected_count": 1371677,
+    "collector_count": 7812,
+    "show": {
+      "title": "How I Met Your Mother",
+      "year": 2005,
+      "ids": {
+        "trakt": 1095,
+        "slug": "how-i-met-your-mother",
+        "tvdb": 75760,
+        "imdb": "tt0460649",
+        "tmdb": 1100,
+        "tvrage": 3918
+      }
+    }
+  },
+  {
+    "watcher_count": 30607,
+    "play_count": 6047776,
+    "collected_count": 1625821,
+    "collector_count": 7643,
+    "show": {
+      "title": "Friends",
+      "year": 1994,
+      "ids": {
+        "trakt": 1657,
+        "slug": "friends",
+        "tvdb": 79168,
+        "imdb": "tt0108778",
+        "tmdb": 1668,
+        "tvrage": 3616
+      }
+    }
+  },
+  {
+    "watcher_count": 47553,
+    "play_count": 5976427,
+    "collected_count": 2438865,
+    "collector_count": 18835,
+    "show": {
+      "title": "Supernatural",
+      "year": 2005,
+      "ids": {
+        "trakt": 1611,
+        "slug": "supernatural",
+        "tvdb": 78901,
+        "imdb": "tt0460681",
+        "tmdb": 1622,
+        "tvrage": 5410
+      }
+    }
+  },
+  {
+    "watcher_count": 123298,
+    "play_count": 5941744,
+    "collected_count": 2509248,
+    "collector_count": 49797,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      }
+    }
+  },
+  {
+    "watcher_count": 167302,
+    "play_count": 5754135,
+    "collected_count": 2028609,
+    "collector_count": 64060,
+    "show": {
+      "title": "Game of Thrones",
+      "year": 2011,
+      "ids": {
+        "trakt": 1390,
+        "slug": "game-of-thrones",
+        "tvdb": 121361,
+        "imdb": "tt0944947",
+        "tmdb": 1399,
+        "tvrage": 24493
+      }
+    }
+  },
+  {
+    "watcher_count": 60728,
+    "play_count": 5305789,
+    "collected_count": 2018941,
+    "collector_count": 23606,
+    "show": {
+      "title": "Modern Family",
+      "year": 2009,
+      "ids": {
+        "trakt": 1412,
+        "slug": "modern-family",
+        "tvdb": 95011,
+        "imdb": "tt1442437",
+        "tmdb": 1421,
+        "tvrage": 22622
+      }
+    }
+  },
+  {
+    "watcher_count": 100727,
+    "play_count": 4984718,
+    "collected_count": 1896321,
+    "collector_count": 38457,
+    "show": {
+      "title": "Arrow",
+      "year": 2012,
+      "ids": {
+        "trakt": 1403,
+        "slug": "arrow",
+        "tvdb": 257655,
+        "imdb": "tt2193021",
+        "tmdb": 1412,
+        "tvrage": 30715
+      }
+    }
+  }
+]

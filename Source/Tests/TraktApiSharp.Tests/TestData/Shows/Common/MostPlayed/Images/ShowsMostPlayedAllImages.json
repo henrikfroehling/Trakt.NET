@@ -1,0 +1,422 @@
+﻿[
+  {
+    "watcher_count": 206660,
+    "play_count": 33159271,
+    "collected_count": 11418751,
+    "collector_count": 80372,
+    "show": {
+      "title": "The Big Bang Theory",
+      "year": 2007,
+      "ids": {
+        "trakt": 1409,
+        "slug": "the-big-bang-theory",
+        "tvdb": 80379,
+        "imdb": "tt0898266",
+        "tmdb": 1418,
+        "tvrage": 8511
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/fanarts/original/cff0b01ee7.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/409/fanarts/medium/cff0b01ee7.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/409/fanarts/thumb/cff0b01ee7.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/posters/original/8adfe77938.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/409/posters/medium/8adfe77938.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/409/posters/thumb/8adfe77938.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/logos/original/6d663f3195.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/cleararts/original/f96dc7ae79.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/banners/original/cfd96bef0d.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/409/thumbs/original/892ac50b13.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 123760,
+    "play_count": 25119148,
+    "collected_count": 5725171,
+    "collector_count": 38222,
+    "show": {
+      "title": "How I Met Your Mother",
+      "year": 2005,
+      "ids": {
+        "trakt": 1095,
+        "slug": "how-i-met-your-mother",
+        "tvdb": 75760,
+        "imdb": "tt0460649",
+        "tmdb": 1100,
+        "tvrage": 3918
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/fanarts/original/9b11bce83a.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/095/fanarts/medium/9b11bce83a.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/095/fanarts/thumb/9b11bce83a.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/posters/original/4922cab2bc.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/095/posters/medium/4922cab2bc.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/095/posters/thumb/4922cab2bc.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/logos/original/805b0fbbcc.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/cleararts/original/84f872ffc9.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/banners/original/7e89bd0998.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/095/thumbs/original/868495436a.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 72982,
+    "play_count": 24937159,
+    "collected_count": 12707235,
+    "collector_count": 33976,
+    "show": {
+      "title": "The Simpsons",
+      "year": 1989,
+      "ids": {
+        "trakt": 455,
+        "slug": "the-simpsons",
+        "tvdb": 71663,
+        "imdb": "tt0096697",
+        "tmdb": 456,
+        "tvrage": 6190
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/fanarts/original/a286b2a2c4.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/000/455/fanarts/medium/a286b2a2c4.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/000/455/fanarts/thumb/a286b2a2c4.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/posters/original/8b737766ea.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/000/455/posters/medium/8b737766ea.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/000/455/posters/thumb/8b737766ea.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/logos/original/3898f4ae1c.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/cleararts/original/28907f732f.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/banners/original/ea9fb02ccd.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/000/455/thumbs/original/270d97d731.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 10451,
+    "play_count": 20632746,
+    "collected_count": 7215603,
+    "collector_count": 6120,
+    "show": {
+      "title": "The Daily Show with Trevor Noah",
+      "year": 1996,
+      "ids": {
+        "trakt": 2211,
+        "slug": "the-daily-show-with-trevor-noah",
+        "tvdb": 71256,
+        "imdb": "tt0115147",
+        "tmdb": 2224,
+        "tvrage": 5714
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/fanarts/original/3c89474355.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/002/211/fanarts/medium/3c89474355.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/002/211/fanarts/thumb/3c89474355.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/posters/original/9a93a8a3d9.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/002/211/posters/medium/9a93a8a3d9.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/002/211/posters/thumb/9a93a8a3d9.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/logos/original/3e11a79624.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/cleararts/original/08c8d2e52c.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/banners/original/80c90d9ac9.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/002/211/thumbs/original/3659056e83.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 74430,
+    "play_count": 17025508,
+    "collected_count": 4847377,
+    "collector_count": 22710,
+    "show": {
+      "title": "Friends",
+      "year": 1994,
+      "ids": {
+        "trakt": 1657,
+        "slug": "friends",
+        "tvdb": 79168,
+        "imdb": "tt0108778",
+        "tmdb": 1668,
+        "tvrage": 3616
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/fanarts/original/729481fa38.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/657/fanarts/medium/729481fa38.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/657/fanarts/thumb/729481fa38.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/posters/original/1c1fef0e6d.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/657/posters/medium/1c1fef0e6d.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/657/posters/thumb/1c1fef0e6d.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/logos/original/e501e8b481.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/cleararts/original/d72d170532.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/banners/original/fd7c731c91.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/657/thumbs/original/76534d8848.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 89736,
+    "play_count": 15523680,
+    "collected_count": 5392765,
+    "collector_count": 35199,
+    "show": {
+      "title": "Supernatural",
+      "year": 2005,
+      "ids": {
+        "trakt": 1611,
+        "slug": "supernatural",
+        "tvdb": 78901,
+        "imdb": "tt0460681",
+        "tmdb": 1622,
+        "tvrage": 5410
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/fanarts/original/964bc9d5b7.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/611/fanarts/medium/964bc9d5b7.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/611/fanarts/thumb/964bc9d5b7.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/posters/original/b4d07f40b8.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/611/posters/medium/b4d07f40b8.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/611/posters/thumb/b4d07f40b8.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/logos/original/8703317e6f.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/cleararts/original/3f86169b92.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/banners/original/e916110de4.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/611/thumbs/original/c2770d5664.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 224079,
+    "play_count": 15364975,
+    "collected_count": 4903084,
+    "collector_count": 90033,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/fanarts/original/fc68b3b649.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/393/fanarts/medium/fc68b3b649.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/393/fanarts/thumb/fc68b3b649.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/posters/original/dec5cd226c.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/393/posters/medium/dec5cd226c.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/393/posters/thumb/dec5cd226c.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/logos/original/e70ab3af09.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/cleararts/original/67608bba51.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/banners/original/24a32a2c19.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/thumbs/original/922707c72d.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 62349,
+    "play_count": 13449825,
+    "collected_count": 4063654,
+    "collector_count": 25814,
+    "show": {
+      "title": "Grey's Anatomy",
+      "year": 2005,
+      "ids": {
+        "trakt": 1407,
+        "slug": "grey-s-anatomy",
+        "tvdb": 73762,
+        "imdb": "tt0413573",
+        "tmdb": 1416,
+        "tvrage": 3741
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/407/fanarts/original/60a0adba2f.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/407/fanarts/medium/60a0adba2f.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/407/fanarts/thumb/60a0adba2f.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/407/posters/original/238fdbb77b.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/407/posters/medium/238fdbb77b.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/407/posters/thumb/238fdbb77b.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/407/logos/original/ba68bd8936.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/407/banners/original/c6d41e09ad.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/407/thumbs/original/539f9ca0b3.png"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 265955,
+    "play_count": 12491168,
+    "collected_count": 4092901,
+    "collector_count": 106028,
+    "show": {
+      "title": "Game of Thrones",
+      "year": 2011,
+      "ids": {
+        "trakt": 1390,
+        "slug": "game-of-thrones",
+        "tvdb": 121361,
+        "imdb": "tt0944947",
+        "tmdb": 1399,
+        "tvrage": 24493
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/fanarts/original/76d5df8aed.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/390/fanarts/medium/76d5df8aed.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/390/fanarts/thumb/76d5df8aed.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/posters/original/93df9cd612.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/390/posters/medium/93df9cd612.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/390/posters/thumb/93df9cd612.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/logos/original/13b614ad43.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/cleararts/original/5cbde9e647.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/banners/original/9fefff703d.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/390/thumbs/original/7beccbd5a1.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 98843,
+    "play_count": 12218873,
+    "collected_count": 4443289,
+    "collector_count": 41097,
+    "show": {
+      "title": "Modern Family",
+      "year": 2009,
+      "ids": {
+        "trakt": 1412,
+        "slug": "modern-family",
+        "tvdb": 95011,
+        "imdb": "tt1442437",
+        "tmdb": 1421,
+        "tvrage": 22622
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/fanarts/original/f04803f6e6.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/412/fanarts/medium/f04803f6e6.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/412/fanarts/thumb/f04803f6e6.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/posters/original/cd7b6fcd28.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/412/posters/medium/cd7b6fcd28.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/412/posters/thumb/cd7b6fcd28.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/logos/original/098d4e5a5f.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/cleararts/original/027dcf0f7f.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/banners/original/7152ecf377.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/thumbs/original/e4f90a0866.jpg"
+        }
+      }
+    }
+  }
+]

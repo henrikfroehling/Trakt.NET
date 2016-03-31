@@ -1,0 +1,192 @@
+﻿[
+  {
+    "season": 1,
+    "number": 1,
+    "title": "Winter Is Coming",
+    "ids": {
+      "trakt": 73640,
+      "tvdb": 3254641,
+      "imdb": "tt1480055",
+      "tmdb": 63056,
+      "tvrage": 1065008299
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 2,
+    "title": "The Kingsroad",
+    "ids": {
+      "trakt": 73641,
+      "tvdb": 3436411,
+      "imdb": "tt1668746",
+      "tmdb": 63057,
+      "tvrage": 1065023912
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/641/screenshots/original/e645d70001.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/641/screenshots/medium/e645d70001.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/641/screenshots/thumb/e645d70001.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 3,
+    "title": "Lord Snow",
+    "ids": {
+      "trakt": 73642,
+      "tvdb": 3436421,
+      "imdb": "tt1829962",
+      "tmdb": 63058,
+      "tvrage": 1065027990
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/642/screenshots/original/238c3fabbf.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/642/screenshots/medium/238c3fabbf.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/642/screenshots/thumb/238c3fabbf.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 4,
+    "title": "Cripples, Bastards, and Broken Things",
+    "ids": {
+      "trakt": 73643,
+      "tvdb": 3436431,
+      "imdb": "tt1829963",
+      "tmdb": 63059,
+      "tvrage": 1065029350
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/643/screenshots/original/9101c85fa3.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/643/screenshots/medium/9101c85fa3.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/643/screenshots/thumb/9101c85fa3.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 5,
+    "title": "The Wolf and the Lion",
+    "ids": {
+      "trakt": 73644,
+      "tvdb": 3436441,
+      "imdb": "tt1829964",
+      "tmdb": 63060,
+      "tvrage": 1065036402
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/644/screenshots/original/b558214c1e.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/644/screenshots/medium/b558214c1e.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/644/screenshots/thumb/b558214c1e.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 6,
+    "title": "A Golden Crown",
+    "ids": {
+      "trakt": 73645,
+      "tvdb": 3436451,
+      "imdb": "tt1837862",
+      "tmdb": 63061,
+      "tvrage": 1065036403
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/645/screenshots/original/16bb7c5971.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/645/screenshots/medium/16bb7c5971.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/645/screenshots/thumb/16bb7c5971.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 7,
+    "title": "You Win or You Die",
+    "ids": {
+      "trakt": 73646,
+      "tvdb": 3436461,
+      "imdb": "tt1837863",
+      "tmdb": 63062,
+      "tvrage": 1065036404
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/646/screenshots/original/08fb5cc0df.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/646/screenshots/medium/08fb5cc0df.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/646/screenshots/thumb/08fb5cc0df.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 8,
+    "title": "The Pointy End",
+    "ids": {
+      "trakt": 73647,
+      "tvdb": 3360391,
+      "imdb": "tt1837864",
+      "tmdb": 63063,
+      "tvrage": 1065039305
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/647/screenshots/original/5b8bc848d6.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/647/screenshots/medium/5b8bc848d6.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/647/screenshots/thumb/5b8bc848d6.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 9,
+    "title": "Baelor",
+    "ids": {
+      "trakt": 73648,
+      "tvdb": 4063481,
+      "imdb": "tt1851398",
+      "tmdb": 63064,
+      "tvrage": 1065039306
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/648/screenshots/original/2ce99a38f3.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/648/screenshots/medium/2ce99a38f3.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/648/screenshots/thumb/2ce99a38f3.jpg"
+      }
+    }
+  },
+  {
+    "season": 1,
+    "number": 10,
+    "title": "Fire and Blood",
+    "ids": {
+      "trakt": 73649,
+      "tvdb": 4063491,
+      "imdb": "tt1851397",
+      "tmdb": 63065,
+      "tvrage": 1065039307
+    },
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/073/649/screenshots/original/7c9c61c569.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/073/649/screenshots/medium/7c9c61c569.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/073/649/screenshots/thumb/7c9c61c569.jpg"
+      }
+    }
+  }
+]

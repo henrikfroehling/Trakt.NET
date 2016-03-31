@@ -1,0 +1,428 @@
+﻿[
+  {
+    "updated_at": "2016-03-31T00:20:00Z",
+    "show": {
+      "title": "Aikatsu Stars!",
+      "year": 2016,
+      "ids": {
+        "trakt": 106488,
+        "slug": "aikatsu-stars",
+        "tvdb": 309143,
+        "imdb": null,
+        "tmdb": 65929,
+        "tvrage": null
+      },
+      "overview": "The series will feature a new protagonist named Yume Nijino. Yume aims to become a top idol, and she enrolls in the Yotsuboshi Gakuen (Four Stars Academy). This academy has a special group called the S4, who are the top four active idols in the school. Yume and the other first-year students aim to become a part of the S4.",
+      "first_aired": "2016-04-07T09:25:00Z",
+      "airs": {
+        "day": "Thursday",
+        "time": "18:25",
+        "timezone": "Asia/Tokyo"
+      },
+      "runtime": 25,
+      "certification": null,
+      "network": "TV Aichi",
+      "country": "jp",
+      "trailer": "http://youtube.com/watch?v=gw0TvthA6fc",
+      "homepage": "http://www.aikatsu.net/aikatsustars.html",
+      "status": "returning series",
+      "rating": 0.0,
+      "votes": 0,
+      "updated_at": "2016-03-31T00:20:00Z",
+      "language": "ja",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "animation"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:01:55Z",
+    "show": {
+      "title": "The Larry Sanders Show",
+      "year": 1992,
+      "ids": {
+        "trakt": 1902,
+        "slug": "the-larry-sanders-show",
+        "tvdb": 73007,
+        "imdb": "tt0103466",
+        "tmdb": 1915,
+        "tvrage": 5909
+      },
+      "overview": "Comic Garry Shandling draws upon his own talk show experiences to create the character of Larry Sanders, a paranoid, insecure host of a late night talk show.  Larry, along with his obsequious TV sidekick Hank Kingsley and his fiercely protective producer Artie, allows Garry Shandling and his talented writers to look behind the scenes and to show us a convincing slice of behind the camera life.",
+      "first_aired": "1992-08-15T07:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 30,
+      "certification": "TV-MA",
+      "network": "HBO",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.sonypictures.com/homevideo/thelarrysanderscollection",
+      "status": "ended",
+      "rating": 8.34483,
+      "votes": 116,
+      "updated_at": "2016-03-31T03:01:55Z",
+      "language": "en",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "comedy"
+      ],
+      "aired_episodes": 90
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:37:21Z",
+    "show": {
+      "title": "Dream On",
+      "year": 1990,
+      "ids": {
+        "trakt": 1083,
+        "slug": "dream-on",
+        "tvdb": 71436,
+        "imdb": "tt0098780",
+        "tmdb": 1088,
+        "tvrage": 3382
+      },
+      "overview": "Dream On is an American adult-themed situation comedy about the family life, romantic life, and career of Martin Tupper, a divorced New York City book editor played by Brian Benben. The show centered on Martin's life in an apartment in New York City with his teenage son, and relating to his ex-wife, while trying to date other women and succeed as an editor for a small book publisher. The show was notable for its frequent use of clips from old movies and TV shows to express Martin's inner life and feelings, which lent it much of its quirky appeal, reminding viewers about the impact of TV on their consciousness. The show was also significant for being one of the first American sitcoms to use uncensored profanity and nudity.",
+      "first_aired": "1990-07-08T07:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 30,
+      "certification": null,
+      "network": "HBO",
+      "country": "us",
+      "trailer": null,
+      "homepage": null,
+      "status": "ended",
+      "rating": 7.31034,
+      "votes": 29,
+      "updated_at": "2016-03-31T03:37:21Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "it"
+      ],
+      "genres": [
+        "comedy"
+      ],
+      "aired_episodes": 120
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:03:20Z",
+    "show": {
+      "title": "Pawn Stars",
+      "year": 2009,
+      "ids": {
+        "trakt": 21654,
+        "slug": "pawn-stars",
+        "tvdb": 111051,
+        "imdb": "tt1492088",
+        "tmdb": 21755,
+        "tvrage": 23281
+      },
+      "overview": "Long before banks, ATMS and check-cashing services, there were pawn shops. Pawning was the leading form of consumer credit in the United States until the 1950s, and pawn shops are still helping everyday people make ends meet. PAWN STARS takes you inside the colorful world of the pawn business. At the Gold & Silver Pawn Shop on the outskirts of Las Vegas, three generations of the Harrison family--grandfather Richard, son Rick and grandson Corey--jointly run the family business, and there's clashing and camaraderie every step of the way. The three men use their sharp eyes and skills to assess the value of items from the commonplace to the truly historic, including a 16th-century samurai sword, a Super Bowl ring, a Picasso painting and a 17th-century stay of execution. It's up to them to determine what's real and what's fake, as they reveal the often surprising answer to the questions on everyone's mind, \"What's the story behind it\"? and \"What's it worth?\" ",
+      "first_aired": "2009-07-20T02:00:00Z",
+      "airs": {
+        "day": "Wednesday",
+        "time": "22:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 23,
+      "certification": "TV-PG",
+      "network": "History",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.history.com/shows/pawn-stars",
+      "status": "in production",
+      "rating": 7.34249,
+      "votes": 546,
+      "updated_at": "2016-03-31T05:03:20Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "es",
+        "pt",
+        "bs",
+        "ru",
+        "de"
+      ],
+      "genres": [
+        "reality"
+      ],
+      "aired_episodes": 412
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:32:34Z",
+    "show": {
+      "title": "Brotherhood : Final Fantasy XV",
+      "year": 2016,
+      "ids": {
+        "trakt": 106773,
+        "slug": "brotherhood-final-fantasy-xv",
+        "tvdb": 309668,
+        "imdb": null,
+        "tmdb": null,
+        "tvrage": null
+      },
+      "overview": null,
+      "first_aired": "2016-03-31T07:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "Europe/London"
+      },
+      "runtime": 12,
+      "certification": null,
+      "network": "YouTube",
+      "country": null,
+      "trailer": null,
+      "homepage": null,
+      "status": "returning series",
+      "rating": 8.0,
+      "votes": 1,
+      "updated_at": "2016-03-31T05:32:34Z",
+      "language": null,
+      "available_translations": [ ],
+      "genres": [
+        "action",
+        "animation",
+        "fantasy"
+      ],
+      "aired_episodes": 1
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:04:33Z",
+    "show": {
+      "title": "Spartacus: Gods of the Arena",
+      "year": 2011,
+      "ids": {
+        "trakt": 37741,
+        "slug": "spartacus-gods-of-the-arena",
+        "tvdb": 271742,
+        "imdb": "tt1758429",
+        "tmdb": 37899,
+        "tvrage": 26886
+      },
+      "overview": "Spartacus: Gods of the Arena is a Starz television mini-series and prequel to Spartacus, which premiered January 21, 2011. The series follows the character Gannicus, the first gladiator representing Lentulus Batiatus to become Champion of Capua.",
+      "first_aired": "1970-01-01T00:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 60,
+      "certification": null,
+      "network": null,
+      "country": "us",
+      "trailer": null,
+      "homepage": null,
+      "status": "ended",
+      "rating": 8.3747,
+      "votes": 419,
+      "updated_at": "2016-03-31T09:04:33Z",
+      "language": "en",
+      "available_translations": [
+        "cn",
+        "en",
+        "fr",
+        "es",
+        "ru",
+        "bg",
+        "zh",
+        "de",
+        "pt",
+        "hu",
+        "tr",
+        "bs"
+      ],
+      "genres": [ ],
+      "aired_episodes": 6
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:23Z",
+    "show": {
+      "title": "Unhitched",
+      "year": 2008,
+      "ids": {
+        "trakt": 15071,
+        "slug": "unhitched",
+        "tvdb": 81452,
+        "imdb": "tt0915414",
+        "tmdb": 15136,
+        "tvrage": 15787
+      },
+      "overview": "A 35-year-old man is a newcomer to the world of dating when his marriage crumbles after more than 10 happy years.\n",
+      "first_aired": "2008-03-03T02:30:00Z",
+      "airs": {
+        "day": "Sunday",
+        "time": "21:30",
+        "timezone": "America/New_York"
+      },
+      "runtime": 22,
+      "certification": null,
+      "network": "FOX (US)",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.fox.com/unhitched/",
+      "status": "ended",
+      "rating": 4.28571,
+      "votes": 7,
+      "updated_at": "2016-03-31T09:05:23Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "bs"
+      ],
+      "genres": [
+        "comedy"
+      ],
+      "aired_episodes": 6
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:35Z",
+    "show": {
+      "title": "The Family",
+      "year": 2016,
+      "ids": {
+        "trakt": 98886,
+        "slug": "the-family-2016",
+        "tvdb": 295516,
+        "imdb": "tt4428038",
+        "tmdb": 62814,
+        "tvrage": 47545
+      },
+      "overview": "The return of Adam, a politician’s son, presumed dead after disappearing over a decade earlier, sends shockwaves through his tight knit family. His parents, John and Claire, struggle to deal with the emotional weight of Adam’s return; his brother, Danny, is slow to welcome him as Adam seems so different than the brother he knew; while his sister, Willa, holds the family together as she hides secrets of her own. As the mysterious young man is welcomed back, the neighbor sitting in jail for his murder is released, and the cop responsible is forced to reexamine what truly happened. But the bigger question remains, is Adam really who he says he is?",
+      "first_aired": "2016-03-04T02:00:00Z",
+      "airs": {
+        "day": "Sunday",
+        "time": "21:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 43,
+      "certification": "TV-14",
+      "network": "ABC (US)",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://abc.go.com/shows/the-family",
+      "status": "returning series",
+      "rating": 7.58621,
+      "votes": 29,
+      "updated_at": "2016-03-31T09:05:35Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "es",
+        "ro",
+        "ms"
+      ],
+      "genres": [
+        "drama",
+        "mystery"
+      ],
+      "aired_episodes": 5
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:44Z",
+    "show": {
+      "title": "Miss Guided",
+      "year": 2008,
+      "ids": {
+        "trakt": 5228,
+        "slug": "miss-guided",
+        "tvdb": 81550,
+        "imdb": "tt0876235",
+        "tmdb": 5255,
+        "tvrage": 15728
+      },
+      "overview": "This comedy series follows Becky Freeley, a woman working as a guidance counselor at the Glen Ellen High School which she once attended. She tries to help guide the students so that they will cope with high school better than she did. She also interacts with other teachers and Principal Huffy. \n\nAshton Kutcher, famous for his roles in That 70's Show and as the host of the MTV show Punk'd, will be involved as an executive producer. Other executives will be Mark Hudis, Karey Burke, Jason Goldberg, Gabrielle Allan and Todd Holland. The first episode will be directed by Todd Holland. \n",
+      "first_aired": "2008-03-19T00:00:00Z",
+      "airs": {
+        "day": "Thursday",
+        "time": "20:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 30,
+      "certification": null,
+      "network": "ABC (US)",
+      "country": "us",
+      "trailer": null,
+      "homepage": null,
+      "status": "ended",
+      "rating": 7.0,
+      "votes": 12,
+      "updated_at": "2016-03-31T09:05:44Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "bs"
+      ],
+      "genres": [
+        "comedy",
+        "drama"
+      ],
+      "aired_episodes": 7
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:46Z",
+    "show": {
+      "title": "After the Rains and Dreams",
+      "year": 2005,
+      "ids": {
+        "trakt": 35722,
+        "slug": "after-the-rains-and-dreams",
+        "tvdb": 105791,
+        "imdb": "tt0940899",
+        "tmdb": 35877,
+        "tvrage": 13742
+      },
+      "overview": "Based on a novel by Akutagawa Prize-winning author, Yu Miri, 'Ame to Yume no Ato ni' is a story about the supernatural and the bonds between a father and daughter.\nSakurai Tomoharu is a single parent who has an extremely close relationship to his daughter. One of his hobbies is catching and collecting butterflies, and he has traveled to Taiwan to catch a very rare butterfly, the Troides magellanus. It's so rare it's been called the \"phantom butterfly.\" The legend goes that whoever catches this butterfly will become a phantom themselves.\nBack in Japan, Tomoharu's daughter, Ame, hasn't received a phone call from her father in days and begins to worry. However, when Tomoharu does return, he has no recollection of how he got back to Japan, or what happened at all. Ame notices strange things beginning to happen all around her . . .\nWith the help of his neighbor Akiko, Tomoharu begins to piece together what happened back in Taiwan, and comes to a horrifying conclusion.",
+      "first_aired": "2005-04-15T14:00:00Z",
+      "airs": {
+        "day": "Friday",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo"
+      },
+      "runtime": 60,
+      "certification": null,
+      "network": "TV Asahi",
+      "country": "jp",
+      "trailer": null,
+      "homepage": null,
+      "status": "ended",
+      "rating": 8.0,
+      "votes": 1,
+      "updated_at": "2016-03-31T09:05:46Z",
+      "language": "ja",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "drama",
+        "fantasy",
+        "science-fiction"
+      ],
+      "aired_episodes": 0
+    }
+  }
+]

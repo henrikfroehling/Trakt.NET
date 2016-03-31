@@ -1,0 +1,944 @@
+﻿[
+  {
+    "watcher_count": 32741,
+    "play_count": 182782,
+    "collected_count": 162624,
+    "collector_count": 10375,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      },
+      "overview": "The world we knew is gone. An epidemic of apocalyptic proportions has swept the globe causing the dead to rise and feed on the living. In a matter of months society has crumbled. In a world ruled by the dead, we are forced to finally start living. Based on a comic book series of the same name by Robert Kirkman, this AMC project focuses on the world after a zombie apocalypse. The series follows a police officer, Rick Grimes, who wakes up from a coma to find the world ravaged with zombies. Looking for his family, he and a group of survivors attempt to battle against the zombies in order to stay alive.\n",
+      "first_aired": "2010-11-01T01:00:00Z",
+      "airs": {
+        "day": "Sunday",
+        "time": "21:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 42,
+      "certification": "TV-MA",
+      "network": "AMC",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=R1v0uFms68U",
+      "homepage": "http://www.amctv.com/shows/the-walking-dead/",
+      "status": "returning series",
+      "rating": 8.62829,
+      "votes": 33523,
+      "updated_at": "2016-03-31T11:21:19Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "de",
+        "sv",
+        "it",
+        "pt",
+        "tr",
+        "ru",
+        "zh",
+        "fr",
+        "es",
+        "nl",
+        "pl",
+        "bg",
+        "el",
+        "hu",
+        "ja",
+        "he",
+        "da",
+        "cs",
+        "ko",
+        "cn",
+        "bs",
+        "hr",
+        "fa",
+        "lt",
+        "lv",
+        "ro",
+        "sr",
+        "vi",
+        "et",
+        "uk",
+        "fi",
+        "th",
+        "id",
+        "ms"
+      ],
+      "genres": [
+        "drama"
+      ],
+      "aired_episodes": 82,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/fanarts/original/fc68b3b649.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/393/fanarts/medium/fc68b3b649.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/393/fanarts/thumb/fc68b3b649.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/posters/original/dec5cd226c.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/393/posters/medium/dec5cd226c.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/393/posters/thumb/dec5cd226c.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/logos/original/e70ab3af09.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/cleararts/original/67608bba51.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/banners/original/24a32a2c19.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/393/thumbs/original/922707c72d.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 23521,
+    "play_count": 78410,
+    "collected_count": 53609,
+    "collector_count": 7151,
+    "show": {
+      "title": "The Flash",
+      "year": 2014,
+      "ids": {
+        "trakt": 60300,
+        "slug": "the-flash-2014",
+        "tvdb": 279121,
+        "imdb": "tt3107288",
+        "tmdb": 60735,
+        "tvrage": 36939
+      },
+      "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion – and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become... The Flash.",
+      "first_aired": "2014-10-08T00:00:00Z",
+      "airs": {
+        "day": "Tuesday",
+        "time": "20:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 44,
+      "certification": "TV-14",
+      "network": "The CW",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=aZxhA_Jihmw",
+      "homepage": "http://www.cwtv.com/shows/the-flash/",
+      "status": "returning series",
+      "rating": 8.32706,
+      "votes": 9191,
+      "updated_at": "2016-03-31T11:03:37Z",
+      "language": "en",
+      "available_translations": [
+        "pl",
+        "sv",
+        "fr",
+        "en",
+        "zh",
+        "da",
+        "pt",
+        "el",
+        "de",
+        "es",
+        "bg",
+        "it",
+        "tr",
+        "ru",
+        "nl",
+        "hu",
+        "ko",
+        "lt",
+        "cs",
+        "hr",
+        "bs",
+        "za",
+        "he",
+        "id",
+        "ro",
+        "fa",
+        "th",
+        "ar",
+        "te",
+        "uk",
+        "ms",
+        "sk"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "drama",
+        "science-fiction"
+      ],
+      "aired_episodes": 40,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/fanarts/original/df36c9a731.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/060/300/fanarts/medium/df36c9a731.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/060/300/fanarts/thumb/df36c9a731.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/posters/original/79bd96a4d3.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/060/300/posters/medium/79bd96a4d3.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/060/300/posters/thumb/79bd96a4d3.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/cleararts/original/660e6efe67.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/banners/original/b2c305a2dc.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/060/300/thumbs/original/eab955a39c.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 16056,
+    "play_count": 43068,
+    "collected_count": 24827,
+    "collector_count": 7067,
+    "show": {
+      "title": "Better Call Saul",
+      "year": 2015,
+      "ids": {
+        "trakt": 59660,
+        "slug": "better-call-saul",
+        "tvdb": 273181,
+        "imdb": "tt3032476",
+        "tmdb": 60059,
+        "tvrage": 37780
+      },
+      "overview": "We meet him when the man who will become Saul Goodman is known as Jimmy McGill, a small-time lawyer searching for his destiny and, more immediately, hustling to make ends meet. Working alongside, and, often, against Jimmy, is ‘fixer’ Mike Erhmantraut. The series tracks Jimmy's transformation into the man who puts ‘criminal’ in ‘criminal lawyer’.",
+      "first_aired": "2015-02-09T03:00:00Z",
+      "airs": {
+        "day": "Monday",
+        "time": "22:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 45,
+      "certification": "TV-14",
+      "network": "AMC",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=l1xIGfVFb-U",
+      "homepage": "http://www.amctv.com/shows/better-call-saul",
+      "status": "returning series",
+      "rating": 8.55784,
+      "votes": 4383,
+      "updated_at": "2016-03-31T11:04:18Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "fr",
+        "es",
+        "fi",
+        "nl",
+        "ru",
+        "uk",
+        "de",
+        "hu",
+        "it",
+        "pt",
+        "hr",
+        "bs",
+        "cs",
+        "da",
+        "ro",
+        "zh",
+        "sv",
+        "he",
+        "el",
+        "ko",
+        "pl",
+        "id"
+      ],
+      "genres": [
+        "comedy",
+        "drama",
+        "crime"
+      ],
+      "aired_episodes": 17,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/fanarts/original/5885092434.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/059/660/fanarts/medium/5885092434.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/059/660/fanarts/thumb/5885092434.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/posters/original/a847b27956.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/059/660/posters/medium/a847b27956.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/059/660/posters/thumb/a847b27956.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/logos/original/8e97acbd3e.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/cleararts/original/f552d9717b.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/banners/original/3f00b6cebf.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/059/660/thumbs/original/18f8d818eb.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 13422,
+    "play_count": 50752,
+    "collected_count": 44041,
+    "collector_count": 6671,
+    "show": {
+      "title": "Gotham",
+      "year": 2014,
+      "ids": {
+        "trakt": 60278,
+        "slug": "gotham",
+        "tvdb": 274431,
+        "imdb": "tt3749900",
+        "tmdb": 60708,
+        "tvrage": 38049
+      },
+      "overview": "An action-drama series following rookie detective James Gordon as he battles villains and corruption in pre-Batman Gotham City.",
+      "first_aired": "2014-09-23T00:00:00Z",
+      "airs": {
+        "day": "Monday",
+        "time": "20:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 43,
+      "certification": "TV-14",
+      "network": "FOX (US)",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=0d1zpt6k5OI",
+      "homepage": "http://www.fox.com/gotham/",
+      "status": "returning series",
+      "rating": 8.02871,
+      "votes": 7037,
+      "updated_at": "2016-03-31T11:05:59Z",
+      "language": "en",
+      "available_translations": [
+        "ru",
+        "zh",
+        "fr",
+        "en",
+        "pl",
+        "sk",
+        "cs",
+        "pt",
+        "tr",
+        "de",
+        "ko",
+        "da",
+        "it",
+        "el",
+        "es",
+        "hu",
+        "nl",
+        "sv",
+        "hr",
+        "bs",
+        "he",
+        "ro",
+        "id",
+        "uk"
+      ],
+      "genres": [
+        "crime",
+        "drama",
+        "thriller",
+        "fantasy"
+      ],
+      "aired_episodes": 38,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/fanarts/original/6cb6bd4982.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/060/278/fanarts/medium/6cb6bd4982.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/060/278/fanarts/thumb/6cb6bd4982.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/posters/original/696c821549.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/060/278/posters/medium/696c821549.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/060/278/posters/thumb/696c821549.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/logos/original/316b0a10bf.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/cleararts/original/8c16ac0f5b.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/banners/original/8fe75dddfa.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/060/278/thumbs/original/169537f6ce.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 12590,
+    "play_count": 44121,
+    "collected_count": 44907,
+    "collector_count": 6512,
+    "show": {
+      "title": "Vikings",
+      "year": 2013,
+      "ids": {
+        "trakt": 43973,
+        "slug": "vikings",
+        "tvdb": 260449,
+        "imdb": "tt2306299",
+        "tmdb": 44217,
+        "tvrage": 31136
+      },
+      "overview": "Vikings follows the adventures of Ragnar Lothbrok the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods, legend has it that he was a direct descendant of Odin, the god of war and warriors.",
+      "first_aired": "2013-03-03T08:00:00Z",
+      "airs": {
+        "day": "Thursday",
+        "time": "22:00",
+        "timezone": "America/Toronto"
+      },
+      "runtime": 45,
+      "certification": "TV-14",
+      "network": "History",
+      "country": "ca",
+      "trailer": "http://youtube.com/watch?v=1j2sXLbzm9U",
+      "homepage": "http://www.history.com/shows/vikings",
+      "status": "returning series",
+      "rating": 8.57924,
+      "votes": 9143,
+      "updated_at": "2016-03-31T11:14:24Z",
+      "language": "en",
+      "available_translations": [
+        "de",
+        "en",
+        "nl",
+        "pt",
+        "es",
+        "fr",
+        "tr",
+        "pl",
+        "el",
+        "hu",
+        "ru",
+        "fi",
+        "da",
+        "it",
+        "bs",
+        "cs",
+        "ro",
+        "he",
+        "sv",
+        "ko",
+        "th",
+        "id",
+        "ms",
+        "uk",
+        "zh"
+      ],
+      "genres": [
+        "drama",
+        "action"
+      ],
+      "aired_episodes": 35,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/fanarts/original/eb3a126015.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/043/973/fanarts/medium/eb3a126015.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/043/973/fanarts/thumb/eb3a126015.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/posters/original/735e733dbc.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/043/973/posters/medium/735e733dbc.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/043/973/posters/thumb/735e733dbc.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/logos/original/57d3071e2c.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/cleararts/original/653549d676.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/banners/original/762db657b7.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/043/973/thumbs/original/6d10fd730b.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 15857,
+    "play_count": 69497,
+    "collected_count": 52975,
+    "collector_count": 6348,
+    "show": {
+      "title": "Marvel's Agents of S.H.I.E.L.D.",
+      "year": 2013,
+      "ids": {
+        "trakt": 1394,
+        "slug": "marvel-s-agents-of-s-h-i-e-l-d",
+        "tvdb": 263365,
+        "imdb": "tt2364582",
+        "tmdb": 1403,
+        "tvrage": 32656
+      },
+      "overview": null,
+      "first_aired": "2013-09-24T07:00:00Z",
+      "airs": {
+        "day": "Tuesday",
+        "time": "21:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 45,
+      "certification": "TV-PG",
+      "network": "ABC (US)",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=T3T-evQZiQo",
+      "homepage": "http://www.agentsofshield.com/",
+      "status": "returning series",
+      "rating": 7.8285,
+      "votes": 11382,
+      "updated_at": "2016-03-31T11:13:23Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "es",
+        "de",
+        "ru",
+        "hu",
+        "pl",
+        "bg",
+        "pt",
+        "el",
+        "it",
+        "ko",
+        "nl",
+        "fr",
+        "zh",
+        "tr",
+        "sv",
+        "lt",
+        "cs",
+        "hr",
+        "bs",
+        "da",
+        "he",
+        "ro",
+        "id",
+        "ms",
+        "uk"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "drama",
+        "fantasy",
+        "science-fiction"
+      ],
+      "aired_episodes": 58,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/fanarts/original/2cc61c8eea.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/394/fanarts/medium/2cc61c8eea.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/394/fanarts/thumb/2cc61c8eea.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/posters/original/c4a4211e12.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/394/posters/medium/c4a4211e12.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/394/posters/thumb/c4a4211e12.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/logos/original/2203dce644.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/cleararts/original/a384583c46.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/banners/original/e5abcfc0f9.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/394/thumbs/original/e0effa907b.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 19840,
+    "play_count": 119340,
+    "collected_count": 91203,
+    "collector_count": 6326,
+    "show": {
+      "title": "Arrow",
+      "year": 2012,
+      "ids": {
+        "trakt": 1403,
+        "slug": "arrow",
+        "tvdb": 257655,
+        "imdb": "tt2193021",
+        "tmdb": 1412,
+        "tvrage": 30715
+      },
+      "overview": "Oliver Queen and his father are lost at sea when their luxury yacht sinks. His father doesn't survive. Oliver survives on an uncharted island for five years learning to fight, but also learning about his father's corruption and unscrupulous business dealings. He returns to civilization a changed man, determined to put things right. He disguises himself with the hood of one of his mysterious island mentors, arms himself with a bow and sets about hunting down the men and women who have corrupted his city.",
+      "first_aired": "2012-10-11T00:00:00Z",
+      "airs": {
+        "day": "Wednesday",
+        "time": "20:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 45,
+      "certification": "TV-14",
+      "network": "The CW",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=hTv13EjlLNg",
+      "homepage": "http://www.cwtv.com/shows/arrow",
+      "status": "returning series",
+      "rating": 8.05498,
+      "votes": 20482,
+      "updated_at": "2016-03-31T11:19:58Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "hu",
+        "it",
+        "da",
+        "pl",
+        "pt",
+        "el",
+        "nl",
+        "sk",
+        "es",
+        "tr",
+        "fr",
+        "de",
+        "ru",
+        "zh",
+        "uk",
+        "bg",
+        "ro",
+        "sv",
+        "lt",
+        "hr",
+        "ko",
+        "bs",
+        "cs",
+        "he",
+        "fa",
+        "fi",
+        "th",
+        "id",
+        "ms"
+      ],
+      "genres": [
+        "drama",
+        "mystery",
+        "action",
+        "adventure",
+        "crime",
+        "science-fiction"
+      ],
+      "aired_episodes": 86,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/fanarts/original/bbe10773b5.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/403/fanarts/medium/bbe10773b5.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/403/fanarts/thumb/bbe10773b5.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/posters/original/e68cd618e2.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/403/posters/medium/e68cd618e2.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/403/posters/thumb/e68cd618e2.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/logos/original/df42f19d28.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/cleararts/original/b859003114.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/banners/original/bcb318ed5d.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/403/thumbs/original/bdc790c1e5.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 14833,
+    "play_count": 111479,
+    "collected_count": 103217,
+    "collector_count": 5348,
+    "show": {
+      "title": "Modern Family",
+      "year": 2009,
+      "ids": {
+        "trakt": 1412,
+        "slug": "modern-family",
+        "tvdb": 95011,
+        "imdb": "tt1442437",
+        "tmdb": 1421,
+        "tvrage": 22622
+      },
+      "overview": "This mockumentary explores the many different types of a modern family through the stories of a gay couple, comprised of Mitchell and Cameron, and their daughter Lily, a straight couple, comprised of Phil and Claire, and their three kids, Haley, Alex, and Luke, and a multi-ethnic couple, which is comprised of Jay and Gloria, and her son Manny.",
+      "first_aired": "2009-09-23T00:00:00Z",
+      "airs": {
+        "day": "Wednesday",
+        "time": "21:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 25,
+      "certification": "TV-PG",
+      "network": "ABC (US)",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=DHyKECa1VaA",
+      "homepage": "http://abc.go.com/shows/modern-family",
+      "status": "returning series",
+      "rating": 8.56317,
+      "votes": 13662,
+      "updated_at": "2016-03-31T10:35:50Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "es",
+        "pt",
+        "de",
+        "da",
+        "fr",
+        "it",
+        "ru",
+        "el",
+        "nl",
+        "hu",
+        "ro",
+        "ko",
+        "hr",
+        "pl",
+        "bs",
+        "sv",
+        "zh",
+        "th",
+        "he",
+        "tr",
+        "id",
+        "uk",
+        "ms"
+      ],
+      "genres": [
+        "comedy"
+      ],
+      "aired_episodes": 161,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/fanarts/original/f04803f6e6.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/412/fanarts/medium/f04803f6e6.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/412/fanarts/thumb/f04803f6e6.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/posters/original/cd7b6fcd28.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/412/posters/medium/cd7b6fcd28.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/412/posters/thumb/cd7b6fcd28.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/logos/original/098d4e5a5f.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/cleararts/original/027dcf0f7f.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/banners/original/7152ecf377.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/412/thumbs/original/e4f90a0866.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 10281,
+    "play_count": 25673,
+    "collected_count": 18402,
+    "collector_count": 5235,
+    "show": {
+      "title": "Blindspot",
+      "year": 2015,
+      "ids": {
+        "trakt": 98980,
+        "slug": "blindspot",
+        "tvdb": 295647,
+        "imdb": "tt4474344",
+        "tmdb": 62710,
+        "tvrage": 44628
+      },
+      "overview": "A vast international plot explodes when a beautiful Jane Doe is discovered naked in Times Square, completely covered in mysterious, intricate tattoos with no memory of who she is or how she got there. But there's one tattoo that is impossible to miss: the name of FBI agent Kurt Weller, emblazoned across her back. \"Jane,\" Agent Weller and the rest of the FBI quickly realize that each mark on her body is a crime to solve, leading them closer to the truth about her identity and the mysteries to be revealed.",
+      "first_aired": "2015-09-22T02:00:00Z",
+      "airs": {
+        "day": "Monday",
+        "time": "22:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 45,
+      "certification": "TV-14",
+      "network": "NBC",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=9FHLBldRdIo",
+      "homepage": "http://www.nbc.com/blindspot",
+      "status": "returning series",
+      "rating": 7.88383,
+      "votes": 1231,
+      "updated_at": "2016-03-31T11:01:13Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "bs",
+        "pl",
+        "tr",
+        "tr",
+        "da",
+        "es",
+        "pt",
+        "es",
+        "pt",
+        "zh",
+        "ru",
+        "el",
+        "hu",
+        "cs",
+        "nl",
+        "fr",
+        "de",
+        "ro",
+        "id"
+      ],
+      "genres": [
+        "drama",
+        "action",
+        "crime"
+      ],
+      "aired_episodes": 15,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/fanarts/original/ceaa923d32.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/980/fanarts/medium/ceaa923d32.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/980/fanarts/thumb/ceaa923d32.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/posters/original/ecbf971405.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/980/posters/medium/ecbf971405.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/980/posters/thumb/ecbf971405.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/logos/original/ab3b5a5505.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/cleararts/original/2c6dad9c02.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/banners/original/2904440378.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/098/980/thumbs/original/83a2f9d5d3.jpg"
+        }
+      }
+    }
+  },
+  {
+    "watcher_count": 12975,
+    "play_count": 33037,
+    "collected_count": 18800,
+    "collector_count": 5010,
+    "show": {
+      "title": "Supergirl",
+      "year": 2015,
+      "ids": {
+        "trakt": 99046,
+        "slug": "supergirl",
+        "tvdb": 295759,
+        "imdb": "tt4016454",
+        "tmdb": 62688,
+        "tvrage": 44824
+      },
+      "overview": "Twenty-four-year-old Kara Zor-El, who was taken in by the Danvers family when she was 13 after being sent away from Krypton, must learn to embrace her powers after previously hiding them. The Danvers teach her to be careful with her powers, until she has to reveal them during an unexpected disaster, setting her on her journey of heroism.",
+      "first_aired": "2015-10-26T07:00:00Z",
+      "airs": {
+        "day": "Monday",
+        "time": "20:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 45,
+      "certification": "TV-PG",
+      "network": "CBS",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=TRgj2uZn-Dg",
+      "homepage": "http://www.cbs.com/shows/supergirl/",
+      "status": "returning series",
+      "rating": 7.1318,
+      "votes": 1396,
+      "updated_at": "2016-03-31T11:13:02Z",
+      "language": "en",
+      "available_translations": [
+        "fr",
+        "bs",
+        "es",
+        "en",
+        "ro",
+        "pt",
+        "zh",
+        "tr",
+        "ru",
+        "da",
+        "el",
+        "hu",
+        "nl",
+        "pl",
+        "fa",
+        "id",
+        "de",
+        "he",
+        "ko",
+        "uk"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "science-fiction",
+        "drama"
+      ],
+      "aired_episodes": 18,
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/fanarts/original/88ff78c4d2.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/099/046/fanarts/medium/88ff78c4d2.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/099/046/fanarts/thumb/88ff78c4d2.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/posters/original/1c6230ccfb.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/099/046/posters/medium/1c6230ccfb.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/099/046/posters/thumb/1c6230ccfb.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/logos/original/8c776074a7.png"
+        },
+        "clearart": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/cleararts/original/535c6108a8.png"
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/banners/original/0ddcd69f32.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/099/046/thumbs/original/e2fe080ab7.jpg"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,686 @@
+﻿[
+  {
+    "list_count": 12173,
+    "movie": {
+      "title": "Captain America: Civil War",
+      "year": 2016,
+      "ids": {
+        "trakt": 169105,
+        "slug": "captain-america-civil-war-2016",
+        "imdb": "tt3498820",
+        "tmdb": 271110
+      },
+      "tagline": "Divided We Fall",
+      "overview": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
+      "released": "2016-05-06",
+      "runtime": 146,
+      "trailer": "http://youtube.com/watch?v=_SASKNmPtCI",
+      "homepage": null,
+      "rating": 5.81319,
+      "votes": 91,
+      "updated_at": "2016-03-31T08:38:06Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "ru",
+        "pt",
+        "zh",
+        "fr",
+        "de",
+        "es",
+        "ro",
+        "he",
+        "cs",
+        "tr",
+        "nl",
+        "el",
+        "hu",
+        "hu",
+        "it",
+        "ko",
+        "it",
+        "ko",
+        "pl"
+      ],
+      "genres": [
+        "action",
+        "science-fiction",
+        "thriller"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/169/105/fanarts/original/6e0119933e.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/169/105/fanarts/medium/6e0119933e.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/169/105/fanarts/thumb/6e0119933e.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/169/105/posters/original/8622263bc6.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/169/105/posters/medium/8622263bc6.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/169/105/posters/thumb/8622263bc6.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/movies/000/169/105/logos/original/c886792800.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/movies/000/169/105/banners/original/6e1c70ee3a.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/movies/000/169/105/thumbs/original/8cbc0f9197.jpg"
+        }
+      }
+    }
+  },
+  {
+    "list_count": 11162,
+    "movie": {
+      "title": "X-Men: Apocalypse",
+      "year": 2016,
+      "ids": {
+        "trakt": 149999,
+        "slug": "x-men-apocalypse-2016",
+        "imdb": "tt3385516",
+        "tmdb": 246655
+      },
+      "tagline": "Only the strong will survive",
+      "overview": "Since the dawn of civilization, he was worshipped as a god. Apocalypse, the first and most powerful mutant from Marvel’s X-Men universe, amassed the powers of many other mutants, becoming immortal and invincible. Upon awakening after thousands of years, he is disillusioned with the world as he finds it and recruits a team of powerful mutants, including a disheartened Magneto, to cleanse mankind and create a new world order, over which he will reign. As the fate of the Earth hangs in the balance, Raven with the help of Professor X must lead a team of young X-Men to stop their greatest nemesis and save mankind from complete destruction.",
+      "released": "2016-05-27",
+      "runtime": 0,
+      "trailer": "http://youtube.com/watch?v=QGHk4ig76Tk",
+      "homepage": null,
+      "rating": 5.4321,
+      "votes": 81,
+      "updated_at": "2016-03-27T16:59:00Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "fr",
+        "ru",
+        "de",
+        "hu",
+        "zh",
+        "cs",
+        "he",
+        "ro",
+        "pt",
+        "es",
+        "it",
+        "ar",
+        "nl",
+        "el",
+        "tr",
+        "th",
+        "ko"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "fantasy",
+        "science-fiction"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/149/999/fanarts/original/96c815f8e5.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/149/999/fanarts/medium/96c815f8e5.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/149/999/fanarts/thumb/96c815f8e5.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/149/999/posters/original/3a399f21e4.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/149/999/posters/medium/3a399f21e4.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/149/999/posters/thumb/3a399f21e4.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/movies/000/149/999/logos/original/24a1351491.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/movies/000/149/999/banners/original/3e50eb5939.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 10501,
+    "movie": {
+      "title": "Suicide Squad",
+      "year": 2016,
+      "ids": {
+        "trakt": 193079,
+        "slug": "suicide-squad-2016",
+        "imdb": "tt1386697",
+        "tmdb": 297761
+      },
+      "tagline": "Worst Heroes Ever",
+      "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.",
+      "released": "2016-08-05",
+      "runtime": 0,
+      "trailer": "http://youtube.com/watch?v=fcvyevK32Rc",
+      "homepage": null,
+      "rating": 5.04545,
+      "votes": 66,
+      "updated_at": "2016-03-31T08:37:25Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "pt",
+        "fr",
+        "es",
+        "de",
+        "it",
+        "ru",
+        "hu",
+        "hu",
+        "el",
+        "el",
+        "tr",
+        "nl",
+        "he",
+        "da"
+      ],
+      "genres": [
+        "action",
+        "crime",
+        "science-fiction"
+      ],
+      "certification": "PG-13",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/193/079/fanarts/original/0a3d9e4797.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/193/079/fanarts/medium/0a3d9e4797.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/193/079/fanarts/thumb/0a3d9e4797.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/193/079/posters/original/b39ac0f782.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/193/079/posters/medium/b39ac0f782.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/193/079/posters/thumb/b39ac0f782.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/movies/000/193/079/logos/original/ff275c69e7.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/movies/000/193/079/banners/original/9ad4534c3d.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/movies/000/193/079/thumbs/original/aae2c41d3a.jpg"
+        }
+      }
+    }
+  },
+  {
+    "list_count": 7587,
+    "movie": {
+      "title": "Justice League",
+      "year": 2017,
+      "ids": {
+        "trakt": 94232,
+        "slug": "justice-league-2017",
+        "imdb": "tt0974015",
+        "tmdb": 141052
+      },
+      "tagline": "Lets Make a Deal",
+      "overview": "Superman, Batman, Green Lantern, Wonder Woman, Aquaman, the Flash and other superheroes unite to fight against evil forces.",
+      "released": "2017-11-17",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": null,
+      "rating": 5.40541,
+      "votes": 37,
+      "updated_at": "2016-03-01T09:00:14Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "pt",
+        "zh",
+        "es",
+        "fr",
+        "ro",
+        "cs",
+        "el",
+        "de",
+        "nl",
+        "pl",
+        "tr",
+        "he"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "science-fiction",
+        "fantasy"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/094/232/fanarts/original/f02a2631ca.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/094/232/fanarts/medium/f02a2631ca.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/094/232/fanarts/thumb/f02a2631ca.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/094/232/posters/original/1e20ffaea0.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/094/232/posters/medium/1e20ffaea0.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/094/232/posters/thumb/1e20ffaea0.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 7301,
+    "movie": {
+      "title": "Thor Ragnarok",
+      "year": 2017,
+      "ids": {
+        "trakt": 181312,
+        "slug": "thor-ragnarok-2017",
+        "imdb": "tt3501632",
+        "tmdb": 284053
+      },
+      "tagline": "We Should Fight",
+      "overview": "Thor must confront other gods when Asgard is threatened with Ragnarok, the Norse Apocalypse.",
+      "released": "2017-11-03",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": "http://marvel.com/movies",
+      "rating": 5.80952,
+      "votes": 21,
+      "updated_at": "2016-01-20T08:30:36Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "pt",
+        "fr",
+        "ru",
+        "de",
+        "zh",
+        "tr",
+        "es",
+        "cs"
+      ],
+      "genres": [
+        "science-fiction",
+        "action",
+        "adventure",
+        "fantasy"
+      ],
+      "certification": "PG-13",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/181/312/fanarts/original/7f8355b610.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/181/312/fanarts/medium/7f8355b610.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/181/312/fanarts/thumb/7f8355b610.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/181/312/posters/original/bc157c1c7d.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/181/312/posters/medium/bc157c1c7d.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/181/312/posters/thumb/bc157c1c7d.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 6765,
+    "movie": {
+      "title": "Guardians of the Galaxy Vol. 2",
+      "year": 2017,
+      "ids": {
+        "trakt": 181256,
+        "slug": "guardians-of-the-galaxy-vol-2-2017",
+        "imdb": "tt3896198",
+        "tmdb": 283995
+      },
+      "tagline": "",
+      "overview": "Set to the all-new sonic backdrop of Awesome Mixtape #2, Guardians of the Galaxy Vol. 2 continues the team’s adventures as they unravel the mystery of Peter Quill’s true parentage.",
+      "released": "2017-05-05",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": null,
+      "rating": 5.81395,
+      "votes": 43,
+      "updated_at": "2016-03-02T08:43:04Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "zh",
+        "pt",
+        "fr",
+        "ru",
+        "de",
+        "es",
+        "cs",
+        "it",
+        "he"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "science-fiction"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/181/256/fanarts/original/99694548b6.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/181/256/fanarts/medium/99694548b6.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/181/256/fanarts/thumb/99694548b6.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/181/256/posters/original/caccce35cf.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/181/256/posters/medium/caccce35cf.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/181/256/posters/thumb/caccce35cf.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 6451,
+    "movie": {
+      "title": "Avengers: Infinity War - Part I",
+      "year": 2018,
+      "ids": {
+        "trakt": 191797,
+        "slug": "avengers-infinity-war-part-i-2018",
+        "imdb": "tt4154756",
+        "tmdb": 299536
+      },
+      "tagline": "",
+      "overview": "Overview not yet known.",
+      "released": "2018-05-04",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": null,
+      "rating": 6.0,
+      "votes": 22,
+      "updated_at": "2015-06-14T08:34:35Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "pt",
+        "fr",
+        "ru",
+        "de",
+        "cs",
+        "zh"
+      ],
+      "genres": [
+        "science-fiction",
+        "action",
+        "adventure"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/191/797/posters/original/91967e4e9a.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/191/797/posters/medium/91967e4e9a.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/191/797/posters/thumb/91967e4e9a.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 6293,
+    "movie": {
+      "title": "Star Wars: Episode VIII",
+      "year": 2017,
+      "ids": {
+        "trakt": 114333,
+        "slug": "star-wars-episode-viii-2017",
+        "imdb": "tt2527336",
+        "tmdb": 181808
+      },
+      "tagline": "",
+      "overview": "",
+      "released": "2017-05-26",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": "http://www.starwars.com",
+      "rating": 6.27451,
+      "votes": 51,
+      "updated_at": "2016-02-15T18:17:03Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "sk",
+        "ja",
+        "fr",
+        "ko",
+        "it",
+        "cs",
+        "es",
+        "ro",
+        "ru",
+        "da",
+        "de",
+        "tr",
+        "hu"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "fantasy",
+        "science-fiction"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/114/333/posters/original/3b6eb5d02b.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/114/333/posters/medium/3b6eb5d02b.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/114/333/posters/thumb/3b6eb5d02b.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 5850,
+    "movie": {
+      "title": "Finding Dory",
+      "year": 2016,
+      "ids": {
+        "trakt": 87254,
+        "slug": "finding-dory-2016",
+        "imdb": "tt2277860",
+        "tmdb": 127380
+      },
+      "tagline": "An unforgettable journey she probably won't remember.",
+      "overview": "Taking place a year after finding Nemo, Dory goes on a journey to reunite with her family.",
+      "released": "2016-06-17",
+      "runtime": 0,
+      "trailer": "http://youtube.com/watch?v=3JNLwlcPBPI",
+      "homepage": null,
+      "rating": 5.0,
+      "votes": 34,
+      "updated_at": "2016-03-24T09:14:49Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "es",
+        "it",
+        "fr",
+        "pt",
+        "ru",
+        "hu",
+        "de",
+        "he",
+        "da",
+        "el",
+        "ro"
+      ],
+      "genres": [
+        "adventure",
+        "animation",
+        "comedy"
+      ],
+      "certification": "G",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/087/254/fanarts/original/0276b2f0dd.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/087/254/fanarts/medium/0276b2f0dd.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/087/254/fanarts/thumb/0276b2f0dd.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/087/254/posters/original/69e78c087d.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/087/254/posters/medium/69e78c087d.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/087/254/posters/thumb/69e78c087d.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/movies/000/087/254/logos/original/3406784bc2.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 5726,
+    "movie": {
+      "title": "Pirates of the Caribbean: Dead Men Tell No Tales",
+      "year": 2017,
+      "ids": {
+        "trakt": 106667,
+        "slug": "pirates-of-the-caribbean-dead-men-tell-no-tales-2017",
+        "imdb": "tt1790809",
+        "tmdb": 166426
+      },
+      "tagline": "",
+      "overview": "Thrust into an all-new adventure, a down-on-his-luck Captain Jack Sparrow finds the winds of ill-fortune blowing even more strongly when deadly ghost pirates led by his old nemesis, the terrifying Captain Salazar (Bardem), escape from the Devil's Triangle, determined to kill every pirate at sea...including him. Captain Jack's only hope of survival lies in seeking out the legendary Trident of Poseidon, a powerful artifact that bestows upon its possessor total control over the seas.",
+      "released": "2017-05-26",
+      "runtime": 0,
+      "trailer": null,
+      "homepage": null,
+      "rating": 7.04348,
+      "votes": 69,
+      "updated_at": "2016-03-30T12:56:31Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "fr",
+        "ru",
+        "pt",
+        "de",
+        "it",
+        "he",
+        "es",
+        "tr",
+        "ro",
+        "nl"
+      ],
+      "genres": [
+        "action",
+        "adventure",
+        "comedy",
+        "fantasy"
+      ],
+      "certification": "",
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/movies/000/106/667/fanarts/original/afae714181.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/106/667/fanarts/medium/afae714181.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/106/667/fanarts/thumb/afae714181.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/movies/000/106/667/posters/original/daed2766f2.jpg",
+          "medium": "https://walter.trakt.us/images/movies/000/106/667/posters/medium/daed2766f2.jpg",
+          "thumb": "https://walter.trakt.us/images/movies/000/106/667/posters/thumb/daed2766f2.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/movies/000/106/667/logos/original/493c6836f1.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  }
+]

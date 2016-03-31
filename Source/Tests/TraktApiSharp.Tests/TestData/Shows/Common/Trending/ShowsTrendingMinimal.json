@@ -1,0 +1,152 @@
+﻿[
+  {
+    "watchers": 177,
+    "show": {
+      "title": "Marvel's Daredevil",
+      "year": 2015,
+      "ids": {
+        "trakt": 77938,
+        "slug": "marvel-s-daredevil",
+        "tvdb": 281662,
+        "imdb": "tt3322312",
+        "tmdb": 61889,
+        "tvrage": 38796
+      }
+    }
+  },
+  {
+    "watchers": 175,
+    "show": {
+      "title": "Arrow",
+      "year": 2012,
+      "ids": {
+        "trakt": 1403,
+        "slug": "arrow",
+        "tvdb": 257655,
+        "imdb": "tt2193021",
+        "tmdb": 1412,
+        "tvrage": 30715
+      }
+    }
+  },
+  {
+    "watchers": 136,
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 1393,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      }
+    }
+  },
+  {
+    "watchers": 117,
+    "show": {
+      "title": "The Flash",
+      "year": 2014,
+      "ids": {
+        "trakt": 60300,
+        "slug": "the-flash-2014",
+        "tvdb": 279121,
+        "imdb": "tt3107288",
+        "tmdb": 60735,
+        "tvrage": 36939
+      }
+    }
+  },
+  {
+    "watchers": 100,
+    "show": {
+      "title": "House of Cards",
+      "year": 2013,
+      "ids": {
+        "trakt": 1416,
+        "slug": "house-of-cards",
+        "tvdb": 262980,
+        "imdb": "tt1856010",
+        "tmdb": 1425,
+        "tvrage": 27822
+      }
+    }
+  },
+  {
+    "watchers": 83,
+    "show": {
+      "title": "Marvel's Agents of S.H.I.E.L.D.",
+      "year": 2013,
+      "ids": {
+        "trakt": 1394,
+        "slug": "marvel-s-agents-of-s-h-i-e-l-d",
+        "tvdb": 263365,
+        "imdb": "tt2364582",
+        "tmdb": 1403,
+        "tvrage": 32656
+      }
+    }
+  },
+  {
+    "watchers": 82,
+    "show": {
+      "title": "Better Call Saul",
+      "year": 2015,
+      "ids": {
+        "trakt": 59660,
+        "slug": "better-call-saul",
+        "tvdb": 273181,
+        "imdb": "tt3032476",
+        "tmdb": 60059,
+        "tvrage": 37780
+      }
+    }
+  },
+  {
+    "watchers": 78,
+    "show": {
+      "title": "Supernatural",
+      "year": 2005,
+      "ids": {
+        "trakt": 1611,
+        "slug": "supernatural",
+        "tvdb": 78901,
+        "imdb": "tt0460681",
+        "tmdb": 1622,
+        "tvrage": 5410
+      }
+    }
+  },
+  {
+    "watchers": 66,
+    "show": {
+      "title": "Blindspot",
+      "year": 2015,
+      "ids": {
+        "trakt": 98980,
+        "slug": "blindspot",
+        "tvdb": 295647,
+        "imdb": "tt4474344",
+        "tmdb": 62710,
+        "tvrage": 44628
+      }
+    }
+  },
+  {
+    "watchers": 64,
+    "show": {
+      "title": "Elementary",
+      "year": 2012,
+      "ids": {
+        "trakt": 1406,
+        "slug": "elementary",
+        "tvdb": 255316,
+        "imdb": "tt2191671",
+        "tmdb": 1415,
+        "tvrage": 30750
+      }
+    }
+  }
+]

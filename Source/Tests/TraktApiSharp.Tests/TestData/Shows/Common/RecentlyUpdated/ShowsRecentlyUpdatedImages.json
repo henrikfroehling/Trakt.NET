@@ -1,0 +1,392 @@
+﻿[
+  {
+    "updated_at": "2016-03-31T00:20:00Z",
+    "show": {
+      "title": "Aikatsu Stars!",
+      "year": 2016,
+      "ids": {
+        "trakt": 106488,
+        "slug": "aikatsu-stars",
+        "tvdb": 309143,
+        "imdb": null,
+        "tmdb": 65929,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/106/488/posters/original/76c4d6e827.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/106/488/posters/medium/76c4d6e827.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/106/488/posters/thumb/76c4d6e827.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:01:55Z",
+    "show": {
+      "title": "The Larry Sanders Show",
+      "year": 1992,
+      "ids": {
+        "trakt": 1902,
+        "slug": "the-larry-sanders-show",
+        "tvdb": 73007,
+        "imdb": "tt0103466",
+        "tmdb": 1915,
+        "tvrage": 5909
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/902/fanarts/original/f73b26d91d.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/902/fanarts/medium/f73b26d91d.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/902/fanarts/thumb/f73b26d91d.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/902/posters/original/70600be219.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/902/posters/medium/70600be219.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/902/posters/thumb/70600be219.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/902/banners/original/ed1e88cb99.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T03:37:21Z",
+    "show": {
+      "title": "Dream On",
+      "year": 1990,
+      "ids": {
+        "trakt": 1083,
+        "slug": "dream-on",
+        "tvdb": 71436,
+        "imdb": "tt0098780",
+        "tmdb": 1088,
+        "tvrage": 3382
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/001/083/fanarts/original/ac8b2cd75a.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/083/fanarts/medium/ac8b2cd75a.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/083/fanarts/thumb/ac8b2cd75a.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/001/083/posters/original/093bab686a.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/001/083/posters/medium/093bab686a.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/001/083/posters/thumb/093bab686a.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/001/083/banners/original/a64ae53d1e.jpg"
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/001/083/thumbs/original/e466794fb9.jpg"
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:03:20Z",
+    "show": {
+      "title": "Pawn Stars",
+      "year": 2009,
+      "ids": {
+        "trakt": 21654,
+        "slug": "pawn-stars",
+        "tvdb": 111051,
+        "imdb": "tt1492088",
+        "tmdb": 21755,
+        "tvrage": 23281
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/021/654/fanarts/original/f643d772b3.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/021/654/fanarts/medium/f643d772b3.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/021/654/fanarts/thumb/f643d772b3.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/021/654/posters/original/bea54108d0.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/021/654/posters/medium/bea54108d0.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/021/654/posters/thumb/bea54108d0.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": "https://walter.trakt.us/images/shows/000/021/654/thumbs/original/6595647a36.jpg"
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T05:32:34Z",
+    "show": {
+      "title": "Brotherhood : Final Fantasy XV",
+      "year": 2016,
+      "ids": {
+        "trakt": 106773,
+        "slug": "brotherhood-final-fantasy-xv",
+        "tvdb": 309668,
+        "imdb": null,
+        "tmdb": null,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/106/773/fanarts/original/5bfbc7eb5b.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/106/773/fanarts/medium/5bfbc7eb5b.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/106/773/fanarts/thumb/5bfbc7eb5b.jpg"
+        },
+        "poster": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:04:33Z",
+    "show": {
+      "title": "Spartacus: Gods of the Arena",
+      "year": 2011,
+      "ids": {
+        "trakt": 37741,
+        "slug": "spartacus-gods-of-the-arena",
+        "tvdb": 271742,
+        "imdb": "tt1758429",
+        "tmdb": 37899,
+        "tvrage": 26886
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/037/741/fanarts/original/d449e9aae0.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/037/741/fanarts/medium/d449e9aae0.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/037/741/fanarts/thumb/d449e9aae0.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/037/741/posters/original/942cceae0e.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/037/741/posters/medium/942cceae0e.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/037/741/posters/thumb/942cceae0e.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:23Z",
+    "show": {
+      "title": "Unhitched",
+      "year": 2008,
+      "ids": {
+        "trakt": 15071,
+        "slug": "unhitched",
+        "tvdb": 81452,
+        "imdb": "tt0915414",
+        "tmdb": 15136,
+        "tvrage": 15787
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/015/071/fanarts/original/8ed74fbd1b.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/015/071/fanarts/medium/8ed74fbd1b.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/015/071/fanarts/thumb/8ed74fbd1b.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/015/071/posters/original/809e654af3.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/015/071/posters/medium/809e654af3.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/015/071/posters/thumb/809e654af3.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/015/071/banners/original/9842a52fa0.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:35Z",
+    "show": {
+      "title": "The Family",
+      "year": 2016,
+      "ids": {
+        "trakt": 98886,
+        "slug": "the-family-2016",
+        "tvdb": 295516,
+        "imdb": "tt4428038",
+        "tmdb": 62814,
+        "tvrage": 47545
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/098/886/fanarts/original/0ab3a7c530.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/886/fanarts/medium/0ab3a7c530.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/886/fanarts/thumb/0ab3a7c530.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/098/886/posters/original/6e82f99719.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/886/posters/medium/6e82f99719.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/886/posters/thumb/6e82f99719.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/098/886/logos/original/88c57ad86e.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/098/886/banners/original/8dbd2bef43.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:44Z",
+    "show": {
+      "title": "Miss Guided",
+      "year": 2008,
+      "ids": {
+        "trakt": 5228,
+        "slug": "miss-guided",
+        "tvdb": 81550,
+        "imdb": "tt0876235",
+        "tmdb": 5255,
+        "tvrage": 15728
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/005/228/fanarts/original/05b30fcf21.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/005/228/fanarts/medium/05b30fcf21.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/005/228/fanarts/thumb/05b30fcf21.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/005/228/posters/original/44493ca566.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/005/228/posters/medium/44493ca566.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/005/228/posters/thumb/44493ca566.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/005/228/banners/original/4cf54b40d7.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "updated_at": "2016-03-31T09:05:46Z",
+    "show": {
+      "title": "After the Rains and Dreams",
+      "year": 2005,
+      "ids": {
+        "trakt": 35722,
+        "slug": "after-the-rains-and-dreams",
+        "tvdb": 105791,
+        "imdb": "tt0940899",
+        "tmdb": 35877,
+        "tvrage": 13742
+      },
+      "images": {
+        "fanart": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/035/722/posters/original/e9c140fcb0.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/035/722/posters/medium/e9c140fcb0.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/035/722/posters/thumb/e9c140fcb0.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": null
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  }
+]

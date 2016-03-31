@@ -1,0 +1,415 @@
+﻿[
+  {
+    "list_count": 5325,
+    "show": {
+      "title": "Westworld",
+      "year": 2016,
+      "ids": {
+        "trakt": 99718,
+        "slug": "westworld",
+        "tvdb": 296762,
+        "imdb": "tt0475784",
+        "tmdb": 63247,
+        "tvrage": 37537
+      },
+      "overview": "The story revolves around a futuristic theme park staffed by robots that can help guests live out their fantasies. The park breaks down, however, and two guests taking a Wild West adventure find themselves stalked by a gun-slinging android.",
+      "first_aired": "2016-12-30T08:00:00Z",
+      "airs": {
+        "day": "Sunday",
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 60,
+      "certification": null,
+      "network": "HBO",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.hbo.com/westworld",
+      "status": "returning series",
+      "rating": 7.27273,
+      "votes": 11,
+      "updated_at": "2016-03-17T10:34:14Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "tr"
+      ],
+      "genres": [
+        "western",
+        "science-fiction"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 4770,
+    "show": {
+      "title": "Preacher",
+      "year": 2016,
+      "ids": {
+        "trakt": 102034,
+        "slug": "preacher",
+        "tvdb": 300472,
+        "imdb": "tt1316546",
+        "tmdb": 64230,
+        "tvrage": 39033
+      },
+      "overview": "Rev. Jesse Custer is a badass Texas preacher who loses his faith and learns that God has left heaven, forsaking His duties. After merging with a mysterious entity who gives him the power to make anyone do what he says, Jesse embarks on a perilous mission to literally find God, and hold Him responsible for His abdication.\n\nAccompanying Jesse on his journey are his ex-girlfriend Tulip and a hard-drinking, beer-guzzling Irish vampire named Cassidy...but hot on their heels is the Saint of Killers, an immortal killing machine armed with a pair of supernatural Colt revolvers and the power to destroy entire armies.\n",
+      "first_aired": "2016-05-22T00:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 40,
+      "certification": null,
+      "network": "AMC",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=UNgI2sRzr8I",
+      "homepage": "http://www.amc.com/shows/preacher",
+      "status": "returning series",
+      "rating": 7.42857,
+      "votes": 14,
+      "updated_at": "2016-03-31T11:05:29Z",
+      "language": "en",
+      "available_translations": [
+        "pt",
+        "en",
+        "ru"
+      ],
+      "genres": [
+        "fantasy",
+        "science-fiction",
+        "adventure",
+        "drama",
+        "horror"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 3337,
+    "show": {
+      "title": "The Path",
+      "year": 2016,
+      "ids": {
+        "trakt": 103936,
+        "slug": "the-path",
+        "tvdb": 304196,
+        "imdb": "tt4789576",
+        "tmdb": 65227,
+        "tvrage": 51338
+      },
+      "overview": "The Path follows a family at the center of a controversial cult movement as they struggle with relationships, faith and power. Each episode takes an in-depth look at the gravitational pull of belief and what it means to choose between the life we live and the life we want. The series blends elements of mystery-thriller, romance and the supernatural.",
+      "first_aired": "2016-03-30T07:00:00Z",
+      "airs": {
+        "day": "Wednesday",
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 55,
+      "certification": null,
+      "network": "Hulu",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.hulu.com/the-path",
+      "status": "returning series",
+      "rating": 7.69231,
+      "votes": 13,
+      "updated_at": "2016-03-31T19:47:40Z",
+      "language": "en",
+      "available_translations": [
+        "ro",
+        "en"
+      ],
+      "genres": [
+        "drama"
+      ],
+      "aired_episodes": 2
+    }
+  },
+  {
+    "list_count": 2295,
+    "show": {
+      "title": "Hunters",
+      "year": 2016,
+      "ids": {
+        "trakt": 104263,
+        "slug": "hunters-2016",
+        "tvdb": 304962,
+        "imdb": "tt4983204",
+        "tmdb": 65551,
+        "tvrage": 45218
+      },
+      "overview": "Hunters, based on Whitley Strieber's best-selling novel Alien Hunter, the disappearance of a decorated Philadelphia cop's wife leads him to a secret government unit assembled to hunt a group of ruthless terrorists - shadowy figures that may or may not be from this world. Britne Oldford will play Regan, who is one of the government’s most valuable operatives and may be keeping secrets of her own. Julian McMahon portrays McCarthy, an unhinged junkie and Hunter cell leader.",
+      "first_aired": "2016-04-12T02:00:00Z",
+      "airs": {
+        "day": "Monday",
+        "time": "22:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 60,
+      "certification": "TV-PG",
+      "network": "Syfy",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.syfy.com/hunters",
+      "status": "in production",
+      "rating": 9.0,
+      "votes": 1,
+      "updated_at": "2016-03-31T11:00:35Z",
+      "language": "en",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "science-fiction",
+        "fantasy"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 1880,
+    "show": {
+      "title": "Emerald City",
+      "year": 2016,
+      "ids": {
+        "trakt": 98233,
+        "slug": "emerald-city",
+        "tvdb": 295779,
+        "imdb": "tt3579018",
+        "tmdb": 62417,
+        "tvrage": null
+      },
+      "overview": "In the blink of a tornado's eye, 20-year-old Dorothy Gale and her K9 police dog are transported to another world, one far removed from our own - a mystical land of competing kingdoms, lethal warriors, dark magic and a bloody battle for supremacy. This is the fabled Land of Oz in a way you've never seen before, where wicked witches don't stay dead for long and a young girl becomes a headstrong warrior who holds the fate of kingdoms in her hands.",
+      "first_aired": "2016-09-01T07:00:00Z",
+      "airs": {
+        "day": null,
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 60,
+      "certification": "TV-14",
+      "network": "NBC",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.nbc.com/emerald-city",
+      "status": "planned",
+      "rating": 8.5,
+      "votes": 4,
+      "updated_at": "2016-03-15T09:15:05Z",
+      "language": "en",
+      "available_translations": [
+        "en",
+        "bs",
+        "es",
+        "ru",
+        "ru"
+      ],
+      "genres": [
+        "fantasy"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 1523,
+    "show": {
+      "title": "Rush Hour",
+      "year": 2016,
+      "ids": {
+        "trakt": 100597,
+        "slug": "rush-hour-2016",
+        "tvdb": 298368,
+        "imdb": "tt4085584",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "overview": "Detective Lee is a reserved, honorable master martial artist with lightning-fast moves who comes to L.A. to avenge his sister’s alleged death and learn more about her connection to a Chinese organized crime ring. Detective Carter, on the other hand, is a wisecracking cop who plays by his own rules and has never wanted a partner.\n\nAs exasperated as Carter’s boss, Captain Cole, gets with him, she knows he’s a brilliant detective who gets results. Attempting to help the two get along is Sergeant Didi Diaz, Carter’s friend and former partner who doesn’t hesitate to call him out on his antics.\n\nBut even as cultures clash and tempers flare, Carter and Lee can’t deny they make a formidable team, and grudgingly admit that sometimes an unlikely pairing makes for a great partnership.",
+      "first_aired": "2016-03-31T07:00:00Z",
+      "airs": {
+        "day": null,
+        "time": "22:00",
+        "timezone": "Europe/London"
+      },
+      "runtime": 45,
+      "certification": "TV-14",
+      "network": "CBS",
+      "country": null,
+      "trailer": null,
+      "homepage": null,
+      "status": "returning series",
+      "rating": 6.0,
+      "votes": 1,
+      "updated_at": "2016-03-30T11:09:43Z",
+      "language": null,
+      "available_translations": [ ],
+      "genres": [
+        "action",
+        "comedy"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 1298,
+    "show": {
+      "title": "Wynonna Earp",
+      "year": 2016,
+      "ids": {
+        "trakt": 104580,
+        "slug": "wynonna-earp",
+        "tvdb": 305582,
+        "imdb": "tt4878326",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "overview": "Wynonna Earp follows Wyatt Earp's great granddaughter as she battles demons and other creatures. With her unique abilities, and a posse of dysfunctional allies, she's the only thing that can bring the paranormal to justice.",
+      "first_aired": "2016-04-01T00:00:00Z",
+      "airs": {
+        "day": "Friday",
+        "time": "22:00",
+        "timezone": "Europe/London"
+      },
+      "runtime": 60,
+      "certification": null,
+      "network": "Syfy",
+      "country": null,
+      "trailer": null,
+      "homepage": null,
+      "status": "returning series",
+      "rating": 6.2,
+      "votes": 5,
+      "updated_at": "2016-03-31T10:31:46Z",
+      "language": null,
+      "available_translations": [ ],
+      "genres": [
+        "action",
+        "drama",
+        "fantasy"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 1153,
+    "show": {
+      "title": "The Girlfriend Experience",
+      "year": 2016,
+      "ids": {
+        "trakt": 100225,
+        "slug": "the-girlfriend-experience-2016",
+        "tvdb": 297346,
+        "imdb": "tt3846642",
+        "tmdb": 64387,
+        "tvrage": null
+      },
+      "overview": "“The Girlfriend Experience” explores the relationships of the most exclusive courtesans who provide their clients with far more than just sex. These purveyors – or GFEs (Girlfriend Experience) – share intimacies more common to romantic partners or husbands and wives, becoming quasi-lovers and confidants who are richly paid for their time.",
+      "first_aired": "2016-04-10T07:00:00Z",
+      "airs": {
+        "day": "Sunday",
+        "time": null,
+        "timezone": "America/New_York"
+      },
+      "runtime": 23,
+      "certification": null,
+      "network": "Starz!",
+      "country": "us",
+      "trailer": null,
+      "homepage": "http://www.starz.com/originals/thegirlfriendexperience",
+      "status": "in production",
+      "rating": 5.5,
+      "votes": 2,
+      "updated_at": "2016-03-30T09:10:21Z",
+      "language": "en",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "drama"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 989,
+    "show": {
+      "title": "Game of Silence",
+      "year": 2016,
+      "ids": {
+        "trakt": 98986,
+        "slug": "game-of-silence-2016",
+        "tvdb": 295641,
+        "imdb": "tt4074374",
+        "tmdb": 64482,
+        "tvrage": null
+      },
+      "overview": "Jackson Brooks is a successful attorney who seems to have it all. His world is suddenly turned upside down when his long-lost childhood friends unexpectedly reappear after 25 years.\n\nJackson, Gil Harris, Shawn Polk and Boots always stuck together. They spent their boyhood summers in the small town of Dalton, Texas, but their idyllic world turned chaotic one fateful summer afternoon when a well-intentioned and heroic attempt ultimately cost the 13-year-old boys nine months at Quitman Youth Detention Facility, where their lives were changed forever.\n\nNow 25 years later, the nightmare of the worst nine months of their lives has resurfaced, uprooting a mystery even deeper than their buried past. The brotherhood must now band together to right the wrongs of their shared past - a journey that will push the limits of their loyalty and ignite in them an unquenchable thirst for revenge.",
+      "first_aired": "2016-04-13T02:00:00Z",
+      "airs": {
+        "day": "Thursday",
+        "time": "22:00",
+        "timezone": "America/New_York"
+      },
+      "runtime": 60,
+      "certification": "TV-14",
+      "network": "NBC",
+      "country": "us",
+      "trailer": "http://youtube.com/watch?v=-SMmTYgSJKA",
+      "homepage": "http://www.nbc.com/game-of-silence",
+      "status": "planned",
+      "rating": 0.0,
+      "votes": 0,
+      "updated_at": "2016-03-29T17:14:49Z",
+      "language": "en",
+      "available_translations": [
+        "en"
+      ],
+      "genres": [
+        "drama"
+      ],
+      "aired_episodes": 0
+    }
+  },
+  {
+    "list_count": 906,
+    "show": {
+      "title": "Stranger Things",
+      "year": 2016,
+      "ids": {
+        "trakt": 104439,
+        "slug": "stranger-things",
+        "tvdb": 305288,
+        "imdb": "tt4574334",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "overview": "Set in the 1980s in Montauk, NY, a young boy vanishes into thin air. As friends, family and local police search for answers, they are drawn into an extraordinary mystery involving top-secret government experiments, terrifying supernatural forces and one very strange little girl.",
+      "first_aired": "2016-07-15T07:00:00Z",
+      "airs": {
+        "day": "Friday",
+        "time": "00:01",
+        "timezone": "Europe/London"
+      },
+      "runtime": 60,
+      "certification": null,
+      "network": "Netflix",
+      "country": null,
+      "trailer": null,
+      "homepage": null,
+      "status": "returning series",
+      "rating": 6.0,
+      "votes": 1,
+      "updated_at": "2016-03-07T10:56:47Z",
+      "language": null,
+      "available_translations": [ ],
+      "genres": [
+        "drama",
+        "horror",
+        "thriller"
+      ],
+      "aired_episodes": 0
+    }
+  }
+]

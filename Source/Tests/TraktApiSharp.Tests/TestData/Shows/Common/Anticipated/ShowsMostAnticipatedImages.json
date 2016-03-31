@@ -1,0 +1,392 @@
+﻿[
+  {
+    "list_count": 5325,
+    "show": {
+      "title": "Westworld",
+      "year": 2016,
+      "ids": {
+        "trakt": 99718,
+        "slug": "westworld",
+        "tvdb": 296762,
+        "imdb": "tt0475784",
+        "tmdb": 63247,
+        "tvrage": 37537
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/099/718/fanarts/original/bfa792ea42.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/099/718/fanarts/medium/bfa792ea42.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/099/718/fanarts/thumb/bfa792ea42.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/099/718/posters/original/a59fecda76.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/099/718/posters/medium/a59fecda76.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/099/718/posters/thumb/a59fecda76.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/099/718/banners/original/d5a153b358.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 4770,
+    "show": {
+      "title": "Preacher",
+      "year": 2016,
+      "ids": {
+        "trakt": 102034,
+        "slug": "preacher",
+        "tvdb": 300472,
+        "imdb": "tt1316546",
+        "tmdb": 64230,
+        "tvrage": 39033
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/102/034/fanarts/original/ff9222cf3f.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/102/034/fanarts/medium/ff9222cf3f.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/102/034/fanarts/thumb/ff9222cf3f.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/102/034/posters/original/f8d6615815.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/102/034/posters/medium/f8d6615815.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/102/034/posters/thumb/f8d6615815.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/102/034/logos/original/9c88b6d152.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/102/034/banners/original/b2931ed4ec.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 3337,
+    "show": {
+      "title": "The Path",
+      "year": 2016,
+      "ids": {
+        "trakt": 103936,
+        "slug": "the-path",
+        "tvdb": 304196,
+        "imdb": "tt4789576",
+        "tmdb": 65227,
+        "tvrage": 51338
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/103/936/fanarts/original/f499c27aff.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/103/936/fanarts/medium/f499c27aff.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/103/936/fanarts/thumb/f499c27aff.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/103/936/posters/original/a4c10385f0.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/103/936/posters/medium/a4c10385f0.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/103/936/posters/thumb/a4c10385f0.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/103/936/logos/original/553f64eda6.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/103/936/banners/original/f2a93dc2bf.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 2295,
+    "show": {
+      "title": "Hunters",
+      "year": 2016,
+      "ids": {
+        "trakt": 104263,
+        "slug": "hunters-2016",
+        "tvdb": 304962,
+        "imdb": "tt4983204",
+        "tmdb": 65551,
+        "tvrage": 45218
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/104/263/fanarts/original/433b339d20.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/104/263/fanarts/medium/433b339d20.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/104/263/fanarts/thumb/433b339d20.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/104/263/posters/original/e4fb6540db.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/104/263/posters/medium/e4fb6540db.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/104/263/posters/thumb/e4fb6540db.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/104/263/banners/original/1daa253b19.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 1880,
+    "show": {
+      "title": "Emerald City",
+      "year": 2016,
+      "ids": {
+        "trakt": 98233,
+        "slug": "emerald-city",
+        "tvdb": 295779,
+        "imdb": "tt3579018",
+        "tmdb": 62417,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/098/233/fanarts/original/0e606396b9.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/233/fanarts/medium/0e606396b9.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/233/fanarts/thumb/0e606396b9.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/098/233/posters/original/3a27a816fa.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/233/posters/medium/3a27a816fa.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/233/posters/thumb/3a27a816fa.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/098/233/banners/original/d943fe5432.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 1523,
+    "show": {
+      "title": "Rush Hour",
+      "year": 2016,
+      "ids": {
+        "trakt": 100597,
+        "slug": "rush-hour-2016",
+        "tvdb": 298368,
+        "imdb": "tt4085584",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/100/597/fanarts/original/e86fda3960.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/100/597/fanarts/medium/e86fda3960.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/100/597/fanarts/thumb/e86fda3960.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/100/597/posters/original/e86fda3960.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/100/597/posters/medium/e86fda3960.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/100/597/posters/thumb/e86fda3960.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/100/597/banners/original/5bbbd3452e.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 1298,
+    "show": {
+      "title": "Wynonna Earp",
+      "year": 2016,
+      "ids": {
+        "trakt": 104580,
+        "slug": "wynonna-earp",
+        "tvdb": 305582,
+        "imdb": "tt4878326",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/104/580/fanarts/original/422e4d81e6.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/104/580/fanarts/medium/422e4d81e6.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/104/580/fanarts/thumb/422e4d81e6.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/104/580/posters/original/f08dcc2c1b.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/104/580/posters/medium/f08dcc2c1b.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/104/580/posters/thumb/f08dcc2c1b.jpg"
+        },
+        "logo": {
+          "full": "https://walter.trakt.us/images/shows/000/104/580/logos/original/4efe41fd00.png"
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/104/580/banners/original/1dfe575d72.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 1153,
+    "show": {
+      "title": "The Girlfriend Experience",
+      "year": 2016,
+      "ids": {
+        "trakt": 100225,
+        "slug": "the-girlfriend-experience-2016",
+        "tvdb": 297346,
+        "imdb": "tt3846642",
+        "tmdb": 64387,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/100/225/fanarts/original/8a53c08680.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/100/225/fanarts/medium/8a53c08680.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/100/225/fanarts/thumb/8a53c08680.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/100/225/posters/original/6c17f864dc.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/100/225/posters/medium/6c17f864dc.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/100/225/posters/thumb/6c17f864dc.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/100/225/banners/original/8d8fc696f3.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 989,
+    "show": {
+      "title": "Game of Silence",
+      "year": 2016,
+      "ids": {
+        "trakt": 98986,
+        "slug": "game-of-silence-2016",
+        "tvdb": 295641,
+        "imdb": "tt4074374",
+        "tmdb": 64482,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/098/986/fanarts/original/6a5904bb13.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/986/fanarts/medium/6a5904bb13.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/986/fanarts/thumb/6a5904bb13.jpg"
+        },
+        "poster": {
+          "full": "https://walter.trakt.us/images/shows/000/098/986/posters/original/7321eb9e0c.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/098/986/posters/medium/7321eb9e0c.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/098/986/posters/thumb/7321eb9e0c.jpg"
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/098/986/banners/original/63fb9bae82.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  },
+  {
+    "list_count": 906,
+    "show": {
+      "title": "Stranger Things",
+      "year": 2016,
+      "ids": {
+        "trakt": 104439,
+        "slug": "stranger-things",
+        "tvdb": 305288,
+        "imdb": "tt4574334",
+        "tmdb": null,
+        "tvrage": null
+      },
+      "images": {
+        "fanart": {
+          "full": "https://walter.trakt.us/images/shows/000/104/439/fanarts/original/aa49e7fea3.jpg",
+          "medium": "https://walter.trakt.us/images/shows/000/104/439/fanarts/medium/aa49e7fea3.jpg",
+          "thumb": "https://walter.trakt.us/images/shows/000/104/439/fanarts/thumb/aa49e7fea3.jpg"
+        },
+        "poster": {
+          "full": null,
+          "medium": null,
+          "thumb": null
+        },
+        "logo": {
+          "full": null
+        },
+        "clearart": {
+          "full": null
+        },
+        "banner": {
+          "full": "https://walter.trakt.us/images/shows/000/104/439/banners/original/08bfaf2e1c.jpg"
+        },
+        "thumb": {
+          "full": null
+        }
+      }
+    }
+  }
+]

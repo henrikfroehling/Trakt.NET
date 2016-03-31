@@ -1,0 +1,132 @@
+﻿[
+  {
+    "revenue": 166007347,
+    "movie": {
+      "title": "Batman v Superman: Dawn of Justice",
+      "year": 2016,
+      "ids": {
+        "trakt": 129583,
+        "slug": "batman-v-superman-dawn-of-justice-2016",
+        "imdb": "tt2975590",
+        "tmdb": 209112
+      }
+    }
+  },
+  {
+    "revenue": 24000000,
+    "movie": {
+      "title": "Zootopia",
+      "year": 2016,
+      "ids": {
+        "trakt": 167397,
+        "slug": "zootopia-2016",
+        "imdb": "tt2948356",
+        "tmdb": 269149
+      }
+    }
+  },
+  {
+    "revenue": 17861950,
+    "movie": {
+      "title": "My Big Fat Greek Wedding 2",
+      "year": 2016,
+      "ids": {
+        "trakt": 223885,
+        "slug": "my-big-fat-greek-wedding-2-2016",
+        "imdb": "tt3760922",
+        "tmdb": 302688
+      }
+    }
+  },
+  {
+    "revenue": 9694581,
+    "movie": {
+      "title": "Miracles from Heaven",
+      "year": 2016,
+      "ids": {
+        "trakt": 220443,
+        "slug": "miracles-from-heaven-2016",
+        "imdb": "tt4257926",
+        "tmdb": 339984
+      }
+    }
+  },
+  {
+    "revenue": 9435173,
+    "movie": {
+      "title": "The Divergent Series: Allegiant",
+      "year": 2016,
+      "ids": {
+        "trakt": 161418,
+        "slug": "the-divergent-series-allegiant-2016",
+        "imdb": "tt3410834",
+        "tmdb": 262504
+      }
+    }
+  },
+  {
+    "revenue": 5940154,
+    "movie": {
+      "title": "10 Cloverfield Lane",
+      "year": 2016,
+      "ids": {
+        "trakt": 214312,
+        "slug": "10-cloverfield-lane-2016",
+        "imdb": "tt1179933",
+        "tmdb": 333371
+      }
+    }
+  },
+  {
+    "revenue": 4897941,
+    "movie": {
+      "title": "Deadpool",
+      "year": 2016,
+      "ids": {
+        "trakt": 190430,
+        "slug": "deadpool-2016",
+        "imdb": "tt1431045",
+        "tmdb": 293660
+      }
+    }
+  },
+  {
+    "revenue": 3027568,
+    "movie": {
+      "title": "London Has Fallen",
+      "year": 2016,
+      "ids": {
+        "trakt": 166247,
+        "slug": "london-has-fallen-2016",
+        "imdb": "tt3300542",
+        "tmdb": 267860
+      }
+    }
+  },
+  {
+    "revenue": 1668806,
+    "movie": {
+      "title": "Hello, My Name Is Doris",
+      "year": 2016,
+      "ids": {
+        "trakt": 201238,
+        "slug": "hello-my-name-is-doris-2016",
+        "imdb": "tt3766394",
+        "tmdb": 320588
+      }
+    }
+  },
+  {
+    "revenue": 935025,
+    "movie": {
+      "title": "Risen",
+      "year": 2016,
+      "ids": {
+        "trakt": 216555,
+        "slug": "risen-2016",
+        "imdb": "tt3231054",
+        "tmdb": 335778
+      }
+    }
+  }
+]
