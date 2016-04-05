@@ -10,9 +10,9 @@
         OAuth
     }
 
-    internal static class TraktAuthenticationModeExtensions
+    public static class TraktAuthenticationModeExtensions
     {
-        internal static string AsString(this TraktAuthenticationMode scope)
+        public static string AsString(this TraktAuthenticationMode scope)
         {
             switch (scope)
             {

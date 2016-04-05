@@ -4,29 +4,29 @@
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktAccessScope
+    public enum TraktHiddenItemType
     {
-        Public,
-        Private,
-        Friends
+        Movie,
+        Show,
+        Season
     }
 
-    public static class TraktAccessScopeExtensions
+    public static class TraktHiddenItemTypeExtensions
     {
-        public static string AsString(this TraktAccessScope scope)
+        public static string AsString(this TraktHiddenItemType scope)
         {
             switch (scope)
             {
-                case TraktAccessScope.Public: return "public";
-                case TraktAccessScope.Private: return "private";
-                case TraktAccessScope.Friends: return "friends";
+                case TraktHiddenItemType.Movie: return "movie";
+                case TraktHiddenItemType.Show: return "show";
+                case TraktHiddenItemType.Season: return "season";
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new ArgumentOutOfRangeException("HiddenItemType");
             }
         }
     }
 
-    public class TraktAccessScopeConverter : JsonConverter
+    public class TraktHiddenItemTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -37,13 +37,13 @@
         {
             var enumString = reader.Value as string;
             enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessScope), enumString, true);
+            return Enum.Parse(typeof(TraktHiddenItemType), enumString, true);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var accessScope = (TraktAccessScope)value;
-            writer.WriteValue(accessScope.AsString());
+            var itemType = (TraktHiddenItemType)value;
+            writer.WriteValue(itemType.AsString());
         }
     }
 }

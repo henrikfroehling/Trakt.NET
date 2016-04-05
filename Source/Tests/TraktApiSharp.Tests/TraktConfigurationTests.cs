@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Tests
 {
-    using Enums;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Enums;
 
     [TestClass]
     public class TraktConfigurationTests

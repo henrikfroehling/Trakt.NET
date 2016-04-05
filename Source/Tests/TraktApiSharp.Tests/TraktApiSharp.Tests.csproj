@@ -69,6 +69,16 @@
     <Compile Include="Authentication\TraktDeviceAuthTests.cs" />
     <Compile Include="Authentication\TraktDeviceTests.cs" />
     <Compile Include="Authentication\TraktOAuthTests.cs" />
+    <Compile Include="Enums\TraktAccessScopeTests.cs" />
+    <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
+    <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
+    <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
+    <Compile Include="Enums\TraktGenreTypeTests.cs" />
+    <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
+    <Compile Include="Enums\TraktPeriodTests.cs" />
+    <Compile Include="Enums\TraktReleaseTypeTests.cs" />
+    <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
+    <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
-    using Enums;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Enums;
 
     [TestClass]
     public class TraktAuthenticationTests

@@ -10,9 +10,9 @@
         Unspecified
     }
 
-    internal static class TraktAccessTokenGrantTypeExtensions
+    public static class TraktAccessTokenGrantTypeExtensions
     {
-        internal static string AsString(this TraktAccessTokenGrantType scope)
+        public static string AsString(this TraktAccessTokenGrantType scope)
         {
             switch (scope)
             {

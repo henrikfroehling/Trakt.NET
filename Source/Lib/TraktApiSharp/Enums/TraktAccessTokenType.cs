@@ -9,9 +9,9 @@
         Bearer
     }
 
-    internal static class TraktAccessTokenTypeExtensions
+    public static class TraktAccessTokenTypeExtensions
     {
-        internal static string AsString(this TraktAccessTokenType scope)
+        public static string AsString(this TraktAccessTokenType scope)
         {
             switch (scope)
             {

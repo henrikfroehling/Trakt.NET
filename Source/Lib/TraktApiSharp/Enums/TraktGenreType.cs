@@ -4,29 +4,27 @@
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktAccessScope
+    public enum TraktGenreType
     {
-        Public,
-        Private,
-        Friends
+        Shows,
+        Movies
     }
 
-    public static class TraktAccessScopeExtensions
+    public static class TraktGenreTypeExtensions
     {
-        public static string AsString(this TraktAccessScope scope)
+        public static string AsString(this TraktGenreType scope)
         {
             switch (scope)
             {
-                case TraktAccessScope.Public: return "public";
-                case TraktAccessScope.Private: return "private";
-                case TraktAccessScope.Friends: return "friends";
+                case TraktGenreType.Shows: return "shows";
+                case TraktGenreType.Movies: return "movies";
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new ArgumentOutOfRangeException("GenreType");
             }
         }
     }
 
-    public class TraktAccessScopeConverter : JsonConverter
+    public class TraktGenreTypeConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -37,13 +35,13 @@
         {
             var enumString = reader.Value as string;
             enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessScope), enumString, true);
+            return Enum.Parse(typeof(TraktGenreType), enumString, true);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var accessScope = (TraktAccessScope)value;
-            writer.WriteValue(accessScope.AsString());
+            var genreType = (TraktGenreType)value;
+            writer.WriteValue(genreType.AsString());
         }
     }
 }

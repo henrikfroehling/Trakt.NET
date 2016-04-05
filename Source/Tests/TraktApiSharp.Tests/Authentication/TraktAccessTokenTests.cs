@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
-    using Enums;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Authentication;
+    using TraktApiSharp.Enums;
     using Utils;
 
     [TestClass]
