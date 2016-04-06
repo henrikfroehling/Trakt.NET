@@ -8,14 +8,14 @@
     public class TraktPeriodTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktPeriodHasMembers()
         {
             typeof(TraktPeriod).GetEnumNames().Should().HaveCount(4)
                                               .And.Contain("Weekly", "Monthly", "Yearly", "All");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktPeriodGetAsString()
         {
             TraktPeriod.Weekly.AsString().Should().Be("weekly");
             TraktPeriod.Monthly.AsString().Should().Be("monthly");

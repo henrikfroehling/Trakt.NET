@@ -12,17 +12,23 @@
     public class TraktAccessTokenTests
     {
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void TestTraktAccessTokenDefaultConstructor()
         {
             var dtNowUtc = DateTime.UtcNow;
 
             var token = new TraktAccessToken();
 
+            token.AccessToken.Should().BeNullOrEmpty();
+            token.AccessScope.Should().Be(TraktAccessScope.Public);
+            token.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            token.ExpiresInSeconds.Should().Be(0);
+            token.RefreshToken.Should().BeNullOrEmpty();
+            token.IsValid.Should().BeFalse();
             token.Created.Should().BeCloseTo(dtNowUtc);
         }
 
         [TestMethod]
-        public void TestReadFromJson()
+        public void TestTraktAccessTokenReadFromJson()
         {
             var jsonFile = TestUtility.ReadJsonData(@"Authentication\AccessToken.json");
 

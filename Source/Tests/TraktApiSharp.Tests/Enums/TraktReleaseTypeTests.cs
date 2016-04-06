@@ -8,14 +8,14 @@
     public class TraktReleaseTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktReleaseTypeHasMembers()
         {
             typeof(TraktReleaseType).GetEnumNames().Should().HaveCount(7)
                                                    .And.Contain("Unknown", "Premiere", "Limited", "Theatrical", "Digital", "Physical", "Tv");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktReleaseTypeGetAsString()
         {
             TraktReleaseType.Unknown.AsString().Should().Be("unknown");
             TraktReleaseType.Premiere.AsString().Should().Be("premiere");

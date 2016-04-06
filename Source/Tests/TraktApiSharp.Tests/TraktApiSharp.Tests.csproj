@@ -77,8 +77,26 @@
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
+    <Compile Include="Enums\TraktSearchLookupIdTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
+    <Compile Include="Objects\People\TraktPersonTests.cs" />
+    <Compile Include="Objects\TraktCastAndCrewTests.cs" />
+    <Compile Include="Objects\TraktCastMemberTests.cs" />
+    <Compile Include="Objects\TraktCommentTests.cs" />
+    <Compile Include="Objects\TraktConnectionsTests.cs" />
+    <Compile Include="Objects\TraktCrewMemberTests.cs" />
+    <Compile Include="Objects\TraktCrewTests.cs" />
+    <Compile Include="Objects\TraktGenreTests.cs" />
+    <Compile Include="Objects\TraktIdsTests.cs" />
+    <Compile Include="Objects\TraktImageSetTests.cs" />
+    <Compile Include="Objects\TraktImageTests.cs" />
+    <Compile Include="Objects\TraktRatingTests.cs" />
+    <Compile Include="Objects\TraktSearchIdLookupResultTests.cs" />
+    <Compile Include="Objects\TraktSearchResultTests.cs" />
+    <Compile Include="Objects\TraktSharingTests.cs" />
+    <Compile Include="Objects\TraktStatisticsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +124,25 @@
     <None Include="packages.config" />
     <None Include="TestData\Authentication\AccessToken.json" />
     <None Include="TestData\Authentication\Device.json" />
+    <None Include="TestData\Basic\CastAndCrew.json" />
+    <None Include="TestData\Basic\Comment.json" />
+    <None Include="TestData\Basic\Connections.json" />
+    <None Include="TestData\Basic\CrewMember.json" />
+    <None Include="TestData\Basic\Genre.json" />
+    <None Include="TestData\Basic\Ids.json" />
+    <None Include="TestData\Basic\Image.json" />
+    <None Include="TestData\Basic\ImageSet.json" />
+    <None Include="TestData\Basic\Rating.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultEpisode.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultMovie.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultShow.json" />
+    <None Include="TestData\Basic\Search\SearchResultEpisode.json" />
+    <None Include="TestData\Basic\Search\SearchResultList.json" />
+    <None Include="TestData\Basic\Search\SearchResultMovie.json" />
+    <None Include="TestData\Basic\Search\SearchResultPerson.json" />
+    <None Include="TestData\Basic\Search\SearchResultShow.json" />
+    <None Include="TestData\Basic\Sharing.json" />
+    <None Include="TestData\Basic\Statistics.json" />
     <None Include="TestData\Genres\Movies.json" />
     <None Include="TestData\Genres\Shows.json" />
     <None Include="TestData\Movies\Common\Anticipated\MoviesMostAnticipatedFull.json" />
@@ -213,6 +250,11 @@
     <None Include="TestData\Movies\MovieSummaryMinimal.json" />
     <None Include="TestData\Movies\MovieTranslations.json" />
     <None Include="TestData\Movies\MovieWatchingUsers.json" />
+    <None Include="TestData\People\PersonFull.json" />
+    <None Include="TestData\People\PersonFullAndImages.json" />
+    <None Include="TestData\People\PersonImages.json" />
+    <None Include="TestData\People\PersonMetadata.json" />
+    <None Include="TestData\People\PersonMinimal.json" />
     <None Include="TestData\Shows\Common\Anticipated\ShowsMostAnticipatedFull.json" />
     <None Include="TestData\Shows\Common\Anticipated\ShowsMostAnticipatedFullAndImages.json" />
     <None Include="TestData\Shows\Common\Anticipated\ShowsMostAnticipatedImages.json" />
@@ -339,6 +381,20 @@
     <None Include="TestData\Shows\ShowSummaryMinimal.json" />
     <None Include="TestData\Shows\ShowTranslations.json" />
     <None Include="TestData\Shows\ShowWatchingUsers.json" />
+    <None Include="TestData\Users\UserFull.json" />
+    <None Include="TestData\Users\UserFullAndImages.json" />
+    <None Include="TestData\Users\UserImages.json" />
+    <None Include="TestData\Users\UserMetadata.json" />
+    <None Include="TestData\Users\UserMinimal.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Basic\CastMember.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\Users\Lists\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Basic\Crew.json" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

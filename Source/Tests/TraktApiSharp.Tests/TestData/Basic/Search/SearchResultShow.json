@@ -1,0 +1,30 @@
+﻿{
+  "type": "show",
+  "score": 0.5923821,
+  "show": {
+    "title": "Justice League: Gods and Monsters Chronicles",
+    "overview": "In an alternative history Zod is Superman's father, Batman is a vampiric Man-Bat, and Wonder Woman is the child of Ares, God of War. When these dark heroes form an alliance, the question everyone asks is will they save the world, or rule it?",
+    "year": 2015,
+    "status": "ended",
+    "images": {
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/099/679/posters/original/b09c7ae325.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/099/679/posters/medium/b09c7ae325.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/099/679/posters/thumb/b09c7ae325.jpg"
+      },
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/099/679/fanarts/original/c66b58896c.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/099/679/fanarts/medium/c66b58896c.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/099/679/fanarts/thumb/c66b58896c.jpg"
+      }
+    },
+    "ids": {
+      "trakt": 99679,
+      "slug": "justice-league-gods-and-monsters-chronicles",
+      "tvdb": 296699,
+      "imdb": "tt4759674",
+      "tmdb": 63266,
+      "tvrage": 49545
+    }
+  }
+}

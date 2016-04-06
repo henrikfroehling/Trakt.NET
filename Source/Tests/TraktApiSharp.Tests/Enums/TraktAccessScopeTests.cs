@@ -8,14 +8,14 @@
     public class TraktAccessScopeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktAccessScopeHasMembers()
         {
             typeof(TraktAccessScope).GetEnumNames().Should().HaveCount(3)
                                                    .And.Contain("Public", "Private", "Friends");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktAccessScopeGetAsString()
         {
             TraktAccessScope.Friends.AsString().Should().Be("friends");
             TraktAccessScope.Private.AsString().Should().Be("private");

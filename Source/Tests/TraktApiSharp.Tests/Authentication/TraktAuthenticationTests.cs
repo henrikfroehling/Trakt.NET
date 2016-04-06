@@ -11,7 +11,7 @@
         private const string CLIENT_SECRET = "CLIENT_SECRET";
 
         [TestMethod]
-        public void TestConstructor()
+        public void TestTraktAuthenticationConstructor()
         {
             var client = new TraktClient();
 
@@ -25,7 +25,7 @@
         }
 
         [TestMethod]
-        public void TestConstructorWithValidClient()
+        public void TestTraktAuthenticationConstructorWithValidClient()
         {
             var client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
@@ -40,7 +40,7 @@
         }
 
         [TestMethod]
-        public void TestGetAccessToken()
+        public void TestTraktAuthenticationGetAccessToken()
         {
             var client = new TraktClient();
 
@@ -50,7 +50,7 @@
         }
 
         [TestMethod]
-        public void TestGetDevice()
+        public void TestTraktAuthenticationGetDevice()
         {
             var client = new TraktClient();
 
@@ -59,7 +59,7 @@
         }
 
         [TestMethod]
-        public void TestGetAuthorizationCode()
+        public void TestTraktAuthenticationGetAuthorizationCode()
         {
             var client = new TraktClient();
 
@@ -67,19 +67,19 @@
         }
 
         [TestMethod]
-        public void TestGetAccessTokenAsync()
+        public void TestTraktAuthenticationGetAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRefreshAccessTokenAsync()
+        public void TestTraktAuthenticationRefreshAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRevokeAccessTokenAsync()
+        public void TestTraktAuthenticationRevokeAccessTokenAsync()
         {
             // TODO
         }

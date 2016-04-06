@@ -10,7 +10,7 @@
         private const string CLIENT_SECRET = "CLIENT_SECRET";
 
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void TestTraktClientDefaultConstructor()
         {
             var client = new TraktClient();
 
@@ -21,7 +21,7 @@
         }
 
         [TestMethod]
-        public void TestParameterConstructor()
+        public void TestTraktClientParameterConstructor()
         {
             var client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
@@ -32,7 +32,7 @@
         }
 
         [TestMethod]
-        public void TestGetConfiguration()
+        public void TestTraktClientGetConfiguration()
         {
             var client = new TraktClient();
 
@@ -40,7 +40,7 @@
         }
 
         [TestMethod]
-        public void TestGetAuthentication()
+        public void TestTraktClientGetAuthentication()
         {
             var client = new TraktClient();
 
@@ -48,7 +48,7 @@
         }
 
         [TestMethod]
-        public void TestGetOAuth()
+        public void TestTraktClientGetOAuth()
         {
             var client = new TraktClient();
 
@@ -56,7 +56,7 @@
         }
 
         [TestMethod]
-        public void TestGetDeviceAuth()
+        public void TestTraktClientGetDeviceAuth()
         {
             var client = new TraktClient();
 
@@ -64,7 +64,7 @@
         }
 
         [TestMethod]
-        public void TestGetShowsModule()
+        public void TestTraktClientGetShowsModule()
         {
             var client = new TraktClient();
 
@@ -72,7 +72,7 @@
         }
 
         [TestMethod]
-        public void TestGetSeasonsModule()
+        public void TestTraktClientGetSeasonsModule()
         {
             var client = new TraktClient();
 
@@ -80,7 +80,7 @@
         }
 
         [TestMethod]
-        public void TestGetEpisodesModule()
+        public void TestTraktClientGetEpisodesModule()
         {
             var client = new TraktClient();
 
@@ -88,7 +88,7 @@
         }
 
         [TestMethod]
-        public void TestGetMoviesModule()
+        public void TestTraktClientGetMoviesModule()
         {
             var client = new TraktClient();
 

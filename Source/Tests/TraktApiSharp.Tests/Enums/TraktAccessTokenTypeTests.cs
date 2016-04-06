@@ -8,14 +8,14 @@
     public class TraktAccessTokenTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktAccessTokenTypeHasMembers()
         {
             typeof(TraktAccessTokenType).GetEnumNames().Should().HaveCount(1)
                                                        .And.Contain("Bearer");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktAccessTokenTypeGetAsString()
         {
             TraktAccessTokenType.Bearer.AsString().Should().Be("bearer");
         }

@@ -1,0 +1,43 @@
+﻿{
+  "type": "episode",
+  "score": 94.02257,
+  "episode": {
+    "season": 2,
+    "number": 7,
+    "title": "Flash",
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/142/849/screenshots/original/2a4e49524f.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/142/849/screenshots/medium/2a4e49524f.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/142/849/screenshots/thumb/2a4e49524f.jpg"
+      }
+    },
+    "ids": {
+      "trakt": 142849,
+      "tvdb": 1343011,
+      "imdb": "",
+      "tmdb": 0,
+      "tvrage": null
+    }
+  },
+  "show": {
+    "title": "Garo",
+    "year": "2005",
+    "ids": {
+      "trakt": 1928,
+      "slug": "garo"
+    },
+    "images": {
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/001/928/posters/original/2494226dd7.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/001/928/posters/medium/2494226dd7.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/928/posters/thumb/2494226dd7.jpg"
+      },
+      "fanart": {
+        "full": null,
+        "medium": "https://walter.trakt.us/images/shows/000/001/928/fanarts/medium/5764ff7380.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/001/928/fanarts/thumb/5764ff7380.jpg"
+      }
+    }
+  }
+}

@@ -8,14 +8,14 @@
     public class TraktHiddenItemTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktHiddenItemTypeHasMembers()
         {
             typeof(TraktHiddenItemType).GetEnumNames().Should().HaveCount(3)
                                                       .And.Contain("Movie", "Show", "Season");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktHiddenItemTypeGetAsString()
         {
             TraktHiddenItemType.Movie.AsString().Should().Be("movie");
             TraktHiddenItemType.Show.AsString().Should().Be("show");

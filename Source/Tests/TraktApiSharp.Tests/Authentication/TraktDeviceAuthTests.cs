@@ -7,7 +7,7 @@
     public class TraktDeviceAuthTests
     {
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void TestTraktDeviceAuthDefaultConstructor()
         {
             var client = new TraktClient();
 
@@ -15,25 +15,25 @@
         }
 
         [TestMethod]
-        public void TestGenerateDeviceAsync()
+        public void TestTraktDeviceAuthGenerateDeviceAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestGetAccessTokenAsync()
+        public void TestTraktDeviceAuthGetAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRefreshAccessTokenAsync()
+        public void TestTraktDeviceAuthRefreshAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRevokeAccessTokenAsync()
+        public void TestTraktDeviceAuthRevokeAccessTokenAsync()
         {
             // TODO
         }

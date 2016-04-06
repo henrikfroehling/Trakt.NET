@@ -5,18 +5,17 @@
     using TraktApiSharp.Enums;
 
     [TestClass]
-    public
-    class TraktSearchResultTypeTests
+    public class TraktSearchResultTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktSearchResultTypeHasMembers()
         {
             typeof(TraktSearchResultType).GetEnumNames().Should().HaveCount(5)
                                                         .And.Contain("Movie", "Show", "Episode", "Person", "List");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktSearchResultTypeGetAsString()
         {
             TraktSearchResultType.Movie.AsString().Should().Be("movie");
             TraktSearchResultType.Show.AsString().Should().Be("show");

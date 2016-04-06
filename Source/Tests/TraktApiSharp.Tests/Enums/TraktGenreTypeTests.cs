@@ -8,14 +8,14 @@
     public class TraktGenreTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktGenreTypeHasMembers()
         {
             typeof(TraktGenreType).GetEnumNames().Should().HaveCount(2)
                                                  .And.Contain("Shows", "Movies");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktGenreTypeGetAsString()
         {
             TraktGenreType.Shows.AsString().Should().Be("shows");
             TraktGenreType.Movies.AsString().Should().Be("movies");

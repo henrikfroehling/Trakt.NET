@@ -47,6 +47,7 @@
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Core\TraktTimeZone.cs" />
+    <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />
     <Compile Include="Enums\TraktAccessTokenType.cs" />
@@ -240,6 +241,10 @@
     <Folder Include="Requests\Users\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

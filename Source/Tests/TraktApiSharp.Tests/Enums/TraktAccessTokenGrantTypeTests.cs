@@ -8,14 +8,14 @@
     public class TraktAccessTokenGrantTypeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktAccessTokenGrantTypeHasMembers()
         {
             typeof(TraktAccessTokenGrantType).GetEnumNames().Should().HaveCount(3)
                                                             .And.Contain("AuthorizationCode", "RefreshToken", "Unspecified");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktAccessTokenGrantTypeGetAsString()
         {
             TraktAccessTokenGrantType.AuthorizationCode.AsString().Should().Be("authorization_code");
             TraktAccessTokenGrantType.RefreshToken.AsString().Should().Be("refresh_token");

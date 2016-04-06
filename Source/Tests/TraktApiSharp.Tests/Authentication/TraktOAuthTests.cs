@@ -7,7 +7,7 @@
     public class TraktOAuthTests
     {
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void TestTraktOAuthDefaultConstructor()
         {
             var client = new TraktClient();
 
@@ -15,25 +15,25 @@
         }
 
         [TestMethod]
-        public void TestAuthorizeAsync()
+        public void TestTraktOAuthAuthorizeAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestGetAccessTokenAsync()
+        public void TestTraktOAuthGetAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRefreshAccessTokenAsync()
+        public void TestTraktOAuthRefreshAccessTokenAsync()
         {
             // TODO
         }
 
         [TestMethod]
-        public void TestRevokeAccessTokenAsync()
+        public void TestTraktOAuthRevokeAccessTokenAsync()
         {
             // TODO
         }

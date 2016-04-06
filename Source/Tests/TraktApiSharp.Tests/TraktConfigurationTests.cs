@@ -8,7 +8,7 @@
     public class TraktConfigurationTests
     {
         [TestMethod]
-        public void TestDefaultConstructor()
+        public void TestTraktConfigurationDefaultConstructor()
         {
             var client = new TraktClient();
 

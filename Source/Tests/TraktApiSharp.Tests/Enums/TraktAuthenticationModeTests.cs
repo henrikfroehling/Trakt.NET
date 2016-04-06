@@ -5,18 +5,17 @@
     using TraktApiSharp.Enums;
 
     [TestClass]
-    public
-    class TraktAuthenticationModeTests
+    public class TraktAuthenticationModeTests
     {
         [TestMethod]
-        public void TestHasMembers()
+        public void TestTraktAuthenticationModeHasMembers()
         {
             typeof(TraktAuthenticationMode).GetEnumNames().Should().HaveCount(2)
                                                           .And.Contain("Device", "OAuth");
         }
 
         [TestMethod]
-        public void TestGetAsString()
+        public void TestTraktAuthenticationModeGetAsString()
         {
             TraktAuthenticationMode.Device.AsString().Should().Be("Device");
             TraktAuthenticationMode.OAuth.AsString().Should().Be("OAuth");
