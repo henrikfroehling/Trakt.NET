@@ -81,6 +81,11 @@
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Objects\People\TraktPersonTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeCommentsTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeRatingTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeStatisticsTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeWatchingUsersTests.cs" />
     <Compile Include="Objects\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\TraktCastMemberTests.cs" />
     <Compile Include="Objects\TraktCommentTests.cs" />

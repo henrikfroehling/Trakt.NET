@@ -8,9 +8,9 @@
   },
   {
     "username": "stannyowl",
-    "private": false,
-    "name": null,
+    "private": true,
+    "name": "stanny",
     "vip": false,
-    "vip_ep": false
+    "vip_ep": true
   }
 ]
