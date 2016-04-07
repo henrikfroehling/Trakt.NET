@@ -121,12 +121,9 @@
     <Compile Include="Objects\Shows\TraktShowImages.cs" />
     <Compile Include="Objects\Shows\TraktShowPeople.cs" />
     <Compile Include="Objects\Shows\TraktShowRating.cs" />
-    <Compile Include="Objects\Shows\TraktShowRelatedItem.cs" />
     <Compile Include="Objects\Shows\TraktShowStatistics.cs" />
     <Compile Include="Objects\Shows\TraktShowTranslation.cs" />
     <Compile Include="Objects\Shows\TraktShowWatchingUser.cs" />
-    <Compile Include="Objects\Shows\TraktShowWithMetadataRating.cs" />
-    <Compile Include="Objects\Shows\TraktShowWithMetadataStatistics.cs" />
     <Compile Include="Objects\TraktCastAndCrew.cs" />
     <Compile Include="Objects\TraktCastMember.cs" />
     <Compile Include="Objects\TraktComment.cs" />

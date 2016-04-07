@@ -1,0 +1,32 @@
+﻿[
+  {
+    "updated_at": "2016-04-07T15:24:24Z",
+    "show": {
+      "title": "Sailor Moon",
+      "year": 1992,
+      "ids": {
+        "trakt": 3548,
+        "slug": "sailor-moon",
+        "tvdb": 78500,
+        "imdb": "tt0114327",
+        "tmdb": 3570,
+        "tvrage": null
+      }
+    }
+  },
+  {
+    "updated_at": "2016-04-07T15:31:48Z",
+    "show": {
+      "title": "The Vikings Uncovered",
+      "year": 2016,
+      "ids": {
+        "trakt": 106831,
+        "slug": "the-vikings-uncovered",
+        "tvdb": 309745,
+        "imdb": null,
+        "tmdb": null,
+        "tvrage": null
+      }
+    }
+  }
+]

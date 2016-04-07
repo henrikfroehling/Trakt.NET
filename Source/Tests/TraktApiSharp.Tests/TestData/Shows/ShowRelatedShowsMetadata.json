@@ -12,30 +12,6 @@
     }
   },
   {
-    "title": "The Shannara Chronicles",
-    "year": 2016,
-    "ids": {
-      "trakt": 93993,
-      "slug": "the-shannara-chronicles",
-      "tvdb": 289096,
-      "imdb": "tt1051220",
-      "tmdb": 64122,
-      "tvrage": 48764
-    }
-  },
-  {
-    "title": "The Magicians",
-    "year": 2015,
-    "ids": {
-      "trakt": 100940,
-      "slug": "the-magicians-2015",
-      "tvdb": 299139,
-      "imdb": "tt4254242",
-      "tmdb": 64432,
-      "tvrage": 43586
-    }
-  },
-  {
     "title": "11.22.63",
     "year": 2016,
     "ids": {
@@ -45,78 +21,6 @@
       "imdb": "tt2879552",
       "tmdb": 64464,
       "tvrage": 45210
-    }
-  },
-  {
-    "title": "Beowulf: Return to the Shieldlands",
-    "year": 2016,
-    "ids": {
-      "trakt": 102467,
-      "slug": "beowulf-return-to-the-shieldlands",
-      "tvdb": 301347,
-      "imdb": "tt4520906",
-      "tmdb": 64593,
-      "tvrage": 50729
-    }
-  },
-  {
-    "title": "Battlestar Galactica",
-    "year": 2005,
-    "ids": {
-      "trakt": 1959,
-      "slug": "battlestar-galactica-2005",
-      "tvdb": 73545,
-      "imdb": "tt0407362",
-      "tmdb": 1972,
-      "tvrage": 2730
-    }
-  },
-  {
-    "title": "Outlander",
-    "year": 2014,
-    "ids": {
-      "trakt": 56212,
-      "slug": "outlander",
-      "tvdb": 270408,
-      "imdb": "tt3006802",
-      "tmdb": 56570,
-      "tvrage": 36202
-    }
-  },
-  {
-    "title": "Dexter",
-    "year": 2006,
-    "ids": {
-      "trakt": 1396,
-      "slug": "dexter",
-      "tvdb": 79349,
-      "imdb": "tt0773262",
-      "tmdb": 1405,
-      "tvrage": null
-    }
-  },
-  {
-    "title": "Band of Brothers",
-    "year": 2001,
-    "ids": {
-      "trakt": 4589,
-      "slug": "band-of-brothers",
-      "tvdb": 74205,
-      "imdb": "tt0185906",
-      "tmdb": 4613,
-      "tvrage": 2708
-    }
-  },
-  {
-    "title": "Under the Dome",
-    "year": 2013,
-    "ids": {
-      "trakt": 46073,
-      "slug": "under-the-dome",
-      "tvdb": 264492,
-      "imdb": "tt1553656",
-      "tmdb": 46331,
-      "tvrage": 25988
     }
   }
 ]
