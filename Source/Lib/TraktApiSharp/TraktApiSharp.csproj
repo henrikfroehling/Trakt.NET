@@ -113,8 +113,6 @@
     <Compile Include="Objects\Shows\Seasons\TraktSeasonRating.cs" />
     <Compile Include="Objects\Shows\Seasons\TraktSeasonStatistics.cs" />
     <Compile Include="Objects\Shows\Seasons\TraktSeasonWatchingUser.cs" />
-    <Compile Include="Objects\Shows\Seasons\TraktSeasonWithMetadataRating.cs" />
-    <Compile Include="Objects\Shows\Seasons\TraktSeasonWithMetadataStatistics.cs" />
     <Compile Include="Objects\Shows\TraktShow.cs" />
     <Compile Include="Objects\Shows\TraktShowAirs.cs" />
     <Compile Include="Objects\Shows\TraktShowAlias.cs" />
