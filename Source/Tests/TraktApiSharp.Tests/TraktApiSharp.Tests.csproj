@@ -102,6 +102,10 @@
     <Compile Include="Objects\Movies\TraktMovieTranslationsTests.cs" />
     <Compile Include="Objects\Movies\TraktMovieWatchingUsersTests.cs" />
     <Compile Include="Objects\People\TraktPersonTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktMovieRecommendationsTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktMovieSingleRecommendationTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktShowRecommendationsTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktShowSingleRecommendationTests.cs" />
     <Compile Include="Objects\Shows\Common\TraktShowsMostAnticipatedTests.cs" />
     <Compile Include="Objects\Shows\Common\TraktShowsMostCollectedTests.cs" />
     <Compile Include="Objects\Shows\Common\TraktShowsMostPlayedTests.cs" />
@@ -240,6 +244,10 @@
     <None Include="TestData\People\PersonImages.json" />
     <None Include="TestData\People\PersonMetadata.json" />
     <None Include="TestData\People\PersonMinimal.json" />
+    <None Include="TestData\Recommendations\MovieRecommendations.json" />
+    <None Include="TestData\Recommendations\MovieSingleRecommendation.json" />
+    <None Include="TestData\Recommendations\ShowRecommendations.json" />
+    <None Include="TestData\Recommendations\ShowSingleRecommendation.json" />
     <None Include="TestData\Shows\Common\ShowsMostAnticipated.json" />
     <None Include="TestData\Shows\Common\ShowsMostCollected.json" />
     <None Include="TestData\Shows\Common\ShowsMostPlayed.json" />
