@@ -5,6 +5,7 @@
 
     public enum TraktSearchLookupIdType
     {
+        Unspecified,
         TraktMovie,
         TraktShow,
         TraktEpisode,
@@ -27,6 +28,7 @@
                 case TraktSearchLookupIdType.TmDB: return "tmdb";
                 case TraktSearchLookupIdType.TvDB: return "tvdb";
                 case TraktSearchLookupIdType.TVRage: return "tvrage";
+                case TraktSearchLookupIdType.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("AccessScope");
             }
@@ -59,7 +61,7 @@
             else if (enumString.Equals(TraktSearchLookupIdType.TVRage.AsString()))
                 return TraktSearchLookupIdType.TVRage;
 
-            throw new ArgumentException("no search id type with that name", "enumString");
+            return TraktSearchLookupIdType.Unspecified;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

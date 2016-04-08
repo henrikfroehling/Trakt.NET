@@ -6,6 +6,7 @@
 
     public enum TraktAuthenticationMode
     {
+        Unspecified,
         Device,
         OAuth
     }
@@ -18,6 +19,7 @@
             {
                 case TraktAuthenticationMode.Device: return "Device";
                 case TraktAuthenticationMode.OAuth: return "OAuth";
+                case TraktAuthenticationMode.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("AuthenticationMode");
             }

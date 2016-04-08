@@ -20,7 +20,7 @@
             TraktAccessScope.Friends.AsString().Should().Be("friends");
             TraktAccessScope.Private.AsString().Should().Be("private");
             TraktAccessScope.Public.AsString().Should().Be("public");
-            TraktAccessScope.Unspecified.AsString().Should().Be("");
+            TraktAccessScope.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
         }
     }
 }

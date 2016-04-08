@@ -15,7 +15,7 @@
         {
             var searchIdLookupResult = new TraktSearchIdLookupResult();
 
-            searchIdLookupResult.Type.Should().Be(TraktSearchResultType.Movie);
+            searchIdLookupResult.Type.Should().Be(TraktSearchResultType.Unspecified);
             searchIdLookupResult.Score.Should().NotHaveValue();
             searchIdLookupResult.Movie.Should().BeNull();
             searchIdLookupResult.Show.Should().BeNull();

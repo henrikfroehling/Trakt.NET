@@ -6,6 +6,7 @@
 
     public enum TraktAccessTokenType
     {
+        Unspecified,
         Bearer
     }
 
@@ -16,6 +17,7 @@
             switch (scope)
             {
                 case TraktAccessTokenType.Bearer: return "bearer";
+                case TraktAccessTokenType.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("AccessTokenType");
             }

@@ -17,7 +17,7 @@
 
             genre.Name.Should().BeNullOrEmpty();
             genre.Slug.Should().BeNullOrEmpty();
-            genre.Type.Should().Be(TraktGenreType.Shows);
+            genre.Type.Should().Be(TraktGenreType.Unspecified);
         }
 
         [TestMethod]

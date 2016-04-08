@@ -5,9 +5,9 @@
 
     public enum TraktAccessTokenGrantType
     {
+        Unspecified,
         AuthorizationCode,
-        RefreshToken,
-        Unspecified
+        RefreshToken
     }
 
     public static class TraktAccessTokenGrantTypeExtensions

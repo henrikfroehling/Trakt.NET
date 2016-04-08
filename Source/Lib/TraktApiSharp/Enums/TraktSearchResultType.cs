@@ -6,6 +6,7 @@
 
     public enum TraktSearchResultType
     {
+        Unspecified,
         Movie,
         Show,
         Episode,
@@ -24,6 +25,7 @@
                 case TraktSearchResultType.Episode: return "episode";
                 case TraktSearchResultType.Person: return "person";
                 case TraktSearchResultType.List: return "list";
+                case TraktSearchResultType.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("SearchResultType");
             }

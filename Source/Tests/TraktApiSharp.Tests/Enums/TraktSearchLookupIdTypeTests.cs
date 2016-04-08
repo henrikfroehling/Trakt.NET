@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktSearchLookupIdTypeHasMembers()
         {
-            typeof(TraktSearchLookupIdType).GetEnumNames().Should().HaveCount(7)
-                                                          .And.Contain("TraktMovie", "TraktShow", "TraktEpisode", "ImDB", "TmDB", "TvDB", "TVRage");
+            typeof(TraktSearchLookupIdType).GetEnumNames().Should().HaveCount(8)
+                                                          .And.Contain("TraktMovie", "TraktShow", "TraktEpisode", "ImDB", "TmDB", "TvDB", "TVRage", "Unspecified");
         }
 
         [TestMethod]
@@ -24,6 +24,7 @@
             TraktSearchLookupIdType.TmDB.AsString().Should().Be("tmdb");
             TraktSearchLookupIdType.TvDB.AsString().Should().Be("tvdb");
             TraktSearchLookupIdType.TVRage.AsString().Should().Be("tvrage");
+            TraktSearchLookupIdType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
         }
     }
 }

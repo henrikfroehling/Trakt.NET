@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktGenreTypeHasMembers()
         {
-            typeof(TraktGenreType).GetEnumNames().Should().HaveCount(2)
-                                                 .And.Contain("Shows", "Movies");
+            typeof(TraktGenreType).GetEnumNames().Should().HaveCount(3)
+                                                 .And.Contain("Shows", "Movies", "Unspecified");
         }
 
         [TestMethod]
@@ -19,6 +19,7 @@
         {
             TraktGenreType.Shows.AsString().Should().Be("shows");
             TraktGenreType.Movies.AsString().Should().Be("movies");
+            TraktGenreType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
         }
     }
 }

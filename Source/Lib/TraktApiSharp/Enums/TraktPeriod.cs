@@ -4,6 +4,7 @@
 
     public enum TraktPeriod
     {
+        Unspecified,
         Weekly,
         Monthly,
         Yearly,
@@ -20,6 +21,7 @@
                 case TraktPeriod.Monthly: return "monthly";
                 case TraktPeriod.Yearly: return "yearly";
                 case TraktPeriod.All: return "all";
+                case TraktPeriod.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("Period");
             }

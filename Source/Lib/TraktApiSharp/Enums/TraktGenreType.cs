@@ -6,6 +6,7 @@
 
     public enum TraktGenreType
     {
+        Unspecified,
         Shows,
         Movies
     }
@@ -18,6 +19,7 @@
             {
                 case TraktGenreType.Shows: return "shows";
                 case TraktGenreType.Movies: return "movies";
+                case TraktGenreType.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("GenreType");
             }

@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktSearchResultTypeHasMembers()
         {
-            typeof(TraktSearchResultType).GetEnumNames().Should().HaveCount(5)
-                                                        .And.Contain("Movie", "Show", "Episode", "Person", "List");
+            typeof(TraktSearchResultType).GetEnumNames().Should().HaveCount(6)
+                                                        .And.Contain("Movie", "Show", "Episode", "Person", "List", "Unspecified");
         }
 
         [TestMethod]
@@ -22,6 +22,7 @@
             TraktSearchResultType.Episode.AsString().Should().Be("episode");
             TraktSearchResultType.Person.AsString().Should().Be("person");
             TraktSearchResultType.List.AsString().Should().Be("list");
+            TraktSearchResultType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
         }
     }
 }

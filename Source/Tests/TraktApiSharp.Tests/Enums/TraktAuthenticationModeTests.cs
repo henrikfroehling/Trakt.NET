@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktAuthenticationModeHasMembers()
         {
-            typeof(TraktAuthenticationMode).GetEnumNames().Should().HaveCount(2)
-                                                          .And.Contain("Device", "OAuth");
+            typeof(TraktAuthenticationMode).GetEnumNames().Should().HaveCount(3)
+                                                          .And.Contain("Device", "OAuth", "Unspecified");
         }
 
         [TestMethod]
@@ -19,6 +19,7 @@
         {
             TraktAuthenticationMode.Device.AsString().Should().Be("Device");
             TraktAuthenticationMode.OAuth.AsString().Should().Be("OAuth");
+            TraktAuthenticationMode.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
         }
     }
 }
