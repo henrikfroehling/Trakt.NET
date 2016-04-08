@@ -5,26 +5,25 @@
     using TraktApiSharp.Exceptions;
 
     [TestClass]
-    public class TraktShowNotFoundExceptionTests
+    public class TraktObjectNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktShowNotFoundExceptionBaseClass()
+        public void TestTraktObjectNotFoundExceptionBaseClass()
         {
-            var exception = new TraktShowNotFoundException("");
+            var exception = new TraktObjectNotFoundException("");
 
-            exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
             exception.Should().BeAssignableTo<TraktException>();
         }
 
         [TestMethod]
-        public void TestTraktShowNotFoundExceptionDefaultConstructor()
+        public void TestTraktObjectNotFoundExceptionDefaultConstructor()
         {
-            var showId = "show id";
+            var objectId = "object id";
 
-            var exception = new TraktShowNotFoundException(showId);
+            var exception = new TraktObjectNotFoundException(objectId);
 
-            exception.Message.Should().Be("Show Not Found - method exists, but no record found");
-            exception.ObjectId.Should().Be(showId);
+            exception.Message.Should().Be("Object Not Found - method exists, but no record found");
+            exception.ObjectId.Should().Be(objectId);
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
@@ -32,15 +31,15 @@
         }
 
         [TestMethod]
-        public void TestTraktShowNotFoundExceptionConstructor()
+        public void TestTraktObjectNotFoundExceptionConstructor()
         {
             var message = "exception message";
-            var showId = "show id";
+            var objectId = "object id";
 
-            var exception = new TraktShowNotFoundException(message, showId);
+            var exception = new TraktObjectNotFoundException(message, objectId);
 
             exception.Message.Should().Be(message);
-            exception.ObjectId.Should().Be(showId);
+            exception.ObjectId.Should().Be(objectId);
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();

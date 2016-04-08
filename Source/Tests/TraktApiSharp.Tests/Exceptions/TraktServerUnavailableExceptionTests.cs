@@ -10,9 +10,21 @@
         [TestMethod]
         public void TestTraktServerUnavailableExceptionBaseClass()
         {
-            var exception = new TraktServerUnavailableException("");
+            var exception = new TraktServerUnavailableException();
 
             exception.Should().BeAssignableTo<TraktException>();
+        }
+
+        [TestMethod]
+        public void TestTraktServerUnavailableExceptionDefaultConstructor()
+        {
+            var exception = new TraktServerUnavailableException();
+
+            exception.Message.Should().Be("Service Unavailable - server overloaded (try again in 30s)");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.ServiceUnavailable);
+            exception.RequestUrl.Should().BeNullOrEmpty();
+            exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
@@ -26,6 +38,7 @@
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.ServiceUnavailable);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
     }
 }

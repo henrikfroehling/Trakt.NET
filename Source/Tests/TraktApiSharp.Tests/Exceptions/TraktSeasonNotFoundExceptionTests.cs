@@ -10,25 +10,46 @@
         [TestMethod]
         public void TestTraktSeasonNotFoundExceptionBaseClass()
         {
-            var exception = new TraktSeasonNotFoundException("", "");
+            var exception = new TraktSeasonNotFoundException("", 1);
 
-            exception.Should().BeAssignableTo<TraktException>();
+            exception.Should().BeAssignableTo<TraktShowNotFoundException>();
             exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
+            exception.Should().BeAssignableTo<TraktException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonNotFoundExceptionDefaultConstructor()
+        {
+            var showId = "show id";
+            var seasonNr = 1;
+
+            var exception = new TraktSeasonNotFoundException(showId, seasonNr);
+
+            exception.Message.Should().Be("Season Not Found - method exists, but no record found");
+            exception.ObjectId.Should().Be(showId);
+            exception.Season.Should().Be(seasonNr);
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.RequestUrl.Should().BeNullOrEmpty();
+            exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
         public void TestTraktSeasonNotFoundExceptionConstructor()
         {
             var message = "exception message";
-            var seasonId = "season id";
+            var showId = "show id";
+            var seasonNr = 1;
 
-            var exception = new TraktSeasonNotFoundException(message, seasonId);
+            var exception = new TraktSeasonNotFoundException(message, showId, seasonNr);
 
             exception.Message.Should().Be(message);
-            exception.ObjectId.Should().Be(seasonId);
+            exception.ObjectId.Should().Be(showId);
+            exception.Season.Should().Be(seasonNr);
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
     }
 }

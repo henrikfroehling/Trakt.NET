@@ -5,37 +5,37 @@
     using TraktApiSharp.Exceptions;
 
     [TestClass]
-    public class TraktPreconditionFailedExceptionTests
+    public class TraktExpiredExceptionTests
     {
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionBaseClass()
+        public void TestTraktExpiredEExceptionBaseClass()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktExpiredException();
 
             exception.Should().BeAssignableTo<TraktException>();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionDefaultConstructor()
+        public void TestTraktExpiredEExceptionDefaultConstructor()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktExpiredException();
 
-            exception.Message.Should().Be("Precondition Failed - use application/json content type");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.Message.Should().Be("Expired - the tokens have expired, restart the process");
+            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionConstructor()
+        public void TestTraktExpiredEExceptionConstructor()
         {
             var message = "exception message";
 
-            var exception = new TraktPreconditionFailedException(message);
+            var exception = new TraktExpiredException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

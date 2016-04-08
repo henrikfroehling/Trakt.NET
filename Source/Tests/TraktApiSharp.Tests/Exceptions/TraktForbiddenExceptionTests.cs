@@ -10,9 +10,21 @@
         [TestMethod]
         public void TestTraktForbiddenExceptionBaseClass()
         {
-            var exception = new TraktForbiddenException("");
+            var exception = new TraktForbiddenException();
 
             exception.Should().BeAssignableTo<TraktException>();
+        }
+
+        [TestMethod]
+        public void TestTraktForbiddenExceptionDefaultConstructor()
+        {
+            var exception = new TraktForbiddenException();
+
+            exception.Message.Should().Be("Forbidden - invalid API key or unapproved app");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
+            exception.RequestUrl.Should().BeNullOrEmpty();
+            exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
@@ -26,6 +38,7 @@
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
     }
 }

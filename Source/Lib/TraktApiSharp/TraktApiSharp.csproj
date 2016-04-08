@@ -59,7 +59,10 @@
     <Compile Include="Enums\TraktSearchResultType.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
+    <Compile Include="Exceptions\TraktBadGatewayException.cs" />
+    <Compile Include="Exceptions\TraktDeniedException.cs" />
     <Compile Include="Exceptions\TraktException.cs" />
+    <Compile Include="Exceptions\TraktExpiredException.cs" />
     <Compile Include="Exceptions\TraktForbiddenException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundException.cs" />
@@ -67,7 +70,8 @@
     <Compile Include="Exceptions\TraktEpisodeNotFoundException.cs" />
     <Compile Include="Exceptions\TraktMovieNotFoundException.cs" />
     <Compile Include="Exceptions\TraktPreconditionFailedException.cs" />
-    <Compile Include="Exceptions\TraktResourceAlreadyCreatedException.cs" />
+    <Compile Include="Exceptions\TraktConflictException.cs" />
+    <Compile Include="Exceptions\TraktRateLimitException.cs" />
     <Compile Include="Exceptions\TraktSeasonNotFoundException.cs" />
     <Compile Include="Exceptions\TraktServerException.cs" />
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Objects\TraktConnections.cs" />
     <Compile Include="Objects\TraktCrew.cs" />
     <Compile Include="Objects\TraktCrewMember.cs" />
+    <Compile Include="Objects\TraktError.cs" />
     <Compile Include="Objects\TraktGenre.cs" />
     <Compile Include="Objects\TraktIds.cs" />
     <Compile Include="Objects\TraktImage.cs" />
@@ -163,7 +168,7 @@
     <Compile Include="Objects\Users\TraktUserImages.cs" />
     <Compile Include="Objects\Users\TraktUserSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\ITraktRequest.cs" />
+    <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\Movies\Common\TraktMoviesMostCollectedRequest.cs" />
@@ -214,20 +219,21 @@
     <Compile Include="Requests\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowTranslationsRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowWatchingUsersRequest.cs" />
-    <Compile Include="Requests\TraktAuthenticationRequirement.cs" />
-    <Compile Include="Requests\TraktBodylessPostByIdRequest.cs" />
-    <Compile Include="Requests\TraktBodylessPostRequest.cs" />
-    <Compile Include="Requests\TraktDeleteByIdRequest.cs" />
-    <Compile Include="Requests\TraktDeleteRequest.cs" />
-    <Compile Include="Requests\TraktExtendedOption.cs" />
-    <Compile Include="Requests\TraktGetByIdRequest.cs" />
-    <Compile Include="Requests\TraktGetRequest.cs" />
-    <Compile Include="Requests\TraktPaginationOptions.cs" />
-    <Compile Include="Requests\TraktPostByIdRequest.cs" />
-    <Compile Include="Requests\TraktPostRequest.cs" />
-    <Compile Include="Requests\TraktPutByIdRequest.cs" />
-    <Compile Include="Requests\TraktPutRequest.cs" />
-    <Compile Include="Requests\TraktRequest.cs" />
+    <Compile Include="Requests\Base\TraktAuthenticationRequirement.cs" />
+    <Compile Include="Requests\Base\Post\TraktBodylessPostByIdRequest.cs" />
+    <Compile Include="Requests\Base\Post\TraktBodylessPostRequest.cs" />
+    <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequest.cs" />
+    <Compile Include="Requests\Base\Delete\TraktDeleteRequest.cs" />
+    <Compile Include="Requests\Base\TraktExtendedOption.cs" />
+    <Compile Include="Requests\Base\Get\TraktGetByIdRequest.cs" />
+    <Compile Include="Requests\Base\Get\TraktGetRequest.cs" />
+    <Compile Include="Requests\Base\TraktPaginationOptions.cs" />
+    <Compile Include="Requests\Base\Post\TraktPostByIdRequest.cs" />
+    <Compile Include="Requests\Base\Post\TraktPostRequest.cs" />
+    <Compile Include="Requests\Base\Put\TraktPutByIdRequest.cs" />
+    <Compile Include="Requests\Base\Put\TraktPutRequest.cs" />
+    <Compile Include="Requests\Base\TraktRequest.cs" />
+    <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
   <ItemGroup>

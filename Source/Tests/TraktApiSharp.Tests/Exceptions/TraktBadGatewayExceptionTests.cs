@@ -5,37 +5,37 @@
     using TraktApiSharp.Exceptions;
 
     [TestClass]
-    public class TraktPreconditionFailedExceptionTests
+    public class TraktBadGatewayExceptionTests
     {
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionBaseClass()
+        public void TestTraktBadGatewayExceptionBaseClass()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktBadGatewayException();
 
             exception.Should().BeAssignableTo<TraktException>();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionDefaultConstructor()
+        public void TestTraktBadGatewayExceptionDefaultConstructor()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktBadGatewayException();
 
-            exception.Message.Should().Be("Precondition Failed - use application/json content type");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.Message.Should().Be("Bad Gateway");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadGateway);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionConstructor()
+        public void TestTraktBadGatewayExceptionConstructor()
         {
             var message = "exception message";
 
-            var exception = new TraktPreconditionFailedException(message);
+            var exception = new TraktBadGatewayException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadGateway);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

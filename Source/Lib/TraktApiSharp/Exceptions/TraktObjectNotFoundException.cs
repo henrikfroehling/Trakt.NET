@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Exceptions
 {
-    public abstract class TraktObjectNotFoundException : TraktException
+    public class TraktObjectNotFoundException : TraktException
     {
+        public TraktObjectNotFoundException(string objectId) : this("Object Not Found - method exists, but no record found", objectId) { }
+
         public TraktObjectNotFoundException(string message, string objectId) : base(message)
         {
             ObjectId = objectId;

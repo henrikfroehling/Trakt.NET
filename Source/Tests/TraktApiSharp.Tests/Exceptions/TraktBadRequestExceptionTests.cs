@@ -10,9 +10,21 @@
         [TestMethod]
         public void TestTraktBadRequestExceptionBaseClass()
         {
-            var exception = new TraktBadRequestException("");
+            var exception = new TraktBadRequestException();
 
             exception.Should().BeAssignableTo<TraktException>();
+        }
+
+        [TestMethod]
+        public void TestTraktBadRequestExceptionDefaultConstructor()
+        {
+            var exception = new TraktBadRequestException();
+
+            exception.Message.Should().Be("Bad Request - request couldn't be parsed");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
+            exception.RequestUrl.Should().BeNullOrEmpty();
+            exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
@@ -26,6 +38,7 @@
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
     }
 }

@@ -5,37 +5,37 @@
     using TraktApiSharp.Exceptions;
 
     [TestClass]
-    public class TraktPreconditionFailedExceptionTests
+    public class TraktDeniedExceptionTests
     {
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionBaseClass()
+        public void TestTraktDeniedExceptionBaseClass()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktDeniedException();
 
             exception.Should().BeAssignableTo<TraktException>();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionDefaultConstructor()
+        public void TestTraktDeniedExceptionDefaultConstructor()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktDeniedException();
 
-            exception.Message.Should().Be("Precondition Failed - use application/json content type");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.Message.Should().Be("Denied - user explicitly denied this code");
+            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionConstructor()
+        public void TestTraktDeniedExceptionConstructor()
         {
             var message = "exception message";
 
-            var exception = new TraktPreconditionFailedException(message);
+            var exception = new TraktDeniedException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

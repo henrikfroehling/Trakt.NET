@@ -5,37 +5,37 @@
     using TraktApiSharp.Exceptions;
 
     [TestClass]
-    public class TraktPreconditionFailedExceptionTests
+    public class TraktConflictExceptionTests
     {
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionBaseClass()
+        public void TestTraktConflictExceptionBaseClass()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktConflictException();
 
             exception.Should().BeAssignableTo<TraktException>();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionDefaultConstructor()
+        public void TestTraktConflictExceptionDefaultConstructor()
         {
-            var exception = new TraktPreconditionFailedException();
+            var exception = new TraktConflictException();
 
-            exception.Message.Should().Be("Precondition Failed - use application/json content type");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.Message.Should().Be("Conflict - resource already created");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Conflict);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionConstructor()
+        public void TestTraktConflictExceptionConstructor()
         {
             var message = "exception message";
 
-            var exception = new TraktPreconditionFailedException(message);
+            var exception = new TraktConflictException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Conflict);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

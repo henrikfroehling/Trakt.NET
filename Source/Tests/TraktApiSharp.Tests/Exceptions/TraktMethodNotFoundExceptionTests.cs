@@ -10,9 +10,21 @@
         [TestMethod]
         public void TestTraktMethodNotFoundExceptionBaseClass()
         {
-            var exception = new TraktMethodNotFoundException("");
+            var exception = new TraktMethodNotFoundException();
 
             exception.Should().BeAssignableTo<TraktException>();
+        }
+
+        [TestMethod]
+        public void TestTraktMethodNotFoundExceptionDefaultConstructor()
+        {
+            var exception = new TraktMethodNotFoundException();
+
+            exception.Message.Should().Be("Method Not Found - method doesn't exist");
+            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed);
+            exception.RequestUrl.Should().BeNullOrEmpty();
+            exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
@@ -26,6 +38,7 @@
             exception.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
+            exception.Response.Should().BeNullOrEmpty();
         }
     }
 }

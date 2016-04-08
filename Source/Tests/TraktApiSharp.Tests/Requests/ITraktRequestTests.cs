@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Base;
 
     [TestClass]
     public class ITraktRequestTests
