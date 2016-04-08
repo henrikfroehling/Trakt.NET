@@ -80,6 +80,8 @@
     <Compile Include="Enums\TraktSearchLookupIdTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
+    <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesBoxOfficeTests.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesMostAnticipatedTests.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesMostCollectedTests.cs" />
