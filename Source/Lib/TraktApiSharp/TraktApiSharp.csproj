@@ -58,6 +58,21 @@
     <Compile Include="Enums\TraktReleaseType.cs" />
     <Compile Include="Enums\TraktSearchResultType.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
+    <Compile Include="Exceptions\TraktAuthorizationException.cs" />
+    <Compile Include="Exceptions\TraktException.cs" />
+    <Compile Include="Exceptions\TraktForbiddenException.cs" />
+    <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktObjectNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktBadRequestException.cs" />
+    <Compile Include="Exceptions\TraktEpisodeNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktMovieNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktPreconditionFailedException.cs" />
+    <Compile Include="Exceptions\TraktResourceAlreadyCreatedException.cs" />
+    <Compile Include="Exceptions\TraktSeasonNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktServerException.cs" />
+    <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
+    <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktBaseModule.cs" />
@@ -216,7 +231,6 @@
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exceptions\" />
     <Folder Include="Objects\Calendars\" />
     <Folder Include="Objects\Checkins\" />
     <Folder Include="Objects\Scrobbles\" />
