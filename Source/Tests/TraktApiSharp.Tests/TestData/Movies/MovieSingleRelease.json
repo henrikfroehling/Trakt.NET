@@ -1,9 +1,7 @@
-﻿[
-  {
-    "country": "de",
-    "certification": "12",
-    "release_date": "2015-12-17",
-    "release_type": "theatrical",
-    "note": null
-  }
-]
+﻿{
+  "country": "us",
+  "certification": "PG-13",
+  "release_date": "2015-12-14",
+  "release_type": "premiere",
+  "note": "Los Angeles, California"
+}

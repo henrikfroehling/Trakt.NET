@@ -28,11 +28,11 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var popularShows = JsonConvert.DeserializeObject<IEnumerable<TraktShowsRecentlyUpdatedItem>>(jsonFile);
+            var updatedShows = JsonConvert.DeserializeObject<IEnumerable<TraktShowsRecentlyUpdatedItem>>(jsonFile);
 
-            popularShows.Should().NotBeNull().And.HaveCount(2);
+            updatedShows.Should().NotBeNull().And.HaveCount(2);
 
-            var shows = popularShows.ToArray();
+            var shows = updatedShows.ToArray();
 
             shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T15:24:24Z").ToUniversalTime());
             shows[0].Show.Should().NotBeNull();

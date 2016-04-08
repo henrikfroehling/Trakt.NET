@@ -1,14 +1,6 @@
-﻿[
-  {
-    "title": "Star Wars: Episode VII - Das Erwachen der Macht",
-    "overview": "Erster Teil der von Walt Disney angekündigten dritten \"Star Wars\"-Trilogie, die im Jahr 2015 ihren Anfang nehmen soll.",
-    "tagline": "",
-    "language": "de"
-  },
-  {
-    "title": "Star Wars: Episode VII - Das Erwachen der Macht",
-    "overview": "Über 30 Jahre sind vergangen, seitdem die Rebellen den zweiten Todesstern über Endor zerstört und damit die entscheidende Schlacht gegen die finsteren Mächte des Imperiums gewonnen haben. Doch aus der Asche des Bösen ist die First Order empor gestiegen und hat die Herrschaft wieder an sich gerissen. Während Supreme Leader Snoke (Andy Serkis) die Zügel im Hintergrund in den Händen hält, schickt er den Lichtschwert schwingenden Kylo Ren (Adam Driver) ins Feld, um die neue Weltordnung auch in den verstecktesten Winkeln der Galaxis zu verbreiten.",
-    "tagline": "",
-    "language": "de"
-  }
-]
+﻿{
+  "title": "Star Wars: Episode VII - The Force Awakens",
+  "overview": "A continuation of the saga created by George Lucas, set thirty years after Star Wars: Episode VI – Return of the Jedi.",
+  "tagline": "The Force Lives On...",
+  "language": "en"
+}

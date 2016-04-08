@@ -80,13 +80,10 @@
     <Compile Include="Objects\Movies\TraktMovieImages.cs" />
     <Compile Include="Objects\Movies\TraktMoviePeople.cs" />
     <Compile Include="Objects\Movies\TraktMovieRating.cs" />
-    <Compile Include="Objects\Movies\TraktMovieRelatedItem.cs" />
     <Compile Include="Objects\Movies\TraktMovieRelease.cs" />
     <Compile Include="Objects\Movies\TraktMovieStatistics.cs" />
     <Compile Include="Objects\Movies\TraktMovieTranslation.cs" />
     <Compile Include="Objects\Movies\TraktMovieWatchingUser.cs" />
-    <Compile Include="Objects\Movies\TraktMovieWithMetadataRating.cs" />
-    <Compile Include="Objects\Movies\TraktMovieWithMetadataStatistics.cs" />
     <Compile Include="Objects\People\TraktPerson.cs" />
     <Compile Include="Objects\People\TraktPersonIds.cs" />
     <Compile Include="Objects\People\TraktPersonImages.cs" />
