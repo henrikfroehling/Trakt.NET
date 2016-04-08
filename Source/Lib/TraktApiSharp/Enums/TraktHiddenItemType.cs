@@ -6,6 +6,7 @@
 
     public enum TraktHiddenItemType
     {
+        Unspecified,
         Movie,
         Show,
         Season
@@ -20,6 +21,7 @@
                 case TraktHiddenItemType.Movie: return "movie";
                 case TraktHiddenItemType.Show: return "show";
                 case TraktHiddenItemType.Season: return "season";
+                case TraktHiddenItemType.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("HiddenItemType");
             }

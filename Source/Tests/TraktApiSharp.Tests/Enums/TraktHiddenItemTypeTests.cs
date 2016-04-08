@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktHiddenItemTypeHasMembers()
         {
-            typeof(TraktHiddenItemType).GetEnumNames().Should().HaveCount(3)
-                                                      .And.Contain("Movie", "Show", "Season");
+            typeof(TraktHiddenItemType).GetEnumNames().Should().HaveCount(4)
+                                                      .And.Contain("Movie", "Show", "Season", "Unspecifieds");
         }
 
         [TestMethod]
@@ -20,6 +20,7 @@
             TraktHiddenItemType.Movie.AsString().Should().Be("movie");
             TraktHiddenItemType.Show.AsString().Should().Be("show");
             TraktHiddenItemType.Season.AsString().Should().Be("season");
+            TraktHiddenItemType.Unspecified.AsString().Should().Be("");
         }
     }
 }

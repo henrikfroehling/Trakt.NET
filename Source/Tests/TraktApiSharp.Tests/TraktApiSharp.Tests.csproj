@@ -146,6 +146,17 @@
     <Compile Include="Objects\TraktSearchResultTests.cs" />
     <Compile Include="Objects\TraktSharingTests.cs" />
     <Compile Include="Objects\TraktStatisticsTests.cs" />
+    <Compile Include="Objects\Users\Lists\TraktListCommentsTests.cs" />
+    <Compile Include="Objects\Users\Lists\TraktListTests.cs" />
+    <Compile Include="Objects\Users\TraktAccountSettingsTests.cs" />
+    <Compile Include="Objects\Users\TraktSharingTextTests.cs" />
+    <Compile Include="Objects\Users\TraktUserFollowersTests.cs" />
+    <Compile Include="Objects\Users\TraktUserFriendsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserHiddenItemsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleFollowerTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSettingsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleFriendTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleHiddenItemTests.cs" />
     <Compile Include="Objects\Users\TraktUserTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -288,18 +299,27 @@
     <None Include="TestData\Shows\ShowSummaryMinimal.json" />
     <None Include="TestData\Shows\ShowTranslations.json" />
     <None Include="TestData\Shows\ShowWatchingUsers.json" />
+    <None Include="TestData\Users\AccountSettings.json" />
+    <None Include="TestData\Users\Lists\List.json" />
+    <None Include="TestData\Users\Lists\ListComments.json" />
+    <None Include="TestData\Users\SharingText.json" />
+    <None Include="TestData\Users\UserFollowers.json" />
+    <None Include="TestData\Users\UserFriends.json" />
+    <None Include="TestData\Users\UserHiddenItems.json" />
+    <None Include="TestData\Users\UserSingleFollower.json" />
     <None Include="TestData\Users\UserFull.json" />
     <None Include="TestData\Users\UserFullAndImages.json" />
     <None Include="TestData\Users\UserImages.json" />
     <None Include="TestData\Users\UserMetadata.json" />
     <None Include="TestData\Users\UserMinimal.json" />
+    <None Include="TestData\Users\UserSettings.json" />
+    <None Include="TestData\Users\UserSingleFriend.json" />
+    <None Include="TestData\Users\UserSingleHiddenItem.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestData\Basic\CastMember.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestData\Users\Lists\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="TestData\Basic\Crew.json" />
   </ItemGroup>

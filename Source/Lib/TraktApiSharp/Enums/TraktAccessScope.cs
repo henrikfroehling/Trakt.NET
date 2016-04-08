@@ -6,6 +6,7 @@
 
     public enum TraktAccessScope
     {
+        Unspecified,
         Public,
         Private,
         Friends
@@ -20,6 +21,7 @@
                 case TraktAccessScope.Public: return "public";
                 case TraktAccessScope.Private: return "private";
                 case TraktAccessScope.Friends: return "friends";
+                case TraktAccessScope.Unspecified: return "";
                 default:
                     throw new ArgumentOutOfRangeException("AccessScope");
             }

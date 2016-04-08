@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktAccessScopeHasMembers()
         {
-            typeof(TraktAccessScope).GetEnumNames().Should().HaveCount(3)
-                                                   .And.Contain("Public", "Private", "Friends");
+            typeof(TraktAccessScope).GetEnumNames().Should().HaveCount(4)
+                                                   .And.Contain("Public", "Private", "Friends", "Unspecified");
         }
 
         [TestMethod]
@@ -20,6 +20,7 @@
             TraktAccessScope.Friends.AsString().Should().Be("friends");
             TraktAccessScope.Private.AsString().Should().Be("private");
             TraktAccessScope.Public.AsString().Should().Be("public");
+            TraktAccessScope.Unspecified.AsString().Should().Be("");
         }
     }
 }
