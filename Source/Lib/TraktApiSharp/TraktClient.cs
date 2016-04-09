@@ -23,9 +23,13 @@
             DeviceAuth = new TraktDeviceAuth(this);
         }
 
-        public TraktClient(string clientId, string clientSecret) : this()
+        public TraktClient(string clientId)
         {
             ClientId = clientId;
+        }
+
+        public TraktClient(string clientId, string clientSecret) : this(clientId)
+        {
             ClientSecret = clientSecret;
         }
 
@@ -40,6 +44,8 @@
             get { return Authentication.ClientSecret; }
             set { Authentication.ClientSecret = value; }
         }
+
+        public bool IsValidForUseWithoutAuthorization => !string.IsNullOrEmpty(ClientId);
 
         public bool IsValid => !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret);
 

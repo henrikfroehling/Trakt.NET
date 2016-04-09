@@ -23,12 +23,21 @@
         [TestMethod]
         public void TestTraktClientParameterConstructor()
         {
-            var client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
+            var client1 = new TraktClient(CLIENT_ID);
 
-            client.ClientId.Should().Be(CLIENT_ID);
-            client.ClientSecret.Should().Be(CLIENT_SECRET);
+            client1.ClientId.Should().Be(CLIENT_ID);
+            client1.ClientSecret.Should().BeNull();
 
-            client.IsValid.Should().BeTrue();
+            client1.IsValid.Should().BeFalse();
+            client1.IsValidForUseWithoutAuthorization.Should().BeTrue();
+
+            var client2 = new TraktClient(CLIENT_ID, CLIENT_SECRET);
+
+            client2.ClientId.Should().Be(CLIENT_ID);
+            client2.ClientSecret.Should().Be(CLIENT_SECRET);
+
+            client2.IsValid.Should().BeTrue();
+            client2.IsValidForUseWithoutAuthorization.Should().BeTrue();
         }
 
         [TestMethod]
