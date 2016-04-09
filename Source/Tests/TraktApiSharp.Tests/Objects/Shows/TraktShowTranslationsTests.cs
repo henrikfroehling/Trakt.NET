@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktShowTranslationsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowTranslations.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowTranslations.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

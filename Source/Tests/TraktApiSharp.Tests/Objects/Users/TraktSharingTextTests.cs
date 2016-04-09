@@ -21,7 +21,7 @@
         [TestMethod]
         public void TestTraktSharingTextReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\SharingText.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\SharingText.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

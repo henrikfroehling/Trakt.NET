@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktSeasonRatingReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonRatings.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonRatings.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

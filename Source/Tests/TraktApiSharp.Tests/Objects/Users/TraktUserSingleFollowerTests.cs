@@ -22,7 +22,7 @@
         [TestMethod]
         public void TestTraktUserSingleFollowerReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserSingleFollower.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserSingleFollower.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

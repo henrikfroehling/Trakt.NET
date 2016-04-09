@@ -15,7 +15,7 @@
         [TestMethod]
         public void TestTraktEpisodeCommentsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Episodes\EpisodeComments.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Episodes\EpisodeComments.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

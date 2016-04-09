@@ -25,7 +25,7 @@
         [TestMethod]
         public void TestTraktImageSetReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\ImageSet.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\ImageSet.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktUserSettingsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserSettings.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserSettings.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

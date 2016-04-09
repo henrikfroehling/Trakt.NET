@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktSeasonStatisticsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonStatistics.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonStatistics.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

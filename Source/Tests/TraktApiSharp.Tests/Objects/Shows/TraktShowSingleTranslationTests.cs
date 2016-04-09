@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktShowSingleTranslationReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSingleTranslation.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSingleTranslation.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

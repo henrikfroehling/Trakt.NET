@@ -16,7 +16,7 @@
         [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonMinimal()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowRelatedShowsMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowRelatedShowsMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -51,7 +51,7 @@
         [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowRelatedShowsMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowRelatedShowsMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -86,7 +86,7 @@
         [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowRelatedShowsImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowRelatedShowsImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -143,7 +143,7 @@
         [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonFull()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowRelatedShowsFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowRelatedShowsFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -228,7 +228,7 @@
         [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonFullAndImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowRelatedShowsFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowRelatedShowsFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

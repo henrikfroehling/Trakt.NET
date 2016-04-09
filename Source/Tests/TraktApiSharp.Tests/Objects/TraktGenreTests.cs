@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktGenreReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Genre.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Genre.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

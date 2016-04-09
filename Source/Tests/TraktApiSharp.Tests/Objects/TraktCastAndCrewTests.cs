@@ -22,7 +22,7 @@
         [TestMethod]
         public void TestTraktCastAndCrewReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\CastAndCrew.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\CastAndCrew.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

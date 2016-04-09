@@ -21,7 +21,7 @@
         [TestMethod]
         public void TestTraktCrewMemberReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\CrewMember.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\CrewMember.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

@@ -30,7 +30,7 @@
         [TestMethod]
         public void TestTraktDeviceReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Authentication\Device.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Authentication\Device.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

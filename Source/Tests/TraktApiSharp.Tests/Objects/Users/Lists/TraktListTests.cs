@@ -35,7 +35,7 @@
         [TestMethod]
         public void TestTraktListReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\Lists\List.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\Lists\List.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

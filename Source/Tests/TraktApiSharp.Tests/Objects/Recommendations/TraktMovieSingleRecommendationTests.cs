@@ -22,7 +22,7 @@
         [TestMethod]
         public void TestTraktMovieSingleRecommendationReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Recommendations\MovieSingleRecommendation.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Recommendations\MovieSingleRecommendation.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

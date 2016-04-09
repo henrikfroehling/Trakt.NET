@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktRatingReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Rating.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Rating.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

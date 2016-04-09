@@ -48,7 +48,7 @@
         [TestMethod]
         public void TestTraktShowReadFromJsonMinimal()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSummaryMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSummaryMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -93,7 +93,7 @@
         [TestMethod]
         public void TestTraktShowReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSummaryMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSummaryMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -138,7 +138,7 @@
         [TestMethod]
         public void TestTraktShowReadFromJsonImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSummaryImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSummaryImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -193,7 +193,7 @@
         [TestMethod]
         public void TestTraktShowReadFromJsonFull()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSummaryFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSummaryFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -241,7 +241,7 @@
         [TestMethod]
         public void TestTraktShowReadFromJsonFullAndImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSummaryFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSummaryFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

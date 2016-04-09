@@ -15,7 +15,7 @@
         [TestMethod]
         public void TestTraktUserFriendsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserFriends.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserFriends.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

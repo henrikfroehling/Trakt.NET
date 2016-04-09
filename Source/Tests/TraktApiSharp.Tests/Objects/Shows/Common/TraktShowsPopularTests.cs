@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktShowsPopularReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Common\ShowsPopular.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Common\ShowsPopular.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

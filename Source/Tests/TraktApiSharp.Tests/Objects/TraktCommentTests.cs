@@ -30,7 +30,7 @@
         [TestMethod]
         public void TestTraktCommentReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Comment.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Comment.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

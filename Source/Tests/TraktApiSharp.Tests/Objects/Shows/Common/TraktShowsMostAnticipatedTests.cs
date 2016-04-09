@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktShowsMostAnticipatedReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Common\ShowsMostAnticipated.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Common\ShowsMostAnticipated.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

@@ -27,7 +27,7 @@
         [TestMethod]
         public void TestTraktSearchIdLookupResultReadFromJsonEpisode()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Search\SearchIdLookupResultEpisode.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Search\SearchIdLookupResultEpisode.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -46,7 +46,7 @@
         [TestMethod]
         public void TestTraktSearchIdLookupResultReadFromJsonMovie()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Search\SearchIdLookupResultMovie.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Search\SearchIdLookupResultMovie.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -65,7 +65,7 @@
         [TestMethod]
         public void TestTraktSearchIdLookupResultReadFromJsonShow()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Search\SearchIdLookupResultShow.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Search\SearchIdLookupResultShow.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

@@ -21,7 +21,7 @@
         [TestMethod]
         public void TestTraktCastMemberReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\CastMember.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\CastMember.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

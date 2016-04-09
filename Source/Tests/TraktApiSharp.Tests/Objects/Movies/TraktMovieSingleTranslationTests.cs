@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktMovieSingleTranslationReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSingleTranslation.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSingleTranslation.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

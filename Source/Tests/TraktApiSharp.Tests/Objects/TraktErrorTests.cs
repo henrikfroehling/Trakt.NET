@@ -21,7 +21,7 @@
         [TestMethod]
         public void TestTraktErrorReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Error.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Error.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

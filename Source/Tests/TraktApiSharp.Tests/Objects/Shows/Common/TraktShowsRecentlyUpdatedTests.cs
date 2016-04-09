@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktShowsRecentlyUpdatedReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Common\ShowsRecentlyUpdated.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Common\ShowsRecentlyUpdated.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

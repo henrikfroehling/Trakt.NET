@@ -31,7 +31,7 @@
         [TestMethod]
         public void TestTraktUserReadFromJsonMinimal()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -54,7 +54,7 @@
         [TestMethod]
         public void TestTraktUserReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -77,7 +77,7 @@
         [TestMethod]
         public void TestTraktUserReadFromJsonImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -102,7 +102,7 @@
         [TestMethod]
         public void TestTraktUserReadFromJsonFull()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -125,7 +125,7 @@
         [TestMethod]
         public void TestTraktUserReadFromJsonFullAndImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

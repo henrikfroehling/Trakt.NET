@@ -31,7 +31,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonMinimal()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -57,7 +57,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonMinimalWithEpisodes()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -94,7 +94,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -120,7 +120,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonMetadataWithEpisodes()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -157,7 +157,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -187,7 +187,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonImagesWithEpisodes()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -228,7 +228,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonFull()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -254,7 +254,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonFullWithEpisodes()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -291,7 +291,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonFullAndImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -321,7 +321,7 @@
         [TestMethod]
         public void TestTraktSeasonReadFromJsonFullAndImagesWithEpisodes()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\Seasons\Single\SeasonSummaryWithEpisodesFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

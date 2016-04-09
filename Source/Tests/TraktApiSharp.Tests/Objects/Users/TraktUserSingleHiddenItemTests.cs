@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktUserSingleHiddenItemReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Users\UserSingleHiddenItem.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Users\UserSingleHiddenItem.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

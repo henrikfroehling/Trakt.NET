@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktShowAliasesReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowAliases.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowAliases.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

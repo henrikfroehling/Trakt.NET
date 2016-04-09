@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktShowWatchingUsersReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowWatchingUsers.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowWatchingUsers.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

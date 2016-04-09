@@ -12,7 +12,7 @@
             return !string.IsNullOrEmpty(filePath) ? Path.Combine(execAssemblyLocation, "TestData", filePath) : string.Empty;
         }
 
-        public static string ReadJsonData(string filePath)
+        public static string ReadFileContents(string filePath)
         {
             var jsonFile = File.ReadAllText(GetDataFilePath(filePath), Encoding.UTF8);
             return !string.IsNullOrEmpty(jsonFile) ? jsonFile : string.Empty;

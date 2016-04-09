@@ -13,7 +13,7 @@
         [TestMethod]
         public void TestTraktMoviePeopleReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MoviePeople.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MoviePeople.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

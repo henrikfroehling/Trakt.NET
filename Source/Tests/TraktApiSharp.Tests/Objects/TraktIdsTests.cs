@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktIdsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Ids.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Ids.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

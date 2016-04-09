@@ -23,7 +23,7 @@
         [TestMethod]
         public void TestTraktMoviesBoxOfficeReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\Common\MoviesBoxOffice.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\Common\MoviesBoxOffice.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

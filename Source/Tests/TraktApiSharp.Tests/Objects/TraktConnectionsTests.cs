@@ -25,7 +25,7 @@
         [TestMethod]
         public void TestTraktConnectionsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Basic\Connections.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Basic\Connections.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

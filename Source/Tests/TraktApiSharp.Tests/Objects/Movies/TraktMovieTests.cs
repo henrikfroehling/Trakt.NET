@@ -41,7 +41,7 @@
         [TestMethod]
         public void TestTraktMovieReadFromJsonMinimal()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSummaryMinimal.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSummaryMinimal.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -78,7 +78,7 @@
         [TestMethod]
         public void TestTraktMovieReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSummaryMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSummaryMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -115,7 +115,7 @@
         [TestMethod]
         public void TestTraktMovieReadFromJsonImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSummaryImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSummaryImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -162,7 +162,7 @@
         [TestMethod]
         public void TestTraktMovieReadFromJsonFull()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSummaryFull.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSummaryFull.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -199,7 +199,7 @@
         [TestMethod]
         public void TestTraktMovieReadFromJsonFullAndImages()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieSummaryFullAndImages.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieSummaryFullAndImages.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

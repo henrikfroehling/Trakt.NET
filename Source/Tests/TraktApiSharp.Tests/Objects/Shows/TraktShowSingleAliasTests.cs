@@ -22,7 +22,7 @@
         [TestMethod]
         public void TestTraktShowSingleAliasReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Shows\ShowSingleAlias.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Shows\ShowSingleAlias.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

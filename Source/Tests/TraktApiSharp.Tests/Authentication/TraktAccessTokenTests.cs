@@ -30,7 +30,7 @@
         [TestMethod]
         public void TestTraktAccessTokenReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Authentication\AccessToken.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Authentication\AccessToken.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

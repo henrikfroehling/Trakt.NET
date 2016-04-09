@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktMovieStatisticsReadFromJson()
         {
-            var jsonFile = TestUtility.ReadJsonData(@"Movies\MovieStatistics.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Movies\MovieStatistics.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
