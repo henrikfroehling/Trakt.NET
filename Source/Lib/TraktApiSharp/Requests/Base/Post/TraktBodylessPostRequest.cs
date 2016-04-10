@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal abstract class TraktBodylessPostRequest<ResultType, ItemType> : TraktRequest<ResultType, ItemType>
+    internal abstract class TraktBodylessPostRequest<TResult, TItem> : TraktRequest<TResult, TItem>
     {
         protected TraktBodylessPostRequest(TraktClient client) : base(client) { }
 

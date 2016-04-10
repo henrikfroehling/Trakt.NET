@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class TraktGetByIdRequest<ResultType, ItemType> : TraktGetRequest<ResultType, ItemType>
+    internal abstract class TraktGetByIdRequest<TResult, TItem> : TraktGetRequest<TResult, TItem>
     {
         protected TraktGetByIdRequest(TraktClient client) : base(client) { }
 

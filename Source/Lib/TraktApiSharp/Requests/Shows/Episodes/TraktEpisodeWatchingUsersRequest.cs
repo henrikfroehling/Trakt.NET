@@ -10,5 +10,7 @@
         protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/watching";
 
         protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
+
+        protected override bool IsListResult => true;
     }
 }

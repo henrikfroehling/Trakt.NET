@@ -7,7 +7,7 @@ using System.Resources;
 [assembly: AssemblyTitle("TraktApiSharp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Henrik Fröhling")]
 [assembly: AssemblyProduct("TraktApiSharp")]
 [assembly: AssemblyCopyright("Copyright © Henrik Fröhling 2016")]
 [assembly: AssemblyTrademark("")]
@@ -24,5 +24,5 @@ using System.Resources;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.0.0")]
+[assembly: AssemblyFileVersion("0.1.0.0")]
