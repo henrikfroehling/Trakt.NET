@@ -2,6 +2,7 @@
 {
     using Core;
     using Newtonsoft.Json;
+    using NodaTime;
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
@@ -35,11 +36,11 @@
         /// The time zone for the location in which the show airs.
         /// </summary>
         [JsonIgnore]
-        public TimeZoneInfo TimeZone
+        public DateTimeZone TimeZone
         {
             get
             {
-                return !string.IsNullOrEmpty(TimeZoneId) ? TraktTimeZone.FromOlsonTimeZoneId(TimeZoneId) : default(TimeZoneInfo);
+                return !string.IsNullOrEmpty(TimeZoneId) ? TraktTimeZone.FromOlsonTimeZoneId(TimeZoneId) : default(DateTimeZone);
             }
         }
 
@@ -108,7 +109,11 @@
             }
         }
 
-        private double TimeZoneOffsetMinutes => TimeZone == null ? 0.0 : TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes - TimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;
+        private double TimeZoneOffsetMinutes =>
+            TimeZone == null
+            ? 0.0
+            // FIXME ???
+            : TimeZone.AtLeniently(LocalDateTime.FromDateTime(DateTime.Now)).ToDateTimeOffset().Minute - TimeZone.GetUtcOffset(Instant.FromDateTimeUtc(DateTime.UtcNow)).ToTimeSpan().Minutes;
 
         private bool IsDayTimeFormatValid() => !string.IsNullOrEmpty(Day) && !string.IsNullOrEmpty(Time)
                                                 && Regex.IsMatch(Time, @"\d{2}:\d{2}") && TimeZone != null
