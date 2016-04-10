@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    public interface ITraktRequest<ResultType, ItemType>
+    public interface ITraktRequest<TResult, TItem>
     {
-        Task<ResultType> QueryAsync();
+        Task<TResult> QueryAsync();
     }
 }

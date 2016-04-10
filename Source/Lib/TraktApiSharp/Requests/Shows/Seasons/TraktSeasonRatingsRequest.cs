@@ -9,5 +9,7 @@
         protected override string UriTemplate => "shows/{id}/seasons/{season}/ratings";
 
         protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
+
+        protected override bool IsListResult => false;
     }
 }

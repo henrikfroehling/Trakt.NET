@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal abstract class TraktGetRequest<ResultType, ItemType> : TraktRequest<ResultType, ItemType>
+    internal abstract class TraktGetRequest<TResult, TItem> : TraktRequest<TResult, TItem>
     {
         protected TraktGetRequest(TraktClient client) : base(client) { }
 

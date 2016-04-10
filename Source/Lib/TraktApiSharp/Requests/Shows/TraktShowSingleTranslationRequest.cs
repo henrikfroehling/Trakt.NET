@@ -20,5 +20,7 @@
         protected override string UriTemplate => "shows/{id}/translations/{language}";
 
         protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+
+        protected override bool IsListResult => false;
     }
 }

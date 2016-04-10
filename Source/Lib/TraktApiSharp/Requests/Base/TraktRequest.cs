@@ -12,7 +12,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal abstract class TraktRequest<ResultType, ItemType> : ITraktRequest<ResultType, ItemType>
+    internal abstract class TraktRequest<TResult, TItem> : ITraktRequest<TResult, TItem>
     {
         private static string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
@@ -38,6 +38,8 @@
         internal virtual int Season { get; set; }
 
         internal virtual int Episode { get; set; }
+
+        protected abstract bool IsListResult { get; }
 
         internal TraktExtendedOption ExtendedOption { get; set; }
 
@@ -171,7 +173,7 @@
             }
         }
 
-        public async Task<ResultType> QueryAsync()
+        public async Task<TResult> QueryAsync()
         {
             Validate();
 
@@ -190,28 +192,28 @@
 
                     // No content
                     if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
-                        return default(ResultType);
+                        return default(TResult);
 
                     // Handle list result
-                    if (!typeof(ResultType).GetType().Equals(typeof(ItemType).GetType()))
+                    if (IsListResult)
                         return await HandleListResult(response, responseContent);
 
                     // Single object item
-                    return await Task.Run(() => JsonConvert.DeserializeObject<ResultType>(responseContent));
+                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
                 }
             }
         }
 
-        private async Task<ResultType> HandleListResult(HttpResponseMessage response, string responseContent)
+        private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)
         {
             if (SupportsPagination)
             {
-                var paginationListResult = default(ResultType);
+                var paginationListResult = default(TResult);
 
-                if (paginationListResult.GetType() != typeof(TraktPaginationListResult<ItemType>))
-                    throw new InvalidCastException("ResultType cannot be converted as TraktPaginationListResult");
+                if (paginationListResult.GetType() != typeof(TraktPaginationListResult<TItem>))
+                    throw new InvalidCastException("TResult cannot be converted as TraktPaginationListResult");
 
-                (paginationListResult as TraktPaginationListResult<ItemType>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ItemType>>(responseContent));
+                (paginationListResult as TraktPaginationListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
                 var headers = response.Headers;
                 IEnumerable<string> values;
@@ -222,7 +224,7 @@
                     int page;
 
                     if (Int32.TryParse(strPage, out page))
-                        (paginationListResult as TraktPaginationListResult<ItemType>).Page = page;
+                        (paginationListResult as TraktPaginationListResult<TItem>).Page = page;
                 }
 
                 if (headers.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
@@ -231,7 +233,7 @@
                     int limit;
 
                     if (Int32.TryParse(strLimit, out limit))
-                        (paginationListResult as TraktPaginationListResult<ItemType>).Limit = limit;
+                        (paginationListResult as TraktPaginationListResult<TItem>).Limit = limit;
                 }
 
                 if (headers.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
@@ -240,7 +242,7 @@
                     int pageCount;
 
                     if (Int32.TryParse(strPageCount, out pageCount))
-                        (paginationListResult as TraktPaginationListResult<ItemType>).PageCount = pageCount;
+                        (paginationListResult as TraktPaginationListResult<TItem>).PageCount = pageCount;
                 }
 
                 if (headers.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
@@ -249,18 +251,18 @@
                     int itemCount;
 
                     if (Int32.TryParse(strItemCount, out itemCount))
-                        (paginationListResult as TraktPaginationListResult<ItemType>).ItemCount = itemCount;
+                        (paginationListResult as TraktPaginationListResult<TItem>).ItemCount = itemCount;
                 }
 
                 return paginationListResult;
             }
 
-            var listResult = default(ResultType);
+            var listResult = default(TResult);
 
-            if (listResult.GetType() != typeof(TraktListResult<ItemType>))
-                throw new InvalidCastException("ResultType cannot be converted as TraktListResult");
+            if (listResult.GetType() != typeof(TraktListResult<TItem>))
+                throw new InvalidCastException("TResult cannot be converted as TraktListResult");
 
-            (listResult as TraktListResult<ItemType>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ItemType>>(responseContent));
+            (listResult as TraktListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
             return listResult;
         }

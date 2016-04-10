@@ -13,5 +13,7 @@
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
         protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+
+        protected override bool IsListResult => true;
     }
 }
