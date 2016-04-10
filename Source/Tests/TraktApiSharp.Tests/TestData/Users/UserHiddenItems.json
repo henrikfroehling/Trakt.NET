@@ -1,0 +1,48 @@
+﻿[
+  {
+    "hidden_at": "2015-05-23T23:18:42.000Z",
+    "type": "show",
+    "show": {
+      "title": "Gossip Girl",
+      "year": 2007,
+      "ids": {
+        "trakt": 48,
+        "slug": "gossip-girl",
+        "tvdb": 80547,
+        "imdb": "tt0397442",
+        "tmdb": 1395,
+        "tvrage": 15619
+      }
+    }
+  },
+  {
+    "hidden_at": "2015-03-30T23:19:33.000Z",
+    "type": "movie",
+    "movie": {
+      "title": "Star Wars: The Force Awakens",
+      "year": 2015,
+      "ids": {
+        "trakt": 94024,
+        "slug": "star-wars-the-force-awakens-2015",
+        "imdb": "tt2488496",
+        "tmdb": 140607
+      }
+    }
+  },
+  {
+    "hidden_at": "2015-04-02T23:19:33.000Z",
+    "type": "season",
+    "season": {
+      "title": "Game of Thrones",
+      "year": 2011,
+      "ids": {
+        "trakt": 1390,
+        "slug": "game-of-thrones",
+        "tvdb": 121361,
+        "imdb": "tt0944947",
+        "tmdb": 1399,
+        "tvrage": 24493
+      }
+    }
+  }
+]

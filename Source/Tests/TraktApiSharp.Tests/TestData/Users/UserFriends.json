@@ -1,0 +1,22 @@
+﻿[
+  {
+    "friends_at": "2014-10-09T09:10:11.000Z",
+    "user": {
+      "username": "sean",
+      "private": false,
+      "name": "Sean Rudford",
+      "vip": true,
+      "vip_ep": false
+    }
+  },
+  {
+    "friends_at": "2014-11-02T09:10:11.000Z",
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": true,
+      "vip_ep": false
+    }
+  }
+]

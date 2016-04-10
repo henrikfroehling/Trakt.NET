@@ -1,0 +1,44 @@
+﻿{
+  "type": "episode",
+  "score": null,
+  "episode": {
+    "season": 2,
+    "number": 16,
+    "title": "Allison Wonderland",
+    "overview": "Allisons helps the District Attorney trying to find a missing brother of a close friend. She becomes paranoid about antiterrorist agents from the government. Joe gets uneasy when he suspects that Bridget might be communicating with a dead author.",
+    "images": {
+      "screenshot": {
+        "full": "https://walter.trakt.us/images/episodes/000/001/390/screenshots/original/f239f07c78.jpg",
+        "medium": "https://walter.trakt.us/images/episodes/000/001/390/screenshots/medium/f239f07c78.jpg",
+        "thumb": "https://walter.trakt.us/images/episodes/000/001/390/screenshots/thumb/f239f07c78.jpg"
+      }
+    },
+    "ids": {
+      "trakt": 1390,
+      "tvdb": 303778,
+      "imdb": null,
+      "tmdb": 814,
+      "tvrage": 319761
+    }
+  },
+  "show": {
+    "title": "Medium",
+    "year": "2005",
+    "ids": {
+      "trakt": 36,
+      "slug": "medium"
+    },
+    "images": {
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/000/036/posters/original/6acc4f47d7.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/000/036/posters/medium/6acc4f47d7.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/000/036/posters/thumb/6acc4f47d7.jpg"
+      },
+      "fanart": {
+        "full": null,
+        "medium": "https://walter.trakt.us/images/shows/000/000/036/fanarts/medium/6633083ac8.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/000/036/fanarts/thumb/6633083ac8.jpg"
+      }
+    }
+  }
+}

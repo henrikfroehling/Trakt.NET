@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp", "TraktApiSharp\TraktApiSharp.csproj", "{4FE16080-3DF7-4EA9-B4DC-CF34F0A47044}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{80FD2672-3557-48BD-BA73-3952E2D57B22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F1B29462-75DC-4226-8333-CABECAE02934}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp", "Source\Lib\TraktApiSharp\TraktApiSharp.csproj", "{85190989-7D73-4B21-9225-AD02FE14D9C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.Tests", "Source\Tests\TraktApiSharp.Tests\TraktApiSharp.Tests.csproj", "{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +17,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4FE16080-3DF7-4EA9-B4DC-CF34F0A47044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FE16080-3DF7-4EA9-B4DC-CF34F0A47044}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FE16080-3DF7-4EA9-B4DC-CF34F0A47044}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FE16080-3DF7-4EA9-B4DC-CF34F0A47044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{85190989-7D73-4B21-9225-AD02FE14D9C2} = {80FD2672-3557-48BD-BA73-3952E2D57B22}
+		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572} = {F1B29462-75DC-4226-8333-CABECAE02934}
 	EndGlobalSection
 EndGlobal

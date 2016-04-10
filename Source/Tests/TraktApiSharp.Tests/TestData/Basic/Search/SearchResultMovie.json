@@ -1,0 +1,27 @@
+﻿{
+  "type": "movie",
+  "score": 46.29501,
+  "movie": {
+    "title": "Batman vs. Robin",
+    "overview": "Damian Wayne (Stuart Allan) is having a hard time coping with his father's \"no killing\" rule. Meanwhile, Gotham is going through hell with threats such as the insane Dollmaker (\"Weird Al\" Yankovic), and the secretive Court of Owls.",
+    "year": 2015,
+    "images": {
+      "poster": {
+        "full": "https://walter.trakt.us/images/movies/000/202/204/posters/original/5c22708e55.jpg",
+        "medium": "https://walter.trakt.us/images/movies/000/202/204/posters/medium/5c22708e55.jpg",
+        "thumb": "https://walter.trakt.us/images/movies/000/202/204/posters/thumb/5c22708e55.jpg"
+      },
+      "fanart": {
+        "full": "https://walter.trakt.us/images/movies/000/202/204/fanarts/original/3dfe6066bd.jpg",
+        "medium": "https://walter.trakt.us/images/movies/000/202/204/fanarts/medium/3dfe6066bd.jpg",
+        "thumb": "https://walter.trakt.us/images/movies/000/202/204/fanarts/thumb/3dfe6066bd.jpg"
+      }
+    },
+    "ids": {
+      "trakt": 202204,
+      "slug": "batman-vs-robin-2015",
+      "imdb": "tt4324274",
+      "tmdb": 321528
+    }
+  }
+}

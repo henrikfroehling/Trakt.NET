@@ -1,0 +1,136 @@
+﻿[
+  {
+    "title": "Sherlock",
+    "year": 2010,
+    "ids": {
+      "trakt": 19792,
+      "slug": "sherlock",
+      "tvdb": 176941,
+      "imdb": "tt1475582",
+      "tmdb": 19885,
+      "tvrage": 23433
+    },
+    "overview": "Sherlock is a British television crime drama that presents a contemporary adaptation of Sir Arthur Conan Doyle's Sherlock Holmes detective stories. Created by Steven Moffat and Mark Gatiss, it stars Benedict Cumberbatch as Sherlock Holmes and Martin Freeman as Doctor John Watson.",
+    "first_aired": "2010-07-25T07:00:00Z",
+    "airs": {
+      "day": "Sunday",
+      "time": "20:30",
+      "timezone": "Europe/London"
+    },
+    "runtime": 90,
+    "certification": "TV-14",
+    "network": "BBC One",
+    "country": "gb",
+    "trailer": "http://youtube.com/watch?v=JP5Dr63TbSU",
+    "homepage": "http://www.bbc.co.uk/programmes/b018ttws",
+    "status": "returning series",
+    "rating": 9.26159,
+    "votes": 22268,
+    "updated_at": "2016-04-07T19:31:38Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "ru",
+      "zh",
+      "hu"
+    ],
+    "genres": [
+      "drama",
+      "crime",
+      "mystery",
+      "adventure",
+      "thriller"
+    ],
+    "aired_episodes": 9,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/fanarts/original/605985cad2.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/019/792/fanarts/medium/605985cad2.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/019/792/fanarts/thumb/605985cad2.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/posters/original/6311e0343c.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/019/792/posters/medium/6311e0343c.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/019/792/posters/thumb/6311e0343c.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/logos/original/cf63398f03.png"
+      },
+      "clearart": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/cleararts/original/0339c5f877.png"
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/banners/original/ca665b6d1d.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/019/792/thumbs/original/79e863da08.jpg"
+      }
+    }
+  },
+  {
+    "title": "11.22.63",
+    "year": 2016,
+    "ids": {
+      "trakt": 102771,
+      "slug": "11-22-63",
+      "tvdb": 301824,
+      "imdb": "tt2879552",
+      "tmdb": 64464,
+      "tvrage": 45210
+    },
+    "overview": "Imagine having the power to change history. Would you journey down the \"rabbit hole\"? This event series follows Jake Epping, an ordinary high school teacher, presented with the unthinkable mission of traveling back in time to prevent the assassination of John F. Kennedy on November 22, 1963. Jake travels to the past in order to solve the most enduring mystery of the 20th century: who killed JFK, and could it have been stopped? But as Jake will learn, the past does not want to be changed. And trying to divert the course of history may prove fatal.",
+    "first_aired": "2016-02-15T08:00:00Z",
+    "airs": {
+      "day": "Monday",
+      "time": "00:01",
+      "timezone": "America/New_York"
+    },
+    "runtime": 60,
+    "certification": "TV-MA",
+    "network": "Hulu",
+    "country": "us",
+    "trailer": "http://youtube.com/watch?v=NXUx__qQGew",
+    "homepage": "http://www.hulu.com/112263",
+    "status": "",
+    "rating": 8.26689,
+    "votes": 607,
+    "updated_at": "2016-04-07T19:47:40Z",
+    "language": "en",
+    "available_translations": [
+      "en",
+      "fr",
+      "bs",
+      "he"
+    ],
+    "genres": [
+      "science-fiction",
+      "drama",
+      "fantasy"
+    ],
+    "aired_episodes": 8,
+    "images": {
+      "fanart": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/fanarts/original/3c06324bd8.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/771/fanarts/medium/3c06324bd8.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/771/fanarts/thumb/3c06324bd8.jpg"
+      },
+      "poster": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/posters/original/e9cfb8f315.jpg",
+        "medium": "https://walter.trakt.us/images/shows/000/102/771/posters/medium/e9cfb8f315.jpg",
+        "thumb": "https://walter.trakt.us/images/shows/000/102/771/posters/thumb/e9cfb8f315.jpg"
+      },
+      "logo": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/logos/original/47016c0f0c.png"
+      },
+      "clearart": {
+        "full": null
+      },
+      "banner": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/banners/original/97f4c7160f.jpg"
+      },
+      "thumb": {
+        "full": "https://walter.trakt.us/images/shows/000/102/771/thumbs/original/a8234a4ad9.jpg"
+      }
+    }
+  }
+]

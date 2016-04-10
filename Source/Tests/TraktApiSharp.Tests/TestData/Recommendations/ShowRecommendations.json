@@ -1,0 +1,38 @@
+﻿[
+  {
+    "title": "The Biggest Loser",
+    "year": 2004,
+    "ids": {
+      "trakt": 9,
+      "slug": "the-biggest-loser",
+      "tvdb": 75166,
+      "imdb": "tt0429318",
+      "tmdb": 579,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "Shark Tank",
+    "year": 2009,
+    "ids": {
+      "trakt": 36,
+      "slug": "shark-tank",
+      "tvdb": 100981,
+      "imdb": "tt1442550",
+      "tmdb": 30703,
+      "tvrage": 22610
+    }
+  },
+  {
+    "title": "Hell's Kitchen",
+    "year": 2005,
+    "ids": {
+      "trakt": 40,
+      "slug": "hell-s-kitchen",
+      "tvdb": 74897,
+      "imdb": "tt0437005",
+      "tmdb": 2370,
+      "tvrage": null
+    }
+  }
+]

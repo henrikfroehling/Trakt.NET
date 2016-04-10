@@ -1,0 +1,23 @@
+﻿[
+  {
+    "username": "Levimenten",
+    "private": true,
+    "name": "Levi Menten",
+    "vip": false,
+    "vip_ep": false
+  },
+  {
+    "username": "WIllGamer",
+    "private": false,
+    "name": "Wilson Neves",
+    "vip": false,
+    "vip_ep": true
+  },
+  {
+    "username": "Linkz",
+    "private": false,
+    "name": null,
+    "vip": false,
+    "vip_ep": false
+  }
+]

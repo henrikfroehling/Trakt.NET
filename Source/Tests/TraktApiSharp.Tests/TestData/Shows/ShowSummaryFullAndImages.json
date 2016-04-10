@@ -1,0 +1,68 @@
+﻿{
+  "title": "Game of Thrones",
+  "year": 2011,
+  "ids": {
+    "trakt": 1390,
+    "slug": "game-of-thrones",
+    "tvdb": 121361,
+    "imdb": "tt0944947",
+    "tmdb": 1399,
+    "tvrage": 24493
+  },
+  "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.",
+  "first_aired": "2011-04-17T07:00:00Z",
+  "airs": {
+    "day": "Sunday",
+    "time": "21:00",
+    "timezone": "America/New_York"
+  },
+  "runtime": 60,
+  "certification": "TV-MA",
+  "network": "HBO",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=F9Bo89m2f6g",
+  "homepage": "http://www.hbo.com/game-of-thrones",
+  "status": "returning series",
+  "rating": 9.38327,
+  "votes": 44773,
+  "updated_at": "2016-04-06T10:39:11Z",
+  "language": "en",
+  "available_translations": [
+    "en",
+    "fr",
+    "it",
+    "de"
+  ],
+  "genres": [
+    "drama",
+    "fantasy",
+    "science-fiction",
+    "action",
+    "adventure"
+  ],
+  "aired_episodes": 50,
+  "images": {
+    "fanart": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/fanarts/original/76d5df8aed.jpg",
+      "medium": "https://walter.trakt.us/images/shows/000/001/390/fanarts/medium/76d5df8aed.jpg",
+      "thumb": "https://walter.trakt.us/images/shows/000/001/390/fanarts/thumb/76d5df8aed.jpg"
+    },
+    "poster": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/posters/original/93df9cd612.jpg",
+      "medium": "https://walter.trakt.us/images/shows/000/001/390/posters/medium/93df9cd612.jpg",
+      "thumb": "https://walter.trakt.us/images/shows/000/001/390/posters/thumb/93df9cd612.jpg"
+    },
+    "logo": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/logos/original/13b614ad43.png"
+    },
+    "clearart": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/cleararts/original/5cbde9e647.png"
+    },
+    "banner": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/banners/original/9fefff703d.jpg"
+    },
+    "thumb": {
+      "full": "https://walter.trakt.us/images/shows/000/001/390/thumbs/original/7beccbd5a1.jpg"
+    }
+  }
+}

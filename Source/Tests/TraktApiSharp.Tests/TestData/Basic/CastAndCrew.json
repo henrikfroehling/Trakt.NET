@@ -1,0 +1,1926 @@
+﻿{
+  "cast": [
+    {
+      "character": "Rey",
+      "person": {
+        "name": "Daisy Ridley",
+        "ids": {
+          "trakt": 262671,
+          "slug": "daisy-ridley",
+          "imdb": "nm5397459",
+          "tmdb": 1315036,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Finn",
+      "person": {
+        "name": "John Boyega",
+        "ids": {
+          "trakt": 447661,
+          "slug": "john-boyega",
+          "imdb": "nm3915784",
+          "tmdb": 236695,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Kylo Ren",
+      "person": {
+        "name": "Adam Driver",
+        "ids": {
+          "trakt": 449885,
+          "slug": "adam-driver",
+          "imdb": "nm3485845",
+          "tmdb": 1023139,
+          "tvrage": 331902
+        }
+      }
+    },
+    {
+      "character": "Han Solo",
+      "person": {
+        "name": "Harrison Ford",
+        "ids": {
+          "trakt": 69,
+          "slug": "harrison-ford",
+          "imdb": "nm0000148",
+          "tmdb": 3,
+          "tvrage": 59560
+        }
+      }
+    },
+    {
+      "character": "Princess Leia",
+      "person": {
+        "name": "Carrie Fisher",
+        "ids": {
+          "trakt": 72,
+          "slug": "carrie-fisher",
+          "imdb": "nm0000402",
+          "tmdb": 4,
+          "tvrage": 10843
+        }
+      }
+    },
+    {
+      "character": "Poe Dameron",
+      "person": {
+        "name": "Oscar Isaac",
+        "ids": {
+          "trakt": 417448,
+          "slug": "oscar-isaac",
+          "imdb": "nm1209966",
+          "tmdb": 25072,
+          "tvrage": 233902
+        }
+      }
+    },
+    {
+      "character": "Luke Skywalker",
+      "person": {
+        "name": "Mark Hamill",
+        "ids": {
+          "trakt": 64,
+          "slug": "mark-hamill",
+          "imdb": "nm0000434",
+          "tmdb": 2,
+          "tvrage": 1652
+        }
+      }
+    },
+    {
+      "character": "Chewbacca",
+      "person": {
+        "name": "Peter Mayhew",
+        "ids": {
+          "trakt": 92,
+          "slug": "peter-mayhew",
+          "imdb": "nm0562679",
+          "tmdb": 24343,
+          "tvrage": 80612
+        }
+      }
+    },
+    {
+      "character": "General Hux",
+      "person": {
+        "name": "Domhnall Gleeson",
+        "ids": {
+          "trakt": 427718,
+          "slug": "domhnall-gleeson",
+          "imdb": "nm1727304",
+          "tmdb": 93210,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Maz Kanata",
+      "person": {
+        "name": "Lupita Nyong'o",
+        "ids": {
+          "trakt": 451899,
+          "slug": "lupita-nyong-o",
+          "imdb": "nm2143282",
+          "tmdb": 1267329,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Captain Phasma",
+      "person": {
+        "name": "Gwendoline Christie",
+        "ids": {
+          "trakt": 421890,
+          "slug": "gwendoline-christie",
+          "imdb": "nm3729225",
+          "tmdb": 1011904,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Supreme Leader Snoke",
+      "person": {
+        "name": "Andy Serkis",
+        "ids": {
+          "trakt": 411423,
+          "slug": "andy-serkis",
+          "imdb": "nm0785227",
+          "tmdb": 1333,
+          "tvrage": 43274
+        }
+      }
+    },
+    {
+      "character": "Unkar Plutt",
+      "person": {
+        "name": "Simon Pegg",
+        "ids": {
+          "trakt": 414339,
+          "slug": "simon-pegg",
+          "imdb": "nm0670408",
+          "tmdb": 11108,
+          "tvrage": 14296
+        }
+      }
+    },
+  {
+    "character": "Lor San Tekka",
+    "person": {
+      "name": "Max von Sydow",
+      "ids": {
+        "trakt": 411730,
+        "slug": "max-von-sydow",
+        "imdb": "nm0001884",
+        "tmdb": 2201,
+        "tvrage": 92659
+      }
+    }
+  },
+    {
+      "character": "C3PO",
+      "person": {
+        "name": "Anthony Daniels",
+        "ids": {
+          "trakt": 89,
+          "slug": "anthony-daniels",
+          "imdb": "nm0000355",
+          "tmdb": 6,
+          "tvrage": 29232
+        }
+      }
+    },
+    {
+      "character": "R2D2",
+      "person": {
+        "name": "Kenny Baker",
+        "ids": {
+          "trakt": 90,
+          "slug": "kenny-baker",
+          "imdb": "nm0048652",
+          "tmdb": 130,
+          "tvrage": 65745
+        }
+      }
+    },
+    {
+      "character": "Lieutenant Connix",
+      "person": {
+        "name": "Billie Lourd",
+        "ids": {
+          "trakt": 458963,
+          "slug": "billie-lourd",
+          "imdb": "nm6609666",
+          "tmdb": 1399531,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Snap Wexley",
+      "person": {
+        "name": "Greg Grunberg",
+        "ids": {
+          "trakt": 428537,
+          "slug": "greg-grunberg",
+          "imdb": "nm0342399",
+          "tmdb": 17305,
+          "tvrage": 8011
+        }
+      }
+    },
+    {
+      "character": "Admiral Statura",
+      "person": {
+        "name": "Ken Leung",
+        "ids": {
+          "trakt": 4531,
+          "slug": "ken-leung",
+          "imdb": "nm0504962",
+          "tmdb": 2131,
+          "tvrage": 53952
+        }
+      }
+    },
+    {
+      "character": "Korr Sella",
+      "person": {
+        "name": "Maisie Richardson-Sellers",
+        "ids": {
+          "trakt": 458954,
+          "slug": "maisie-richardson-sellers",
+          "imdb": "nm5114966",
+          "tmdb": 1399526,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Bar Patron",
+      "person": {
+        "name": "Miltos Yerolemou",
+        "ids": {
+          "trakt": 458955,
+          "slug": "miltos-yerolemou",
+          "imdb": "nm1115654",
+          "tmdb": 1399527,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Lead Stormtrooper",
+      "person": {
+        "name": "Pip Andersen",
+        "ids": {
+          "trakt": 458956,
+          "slug": "pip-andersen",
+          "imdb": "nm4024206",
+          "tmdb": 1399528,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Resistance Soldier",
+      "person": {
+        "name": "Dixie Arnold",
+        "ids": {
+          "trakt": 458957,
+          "slug": "dixie-arnold",
+          "imdb": "nm4279492",
+          "tmdb": 1399529,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Jess Testor",
+      "person": {
+        "name": "Jessica Henwick",
+        "ids": {
+          "trakt": 458961,
+          "slug": "jessica-henwick",
+          "imdb": "nm3725055",
+          "tmdb": 1202689,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Wollivan",
+      "person": {
+        "name": "Warwick Davis",
+        "ids": {
+          "trakt": 14906,
+          "slug": "warwick-davis",
+          "imdb": "nm0001116",
+          "tmdb": 11184,
+          "tvrage": 79878
+        }
+      }
+    },
+    {
+      "character": "Razoo Quin-Fee",
+      "person": {
+        "name": "Iko Uwais",
+        "ids": {
+          "trakt": 439339,
+          "slug": "iko-uwais",
+          "imdb": "nm3299397",
+          "tmdb": 113732,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Tasu Leech",
+      "person": {
+        "name": "Yayan Ruhian",
+        "ids": {
+          "trakt": 439345,
+          "slug": "yayan-ruhian",
+          "imdb": "nm3345670",
+          "tmdb": 142019,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Ensign Goode",
+      "person": {
+        "name": "Crystal Clarke",
+        "ids": {
+          "trakt": 466426,
+          "slug": "crystal-clarke",
+          "imdb": "nm5402906",
+          "tmdb": 1371518,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Min Sakul",
+      "person": {
+        "name": "Leanne Best",
+        "ids": {
+          "trakt": 470428,
+          "slug": "leanne-best",
+          "imdb": "nm1569065",
+          "tmdb": 1370630,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Bazine Netal",
+      "person": {
+        "name": "Anna Brewster",
+        "ids": {
+          "trakt": 439493,
+          "slug": "anna-brewster",
+          "imdb": "nm1116106",
+          "tmdb": 113968,
+          "tvrage": 178185
+        }
+      }
+    },
+    {
+      "character": "Dr. Kalonia",
+      "person": {
+        "name": "Harriet Walter",
+        "ids": {
+          "trakt": 16797,
+          "slug": "harriet-walter",
+          "imdb": "nm0910040",
+          "tmdb": 17477,
+          "tvrage": 48694
+        }
+      }
+    },
+    {
+      "character": "Stormtrooper",
+      "person": {
+        "name": "Daniel Craig",
+        "ids": {
+          "trakt": 298317,
+          "slug": "daniel-craig",
+          "imdb": "nm0185819",
+          "tmdb": 8784,
+          "tvrage": 89639
+        }
+      }
+    },
+    {
+      "character": "Obi-Wan Kenobi (voice cameo)",
+      "person": {
+        "name": "Ewan McGregor",
+        "ids": {
+          "trakt": 13850,
+          "slug": "ewan-mcgregor",
+          "imdb": "nm0000191",
+          "tmdb": 3061,
+          "tvrage": 12382
+        }
+      }
+    },
+    {
+      "character": "Ben (Obi Wan) Kenobi (voice cameo)",
+      "person": {
+        "name": "Ewan McGregor",
+        "ids": {
+          "trakt": 13850,
+          "slug": "ewan-mcgregor",
+          "imdb": "nm0000191",
+          "tmdb": 3061,
+          "tvrage": 12382
+        }
+      }
+    },
+    {
+      "character": "Yoda (voice cameo)",
+      "person": {
+        "name": "Frank Oz",
+        "ids": {
+          "trakt": 13470,
+          "slug": "frank-oz",
+          "imdb": "nm0000568",
+          "tmdb": 7908,
+          "tvrage": 35567
+        }
+      }
+    },
+    {
+      "character": "Obi-Wan Kenobi (voice cameo)",
+      "person": {
+        "name": "Alec Guinness",
+        "ids": {
+          "trakt": 82,
+          "slug": "alec-guinness",
+          "imdb": "nm0000027",
+          "tmdb": 12248,
+          "tvrage": 101251
+        }
+      }
+    },
+    {
+      "character": "Ben (Obi Wan) Kenobi (voice cameo)",
+      "person": {
+        "name": "Alec Guinness",
+        "ids": {
+          "trakt": 82,
+          "slug": "alec-guinness",
+          "imdb": "nm0000027",
+          "tmdb": 12248,
+          "tvrage": 101251
+        }
+      }
+    },
+    {
+      "character": "BB-8 Voice Consultant",
+      "person": {
+        "name": "Bill Hader",
+        "ids": {
+          "trakt": 17605,
+          "slug": "bill-hader",
+          "imdb": "nm0352778",
+          "tmdb": 19278,
+          "tvrage": 79974
+        }
+      }
+    },
+    {
+      "character": "BB-8 Voice Consultant",
+      "person": {
+        "name": "Ben Schwartz",
+        "ids": {
+          "trakt": 440572,
+          "slug": "ben-schwartz",
+          "imdb": "nm2355635",
+          "tmdb": 222121,
+          "tvrage": 82373
+        }
+      }
+    }
+  ],
+  "crew": {
+    "writing": [
+      {
+        "job": "Characters",
+        "person": {
+          "name": "George Lucas",
+          "ids": {
+            "trakt": 456,
+            "slug": "george-lucas",
+            "imdb": "nm0000184",
+            "tmdb": 1,
+            "tvrage": 6490
+          }
+        }
+      },
+      {
+        "job": "Writer",
+        "person": {
+          "name": "Michael Arndt",
+          "ids": {
+            "trakt": 9128,
+            "slug": "michael-arndt",
+            "imdb": "nm1578335",
+            "tmdb": 16961,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Screenplay",
+        "person": {
+          "name": "J.J. Abrams",
+          "ids": {
+            "trakt": 300172,
+            "slug": "j-j-abrams",
+            "imdb": "nm0009190",
+            "tmdb": 15344,
+            "tvrage": 8017
+          }
+        }
+      },
+      {
+        "job": "Screenplay",
+        "person": {
+          "name": "Lawrence Kasdan",
+          "ids": {
+            "trakt": 410818,
+            "slug": "lawrence-kasdan",
+            "imdb": "nm0001410",
+            "tmdb": 8844,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "sound": [
+      {
+        "job": "Original Music Composer",
+        "person": {
+          "name": "John Williams",
+          "ids": {
+            "trakt": 471,
+            "slug": "john-williams",
+            "imdb": "nm0002354",
+            "tmdb": 491,
+            "tvrage": 311422
+          }
+        }
+      },
+      {
+        "job": "Music Editor",
+        "person": {
+          "name": "Ramiro Belgardt",
+          "ids": {
+            "trakt": 17808,
+            "slug": "ramiro-belgardt",
+            "imdb": "nm1103834",
+            "tmdb": 21122,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Sound Re-Recording Mixer",
+        "person": {
+          "name": "Andy Nelson",
+          "ids": {
+            "trakt": 62335,
+            "slug": "andy-nelson",
+            "imdb": "nm0625144",
+            "tmdb": 1338976,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Sound Designer",
+        "person": {
+          "name": "Ben Burtt",
+          "ids": {
+            "trakt": 411203,
+            "slug": "ben-burtt",
+            "imdb": "nm0123785",
+            "tmdb": 670,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Supervising Sound Editor",
+        "person": {
+          "name": "Gary Rydstrom",
+          "ids": {
+            "trakt": 411764,
+            "slug": "gary-rydstrom",
+            "imdb": "nm0003977",
+            "tmdb": 2216,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Supervising Sound Editor",
+        "person": {
+          "name": "Matthew Wood",
+          "ids": {
+            "trakt": 427471,
+            "slug": "matthew-wood",
+            "imdb": "nm0003214",
+            "tmdb": 71536,
+            "tvrage": 200100
+          }
+        }
+      },
+      {
+        "job": "Sound Designer",
+        "person": {
+          "name": "Will Files",
+          "ids": {
+            "trakt": 427584,
+            "slug": "will-files",
+            "imdb": "nm0276877",
+            "tmdb": 1389133,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Sound Designer",
+        "person": {
+          "name": "David Acord",
+          "ids": {
+            "trakt": 446116,
+            "slug": "david-acord",
+            "imdb": "nm0004198",
+            "tmdb": 1235786,
+            "tvrage": 238750
+          }
+        }
+      },
+      {
+        "job": "ADR & Dubbing",
+        "person": {
+          "name": "Richard Quinn",
+          "ids": {
+            "trakt": 446884,
+            "slug": "richard-quinn",
+            "imdb": "nm0703972",
+            "tmdb": 1389534,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Foley",
+        "person": {
+          "name": "Jonathan Borland",
+          "ids": {
+            "trakt": 563724,
+            "slug": "jonathan-borland",
+            "imdb": null,
+            "tmdb": 1550780,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Production Sound Mixer",
+        "person": {
+          "name": "Stuart Wilson",
+          "ids": {
+            "trakt": 567620,
+            "slug": "stuart-wilson-b4dc123e-fb41-438b-889e-337eb59232ed",
+            "imdb": "nm0934184",
+            "tmdb": 1568519,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "art": [
+      {
+        "job": "Production Design",
+        "person": {
+          "name": "Rick Carter",
+          "ids": {
+            "trakt": 916,
+            "slug": "rick-carter",
+            "imdb": "nm0141437",
+            "tmdb": 496,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Gary Tomkins",
+          "ids": {
+            "trakt": 6978,
+            "slug": "gary-tomkins",
+            "imdb": "nm0866772",
+            "tmdb": 11225,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Alastair Bullock",
+          "ids": {
+            "trakt": 8199,
+            "slug": "alastair-bullock",
+            "imdb": "nm0120127",
+            "tmdb": 11296,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Robert Cowper",
+          "ids": {
+            "trakt": 9130,
+            "slug": "robert-cowper",
+            "imdb": "nm0184865",
+            "tmdb": 23453,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Stuart Rose",
+          "ids": {
+            "trakt": 17123,
+            "slug": "stuart-rose",
+            "imdb": "nm0741696",
+            "tmdb": 23773,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Mark Harris",
+          "ids": {
+            "trakt": 49626,
+            "slug": "mark-harris",
+            "imdb": "nm0365052",
+            "tmdb": 986687,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Production Design",
+        "person": {
+          "name": "Darren Gilford",
+          "ids": {
+            "trakt": 79424,
+            "slug": "darren-gilford",
+            "imdb": "nm0318521",
+            "tmdb": 411385,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Set Decoration",
+        "person": {
+          "name": "Lee Sandales",
+          "ids": {
+            "trakt": 114393,
+            "slug": "lee-sandales",
+            "imdb": "nm0761227",
+            "tmdb": 1325212,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Construction Coordinator",
+        "person": {
+          "name": "Amanda Pettett",
+          "ids": {
+            "trakt": 446881,
+            "slug": "amanda-pettett",
+            "imdb": "nm1391114",
+            "tmdb": 1389526,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Peter Dorme",
+          "ids": {
+            "trakt": 456960,
+            "slug": "peter-dorme",
+            "imdb": "nm0233796",
+            "tmdb": 1388850,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Stephen Swain",
+          "ids": {
+            "trakt": 456967,
+            "slug": "stephen-swain",
+            "imdb": "nm1391871",
+            "tmdb": 1373698,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Jordana Finkel",
+          "ids": {
+            "trakt": 458679,
+            "slug": "jordana-finkel",
+            "imdb": "nm2259831",
+            "tmdb": 1373701,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Department Coordinator",
+        "person": {
+          "name": "Pollyanna Seath",
+          "ids": {
+            "trakt": 458681,
+            "slug": "pollyanna-seath",
+            "imdb": "nm3553617",
+            "tmdb": 1373708,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "James Collins",
+          "ids": {
+            "trakt": 507064,
+            "slug": "james-collins",
+            "imdb": "nm1140470",
+            "tmdb": 1427500,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Hayley Easton Street",
+          "ids": {
+            "trakt": 508711,
+            "slug": "hayley-easton-street",
+            "imdb": "nm1275459",
+            "tmdb": 1428907,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Kevin Jenkins",
+          "ids": {
+            "trakt": 563256,
+            "slug": "kevin-jenkins",
+            "imdb": null,
+            "tmdb": 1546026,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Ashley Lamont",
+          "ids": {
+            "trakt": 563257,
+            "slug": "ashley-lamont",
+            "imdb": null,
+            "tmdb": 1546027,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Art Direction",
+        "person": {
+          "name": "Andrew Palmer",
+          "ids": {
+            "trakt": 563258,
+            "slug": "andrew-palmer-86b359ca-ea8d-400a-91f2-0f304391cc96",
+            "imdb": "nm2720534",
+            "tmdb": 1546028,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "costume & make-up": [
+      {
+        "job": "Costume Design",
+        "person": {
+          "name": "Michael Kaplan",
+          "ids": {
+            "trakt": 1000,
+            "slug": "michael-kaplan",
+            "imdb": "nm0438325",
+            "tmdb": 605,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Makeup Department Head",
+        "person": {
+          "name": "Amanda Knight",
+          "ids": {
+            "trakt": 8206,
+            "slug": "amanda-knight",
+            "imdb": "nm0460792",
+            "tmdb": 11298,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Makeup Artist",
+        "person": {
+          "name": "Bill Corso",
+          "ids": {
+            "trakt": 11739,
+            "slug": "bill-corso",
+            "imdb": "nm0181134",
+            "tmdb": 15017,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Costume Supervisor",
+        "person": {
+          "name": "David Crossman",
+          "ids": {
+            "trakt": 19686,
+            "slug": "david-crossman",
+            "imdb": "nm0189366",
+            "tmdb": 1324461,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Hair Designer",
+        "person": {
+          "name": "Lisa Tomblin",
+          "ids": {
+            "trakt": 62514,
+            "slug": "lisa-tomblin",
+            "imdb": "nm0866566",
+            "tmdb": 75803,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Assistant Costume Designer",
+        "person": {
+          "name": "Nigel Egerton",
+          "ids": {
+            "trakt": 218343,
+            "slug": "nigel-egerton",
+            "imdb": "nm0250858",
+            "tmdb": 1317048,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Makeup Artist",
+        "person": {
+          "name": "Amy Byrne",
+          "ids": {
+            "trakt": 520172,
+            "slug": "amy-byrne",
+            "imdb": "nm1934658",
+            "tmdb": 1439130,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Hairstylist",
+        "person": {
+          "name": "Francesca Crowder",
+          "ids": {
+            "trakt": 539984,
+            "slug": "francesca-crowder",
+            "imdb": "nm0189570",
+            "tmdb": 1458416,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Assistant Costume Designer",
+        "person": {
+          "name": "Vivienne Jones",
+          "ids": {
+            "trakt": 563444,
+            "slug": "vivienne-jones",
+            "imdb": null,
+            "tmdb": 1546747,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Hairstylist",
+        "person": {
+          "name": "Karen Asano-Myers",
+          "ids": {
+            "trakt": 563445,
+            "slug": "karen-asano-myers",
+            "imdb": null,
+            "tmdb": 1550636,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Hairstylist",
+        "person": {
+          "name": "Kathryn Fa",
+          "ids": {
+            "trakt": 563446,
+            "slug": "kathryn-fa",
+            "imdb": null,
+            "tmdb": 1550637,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Key Hair Stylist",
+        "person": {
+          "name": "Andrew Simonin",
+          "ids": {
+            "trakt": 563447,
+            "slug": "andrew-simonin",
+            "imdb": null,
+            "tmdb": 1550638,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "production": [
+      {
+        "job": "Casting",
+        "person": {
+          "name": "April Webster",
+          "ids": {
+            "trakt": 4577,
+            "slug": "april-webster",
+            "imdb": "nm0916825",
+            "tmdb": 6052,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Associate Producer",
+        "person": {
+          "name": "Michael Arndt",
+          "ids": {
+            "trakt": 9128,
+            "slug": "michael-arndt",
+            "imdb": "nm1578335",
+            "tmdb": 16961,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Kathleen Kennedy",
+          "ids": {
+            "trakt": 12702,
+            "slug": "kathleen-kennedy",
+            "imdb": "nm0005086",
+            "tmdb": 489,
+            "tvrage": 328954
+          }
+        }
+      },
+      {
+        "job": "Casting",
+        "person": {
+          "name": "Nina Gold",
+          "ids": {
+            "trakt": 13206,
+            "slug": "nina-gold",
+            "imdb": "nm0002274",
+            "tmdb": 16363,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Casting",
+        "person": {
+          "name": "Alyssa Weisberg",
+          "ids": {
+            "trakt": 37722,
+            "slug": "alyssa-weisberg",
+            "imdb": "nm0918708",
+            "tmdb": 765144,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Casting Associate",
+        "person": {
+          "name": "Theo Park",
+          "ids": {
+            "trakt": 276895,
+            "slug": "theo-park",
+            "imdb": "nm1142347",
+            "tmdb": 1300064,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "J.J. Abrams",
+          "ids": {
+            "trakt": 300172,
+            "slug": "j-j-abrams",
+            "imdb": "nm0009190",
+            "tmdb": 15344,
+            "tvrage": 8017
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Bryan Burk",
+          "ids": {
+            "trakt": 421525,
+            "slug": "bryan-burk",
+            "imdb": "nm1333357",
+            "tmdb": 28977,
+            "tvrage": 83953
+          }
+        }
+      },
+      {
+        "job": "Casting Associate",
+        "person": {
+          "name": "Jessica Sherman",
+          "ids": {
+            "trakt": 563441,
+            "slug": "jessica-sherman",
+            "imdb": null,
+            "tmdb": 1550633,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Researcher",
+        "person": {
+          "name": "Celia Barnett",
+          "ids": {
+            "trakt": 563442,
+            "slug": "celia-barnett",
+            "imdb": null,
+            "tmdb": 1550634,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "crew": [
+      {
+        "job": "Stunt Coordinator",
+        "person": {
+          "name": "Rob Inch",
+          "ids": {
+            "trakt": 8790,
+            "slug": "rob-inch",
+            "imdb": "nm0408449",
+            "tmdb": 40713,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Property Master",
+        "person": {
+          "name": "Jamie Wilkinson",
+          "ids": {
+            "trakt": 76042,
+            "slug": "jamie-wilkinson",
+            "imdb": "nm0929409",
+            "tmdb": 1335553,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Supervising Art Director",
+        "person": {
+          "name": "Neil Lamont",
+          "ids": {
+            "trakt": 156243,
+            "slug": "neil-lamont",
+            "imdb": "nm0483678",
+            "tmdb": 1325211,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Second Unit Cinematographer",
+        "person": {
+          "name": "Bruce McCleery",
+          "ids": {
+            "trakt": 266425,
+            "slug": "bruce-mccleery",
+            "imdb": "nm0565725",
+            "tmdb": 1364399,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "CG Supervisor",
+        "person": {
+          "name": "Ian Comley",
+          "ids": {
+            "trakt": 563708,
+            "slug": "ian-comley",
+            "imdb": null,
+            "tmdb": 1550764,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "CG Supervisor",
+        "person": {
+          "name": "Polly Ing",
+          "ids": {
+            "trakt": 563710,
+            "slug": "polly-ing",
+            "imdb": null,
+            "tmdb": 1550765,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "CG Supervisor",
+        "person": {
+          "name": "Brandon Fayette",
+          "ids": {
+            "trakt": 563711,
+            "slug": "brandon-fayette",
+            "imdb": null,
+            "tmdb": 1550766,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "CG Supervisor",
+        "person": {
+          "name": "Andrew Booth",
+          "ids": {
+            "trakt": 563712,
+            "slug": "andrew-booth",
+            "imdb": null,
+            "tmdb": 1550767,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Art Director",
+        "person": {
+          "name": "Yanick Dusseault",
+          "ids": {
+            "trakt": 563713,
+            "slug": "yanick-dusseault",
+            "imdb": null,
+            "tmdb": 1550768,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Editor",
+        "person": {
+          "name": "Martin Allan Kloner",
+          "ids": {
+            "trakt": 563720,
+            "slug": "martin-allan-kloner",
+            "imdb": null,
+            "tmdb": 1550775,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "camera": [
+      {
+        "job": "Director of Photography",
+        "person": {
+          "name": "Daniel Mindel",
+          "ids": {
+            "trakt": 9544,
+            "slug": "daniel-mindel",
+            "imdb": "nm0591053",
+            "tmdb": 15348,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Camera",
+        "person": {
+          "name": "Robert Palmer",
+          "ids": {
+            "trakt": 206622,
+            "slug": "robert-palmer-ac34bf9e-4c7d-4042-a313-c4ba19c74f70",
+            "imdb": null,
+            "tmdb": 1020703,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Camera Operator",
+        "person": {
+          "name": "Andrew Rowlands",
+          "ids": {
+            "trakt": 428768,
+            "slug": "andrew-rowlands",
+            "imdb": "nm0746756",
+            "tmdb": 1400081,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Camera Operator",
+        "person": {
+          "name": "Philippe Carr-Forster",
+          "ids": {
+            "trakt": 455565,
+            "slug": "philippe-carr-forster",
+            "imdb": "nm0139899",
+            "tmdb": 1399467,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Still Photographer",
+        "person": {
+          "name": "David James",
+          "ids": {
+            "trakt": 457146,
+            "slug": "david-james-a927b2c8-1783-4e84-84f1-0ca24e142fde",
+            "imdb": "nm0416407",
+            "tmdb": 1389139,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Helicopter Camera",
+        "person": {
+          "name": "Adam Dale",
+          "ids": {
+            "trakt": 480265,
+            "slug": "adam-dale",
+            "imdb": "nm0197637",
+            "tmdb": 1405241,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Camera Operator",
+        "person": {
+          "name": "Ben Wilson",
+          "ids": {
+            "trakt": 482457,
+            "slug": "ben-wilson-d94336ce-86cc-4a80-8fac-d68ec97da067",
+            "imdb": "nm0933043",
+            "tmdb": 1406847,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Steadicam Operator",
+        "person": {
+          "name": "Colin Anderson",
+          "ids": {
+            "trakt": 487395,
+            "slug": "colin-anderson",
+            "imdb": "nm0026540",
+            "tmdb": 1400535,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Camera",
+        "person": {
+          "name": "Paul Wheeldon",
+          "ids": {
+            "trakt": 563702,
+            "slug": "paul-wheeldon",
+            "imdb": null,
+            "tmdb": 1550793,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Camera",
+        "person": {
+          "name": "David Penfold",
+          "ids": {
+            "trakt": 563704,
+            "slug": "david-penfold",
+            "imdb": null,
+            "tmdb": 1550794,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Camera",
+        "person": {
+          "name": "Dora Krolikowska",
+          "ids": {
+            "trakt": 563707,
+            "slug": "dora-krolikowska",
+            "imdb": null,
+            "tmdb": 1550795,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Camera",
+        "person": {
+          "name": "Brad Larner",
+          "ids": {
+            "trakt": 563709,
+            "slug": "brad-larner",
+            "imdb": null,
+            "tmdb": 1550796,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Camera Operator",
+        "person": {
+          "name": "Harry K. Garvin",
+          "ids": {
+            "trakt": 563723,
+            "slug": "harry-k-garvin",
+            "imdb": null,
+            "tmdb": 1550778,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "editing": [
+      {
+        "job": "Editor",
+        "person": {
+          "name": "Maryann Brandon",
+          "ids": {
+            "trakt": 12215,
+            "slug": "maryann-brandon",
+            "imdb": "nm0104783",
+            "tmdb": 15349,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Editor",
+        "person": {
+          "name": "Mary Jo Markey",
+          "ids": {
+            "trakt": 12216,
+            "slug": "mary-jo-markey",
+            "imdb": "nm0548407",
+            "tmdb": 15350,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Digital Intermediate",
+        "person": {
+          "name": "Stefan Sonnenfeld",
+          "ids": {
+            "trakt": 47429,
+            "slug": "stefan-sonnenfeld",
+            "imdb": "nm0814406",
+            "tmdb": 62723,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "First Assistant Editor",
+        "person": {
+          "name": "Martin Corbett",
+          "ids": {
+            "trakt": 563448,
+            "slug": "martin-corbett",
+            "imdb": "nm0179180",
+            "tmdb": 1545996,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "visual effects": [
+      {
+        "job": "Visual Effects Supervisor",
+        "person": {
+          "name": "Roger Guyett",
+          "ids": {
+            "trakt": 143898,
+            "slug": "roger-guyett",
+            "imdb": "nm0004361",
+            "tmdb": 1339450,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Special Effects Supervisor",
+        "person": {
+          "name": "Chris Corbould",
+          "ids": {
+            "trakt": 246957,
+            "slug": "chris-corbould",
+            "imdb": "nm0179269",
+            "tmdb": 1081073,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Supervisor",
+        "person": {
+          "name": "Michael Mulholland",
+          "ids": {
+            "trakt": 449094,
+            "slug": "michael-mulholland",
+            "imdb": "nm0611855",
+            "tmdb": 1394286,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Producer",
+        "person": {
+          "name": "Ben Lock",
+          "ids": {
+            "trakt": 500248,
+            "slug": "ben-lock",
+            "imdb": "nm1639556",
+            "tmdb": 1421268,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Conor Byrne",
+          "ids": {
+            "trakt": 508700,
+            "slug": "conor-byrne-d59dd721-8612-44a4-b2e3-a4bfb3618f9b",
+            "imdb": "nm3609851",
+            "tmdb": 1428902,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Creature Design",
+        "person": {
+          "name": "Jake Lunt",
+          "ids": {
+            "trakt": 563624,
+            "slug": "jake-lunt",
+            "imdb": null,
+            "tmdb": 1550786,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Laurent Benhamo",
+          "ids": {
+            "trakt": 563699,
+            "slug": "laurent-benhamo",
+            "imdb": null,
+            "tmdb": 1550758,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Amaury Coljon",
+          "ids": {
+            "trakt": 563700,
+            "slug": "amaury-coljon",
+            "imdb": null,
+            "tmdb": 1550759,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Marc Calvelo",
+          "ids": {
+            "trakt": 563701,
+            "slug": "marc-calvelo",
+            "imdb": null,
+            "tmdb": 1550760,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Jean-Denis Haas",
+          "ids": {
+            "trakt": 563703,
+            "slug": "jean-denis-haas",
+            "imdb": null,
+            "tmdb": 1550761,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Chris Tost",
+          "ids": {
+            "trakt": 563705,
+            "slug": "chris-tost",
+            "imdb": null,
+            "tmdb": 1550762,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Animation",
+        "person": {
+          "name": "Atsushi Kojima",
+          "ids": {
+            "trakt": 563706,
+            "slug": "atsushi-kojima",
+            "imdb": null,
+            "tmdb": 1550763,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Patricia Martinez Arastey",
+          "ids": {
+            "trakt": 563714,
+            "slug": "patricia-martinez-arastey",
+            "imdb": null,
+            "tmdb": 1550769,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Jenny Jiyeon Bae",
+          "ids": {
+            "trakt": 563715,
+            "slug": "jenny-jiyeon-bae",
+            "imdb": null,
+            "tmdb": 1550770,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Dan Cortez",
+          "ids": {
+            "trakt": 563716,
+            "slug": "dan-cortez",
+            "imdb": null,
+            "tmdb": 1550771,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Umar Hussain",
+          "ids": {
+            "trakt": 563717,
+            "slug": "umar-hussain",
+            "imdb": null,
+            "tmdb": 1550772,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Julie Liu",
+          "ids": {
+            "trakt": 563718,
+            "slug": "julie-liu",
+            "imdb": null,
+            "tmdb": 1550773,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Coordinator",
+        "person": {
+          "name": "Teréz Koncz",
+          "ids": {
+            "trakt": 563719,
+            "slug": "terez-koncz",
+            "imdb": null,
+            "tmdb": 1550774,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Producer",
+        "person": {
+          "name": "Sophie Cullen",
+          "ids": {
+            "trakt": 563721,
+            "slug": "sophie-cullen",
+            "imdb": null,
+            "tmdb": 1550776,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Visual Effects Supervisor",
+        "person": {
+          "name": "Nick Hsieh",
+          "ids": {
+            "trakt": 563722,
+            "slug": "nick-hsieh",
+            "imdb": null,
+            "tmdb": 1550777,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "VFX Editor",
+        "person": {
+          "name": "Dogu Abaris",
+          "ids": {
+            "trakt": 568252,
+            "slug": "dogu-abaris",
+            "imdb": "nm7830571",
+            "tmdb": 1567986,
+            "tvrage": null
+          }
+        }
+      }
+    ],
+    "directing": [
+      {
+        "job": "Director",
+        "person": {
+          "name": "J.J. Abrams",
+          "ids": {
+            "trakt": 300172,
+            "slug": "j-j-abrams",
+            "imdb": "nm0009190",
+            "tmdb": 15344,
+            "tvrage": 8017
+          }
+        }
+      }
+    ],
+    "lighting": [
+      {
+        "job": "Gaffer",
+        "person": {
+          "name": "Christopher Prampin",
+          "ids": {
+            "trakt": 455570,
+            "slug": "christopher-prampin",
+            "imdb": "nm0695198",
+            "tmdb": 1399475,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Gaffer",
+        "person": {
+          "name": "David Sinfield",
+          "ids": {
+            "trakt": 480203,
+            "slug": "david-sinfield",
+            "imdb": "nm1112621",
+            "tmdb": 1405198,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Gaffer",
+        "person": {
+          "name": "Patrick Hoeschen",
+          "ids": {
+            "trakt": 531639,
+            "slug": "patrick-hoeschen",
+            "imdb": "nm0388584",
+            "tmdb": 1449995,
+            "tvrage": null
+          }
+        }
+      }
+    ]
+  }
+}

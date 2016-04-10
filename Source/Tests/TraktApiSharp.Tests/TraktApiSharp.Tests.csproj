@@ -35,7 +35,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions, Version=4.3.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.3.2\lib\net45\FluentAssertions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentAssertions.Core, Version=4.3.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.3.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,14 +64,295 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Authentication\TraktAccessTokenTests.cs" />
+    <Compile Include="Authentication\TraktAuthenticationTests.cs" />
+    <Compile Include="Authentication\TraktDeviceAuthTests.cs" />
+    <Compile Include="Authentication\TraktDeviceTests.cs" />
+    <Compile Include="Authentication\TraktOAuthTests.cs" />
+    <Compile Include="Enums\TraktAccessScopeTests.cs" />
+    <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
+    <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
+    <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
+    <Compile Include="Enums\TraktGenreTypeTests.cs" />
+    <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
+    <Compile Include="Enums\TraktPeriodTests.cs" />
+    <Compile Include="Enums\TraktReleaseTypeTests.cs" />
+    <Compile Include="Enums\TraktSearchLookupIdTypeTests.cs" />
+    <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
+    <Compile Include="Enums\TraktShowStatusTests.cs" />
+    <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktDeniedExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktEpisodeNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktExpiredExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktForbiddenExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktMethodNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktMovieNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktObjectNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktPreconditionFailedExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktConflictExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktRateLimitExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktSeasonNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktServerExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktServerUnavailableExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktShowNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
+    <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesBoxOfficeTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesMostAnticipatedTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesMostCollectedTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesMostPlayedTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesMostWatchedTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesPopularTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesRecentlyUpdatedTests.cs" />
+    <Compile Include="Objects\Movies\Common\TraktMoviesTrendingTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieAliasesTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieCommentsTests.cs" />
+    <Compile Include="Objects\Movies\TraktMoviePeopleTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieRatingTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieRelatedMoviesTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieReleasesTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieSingleAliasTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieSingleReleaseTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieSingleTranslationTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieStatisticsTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieTranslationsTests.cs" />
+    <Compile Include="Objects\Movies\TraktMovieWatchingUsersTests.cs" />
+    <Compile Include="Objects\People\TraktPersonTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktMovieRecommendationsTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktMovieSingleRecommendationTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktShowRecommendationsTests.cs" />
+    <Compile Include="Objects\Recommendations\TraktShowSingleRecommendationTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsMostAnticipatedTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsMostCollectedTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsMostPlayedTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsMostWatchedTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsPopularTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsRecentlyUpdatedTests.cs" />
+    <Compile Include="Objects\Shows\Common\TraktShowsTrendingTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeCommentsTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeRatingTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeStatisticsTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeTests.cs" />
+    <Compile Include="Objects\Shows\Episodes\TraktEpisodeWatchingUsersTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonCommentsTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonRatingTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonsAllTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonStatisticsTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonTests.cs" />
+    <Compile Include="Objects\Shows\Seasons\TraktSeasonWatchingUsersTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowCommentsTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowAliasesTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowPeopleTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowRatingTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowRelatedShowsTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowSingleAliasTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowSingleTranslationTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowStatisticsTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowTranslationsTests.cs" />
+    <Compile Include="Objects\Shows\TraktShowWatchingUsersTests.cs" />
+    <Compile Include="Objects\TraktCastAndCrewTests.cs" />
+    <Compile Include="Objects\TraktCastMemberTests.cs" />
+    <Compile Include="Objects\TraktCommentTests.cs" />
+    <Compile Include="Objects\TraktConnectionsTests.cs" />
+    <Compile Include="Objects\TraktCrewMemberTests.cs" />
+    <Compile Include="Objects\TraktCrewTests.cs" />
+    <Compile Include="Objects\TraktErrorTests.cs" />
+    <Compile Include="Objects\TraktGenreTests.cs" />
+    <Compile Include="Objects\TraktIdsTests.cs" />
+    <Compile Include="Objects\TraktImageSetTests.cs" />
+    <Compile Include="Objects\TraktImageTests.cs" />
+    <Compile Include="Objects\TraktRatingTests.cs" />
+    <Compile Include="Objects\TraktSearchIdLookupResultTests.cs" />
+    <Compile Include="Objects\TraktSearchResultTests.cs" />
+    <Compile Include="Objects\TraktSharingTests.cs" />
+    <Compile Include="Objects\TraktStatisticsTests.cs" />
+    <Compile Include="Objects\Users\Lists\TraktListCommentsTests.cs" />
+    <Compile Include="Objects\Users\Lists\TraktListTests.cs" />
+    <Compile Include="Objects\Users\TraktAccountSettingsTests.cs" />
+    <Compile Include="Objects\Users\TraktSharingTextTests.cs" />
+    <Compile Include="Objects\Users\TraktUserFollowersTests.cs" />
+    <Compile Include="Objects\Users\TraktUserFriendsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserHiddenItemsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleFollowerTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSettingsTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleFriendTests.cs" />
+    <Compile Include="Objects\Users\TraktUserSingleHiddenItemTests.cs" />
+    <Compile Include="Objects\Users\TraktUserTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Requests\ITraktRequestTests.cs" />
+    <Compile Include="TraktClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TraktConfigurationTests.cs" />
+    <Compile Include="Utils\TestUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Lib\TraktApiSharp\TraktApiSharp.csproj">
       <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
       <Name>TraktApiSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="TestData\Authentication\AccessToken.json" />
+    <None Include="TestData\Authentication\Device.json" />
+    <None Include="TestData\Basic\CastAndCrew.json" />
+    <None Include="TestData\Basic\Comment.json" />
+    <None Include="TestData\Basic\Connections.json" />
+    <None Include="TestData\Basic\CrewMember.json" />
+    <None Include="TestData\Basic\Error.json" />
+    <None Include="TestData\Basic\Genre.json" />
+    <None Include="TestData\Basic\Ids.json" />
+    <None Include="TestData\Basic\Image.json" />
+    <None Include="TestData\Basic\ImageSet.json" />
+    <None Include="TestData\Basic\Rating.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultEpisode.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultMovie.json" />
+    <None Include="TestData\Basic\Search\SearchIdLookupResultShow.json" />
+    <None Include="TestData\Basic\Search\SearchResultEpisode.json" />
+    <None Include="TestData\Basic\Search\SearchResultList.json" />
+    <None Include="TestData\Basic\Search\SearchResultMovie.json" />
+    <None Include="TestData\Basic\Search\SearchResultPerson.json" />
+    <None Include="TestData\Basic\Search\SearchResultShow.json" />
+    <None Include="TestData\Basic\Sharing.json" />
+    <None Include="TestData\Basic\Statistics.json" />
+    <None Include="TestData\Genres\Movies.json" />
+    <None Include="TestData\Genres\Shows.json" />
+    <None Include="TestData\Movies\Common\MoviesBoxOffice.json" />
+    <None Include="TestData\Movies\Common\MoviesMostAnticipated.json" />
+    <None Include="TestData\Movies\Common\MoviesMostCollected.json" />
+    <None Include="TestData\Movies\Common\MoviesMostPlayed.json" />
+    <None Include="TestData\Movies\Common\MoviesMostWatched.json" />
+    <None Include="TestData\Movies\Common\MoviesPopular.json" />
+    <None Include="TestData\Movies\Common\MoviesRecentlyUpdated.json" />
+    <None Include="TestData\Movies\Common\MoviesTrending.json" />
+    <None Include="TestData\Movies\MovieAliases.json" />
+    <None Include="TestData\Movies\MovieComments.json" />
+    <None Include="TestData\Movies\MoviePeople.json" />
+    <None Include="TestData\Movies\MovieRatings.json" />
+    <None Include="TestData\Movies\MovieRelatedMoviesFull.json" />
+    <None Include="TestData\Movies\MovieRelatedMoviesFullAndImages.json" />
+    <None Include="TestData\Movies\MovieRelatedMoviesImages.json" />
+    <None Include="TestData\Movies\MovieRelatedMoviesMetadata.json" />
+    <None Include="TestData\Movies\MovieRelatedMoviesMinimal.json" />
+    <None Include="TestData\Movies\MovieReleases.json" />
+    <None Include="TestData\Movies\MovieSingleAlias.json" />
+    <None Include="TestData\Movies\MovieSingleRelease.json" />
+    <None Include="TestData\Movies\MovieSingleTranslation.json" />
+    <None Include="TestData\Movies\MovieStatistics.json" />
+    <None Include="TestData\Movies\MovieSummaryFull.json" />
+    <None Include="TestData\Movies\MovieSummaryFullAndImages.json" />
+    <None Include="TestData\Movies\MovieSummaryImages.json" />
+    <None Include="TestData\Movies\MovieSummaryMetadata.json" />
+    <None Include="TestData\Movies\MovieSummaryMinimal.json" />
+    <None Include="TestData\Movies\MovieTranslations.json" />
+    <None Include="TestData\Movies\MovieWatchingUsers.json" />
+    <None Include="TestData\People\PersonFull.json" />
+    <None Include="TestData\People\PersonFullAndImages.json" />
+    <None Include="TestData\People\PersonImages.json" />
+    <None Include="TestData\People\PersonMetadata.json" />
+    <None Include="TestData\People\PersonMinimal.json" />
+    <None Include="TestData\Recommendations\MovieRecommendations.json" />
+    <None Include="TestData\Recommendations\MovieSingleRecommendation.json" />
+    <None Include="TestData\Recommendations\ShowRecommendations.json" />
+    <None Include="TestData\Recommendations\ShowSingleRecommendation.json" />
+    <None Include="TestData\Shows\Common\ShowsMostAnticipated.json" />
+    <None Include="TestData\Shows\Common\ShowsMostCollected.json" />
+    <None Include="TestData\Shows\Common\ShowsMostPlayed.json" />
+    <None Include="TestData\Shows\Common\ShowsMostWatched.json" />
+    <None Include="TestData\Shows\Common\ShowsPopular.json" />
+    <None Include="TestData\Shows\Common\ShowsRecentlyUpdated.json" />
+    <None Include="TestData\Shows\Common\ShowsTrending.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeComments.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeRatings.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeStatistics.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryFull.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryImages.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryMetadata.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeSummaryMinimal.json" />
+    <None Include="TestData\Shows\Episodes\EpisodeWatchingUsers.json" />
+    <None Include="TestData\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json" />
+    <None Include="TestData\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Full\SeasonsAllFull.json" />
+    <None Include="TestData\Shows\Seasons\All\Full\SeasonsAllFullWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Images\SeasonsAllImages.json" />
+    <None Include="TestData\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Metadata\SeasonsAllMetadata.json" />
+    <None Include="TestData\Shows\Seasons\All\Metadata\SeasonsAllMetadataWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
+    <None Include="TestData\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonComments.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonRatings.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonStatistics.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryFull.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryFullAndImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryWithEpisodesFullAndImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryWithEpisodesFull.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryWithEpisodesImages.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryMetadata.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryWithEpisodesMetadata.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryMinimal.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json" />
+    <None Include="TestData\Shows\Seasons\Single\SeasonWatchingUsers.json" />
+    <None Include="TestData\Shows\ShowAliases.json" />
+    <None Include="TestData\Shows\ShowComments.json" />
+    <None Include="TestData\Shows\ShowPeople.json" />
+    <None Include="TestData\Shows\ShowRatings.json" />
+    <None Include="TestData\Shows\ShowRelatedShowsFull.json" />
+    <None Include="TestData\Shows\ShowRelatedShowsFullAndImages.json" />
+    <None Include="TestData\Shows\ShowRelatedShowsImages.json" />
+    <None Include="TestData\Shows\ShowRelatedShowsMetadata.json" />
+    <None Include="TestData\Shows\ShowRelatedShowsMinimal.json" />
+    <None Include="TestData\Shows\ShowSingleAlias.json" />
+    <None Include="TestData\Shows\ShowSingleTranslation.json" />
+    <None Include="TestData\Shows\ShowStatistics.json" />
+    <None Include="TestData\Shows\ShowSummaryFull.json" />
+    <None Include="TestData\Shows\ShowSummaryFullAndImages.json" />
+    <None Include="TestData\Shows\ShowSummaryImages.json" />
+    <None Include="TestData\Shows\ShowSummaryMetadata.json" />
+    <None Include="TestData\Shows\ShowSummaryMinimal.json" />
+    <None Include="TestData\Shows\ShowTranslations.json" />
+    <None Include="TestData\Shows\ShowWatchingUsers.json" />
+    <None Include="TestData\Users\AccountSettings.json" />
+    <None Include="TestData\Users\Lists\List.json" />
+    <None Include="TestData\Users\Lists\ListComments.json" />
+    <None Include="TestData\Users\SharingText.json" />
+    <None Include="TestData\Users\UserFollowers.json" />
+    <None Include="TestData\Users\UserFriends.json" />
+    <None Include="TestData\Users\UserHiddenItems.json" />
+    <None Include="TestData\Users\UserSingleFollower.json" />
+    <None Include="TestData\Users\UserFull.json" />
+    <None Include="TestData\Users\UserFullAndImages.json" />
+    <None Include="TestData\Users\UserImages.json" />
+    <None Include="TestData\Users\UserMetadata.json" />
+    <None Include="TestData\Users\UserMinimal.json" />
+    <None Include="TestData\Users\UserSettings.json" />
+    <None Include="TestData\Users\UserSingleFriend.json" />
+    <None Include="TestData\Users\UserSingleHiddenItem.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Basic\CastMember.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Basic\Crew.json" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -79,6 +374,9 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y /S "$(ProjectDir)TestData\*" "$(TargetDir)TestData\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,10 @@
+﻿{
+  "followed_at": "2014-09-01T09:10:11.000Z",
+  "user": {
+    "username": "sean",
+    "private": false,
+    "name": "Sean Rudford",
+    "vip": true,
+    "vip_ep": false
+  }
+}

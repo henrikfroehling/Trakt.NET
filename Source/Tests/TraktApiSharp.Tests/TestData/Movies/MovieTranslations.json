@@ -1,0 +1,20 @@
+﻿[
+  {
+    "title": "Star Wars: Episode VII - The Force Awakens",
+    "overview": "A continuation of the saga created by George Lucas, set thirty years after Star Wars: Episode VI – Return of the Jedi.",
+    "tagline": "The Force Lives On...",
+    "language": "en"
+  },
+  {
+    "title": "Star Wars: Episode VII - Das Erwachen der Macht",
+    "overview": "Erster Teil der von Walt Disney angekündigten dritten \"Star Wars\"-Trilogie, die im Jahr 2015 ihren Anfang nehmen soll.",
+    "tagline": "",
+    "language": "de"
+  },
+  {
+    "title": "Star Wars: The Force Awakens",
+    "overview": "Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.",
+    "tagline": "Every generation has a story.",
+    "language": "en"
+  }
+]

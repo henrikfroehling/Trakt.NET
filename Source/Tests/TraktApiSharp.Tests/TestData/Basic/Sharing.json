@@ -1,0 +1,8 @@
+﻿{
+  "facebook": true,
+  "twitter": true,
+  "google": true,
+  "tumblr": false,
+  "medium": false,
+  "slack": false
+}
