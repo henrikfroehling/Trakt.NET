@@ -208,10 +208,12 @@
         {
             if (SupportsPagination)
             {
-                var paginationListResult = default(TResult);
+                if (typeof(TResult) != typeof(TraktPaginationListResult<TItem>))
+                    throw new InvalidCastException("TResult cannot be converted as TraktPaginationListResult<TItem>");
 
-                if (paginationListResult.GetType() != typeof(TraktPaginationListResult<TItem>))
-                    throw new InvalidCastException("TResult cannot be converted as TraktPaginationListResult");
+                var typePaginationElement = typeof(TResult).GenericTypeArguments[0];
+                var typePaginationList = typeof(TraktPaginationListResult<>).MakeGenericType(typePaginationElement);
+                var paginationListResult = Activator.CreateInstance(typePaginationList);
 
                 (paginationListResult as TraktPaginationListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
@@ -254,17 +256,19 @@
                         (paginationListResult as TraktPaginationListResult<TItem>).ItemCount = itemCount;
                 }
 
-                return paginationListResult;
+                return (TResult)paginationListResult;
             }
 
-            var listResult = default(TResult);
+            if (typeof(TResult) != typeof(TraktListResult<TItem>))
+                throw new InvalidCastException("TResult cannot be converted as TraktListResult<TItem>");
 
-            if (listResult.GetType() != typeof(TraktListResult<TItem>))
-                throw new InvalidCastException("TResult cannot be converted as TraktListResult");
+            var typeElement = typeof(TResult).GenericTypeArguments[0];
+            var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);
+            var listResult = Activator.CreateInstance(typeList);
 
             (listResult as TraktListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
-            return listResult;
+            return (TResult)listResult;
         }
 
         private void ErrorHandling(HttpResponseMessage response, string responseContent)
