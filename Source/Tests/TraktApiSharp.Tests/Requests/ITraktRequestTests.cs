@@ -10,7 +10,7 @@
         [TestMethod]
         public void TestITraktRequestIsInterface()
         {
-            typeof(ITraktRequest<string>).IsInterface.Should().BeTrue();
+            typeof(ITraktRequest<string, string>).IsInterface.Should().BeTrue();
         }
     }
 }

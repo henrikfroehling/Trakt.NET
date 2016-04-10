@@ -151,6 +151,8 @@
     <Compile Include="Objects\TraktIds.cs" />
     <Compile Include="Objects\TraktImage.cs" />
     <Compile Include="Objects\TraktImageSet.cs" />
+    <Compile Include="Objects\TraktListResult.cs" />
+    <Compile Include="Objects\TraktPaginationListResult.cs" />
     <Compile Include="Objects\TraktRating.cs" />
     <Compile Include="Objects\TraktSearchIdLookupResult.cs" />
     <Compile Include="Objects\TraktSearchResult.cs" />
