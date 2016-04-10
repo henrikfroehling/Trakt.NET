@@ -2,7 +2,7 @@
 {
     using Core;
     using Newtonsoft.Json;
-    using System;
+    using NodaTime;
 
     public class TraktAccountSettings
     {
@@ -10,11 +10,11 @@
         public string TimeZoneId { get; set; }
 
         [JsonIgnore]
-        public TimeZoneInfo TimeZone
+        public DateTimeZone TimeZone
         {
             get
             {
-                return !string.IsNullOrEmpty(TimeZoneId) ? TraktTimeZone.FromOlsonTimeZoneId(TimeZoneId) : default(TimeZoneInfo);
+                return !string.IsNullOrEmpty(TimeZoneId) ? TraktTimeZone.FromOlsonTimeZoneId(TimeZoneId) : default(DateTimeZone);
             }
         }
 
