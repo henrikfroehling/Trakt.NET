@@ -19,6 +19,8 @@
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
 
+        private static HttpClient HTTP_CLIENT = null;
+
         protected TraktRequest(TraktClient client)
         {
             Client = client;
@@ -157,13 +159,8 @@
 
         protected virtual void Validate() { }
 
-        protected virtual void SetRequestHeaders(HttpRequestMessage request)
+        protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
         {
-            request.Headers.Add("trakt-api-key", Client.ClientId);
-            request.Headers.Add("trakt-api-version", string.Format("{0}", Client.Configuration.ApiVersion));
-
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             if (AuthenticationHeaderRequired)
             {
                 if (!Client.Authentication.IsAuthenticated)
@@ -173,16 +170,29 @@
             }
         }
 
+        private void SetDefaultRequestHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
+            httpClient.DefaultRequestHeaders.Add("trakt-api-version", string.Format("{0}", Client.Configuration.ApiVersion));
+
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
         public async Task<TResult> QueryAsync()
         {
             Validate();
 
-            using (var httpClient = new HttpClient())
+            if (HTTP_CLIENT == null)
+            {
+                HTTP_CLIENT = new HttpClient();
+                SetDefaultRequestHeaders(HTTP_CLIENT);
+            }
+
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
-                SetRequestHeaders(request);
+                SetRequestHeadersForAuthentication(request);
 
-                using (var response = await httpClient.SendAsync(request))
+                using (var response = await HTTP_CLIENT.SendAsync(request))
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
 
