@@ -89,7 +89,7 @@
             {
                 return GetPathParameters()
                     .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value.ToLower()))
+                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
                     .TrimEnd(new[] { '/' });
             }
         }
@@ -122,7 +122,7 @@
                     var ret = content.ReadAsStringAsync().Result;
 
                     if (!string.IsNullOrEmpty(ret))
-                        ret = string.Format("?{0}", ret);
+                        ret = $"?{ret}";
 
                     return ret;
                 }
@@ -155,7 +155,7 @@
             }
         }
 
-        internal string Url => string.Format("{0}{1}{2}", Client.Configuration.BaseUrl, UriPath, OptionParameters);
+        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
 
         protected virtual void Validate() { }
 
@@ -173,7 +173,7 @@
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
             httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
-            httpClient.DefaultRequestHeaders.Add("trakt-api-version", string.Format("{0}", Client.Configuration.ApiVersion));
+            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -294,7 +294,7 @@
             catch { }
 
             var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-                                    ? string.Format("Trakt API error without content. Response status code was {0}", (int)code)
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
                                     : error.Description;
 
             switch (code)

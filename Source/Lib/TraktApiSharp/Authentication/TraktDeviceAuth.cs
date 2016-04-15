@@ -27,7 +27,7 @@
             if (string.IsNullOrEmpty(clientId))
                 throw new ArgumentException("client id not valid", "clientId");
 
-            var postContent = string.Format("{ \"client_id\": \"{0}\" }", clientId);
+            var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
@@ -61,8 +61,7 @@
         {
             validateAccessTokenInput(device, clientId, clientSecret);
 
-            var postContent = string.Format("{ \"code\": \"{0}\", \"client_id\": \"{1}\", \"client_secret\": \"{2}\" }",
-                                            device.DeviceCode, clientId, clientSecret);
+            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {

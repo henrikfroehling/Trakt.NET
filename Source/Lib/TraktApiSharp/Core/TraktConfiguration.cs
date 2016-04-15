@@ -13,7 +13,7 @@
 
         public int ApiVersion { get; set; }
 
-        public string BaseUrl => string.Format("https://api-v{0}launch.trakt.tv/", ApiVersion);
+        public string BaseUrl => $"https://api-v{ApiVersion}launch.trakt.tv/";
         public Uri BaseUri => new Uri(BaseUrl);
 
         public TraktAuthenticationMode AuthenticationMode { get; set; }

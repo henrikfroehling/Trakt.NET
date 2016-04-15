@@ -29,8 +29,8 @@
 
             var baseUri = new Uri(TraktConstants.OAuthBaseAuthorizeUrl);
 
-            var authorizationUri = string.Format("{0}?response_type=code&client_id={1}&redirect_uri={2}&state={3}",
-                                                 TraktConstants.OAuthAuthorizeUri, clientId, Uri.EscapeDataString(redirectUri), state);
+            var authorizationUri = $"{TraktConstants.OAuthAuthorizeUri}?response_type=code&client_id={clientId}" +
+                                   $"&redirect_uri={Uri.EscapeDataString(redirectUri)}&state={state}";
 
             using (var httpClient = new HttpClient { BaseAddress = baseUri })
             {
@@ -62,8 +62,8 @@
 
             validateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
 
-            var postContent = string.Format(@"{{ ""code"": ""{0}"", ""client_id"": ""{1}"", ""client_secret"": ""{2}"", ""redirect_uri"": ""{3}"", ""grant_type"": ""{4}"" }}",
-                                            code, clientId, clientSecret, redirectUri, grantType);
+            var postContent = $"{{ \"code\": \"{code}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\", " +
+                              $"\"redirect_uri\": \"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
