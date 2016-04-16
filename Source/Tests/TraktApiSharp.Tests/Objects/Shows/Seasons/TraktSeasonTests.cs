@@ -16,7 +16,7 @@
         {
             var season = new TraktSeason();
 
-            season.Number.Should().NotHaveValue();
+            season.Number.Should().Be(0);
             season.Ids.Should().BeNull();
             season.Images.Should().BeNull();
             season.Rating.Should().NotHaveValue();

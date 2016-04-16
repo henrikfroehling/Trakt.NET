@@ -12,6 +12,8 @@
     /// </summary>
     public class TraktShow
     {
+        #region Minimal Info
+
         /// <summary>
         /// The show title.
         /// </summary>
@@ -25,48 +27,14 @@
         public int Year { get; set; }
 
         /// <summary>
-        /// The air time of the show.
-        /// </summary>
-        [JsonProperty(PropertyName = "airs")]
-        public TraktShowAirs Airs { get; set; }
-
-        /// <summary>
-        /// A list of translation language codes (two letters) for the show.
-        /// </summary>
-        [JsonProperty(PropertyName = "available_translations")]
-        public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
-
-        /// <summary>
-        /// A list of translation languages for the show.
-        /// </summary>
-        [JsonIgnore]
-        public List<string> AvailableTranslationLanguages
-        {
-            get
-            {
-                if (AvailableTranslationLanguageCodes == null)
-                    return null;
-
-                var languages = new List<string>();
-
-                foreach (var languageCode in AvailableTranslationLanguageCodes)
-                {
-                    try
-                    {
-                        languages.Add(new RegionInfo(languageCode).DisplayName);
-                    }
-                    catch { }
-                }
-
-                return languages;
-            }
-        }
-
-        /// <summary>
         /// A collection of ids for the show for various web services.
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
+
+        #endregion
+
+        #region Images
 
         /// <summary>
         /// A collection of images for the show.
@@ -74,17 +42,9 @@
         [JsonProperty(PropertyName = "images")]
         public TraktShowImages Images { get; set; }
 
-        /// <summary>
-        /// A collection of genres for the show.
-        /// </summary>
-        [JsonProperty(PropertyName = "genres")]
-        public IEnumerable<string> Genres { get; set; }
+        #endregion
 
-        /// <summary>
-        /// A collection of Trakt seasons for the show.
-        /// </summary>
-        [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSeason> Seasons { get; set; }
+        #region Full (additional info)
 
         /// <summary>
         /// A synopsis of the show.
@@ -97,6 +57,12 @@
         /// </summary>
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
+
+        /// <summary>
+        /// The air time of the show.
+        /// </summary>
+        [JsonProperty(PropertyName = "airs")]
+        public TraktShowAirs Airs { get; set; }
 
         /// <summary>
         /// The runtime for the show's episodes, in minutes.
@@ -143,12 +109,6 @@
                 }
             }
         }
-
-        /// <summary>
-        /// The UTC date when the show was last updated.
-        /// </summary>
-        [JsonProperty(PropertyName = "updated_at")]
-        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// The address of a trailer for the show.
@@ -202,6 +162,12 @@
         public int? Votes { get; set; }
 
         /// <summary>
+        /// The UTC date when the show was last updated.
+        /// </summary>
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
         /// A two letter language code of the show.
         /// </summary>
         [JsonProperty(PropertyName = "language")]
@@ -230,9 +196,59 @@
         }
 
         /// <summary>
+        /// A list of translation language codes (two letters) for the show.
+        /// </summary>
+        [JsonProperty(PropertyName = "available_translations")]
+        public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+
+        /// <summary>
+        /// A list of translation languages for the show.
+        /// </summary>
+        [JsonIgnore]
+        public List<string> AvailableTranslationLanguages
+        {
+            get
+            {
+                if (AvailableTranslationLanguageCodes == null)
+                    return null;
+
+                var languages = new List<string>();
+
+                foreach (var languageCode in AvailableTranslationLanguageCodes)
+                {
+                    try
+                    {
+                        languages.Add(new RegionInfo(languageCode).DisplayName);
+                    }
+                    catch { }
+                }
+
+                return languages;
+            }
+        }
+
+        /// <summary>
+        /// A collection of genres for the show.
+        /// </summary>
+        [JsonProperty(PropertyName = "genres")]
+        public IEnumerable<string> Genres { get; set; }
+
+        /// <summary>
         /// The absolute number of already aired episodes in all seasons of the show.
         /// </summary>
         [JsonProperty(PropertyName = "aired_episodes")]
         public int? AiredEpisodes { get; set; }
+
+        #endregion
+
+        #region Seasons
+
+        /// <summary>
+        /// A collection of Trakt seasons for the show.
+        /// </summary>
+        [JsonProperty(PropertyName = "seasons")]
+        public IEnumerable<TraktSeason> Seasons { get; set; }
+
+        #endregion
     }
 }

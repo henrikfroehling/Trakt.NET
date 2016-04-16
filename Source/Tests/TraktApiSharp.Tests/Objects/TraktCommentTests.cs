@@ -15,9 +15,9 @@
         {
             var comment = new TraktComment();
 
-            comment.Id.Should().NotHaveValue();
+            comment.Id.Should().Be(0);
             comment.ParentId.Should().NotHaveValue();
-            comment.CreatedAt.Should().NotHaveValue();
+            comment.CreatedAt.Should().Be(DateTime.MinValue);
             comment.Comment.Should().BeNullOrEmpty();
             comment.Spoiler.Should().NotHaveValue();
             comment.Review.Should().NotHaveValue();

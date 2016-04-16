@@ -17,7 +17,7 @@
             var popularShow = new TraktMoviesPopularItem();
 
             popularShow.Title.Should().BeNullOrEmpty();
-            popularShow.Year.Should().NotHaveValue();
+            popularShow.Year.Should().Be(0);
             popularShow.Ids.Should().BeNull();
         }
 

@@ -10,11 +10,13 @@
     /// </summary>
     public class TraktSeason
     {
+        #region Minimal Info
+
         /// <summary>
         /// The season number.
         /// </summary>
         [JsonProperty(PropertyName = "number")]
-        public int? Number { get; set; }
+        public int Number { get; set; }
 
         /// <summary>
         /// A collection of ids for the season for various web services.
@@ -22,11 +24,19 @@
         [JsonProperty(PropertyName = "ids")]
         public TraktSeasonIds Ids { get; set; }
 
+        #endregion
+
+        #region Images
+
         /// <summary>
         /// A collection of images for the season.
         /// </summary>
         [JsonProperty(PropertyName = "images")]
         public TraktSeasonImages Images { get; set; }
+
+        #endregion
+
+        #region Full (additional info)
 
         /// <summary>
         /// The average user rating of the season.
@@ -64,10 +74,16 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
+        #endregion
+
+        #region Episodes
+
         /// <summary>
         /// A collection of Trakt episodes in the season.
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
         public IEnumerable<TraktEpisode> Episodes { get; set; }
+
+        #endregion
     }
 }

@@ -10,6 +10,20 @@
     /// </summary>
     public class TraktEpisode
     {
+        #region Minimal Info
+
+        /// <summary>
+        /// The season number in which the episode was aired.
+        /// </summary>
+        [JsonProperty(PropertyName = "season")]
+        public int SeasonNumber { get; set; }
+
+        /// <summary>
+        /// The episode number within the season to which it belongs.
+        /// </summary>
+        [JsonProperty(PropertyName = "number")]
+        public int Number { get; set; }
+
         /// <summary>
         /// The episode title.
         /// </summary>
@@ -17,16 +31,24 @@
         public string Title { get; set; }
 
         /// <summary>
-        /// The season number in which the episode was aired.
+        /// A collection of ids for the episode for various web services.
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
-        public int? SeasonNumber { get; set; }
+        [JsonProperty(PropertyName = "ids")]
+        public TraktEpisodeIds Ids { get; set; }
+
+        #endregion
+
+        #region Images
 
         /// <summary>
-        /// The episode number within the season to which it belongs.
+        /// A collection of images for the episode.
         /// </summary>
-        [JsonProperty(PropertyName = "number")]
-        public int? Number { get; set; }
+        [JsonProperty(PropertyName = "images")]
+        public TraktEpisodeImages Images { get; set; }
+
+        #endregion
+
+        #region Full (additional info)
 
         /// <summary>
         /// The absolute episode number of all episodes in all seasons.
@@ -41,18 +63,6 @@
         public string Overview { get; set; }
 
         /// <summary>
-        /// The UTC date when the episode was first aired.
-        /// </summary>
-        [JsonProperty(PropertyName = "first_aired")]
-        public DateTime? FirstAired { get; set; }
-
-        /// <summary>
-        /// The UTC date when the episode was last updated.
-        /// </summary>
-        [JsonProperty(PropertyName = "updated_at")]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
         /// The average user rating of the episode.
         /// </summary>
         [JsonProperty(PropertyName = "rating")]
@@ -65,16 +75,16 @@
         public int? Votes { get; set; }
 
         /// <summary>
-        /// A collection of ids for the episode for various web services.
+        /// The UTC date when the episode was first aired.
         /// </summary>
-        [JsonProperty(PropertyName = "ids")]
-        public TraktEpisodeIds Ids { get; set; }
+        [JsonProperty(PropertyName = "first_aired")]
+        public DateTime? FirstAired { get; set; }
 
         /// <summary>
-        /// A collection of images for the episode.
+        /// The UTC date when the episode was last updated.
         /// </summary>
-        [JsonProperty(PropertyName = "images")]
-        public TraktEpisodeImages Images { get; set; }
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// A list of translation language codes (two letters) for the episode.
@@ -108,5 +118,6 @@
             }
         }
 
+        #endregion
     }
 }

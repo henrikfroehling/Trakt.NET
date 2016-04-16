@@ -7,13 +7,13 @@
     public class TraktComment
     {
         [JsonProperty(PropertyName = "id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "parent_id")]
         public int? ParentId { get; set; }
 
         [JsonProperty(PropertyName = "created_at")]
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         public string Comment { get; set; }

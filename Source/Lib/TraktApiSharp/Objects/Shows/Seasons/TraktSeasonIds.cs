@@ -11,7 +11,7 @@
         /// The Trakt numeric id for the season.
         /// </summary>
         [JsonProperty(PropertyName = "trakt")]
-        public int? Trakt { get; set; }
+        public int Trakt { get; set; }
 
         /// <summary>
         /// The numeric id for the season from thetvdb.com

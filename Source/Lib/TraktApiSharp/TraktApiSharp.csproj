@@ -52,7 +52,6 @@
     <Compile Include="Authentication\TraktOAuth.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
-    <Compile Include="Core\TraktTimeZone.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />

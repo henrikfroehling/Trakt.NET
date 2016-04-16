@@ -13,7 +13,7 @@
         {
             var ids = new TraktIds();
 
-            ids.Trakt.Should().NotHaveValue();
+            ids.Trakt.Should().Be(0);
             ids.Slug.Should().BeNullOrEmpty();
             ids.Tvdb.Should().NotHaveValue();
             ids.Imdb.Should().BeNullOrEmpty();
