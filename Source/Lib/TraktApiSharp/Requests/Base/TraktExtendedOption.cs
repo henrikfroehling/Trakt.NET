@@ -35,7 +35,7 @@
                 case TraktExtendedOption.FullAndImages: return "full,images";
                 case TraktExtendedOption.FullAndImagesAndEpisodes: return "full,images,episodes";
                 default:
-                    throw new ArgumentOutOfRangeException("ExtendedOption");
+                    throw new NotSupportedException(scope.ToString());
             }
         }
     }

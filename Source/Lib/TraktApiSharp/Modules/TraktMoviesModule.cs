@@ -5,8 +5,8 @@
     using Objects.Movies;
     using Objects.Movies.Common;
     using Requests;
-    using Requests.Movies;
-    using Requests.Movies.Common;
+    using Requests.WithoutOAuth.Movies;
+    using Requests.WithoutOAuth.Movies.Common;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -5,8 +5,8 @@
     using Objects.Shows;
     using Objects.Shows.Common;
     using Requests;
-    using Requests.Shows;
-    using Requests.Shows.Common;
+    using Requests.WithoutOAuth.Shows;
+    using Requests.WithoutOAuth.Shows.Common;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;

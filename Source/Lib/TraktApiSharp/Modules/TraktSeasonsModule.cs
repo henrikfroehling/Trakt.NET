@@ -4,7 +4,7 @@
     using Objects.Shows.Episodes;
     using Objects.Shows.Seasons;
     using Requests;
-    using Requests.Shows.Seasons;
+    using Requests.WithoutOAuth.Shows.Seasons;
     using System.Threading.Tasks;
 
     public class TraktSeasonsModule : TraktBaseModule

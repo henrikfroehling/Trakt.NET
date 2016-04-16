@@ -5,14 +5,14 @@
 
     public abstract class TraktBaseModule
     {
-        protected TraktBaseModule(TraktClient client)
+        internal TraktBaseModule(TraktClient client)
         {
             Client = client;
         }
 
         public TraktClient Client { get; set; }
 
-        protected async Task<T> QueryAsync<T, U>(ITraktRequest<T, U> request)
+        internal async Task<T> QueryAsync<T, U>(ITraktRequest<T, U> request)
         {
             return await request.QueryAsync();
         }

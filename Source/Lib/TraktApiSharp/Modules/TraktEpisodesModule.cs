@@ -3,7 +3,7 @@
     using Objects;
     using Objects.Shows.Episodes;
     using Requests;
-    using Requests.Shows.Episodes;
+    using Requests.WithoutOAuth.Shows.Episodes;
     using System.Threading.Tasks;
 
     public class TraktEpisodesModule : TraktBaseModule

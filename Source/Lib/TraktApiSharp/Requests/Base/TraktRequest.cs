@@ -1,4 +1,8 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+
+namespace TraktApiSharp.Requests.Base
 {
     using Exceptions;
     using Newtonsoft.Json;
@@ -19,7 +23,7 @@
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
 
-        private static HttpClient HTTP_CLIENT = null;
+        internal static HttpClient HTTP_CLIENT = null;
 
         protected TraktRequest(TraktClient client)
         {
@@ -164,7 +168,7 @@
             if (AuthenticationHeaderRequired)
             {
                 if (!Client.Authentication.IsAuthenticated)
-                    throw new IndexOutOfRangeException("authentication is required for this request, but the current authentication parameters are invalid");
+                    throw new TraktAuthorizationException("authentication is required for this request, but the current authentication parameters are invalid");
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
             }
@@ -219,7 +223,7 @@
             if (SupportsPagination)
             {
                 if (typeof(TResult) != typeof(TraktPaginationListResult<TItem>))
-                    throw new InvalidCastException("TResult cannot be converted as TraktPaginationListResult<TItem>");
+                    throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted to TraktPaginationListResult<{typeof(TItem).ToString()}>");
 
                 var typePaginationElement = typeof(TResult).GenericTypeArguments[0];
                 var typePaginationList = typeof(TraktPaginationListResult<>).MakeGenericType(typePaginationElement);
@@ -270,7 +274,7 @@
             }
 
             if (typeof(TResult) != typeof(TraktListResult<TItem>))
-                throw new InvalidCastException("TResult cannot be converted as TraktListResult<TItem>");
+                throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted as TraktListResult<{typeof(TItem).ToString()}>");
 
             var typeElement = typeof(TResult).GenericTypeArguments[0];
             var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);

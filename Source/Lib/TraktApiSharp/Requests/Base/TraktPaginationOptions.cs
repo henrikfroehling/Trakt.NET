@@ -2,14 +2,14 @@
 {
     internal struct TraktPaginationOptions
     {
-        public TraktPaginationOptions(int? page, int? limit)
+        internal TraktPaginationOptions(int? page, int? limit)
         {
             Page = page;
             Limit = limit;
         }
 
-        public int? Page { get; set; }
+        internal int? Page { get; set; }
 
-        public int? Limit { get; set; }
+        internal int? Limit { get; set; }
     }
 }
