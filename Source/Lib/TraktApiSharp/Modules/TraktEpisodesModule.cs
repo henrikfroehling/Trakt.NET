@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Objects;
-    using Objects.Shows.Episodes;
+    using Objects.Basic;
+    using Objects.Get.Shows.Episodes;
     using Requests;
     using Requests.WithoutOAuth.Shows.Episodes;
     using System.Threading.Tasks;

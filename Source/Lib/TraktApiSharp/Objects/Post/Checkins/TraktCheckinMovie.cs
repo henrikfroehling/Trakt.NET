@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Checkins
 {
-    using Movies;
+    using Get.Movies;
     using Newtonsoft.Json;
 
     public class TraktCheckinMovie : TraktCheckin

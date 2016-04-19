@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Movies;
+    using TraktApiSharp.Objects.Get.Movies;
     using Utils;
 
     [TestClass]

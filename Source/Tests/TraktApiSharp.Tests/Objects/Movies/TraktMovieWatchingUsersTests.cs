@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Movies;
+    using TraktApiSharp.Objects.Get.Movies;
     using Utils;
 
     [TestClass]

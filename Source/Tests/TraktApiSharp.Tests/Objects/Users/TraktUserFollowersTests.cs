@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Users;
+    using TraktApiSharp.Objects.Get.Users;
     using Utils;
 
     [TestClass]

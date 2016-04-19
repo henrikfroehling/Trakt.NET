@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Checkins
 {
+    using Basic;
     using Newtonsoft.Json;
     using System;
 

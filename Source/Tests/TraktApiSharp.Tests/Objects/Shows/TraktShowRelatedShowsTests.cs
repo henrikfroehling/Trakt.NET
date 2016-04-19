@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Shows;
+    using TraktApiSharp.Objects.Get.Shows;
     using Utils;
 
     [TestClass]

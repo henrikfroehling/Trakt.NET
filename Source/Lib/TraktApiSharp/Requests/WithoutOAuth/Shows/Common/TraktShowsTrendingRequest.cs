@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Common
 {
     using Base.Get;
-    using Objects;
-    using Objects.Shows.Common;
+    using Objects.Basic;
+    using Objects.Get.Shows.Common;
 
     internal class TraktShowsTrendingRequest : TraktGetRequest<TraktPaginationListResult<TraktShowsTrendingItem>, TraktShowsTrendingItem>
     {

@@ -6,7 +6,7 @@ namespace TraktApiSharp.Requests.Base
 {
     using Exceptions;
     using Newtonsoft.Json;
-    using Objects;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
     using System.Linq;

@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Shows.Episodes;
+    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using Utils;
 
     [TestClass]

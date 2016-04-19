@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
-    using Objects;
-    using Objects.Movies;
-    using Objects.Movies.Common;
+    using Objects.Basic;
+    using Objects.Get.Movies;
+    using Objects.Get.Movies.Common;
     using Requests;
     using Requests.WithoutOAuth.Movies;
     using Requests.WithoutOAuth.Movies.Common;

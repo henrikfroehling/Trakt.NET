@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Linq;
-    using TraktApiSharp.Objects.Shows;
+    using TraktApiSharp.Objects.Get.Shows;
     using Utils;
 
     [TestClass]

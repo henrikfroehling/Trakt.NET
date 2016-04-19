@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Checkins
 {
+    using Get.Shows;
+    using Get.Shows.Episodes;
     using Newtonsoft.Json;
-    using Shows;
-    using Shows.Episodes;
 
     public class TraktCheckinEpisode : TraktCheckin
     {

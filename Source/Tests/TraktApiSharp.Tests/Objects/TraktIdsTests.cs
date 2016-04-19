@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects;
+    using TraktApiSharp.Objects.Basic;
     using Utils;
     [TestClass]
     public class TraktIdsTests

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
     using Base.Get;
-    using Objects.Shows;
+    using Objects.Get.Shows;
 
     internal class TraktShowStatisticsRequest : TraktGetByIdRequest<TraktShowStatistics, TraktShowStatistics>
     {

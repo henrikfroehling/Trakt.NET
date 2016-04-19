@@ -2,8 +2,8 @@
 {
     using Base.Get;
     using Enums;
-    using Objects;
-    using Objects.Shows.Common;
+    using Objects.Basic;
+    using Objects.Get.Shows.Common;
     using System.Collections.Generic;
 
     internal class TraktShowsMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktShowsMostPlayedItem>, TraktShowsMostPlayedItem>

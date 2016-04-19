@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
-    using Objects;
-    using Objects.Shows;
-    using Objects.Shows.Common;
+    using Objects.Basic;
+    using Objects.Get.Shows;
+    using Objects.Get.Shows.Common;
     using Requests;
     using Requests.WithoutOAuth.Shows;
     using Requests.WithoutOAuth.Shows.Common;
