@@ -28,7 +28,7 @@
                 case TraktSearchLookupIdType.TmDB: return "tmdb";
                 case TraktSearchLookupIdType.TvDB: return "tvdb";
                 case TraktSearchLookupIdType.TVRage: return "tvrage";
-                case TraktSearchLookupIdType.Unspecified: return "";
+                case TraktSearchLookupIdType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("AccessScope");
             }

@@ -17,7 +17,7 @@
             switch (accessTokenType)
             {
                 case TraktAccessTokenType.Bearer: return "bearer";
-                case TraktAccessTokenType.Unspecified: return "";
+                case TraktAccessTokenType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("AccessTokenType");
             }

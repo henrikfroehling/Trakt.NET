@@ -19,7 +19,7 @@
             {
                 case TraktGenreType.Shows: return "shows";
                 case TraktGenreType.Movies: return "movies";
-                case TraktGenreType.Unspecified: return "";
+                case TraktGenreType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("GenreType");
             }

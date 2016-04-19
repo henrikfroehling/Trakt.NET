@@ -18,7 +18,7 @@
             {
                 case TraktAccessTokenGrantType.AuthorizationCode: return "authorization_code";
                 case TraktAccessTokenGrantType.RefreshToken: return "refresh_token";
-                case TraktAccessTokenGrantType.Unspecified: return "";
+                case TraktAccessTokenGrantType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("AccessTokenGrantType");
             }

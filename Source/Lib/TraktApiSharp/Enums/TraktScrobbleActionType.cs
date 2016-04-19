@@ -18,7 +18,7 @@
         {
             switch (scrobbleActionType)
             {
-                case TraktScrobbleActionType.Unspecified: return "";
+                case TraktScrobbleActionType.Unspecified: return string.Empty;
                 case TraktScrobbleActionType.Start: return "start";
                 case TraktScrobbleActionType.Pause: return "pause";
                 case TraktScrobbleActionType.Stop: return "stop";

@@ -21,7 +21,7 @@
                 case TraktPeriod.Monthly: return "monthly";
                 case TraktPeriod.Yearly: return "yearly";
                 case TraktPeriod.All: return "all";
-                case TraktPeriod.Unspecified: return "";
+                case TraktPeriod.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("Period");
             }

@@ -21,7 +21,7 @@
                 case TraktHiddenItemType.Movie: return "movie";
                 case TraktHiddenItemType.Show: return "show";
                 case TraktHiddenItemType.Season: return "season";
-                case TraktHiddenItemType.Unspecified: return "";
+                case TraktHiddenItemType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("HiddenItemType");
             }

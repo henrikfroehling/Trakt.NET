@@ -25,7 +25,7 @@
                 case TraktSearchResultType.Episode: return "episode";
                 case TraktSearchResultType.Person: return "person";
                 case TraktSearchResultType.List: return "list";
-                case TraktSearchResultType.Unspecified: return "";
+                case TraktSearchResultType.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("SearchResultType");
             }

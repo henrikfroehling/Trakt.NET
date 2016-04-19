@@ -87,13 +87,17 @@
     <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
     <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
+    <Compile Include="Enums\TraktAuthenticationRequirementTests.cs" />
+    <Compile Include="Enums\TraktExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
+    <Compile Include="Enums\TraktRequestObjectTypeTests.cs" />
     <Compile Include="Enums\TraktScrobbleActionTypeTests.cs" />
     <Compile Include="Enums\TraktSearchLookupIdTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
+    <Compile Include="Enums\TraktSeasonExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />

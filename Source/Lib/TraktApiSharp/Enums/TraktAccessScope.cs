@@ -21,7 +21,7 @@
                 case TraktAccessScope.Public: return "public";
                 case TraktAccessScope.Private: return "private";
                 case TraktAccessScope.Friends: return "friends";
-                case TraktAccessScope.Unspecified: return "";
+                case TraktAccessScope.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("AccessScope");
             }

@@ -234,6 +234,7 @@
     <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktGetByIdEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktGetByIdSeasonRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonCommentsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonExtendedOption.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonRatingsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonsAllRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonSingleRequest.cs" />

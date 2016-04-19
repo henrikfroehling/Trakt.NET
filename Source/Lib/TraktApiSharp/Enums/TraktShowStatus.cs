@@ -22,7 +22,7 @@
                 case TraktShowStatus.InProduction: return "in production";
                 case TraktShowStatus.Canceled: return "canceled";
                 case TraktShowStatus.Ended: return "ended";
-                case TraktShowStatus.Unspecified: return "";
+                case TraktShowStatus.Unspecified: return string.Empty;
                 default:
                     throw new ArgumentOutOfRangeException("ShowStatus");
             }
