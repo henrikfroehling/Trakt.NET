@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public abstract class TraktCheckin
+    public abstract class TraktCheckinPost
     {
         [JsonProperty(PropertyName = "sharing")]
         public TraktSharing Sharing { get; set; }

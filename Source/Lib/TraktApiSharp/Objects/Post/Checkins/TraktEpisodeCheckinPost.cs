@@ -4,7 +4,7 @@
     using Get.Shows.Episodes;
     using Newtonsoft.Json;
 
-    public class TraktCheckinEpisode : TraktCheckin
+    public class TraktEpisodeCheckinPost : TraktCheckinPost
     {
         [JsonProperty(PropertyName = "episode")]
         public TraktEpisode Episode { get; set; }

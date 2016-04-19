@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktCheckinError
+    public class TraktCheckinPostError
     {
         [JsonProperty(PropertyName = "expires_at")]
         public DateTime ExpiresAt { get; set; }

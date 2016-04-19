@@ -89,10 +89,10 @@
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
-    <Compile Include="Objects\Post\Checkins\TraktCheckinEpisode.cs" />
-    <Compile Include="Objects\Post\Checkins\TraktCheckin.cs" />
-    <Compile Include="Objects\Post\Checkins\TraktCheckinError.cs" />
-    <Compile Include="Objects\Post\Checkins\TraktCheckinMovie.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktPostCheckinEpisode.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktPostCheckin.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktPostCheckinError.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktPostCheckinMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesBoxOfficeItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostCollectedItem.cs" />
