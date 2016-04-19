@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Checkins
+﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
     using Newtonsoft.Json;
     using System;
 
-    public class TraktCheckinPostError
+    public class TraktCheckinPostErrorResponse
     {
         [JsonProperty(PropertyName = "expires_at")]
         public DateTime ExpiresAt { get; set; }

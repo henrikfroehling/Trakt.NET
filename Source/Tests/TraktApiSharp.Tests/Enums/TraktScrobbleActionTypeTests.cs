@@ -20,7 +20,7 @@
             TraktScrobbleActionType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
             TraktScrobbleActionType.Start.AsString().Should().Be("start");
             TraktScrobbleActionType.Pause.AsString().Should().Be("pause");
-            TraktScrobbleActionType.Stop.AsString().Should().Be("stop");
+            TraktScrobbleActionType.Stop.AsString().Should().Be("scrobble");
         }
     }
 }

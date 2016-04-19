@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Checkins
+﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
     using Get.Movies;
     using Newtonsoft.Json;

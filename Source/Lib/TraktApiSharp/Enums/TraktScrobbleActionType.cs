@@ -21,7 +21,7 @@
                 case TraktScrobbleActionType.Unspecified: return string.Empty;
                 case TraktScrobbleActionType.Start: return "start";
                 case TraktScrobbleActionType.Pause: return "pause";
-                case TraktScrobbleActionType.Stop: return "stop";
+                case TraktScrobbleActionType.Stop: return "scrobble";
                 default:
                     throw new ArgumentOutOfRangeException("ScrobbleActionType");
             }
@@ -38,6 +38,10 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = reader.Value as string;
+
+            if (enumString.Equals(TraktScrobbleActionType.Stop.AsString()))
+                return TraktScrobbleActionType.Stop;
+
             enumString = enumString.FirstToUpper();
             return Enum.Parse(typeof(TraktScrobbleActionType), enumString, true);
         }

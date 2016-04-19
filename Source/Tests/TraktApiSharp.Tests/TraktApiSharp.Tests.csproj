@@ -203,6 +203,12 @@
     <Compile Include="Objects\Get\Users\TraktUserSingleFriendTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleHiddenItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserTests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\TraktCommentPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\TraktMovieScrobblePostResponseTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -368,6 +374,16 @@
     <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleHiddenItem.json" />
+    <None Include="TestData\Objects\Post\Checkins\Responses\CheckinPostErrorResponse.json" />
+    <None Include="TestData\Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json" />
+    <None Include="TestData\Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json" />
+    <None Include="TestData\Objects\Post\Comments\Responses\CommentPostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodePauseScrobblePostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodeStopScrobblePostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\MoviePauseScrobblePostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json" />
+    <None Include="TestData\Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />

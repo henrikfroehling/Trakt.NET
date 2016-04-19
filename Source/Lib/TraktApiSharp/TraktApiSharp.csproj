@@ -95,7 +95,7 @@
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPost.cs" />
     <Compile Include="Objects\Post\Checkins\TraktCheckinPost.cs" />
-    <Compile Include="Objects\Post\Checkins\TraktCheckinPostError.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponse.cs" />
     <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPost.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesBoxOfficeItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedItem.cs" />
