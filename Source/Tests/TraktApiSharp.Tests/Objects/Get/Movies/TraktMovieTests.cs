@@ -186,7 +186,7 @@
             movie.TrailerUri.Should().NotBeNull();
             movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
             movie.HomepageUri.Should().NotBeNull();
-            movie.Rating.Should().Be(8.31988m);
+            movie.Rating.Should().Be(8.31988f);
             movie.Votes.Should().Be(9338);
             movie.LanguageCode.Should().Be("en");
             movie.Language.Should().NotBeNull();
@@ -233,7 +233,7 @@
             movie.TrailerUri.Should().NotBeNull();
             movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
             movie.HomepageUri.Should().NotBeNull();
-            movie.Rating.Should().Be(8.31988m);
+            movie.Rating.Should().Be(8.31988f);
             movie.Votes.Should().Be(9338);
             movie.LanguageCode.Should().Be("en");
             movie.Language.Should().NotBeNull();

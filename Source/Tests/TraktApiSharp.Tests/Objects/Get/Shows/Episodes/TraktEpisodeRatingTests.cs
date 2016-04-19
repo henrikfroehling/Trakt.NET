@@ -36,7 +36,7 @@
             };
 
             episodeRating.Should().NotBeNull();
-            episodeRating.Rating.Should().Be(8.54044m);
+            episodeRating.Rating.Should().Be(8.54044f);
             episodeRating.Votes.Should().Be(3919);
             episodeRating.Distribution.Should().HaveCount(10).And.Contain(distribution);
         }

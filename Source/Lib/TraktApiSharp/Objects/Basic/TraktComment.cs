@@ -31,7 +31,7 @@
         public int? Likes { get; set; }
 
         [JsonProperty(PropertyName = "user_rating")]
-        public decimal? UserRating { get; set; }
+        public float? UserRating { get; set; }
 
         [JsonProperty(PropertyName = "user")]
         public TraktUser User { get; set; }

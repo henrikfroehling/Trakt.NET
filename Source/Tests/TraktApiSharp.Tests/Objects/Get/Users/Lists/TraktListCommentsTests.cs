@@ -45,7 +45,7 @@
             comments[1].CreatedAt.Should().Be(DateTime.Parse("2011-04-17T22:35:17.000Z").ToUniversalTime());
             comments[1].Replies.Should().Be(0);
             comments[1].Likes.Should().Be(2);
-            comments[1].UserRating.Should().Be(9.0m);
+            comments[1].UserRating.Should().Be(9.0f);
             comments[1].User.Should().NotBeNull();
         }
     }

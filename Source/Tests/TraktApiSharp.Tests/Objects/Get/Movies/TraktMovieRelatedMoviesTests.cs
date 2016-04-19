@@ -156,7 +156,7 @@
             movies[0].TrailerUri.Should().BeNull();
             movies[0].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-v-the-empire-strikes-back");
             movies[0].HomepageUri.Should().NotBeNull();
-            movies[0].Rating.Should().Be(8.77461m);
+            movies[0].Rating.Should().Be(8.77461f);
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
             movies[0].LanguageCode.Should().Be("en");
@@ -181,7 +181,7 @@
             movies[1].TrailerUri.Should().NotBeNull();
             movies[1].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vi-return-of-the-jedi");
             movies[1].HomepageUri.Should().NotBeNull();
-            movies[1].Rating.Should().Be(8.61184m);
+            movies[1].Rating.Should().Be(8.61184f);
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());
             movies[1].LanguageCode.Should().Be("en");
@@ -232,7 +232,7 @@
             movies[0].TrailerUri.Should().BeNull();
             movies[0].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-v-the-empire-strikes-back");
             movies[0].HomepageUri.Should().NotBeNull();
-            movies[0].Rating.Should().Be(8.77461m);
+            movies[0].Rating.Should().Be(8.77461f);
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
             movies[0].LanguageCode.Should().Be("en");
@@ -268,7 +268,7 @@
             movies[1].TrailerUri.Should().NotBeNull();
             movies[1].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vi-return-of-the-jedi");
             movies[1].HomepageUri.Should().NotBeNull();
-            movies[1].Rating.Should().Be(8.61184m);
+            movies[1].Rating.Should().Be(8.61184f);
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());
             movies[1].LanguageCode.Should().Be("en");

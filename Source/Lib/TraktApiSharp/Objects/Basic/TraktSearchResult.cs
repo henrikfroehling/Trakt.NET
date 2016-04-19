@@ -15,7 +15,7 @@
         public TraktSearchResultType Type { get; set; }
 
         [JsonProperty(PropertyName = "score")]
-        public decimal? Score { get; set; }
+        public float? Score { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

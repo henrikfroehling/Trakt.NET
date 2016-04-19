@@ -36,7 +36,7 @@
             };
 
             rating.Should().NotBeNull();
-            rating.Rating.Should().Be(8.32715m);
+            rating.Rating.Should().Be(8.32715f);
             rating.Votes.Should().Be(9274);
             rating.Distribution.Should().HaveCount(10).And.Contain(distribution);
         }

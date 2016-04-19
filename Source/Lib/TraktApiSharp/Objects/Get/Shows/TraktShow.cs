@@ -153,7 +153,7 @@
         /// The average user rating of the show.
         /// </summary>
         [JsonProperty(PropertyName = "rating")]
-        public decimal? Rating { get; set; }
+        public float? Rating { get; set; }
 
         /// <summary>
         /// The number of votes for the show.

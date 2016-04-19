@@ -231,7 +231,7 @@
             show.Homepage.Should().Be("http://www.hbo.com/game-of-thrones");
             show.HomepageUri.Should().NotBeNull();
             show.Status.Should().Be(TraktShowStatus.ReturningSeries);
-            show.Rating.Should().Be(9.38327m);
+            show.Rating.Should().Be(9.38327f);
             show.Votes.Should().Be(44773);
             show.LanguageCode.Should().Be("en");
             show.Language.Should().NotBeNull();
@@ -289,7 +289,7 @@
             show.Homepage.Should().Be("http://www.hbo.com/game-of-thrones");
             show.HomepageUri.Should().NotBeNull();
             show.Status.Should().Be(TraktShowStatus.ReturningSeries);
-            show.Rating.Should().Be(9.38327m);
+            show.Rating.Should().Be(9.38327f);
             show.Votes.Should().Be(44773);
             show.LanguageCode.Should().Be("en");
             show.Language.Should().NotBeNull();

@@ -13,6 +13,5 @@
 
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
-        public object ToArray { get; set; }
     }
 }

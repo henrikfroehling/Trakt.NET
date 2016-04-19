@@ -45,7 +45,7 @@
             comment.Review.Should().BeFalse();
             comment.Replies.Should().Be(1);
             comment.Likes.Should().Be(2);
-            comment.UserRating.Should().Be(7.3m);
+            comment.UserRating.Should().Be(7.3f);
             comment.User.Should().NotBeNull();
         }
     }

@@ -36,7 +36,7 @@
             };
 
             seasonRating.Should().NotBeNull();
-            seasonRating.Rating.Should().Be(9.12881m);
+            seasonRating.Rating.Should().Be(9.12881f);
             seasonRating.Votes.Should().Be(1149);
             seasonRating.Distribution.Should().HaveCount(10).And.Contain(distribution);
         }

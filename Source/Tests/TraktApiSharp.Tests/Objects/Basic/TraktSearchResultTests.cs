@@ -35,7 +35,7 @@
 
             searchResult.Should().NotBeNull();
             searchResult.Type.Should().Be(TraktSearchResultType.Episode);
-            searchResult.Score.Should().Be(94.02257m);
+            searchResult.Score.Should().Be(94.02257f);
             searchResult.Movie.Should().BeNull();
             searchResult.Show.Should().NotBeNull();
             searchResult.Episode.Should().NotBeNull();
@@ -54,7 +54,7 @@
 
             searchResult.Should().NotBeNull();
             searchResult.Type.Should().Be(TraktSearchResultType.List);
-            searchResult.Score.Should().Be(121.51058m);
+            searchResult.Score.Should().Be(121.51058f);
             searchResult.Movie.Should().BeNull();
             searchResult.Show.Should().BeNull();
             searchResult.Episode.Should().BeNull();
@@ -73,7 +73,7 @@
 
             searchResult.Should().NotBeNull();
             searchResult.Type.Should().Be(TraktSearchResultType.Movie);
-            searchResult.Score.Should().Be(46.29501m);
+            searchResult.Score.Should().Be(46.29501f);
             searchResult.Movie.Should().NotBeNull();
             searchResult.Show.Should().BeNull();
             searchResult.Episode.Should().BeNull();
@@ -92,7 +92,7 @@
 
             searchResult.Should().NotBeNull();
             searchResult.Type.Should().Be(TraktSearchResultType.Person);
-            searchResult.Score.Should().Be(64.80029m);
+            searchResult.Score.Should().Be(64.80029f);
             searchResult.Movie.Should().BeNull();
             searchResult.Show.Should().BeNull();
             searchResult.Episode.Should().BeNull();
@@ -111,7 +111,7 @@
 
             searchResult.Should().NotBeNull();
             searchResult.Type.Should().Be(TraktSearchResultType.Show);
-            searchResult.Score.Should().Be(0.5923821m);
+            searchResult.Score.Should().Be(0.5923821f);
             searchResult.Movie.Should().BeNull();
             searchResult.Show.Should().NotBeNull();
             searchResult.Episode.Should().BeNull();

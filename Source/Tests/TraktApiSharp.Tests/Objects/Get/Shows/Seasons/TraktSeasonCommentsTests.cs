@@ -34,7 +34,7 @@
             comments[0].CreatedAt.Should().Be(DateTime.Parse("2015-12-20T19:16:55Z").ToUniversalTime());
             comments[0].Replies.Should().Be(2);
             comments[0].Likes.Should().Be(3);
-            comments[0].UserRating.Should().Be(10.0m);
+            comments[0].UserRating.Should().Be(10.0f);
             comments[0].User.Should().NotBeNull();
 
             comments[1].Id.Should().Be(58396);
@@ -56,7 +56,7 @@
             comments[2].CreatedAt.Should().Be(DateTime.Parse("2015-07-31T12:30:12Z").ToUniversalTime());
             comments[2].Replies.Should().Be(0);
             comments[2].Likes.Should().Be(0);
-            comments[2].UserRating.Should().Be(8.0m);
+            comments[2].UserRating.Should().Be(8.0f);
             comments[2].User.Should().NotBeNull();
         }
     }

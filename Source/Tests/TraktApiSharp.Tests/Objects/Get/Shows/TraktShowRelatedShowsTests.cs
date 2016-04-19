@@ -179,7 +179,7 @@
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
             shows[0].HomepageUri.Should().NotBeNull();
             shows[0].Status.Should().Be(TraktShowStatus.ReturningSeries);
-            shows[0].Rating.Should().Be(9.26159m);
+            shows[0].Rating.Should().Be(9.26159f);
             shows[0].Votes.Should().Be(22268);
             shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:31:38Z").ToUniversalTime());
             shows[0].LanguageCode.Should().Be("en");
@@ -214,7 +214,7 @@
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
             shows[1].HomepageUri.Should().NotBeNull();
             shows[1].Status.Should().Be(TraktShowStatus.Unspecified);
-            shows[1].Rating.Should().Be(8.26689m);
+            shows[1].Rating.Should().Be(8.26689f);
             shows[1].Votes.Should().Be(607);
             shows[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:47:40Z").ToUniversalTime());
             shows[1].LanguageCode.Should().Be("en");
@@ -275,7 +275,7 @@
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
             shows[0].HomepageUri.Should().NotBeNull();
             shows[0].Status.Should().Be(TraktShowStatus.ReturningSeries);
-            shows[0].Rating.Should().Be(9.26159m);
+            shows[0].Rating.Should().Be(9.26159f);
             shows[0].Votes.Should().Be(22268);
             shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:31:38Z").ToUniversalTime());
             shows[0].LanguageCode.Should().Be("en");
@@ -321,7 +321,7 @@
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
             shows[1].HomepageUri.Should().NotBeNull();
             shows[1].Status.Should().Be(TraktShowStatus.Unspecified);
-            shows[1].Rating.Should().Be(8.26689m);
+            shows[1].Rating.Should().Be(8.26689f);
             shows[1].Votes.Should().Be(607);
             shows[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:47:40Z").ToUniversalTime());
             shows[1].LanguageCode.Should().Be("en");

@@ -242,7 +242,7 @@
             season.Ids.Tmdb.Should().Be(60523);
             season.Ids.TvRage.Should().Be(36939);
             season.Images.Should().BeNull();
-            season.Rating.Should().Be(8.57053m);
+            season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
             season.TotalEpisodesCount.Should().Be(23);
             season.AiredEpisodesCount.Should().Be(23);
@@ -268,7 +268,7 @@
             season.Ids.Tmdb.Should().Be(60523);
             season.Ids.TvRage.Should().Be(36939);
             season.Images.Should().BeNull();
-            season.Rating.Should().Be(8.57053m);
+            season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
             season.TotalEpisodesCount.Should().Be(23);
             season.AiredEpisodesCount.Should().Be(23);
@@ -309,7 +309,7 @@
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
             season.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/thumb/ea214a63c3.jpg");
             season.Images.Thumb.Full.Should().BeNullOrEmpty();
-            season.Rating.Should().Be(8.57053m);
+            season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
             season.TotalEpisodesCount.Should().Be(23);
             season.AiredEpisodesCount.Should().Be(23);
@@ -339,7 +339,7 @@
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
             season.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/thumb/ea214a63c3.jpg");
             season.Images.Thumb.Full.Should().BeNullOrEmpty();
-            season.Rating.Should().Be(8.57053m);
+            season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
             season.TotalEpisodesCount.Should().Be(23);
             season.AiredEpisodesCount.Should().Be(23);
