@@ -12,9 +12,9 @@
 
     public static class TraktAccessTokenGrantTypeExtensions
     {
-        public static string AsString(this TraktAccessTokenGrantType scope)
+        public static string AsString(this TraktAccessTokenGrantType accessTokenGrantType)
         {
-            switch (scope)
+            switch (accessTokenGrantType)
             {
                 case TraktAccessTokenGrantType.AuthorizationCode: return "authorization_code";
                 case TraktAccessTokenGrantType.RefreshToken: return "refresh_token";
@@ -47,8 +47,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var grantType = (TraktAccessTokenGrantType)value;
-            writer.WriteValue(grantType.AsString());
+            var accessTokenGrantType = (TraktAccessTokenGrantType)value;
+            writer.WriteValue(accessTokenGrantType.AsString());
         }
     }
 }

@@ -13,9 +13,9 @@
 
     public static class TraktPeriodExtensions
     {
-        public static string AsString(this TraktPeriod scope)
+        public static string AsString(this TraktPeriod period)
         {
-            switch (scope)
+            switch (period)
             {
                 case TraktPeriod.Weekly: return "weekly";
                 case TraktPeriod.Monthly: return "monthly";

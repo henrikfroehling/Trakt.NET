@@ -17,9 +17,9 @@
 
     public static class TraktSearchLookupIdTypeExtensions
     {
-        public static string AsString(this TraktSearchLookupIdType scope)
+        public static string AsString(this TraktSearchLookupIdType searchLookupIdType)
         {
-            switch (scope)
+            switch (searchLookupIdType)
             {
                 case TraktSearchLookupIdType.TraktMovie: return "trakt-movie";
                 case TraktSearchLookupIdType.TraktShow: return "trakt-show";
@@ -66,8 +66,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var searchIdType = (TraktSearchLookupIdType)value;
-            writer.WriteValue(searchIdType.AsString());
+            var searchLookupIdType = (TraktSearchLookupIdType)value;
+            writer.WriteValue(searchLookupIdType.AsString());
         }
     }
 }

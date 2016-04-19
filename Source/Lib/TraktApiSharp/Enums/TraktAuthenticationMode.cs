@@ -13,9 +13,9 @@
 
     public static class TraktAuthenticationModeExtensions
     {
-        public static string AsString(this TraktAuthenticationMode scope)
+        public static string AsString(this TraktAuthenticationMode authenticationMode)
         {
-            switch (scope)
+            switch (authenticationMode)
             {
                 case TraktAuthenticationMode.Device: return "Device";
                 case TraktAuthenticationMode.OAuth: return "OAuth";
@@ -42,8 +42,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var authMode = (TraktAuthenticationMode)value;
-            writer.WriteValue(authMode.AsString());
+            var authenticationMode = (TraktAuthenticationMode)value;
+            writer.WriteValue(authenticationMode.AsString());
         }
     }
 }

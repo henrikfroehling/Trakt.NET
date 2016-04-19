@@ -14,9 +14,9 @@
 
     public static class TraktAccessScopeExtensions
     {
-        public static string AsString(this TraktAccessScope scope)
+        public static string AsString(this TraktAccessScope accessScope)
         {
-            switch (scope)
+            switch (accessScope)
             {
                 case TraktAccessScope.Public: return "public";
                 case TraktAccessScope.Private: return "private";

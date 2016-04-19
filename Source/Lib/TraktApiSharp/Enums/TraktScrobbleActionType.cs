@@ -14,9 +14,9 @@
 
     public static class TraktScrobbleActionTypeExtensions
     {
-        public static string AsString(this TraktScrobbleActionType scope)
+        public static string AsString(this TraktScrobbleActionType scrobbleActionType)
         {
-            switch (scope)
+            switch (scrobbleActionType)
             {
                 case TraktScrobbleActionType.Unspecified: return "";
                 case TraktScrobbleActionType.Start: return "start";
@@ -44,8 +44,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var actionType = (TraktScrobbleActionType)value;
-            writer.WriteValue(actionType.AsString());
+            var scrobbleActionType = (TraktScrobbleActionType)value;
+            writer.WriteValue(scrobbleActionType.AsString());
         }
     }
 }

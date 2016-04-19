@@ -14,9 +14,9 @@
 
     public static class TraktShowStatusExtensions
     {
-        public static string AsString(this TraktShowStatus scope)
+        public static string AsString(this TraktShowStatus showStatus)
         {
-            switch (scope)
+            switch (showStatus)
             {
                 case TraktShowStatus.ReturningSeries: return "returning series";
                 case TraktShowStatus.InProduction: return "in production";

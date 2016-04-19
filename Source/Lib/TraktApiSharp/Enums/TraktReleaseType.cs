@@ -17,9 +17,9 @@
 
     public static class TraktReleaseTypeExtensions
     {
-        public static string AsString(this TraktReleaseType scope)
+        public static string AsString(this TraktReleaseType releaseType)
         {
-            switch (scope)
+            switch (releaseType)
             {
                 case TraktReleaseType.Unknown: return "unknown";
                 case TraktReleaseType.Premiere: return "premiere";
