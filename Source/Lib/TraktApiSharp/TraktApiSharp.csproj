@@ -52,6 +52,7 @@
     <Compile Include="Authentication\TraktOAuth.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
+    <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />
@@ -89,6 +90,9 @@
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPost.cs" />
     <Compile Include="Objects\Post\Checkins\TraktCheckinPost.cs" />
     <Compile Include="Objects\Post\Checkins\TraktCheckinPostError.cs" />
@@ -178,6 +182,7 @@
     <Compile Include="Objects\Get\Users\TraktUserHiddenItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserImages.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSettings.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\TraktCommentPostResponse.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentReplyPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktEpisodeCommentPost.cs" />
@@ -186,6 +191,9 @@
     <Compile Include="Objects\Post\Comments\TraktSeasonCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktShowCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentUpdatePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\TraktMovieScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\TraktScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />

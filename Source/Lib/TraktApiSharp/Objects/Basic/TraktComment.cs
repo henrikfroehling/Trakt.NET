@@ -10,7 +10,7 @@
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "parent_id")]
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
 
         [JsonProperty(PropertyName = "created_at")]
         public DateTime CreatedAt { get; set; }
