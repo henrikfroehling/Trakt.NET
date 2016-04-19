@@ -89,6 +89,10 @@
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktCheckinEpisode.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktCheckin.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktCheckinError.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktCheckinMovie.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesBoxOfficeItem.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesMostAnticipatedItem.cs" />
     <Compile Include="Objects\Movies\Common\TraktMoviesMostCollectedItem.cs" />
@@ -244,10 +248,6 @@
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Calendars\" />
-    <Folder Include="Objects\Checkins\" />
-    <Folder Include="Objects\Scrobbles\" />
-    <Folder Include="Objects\Syncs\" />
     <Folder Include="Requests\WithOAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
