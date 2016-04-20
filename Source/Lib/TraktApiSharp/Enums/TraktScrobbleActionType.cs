@@ -23,7 +23,7 @@
                 case TraktScrobbleActionType.Pause: return "pause";
                 case TraktScrobbleActionType.Stop: return "scrobble";
                 default:
-                    throw new ArgumentOutOfRangeException("ScrobbleActionType");
+                    throw new NotSupportedException(scrobbleActionType.ToString());
             }
         }
     }

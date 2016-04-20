@@ -88,6 +88,7 @@
     <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
     <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
     <Compile Include="Enums\TraktAuthenticationRequirementTests.cs" />
+    <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />

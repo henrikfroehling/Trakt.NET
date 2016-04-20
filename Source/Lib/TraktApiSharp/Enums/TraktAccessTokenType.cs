@@ -19,7 +19,7 @@
                 case TraktAccessTokenType.Bearer: return "bearer";
                 case TraktAccessTokenType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessTokenType");
+                    throw new NotSupportedException(accessTokenType.ToString());
             }
         }
     }

@@ -24,7 +24,7 @@
                 case TraktShowStatus.Ended: return "ended";
                 case TraktShowStatus.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("ShowStatus");
+                    throw new NotSupportedException(showStatus.ToString());
             }
         }
     }

@@ -23,7 +23,7 @@
                 case TraktHiddenItemType.Season: return "season";
                 case TraktHiddenItemType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("HiddenItemType");
+                    throw new NotSupportedException(hiddenItemType.ToString());
             }
         }
     }

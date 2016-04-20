@@ -23,7 +23,7 @@
                 case TraktPeriod.All: return "all";
                 case TraktPeriod.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("Period");
+                    throw new NotSupportedException(period.ToString());
             }
         }
     }

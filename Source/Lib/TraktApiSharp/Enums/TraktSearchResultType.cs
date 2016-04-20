@@ -27,7 +27,7 @@
                 case TraktSearchResultType.List: return "list";
                 case TraktSearchResultType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("SearchResultType");
+                    throw new NotSupportedException(searchResultType.ToString());
             }
         }
     }

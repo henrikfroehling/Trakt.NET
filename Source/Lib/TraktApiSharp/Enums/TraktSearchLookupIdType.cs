@@ -30,7 +30,7 @@
                 case TraktSearchLookupIdType.TVRage: return "tvrage";
                 case TraktSearchLookupIdType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new NotSupportedException(searchLookupIdType.ToString());
             }
         }
     }

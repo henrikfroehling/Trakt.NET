@@ -21,7 +21,7 @@
                 case TraktAuthenticationMode.OAuth: return "OAuth";
                 case TraktAuthenticationMode.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AuthenticationMode");
+                    throw new NotSupportedException(authenticationMode.ToString());
             }
         }
     }

@@ -23,7 +23,7 @@
                 case TraktAccessScope.Friends: return "friends";
                 case TraktAccessScope.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new NotSupportedException(accessScope.ToString());
             }
         }
     }

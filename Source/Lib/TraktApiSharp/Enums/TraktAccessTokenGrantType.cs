@@ -20,7 +20,7 @@
                 case TraktAccessTokenGrantType.RefreshToken: return "refresh_token";
                 case TraktAccessTokenGrantType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessTokenGrantType");
+                    throw new NotSupportedException(accessTokenGrantType.ToString());
             }
         }
     }
