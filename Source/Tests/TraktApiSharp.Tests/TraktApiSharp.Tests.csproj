@@ -208,6 +208,7 @@
     <Compile Include="Objects\Get\Users\TraktUserSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFriendTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleHiddenItemTests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserStatisticsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponseTests.cs" />
@@ -397,6 +398,7 @@
     <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleHiddenItem.json" />
+    <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
     <None Include="TestData\Objects\Post\Checkins\Responses\CheckinPostErrorResponse.json" />
     <None Include="TestData\Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json" />
     <None Include="TestData\Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json" />
