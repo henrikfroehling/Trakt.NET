@@ -4,11 +4,8 @@
 
     public class TraktCommentUpdatePost
     {
-        [JsonIgnore]
-        public int Id { get; set; }
-
-        [JsonProperty(PropertyName = "message")]
-        public string Message { get; set; }
+        [JsonProperty(PropertyName = "comment")]
+        public string Comment { get; set; }
 
         [JsonProperty(PropertyName = "spoiler")]
         public bool Spoiler { get; set; }

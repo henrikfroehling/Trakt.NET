@@ -206,9 +206,20 @@
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPostTests.cs" />
+    <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Comments\Responses\TraktCommentPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktCommentReplyPostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktCommentUpdatePostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktEpisodeCommentPostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktListCommentPostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktMovieCommentPostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktSeasonCommentPostTests.cs" />
+    <Compile Include="Objects\Post\Comments\TraktShowCommentPostTests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponseTests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktMovieScrobblePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePostTests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
