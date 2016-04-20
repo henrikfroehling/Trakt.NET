@@ -16,7 +16,6 @@
 
             alias.Title.Should().BeNullOrEmpty();
             alias.CountryCode.Should().BeNullOrEmpty();
-            alias.Country.Should().BeNull();
         }
 
         [TestMethod]
@@ -31,7 +30,6 @@
             alias.Should().NotBeNull();
             alias.Title.Should().Be("La guerra de las galaxias. Episodio 7. El despertar de la Fuerza.");
             alias.CountryCode.Should().Be("es");
-            alias.Country.Should().NotBeNull();
         }
     }
 }

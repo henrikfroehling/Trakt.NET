@@ -173,7 +173,6 @@
             shows[0].Certification.Should().Be("TV-14");
             shows[0].Network.Should().Be("BBC One");
             shows[0].CountryCode.Should().Be("gb");
-            shows[0].Country.Should().NotBeNull();
             shows[0].Trailer.Should().Be("http://youtube.com/watch?v=JP5Dr63TbSU");
             shows[0].TrailerUri.Should().NotBeNull();
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
@@ -183,9 +182,7 @@
             shows[0].Votes.Should().Be(22268);
             shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:31:38Z").ToUniversalTime());
             shows[0].LanguageCode.Should().Be("en");
-            shows[0].Language.Should().NotBeNull();
-            shows[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "ru", "zh", "hu"); ;
-            shows[0].AvailableTranslationLanguages.Should().NotBeNull();
+            shows[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "ru", "zh", "hu");
             shows[0].Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "crime", "mystery", "adventure", "thriller");
             shows[0].AiredEpisodes.Should().Be(9);
 
@@ -208,7 +205,6 @@
             shows[1].Certification.Should().Be("TV-MA");
             shows[1].Network.Should().Be("Hulu");
             shows[1].CountryCode.Should().Be("us");
-            shows[1].Country.Should().NotBeNull();
             shows[1].Trailer.Should().Be("http://youtube.com/watch?v=NXUx__qQGew");
             shows[1].TrailerUri.Should().NotBeNull();
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
@@ -218,9 +214,7 @@
             shows[1].Votes.Should().Be(607);
             shows[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:47:40Z").ToUniversalTime());
             shows[1].LanguageCode.Should().Be("en");
-            shows[1].Language.Should().NotBeNull();
-            shows[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "bs", "he"); ;
-            shows[1].AvailableTranslationLanguages.Should().NotBeNull();
+            shows[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "bs", "he");
             shows[1].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("science-fiction", "drama", "fantasy");
             shows[1].AiredEpisodes.Should().Be(8);
         }
@@ -269,7 +263,6 @@
             shows[0].Certification.Should().Be("TV-14");
             shows[0].Network.Should().Be("BBC One");
             shows[0].CountryCode.Should().Be("gb");
-            shows[0].Country.Should().NotBeNull();
             shows[0].Trailer.Should().Be("http://youtube.com/watch?v=JP5Dr63TbSU");
             shows[0].TrailerUri.Should().NotBeNull();
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
@@ -279,9 +272,7 @@
             shows[0].Votes.Should().Be(22268);
             shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:31:38Z").ToUniversalTime());
             shows[0].LanguageCode.Should().Be("en");
-            shows[0].Language.Should().NotBeNull();
-            shows[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "ru", "zh", "hu"); ;
-            shows[0].AvailableTranslationLanguages.Should().NotBeNull();
+            shows[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "ru", "zh", "hu");
             shows[0].Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "crime", "mystery", "adventure", "thriller");
             shows[0].AiredEpisodes.Should().Be(9);
 
@@ -315,7 +306,6 @@
             shows[1].Certification.Should().Be("TV-MA");
             shows[1].Network.Should().Be("Hulu");
             shows[1].CountryCode.Should().Be("us");
-            shows[1].Country.Should().NotBeNull();
             shows[1].Trailer.Should().Be("http://youtube.com/watch?v=NXUx__qQGew");
             shows[1].TrailerUri.Should().NotBeNull();
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
@@ -325,9 +315,7 @@
             shows[1].Votes.Should().Be(607);
             shows[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T19:47:40Z").ToUniversalTime());
             shows[1].LanguageCode.Should().Be("en");
-            shows[1].Language.Should().NotBeNull();
-            shows[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "bs", "he"); ;
-            shows[1].AvailableTranslationLanguages.Should().NotBeNull();
+            shows[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "bs", "he");
             shows[1].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("science-fiction", "drama", "fantasy");
             shows[1].AiredEpisodes.Should().Be(8);
         }

@@ -266,6 +266,7 @@
     <Compile Include="Requests\Base\Put\TraktPutRequest.cs" />
     <Compile Include="Requests\Base\TraktRequest.cs" />
     <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
+    <Compile Include="Services\LanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
   <ItemGroup>

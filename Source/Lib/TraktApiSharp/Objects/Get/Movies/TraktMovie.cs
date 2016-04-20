@@ -3,7 +3,6 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     public class TraktMovie
     {
@@ -73,50 +72,8 @@
         [JsonProperty(PropertyName = "language")]
         public string LanguageCode { get; set; }
 
-        [JsonIgnore]
-        public string Language
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(LanguageCode))
-                    return null;
-
-                try
-                {
-                    return new CultureInfo(LanguageCode).DisplayName;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
-
-        [JsonIgnore]
-        public List<string> AvailableTranslationLanguages
-        {
-            get
-            {
-                if (AvailableTranslationLanguageCodes == null)
-                    return null;
-
-                var languages = new List<string>();
-
-                foreach (var languageCode in AvailableTranslationLanguageCodes)
-                {
-                    try
-                    {
-                        languages.Add(new RegionInfo(languageCode).DisplayName);
-                    }
-                    catch { }
-                }
-
-                return languages;
-            }
-        }
 
         [JsonProperty(PropertyName = "genres")]
         public IEnumerable<string> Genres { get; set; }

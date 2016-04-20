@@ -20,7 +20,6 @@
             show.Year.Should().Be(0);
             show.Airs.Should().BeNull();
             show.AvailableTranslationLanguageCodes.Should().BeNull();
-            show.AvailableTranslationLanguages.Should().BeNull();
             show.Ids.Should().BeNull();
             show.Images.Should().BeNull();
             show.Genres.Should().BeNull();
@@ -31,7 +30,6 @@
             show.Certification.Should().BeNullOrEmpty();
             show.Network.Should().BeNullOrEmpty();
             show.CountryCode.Should().BeNullOrEmpty();
-            show.Country.Should().BeNullOrEmpty();
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.TrailerUri.Should().BeNull();
@@ -41,7 +39,6 @@
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
-            show.Language.Should().BeNull();
             show.AiredEpisodes.Should().NotHaveValue();
         }
 
@@ -59,7 +56,6 @@
             show.Year.Should().Be(2011);
             show.Airs.Should().BeNull();
             show.AvailableTranslationLanguageCodes.Should().BeNull();
-            show.AvailableTranslationLanguages.Should().BeNull();
             show.Ids.Should().NotBeNull();
             show.Ids.Trakt.Should().Be(1390);
             show.Ids.Slug.Should().Be("game-of-thrones");
@@ -76,7 +72,6 @@
             show.Certification.Should().BeNullOrEmpty();
             show.Network.Should().BeNullOrEmpty();
             show.CountryCode.Should().BeNullOrEmpty();
-            show.Country.Should().BeNullOrEmpty();
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.TrailerUri.Should().BeNull();
@@ -86,7 +81,6 @@
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
-            show.Language.Should().BeNull();
             show.AiredEpisodes.Should().NotHaveValue();
         }
 
@@ -104,7 +98,6 @@
             show.Year.Should().Be(2011);
             show.Airs.Should().BeNull();
             show.AvailableTranslationLanguageCodes.Should().BeNull();
-            show.AvailableTranslationLanguages.Should().BeNull();
             show.Ids.Should().NotBeNull();
             show.Ids.Trakt.Should().Be(1390);
             show.Ids.Slug.Should().Be("game-of-thrones");
@@ -121,7 +114,6 @@
             show.Certification.Should().BeNullOrEmpty();
             show.Network.Should().BeNullOrEmpty();
             show.CountryCode.Should().BeNullOrEmpty();
-            show.Country.Should().BeNullOrEmpty();
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.TrailerUri.Should().BeNull();
@@ -131,7 +123,6 @@
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
-            show.Language.Should().BeNull();
             show.AiredEpisodes.Should().NotHaveValue();
         }
 
@@ -149,7 +140,6 @@
             show.Year.Should().Be(2011);
             show.Airs.Should().BeNull();
             show.AvailableTranslationLanguageCodes.Should().BeNull();
-            show.AvailableTranslationLanguages.Should().BeNull();
             show.Ids.Should().NotBeNull();
             show.Ids.Trakt.Should().Be(1390);
             show.Ids.Slug.Should().Be("game-of-thrones");
@@ -176,7 +166,6 @@
             show.Certification.Should().BeNullOrEmpty();
             show.Network.Should().BeNullOrEmpty();
             show.CountryCode.Should().BeNullOrEmpty();
-            show.Country.Should().BeNullOrEmpty();
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.TrailerUri.Should().BeNull();
@@ -186,7 +175,6 @@
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
-            show.Language.Should().BeNull();
             show.AiredEpisodes.Should().NotHaveValue();
         }
 
@@ -207,7 +195,6 @@
             show.Airs.Time.Should().Be("21:00");
             show.Airs.TimeZoneId.Should().Be("America/New_York");
             show.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
-            show.AvailableTranslationLanguages.Should().NotBeNull();
             show.Ids.Should().NotBeNull();
             show.Ids.Trakt.Should().Be(1390);
             show.Ids.Slug.Should().Be("game-of-thrones");
@@ -224,7 +211,6 @@
             show.Certification.Should().Be("TV-MA");
             show.Network.Should().Be("HBO");
             show.CountryCode.Should().Be("us");
-            show.Country.Should().NotBeNull();
             show.UpdatedAt.Should().Be(DateTime.Parse("2016-04-06T10:39:11Z").ToUniversalTime());
             show.Trailer.Should().Be("http://youtube.com/watch?v=F9Bo89m2f6g");
             show.TrailerUri.Should().NotBeNull();
@@ -234,7 +220,6 @@
             show.Rating.Should().Be(9.38327f);
             show.Votes.Should().Be(44773);
             show.LanguageCode.Should().Be("en");
-            show.Language.Should().NotBeNull();
             show.AiredEpisodes.Should().Be(50);
         }
 
@@ -255,7 +240,6 @@
             show.Airs.Time.Should().Be("21:00");
             show.Airs.TimeZoneId.Should().Be("America/New_York");
             show.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
-            show.AvailableTranslationLanguages.Should().NotBeNull();
             show.Ids.Should().NotBeNull();
             show.Ids.Trakt.Should().Be(1390);
             show.Ids.Slug.Should().Be("game-of-thrones");
@@ -282,7 +266,6 @@
             show.Certification.Should().Be("TV-MA");
             show.Network.Should().Be("HBO");
             show.CountryCode.Should().Be("us");
-            show.Country.Should().NotBeNull();
             show.UpdatedAt.Should().Be(DateTime.Parse("2016-04-06T10:39:11Z").ToUniversalTime());
             show.Trailer.Should().Be("http://youtube.com/watch?v=F9Bo89m2f6g");
             show.TrailerUri.Should().NotBeNull();
@@ -292,7 +275,6 @@
             show.Rating.Should().Be(9.38327f);
             show.Votes.Should().Be(44773);
             show.LanguageCode.Should().Be("en");
-            show.Language.Should().NotBeNull();
             show.AiredEpisodes.Should().Be(50);
         }
     }

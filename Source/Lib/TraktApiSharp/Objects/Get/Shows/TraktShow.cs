@@ -5,7 +5,6 @@
     using Seasons;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A Trakt show.
@@ -89,28 +88,6 @@
         public string CountryCode { get; set; }
 
         /// <summary>
-        /// The country in which the show is produced.
-        /// </summary>
-        [JsonIgnore]
-        public string Country
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(CountryCode))
-                    return null;
-
-                try
-                {
-                    return new RegionInfo(CountryCode).DisplayName;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        /// <summary>
         /// The address of a trailer for the show.
         /// </summary>
         [JsonProperty(PropertyName = "trailer")]
@@ -174,58 +151,10 @@
         public string LanguageCode { get; set; }
 
         /// <summary>
-        /// The language of the show.
-        /// </summary>
-        [JsonIgnore]
-        public string Language
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(LanguageCode))
-                    return null;
-
-                try
-                {
-                    return new CultureInfo(LanguageCode).DisplayName;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        /// <summary>
         /// A list of translation language codes (two letters) for the show.
         /// </summary>
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
-
-        /// <summary>
-        /// A list of translation languages for the show.
-        /// </summary>
-        [JsonIgnore]
-        public List<string> AvailableTranslationLanguages
-        {
-            get
-            {
-                if (AvailableTranslationLanguageCodes == null)
-                    return null;
-
-                var languages = new List<string>();
-
-                foreach (var languageCode in AvailableTranslationLanguageCodes)
-                {
-                    try
-                    {
-                        languages.Add(new RegionInfo(languageCode).DisplayName);
-                    }
-                    catch { }
-                }
-
-                return languages;
-            }
-        }
 
         /// <summary>
         /// A collection of genres for the show.

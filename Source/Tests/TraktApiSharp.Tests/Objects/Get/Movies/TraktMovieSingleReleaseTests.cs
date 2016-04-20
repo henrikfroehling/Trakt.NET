@@ -17,7 +17,6 @@
             var release = new TraktMovieRelease();
 
             release.CountryCode.Should().BeNullOrEmpty();
-            release.Country.Should().BeNull();
             release.Certification.Should().BeNullOrEmpty();
             release.ReleaseDate.Should().Be(DateTime.MinValue);
             release.ReleaseType.Should().Be(TraktReleaseType.Unknown);
@@ -35,7 +34,6 @@
 
             release.Should().NotBeNull();
             release.CountryCode.Should().Be("us");
-            release.Country.Should().NotBeNull();
             release.Certification.Should().Be("PG-13");
             release.ReleaseDate.Should().Be(DateTime.Parse("2015-12-14"));
             release.ReleaseType.Should().Be(TraktReleaseType.Premiere);

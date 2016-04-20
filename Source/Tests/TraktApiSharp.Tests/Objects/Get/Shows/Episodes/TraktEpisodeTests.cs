@@ -27,7 +27,6 @@
             episode.Ids.Should().BeNull();
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
-            episode.AvailableTranslationLanguages.Should().BeNull();
         }
 
         [TestMethod]
@@ -57,7 +56,6 @@
             episode.Ids.TvRage.Should().Be(1065008299);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
-            episode.AvailableTranslationLanguages.Should().BeNull();
         }
 
         [TestMethod]
@@ -87,7 +85,6 @@
             episode.Ids.TvRage.Should().Be(1065008299);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
-            episode.AvailableTranslationLanguages.Should().BeNull();
         }
 
         [TestMethod]
@@ -121,7 +118,6 @@
             episode.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
             episode.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
-            episode.AvailableTranslationLanguages.Should().BeNull();
         }
 
         [TestMethod]
@@ -151,7 +147,6 @@
             episode.Ids.TvRage.Should().Be(1065008299);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
-            episode.AvailableTranslationLanguages.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -185,7 +180,6 @@
             episode.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
             episode.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             episode.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
-            episode.AvailableTranslationLanguages.Should().NotBeNull();
         }
     }
 }

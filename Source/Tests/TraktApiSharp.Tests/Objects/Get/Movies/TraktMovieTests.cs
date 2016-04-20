@@ -31,9 +31,7 @@
             movie.Rating.Should().NotHaveValue();
             movie.Votes.Should().NotHaveValue();
             movie.LanguageCode.Should().BeNullOrEmpty();
-            movie.Language.Should().BeNull();
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
-            movie.AvailableTranslationLanguages.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
         }
@@ -68,9 +66,7 @@
             movie.Rating.Should().NotHaveValue();
             movie.Votes.Should().NotHaveValue();
             movie.LanguageCode.Should().BeNullOrEmpty();
-            movie.Language.Should().BeNull();
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
-            movie.AvailableTranslationLanguages.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
         }
@@ -105,9 +101,7 @@
             movie.Rating.Should().NotHaveValue();
             movie.Votes.Should().NotHaveValue();
             movie.LanguageCode.Should().BeNullOrEmpty();
-            movie.Language.Should().BeNull();
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
-            movie.AvailableTranslationLanguages.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
         }
@@ -152,9 +146,7 @@
             movie.Rating.Should().NotHaveValue();
             movie.Votes.Should().NotHaveValue();
             movie.LanguageCode.Should().BeNullOrEmpty();
-            movie.Language.Should().BeNull();
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
-            movie.AvailableTranslationLanguages.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
         }
@@ -189,9 +181,7 @@
             movie.Rating.Should().Be(8.31988f);
             movie.Votes.Should().Be(9338);
             movie.LanguageCode.Should().Be("en");
-            movie.Language.Should().NotBeNull();
             movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
-            movie.AvailableTranslationLanguages.Should().NotBeNull();
             movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             movie.Certification.Should().Be("PG-13");
         }
@@ -236,9 +226,7 @@
             movie.Rating.Should().Be(8.31988f);
             movie.Votes.Should().Be(9338);
             movie.LanguageCode.Should().Be("en");
-            movie.Language.Should().NotBeNull();
             movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
-            movie.AvailableTranslationLanguages.Should().NotBeNull();
             movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             movie.Certification.Should().Be("PG-13");
         }

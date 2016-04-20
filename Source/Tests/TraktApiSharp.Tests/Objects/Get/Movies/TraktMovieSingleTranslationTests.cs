@@ -18,7 +18,6 @@
             translation.Overview.Should().BeNullOrEmpty();
             translation.Tagline.Should().BeNullOrEmpty();
             translation.LanguageCode.Should().BeNullOrEmpty();
-            translation.Language.Should().BeNull();
         }
 
         [TestMethod]
@@ -35,7 +34,6 @@
             translation.Overview.Should().Be("A continuation of the saga created by George Lucas, set thirty years after Star Wars: Episode VI – Return of the Jedi.");
             translation.Tagline.Should().Be("The Force Lives On...");
             translation.LanguageCode.Should().Be("en");
-            translation.Language.Should().NotBeNull();
         }
     }
 }

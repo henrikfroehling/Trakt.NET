@@ -160,9 +160,7 @@
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
             movies[0].LanguageCode.Should().Be("en");
-            movies[0].Language.Should().NotBeNull();
             movies[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "fr", "it");
-            movies[0].AvailableTranslationLanguages.Should().NotBeNull();
             movies[0].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("action", "adventure", "science-fiction");
             movies[0].Certification.Should().Be("PG");
 
@@ -185,9 +183,7 @@
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());
             movies[1].LanguageCode.Should().Be("en");
-            movies[1].Language.Should().NotBeNull();
             movies[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "fr", "it");
-            movies[1].AvailableTranslationLanguages.Should().NotBeNull();
             movies[1].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("action", "adventure", "science-fiction");
             movies[1].Certification.Should().Be("PG");
         }
@@ -236,9 +232,7 @@
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
             movies[0].LanguageCode.Should().Be("en");
-            movies[0].Language.Should().NotBeNull();
             movies[0].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "fr", "it");
-            movies[0].AvailableTranslationLanguages.Should().NotBeNull();
             movies[0].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("action", "adventure", "science-fiction");
             movies[0].Certification.Should().Be("PG");
 
@@ -272,9 +266,7 @@
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());
             movies[1].LanguageCode.Should().Be("en");
-            movies[1].Language.Should().NotBeNull();
             movies[1].AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "fr", "it");
-            movies[1].AvailableTranslationLanguages.Should().NotBeNull();
             movies[1].Genres.Should().NotBeNull().And.HaveCount(3).And.Contain("action", "adventure", "science-fiction");
             movies[1].Certification.Should().Be("PG");
         }

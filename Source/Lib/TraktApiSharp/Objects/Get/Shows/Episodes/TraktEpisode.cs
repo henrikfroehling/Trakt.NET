@@ -3,7 +3,6 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// A Trakt episode of a Trakt season.
@@ -91,32 +90,6 @@
         /// </summary>
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
-
-        /// <summary>
-        /// A list of translation languages for the episode.
-        /// </summary>
-        [JsonIgnore]
-        public List<string> AvailableTranslationLanguages
-        {
-            get
-            {
-                if (AvailableTranslationLanguageCodes == null)
-                    return null;
-
-                var languages = new List<string>();
-
-                foreach (var languageCode in AvailableTranslationLanguageCodes)
-                {
-                    try
-                    {
-                        languages.Add(new RegionInfo(languageCode).DisplayName);
-                    }
-                    catch { }
-                }
-
-                return languages;
-            }
-        }
 
         #endregion
     }

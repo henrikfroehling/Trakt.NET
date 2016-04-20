@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     using Newtonsoft.Json;
-    using System.Globalization;
 
     public class TraktMovieTranslation
     {
@@ -16,24 +15,5 @@
 
         [JsonProperty(PropertyName = "language")]
         public string LanguageCode { get; set; }
-
-        [JsonIgnore]
-        public string Language
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(LanguageCode))
-                    return null;
-
-                try
-                {
-                    return new CultureInfo(LanguageCode).DisplayName;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
     }
 }

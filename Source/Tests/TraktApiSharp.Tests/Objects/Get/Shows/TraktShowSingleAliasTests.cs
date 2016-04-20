@@ -16,7 +16,6 @@
 
             alias.Title.Should().BeNullOrEmpty();
             alias.CountryCode.Should().BeNullOrEmpty();
-            alias.Country.Should().BeNull();
         }
 
         [TestMethod]
@@ -31,7 +30,6 @@
             alias.Should().NotBeNull();
             alias.Title.Should().Be("Game of Thrones- Das Lied von Eis und Feuer");
             alias.CountryCode.Should().Be("de");
-            alias.Country.Should().NotBeNull();
         }
     }
 }
