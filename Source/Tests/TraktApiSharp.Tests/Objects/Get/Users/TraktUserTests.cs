@@ -16,7 +16,7 @@
             var user = new TraktUser();
 
             user.Username.Should().BeNullOrEmpty();
-            user.Private.Should().NotHaveValue();
+            user.Private.Should().BeFalse();
             user.Name.Should().BeNullOrEmpty();
             user.VIP.Should().NotHaveValue();
             user.VIP_EP.Should().NotHaveValue();

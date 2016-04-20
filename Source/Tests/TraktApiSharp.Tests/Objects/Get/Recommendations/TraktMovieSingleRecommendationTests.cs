@@ -15,7 +15,7 @@
             var movieRecommendation = new TraktMovieRecommendation();
 
             movieRecommendation.Title.Should().BeNullOrEmpty();
-            movieRecommendation.Year.Should().NotHaveValue();
+            movieRecommendation.Year.Should().Be(0);
             movieRecommendation.Ids.Should().BeNull();
         }
 

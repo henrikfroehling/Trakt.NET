@@ -14,13 +14,13 @@
         {
             var seasonStats = new TraktSeasonStatistics();
 
-            seasonStats.Watchers.Should().NotHaveValue();
-            seasonStats.Plays.Should().NotHaveValue();
-            seasonStats.Collectors.Should().NotHaveValue();
+            seasonStats.Watchers.Should().Be(0);
+            seasonStats.Plays.Should().Be(0);
+            seasonStats.Collectors.Should().Be(0);
             seasonStats.CollectedEpisodes.Should().NotHaveValue();
-            seasonStats.Comments.Should().NotHaveValue();
-            seasonStats.Lists.Should().NotHaveValue();
-            seasonStats.Votes.Should().NotHaveValue();
+            seasonStats.Comments.Should().Be(0);
+            seasonStats.Lists.Should().Be(0);
+            seasonStats.Votes.Should().Be(0);
         }
 
         [TestMethod]

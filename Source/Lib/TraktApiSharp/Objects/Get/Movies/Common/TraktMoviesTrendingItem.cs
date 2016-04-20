@@ -5,7 +5,7 @@
     public class TraktMoviesTrendingItem
     {
         [JsonProperty(PropertyName = "watchers")]
-        public int? Watchers { get; set; }
+        public int Watchers { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

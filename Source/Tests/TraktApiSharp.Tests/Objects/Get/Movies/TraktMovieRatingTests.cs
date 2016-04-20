@@ -15,8 +15,8 @@
         {
             var movieRating = new TraktMovieRating();
 
-            movieRating.Rating.Should().NotHaveValue();
-            movieRating.Votes.Should().NotHaveValue();
+            movieRating.Rating.Should().Be(0.0f);
+            movieRating.Votes.Should().Be(0);
             movieRating.Distribution.Should().BeNull();
         }
 

@@ -12,7 +12,7 @@
         /// The Trakt numeric id for the person.
         /// </summary>
         [JsonProperty(PropertyName = "trakt")]
-        public int? Trakt { get; set; }
+        public int Trakt { get; set; }
 
         /// <summary>
         /// The Trakt slug for the person.
@@ -49,8 +49,8 @@
         /// <returns>The id as a string.</returns>
         public string GetBestId()
         {
-            if (Trakt.GetValueOrDefault() > 0)
-                return Trakt.GetValueOrDefault().ToString(CultureInfo.InvariantCulture);
+            if (Trakt > 0)
+                return Trakt.ToString(CultureInfo.InvariantCulture);
 
             if (!string.IsNullOrEmpty(Slug))
                 return Slug;

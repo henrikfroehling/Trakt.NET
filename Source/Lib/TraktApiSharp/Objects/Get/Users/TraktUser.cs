@@ -9,7 +9,7 @@
         public string Username { get; set; }
 
         [JsonProperty(PropertyName = "private")]
-        public bool? Private { get; set; }
+        public bool Private { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

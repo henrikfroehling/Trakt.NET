@@ -6,7 +6,7 @@
     public class TraktShowsRecentlyUpdatedItem
     {
         [JsonProperty(PropertyName = "updated_at")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "show")]
         public TraktShow Show { get; set; }

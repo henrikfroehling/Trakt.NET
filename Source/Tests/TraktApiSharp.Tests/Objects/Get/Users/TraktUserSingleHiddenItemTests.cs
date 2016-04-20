@@ -16,7 +16,7 @@
         {
             var hiddenItem = new TraktUserHiddenItem();
 
-            hiddenItem.HiddenAt.Should().NotHaveValue();
+            hiddenItem.HiddenAt.Should().Be(DateTime.MinValue);
             hiddenItem.Type.Should().Be(TraktHiddenItemType.Unspecified);
             hiddenItem.Movie.Should().BeNull();
             hiddenItem.Show.Should().BeNull();

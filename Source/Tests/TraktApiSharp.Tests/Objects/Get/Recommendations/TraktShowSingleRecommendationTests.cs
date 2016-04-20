@@ -15,7 +15,7 @@
             var showRecommendation = new TraktShowRecommendation();
 
             showRecommendation.Title.Should().BeNullOrEmpty();
-            showRecommendation.Year.Should().NotHaveValue();
+            showRecommendation.Year.Should().Be(0);
             showRecommendation.Ids.Should().BeNull();
         }
 

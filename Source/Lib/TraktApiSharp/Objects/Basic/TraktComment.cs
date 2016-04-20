@@ -19,16 +19,16 @@
         public string Comment { get; set; }
 
         [JsonProperty(PropertyName = "spoiler")]
-        public bool? Spoiler { get; set; }
+        public bool Spoiler { get; set; }
 
         [JsonProperty(PropertyName = "review")]
-        public bool? Review { get; set; }
+        public bool Review { get; set; }
 
         [JsonProperty(PropertyName = "replies")]
-        public int? Replies { get; set; }
+        public int Replies { get; set; }
 
         [JsonProperty(PropertyName = "likes")]
-        public int? Likes { get; set; }
+        public int Likes { get; set; }
 
         [JsonProperty(PropertyName = "user_rating")]
         public float? UserRating { get; set; }

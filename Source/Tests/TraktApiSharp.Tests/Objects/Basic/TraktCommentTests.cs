@@ -19,10 +19,10 @@
             comment.ParentId.Should().Be(0);
             comment.CreatedAt.Should().Be(DateTime.MinValue);
             comment.Comment.Should().BeNullOrEmpty();
-            comment.Spoiler.Should().NotHaveValue();
-            comment.Review.Should().NotHaveValue();
-            comment.Replies.Should().NotHaveValue();
-            comment.Likes.Should().NotHaveValue();
+            comment.Spoiler.Should().BeFalse();
+            comment.Review.Should().BeFalse();
+            comment.Replies.Should().Be(0);
+            comment.Likes.Should().Be(0);
             comment.UserRating.Should().NotHaveValue();
             comment.User.Should().BeNull();
         }

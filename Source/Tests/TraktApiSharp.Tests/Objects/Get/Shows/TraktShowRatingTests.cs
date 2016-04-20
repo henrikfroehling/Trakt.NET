@@ -15,8 +15,8 @@
         {
             var showRating = new TraktShowRating();
 
-            showRating.Rating.Should().NotHaveValue();
-            showRating.Votes.Should().NotHaveValue();
+            showRating.Rating.Should().Be(0.0f);
+            showRating.Votes.Should().Be(0);
             showRating.Distribution.Should().BeNull();
         }
 

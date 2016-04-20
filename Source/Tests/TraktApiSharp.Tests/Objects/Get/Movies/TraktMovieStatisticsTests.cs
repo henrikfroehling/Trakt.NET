@@ -14,13 +14,13 @@
         {
             var movieStats = new TraktMovieStatistics();
 
-            movieStats.Watchers.Should().NotHaveValue();
-            movieStats.Plays.Should().NotHaveValue();
-            movieStats.Collectors.Should().NotHaveValue();
+            movieStats.Watchers.Should().Be(0);
+            movieStats.Plays.Should().Be(0);
+            movieStats.Collectors.Should().Be(0);
             movieStats.CollectedEpisodes.Should().NotHaveValue();
-            movieStats.Comments.Should().NotHaveValue();
-            movieStats.Lists.Should().NotHaveValue();
-            movieStats.Votes.Should().NotHaveValue();
+            movieStats.Comments.Should().Be(0);
+            movieStats.Lists.Should().Be(0);
+            movieStats.Votes.Should().Be(0);
         }
 
         [TestMethod]

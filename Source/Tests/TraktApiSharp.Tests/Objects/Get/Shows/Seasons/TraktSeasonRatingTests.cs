@@ -15,8 +15,8 @@
         {
             var seasonRating = new TraktSeasonRating();
 
-            seasonRating.Rating.Should().NotHaveValue();
-            seasonRating.Votes.Should().NotHaveValue();
+            seasonRating.Rating.Should().Be(0.0f);
+            seasonRating.Votes.Should().Be(0);
             seasonRating.Distribution.Should().BeNull();
         }
 

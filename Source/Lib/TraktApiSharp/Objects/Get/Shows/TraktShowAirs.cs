@@ -1,15 +1,12 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows
 {
     using Newtonsoft.Json;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The air time of a Trakt show.
     /// </summary>
     public class TraktShowAirs
     {
-        private static List<string> DAYS = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
         /// <summary>
         /// The day of week on which the show airs.
         /// </summary>

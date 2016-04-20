@@ -15,8 +15,8 @@
         {
             var episodeRating = new TraktEpisodeRating();
 
-            episodeRating.Rating.Should().NotHaveValue();
-            episodeRating.Votes.Should().NotHaveValue();
+            episodeRating.Rating.Should().Be(0.0f);
+            episodeRating.Votes.Should().Be(0);
             episodeRating.Distribution.Should().BeNull();
         }
 

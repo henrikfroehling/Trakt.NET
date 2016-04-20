@@ -19,7 +19,7 @@
             release.CountryCode.Should().BeNullOrEmpty();
             release.Country.Should().BeNull();
             release.Certification.Should().BeNullOrEmpty();
-            release.ReleaseDate.Should().NotHaveValue();
+            release.ReleaseDate.Should().Be(DateTime.MinValue);
             release.ReleaseType.Should().Be(TraktReleaseType.Unknown);
             release.Note.Should().BeNullOrEmpty();
         }

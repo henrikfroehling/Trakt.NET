@@ -16,7 +16,7 @@
         {
             var boxOfficeMovie = new TraktMoviesBoxOfficeItem();
 
-            boxOfficeMovie.Revenue.Should().NotHaveValue();
+            boxOfficeMovie.Revenue.Should().Be(0);
             boxOfficeMovie.Movie.Should().BeNull();
         }
 

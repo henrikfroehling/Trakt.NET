@@ -14,13 +14,13 @@
         {
             var episodeStats = new TraktEpisodeStatistics();
 
-            episodeStats.Watchers.Should().NotHaveValue();
-            episodeStats.Plays.Should().NotHaveValue();
-            episodeStats.Collectors.Should().NotHaveValue();
+            episodeStats.Watchers.Should().Be(0);
+            episodeStats.Plays.Should().Be(0);
+            episodeStats.Collectors.Should().Be(0);
             episodeStats.CollectedEpisodes.Should().NotHaveValue();
-            episodeStats.Comments.Should().NotHaveValue();
-            episodeStats.Lists.Should().NotHaveValue();
-            episodeStats.Votes.Should().NotHaveValue();
+            episodeStats.Comments.Should().Be(0);
+            episodeStats.Lists.Should().Be(0);
+            episodeStats.Votes.Should().Be(0);
         }
 
         [TestMethod]

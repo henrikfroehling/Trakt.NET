@@ -6,7 +6,7 @@
     public class TraktMoviesRecentlyUpdatedItem
     {
         [JsonProperty(PropertyName = "updated_at")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

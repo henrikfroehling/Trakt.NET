@@ -16,7 +16,7 @@
             var settings = new TraktAccountSettings();
 
             settings.TimeZoneId.Should().BeNullOrEmpty();
-            settings.Time24Hr.Should().NotHaveValue();
+            settings.Time24Hr.Should().BeFalse();
             settings.CoverImage.Should().BeNullOrEmpty();
         }
 

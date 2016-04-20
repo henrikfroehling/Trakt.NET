@@ -17,7 +17,7 @@
         {
             var updatedMovie = new TraktMoviesRecentlyUpdatedItem();
 
-            updatedMovie.UpdatedAt.Should().NotHaveValue();
+            updatedMovie.UpdatedAt.Should().Be(DateTime.MinValue);
             updatedMovie.Movie.Should().BeNull();
         }
 

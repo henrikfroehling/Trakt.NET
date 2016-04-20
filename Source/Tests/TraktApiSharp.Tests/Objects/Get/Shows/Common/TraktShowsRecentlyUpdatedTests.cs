@@ -17,7 +17,7 @@
         {
             var updatedShow = new TraktShowsRecentlyUpdatedItem();
 
-            updatedShow.UpdatedAt.Should().NotHaveValue();
+            updatedShow.UpdatedAt.Should().Be(DateTime.MinValue);
             updatedShow.Show.Should().BeNull();
         }
 

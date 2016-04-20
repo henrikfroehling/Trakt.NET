@@ -5,7 +5,7 @@
     public class TraktShowsMostAnticipatedItem
     {
         [JsonProperty(PropertyName = "list_count")]
-        public int? ListCount { get; set; }
+        public int ListCount { get; set; }
 
         [JsonProperty(PropertyName = "show")]
         public TraktShow Show { get; set; }
