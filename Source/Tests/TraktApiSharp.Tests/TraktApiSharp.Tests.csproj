@@ -120,6 +120,8 @@
     <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarAllMoviesTests.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarAllShowsTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesBoxOfficeTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostCollectedTests.cs" />
@@ -272,6 +274,8 @@
     <None Include="TestData\Objects\Basic\Search\SearchResultShow.json" />
     <None Include="TestData\Objects\Basic\Sharing.json" />
     <None Include="TestData\Objects\Basic\Statistics.json" />
+    <None Include="TestData\Objects\Get\Calendars\CalendarAllMovies.json" />
+    <None Include="TestData\Objects\Get\Calendars\CalendarAllShows.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesBoxOffice.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostAnticipated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostCollected.json" />

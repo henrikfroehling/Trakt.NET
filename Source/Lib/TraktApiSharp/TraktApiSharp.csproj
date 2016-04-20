@@ -90,6 +90,8 @@
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
