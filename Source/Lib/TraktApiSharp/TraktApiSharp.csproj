@@ -52,6 +52,8 @@
     <Compile Include="Authentication\TraktOAuth.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
+    <Compile Include="Enums\TraktCommentSortOrder.cs" />
+    <Compile Include="Enums\TraktHiddenItemsSection.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
@@ -93,6 +95,15 @@
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchedProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonCollectionProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchedProgress.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowProgress.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />

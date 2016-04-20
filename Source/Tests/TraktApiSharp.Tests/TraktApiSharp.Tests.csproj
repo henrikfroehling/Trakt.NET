@@ -168,6 +168,7 @@
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchingUsersTests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowCollectionProgressTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAliasesTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowPeopleTests.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Objects\Get\Shows\TraktShowStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowTranslationsTests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowWatchedProgressTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchingUsersTests.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktCastMemberTests.cs" />
@@ -357,6 +359,8 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\ShowAliases.json" />
+    <None Include="TestData\Objects\Get\Shows\ShowCollectionProgress.json" />
+    <None Include="TestData\Objects\Get\Shows\ShowCollectionProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowComments.json" />
     <None Include="TestData\Objects\Get\Shows\ShowPeople.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRatings.json" />
@@ -374,6 +378,8 @@
     <None Include="TestData\Objects\Get\Shows\ShowSummaryMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\ShowTranslations.json" />
+    <None Include="TestData\Objects\Get\Shows\ShowWatchedProgress.json" />
+    <None Include="TestData\Objects\Get\Shows\ShowWatchedProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />

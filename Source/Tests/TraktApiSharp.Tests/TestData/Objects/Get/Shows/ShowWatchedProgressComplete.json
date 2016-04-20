@@ -1,0 +1,56 @@
+﻿{
+  "aired": 6,
+  "completed": 6,
+  "last_watched_at": "2015-03-21T19:03:58.000Z",
+  "seasons": [
+    {
+      "number": 1,
+      "aired": 6,
+      "completed": 6,
+      "episodes": [
+        {
+          "number": 1,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 2,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 3,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 4,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 5,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 6,
+          "completed": true,
+          "last_watched_at": "2015-03-21T19:03:58.000Z"
+        }
+      ]
+    }
+  ],
+  "hidden_seasons": [
+    {
+      "number": 2,
+      "ids": {
+        "trakt": 3051,
+        "tvdb": 498968,
+        "tmdb": 53334,
+        "tvrage": null
+      }
+    }
+  ],
+  "next_episode": null
+}
