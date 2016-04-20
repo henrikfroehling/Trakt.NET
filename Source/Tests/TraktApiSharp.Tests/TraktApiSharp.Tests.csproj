@@ -101,6 +101,7 @@
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktSeasonExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
+    <Compile Include="Enums\TraktSyncTypeTests.cs" />
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncLastActivitiesTests.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListCommentsTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
@@ -384,6 +386,8 @@
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Syncs\SyncLastActivities.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncPlaybackProgressItemEpisode.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncPlaybackProgressItemMovie.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />

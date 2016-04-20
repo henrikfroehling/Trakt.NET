@@ -66,6 +66,7 @@
     <Compile Include="Enums\TraktReleaseType.cs" />
     <Compile Include="Enums\TraktSearchResultType.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
+    <Compile Include="Enums\TraktSyncType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktDeniedException.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Objects\Get\Syncs\TraktSyncLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncListsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncMoviesLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncShowsLastActivities.cs" />
     <Compile Include="Objects\Get\Users\TraktUserEpisodesStatistics.cs" />
