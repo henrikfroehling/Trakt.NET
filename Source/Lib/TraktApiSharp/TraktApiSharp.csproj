@@ -236,6 +236,16 @@
     <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />
+    <Compile Include="Objects\Post\Syncs\Responses\TraktSyncCollectionPostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\Responses\TraktSyncCollectionPostResponseGroup.cs" />
+    <Compile Include="Objects\Post\Syncs\Responses\TraktSyncCollectionPostResponseNotFound.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPost.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPostEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPostShowEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPostMovieItem.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPostShowItem.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionPostShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Syncs\TraktSyncCollectionRemovePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
