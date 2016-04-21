@@ -2,8 +2,8 @@
 {
     using Base.Get;
     using Enums;
-    using Objects;
-    using Objects.Movies.Common;
+    using Objects.Basic;
+    using Objects.Get.Movies.Common;
     using System.Collections.Generic;
 
     internal class TraktMoviesMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesMostPlayedItem>, TraktMoviesMostPlayedItem>

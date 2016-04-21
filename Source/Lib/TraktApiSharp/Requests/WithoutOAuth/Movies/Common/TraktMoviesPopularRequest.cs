@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies.Common
 {
     using Base.Get;
-    using Objects;
-    using Objects.Movies.Common;
+    using Objects.Basic;
+    using Objects.Get.Movies.Common;
 
     internal class TraktMoviesPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesPopularItem>, TraktMoviesPopularItem>
     {

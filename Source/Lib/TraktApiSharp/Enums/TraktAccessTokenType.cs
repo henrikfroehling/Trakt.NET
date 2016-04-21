@@ -12,14 +12,14 @@
 
     public static class TraktAccessTokenTypeExtensions
     {
-        public static string AsString(this TraktAccessTokenType scope)
+        public static string AsString(this TraktAccessTokenType accessTokenType)
         {
-            switch (scope)
+            switch (accessTokenType)
             {
                 case TraktAccessTokenType.Bearer: return "bearer";
-                case TraktAccessTokenType.Unspecified: return "";
+                case TraktAccessTokenType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessTokenType");
+                    throw new NotSupportedException(accessTokenType.ToString());
             }
         }
     }
@@ -40,8 +40,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var tokenType = (TraktAccessTokenType)value;
-            writer.WriteValue(tokenType.AsString());
+            var accessTokenType = (TraktAccessTokenType)value;
+            writer.WriteValue(accessTokenType.AsString());
         }
     }
 }

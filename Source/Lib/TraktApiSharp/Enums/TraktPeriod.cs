@@ -13,17 +13,17 @@
 
     public static class TraktPeriodExtensions
     {
-        public static string AsString(this TraktPeriod scope)
+        public static string AsString(this TraktPeriod period)
         {
-            switch (scope)
+            switch (period)
             {
                 case TraktPeriod.Weekly: return "weekly";
                 case TraktPeriod.Monthly: return "monthly";
                 case TraktPeriod.Yearly: return "yearly";
                 case TraktPeriod.All: return "all";
-                case TraktPeriod.Unspecified: return "";
+                case TraktPeriod.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("Period");
+                    throw new NotSupportedException(period.ToString());
             }
         }
     }

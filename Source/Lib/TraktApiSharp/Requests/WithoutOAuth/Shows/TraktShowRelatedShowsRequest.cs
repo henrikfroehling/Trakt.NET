@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
     using Base.Get;
-    using Objects;
-    using Objects.Shows;
+    using Objects.Basic;
+    using Objects.Get.Shows;
 
     internal class TraktShowRelatedShowsRequest : TraktGetByIdRequest<TraktPaginationListResult<TraktShow>, TraktShow>
     {

@@ -6,7 +6,7 @@ namespace TraktApiSharp.Requests.Base
 {
     using Exceptions;
     using Newtonsoft.Json;
-    using Objects;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,6 +15,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using WithoutOAuth.Shows.Seasons;
 
     internal abstract class TraktRequest<TResult, TItem> : ITraktRequest<TResult, TItem>
     {
@@ -47,7 +48,11 @@ namespace TraktApiSharp.Requests.Base
 
         protected abstract bool IsListResult { get; }
 
-        internal TraktExtendedOption ExtendedOption { get; set; }
+        internal virtual bool UsesSeasonExtendedOption => false;
+
+        internal virtual TraktExtendedOption ExtendedOption { get; set; }
+
+        internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
 
         protected virtual bool SupportsPagination => false;
 
@@ -102,8 +107,16 @@ namespace TraktApiSharp.Requests.Base
         {
             var optionParams = new Dictionary<string, string>();
 
-            if (ExtendedOption != TraktExtendedOption.Unspecified)
-                optionParams["extended"] = ExtendedOption.AsString();
+            if (UsesSeasonExtendedOption)
+            {
+                if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
+                    optionParams["extended"] = SeasonExtendedOption.AsString();
+            }
+            else
+            {
+                if (ExtendedOption != TraktExtendedOption.Unspecified)
+                    optionParams["extended"] = ExtendedOption.AsString();
+            }
 
             if (SupportsPagination)
             {

@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Seasons
 {
-    using Objects.Shows.Seasons;
+    using Objects.Get.Shows.Seasons;
 
     internal class TraktSeasonStatisticsRequest : TraktGetByIdSeasonRequest<TraktSeasonStatistics, TraktSeasonStatistics>
     {

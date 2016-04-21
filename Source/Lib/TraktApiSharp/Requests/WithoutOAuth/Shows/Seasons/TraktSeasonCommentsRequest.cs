@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Seasons
 {
-    using Objects;
-    using Objects.Shows.Seasons;
+    using Objects.Basic;
+    using Objects.Get.Shows.Seasons;
 
     internal class TraktSeasonCommentsRequest : TraktGetByIdSeasonRequest<TraktPaginationListResult<TraktSeasonComment>, TraktSeasonComment>
     {

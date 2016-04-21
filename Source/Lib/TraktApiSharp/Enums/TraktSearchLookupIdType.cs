@@ -17,9 +17,9 @@
 
     public static class TraktSearchLookupIdTypeExtensions
     {
-        public static string AsString(this TraktSearchLookupIdType scope)
+        public static string AsString(this TraktSearchLookupIdType searchLookupIdType)
         {
-            switch (scope)
+            switch (searchLookupIdType)
             {
                 case TraktSearchLookupIdType.TraktMovie: return "trakt-movie";
                 case TraktSearchLookupIdType.TraktShow: return "trakt-show";
@@ -28,9 +28,9 @@
                 case TraktSearchLookupIdType.TmDB: return "tmdb";
                 case TraktSearchLookupIdType.TvDB: return "tvdb";
                 case TraktSearchLookupIdType.TVRage: return "tvrage";
-                case TraktSearchLookupIdType.Unspecified: return "";
+                case TraktSearchLookupIdType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new NotSupportedException(searchLookupIdType.ToString());
             }
         }
     }
@@ -66,8 +66,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var searchIdType = (TraktSearchLookupIdType)value;
-            writer.WriteValue(searchIdType.AsString());
+            var searchLookupIdType = (TraktSearchLookupIdType)value;
+            writer.WriteValue(searchLookupIdType.AsString());
         }
     }
 }

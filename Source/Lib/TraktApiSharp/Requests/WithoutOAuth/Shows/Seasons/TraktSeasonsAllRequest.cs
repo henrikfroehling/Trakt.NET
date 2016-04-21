@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Seasons
 {
     using Base.Get;
-    using Objects;
-    using Objects.Shows.Seasons;
+    using Objects.Basic;
+    using Objects.Get.Shows.Seasons;
 
     internal class TraktSeasonsAllRequest : TraktGetByIdRequest<TraktListResult<TraktSeason>, TraktSeason>
     {
@@ -15,5 +15,7 @@
         protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
 
         protected override bool IsListResult => true;
+
+        internal override bool UsesSeasonExtendedOption => true;
     }
 }

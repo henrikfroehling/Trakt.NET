@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Common
 {
     using Base.Get;
-    using Objects;
-    using Objects.Shows.Common;
+    using Objects.Basic;
+    using Objects.Get.Shows.Common;
     using System;
     using System.Collections.Generic;
 
