@@ -39,7 +39,9 @@
         {
             var enumString = reader.Value as string;
 
-            if (enumString.Equals(TraktScrobbleActionType.Stop.AsString()))
+            if (enumString.Equals(TraktScrobbleActionType.Unspecified.AsString()))
+                return TraktScrobbleActionType.Unspecified;
+            else if (enumString.Equals(TraktScrobbleActionType.Stop.AsString()))
                 return TraktScrobbleActionType.Stop;
 
             enumString = enumString.FirstToUpper();
