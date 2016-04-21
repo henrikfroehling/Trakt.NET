@@ -97,6 +97,7 @@
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
@@ -109,6 +110,10 @@
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionEpisodeItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionMovieItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionSeasonItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionShowItem.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncCommentsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncEpisodesLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncLastActivities.cs" />

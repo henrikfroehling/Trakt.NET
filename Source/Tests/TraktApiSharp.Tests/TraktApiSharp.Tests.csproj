@@ -202,6 +202,8 @@
     <Compile Include="Objects\Basic\TraktSearchResultTests.cs" />
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionMovieItemTests.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncCollectionShowItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncLastActivitiesTests.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListCommentsTests.cs" />
@@ -389,6 +391,10 @@
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgress.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchingUsers.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncCollectionMovies.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncCollectionMoviesMetadata.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncCollectionShows.json" />
+    <None Include="TestData\Objects\Get\Syncs\SyncCollectionShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Syncs\SyncLastActivities.json" />
     <None Include="TestData\Objects\Get\Syncs\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\SyncPlaybackProgressItemMovie.json" />
