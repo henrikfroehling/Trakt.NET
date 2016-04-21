@@ -122,6 +122,10 @@
     <Compile Include="Objects\Get\Syncs\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\TraktSyncShowsLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncWatchedMovieItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncWatchedShowEpisodeItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncWatchedShowItem.cs" />
+    <Compile Include="Objects\Get\Syncs\TraktSyncWatchedShowSeasonItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserMoviesStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserNetworkStatistics.cs" />
