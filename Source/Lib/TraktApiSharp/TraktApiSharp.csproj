@@ -72,6 +72,7 @@
     <Compile Include="Enums\TraktShowStatus.cs" />
     <Compile Include="Enums\TraktSyncHistoryActionType.cs" />
     <Compile Include="Enums\TraktSyncHistoryItemType.cs" />
+    <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\Ratings\TraktSyncRatingsItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowEpisodeItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItem.cs" />
@@ -249,6 +251,17 @@
     <Compile Include="Objects\Post\Syncs\History\Respones\TraktSyncHistoryRemovePostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPost.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePost.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponseNotFound.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponseNotFoundItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsRemovePostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPost.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostMovieItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsRemovePost.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionRemovePostResponse.cs" />
