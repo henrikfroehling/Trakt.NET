@@ -54,6 +54,10 @@
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
+    <Compile Include="Enums\TraktMediaAudio.cs" />
+    <Compile Include="Enums\TraktMediaAudioChannel.cs" />
+    <Compile Include="Enums\TraktMediaResolution.cs" />
+    <Compile Include="Enums\TraktMediaType.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />

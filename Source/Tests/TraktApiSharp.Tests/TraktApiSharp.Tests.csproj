@@ -93,6 +93,10 @@
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemsSectionTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
+    <Compile Include="Enums\TraktMediaAudioChannelTests.cs" />
+    <Compile Include="Enums\TraktMediaAudioTests.cs" />
+    <Compile Include="Enums\TraktMediaResolutionTests.cs" />
+    <Compile Include="Enums\TraktMediaTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
     <Compile Include="Enums\TraktRequestObjectTypeTests.cs" />
