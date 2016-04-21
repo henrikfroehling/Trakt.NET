@@ -109,6 +109,7 @@
     <Compile Include="Enums\TraktSyncHistoryItemTypeTests.cs" />
     <Compile Include="Enums\TraktSyncRatingsItemTypeTests.cs" />
     <Compile Include="Enums\TraktSyncTypeTests.cs" />
+    <Compile Include="Enums\TraktSyncWatchlistItemTypeTests.cs" />
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />

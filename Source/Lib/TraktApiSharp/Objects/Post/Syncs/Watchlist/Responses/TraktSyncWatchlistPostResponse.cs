@@ -1,12 +1,15 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Respones
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses
 {
     using Newtonsoft.Json;
-    using Responses;
+    using Syncs.Responses;
 
-    public class TraktSyncHistoryPostResponse
+    public class TraktSyncWatchlistPostResponse
     {
         [JsonProperty(PropertyName = "added")]
         public TraktSyncPostResponseGroup Added { get; set; }
+
+        [JsonProperty(PropertyName = "existing")]
+        public TraktSyncPostResponseGroup Existing { get; set; }
 
         [JsonProperty(PropertyName = "not_found")]
         public TraktSyncPostResponseNotFound NotFound { get; set; }

@@ -74,6 +74,7 @@
     <Compile Include="Enums\TraktSyncHistoryItemType.cs" />
     <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
+    <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktDeniedException.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowEpisodeItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowSeasonItem.cs" />
+    <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserMoviesStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserNetworkStatistics.cs" />
@@ -246,9 +248,9 @@
     <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionPostResponse.cs" />
-    <Compile Include="Objects\Post\Syncs\History\Respones\TraktSyncHistoryPostResponse.cs" />
-    <Compile Include="Objects\Post\Syncs\History\Respones\TraktSyncHistoryRemovePostResponse.cs" />
-    <Compile Include="Objects\Post\Syncs\History\Respones\TraktSyncHistoryRemovePostResponseNotFound.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPost.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePost.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponse.cs" />
@@ -277,6 +279,15 @@
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowEpisodeItem.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowItem.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistPostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPost.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostMovieItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowEpisodeItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />

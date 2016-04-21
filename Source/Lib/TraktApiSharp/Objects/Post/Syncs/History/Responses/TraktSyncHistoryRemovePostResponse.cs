@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Respones
+﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses
 {
     using Newtonsoft.Json;
-    using Responses;
+    using Syncs.Responses;
 
     public class TraktSyncHistoryRemovePostResponse
     {
