@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs
+﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Playback
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs;
+    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using Utils;
 
     [TestClass]
@@ -28,7 +28,7 @@
         [TestMethod]
         public void TestTraktSyncPlaybackProgressItemMovieReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\SyncPlaybackProgressItemMovie.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -55,7 +55,7 @@
         [TestMethod]
         public void TestTraktSyncPlaybackProgressItemEpisodeReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\SyncPlaybackProgressItemEpisode.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

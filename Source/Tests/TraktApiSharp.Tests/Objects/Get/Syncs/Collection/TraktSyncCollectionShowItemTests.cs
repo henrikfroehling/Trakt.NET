@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs
+﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Collection
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs;
+    using TraktApiSharp.Objects.Get.Syncs.Collection;
     using Utils;
 
     [TestClass]
@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktSyncCollectionShowItemReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\SyncCollectionShows.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShows.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
@@ -140,7 +140,7 @@
         [TestMethod]
         public void TestTraktSyncCollectionShowItemReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\SyncCollectionShowsMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

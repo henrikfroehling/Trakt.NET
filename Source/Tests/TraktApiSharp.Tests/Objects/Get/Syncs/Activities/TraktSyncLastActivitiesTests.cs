@@ -1,11 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs
+﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Activities
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Syncs;
+    using TraktApiSharp.Objects.Get.Syncs.Activities;
     using Utils;
+
     [TestClass]
     public class TraktSyncLastActivitiesTests
     {
@@ -26,7 +27,7 @@
         [TestMethod]
         public void TestTraktSyncLastActivitiesReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\SyncLastActivities.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Activities\SyncLastActivities.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 

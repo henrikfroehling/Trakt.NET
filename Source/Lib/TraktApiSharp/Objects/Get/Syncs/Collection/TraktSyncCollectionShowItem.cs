@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs
+﻿namespace TraktApiSharp.Objects.Get.Syncs.Collection
 {
     using Newtonsoft.Json;
     using Shows;
