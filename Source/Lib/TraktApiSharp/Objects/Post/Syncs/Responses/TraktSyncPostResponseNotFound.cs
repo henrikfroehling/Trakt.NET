@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class TraktSyncCollectionPostResponseNotFound
+    public class TraktSyncPostResponseNotFound
     {
         [JsonProperty(PropertyName = "movies")]
         public IEnumerable<TraktMovieIds> Movies { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
     using Basic;
     using Get.Shows.Episodes;

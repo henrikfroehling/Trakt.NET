@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs
+﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
     using Get.Shows;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class TraktSyncCollectionPostShowItem
+    public class TraktSyncHistoryPostShowItem
     {
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
@@ -16,6 +16,6 @@
         public TraktShowIds Ids { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncCollectionPostShowSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktSyncHistoryPostShowSeasonItem> Seasons { get; set; }
     }
 }

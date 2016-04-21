@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktSyncCollectionPostResponseGroup
+    public class TraktSyncPostResponseGroup
     {
         [JsonProperty(PropertyName = "movies")]
         public int? Movies { get; set; }
