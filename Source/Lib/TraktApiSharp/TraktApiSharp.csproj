@@ -121,6 +121,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncListsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncMoviesLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\History\TraktSyncHistoryItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />
@@ -324,7 +325,6 @@
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Get\Syncs\History\" />
     <Folder Include="Requests\WithOAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
