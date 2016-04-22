@@ -6,7 +6,7 @@ TraktApiSharp
 
 The library **is not yet ready for production use**.
 
-There are still some features missing and already implemented features are not yet fully tested.
+There are still some features missing and already implemented features are not yet completely tested.
 The goal is a feature-complete library in terms of API coverage.
 
 **Future releases will be available as NuGet packages.**
