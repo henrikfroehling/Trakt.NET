@@ -14,17 +14,17 @@
 
     public static class TraktShowStatusExtensions
     {
-        public static string AsString(this TraktShowStatus scope)
+        public static string AsString(this TraktShowStatus showStatus)
         {
-            switch (scope)
+            switch (showStatus)
             {
                 case TraktShowStatus.ReturningSeries: return "returning series";
                 case TraktShowStatus.InProduction: return "in production";
                 case TraktShowStatus.Canceled: return "canceled";
                 case TraktShowStatus.Ended: return "ended";
-                case TraktShowStatus.Unspecified: return "";
+                case TraktShowStatus.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("ShowStatus");
+                    throw new NotSupportedException(showStatus.ToString());
             }
         }
     }

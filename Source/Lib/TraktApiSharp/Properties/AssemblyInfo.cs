@@ -5,14 +5,14 @@ using System.Resources;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("TraktApiSharp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("C# wrapper library for the Trakt.tv API.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Henrik Fröhling")]
 [assembly: AssemblyProduct("TraktApiSharp")]
-[assembly: AssemblyCopyright("Copyright © Henrik Fröhling 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016 Henrik Fröhling")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("de")]
+[assembly: NeutralResourcesLanguage("en-US")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //

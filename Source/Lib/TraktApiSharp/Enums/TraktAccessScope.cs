@@ -14,16 +14,16 @@
 
     public static class TraktAccessScopeExtensions
     {
-        public static string AsString(this TraktAccessScope scope)
+        public static string AsString(this TraktAccessScope accessScope)
         {
-            switch (scope)
+            switch (accessScope)
             {
                 case TraktAccessScope.Public: return "public";
                 case TraktAccessScope.Private: return "private";
                 case TraktAccessScope.Friends: return "friends";
-                case TraktAccessScope.Unspecified: return "";
+                case TraktAccessScope.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("AccessScope");
+                    throw new NotSupportedException(accessScope.ToString());
             }
         }
     }
@@ -38,6 +38,10 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = reader.Value as string;
+
+            if (string.IsNullOrEmpty(enumString))
+                return TraktAccessScope.Unspecified;
+
             enumString = enumString.FirstToUpper();
             return Enum.Parse(typeof(TraktAccessScope), enumString, true);
         }

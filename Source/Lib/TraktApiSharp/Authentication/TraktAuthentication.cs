@@ -93,10 +93,9 @@
 
             validateRefreshTokenInput(refreshToken, clientId, clientSecret, redirectUri, grantType);
 
-            var postContent = string.Format("{ \"refresh_token\": \"{0}\", \"client_id\": \"{1}\"," +
-                                            " \"client_secret\": \"{2}\", \"redirect_uri\": \"{3}\"," +
-                                            " \"grant_type\": \"{4}\" }",
-                                            refreshToken, clientId, clientSecret, redirectUri, grantType);
+            var postContent = $"{{ \"refresh_token\": \"{refreshToken}\", \"client_id\": \"{clientId}\"," +
+                              $" \"client_secret\": \"{clientSecret}\", \"redirect_uri\": \"{redirectUri}\"," +
+                              $" \"grant_type\": \"{grantType}\" }}";
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
@@ -138,7 +137,7 @@
             if (string.IsNullOrEmpty(clientId))
                 throw new ArgumentException("client id not valid", "clientId");
 
-            var postContent = string.Format("{ \"access_token\": \"{0}\" }", accessToken);
+            var postContent = $"{{ \"access_token\": \"{accessToken}\" }}";
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {

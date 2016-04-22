@@ -14,16 +14,16 @@
 
     public static class TraktHiddenItemTypeExtensions
     {
-        public static string AsString(this TraktHiddenItemType scope)
+        public static string AsString(this TraktHiddenItemType hiddenItemType)
         {
-            switch (scope)
+            switch (hiddenItemType)
             {
                 case TraktHiddenItemType.Movie: return "movie";
                 case TraktHiddenItemType.Show: return "show";
                 case TraktHiddenItemType.Season: return "season";
-                case TraktHiddenItemType.Unspecified: return "";
+                case TraktHiddenItemType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("HiddenItemType");
+                    throw new NotSupportedException(hiddenItemType.ToString());
             }
         }
     }
@@ -44,8 +44,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var itemType = (TraktHiddenItemType)value;
-            writer.WriteValue(itemType.AsString());
+            var hiddenItemType = (TraktHiddenItemType)value;
+            writer.WriteValue(hiddenItemType.AsString());
         }
     }
 }

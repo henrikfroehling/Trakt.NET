@@ -1,4 +1,8 @@
-﻿namespace TraktApiSharp.Requests
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+
+namespace TraktApiSharp.Requests
 {
     using System;
 
@@ -6,36 +10,26 @@
     {
         Unspecified,
         Minimal,
-        MinimalAndEpisodes,   // only for seasons
         Metadata,
-        MetadataAndEpisodes,   // only for seasons
         Images,
-        ImagesAndEpisodes,   // only for seasons
         Full,
-        FullAndEpisodes,   // only for seasons
-        FullAndImages,
-        FullAndImagesAndEpisodes   // only for seasons
+        FullAndImages
     }
 
     internal static class TraktExtendedOptionExtensions
     {
-        internal static string AsString(this TraktExtendedOption scope)
+        internal static string AsString(this TraktExtendedOption extendedOption)
         {
-            switch (scope)
+            switch (extendedOption)
             {
-                case TraktExtendedOption.Unspecified: return "";
+                case TraktExtendedOption.Unspecified: return string.Empty;
                 case TraktExtendedOption.Minimal: return "min";
-                case TraktExtendedOption.MinimalAndEpisodes: return "min,episodes";
                 case TraktExtendedOption.Metadata: return "metadata";
-                case TraktExtendedOption.MetadataAndEpisodes: return "metadata,episodes";
                 case TraktExtendedOption.Images: return "images";
-                case TraktExtendedOption.ImagesAndEpisodes: return "images,episodes";
                 case TraktExtendedOption.Full: return "full";
-                case TraktExtendedOption.FullAndEpisodes: return "full,episodes";
                 case TraktExtendedOption.FullAndImages: return "full,images";
-                case TraktExtendedOption.FullAndImagesAndEpisodes: return "full,images,episodes";
                 default:
-                    throw new ArgumentOutOfRangeException("ExtendedOption");
+                    throw new NotSupportedException(extendedOption.ToString());
             }
         }
     }

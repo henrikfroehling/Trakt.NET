@@ -16,18 +16,18 @@
 
     public static class TraktSearchResultTypeExtensions
     {
-        public static string AsString(this TraktSearchResultType scope)
+        public static string AsString(this TraktSearchResultType searchResultType)
         {
-            switch (scope)
+            switch (searchResultType)
             {
                 case TraktSearchResultType.Movie: return "movie";
                 case TraktSearchResultType.Show: return "show";
                 case TraktSearchResultType.Episode: return "episode";
                 case TraktSearchResultType.Person: return "person";
                 case TraktSearchResultType.List: return "list";
-                case TraktSearchResultType.Unspecified: return "";
+                case TraktSearchResultType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("SearchResultType");
+                    throw new NotSupportedException(searchResultType.ToString());
             }
         }
     }
@@ -48,8 +48,8 @@
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var resultType = (TraktSearchResultType)value;
-            writer.WriteValue(resultType.AsString());
+            var searchResultType = (TraktSearchResultType)value;
+            writer.WriteValue(searchResultType.AsString());
         }
     }
 }

@@ -1,8 +1,12 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+
+namespace TraktApiSharp.Requests.Base
 {
     using System.Threading.Tasks;
 
-    public interface ITraktRequest<TResult, TItem>
+    internal interface ITraktRequest<TResult, TItem>
     {
         Task<TResult> QueryAsync();
     }

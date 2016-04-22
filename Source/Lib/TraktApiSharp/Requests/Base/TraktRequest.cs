@@ -1,8 +1,12 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+
+namespace TraktApiSharp.Requests.Base
 {
     using Exceptions;
     using Newtonsoft.Json;
-    using Objects;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -11,6 +15,7 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using WithoutOAuth.Shows.Seasons;
 
     internal abstract class TraktRequest<TResult, TItem> : ITraktRequest<TResult, TItem>
     {
@@ -18,6 +23,8 @@
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+
+        internal static HttpClient HTTP_CLIENT = null;
 
         protected TraktRequest(TraktClient client)
         {
@@ -41,7 +48,11 @@
 
         protected abstract bool IsListResult { get; }
 
-        internal TraktExtendedOption ExtendedOption { get; set; }
+        internal virtual bool UsesSeasonExtendedOption => false;
+
+        internal virtual TraktExtendedOption ExtendedOption { get; set; }
+
+        internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
 
         protected virtual bool SupportsPagination => false;
 
@@ -87,7 +98,7 @@
             {
                 return GetPathParameters()
                     .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value.ToLower()))
+                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
                     .TrimEnd(new[] { '/' });
             }
         }
@@ -96,8 +107,16 @@
         {
             var optionParams = new Dictionary<string, string>();
 
-            if (ExtendedOption != TraktExtendedOption.Unspecified)
-                optionParams["extended"] = ExtendedOption.AsString();
+            if (UsesSeasonExtendedOption)
+            {
+                if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
+                    optionParams["extended"] = SeasonExtendedOption.AsString();
+            }
+            else
+            {
+                if (ExtendedOption != TraktExtendedOption.Unspecified)
+                    optionParams["extended"] = ExtendedOption.AsString();
+            }
 
             if (SupportsPagination)
             {
@@ -120,7 +139,7 @@
                     var ret = content.ReadAsStringAsync().Result;
 
                     if (!string.IsNullOrEmpty(ret))
-                        ret = string.Format("?{0}", ret);
+                        ret = $"?{ret}";
 
                     return ret;
                 }
@@ -153,36 +172,44 @@
             }
         }
 
-        internal string Url => string.Format("{0}{1}{2}", Client.Configuration.BaseUrl, UriPath, OptionParameters);
+        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
 
         protected virtual void Validate() { }
 
-        protected virtual void SetRequestHeaders(HttpRequestMessage request)
+        protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
         {
-            request.Headers.Add("trakt-api-key", Client.ClientId);
-            request.Headers.Add("trakt-api-version", string.Format("{0}", Client.Configuration.ApiVersion));
-
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             if (AuthenticationHeaderRequired)
             {
                 if (!Client.Authentication.IsAuthenticated)
-                    throw new IndexOutOfRangeException("authentication is required for this request, but the current authentication parameters are invalid");
+                    throw new TraktAuthorizationException("authentication is required for this request, but the current authentication parameters are invalid");
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
             }
+        }
+
+        private void SetDefaultRequestHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
+            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
+
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<TResult> QueryAsync()
         {
             Validate();
 
-            using (var httpClient = new HttpClient())
+            if (HTTP_CLIENT == null)
+            {
+                HTTP_CLIENT = new HttpClient();
+                SetDefaultRequestHeaders(HTTP_CLIENT);
+            }
+
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
-                SetRequestHeaders(request);
+                SetRequestHeadersForAuthentication(request);
 
-                using (var response = await httpClient.SendAsync(request))
+                using (var response = await HTTP_CLIENT.SendAsync(request))
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -209,7 +236,7 @@
             if (SupportsPagination)
             {
                 if (typeof(TResult) != typeof(TraktPaginationListResult<TItem>))
-                    throw new InvalidCastException("TResult cannot be converted as TraktPaginationListResult<TItem>");
+                    throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted to TraktPaginationListResult<{typeof(TItem).ToString()}>");
 
                 var typePaginationElement = typeof(TResult).GenericTypeArguments[0];
                 var typePaginationList = typeof(TraktPaginationListResult<>).MakeGenericType(typePaginationElement);
@@ -260,7 +287,7 @@
             }
 
             if (typeof(TResult) != typeof(TraktListResult<TItem>))
-                throw new InvalidCastException("TResult cannot be converted as TraktListResult<TItem>");
+                throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted as TraktListResult<{typeof(TItem).ToString()}>");
 
             var typeElement = typeof(TResult).GenericTypeArguments[0];
             var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);
@@ -284,7 +311,7 @@
             catch { }
 
             var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-                                    ? string.Format("Trakt API error without content. Response status code was {0}", (int)code)
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
                                     : error.Description;
 
             switch (code)

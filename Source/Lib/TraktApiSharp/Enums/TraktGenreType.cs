@@ -13,15 +13,15 @@
 
     public static class TraktGenreTypeExtensions
     {
-        public static string AsString(this TraktGenreType scope)
+        public static string AsString(this TraktGenreType genreType)
         {
-            switch (scope)
+            switch (genreType)
             {
                 case TraktGenreType.Shows: return "shows";
                 case TraktGenreType.Movies: return "movies";
-                case TraktGenreType.Unspecified: return "";
+                case TraktGenreType.Unspecified: return string.Empty;
                 default:
-                    throw new ArgumentOutOfRangeException("GenreType");
+                    throw new NotSupportedException(genreType.ToString());
             }
         }
     }

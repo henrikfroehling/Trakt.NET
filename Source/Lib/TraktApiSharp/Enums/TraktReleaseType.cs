@@ -17,9 +17,9 @@
 
     public static class TraktReleaseTypeExtensions
     {
-        public static string AsString(this TraktReleaseType scope)
+        public static string AsString(this TraktReleaseType releaseType)
         {
-            switch (scope)
+            switch (releaseType)
             {
                 case TraktReleaseType.Unknown: return "unknown";
                 case TraktReleaseType.Premiere: return "premiere";
@@ -29,7 +29,7 @@
                 case TraktReleaseType.Physical: return "physical";
                 case TraktReleaseType.Tv: return "tv";
                 default:
-                    throw new ArgumentOutOfRangeException("ReleaseType");
+                    throw new NotSupportedException(releaseType.ToString());
             }
         }
     }
