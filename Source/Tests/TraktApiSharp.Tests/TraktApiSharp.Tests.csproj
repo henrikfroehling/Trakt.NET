@@ -253,6 +253,10 @@
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsRemovePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostTests.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsRemovePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -458,6 +462,8 @@
     <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryRemovePostResponse.json" />
+    <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsPostResponse.json" />
+    <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />

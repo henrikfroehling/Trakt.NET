@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses
 {
-    using Get.Shows.Seasons;
     using Newtonsoft.Json;
 
-    public class TraktSyncPostResponseNotFoundSeason
+    public class TraktSyncPostResponseNotFoundItem<T>
     {
         [JsonProperty(PropertyName = "ids")]
-        public TraktSeasonIds Ids { get; set; }
+        public T Ids { get; set; }
     }
 }

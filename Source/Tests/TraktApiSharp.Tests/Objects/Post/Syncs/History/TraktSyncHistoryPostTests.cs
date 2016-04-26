@@ -147,6 +147,8 @@
 
             var historyPostFromJson = JsonConvert.DeserializeObject<TraktSyncHistoryPost>(strJson);
 
+            historyPostFromJson.Should().NotBeNull();
+
             historyPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
             historyPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
             historyPostFromJson.Episodes.Should().NotBeNull().And.HaveCount(1);

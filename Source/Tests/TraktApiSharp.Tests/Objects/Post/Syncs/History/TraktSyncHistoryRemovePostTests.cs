@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies;
@@ -33,7 +32,6 @@
                 {
                     new TraktSyncHistoryPostMovieItem
                     {
-                        WatchedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
                         Year = 2005,
                         Ids = new TraktMovieIds
@@ -85,7 +83,6 @@
                         {
                             new TraktSyncHistoryPostShowSeasonItem
                             {
-                                WatchedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                                 Number = 3
                             }
                         }
@@ -112,7 +109,6 @@
                                 {
                                     new TraktSyncHistoryPostShowEpisodeItem
                                     {
-                                        WatchedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
                                     new TraktSyncHistoryPostShowEpisodeItem
@@ -128,7 +124,6 @@
                 {
                     new TraktSyncHistoryPostEpisodeItem
                     {
-                        WatchedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                         Ids = new TraktEpisodeIds
                         {
                             Trakt = 1061,
@@ -147,13 +142,15 @@
 
             var historyPostFromJson = JsonConvert.DeserializeObject<TraktSyncHistoryPost>(strJson);
 
+            historyPostFromJson.Should().NotBeNull();
+
             historyPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
             historyPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
             historyPostFromJson.Episodes.Should().NotBeNull().And.HaveCount(1);
 
             var movies = historyPostFromJson.Movies.ToArray();
 
-            movies[0].WatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            movies[0].WatchedAt.Should().NotHaveValue();
             movies[0].Title.Should().Be("Batman Begins");
             movies[0].Year.Should().Be(2005);
             movies[0].Ids.Should().NotBeNull();
@@ -199,7 +196,7 @@
 
             var show2Seasons = shows[1].Seasons.ToArray();
 
-            show2Seasons[0].WatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            show2Seasons[0].WatchedAt.Should().NotHaveValue();
             show2Seasons[0].Number.Should().Be(3);
             show2Seasons[0].Episodes.Should().BeNull();
 
@@ -223,7 +220,7 @@
 
             var show3Season1Episodes = show3Seasons[0].Episodes.ToArray();
 
-            show3Season1Episodes[0].WatchedAt.Should().Be(DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime());
+            show3Season1Episodes[0].WatchedAt.Should().NotHaveValue();
             show3Season1Episodes[0].Number.Should().Be(1);
 
             show3Season1Episodes[1].WatchedAt.Should().NotHaveValue();
@@ -231,7 +228,7 @@
 
             var episodes = historyPostFromJson.Episodes.ToArray();
 
-            episodes[0].WatchedAt.Should().Be(DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime());
+            episodes[0].WatchedAt.Should().NotHaveValue();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(1061);
             episodes[0].Ids.Slug.Should().BeNullOrEmpty();

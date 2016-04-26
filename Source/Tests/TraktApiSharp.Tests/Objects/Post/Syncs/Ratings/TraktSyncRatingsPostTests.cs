@@ -1,37 +1,40 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Syncs.Collection
+﻿namespace TraktApiSharp.Tests.Objects.Post.Syncs.Ratings
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
-    using TraktApiSharp.Objects.Post.Syncs.Collection;
+    using TraktApiSharp.Objects.Post.Syncs.Ratings;
 
     [TestClass]
-    public class TraktSyncCollectionRemovePostTests
+    public class TraktSyncRatingsPostTests
     {
         [TestMethod]
-        public void TestTraktSyncCollectionRemovePostDefaultConstructor()
+        public void TestTraktSyncRatingsPostDefaultConstructor()
         {
-            var collectionRemovePost = new TraktSyncCollectionPost();
+            var ratingsPost = new TraktSyncRatingsPost();
 
-            collectionRemovePost.Movies.Should().BeNull();
-            collectionRemovePost.Shows.Should().BeNull();
-            collectionRemovePost.Episodes.Should().BeNull();
+            ratingsPost.Movies.Should().BeNull();
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Episodes.Should().BeNull();
         }
 
         [TestMethod]
-        public void TestTraktSyncCollectionRemovePostWriteJson()
+        public void TestTraktSyncRatingsPostWriteJson()
         {
-            var collectionPost = new TraktSyncCollectionPost
+            var ratingsPost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovieItem>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncRatingsPostMovieItem
                     {
+                        RatedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
+                        Rating = 5,
                         Title = "Batman Begins",
                         Year = 2005,
                         Ids = new TraktMovieIds
@@ -42,18 +45,20 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncRatingsPostMovieItem
                     {
+                        Rating = 10,
                         Ids = new TraktMovieIds
                         {
                             Imdb = "tt0000111"
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShowItem>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncRatingsPostShowItem
                     {
+                        Rating = 9,
                         Title = "Breaking Bad",
                         Year = 2008,
                         Ids = new TraktShowIds
@@ -66,7 +71,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncRatingsPostShowItem
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -79,15 +84,16 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeasonItem
                             {
+                                Rating = 8,
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncRatingsPostShowItem
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -100,19 +106,21 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeasonItem
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncRatingsPostShowEpisodeItem>()
                                 {
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisodeItem
                                     {
+                                        Rating = 7,
                                         Number = 1
                                     },
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisodeItem
                                     {
+                                        Rating = 8,
                                         Number = 2
                                     }
                                 }
@@ -120,10 +128,11 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncRatingsPostEpisodeItem
                     {
+                        Rating = 7,
                         Ids = new TraktEpisodeIds
                         {
                             Trakt = 1061,
@@ -136,21 +145,22 @@
                 }
             };
 
-            var strJson = JsonConvert.SerializeObject(collectionPost);
+            var strJson = JsonConvert.SerializeObject(ratingsPost);
 
             strJson.Should().NotBeNullOrEmpty();
 
-            var collectionPostFromJson = JsonConvert.DeserializeObject<TraktSyncCollectionPost>(strJson);
+            var ratingsPostFromJson = JsonConvert.DeserializeObject<TraktSyncRatingsPost>(strJson);
 
-            collectionPostFromJson.Should().NotBeNull();
+            ratingsPostFromJson.Should().NotBeNull();
 
-            collectionPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
-            collectionPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
-            collectionPostFromJson.Episodes.Should().NotBeNull().And.HaveCount(1);
+            ratingsPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
+            ratingsPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
+            ratingsPostFromJson.Episodes.Should().NotBeNull().And.HaveCount(1);
 
-            var movies = collectionPostFromJson.Movies.ToArray();
+            var movies = ratingsPostFromJson.Movies.ToArray();
 
-            movies[0].CollectedAt.Should().NotHaveValue();
+            movies[0].RatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            movies[0].Rating.Should().Be(5);
             movies[0].Title.Should().Be("Batman Begins");
             movies[0].Year.Should().Be(2005);
             movies[0].Ids.Should().NotBeNull();
@@ -158,9 +168,9 @@
             movies[0].Ids.Slug.Should().Be("batman-begins-2005");
             movies[0].Ids.Imdb.Should().Be("tt0372784");
             movies[0].Ids.Tmdb.Should().Be(272);
-            movies[0].Metadata.Should().BeNull();
 
-            movies[1].CollectedAt.Should().NotHaveValue();
+            movies[1].RatedAt.Should().NotHaveValue();
+            movies[1].Rating.Should().Be(10);
             movies[1].Title.Should().BeNullOrEmpty();
             movies[1].Year.Should().NotHaveValue();
             movies[1].Ids.Should().NotBeNull();
@@ -168,10 +178,11 @@
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
             movies[1].Ids.Tmdb.Should().NotHaveValue();
-            movies[1].Metadata.Should().BeNull();
 
-            var shows = collectionPostFromJson.Shows.ToArray();
+            var shows = ratingsPostFromJson.Shows.ToArray();
 
+            shows[0].RatedAt.Should().NotHaveValue();
+            shows[0].Rating.Should().Be(9);
             shows[0].Title.Should().Be("Breaking Bad");
             shows[0].Year.Should().Be(2008);
             shows[0].Ids.Should().NotBeNull();
@@ -183,6 +194,8 @@
             shows[0].Ids.TvRage.Should().Be(18164);
             shows[0].Seasons.Should().BeNull();
 
+            shows[1].RatedAt.Should().NotHaveValue();
+            shows[1].Rating.Should().NotHaveValue();
             shows[1].Title.Should().Be("The Walking Dead");
             shows[1].Year.Should().Be(2010);
             shows[1].Ids.Should().NotBeNull();
@@ -196,9 +209,13 @@
 
             var show2Seasons = shows[1].Seasons.ToArray();
 
+            show2Seasons[0].RatedAt.Should().NotHaveValue();
+            show2Seasons[0].Rating.Should().Be(8);
             show2Seasons[0].Number.Should().Be(3);
             show2Seasons[0].Episodes.Should().BeNull();
 
+            shows[2].RatedAt.Should().NotHaveValue();
+            shows[2].Rating.Should().NotHaveValue();
             shows[2].Title.Should().Be("Mad Men");
             shows[2].Year.Should().Be(2007);
             shows[2].Ids.Should().NotBeNull();
@@ -212,23 +229,25 @@
 
             var show3Seasons = shows[2].Seasons.ToArray();
 
+            show3Seasons[0].RatedAt.Should().NotHaveValue();
+            show3Seasons[0].Rating.Should().NotHaveValue();
             show3Seasons[0].Number.Should().Be(1);
             show3Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
             var show3Season1Episodes = show3Seasons[0].Episodes.ToArray();
 
-            show3Season1Episodes[0].CollectedAt.Should().NotHaveValue();
+            show3Season1Episodes[0].RatedAt.Should().NotHaveValue();
+            show3Season1Episodes[0].Rating.Should().Be(7);
             show3Season1Episodes[0].Number.Should().Be(1);
-            show3Season1Episodes[0].Metadata.Should().BeNull();
 
-            show3Season1Episodes[1].CollectedAt.Should().NotHaveValue();
+            show3Season1Episodes[1].RatedAt.Should().NotHaveValue();
+            show3Season1Episodes[1].Rating.Should().Be(8);
             show3Season1Episodes[1].Number.Should().Be(2);
-            show3Season1Episodes[1].Metadata.Should().BeNull();
 
-            var episodes = collectionPostFromJson.Episodes.ToArray();
+            var episodes = ratingsPostFromJson.Episodes.ToArray();
 
-            episodes[0].CollectedAt.Should().NotHaveValue();
-            episodes[0].Metadata.Should().BeNull();
+            episodes[0].RatedAt.Should().NotHaveValue();
+            episodes[0].Rating.Should().Be(7);
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(1061);
             episodes[0].Ids.Slug.Should().BeNullOrEmpty();

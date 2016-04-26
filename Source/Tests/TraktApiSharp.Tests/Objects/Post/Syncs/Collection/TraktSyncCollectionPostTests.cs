@@ -147,6 +147,8 @@
 
             var collectionPostFromJson = JsonConvert.DeserializeObject<TraktSyncCollectionPost>(strJson);
 
+            collectionPostFromJson.Should().NotBeNull();
+
             collectionPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
             collectionPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
             collectionPostFromJson.Episodes.Should().NotBeNull().And.HaveCount(1);
@@ -406,6 +408,8 @@
             strJson.Should().NotBeNullOrEmpty();
 
             var collectionPostFromJson = JsonConvert.DeserializeObject<TraktSyncCollectionPost>(strJson);
+
+            collectionPostFromJson.Should().NotBeNull();
 
             collectionPostFromJson.Movies.Should().NotBeNull().And.HaveCount(2);
             collectionPostFromJson.Shows.Should().NotBeNull().And.HaveCount(3);
