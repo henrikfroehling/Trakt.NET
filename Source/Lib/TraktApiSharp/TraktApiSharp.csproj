@@ -133,6 +133,10 @@
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowSeasonItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItem.cs" />
+    <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionEpisodeItem.cs" />
+    <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionMovieItem.cs" />
+    <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionSeasonItem.cs" />
+    <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionShowItem.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserMoviesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserNetworkStatistics.cs" />
