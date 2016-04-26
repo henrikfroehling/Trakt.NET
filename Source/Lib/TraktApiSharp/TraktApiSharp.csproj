@@ -145,6 +145,7 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserShowsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />
