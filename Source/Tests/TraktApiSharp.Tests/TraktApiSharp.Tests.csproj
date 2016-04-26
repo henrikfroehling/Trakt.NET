@@ -261,6 +261,10 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Users\Responses\TraktUserListPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\Responses\TraktUserListUpdatePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\TraktUserListPostTests.cs" />
+    <Compile Include="Objects\Post\Users\TraktUserListUpdatePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -470,6 +474,8 @@
     <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistRemovePostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\Responses\UserListPostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\Responses\UserListUpdatePostResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />
