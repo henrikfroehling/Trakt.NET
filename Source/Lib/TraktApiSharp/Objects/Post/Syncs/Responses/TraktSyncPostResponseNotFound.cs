@@ -10,15 +10,15 @@
     public class TraktSyncPostResponseNotFound
     {
         [JsonProperty(PropertyName = "movies")]
-        public IEnumerable<TraktMovieIds> Movies { get; set; }
+        public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktMovieIds>> Movies { get; set; }
 
         [JsonProperty(PropertyName = "shows")]
-        public IEnumerable<TraktShowIds> Shows { get; set; }
+        public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktShowIds>> Shows { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSeasonIds> Seasons { get; set; }
+        public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktSeasonIds>> Seasons { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktEpisodeIds> Episodes { get; set; }
+        public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktEpisodeIds>> Episodes { get; set; }
     }
 }
