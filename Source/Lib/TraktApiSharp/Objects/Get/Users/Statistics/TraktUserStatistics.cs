@@ -1,5 +1,4 @@
-﻿
-namespace TraktApiSharp.Objects.Get.Users
+﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
 {
     using Newtonsoft.Json;
 
