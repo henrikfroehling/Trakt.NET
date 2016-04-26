@@ -249,7 +249,10 @@
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostTests.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -453,6 +456,8 @@
     <None Include="TestData\Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json" />
+    <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryPostResponse.json" />
+    <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryRemovePostResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />
