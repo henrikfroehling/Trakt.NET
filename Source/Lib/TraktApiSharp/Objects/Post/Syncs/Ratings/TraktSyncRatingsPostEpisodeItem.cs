@@ -10,7 +10,7 @@
         public DateTime? RatedAt { get; set; }
 
         [JsonProperty(PropertyName = "rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         [JsonProperty(PropertyName = "ids")]
         public TraktEpisodeIds Ids { get; set; }
