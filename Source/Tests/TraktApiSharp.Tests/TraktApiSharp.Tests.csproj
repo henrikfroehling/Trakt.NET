@@ -214,6 +214,7 @@
     <Compile Include="Objects\Get\Syncs\Ratings\TraktSyncRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItemTests.cs" />
+    <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListCommentsTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
@@ -414,6 +415,10 @@
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShows.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistEpisodes.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistMovies.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistShows.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
