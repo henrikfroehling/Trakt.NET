@@ -146,6 +146,7 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchlistItem.cs" />
     <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedMovieItem.cs" />
     <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowEpisodeItem.cs" />
