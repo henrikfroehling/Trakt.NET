@@ -103,5 +103,29 @@
 
             client.Movies.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetCalendarModule()
+        {
+            var client = new TraktClient();
+
+            client.Calendar.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktClientGetCommentsModule()
+        {
+            var client = new TraktClient();
+
+            client.Comments.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktClientGetPeopleModule()
+        {
+            var client = new TraktClient();
+
+            client.People.Should().NotBeNull();
+        }
     }
 }
