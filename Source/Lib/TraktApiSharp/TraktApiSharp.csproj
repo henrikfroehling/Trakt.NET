@@ -325,6 +325,7 @@
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentRepliesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentReplySummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
