@@ -67,11 +67,14 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowComment>> GetShowCommentsAsync(string id, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktShowComment>> GetShowCommentsAsync(string id,
+                                                                                            TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                            int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowCommentsRequest(Client)
             {
                 Id = id,
+                Sorting = sorting,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
