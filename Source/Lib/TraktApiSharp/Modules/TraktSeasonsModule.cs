@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Enums;
     using Objects.Basic;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Shows.Seasons;
@@ -32,12 +33,14 @@
         }
 
         public async Task<TraktPaginationListResult<TraktSeasonComment>> GetSeasonCommentsAsync(string showId, int season,
+                                                                                                TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
                                                                                                 int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSeasonCommentsRequest(Client)
             {
                 Id = showId,
                 Season = season,
+                Sorting = sorting,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
