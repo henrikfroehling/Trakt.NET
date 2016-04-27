@@ -4,8 +4,9 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Statistics;
     using Utils;
+
     [TestClass]
     public class TraktUserStatisticsTests
     {
