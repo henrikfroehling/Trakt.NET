@@ -10,6 +10,7 @@ namespace TraktApiSharp.Requests
         Movies,
         Shows,
         Seasons,
-        Episodes
+        Episodes,
+        People
     }
 }

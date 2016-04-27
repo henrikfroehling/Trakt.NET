@@ -334,6 +334,9 @@ namespace TraktApiSharp.Requests.Base
                                 case TraktRequestObjectType.Movies:
                                     throw new TraktMovieNotFoundException(Id)
                                     { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.People:
+                                    throw new TraktPersonNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
                                 case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)
