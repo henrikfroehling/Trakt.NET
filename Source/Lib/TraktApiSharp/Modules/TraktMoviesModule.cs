@@ -84,11 +84,14 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMovieComment>> GetMovieCommentsAsync(string id, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktMovieComment>> GetMovieCommentsAsync(string id,
+                                                                                              TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                              int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMovieCommentsRequest(Client)
             {
                 Id = id,
+                Sorting = sorting,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

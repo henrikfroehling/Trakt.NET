@@ -11,7 +11,7 @@
 
         protected override string UriTemplate => "movies/{id}";
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Movies;
 
         protected override bool IsListResult => false;
     }

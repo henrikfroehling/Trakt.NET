@@ -1,0 +1,77 @@
+﻿{
+  "cast": [
+    {
+      "character": "Li (voice)",
+      "movie": {
+        "title": "Kung Fu Panda 3",
+        "year": 2016,
+        "ids": {
+          "trakt": 93870,
+          "slug": "kung-fu-panda-3-2016",
+          "imdb": "tt2267968",
+          "tmdb": 140300
+        }
+      }
+    },
+    {
+      "character": "Joe Brody",
+      "movie": {
+        "title": "Godzilla",
+        "year": 2014,
+        "ids": {
+          "trakt": 24,
+          "slug": "godzilla-2014",
+          "imdb": "tt0831387",
+          "tmdb": 124905
+        }
+      }
+    }
+  ],
+  "crew": {
+    "directing": [
+      {
+        "job": "Director",
+        "movie": {
+          "title": "Godzilla",
+          "year": 2014,
+          "ids": {
+            "trakt": 24,
+            "slug": "godzilla-2014",
+            "imdb": "tt0831387",
+            "tmdb": 124905
+          }
+        }
+      }
+    ],
+    "writing": [
+      {
+        "job": "Screenplay",
+        "movie": {
+          "title": "Godzilla",
+          "year": 2014,
+          "ids": {
+            "trakt": 24,
+            "slug": "godzilla-2014",
+            "imdb": "tt0831387",
+            "tmdb": 124905
+          }
+        }
+      }
+    ],
+    "production": [
+      {
+        "job": "Producer",
+        "movie": {
+          "title": "Godzilla",
+          "year": 2014,
+          "ids": {
+            "trakt": 24,
+            "slug": "godzilla-2014",
+            "imdb": "tt0831387",
+            "tmdb": 124905
+          }
+        }
+      }
+    ]
+  }
+}
