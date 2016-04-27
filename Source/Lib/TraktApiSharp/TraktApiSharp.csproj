@@ -106,6 +106,14 @@
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCredits.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCastItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrew.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrewItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCredits.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
