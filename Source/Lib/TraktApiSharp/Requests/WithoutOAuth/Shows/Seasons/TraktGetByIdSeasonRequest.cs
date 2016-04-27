@@ -11,6 +11,8 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
 
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Seasons;
+
         protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
             var parameters = new Dictionary<string, string>();

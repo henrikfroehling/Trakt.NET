@@ -11,7 +11,7 @@
 
         protected override string UriTemplate => "shows/{id}/people";
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
 
         protected override bool IsListResult => false;
     }

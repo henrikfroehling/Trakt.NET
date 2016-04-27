@@ -20,8 +20,6 @@
 
         protected override bool SupportsPagination => true;
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
-
         protected override bool IsListResult => true;
     }
 }

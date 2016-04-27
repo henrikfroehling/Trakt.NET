@@ -120,6 +120,7 @@
     <Compile Include="Exceptions\TraktForbiddenExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMovieNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktPreconditionFailedExceptionTests.cs" />
     <Compile Include="Exceptions\TraktConflictExceptionTests.cs" />

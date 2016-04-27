@@ -12,7 +12,7 @@
 
         protected override string UriTemplate => "shows/{id}/translations";
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
 
         protected override bool IsListResult => true;
     }

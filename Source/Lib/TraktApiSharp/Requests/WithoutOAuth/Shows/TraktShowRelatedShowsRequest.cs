@@ -14,7 +14,7 @@
 
         protected override bool SupportsPagination => true;
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
 
         protected override bool IsListResult => true;
     }

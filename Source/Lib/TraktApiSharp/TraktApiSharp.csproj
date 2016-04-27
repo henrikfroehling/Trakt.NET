@@ -82,6 +82,7 @@
     <Compile Include="Exceptions\TraktExpiredException.cs" />
     <Compile Include="Exceptions\TraktForbiddenException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktNotFoundException.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundException.cs" />
     <Compile Include="Exceptions\TraktBadRequestException.cs" />
     <Compile Include="Exceptions\TraktEpisodeNotFoundException.cs" />

@@ -6,8 +6,6 @@
     {
         internal TraktCalendarAllSeasonPremieresRequest(TraktClient client) : base(client) { }
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
-
         protected override string UriTemplate => "calendars/all/shows/premieres/{start_date}/{days}";
     }
 }

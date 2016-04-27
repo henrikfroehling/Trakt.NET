@@ -6,8 +6,6 @@
     {
         internal TraktCalendarAllNewShowsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
-
         protected override string UriTemplate => "calendars/all/shows/new/{start_date}/{days}";
     }
 }
