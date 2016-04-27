@@ -97,6 +97,7 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktBaseModule.cs" />
+    <Compile Include="Modules\TraktCalendarModule.cs" />
     <Compile Include="Modules\TraktEpisodesModule.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
@@ -307,6 +308,11 @@
     <Compile Include="Objects\Post\Users\TraktUserListUpdatePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostCollectedRequest.cs" />
