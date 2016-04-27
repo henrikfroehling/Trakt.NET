@@ -106,6 +106,7 @@
     <Compile Include="Modules\TraktGenresModule.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
+    <Compile Include="Modules\TraktSearchModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
@@ -355,6 +356,9 @@
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonShowCreditsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonSummaryRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchIdLookupRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostCollectedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostPlayedRequest.cs" />

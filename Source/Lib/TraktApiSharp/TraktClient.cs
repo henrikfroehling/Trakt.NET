@@ -1,4 +1,8 @@
-﻿namespace TraktApiSharp
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+
+namespace TraktApiSharp
 {
     using Authentication;
     using Core;
@@ -18,8 +22,9 @@
         private TraktCommentModule _comments;
         private TraktPeopleModule _people;
         private TraktGenresModule _genres;
+        private TraktSearchModule _search;
 
-        public TraktClient()
+        internal TraktClient()
         {
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthentication(this);
@@ -27,7 +32,7 @@
             DeviceAuth = new TraktDeviceAuth(this);
         }
 
-        public TraktClient(string clientId)
+        public TraktClient(string clientId) : this()
         {
             ClientId = clientId;
         }
@@ -123,6 +128,12 @@
         {
             get { return _genres = _genres ?? new TraktGenresModule(this); }
             private set { _genres = value; }
+        }
+
+        public TraktSearchModule Search
+        {
+            get { return _search = _search ?? new TraktSearchModule(this); }
+            private set { _search = value; }
         }
     }
 }
