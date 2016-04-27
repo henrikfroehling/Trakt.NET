@@ -1,29 +1,18 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Search
 {
-    using Base.Get;
     using Enums;
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal class TraktSearchTextQueryRequest : TraktGetRequest<TraktPaginationListResult<TraktSearchResult>, TraktSearchResult>
+    internal class TraktSearchTextQueryRequest : TraktSearchRequest<TraktSearchResult>
     {
-        public TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
-
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 
         internal string Query { get; set; }
 
         internal TraktSearchResultType Type { get; set; }
 
         internal int? Year { get; set; }
-
-        protected override bool IsSearchRequest => true;
-
-        protected override bool IsListResult => true;
-
-        protected override bool SupportsPagination => true;
-
-        protected override string UriTemplate => "search";
 
         protected override IEnumerable<KeyValuePair<string, string>> GetSearchOptionParameters()
         {
