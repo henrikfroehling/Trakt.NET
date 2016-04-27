@@ -310,7 +310,7 @@
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarNewShowsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostCollectedRequest.cs" />

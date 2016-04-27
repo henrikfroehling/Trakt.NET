@@ -6,9 +6,9 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktCalendarNewShowsRequest : TraktGetRequest<TraktListResult<TraktCalendarShowItem>, TraktCalendarShowItem>
+    internal class TraktCalendarAllNewShowsRequest : TraktGetRequest<TraktListResult<TraktCalendarShowItem>, TraktCalendarShowItem>
     {
-        public TraktCalendarNewShowsRequest(TraktClient client) : base(client) { }
+        public TraktCalendarAllNewShowsRequest(TraktClient client) : base(client) { }
 
         internal DateTime? StartDate { get; set; }
 
