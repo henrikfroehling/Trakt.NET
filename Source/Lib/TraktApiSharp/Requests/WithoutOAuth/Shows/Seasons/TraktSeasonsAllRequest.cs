@@ -12,8 +12,6 @@
 
         protected override string UriTemplate => "shows/{id}/seasons";
 
-        protected override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
-
         protected override bool IsListResult => true;
 
         internal override bool UsesSeasonExtendedOption => true;

@@ -40,7 +40,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal string Id { get; set; }
 
-        protected abstract TraktRequestObjectType RequestObjectType { get; }
+        protected virtual TraktRequestObjectType? RequestObjectType => null;
 
         internal virtual int Season { get; set; }
 
@@ -318,25 +318,36 @@ namespace TraktApiSharp.Requests.Base
             {
                 case HttpStatusCode.NotFound:
                     {
-                        switch (RequestObjectType)
+                        if (RequestObjectType.HasValue)
                         {
-                            case TraktRequestObjectType.Episodes:
-                                throw new TraktEpisodeNotFoundException(Id, Season, Episode)
-                                { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
-                            case TraktRequestObjectType.Seasons:
-                                throw new TraktSeasonNotFoundException(Id, Season)
-                                { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
-                            case TraktRequestObjectType.Shows:
-                                throw new TraktShowNotFoundException(Id)
-                                { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
-                            case TraktRequestObjectType.Movies:
-                                throw new TraktMovieNotFoundException(Id)
-                                { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
-                            case TraktRequestObjectType.Unspecified:
-                            default:
-                                throw new TraktObjectNotFoundException(Id)
-                                { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                            switch (RequestObjectType.Value)
+                            {
+                                case TraktRequestObjectType.Episodes:
+                                    throw new TraktEpisodeNotFoundException(Id, Season, Episode)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Seasons:
+                                    throw new TraktSeasonNotFoundException(Id, Season)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Shows:
+                                    throw new TraktShowNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Movies:
+                                    throw new TraktMovieNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.People:
+                                    throw new TraktPersonNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Comments:
+                                    throw new TraktCommentNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Unspecified:
+                                default:
+                                    throw new TraktObjectNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                            }
                         }
+
+                        throw new TraktNotFoundException("Resource not found");
                     }
                 case HttpStatusCode.BadRequest:
                     throw new TraktBadRequestException()

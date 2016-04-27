@@ -14,6 +14,10 @@
         private TraktSeasonsModule _seasons;
         private TraktEpisodesModule _episodes;
         private TraktMoviesModule _movies;
+        private TraktCalendarModule _calendar;
+        private TraktCommentModule _comments;
+        private TraktPeopleModule _people;
+        private TraktGenresModule _genres;
 
         public TraktClient()
         {
@@ -95,6 +99,30 @@
         {
             get { return _movies = _movies ?? new TraktMoviesModule(this); }
             private set { _movies = value; }
+        }
+
+        public TraktCalendarModule Calendar
+        {
+            get { return _calendar = _calendar ?? new TraktCalendarModule(this); }
+            private set { _calendar = value; }
+        }
+
+        public TraktCommentModule Comments
+        {
+            get { return _comments = _comments ?? new TraktCommentModule(this); }
+            private set { _comments = value; }
+        }
+
+        public TraktPeopleModule People
+        {
+            get { return _people = _people ?? new TraktPeopleModule(this); }
+            private set { _people = value; }
+        }
+
+        public TraktGenresModule Genres
+        {
+            get { return _genres = _genres ?? new TraktGenresModule(this); }
+            private set { _genres = value; }
         }
     }
 }

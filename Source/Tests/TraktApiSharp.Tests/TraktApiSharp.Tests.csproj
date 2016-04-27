@@ -113,6 +113,7 @@
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktCommentNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktDeniedExceptionTests.cs" />
     <Compile Include="Exceptions\TraktEpisodeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktExceptionTests.cs" />
@@ -120,7 +121,9 @@
     <Compile Include="Exceptions\TraktForbiddenExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMovieNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktPersonNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktPreconditionFailedExceptionTests.cs" />
     <Compile Include="Exceptions\TraktConflictExceptionTests.cs" />
     <Compile Include="Exceptions\TraktRateLimitExceptionTests.cs" />
@@ -154,6 +157,8 @@
     <Compile Include="Objects\Get\Movies\TraktMovieTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTranslationsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieWatchingUsersTests.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsTests.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
     <Compile Include="Objects\Get\People\TraktPersonTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktMovieRecommendationsTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktMovieSingleRecommendationTests.cs" />
@@ -355,6 +360,8 @@
     <None Include="TestData\Objects\Get\Movies\MovieSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieTranslations.json" />
     <None Include="TestData\Objects\Get\Movies\MovieWatchingUsers.json" />
+    <None Include="TestData\Objects\Get\People\Credits\PersonMovieCredits.json" />
+    <None Include="TestData\Objects\Get\People\Credits\PersonShowCredits.json" />
     <None Include="TestData\Objects\Get\People\PersonFull.json" />
     <None Include="TestData\Objects\Get\People\PersonFullAndImages.json" />
     <None Include="TestData\Objects\Get\People\PersonImages.json" />
