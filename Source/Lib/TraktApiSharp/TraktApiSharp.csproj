@@ -147,6 +147,10 @@
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchlistItem.cs" />
+    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedMovieItem.cs" />
+    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowEpisodeItem.cs" />
+    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowItem.cs" />
+    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowSeasonItem.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />
