@@ -135,5 +135,13 @@
 
             client.Genres.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetSearchModule()
+        {
+            var client = new TraktClient();
+
+            client.Search.Should().NotBeNull();
+        }
     }
 }
