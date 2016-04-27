@@ -87,6 +87,7 @@
     <Compile Include="Exceptions\TraktBadRequestException.cs" />
     <Compile Include="Exceptions\TraktEpisodeNotFoundException.cs" />
     <Compile Include="Exceptions\TraktMovieNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktPersonNotFoundException.cs" />
     <Compile Include="Exceptions\TraktPreconditionFailedException.cs" />
     <Compile Include="Exceptions\TraktConflictException.cs" />
     <Compile Include="Exceptions\TraktRateLimitException.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Modules\TraktCalendarModule.cs" />
     <Compile Include="Modules\TraktEpisodesModule.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
+    <Compile Include="Modules\TraktPeopleModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
@@ -342,6 +344,9 @@
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieTranslationsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieWatchingUsersRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\People\TraktPersonMovieCreditsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\People\TraktPersonShowCreditsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\People\TraktPersonSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostCollectedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostPlayedRequest.cs" />

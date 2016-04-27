@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktRequestObjectTypeHasMembers()
         {
-            typeof(TraktRequestObjectType).GetEnumNames().Should().HaveCount(5)
-                                                         .And.Contain("Unspecified", "Movies", "Shows", "Seasons", "Episodes");
+            typeof(TraktRequestObjectType).GetEnumNames().Should().HaveCount(6)
+                                                         .And.Contain("Unspecified", "Movies", "Shows", "Seasons", "Episodes", "People");
         }
     }
 }
