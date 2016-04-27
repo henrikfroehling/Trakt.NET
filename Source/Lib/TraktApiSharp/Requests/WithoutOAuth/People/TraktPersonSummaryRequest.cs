@@ -5,7 +5,7 @@
 
     internal class TraktPersonSummaryRequest : TraktGetByIdRequest<TraktPerson, TraktPerson>
     {
-        public TraktPersonSummaryRequest(TraktClient client) : base(client) { }
+        internal TraktPersonSummaryRequest(TraktClient client) : base(client) { }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

@@ -337,6 +337,9 @@ namespace TraktApiSharp.Requests.Base
                                 case TraktRequestObjectType.People:
                                     throw new TraktPersonNotFoundException(Id)
                                     { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Comments:
+                                    throw new TraktCommentNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
                                 case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)

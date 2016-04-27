@@ -77,6 +77,7 @@
     <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
+    <Compile Include="Exceptions\TraktCommentNotFoundException.cs" />
     <Compile Include="Exceptions\TraktDeniedException.cs" />
     <Compile Include="Exceptions\TraktException.cs" />
     <Compile Include="Exceptions\TraktExpiredException.cs" />
@@ -324,6 +325,8 @@
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentReplySummaryRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostCollectedRequest.cs" />

@@ -5,7 +5,7 @@
 
     internal class TraktPersonMovieCreditsRequest : TraktGetByIdRequest<TraktPersonMovieCredits, TraktPersonMovieCredits>
     {
-        public TraktPersonMovieCreditsRequest(TraktClient client) : base(client) { }
+        internal TraktPersonMovieCreditsRequest(TraktClient client) : base(client) { }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
