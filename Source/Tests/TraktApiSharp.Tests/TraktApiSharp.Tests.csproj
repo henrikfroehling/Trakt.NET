@@ -113,6 +113,7 @@
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktCommentNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktDeniedExceptionTests.cs" />
     <Compile Include="Exceptions\TraktEpisodeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktExceptionTests.cs" />

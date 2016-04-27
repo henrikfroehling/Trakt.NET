@@ -11,6 +11,7 @@ namespace TraktApiSharp.Requests
         Shows,
         Seasons,
         Episodes,
-        People
+        People,
+        Comments
     }
 }
