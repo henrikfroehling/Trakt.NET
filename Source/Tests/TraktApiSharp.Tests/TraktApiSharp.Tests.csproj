@@ -155,6 +155,8 @@
     <Compile Include="Objects\Get\Movies\TraktMovieTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTranslationsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieWatchingUsersTests.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsTests.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
     <Compile Include="Objects\Get\People\TraktPersonTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktMovieRecommendationsTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktMovieSingleRecommendationTests.cs" />
@@ -356,6 +358,8 @@
     <None Include="TestData\Objects\Get\Movies\MovieSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieTranslations.json" />
     <None Include="TestData\Objects\Get\Movies\MovieWatchingUsers.json" />
+    <None Include="TestData\Objects\Get\People\Credits\PersonMovieCredits.json" />
+    <None Include="TestData\Objects\Get\People\Credits\PersonShowCredits.json" />
     <None Include="TestData\Objects\Get\People\PersonFull.json" />
     <None Include="TestData\Objects\Get\People\PersonFullAndImages.json" />
     <None Include="TestData\Objects\Get\People\PersonImages.json" />
