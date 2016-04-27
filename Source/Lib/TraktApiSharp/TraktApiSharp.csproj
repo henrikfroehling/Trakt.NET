@@ -329,6 +329,8 @@
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentRepliesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentReplySummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentSummaryRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresMoviesRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostCollectedRequest.cs" />
