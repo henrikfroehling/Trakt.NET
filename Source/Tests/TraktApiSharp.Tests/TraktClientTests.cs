@@ -127,5 +127,13 @@
 
             client.People.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetGenresModule()
+        {
+            var client = new TraktClient();
+
+            client.Genres.Should().NotBeNull();
+        }
     }
 }

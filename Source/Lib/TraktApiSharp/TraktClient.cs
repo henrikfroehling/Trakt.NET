@@ -17,6 +17,7 @@
         private TraktCalendarModule _calendar;
         private TraktCommentModule _comments;
         private TraktPeopleModule _people;
+        private TraktGenresModule _genres;
 
         public TraktClient()
         {
@@ -116,6 +117,12 @@
         {
             get { return _people = _people ?? new TraktPeopleModule(this); }
             private set { _people = value; }
+        }
+
+        public TraktGenresModule Genres
+        {
+            get { return _genres = _genres ?? new TraktGenresModule(this); }
+            private set { _genres = value; }
         }
     }
 }
