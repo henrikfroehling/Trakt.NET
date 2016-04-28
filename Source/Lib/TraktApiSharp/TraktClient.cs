@@ -19,7 +19,7 @@ namespace TraktApiSharp
         private TraktEpisodesModule _episodes;
         private TraktMoviesModule _movies;
         private TraktCalendarModule _calendar;
-        private TraktCommentModule _comments;
+        private TraktCommentsModule _comments;
         private TraktPeopleModule _people;
         private TraktGenresModule _genres;
         private TraktSearchModule _search;
@@ -112,9 +112,9 @@ namespace TraktApiSharp
             private set { _calendar = value; }
         }
 
-        public TraktCommentModule Comments
+        public TraktCommentsModule Comments
         {
-            get { return _comments = _comments ?? new TraktCommentModule(this); }
+            get { return _comments = _comments ?? new TraktCommentsModule(this); }
             private set { _comments = value; }
         }
 

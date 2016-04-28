@@ -6,9 +6,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class TraktCommentModule : TraktBaseModule
+    public class TraktCommentsModule : TraktBaseModule
     {
-        public TraktCommentModule(TraktClient client) : base(client) { }
+        public TraktCommentsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktComment> GetCommentAsync(string id)
         {
