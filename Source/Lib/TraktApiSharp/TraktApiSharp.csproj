@@ -354,6 +354,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCommentsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
