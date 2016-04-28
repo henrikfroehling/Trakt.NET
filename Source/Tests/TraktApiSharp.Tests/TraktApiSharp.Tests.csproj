@@ -227,6 +227,7 @@
     <Compile Include="Objects\Get\Users\TraktSharingTextTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserCollectionTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowersTests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserFollowRequestTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFriendsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHiddenItemsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItemTests.cs" />
@@ -462,6 +463,7 @@
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsShows.json" />
     <None Include="TestData\Objects\Get\Users\SharingText.json" />
+    <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
     <None Include="TestData\Objects\Get\Users\UserHistory.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionMovies.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionShows.json" />

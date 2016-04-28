@@ -163,6 +163,7 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserSeasonsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserShowsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
@@ -345,6 +346,7 @@
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
