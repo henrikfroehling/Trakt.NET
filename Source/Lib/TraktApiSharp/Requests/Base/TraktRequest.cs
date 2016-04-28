@@ -46,9 +46,9 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        protected abstract bool IsListResult { get; }
+        protected virtual bool IsListResult => false;
 
-        internal virtual bool UsesSeasonExtendedOption => false;
+        protected virtual bool UsesSeasonExtendedOption => false;
 
         internal virtual TraktExtendedOption ExtendedOption { get; set; }
 
