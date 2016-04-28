@@ -82,6 +82,7 @@
     <Compile Include="Exceptions\TraktException.cs" />
     <Compile Include="Exceptions\TraktExpiredException.cs" />
     <Compile Include="Exceptions\TraktForbiddenException.cs" />
+    <Compile Include="Exceptions\TraktListNotFoundException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundException.cs" />
@@ -426,6 +427,7 @@
     <Compile Include="Requests\Base\Put\TraktPutRequest.cs" />
     <Compile Include="Requests\Base\TraktRequest.cs" />
     <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
+    <Compile Include="Requests\WithoutOAuth\Users\TraktUserListCommentsRequest.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>

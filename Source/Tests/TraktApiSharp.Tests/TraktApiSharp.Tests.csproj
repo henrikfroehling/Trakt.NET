@@ -119,6 +119,7 @@
     <Compile Include="Exceptions\TraktExceptionTests.cs" />
     <Compile Include="Exceptions\TraktExpiredExceptionTests.cs" />
     <Compile Include="Exceptions\TraktForbiddenExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktListNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktMovieNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktNotFoundExceptionTests.cs" />
