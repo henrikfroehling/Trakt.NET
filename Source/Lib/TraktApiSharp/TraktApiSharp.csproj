@@ -75,6 +75,7 @@
     <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
     <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
+    <Compile Include="Enums\TraktUserLikeType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktCommentNotFoundException.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserLikeItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchlistItem.cs" />
@@ -348,6 +350,7 @@
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />

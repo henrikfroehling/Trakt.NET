@@ -110,6 +110,7 @@
     <Compile Include="Enums\TraktSyncRatingsItemTypeTests.cs" />
     <Compile Include="Enums\TraktSyncTypeTests.cs" />
     <Compile Include="Enums\TraktSyncWatchlistItemTypeTests.cs" />
+    <Compile Include="Enums\TraktUserLikeTypeTests.cs" />
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Objects\Get\Users\TraktUserFriendsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHiddenItemsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItemTests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserLikeItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFollowerTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSettingsTests.cs" />
@@ -473,6 +475,8 @@
     <None Include="TestData\Objects\Get\Users\UserFullAndImages.json" />
     <None Include="TestData\Objects\Get\Users\UserHiddenItems.json" />
     <None Include="TestData\Objects\Get\Users\UserImages.json" />
+    <None Include="TestData\Objects\Get\Users\UserLikeComment.json" />
+    <None Include="TestData\Objects\Get\Users\UserLikeList.json" />
     <None Include="TestData\Objects\Get\Users\UserMetadata.json" />
     <None Include="TestData\Objects\Get\Users\UserMinimal.json" />
     <None Include="TestData\Objects\Get\Users\UserSettings.json" />
