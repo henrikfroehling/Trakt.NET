@@ -9,9 +9,9 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        internal bool Hidden { get; set; }
+        internal bool? Hidden { get; set; }
 
-        internal bool Specials { get; set; }
+        internal bool? Specials { get; set; }
 
         protected override bool UseCustomExtendedOptions => true;
 
@@ -19,8 +19,11 @@
         {
             var optionParams = new Dictionary<string, string>();
 
-            optionParams["hidden"] = Hidden.ToString().ToLower();
-            optionParams["specials"] = Specials.ToString().ToLower();
+            if (Hidden.HasValue)
+                optionParams["hidden"] = Hidden.Value.ToString().ToLower();
+
+            if (Specials.HasValue)
+                optionParams["specials"] = Specials.Value.ToString().ToLower();
 
             return optionParams;
         }
