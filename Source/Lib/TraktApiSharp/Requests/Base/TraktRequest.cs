@@ -60,7 +60,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
-        protected virtual bool IsSearchRequest => false;
+        protected virtual bool UseCustomExtendedOptions => false;
 
         private bool _authenticationHeaderRequired;
 
@@ -105,7 +105,7 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetSearchOptionParameters()
+        protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
         {
             throw new NotImplementedException();
         }
@@ -119,12 +119,12 @@ namespace TraktApiSharp.Requests.Base
                 if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
                     optionParams["extended"] = SeasonExtendedOption.AsString();
             }
-            else if (IsSearchRequest)
+            else if (UseCustomExtendedOptions)
             {
-                var searchParams = GetSearchOptionParameters();
+                var customParams = GetCustomExtendedOptionParameters();
 
-                foreach (var param in searchParams)
-                    optionParams[param.Key] = param.Value;
+                foreach (var param in customParams)
+                    optionParams[param.Key.ToLower()] = param.Value;
             }
             else
             {

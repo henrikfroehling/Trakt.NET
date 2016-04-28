@@ -12,7 +12,7 @@
 
         internal string LookupId { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetSearchOptionParameters()
+        protected override IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
         {
             var searchParams = new Dictionary<string, string>();
 

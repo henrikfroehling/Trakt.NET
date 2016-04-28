@@ -9,7 +9,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override bool IsSearchRequest => true;
+        protected override bool UseCustomExtendedOptions => true;
 
         protected override bool IsListResult => true;
 
