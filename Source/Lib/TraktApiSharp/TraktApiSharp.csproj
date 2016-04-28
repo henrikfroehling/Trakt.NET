@@ -362,6 +362,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowersRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFriendsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserProfileRequest.cs" />
