@@ -325,6 +325,7 @@
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowWatchedProgressRequest.cs" />
