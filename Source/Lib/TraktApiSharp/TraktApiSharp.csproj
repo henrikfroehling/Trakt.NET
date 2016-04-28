@@ -53,11 +53,13 @@
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
+    <Compile Include="Enums\TraktCommentType.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
     <Compile Include="Enums\TraktMediaAudioChannel.cs" />
     <Compile Include="Enums\TraktMediaResolution.cs" />
     <Compile Include="Enums\TraktMediaType.cs" />
+    <Compile Include="Enums\TraktObjectType.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserSeasonsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserShowsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserComment.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserLikeItem.cs" />
@@ -350,6 +353,7 @@
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCommentsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
