@@ -110,6 +110,7 @@
     <Compile Include="Modules\TraktSearchModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Modules\TraktSyncModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
@@ -334,6 +335,15 @@
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowWatchedProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncLastActivitiesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncPlaybackProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncRatingsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedHistoryRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />

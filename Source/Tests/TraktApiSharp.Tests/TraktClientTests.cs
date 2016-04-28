@@ -151,5 +151,13 @@
 
             client.Recommendations.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetSyncModule()
+        {
+            var client = new TraktClient();
+
+            client.Sync.Should().NotBeNull();
+        }
     }
 }
