@@ -354,6 +354,9 @@ namespace TraktApiSharp.Requests.Base
                                 case TraktRequestObjectType.Comments:
                                     throw new TraktCommentNotFoundException(Id)
                                     { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Lists:
+                                    throw new TraktListNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
                                 case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)

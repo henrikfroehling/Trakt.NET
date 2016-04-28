@@ -25,6 +25,7 @@ namespace TraktApiSharp
         private TraktSearchModule _search;
         private TraktRecommendationsModule _recommendations;
         private TraktSyncModule _sync;
+        private TraktUsersModule _users;
 
         internal TraktClient()
         {
@@ -148,6 +149,12 @@ namespace TraktApiSharp
         {
             get { return _sync = _sync ?? new TraktSyncModule(this); }
             private set { _sync = value; }
+        }
+
+        public TraktUsersModule Users
+        {
+            get { return _users = _users ?? new TraktUsersModule(this); }
+            private set { _users = value; }
         }
     }
 }

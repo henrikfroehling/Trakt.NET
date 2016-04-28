@@ -159,5 +159,13 @@
 
             client.Sync.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetUsersModule()
+        {
+            var client = new TraktClient();
+
+            client.Users.Should().NotBeNull();
+        }
     }
 }
