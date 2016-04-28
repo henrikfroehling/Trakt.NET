@@ -348,6 +348,7 @@
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
