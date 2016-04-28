@@ -53,11 +53,14 @@
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
+    <Compile Include="Enums\TraktCommentType.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
+    <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
     <Compile Include="Enums\TraktMediaAudioChannel.cs" />
     <Compile Include="Enums\TraktMediaResolution.cs" />
     <Compile Include="Enums\TraktMediaType.cs" />
+    <Compile Include="Enums\TraktObjectType.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchLookupIdType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
     <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
+    <Compile Include="Enums\TraktUserLikeType.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktCommentNotFoundException.cs" />
@@ -82,6 +86,7 @@
     <Compile Include="Exceptions\TraktException.cs" />
     <Compile Include="Exceptions\TraktExpiredException.cs" />
     <Compile Include="Exceptions\TraktForbiddenException.cs" />
+    <Compile Include="Exceptions\TraktListNotFoundException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
     <Compile Include="Exceptions\TraktObjectNotFoundException.cs" />
@@ -101,14 +106,17 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktBaseModule.cs" />
     <Compile Include="Modules\TraktCalendarModule.cs" />
-    <Compile Include="Modules\TraktCommentModule.cs" />
+    <Compile Include="Modules\TraktCommentsModule.cs" />
     <Compile Include="Modules\TraktEpisodesModule.cs" />
     <Compile Include="Modules\TraktGenresModule.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
+    <Compile Include="Modules\TraktRecommendationsModule.cs" />
     <Compile Include="Modules\TraktSearchModule.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
+    <Compile Include="Modules\TraktSyncModule.cs" />
+    <Compile Include="Modules\TraktUsersModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShowItem.cs" />
@@ -153,6 +161,7 @@
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionMovieItem.cs" />
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionSeasonItem.cs" />
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionShowItem.cs" />
+    <Compile Include="Objects\Get\Users\Lists\TraktListItem.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserMoviesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserNetworkStatistics.cs" />
@@ -160,7 +169,10 @@
     <Compile Include="Objects\Get\Users\Statistics\TraktUserSeasonsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserShowsStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserStatistics.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserComment.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHistoryItem.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserLikeItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchlistItem.cs" />
@@ -323,6 +335,46 @@
     <Compile Include="Objects\Post\Users\TraktUserListUpdatePost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Shows\TraktShowWatchedProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncLastActivitiesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncPlaybackProgressRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncRatingsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedHistoryRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchlistRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCommentsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListItemsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCustomSingleListRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFollowersRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFollowingRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFriendsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserLikesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserProfileRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserRatingsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserSettingsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserStatisticsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedHistoryRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedMoviesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserWatchingRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserWatchlistRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
@@ -405,12 +457,11 @@
     <Compile Include="Requests\Base\Put\TraktPutRequest.cs" />
     <Compile Include="Requests\Base\TraktRequest.cs" />
     <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
+    <Compile Include="Requests\WithoutOAuth\Users\TraktUserListCommentsRequest.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\WithOAuth\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

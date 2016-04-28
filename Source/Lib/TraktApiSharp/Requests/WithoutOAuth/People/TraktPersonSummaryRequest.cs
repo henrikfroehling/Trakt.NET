@@ -9,8 +9,6 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override bool IsListResult => false;
-
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.People;
 
         protected override string UriTemplate => "people/{id}";

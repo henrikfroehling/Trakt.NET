@@ -7,7 +7,5 @@
         internal TraktEpisodeRatingsRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/ratings";
-
-        protected override bool IsListResult => false;
     }
 }

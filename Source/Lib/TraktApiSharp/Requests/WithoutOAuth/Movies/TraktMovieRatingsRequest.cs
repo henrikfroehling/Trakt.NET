@@ -12,7 +12,5 @@
         protected override string UriTemplate => "movies/{id}/ratings";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Movies;
-
-        protected override bool IsListResult => false;
     }
 }

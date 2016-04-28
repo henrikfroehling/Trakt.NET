@@ -7,7 +7,5 @@
         internal TraktSeasonStatisticsRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "shows/{id}/seasons/{season}/stats";
-
-        protected override bool IsListResult => false;
     }
 }
