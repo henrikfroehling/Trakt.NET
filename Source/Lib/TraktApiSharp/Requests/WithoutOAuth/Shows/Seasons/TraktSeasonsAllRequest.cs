@@ -14,6 +14,6 @@
 
         protected override bool IsListResult => true;
 
-        internal override bool UsesSeasonExtendedOption => true;
+        protected override bool UsesSeasonExtendedOption => true;
     }
 }

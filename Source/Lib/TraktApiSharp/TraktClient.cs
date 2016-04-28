@@ -19,10 +19,13 @@ namespace TraktApiSharp
         private TraktEpisodesModule _episodes;
         private TraktMoviesModule _movies;
         private TraktCalendarModule _calendar;
-        private TraktCommentModule _comments;
+        private TraktCommentsModule _comments;
         private TraktPeopleModule _people;
         private TraktGenresModule _genres;
         private TraktSearchModule _search;
+        private TraktRecommendationsModule _recommendations;
+        private TraktSyncModule _sync;
+        private TraktUsersModule _users;
 
         internal TraktClient()
         {
@@ -112,9 +115,9 @@ namespace TraktApiSharp
             private set { _calendar = value; }
         }
 
-        public TraktCommentModule Comments
+        public TraktCommentsModule Comments
         {
-            get { return _comments = _comments ?? new TraktCommentModule(this); }
+            get { return _comments = _comments ?? new TraktCommentsModule(this); }
             private set { _comments = value; }
         }
 
@@ -134,6 +137,24 @@ namespace TraktApiSharp
         {
             get { return _search = _search ?? new TraktSearchModule(this); }
             private set { _search = value; }
+        }
+
+        public TraktRecommendationsModule Recommendations
+        {
+            get { return _recommendations = _recommendations ?? new TraktRecommendationsModule(this); }
+            private set { _recommendations = value; }
+        }
+
+        public TraktSyncModule Sync
+        {
+            get { return _sync = _sync ?? new TraktSyncModule(this); }
+            private set { _sync = value; }
+        }
+
+        public TraktUsersModule Users
+        {
+            get { return _users = _users ?? new TraktUsersModule(this); }
+            private set { _users = value; }
         }
     }
 }

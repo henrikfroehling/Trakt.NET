@@ -25,15 +25,15 @@
             }
         }
 
-        public static string AsStringUriParameter(this TraktSyncType syncProgressType)
+        public static string AsStringUriParameter(this TraktSyncType syncType)
         {
-            switch (syncProgressType)
+            switch (syncType)
             {
                 case TraktSyncType.Movie: return "movies";
                 case TraktSyncType.Episode: return "episodes";
                 case TraktSyncType.Unspecified: return string.Empty;
                 default:
-                    throw new NotSupportedException(syncProgressType.ToString());
+                    throw new NotSupportedException(syncType.ToString());
             }
         }
     }

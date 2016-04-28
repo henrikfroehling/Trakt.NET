@@ -143,5 +143,29 @@
 
             client.Search.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetRecommendationsModule()
+        {
+            var client = new TraktClient();
+
+            client.Recommendations.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktClientGetSyncModule()
+        {
+            var client = new TraktClient();
+
+            client.Sync.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktClientGetUsersModule()
+        {
+            var client = new TraktClient();
+
+            client.Users.Should().NotBeNull();
+        }
     }
 }

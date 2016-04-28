@@ -13,7 +13,13 @@ namespace TraktApiSharp.Requests
         Metadata,
         Images,
         Full,
-        FullAndImages
+        FullAndImages,
+        NoSeasons,
+        MinimalAndNoSeasons,
+        MetadataAndNoSeasons,
+        ImagesAndNoSeasons,
+        FullAndNoSeasons,
+        FullAndImagesAndNoSeasons
     }
 
     internal static class TraktExtendedOptionExtensions
@@ -28,6 +34,12 @@ namespace TraktApiSharp.Requests
                 case TraktExtendedOption.Images: return "images";
                 case TraktExtendedOption.Full: return "full";
                 case TraktExtendedOption.FullAndImages: return "full,images";
+                case TraktExtendedOption.NoSeasons: return "noseasons";
+                case TraktExtendedOption.MinimalAndNoSeasons: return "min,noseasons";
+                case TraktExtendedOption.MetadataAndNoSeasons: return "metadata,noseasons";
+                case TraktExtendedOption.ImagesAndNoSeasons: return "images,noseasons";
+                case TraktExtendedOption.FullAndNoSeasons: return "full,noseasons";
+                case TraktExtendedOption.FullAndImagesAndNoSeasons: return "full,images,noseasons";
                 default:
                     throw new NotSupportedException(extendedOption.ToString());
             }

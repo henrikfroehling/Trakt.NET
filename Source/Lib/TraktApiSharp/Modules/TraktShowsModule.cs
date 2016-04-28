@@ -5,6 +5,7 @@
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
     using Requests;
+    using Requests.WithOAuth.Shows;
     using Requests.WithoutOAuth.Shows;
     using Requests.WithoutOAuth.Shows.Common;
     using System;
@@ -117,6 +118,26 @@
             return await QueryAsync(new TraktShowWatchingUsersRequest(Client)
             {
                 Id = id
+            });
+        }
+
+        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = false, bool? specials = false)
+        {
+            return await QueryAsync(new TraktShowCollectionProgressRequest(Client)
+            {
+                Id = id,
+                Hidden = hidden,
+                Specials = specials
+            });
+        }
+
+        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string id, bool? hidden = false, bool? specials = false)
+        {
+            return await QueryAsync(new TraktShowWatchedProgressRequest(Client)
+            {
+                Id = id,
+                Hidden = hidden,
+                Specials = specials
             });
         }
 

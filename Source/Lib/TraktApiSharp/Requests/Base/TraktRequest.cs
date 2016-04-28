@@ -46,9 +46,9 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        protected abstract bool IsListResult { get; }
+        protected virtual bool IsListResult => false;
 
-        internal virtual bool UsesSeasonExtendedOption => false;
+        protected virtual bool UsesSeasonExtendedOption => false;
 
         internal virtual TraktExtendedOption ExtendedOption { get; set; }
 
@@ -60,7 +60,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
-        protected virtual bool IsSearchRequest => false;
+        protected virtual bool UseCustomExtendedOptions => false;
 
         private bool _authenticationHeaderRequired;
 
@@ -105,7 +105,7 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetSearchOptionParameters()
+        protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
         {
             throw new NotImplementedException();
         }
@@ -119,12 +119,12 @@ namespace TraktApiSharp.Requests.Base
                 if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
                     optionParams["extended"] = SeasonExtendedOption.AsString();
             }
-            else if (IsSearchRequest)
+            else if (UseCustomExtendedOptions)
             {
-                var searchParams = GetSearchOptionParameters();
+                var customParams = GetCustomExtendedOptionParameters();
 
-                foreach (var param in searchParams)
-                    optionParams[param.Key] = param.Value;
+                foreach (var param in customParams)
+                    optionParams[param.Key.ToLower()] = param.Value;
             }
             else
             {
@@ -353,6 +353,9 @@ namespace TraktApiSharp.Requests.Base
                                     { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
                                 case TraktRequestObjectType.Comments:
                                     throw new TraktCommentNotFoundException(Id)
+                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                case TraktRequestObjectType.Lists:
+                                    throw new TraktListNotFoundException(Id)
                                     { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
                                 case TraktRequestObjectType.Unspecified:
                                 default:

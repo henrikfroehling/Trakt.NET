@@ -12,7 +12,5 @@
         protected override string UriTemplate => "shows/{id}/stats";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
-
-        protected override bool IsListResult => false;
     }
 }
