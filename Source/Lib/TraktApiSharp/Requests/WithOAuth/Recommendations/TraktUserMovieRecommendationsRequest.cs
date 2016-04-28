@@ -11,5 +11,9 @@
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
         protected override string UriTemplate => "recommendations/movies";
+
+        protected override bool SupportsPagination => true;
+
+        protected override bool IsListResult => true;
     }
 }

@@ -143,5 +143,13 @@
 
             client.Search.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetRecommendationsModule()
+        {
+            var client = new TraktClient();
+
+            client.Recommendations.Should().NotBeNull();
+        }
     }
 }

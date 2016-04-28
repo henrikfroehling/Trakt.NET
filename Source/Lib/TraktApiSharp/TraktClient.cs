@@ -23,6 +23,7 @@ namespace TraktApiSharp
         private TraktPeopleModule _people;
         private TraktGenresModule _genres;
         private TraktSearchModule _search;
+        private TraktRecommendationsModule _recommendations;
 
         internal TraktClient()
         {
@@ -134,6 +135,12 @@ namespace TraktApiSharp
         {
             get { return _search = _search ?? new TraktSearchModule(this); }
             private set { _search = value; }
+        }
+
+        public TraktRecommendationsModule Recommendations
+        {
+            get { return _recommendations = _recommendations ?? new TraktRecommendationsModule(this); }
+            private set { _recommendations = value; }
         }
     }
 }
