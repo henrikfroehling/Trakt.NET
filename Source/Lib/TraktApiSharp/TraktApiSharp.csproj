@@ -55,6 +55,7 @@
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
     <Compile Include="Enums\TraktCommentType.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
+    <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
     <Compile Include="Enums\TraktMediaAudioChannel.cs" />
     <Compile Include="Enums\TraktMediaResolution.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionMovieItem.cs" />
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionSeasonItem.cs" />
     <Compile Include="Objects\Get\Users\Collections\TraktUserCollectionShowItem.cs" />
+    <Compile Include="Objects\Get\Users\Lists\TraktListItem.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserMoviesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserNetworkStatistics.cs" />
@@ -354,6 +356,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCollectionShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCommentsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCustomSingleListRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />

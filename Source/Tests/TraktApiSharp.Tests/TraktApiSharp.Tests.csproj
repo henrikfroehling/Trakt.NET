@@ -94,6 +94,7 @@
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemsSectionTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
+    <Compile Include="Enums\TraktListItemTypeTests.cs" />
     <Compile Include="Enums\TraktMediaAudioChannelTests.cs" />
     <Compile Include="Enums\TraktMediaAudioTests.cs" />
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListCommentsTests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktSharingTextTests.cs" />
@@ -463,6 +465,7 @@
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
+    <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />
