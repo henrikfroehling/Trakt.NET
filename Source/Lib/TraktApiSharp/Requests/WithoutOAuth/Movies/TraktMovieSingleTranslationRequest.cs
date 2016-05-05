@@ -12,7 +12,8 @@
 
         protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
-            return new Dictionary<string, string> { { "language", LanguageCode } };
+            return new Dictionary<string, string> { { "id", Id },
+                                                    { "language", LanguageCode } };
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;

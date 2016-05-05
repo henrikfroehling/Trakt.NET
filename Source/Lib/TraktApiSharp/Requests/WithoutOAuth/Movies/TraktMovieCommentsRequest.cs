@@ -14,7 +14,8 @@
 
         protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
-            return new Dictionary<string, string> { { "sorting", Sorting.AsString() } };
+            return new Dictionary<string, string> { { "id", Id},
+                                                    { "sorting", Sorting.AsString() } };
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
