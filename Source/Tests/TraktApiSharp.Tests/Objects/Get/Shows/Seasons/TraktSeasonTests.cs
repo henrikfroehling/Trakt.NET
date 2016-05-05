@@ -92,69 +92,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSeasonReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonSummaryMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var season = JsonConvert.DeserializeObject<TraktSeason>(jsonFile);
-
-            season.Should().NotBeNull();
-            season.Number.Should().Be(1);
-            season.Ids.Should().NotBeNull();
-            season.Ids.Trakt.Should().Be(61430);
-            season.Ids.Tvdb.Should().Be(279121);
-            season.Ids.Tmdb.Should().Be(60523);
-            season.Ids.TvRage.Should().Be(36939);
-            season.Images.Should().BeNull();
-            season.Rating.Should().NotHaveValue();
-            season.Votes.Should().NotHaveValue();
-            season.TotalEpisodesCount.Should().NotHaveValue();
-            season.AiredEpisodesCount.Should().NotHaveValue();
-            season.Overview.Should().BeNullOrEmpty();
-            season.FirstAired.Should().NotHaveValue();
-            season.Episodes.Should().BeNull();
-        }
-
-        [TestMethod]
-        public void TestTraktSeasonReadFromJsonMetadataWithEpisodes()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var season = JsonConvert.DeserializeObject<TraktSeason>(jsonFile);
-
-            season.Should().NotBeNull();
-            season.Number.Should().Be(1);
-            season.Ids.Should().NotBeNull();
-            season.Ids.Trakt.Should().Be(61430);
-            season.Ids.Tvdb.Should().Be(279121);
-            season.Ids.Tmdb.Should().Be(60523);
-            season.Ids.TvRage.Should().Be(36939);
-            season.Images.Should().BeNull();
-            season.Rating.Should().NotHaveValue();
-            season.Votes.Should().NotHaveValue();
-            season.TotalEpisodesCount.Should().NotHaveValue();
-            season.AiredEpisodesCount.Should().NotHaveValue();
-            season.Overview.Should().BeNullOrEmpty();
-            season.FirstAired.Should().NotHaveValue();
-
-            season.Episodes.Should().NotBeNull();
-            season.Episodes.Should().HaveCount(6);
-
-            var episodes = season.Episodes.ToArray();
-
-            episodes[0].Title.Should().Be("City of Heroes");
-            episodes[1].Title.Should().Be("Fastest Man Alive");
-            episodes[2].Title.Should().Be("Things You Can't Outrun");
-            episodes[3].Title.Should().Be("Going Rogue");
-            episodes[4].Title.Should().Be("Plastique");
-            episodes[5].Title.Should().Be("The Flash is Born");
-        }
-
-        [TestMethod]
         public void TestTraktSeasonReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonSummaryImages.json");

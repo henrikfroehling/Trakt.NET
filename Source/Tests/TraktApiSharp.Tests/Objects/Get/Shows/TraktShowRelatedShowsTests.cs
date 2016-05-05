@@ -49,41 +49,6 @@
         }
 
         [TestMethod]
-        public void TestTraktShowRelatedShowsReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var relatedShows = JsonConvert.DeserializeObject<IEnumerable<TraktShow>>(jsonFile);
-
-            relatedShows.Should().NotBeNull();
-            relatedShows.Should().HaveCount(2);
-
-            var shows = relatedShows.ToArray();
-
-            shows[0].Title.Should().Be("Sherlock");
-            shows[0].Year.Should().Be(2010);
-            shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(19792);
-            shows[0].Ids.Slug.Should().Be("sherlock");
-            shows[0].Ids.Tvdb.Should().Be(176941);
-            shows[0].Ids.Imdb.Should().Be("tt1475582");
-            shows[0].Ids.Tmdb.Should().Be(19885);
-            shows[0].Ids.TvRage.Should().Be(23433);
-
-            shows[1].Title.Should().Be("11.22.63");
-            shows[1].Year.Should().Be(2016);
-            shows[1].Ids.Should().NotBeNull();
-            shows[1].Ids.Trakt.Should().Be(102771);
-            shows[1].Ids.Slug.Should().Be("11-22-63");
-            shows[1].Ids.Tvdb.Should().Be(301824);
-            shows[1].Ids.Imdb.Should().Be("tt2879552");
-            shows[1].Ids.Tmdb.Should().Be(64464);
-            shows[1].Ids.TvRage.Should().Be(45210);
-        }
-
-        [TestMethod]
         public void TestTraktShowRelatedShowsReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsImages.json");

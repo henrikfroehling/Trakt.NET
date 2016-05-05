@@ -59,35 +59,6 @@
         }
 
         [TestMethod]
-        public void TestTraktEpisodeReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var episode = JsonConvert.DeserializeObject<TraktEpisode>(jsonFile);
-
-            episode.Should().NotBeNull();
-            episode.Title.Should().Be("Winter Is Coming");
-            episode.SeasonNumber.Should().Be(1);
-            episode.Number.Should().Be(1);
-            episode.NumberAbsolute.Should().NotHaveValue();
-            episode.Overview.Should().BeNullOrEmpty();
-            episode.FirstAired.Should().NotHaveValue();
-            episode.UpdatedAt.Should().NotHaveValue();
-            episode.Rating.Should().NotHaveValue();
-            episode.Votes.Should().NotHaveValue();
-            episode.Ids.Should().NotBeNull();
-            episode.Ids.Trakt.Should().Be(73640);
-            episode.Ids.Tvdb.Should().Be(3254641);
-            episode.Ids.Imdb.Should().Be("tt1480055");
-            episode.Ids.Tmdb.Should().Be(63056);
-            episode.Ids.TvRage.Should().Be(1065008299);
-            episode.Images.Should().BeNull();
-            episode.AvailableTranslationLanguageCodes.Should().BeNull();
-        }
-
-        [TestMethod]
         public void TestTraktEpisodeReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryImages.json");

@@ -355,7 +355,6 @@
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesImages.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesMetadata.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieReleases.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSingleAlias.json" />
@@ -365,7 +364,6 @@
     <None Include="TestData\Objects\Get\Movies\MovieSummaryFull.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSummaryImages.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSummaryMetadata.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieTranslations.json" />
     <None Include="TestData\Objects\Get\Movies\MovieWatchingUsers.json" />
@@ -374,7 +372,6 @@
     <None Include="TestData\Objects\Get\People\PersonFull.json" />
     <None Include="TestData\Objects\Get\People\PersonFullAndImages.json" />
     <None Include="TestData\Objects\Get\People\PersonImages.json" />
-    <None Include="TestData\Objects\Get\People\PersonMetadata.json" />
     <None Include="TestData\Objects\Get\People\PersonMinimal.json" />
     <None Include="TestData\Objects\Get\Recommendations\MovieRecommendations.json" />
     <None Include="TestData\Objects\Get\Recommendations\MovieSingleRecommendation.json" />
@@ -393,7 +390,6 @@
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryImages.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json" />
@@ -402,8 +398,6 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Full\SeasonsAllFullWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Images\SeasonsAllImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\All\Metadata\SeasonsAllMetadata.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\All\Metadata\SeasonsAllMetadataWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
@@ -412,12 +406,10 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryFull.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryImages.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesFull.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesImages.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\ShowAliases.json" />
@@ -429,7 +421,6 @@
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFull.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsImages.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSingleAlias.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSingleTranslation.json" />
@@ -437,7 +428,6 @@
     <None Include="TestData\Objects\Get\Shows\ShowSummaryFull.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryImages.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowSummaryMetadata.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\ShowTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgress.json" />
@@ -484,7 +474,6 @@
     <None Include="TestData\Objects\Get\Users\UserImages.json" />
     <None Include="TestData\Objects\Get\Users\UserLikeComment.json" />
     <None Include="TestData\Objects\Get\Users\UserLikeList.json" />
-    <None Include="TestData\Objects\Get\Users\UserMetadata.json" />
     <None Include="TestData\Objects\Get\Users\UserMinimal.json" />
     <None Include="TestData\Objects\Get\Users\UserSettings.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
