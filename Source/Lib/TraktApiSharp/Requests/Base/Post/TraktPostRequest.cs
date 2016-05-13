@@ -16,7 +16,7 @@
             base.Validate();
 
             if (RequestBody == null)
-                throw new ArgumentException("request body not valid");
+                throw new ArgumentException("request body not set");
         }
     }
 }

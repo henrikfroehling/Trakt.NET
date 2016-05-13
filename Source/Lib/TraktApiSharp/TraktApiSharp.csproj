@@ -281,6 +281,7 @@
     <Compile Include="Objects\Post\Comments\TraktSeasonCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktShowCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentUpdatePost.cs" />
+    <Compile Include="Objects\Post\IValidatable.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktMovieScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktScrobblePostResponse.cs" />
@@ -340,6 +341,7 @@
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinMovieRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
