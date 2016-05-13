@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal abstract class TraktDeleteRequest : TraktRequest<object, object>
+    internal abstract class TraktDeleteRequest : TraktRequest<object, object, object>
     {
         protected TraktDeleteRequest(TraktClient client) : base(client) { }
 

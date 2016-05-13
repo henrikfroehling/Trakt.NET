@@ -17,7 +17,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Threading.Tasks;
     using WithoutOAuth.Shows.Seasons;
 
-    internal abstract class TraktRequest<TResult, TItem> : ITraktRequest<TResult, TItem>
+    internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
         private static string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
@@ -160,7 +160,7 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        internal object RequestBody { get; set; }
+        internal TRequestBody RequestBody { get; set; }
 
         protected HttpContent RequestBodyContent
         {
