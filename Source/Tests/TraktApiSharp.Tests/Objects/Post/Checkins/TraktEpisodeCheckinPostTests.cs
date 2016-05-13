@@ -20,10 +20,7 @@
             episodeCheckin.Sharing.Should().BeNull();
             episodeCheckin.Message.Should().BeNullOrEmpty();
             episodeCheckin.AppVersion.Should().BeNullOrEmpty();
-
-            var appDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            episodeCheckin.AppDate.Should().NotBeNull().And.NotBeEmpty().And.Be(appDate);
-
+            episodeCheckin.AppDate.Should().BeNull();
             episodeCheckin.FoursquareVenueId.Should().BeNullOrEmpty();
             episodeCheckin.FoursquareVenueName.Should().BeNullOrEmpty();
             episodeCheckin.Episode.Should().BeNull();
@@ -93,6 +90,7 @@
                 Sharing = sharing,
                 Message = message,
                 AppVersion = appVersion,
+                AppDate = appDate,
                 FoursquareVenueId = venueId,
                 FoursquareVenueName = venueName,
                 Episode = episode,

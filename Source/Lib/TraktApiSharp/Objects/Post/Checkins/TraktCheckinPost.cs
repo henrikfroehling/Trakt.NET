@@ -2,7 +2,6 @@
 {
     using Basic;
     using Newtonsoft.Json;
-    using System;
 
     public abstract class TraktCheckinPost
     {
@@ -16,7 +15,7 @@
         public string AppVersion { get; set; }
 
         [JsonProperty(PropertyName = "app_date")]
-        public string AppDate => DateTime.UtcNow.ToString("yyyy-MM-dd");
+        public string AppDate { get; set; }
 
         [JsonProperty(PropertyName = "venue_id")]
         public string FoursquareVenueId { get; set; }

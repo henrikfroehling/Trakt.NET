@@ -19,10 +19,7 @@
             movieCheckin.Sharing.Should().BeNull();
             movieCheckin.Message.Should().BeNullOrEmpty();
             movieCheckin.AppVersion.Should().BeNullOrEmpty();
-
-            var appDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            movieCheckin.AppDate.Should().NotBeNull().And.NotBeEmpty().And.Be(appDate);
-
+            movieCheckin.AppDate.Should().BeNull();
             movieCheckin.FoursquareVenueId.Should().BeNullOrEmpty();
             movieCheckin.FoursquareVenueName.Should().BeNullOrEmpty();
             movieCheckin.Movie.Should().BeNull();
@@ -63,6 +60,7 @@
                 Sharing = sharing,
                 Message = message,
                 AppVersion = appVersion,
+                AppDate = appDate,
                 FoursquareVenueId = venueId,
                 FoursquareVenueName = venueName,
                 Movie = movie
