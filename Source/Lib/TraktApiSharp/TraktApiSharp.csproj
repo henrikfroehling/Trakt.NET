@@ -341,6 +341,7 @@
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequest.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinMovieRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
