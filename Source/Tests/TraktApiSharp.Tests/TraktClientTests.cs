@@ -167,5 +167,13 @@
 
             client.Users.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetCheckinsModule()
+        {
+            var client = new TraktClient();
+
+            client.Checkins.Should().NotBeNull();
+        }
     }
 }

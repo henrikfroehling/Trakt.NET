@@ -17,7 +17,7 @@
             base.Validate();
 
             if (string.IsNullOrEmpty(Id))
-                throw new ArgumentException("id not valid");
+                throw new ArgumentException("post id not set");
         }
     }
 }

@@ -180,7 +180,7 @@ namespace TraktApiSharp.Requests.Base
 
                 return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings()
                 {
-                    Formatting = Formatting.Indented,
+                    Formatting = Formatting.None,
                     NullValueHandling = NullValueHandling.Ignore
                 });
             }
