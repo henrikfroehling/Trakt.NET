@@ -106,6 +106,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktBaseModule.cs" />
     <Compile Include="Modules\TraktCalendarModule.cs" />
+    <Compile Include="Modules\TraktCheckinsModule.cs" />
     <Compile Include="Modules\TraktCommentsModule.cs" />
     <Compile Include="Modules\TraktEpisodesModule.cs" />
     <Compile Include="Modules\TraktGenresModule.cs" />
