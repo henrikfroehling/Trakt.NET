@@ -5,9 +5,9 @@
     using Objects.Post.Users.Responses;
     using System.Collections.Generic;
 
-    internal class TraktUserListAddRequest : TraktPostRequest<TraktUserListPostResponse, TraktUserListPostResponse, TraktUserListPost>
+    internal class TraktUserCustomListAddRequest : TraktPostRequest<TraktUserListPostResponse, TraktUserListPostResponse, TraktUserListPost>
     {
-        internal TraktUserListAddRequest(TraktClient client) : base(client) { }
+        internal TraktUserCustomListAddRequest(TraktClient client) : base(client) { }
 
         internal string Username { get; set; }
 

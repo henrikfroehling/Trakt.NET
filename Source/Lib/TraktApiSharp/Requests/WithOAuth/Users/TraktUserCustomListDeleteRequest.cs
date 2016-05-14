@@ -3,9 +3,9 @@
     using Base.Delete;
     using System.Collections.Generic;
 
-    internal class TraktUserListDeleteRequest : TraktDeleteByIdRequest
+    internal class TraktUserCustomListDeleteRequest : TraktDeleteByIdRequest
     {
-        internal TraktUserListDeleteRequest(TraktClient client) : base(client) { }
+        internal TraktUserCustomListDeleteRequest(TraktClient client) : base(client) { }
 
         internal string Username { get; set; }
 
