@@ -344,11 +344,11 @@
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikePostRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentPostRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyPostRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentUnlikeRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdatePostRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdateRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowHideRecommendationRequest.cs" />

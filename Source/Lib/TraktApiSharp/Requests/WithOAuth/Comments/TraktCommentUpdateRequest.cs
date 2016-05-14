@@ -4,9 +4,9 @@
     using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
 
-    internal class TraktCommentUpdatePostRequest : TraktPostByIdRequest<TraktCommentPostResponse, TraktCommentPostResponse, TraktCommentUpdatePost>
+    internal class TraktCommentUpdateRequest : TraktPostByIdRequest<TraktCommentPostResponse, TraktCommentPostResponse, TraktCommentUpdatePost>
     {
-        internal TraktCommentUpdatePostRequest(TraktClient client) : base(client) { }
+        internal TraktCommentUpdateRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "comments/{id}";
 
