@@ -21,7 +21,7 @@
                                                                            DateTime? appDate = null,
                                                                            TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
-            return await QueryAsync(new TraktCheckinMovieRequest(Client)
+            return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
                 RequestBody = new TraktMovieCheckinPost
                 {
@@ -48,7 +48,7 @@
                                                                                DateTime? appDate = null,
                                                                                TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
-            return await QueryAsync(new TraktCheckinEpisodeRequest(Client)
+            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
                 RequestBody = new TraktEpisodeCheckinPost
                 {
