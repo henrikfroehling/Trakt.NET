@@ -18,10 +18,7 @@
 
             episodeScrobble.Progress.Should().Be(0.0f);
             episodeScrobble.AppVersion.Should().BeNullOrEmpty();
-
-            var appDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            episodeScrobble.AppDate.Should().NotBeNull().And.NotBeEmpty().And.Be(appDate);
-
+            episodeScrobble.AppDate.Should().BeNull();
             episodeScrobble.Episode.Should().BeNull();
             episodeScrobble.Show.Should().BeNull();
         }
@@ -85,6 +82,7 @@
             {
                 Progress = progress,
                 AppVersion = appVersion,
+                AppDate = appDate,
                 Episode = episode,
                 Show = show
             };
