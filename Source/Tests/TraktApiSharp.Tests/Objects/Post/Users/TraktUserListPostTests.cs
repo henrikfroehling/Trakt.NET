@@ -16,7 +16,7 @@
 
             userListPost.Name.Should().BeNullOrEmpty();
             userListPost.Description.Should().BeNullOrEmpty();
-            userListPost.Privacy.Should().Be(TraktAccessScope.Unspecified);
+            userListPost.Privacy.Should().BeNull();
             userListPost.DisplayNumbers.Should().NotHaveValue();
             userListPost.AllowComments.Should().NotHaveValue();
         }

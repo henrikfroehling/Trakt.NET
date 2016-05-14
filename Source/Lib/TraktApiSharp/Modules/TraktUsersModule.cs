@@ -7,6 +7,10 @@
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Users.Watched;
+    using Objects.Post.Users;
+    using Objects.Post.Users.ListItems;
+    using Objects.Post.Users.ListItems.Responses;
+    using Objects.Post.Users.Responses;
     using Requests;
     using Requests.WithOAuth.Users;
     using System.Threading.Tasks;
@@ -123,6 +127,109 @@
             });
         }
 
+        public async Task<TraktUserListPostResponse> AddCustomListAsync(string username, string listName, string description = null,
+                                                                        TraktAccessScope privacy = TraktAccessScope.Unspecified,
+                                                                        bool displayNumbers = false, bool allowComments = false)
+        {
+            var requestBody = new TraktUserListPost
+            {
+                Name = listName,
+                Description = description,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            if (privacy != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy;
+
+            return await QueryAsync(new TraktUserCustomListAddRequest(Client)
+            {
+                Username = username,
+                RequestBody = requestBody
+            });
+        }
+
+        public async Task<TraktUserListUpdatePostResponse> UpdateCustomListAsync(string username, string listId,
+                                                                                 string listName, string description = null,
+                                                                                 TraktAccessScope? privacy = null,
+                                                                                 bool displayNumbers = false, bool allowComments = false)
+        {
+            var requestBody = new TraktUserListUpdatePost
+            {
+                Name = listName,
+                Description = description,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            if (privacy != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy;
+
+            return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
+            {
+                Username = username,
+                RequestBody = new TraktUserListUpdatePost
+                {
+                    Name = listName,
+                    Description = description,
+                    Privacy = privacy,
+                    DisplayNumbers = displayNumbers,
+                    AllowComments = allowComments
+                }
+            });
+        }
+
+        public async Task DeleteCustomListAsync(string username, string listId)
+        {
+            await QueryAsync(new TraktUserCustomListDeleteRequest(Client)
+            {
+                Username = username,
+                Id = listId
+            });
+        }
+
+        public async Task<TraktUserListItemsPostResponse> AddCustomListItemsAsync(string username, string listId,
+                                                                                  TraktUserListItemsPost listItemsPost,
+                                                                                  TraktListItemType? type = null)
+        {
+            return await QueryAsync(new TraktUserCustomListItemsAddRequest(Client)
+            {
+                Username = username,
+                Id = listId,
+                Type = type,
+                RequestBody = listItemsPost
+            });
+        }
+
+        public async Task<TraktUserListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
+                                                                                           TraktUserListItemsRemovePost listItemsRemovePost)
+        {
+            return await QueryAsync(new TraktUserCustomListItemsRemoveRequest(Client)
+            {
+                Username = username,
+                Id = listId,
+                RequestBody = listItemsRemovePost
+            });
+        }
+
+        public async Task LikeListAsync(string username, string listId)
+        {
+            await QueryAsync(new TraktUserListLikeRequest(Client)
+            {
+                Username = username,
+                Id = listId
+            });
+        }
+
+        public async Task UnlikeListAsync(string username, string listId)
+        {
+            await QueryAsync(new TraktUserListUnlikeRequest(Client)
+            {
+                Username = username,
+                Id = listId
+            });
+        }
+
         public async Task<TraktListResult<TraktUserFollower>> GetUserFollowersAsync(string username)
         {
             return await QueryAsync(new TraktUserFollowersRequest(Client)
@@ -145,6 +252,26 @@
             {
                 Username = username
             });
+        }
+
+        public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string username)
+        {
+            return await QueryAsync(new TraktUserFollowUserRequest(Client) { Username = username });
+        }
+
+        public async Task UnfollowUserAsync(string username)
+        {
+            await QueryAsync(new TraktUserUnfollowUserRequest(Client) { Username = username });
+        }
+
+        public async Task<TraktUserFollower> ApproveFollowerAsync(string followerRequestId)
+        {
+            return await QueryAsync(new TraktUserApproveFollowerRequest(Client) { Id = followerRequestId });
+        }
+
+        public async Task DenyFollowerAsync(string followerRequestId)
+        {
+            await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
         public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetUserWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
