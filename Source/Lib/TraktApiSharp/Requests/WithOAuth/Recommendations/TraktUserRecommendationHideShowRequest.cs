@@ -2,9 +2,9 @@
 {
     using Base.Delete;
 
-    internal class TraktUserShowHideRecommendationRequest : TraktDeleteByIdRequest
+    internal class TraktUserRecommendationHideShowRequest : TraktDeleteByIdRequest
     {
-        internal TraktUserShowHideRecommendationRequest(TraktClient client) : base(client) { }
+        internal TraktUserRecommendationHideShowRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "recommendations/shows/{id}";
     }

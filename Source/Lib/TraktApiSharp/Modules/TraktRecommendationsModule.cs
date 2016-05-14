@@ -22,7 +22,7 @@
 
         public async Task HideMovieRecommendationAsync(string movieId)
         {
-            await QueryAsync(new TraktUserMovieHideRecommendationRequest(Client)
+            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client)
             {
                 Id = movieId
             });
@@ -40,7 +40,7 @@
 
         public async Task HideShowRecommendationAsync(string showId)
         {
-            await QueryAsync(new TraktUserShowHideRecommendationRequest(Client)
+            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client)
             {
                 Id = showId
             });

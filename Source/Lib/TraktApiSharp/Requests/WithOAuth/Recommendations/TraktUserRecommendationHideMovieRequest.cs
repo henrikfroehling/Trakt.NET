@@ -2,9 +2,9 @@
 {
     using Base.Delete;
 
-    internal class TraktUserMovieHideRecommendationRequest : TraktDeleteByIdRequest
+    internal class TraktUserRecommendationHideMovieRequest : TraktDeleteByIdRequest
     {
-        internal TraktUserMovieHideRecommendationRequest(TraktClient client) : base(client) { }
+        internal TraktUserRecommendationHideMovieRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "recommendations/movies/{id}";
     }

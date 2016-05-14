@@ -350,9 +350,9 @@
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentUnlikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdateRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieHideRecommendationRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideMovieRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowHideRecommendationRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideShowRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobblePauseRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleStartRequest.cs" />
