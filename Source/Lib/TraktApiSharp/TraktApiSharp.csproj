@@ -363,6 +363,7 @@
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncCollectionShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncLastActivitiesRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Syncs\TraktSyncPlaybackDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncPlaybackProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncRatingsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Syncs\TraktSyncWatchedHistoryRequest.cs" />
