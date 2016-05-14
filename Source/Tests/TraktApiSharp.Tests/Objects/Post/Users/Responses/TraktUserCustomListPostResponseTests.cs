@@ -9,12 +9,12 @@
     using Utils;
 
     [TestClass]
-    public class TraktUserListPostResponseTests
+    public class TraktUserCustomListPostResponseTests
     {
         [TestMethod]
-        public void TestTraktUserListPostResponseDefaultConstructor()
+        public void TestTraktUserCustomListPostResponseDefaultConstructor()
         {
-            var userListPostResponse = new TraktUserListPostResponse();
+            var userListPostResponse = new TraktUserCustomListPostResponse();
 
             userListPostResponse.Name.Should().BeNullOrEmpty();
             userListPostResponse.Description.Should().BeNullOrEmpty();
@@ -33,13 +33,13 @@
         }
 
         [TestMethod]
-        public void TestTraktUserListPostResponseReadFromJson()
+        public void TestTraktUserCustomListPostResponseReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\Responses\UserListPostResponse.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\Responses\UserCustomListPostResponse.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var userListPostResponse = JsonConvert.DeserializeObject<TraktUserListPostResponse>(jsonFile);
+            var userListPostResponse = JsonConvert.DeserializeObject<TraktUserCustomListPostResponse>(jsonFile);
 
             userListPostResponse.Should().NotBeNull();
             userListPostResponse.Name.Should().Be("Star Wars in machete order");
