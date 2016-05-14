@@ -350,6 +350,7 @@
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleEpisodePauseRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleEpisodeStartRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleEpisodeStopRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleMoviePauseRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleMovieStartRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleMovieStopRequest.cs" />
