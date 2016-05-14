@@ -347,6 +347,7 @@
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />
