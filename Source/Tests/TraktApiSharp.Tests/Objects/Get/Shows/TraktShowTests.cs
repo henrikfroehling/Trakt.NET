@@ -85,48 +85,6 @@
         }
 
         [TestMethod]
-        public void TestTraktShowReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var show = JsonConvert.DeserializeObject<TraktShow>(jsonFile);
-
-            show.Should().NotBeNull();
-            show.Title.Should().Be("Game of Thrones");
-            show.Year.Should().Be(2011);
-            show.Airs.Should().BeNull();
-            show.AvailableTranslationLanguageCodes.Should().BeNull();
-            show.Ids.Should().NotBeNull();
-            show.Ids.Trakt.Should().Be(1390);
-            show.Ids.Slug.Should().Be("game-of-thrones");
-            show.Ids.Tvdb.Should().Be(121361);
-            show.Ids.Imdb.Should().Be("tt0944947");
-            show.Ids.Tmdb.Should().Be(1399);
-            show.Ids.TvRage.Should().Be(24493);
-            show.Images.Should().BeNull();
-            show.Genres.Should().BeNull();
-            show.Seasons.Should().BeNull();
-            show.Overview.Should().BeNullOrEmpty();
-            show.FirstAired.Should().NotHaveValue();
-            show.Runtime.Should().NotHaveValue();
-            show.Certification.Should().BeNullOrEmpty();
-            show.Network.Should().BeNullOrEmpty();
-            show.CountryCode.Should().BeNullOrEmpty();
-            show.UpdatedAt.Should().NotHaveValue();
-            show.Trailer.Should().BeNullOrEmpty();
-            show.TrailerUri.Should().BeNull();
-            show.Homepage.Should().BeNullOrEmpty();
-            show.HomepageUri.Should().BeNull();
-            show.Status.Should().Be(TraktShowStatus.Unspecified);
-            show.Rating.Should().NotHaveValue();
-            show.Votes.Should().NotHaveValue();
-            show.LanguageCode.Should().BeNullOrEmpty();
-            show.AiredEpisodes.Should().NotHaveValue();
-        }
-
-        [TestMethod]
         public void TestTraktShowReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryImages.json");

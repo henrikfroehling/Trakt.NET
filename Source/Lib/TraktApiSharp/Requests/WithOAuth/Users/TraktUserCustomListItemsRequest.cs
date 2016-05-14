@@ -18,7 +18,8 @@
 
         protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username },
+            return new Dictionary<string, string> { { "id", Id },
+                                                    { "username", Username },
                                                     { "type", Type.HasValue ? Type.Value.AsStringUriParameter() : string.Empty } };
         }
 

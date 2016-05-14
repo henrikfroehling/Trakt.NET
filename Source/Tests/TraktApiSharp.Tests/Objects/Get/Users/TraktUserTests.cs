@@ -52,29 +52,6 @@
         }
 
         [TestMethod]
-        public void TestTraktUserReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Users\UserMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var user = JsonConvert.DeserializeObject<TraktUser>(jsonFile);
-
-            user.Should().NotBeNull();
-            user.Username.Should().Be("WalterBishopj");
-            user.Private.Should().BeFalse();
-            user.Name.Should().Be("Walter");
-            user.VIP.Should().BeFalse();
-            user.VIP_EP.Should().BeFalse();
-            user.JoinedAt.Should().NotHaveValue();
-            user.Location.Should().BeNullOrEmpty();
-            user.About.Should().BeNullOrEmpty();
-            user.Gender.Should().BeNullOrEmpty();
-            user.Age.Should().NotHaveValue();
-            user.Images.Should().BeNull();
-        }
-
-        [TestMethod]
         public void TestTraktUserReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Users\UserImages.json");

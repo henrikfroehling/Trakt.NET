@@ -72,41 +72,6 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var movie = JsonConvert.DeserializeObject<TraktMovie>(jsonFile);
-
-            movie.Should().NotBeNull();
-            movie.Title.Should().Be("Star Wars: The Force Awakens");
-            movie.Year.Should().Be(2015);
-            movie.Ids.Should().NotBeNull();
-            movie.Ids.Trakt.Should().Be(94024);
-            movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-            movie.Ids.Imdb.Should().Be("tt2488496");
-            movie.Ids.Tmdb.Should().Be(140607);
-            movie.Images.Should().BeNull();
-            movie.Tagline.Should().BeNullOrEmpty();
-            movie.Overview.Should().BeNullOrEmpty();
-            movie.Released.Should().NotHaveValue();
-            movie.Runtime.Should().NotHaveValue();
-            movie.UpdatedAt.Should().NotHaveValue();
-            movie.Trailer.Should().BeNullOrEmpty();
-            movie.TrailerUri.Should().BeNull();
-            movie.Homepage.Should().BeNullOrEmpty();
-            movie.HomepageUri.Should().BeNull();
-            movie.Rating.Should().NotHaveValue();
-            movie.Votes.Should().NotHaveValue();
-            movie.LanguageCode.Should().BeNullOrEmpty();
-            movie.AvailableTranslationLanguageCodes.Should().BeNull();
-            movie.Genres.Should().BeNull();
-            movie.Certification.Should().BeNullOrEmpty();
-        }
-
-        [TestMethod]
         public void TestTraktMovieReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryImages.json");

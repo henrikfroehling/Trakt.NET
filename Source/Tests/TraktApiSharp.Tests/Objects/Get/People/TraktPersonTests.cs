@@ -53,32 +53,6 @@
         }
 
         [TestMethod]
-        public void TestTraktPersonReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\People\PersonMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var person = JsonConvert.DeserializeObject<TraktPerson>(jsonFile);
-
-            person.Should().NotBeNull();
-            person.Name.Should().Be("Bryan Cranston");
-            person.Ids.Should().NotBeNull();
-            person.Ids.Trakt.Should().Be(297737);
-            person.Ids.Slug.Should().Be("bryan-cranston");
-            person.Ids.Imdb.Should().Be("nm0186505");
-            person.Ids.Tmdb.Should().Be(17419);
-            person.Ids.TvRage.Should().Be(1797);
-            person.Images.Should().BeNull();
-            person.Biography.Should().BeNullOrEmpty();
-            person.Birthday.Should().NotHaveValue();
-            person.Death.Should().NotHaveValue();
-            person.Age.Should().Be(0);
-            person.Birthplace.Should().BeNullOrEmpty();
-            person.Homepage.Should().BeNullOrEmpty();
-        }
-
-        [TestMethod]
         public void TestTraktPersonReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\People\PersonImages.json");

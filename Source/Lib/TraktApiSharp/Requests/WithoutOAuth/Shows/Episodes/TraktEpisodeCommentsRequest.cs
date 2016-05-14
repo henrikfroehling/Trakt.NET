@@ -13,7 +13,15 @@
 
         protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
-            return new Dictionary<string, string> { { "sorting", Sorting.AsString() } };
+            var parameters = new Dictionary<string, string>();
+
+            var baseParameters = base.GetPathParameters();
+            foreach (var p in baseParameters)
+                parameters.Add(p.Key, p.Value);
+
+            parameters.Add("sorting", Sorting.AsString());
+
+            return parameters;
         }
 
         protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments/{sorting}";

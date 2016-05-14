@@ -44,37 +44,6 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieRelatedMoviesReadFromJsonMetadata()
-        {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesMetadata.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var relatedMovies = JsonConvert.DeserializeObject<IEnumerable<TraktMovie>>(jsonFile);
-
-            relatedMovies.Should().NotBeNull();
-            relatedMovies.Should().HaveCount(2);
-
-            var movies = relatedMovies.ToArray();
-
-            movies[0].Title.Should().Be("Star Wars: Episode V - The Empire Strikes Back");
-            movies[0].Year.Should().Be(1980);
-            movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(1266);
-            movies[0].Ids.Slug.Should().Be("star-wars-episode-v-the-empire-strikes-back-1980");
-            movies[0].Ids.Imdb.Should().Be("tt0080684");
-            movies[0].Ids.Tmdb.Should().Be(1891);
-
-            movies[1].Title.Should().Be("Return of the Jedi");
-            movies[1].Year.Should().Be(1983);
-            movies[1].Ids.Should().NotBeNull();
-            movies[1].Ids.Trakt.Should().Be(1267);
-            movies[1].Ids.Slug.Should().Be("return-of-the-jedi-1983");
-            movies[1].Ids.Imdb.Should().Be("tt0086190");
-            movies[1].Ids.Tmdb.Should().Be(1892);
-        }
-
-        [TestMethod]
         public void TestTraktMovieRelatedMoviesReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesImages.json");

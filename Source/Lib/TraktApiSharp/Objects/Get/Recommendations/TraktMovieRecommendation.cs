@@ -1,11 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Get.Recommendations
 {
     using Movies;
-    using Newtonsoft.Json;
 
-    public class TraktMovieRecommendation : TraktRecommendation
+    public class TraktMovieRecommendation : TraktMovie
     {
-        [JsonProperty(PropertyName = "ids")]
-        public TraktMovieIds Ids { get; set; }
+
     }
 }
