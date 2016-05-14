@@ -347,6 +347,7 @@
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikePostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentPostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyPostRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Comments\TraktCommentUnlikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdatePostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
