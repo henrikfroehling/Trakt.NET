@@ -129,7 +129,6 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrewItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCredits.cs" />
-    <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchedProgress.cs" />
