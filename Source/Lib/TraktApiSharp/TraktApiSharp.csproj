@@ -385,6 +385,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListItemsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCustomListsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserCustomSingleListRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserDenyFollowerRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowersRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
