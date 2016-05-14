@@ -23,7 +23,7 @@
             var bHasNoEpisodes = Episodes == null || !Episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items to add");
+                throw new ArgumentException("no items set");
         }
     }
 }
