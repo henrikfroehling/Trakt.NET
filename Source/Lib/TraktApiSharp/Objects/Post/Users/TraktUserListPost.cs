@@ -2,8 +2,9 @@
 {
     using Enums;
     using Newtonsoft.Json;
+    using System;
 
-    public class TraktUserListPost
+    public class TraktUserListPost : IValidatable
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -20,5 +21,11 @@
 
         [JsonProperty(PropertyName = "allow_comments")]
         public bool? AllowComments { get; set; }
+
+        public void Validate()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new ArgumentException("name not set");
+        }
     }
 }
