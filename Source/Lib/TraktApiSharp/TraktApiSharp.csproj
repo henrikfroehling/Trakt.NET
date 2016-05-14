@@ -129,7 +129,6 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrewItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCredits.cs" />
-    <Compile Include="Objects\Get\Recommendations\TraktRecommendation.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchedProgress.cs" />
@@ -345,7 +344,9 @@
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinMovieRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowHideRecommendationRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />

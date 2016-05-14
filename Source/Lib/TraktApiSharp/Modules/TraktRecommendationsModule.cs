@@ -10,19 +10,39 @@
     {
         public TraktRecommendationsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktMovieRecommendation>> GetUserMovieRecommendationsAsync(int? limit = null)
+        public async Task<TraktListResult<TraktMovieRecommendation>> GetUserMovieRecommendationsAsync(int? limit = null,
+                                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
-                PaginationOptions = new TraktPaginationOptions(null, limit)
+                PaginationOptions = new TraktPaginationOptions(null, limit),
+                ExtendedOption = extended
             });
         }
 
-        public async Task<TraktListResult<TraktShowRecommendation>> GetUserShowRecommendationsAsync(int? limit = null)
+        public async Task HideMovieRecommendationAsync(string movieId)
+        {
+            await QueryAsync(new TraktUserMovieHideRecommendationRequest(Client)
+            {
+                Id = movieId
+            });
+        }
+
+        public async Task<TraktListResult<TraktShowRecommendation>> GetUserShowRecommendationsAsync(int? limit = null,
+                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
-                PaginationOptions = new TraktPaginationOptions(null, limit)
+                PaginationOptions = new TraktPaginationOptions(null, limit),
+                ExtendedOption = extended
+            });
+        }
+
+        public async Task HideShowRecommendationAsync(string showId)
+        {
+            await QueryAsync(new TraktUserShowHideRecommendationRequest(Client)
+            {
+                Id = showId
             });
         }
     }
