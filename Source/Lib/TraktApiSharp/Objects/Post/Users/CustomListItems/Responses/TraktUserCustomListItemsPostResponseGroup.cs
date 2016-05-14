@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.ListItems.Responses
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
     using Newtonsoft.Json;
 
-    public class TraktUserListItemsPostResponseGroup
+    public class TraktUserCustomListItemsPostResponseGroup
     {
         [JsonProperty(PropertyName = "movies")]
         public int? Movies { get; set; }

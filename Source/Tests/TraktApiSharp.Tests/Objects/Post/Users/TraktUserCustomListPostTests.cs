@@ -7,12 +7,12 @@
     using TraktApiSharp.Objects.Post.Users;
 
     [TestClass]
-    public class TraktUserListPostTests
+    public class TraktUserCustomListPostTests
     {
         [TestMethod]
-        public void TestTraktUserListPostDefaultConstructor()
+        public void TestTraktUserCustomListPostDefaultConstructor()
         {
-            var userListPost = new TraktUserListPost();
+            var userListPost = new TraktUserCustomListPost();
 
             userListPost.Name.Should().BeNullOrEmpty();
             userListPost.Description.Should().BeNullOrEmpty();
@@ -22,7 +22,7 @@
         }
 
         [TestMethod]
-        public void TestTraktUserListPostWriteJson()
+        public void TestTraktUserCustomListPostWriteJson()
         {
             var name = "list name";
             var description = "list description";
@@ -30,7 +30,7 @@
             var displayNumbers = true;
             var allowComments = false;
 
-            var userListPost = new TraktUserListPost
+            var userListPost = new TraktUserCustomListPost
             {
                 Name = name,
                 Description = description,
@@ -43,7 +43,7 @@
 
             strJson.Should().NotBeNullOrEmpty();
 
-            var userListPostFromJson = JsonConvert.DeserializeObject<TraktUserListPost>(strJson);
+            var userListPostFromJson = JsonConvert.DeserializeObject<TraktUserCustomListPost>(strJson);
 
             userListPostFromJson.Should().NotBeNull();
 

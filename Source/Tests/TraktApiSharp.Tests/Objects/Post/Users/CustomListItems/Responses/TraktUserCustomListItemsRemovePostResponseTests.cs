@@ -4,29 +4,29 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Linq;
-    using TraktApiSharp.Objects.Post.Users.ListItems.Responses;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using Utils;
 
     [TestClass]
-    public class TraktUserListItemsRemovePostResponseTests
+    public class TraktUserCustomListItemsRemovePostResponseTests
     {
         [TestMethod]
-        public void TestTraktUserListItemsRemovePostResponseDefaultConstructor()
+        public void TestTraktUserCustomListItemsRemovePostResponseDefaultConstructor()
         {
-            var userListItemsRemovePostResponse = new TraktUserListItemsRemovePostResponse();
+            var userListItemsRemovePostResponse = new TraktUserCustomListItemsRemovePostResponse();
 
             userListItemsRemovePostResponse.Deleted.Should().BeNull();
             userListItemsRemovePostResponse.NotFound.Should().BeNull();
         }
 
         [TestMethod]
-        public void TestTraktUserListItemsRemovePostResponseReadFromJson()
+        public void TestTraktUserCustomListItemsRemovePostResponseReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\ListItems\Responses\UserListItemsRemovePostResponse.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var userListItemsRemovePostResponse = JsonConvert.DeserializeObject<TraktUserListItemsRemovePostResponse>(jsonFile);
+            var userListItemsRemovePostResponse = JsonConvert.DeserializeObject<TraktUserCustomListItemsRemovePostResponse>(jsonFile);
 
             userListItemsRemovePostResponse.Should().NotBeNull();
 

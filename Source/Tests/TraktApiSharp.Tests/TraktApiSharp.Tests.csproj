@@ -282,15 +282,15 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePostTests.cs" />
-    <Compile Include="Objects\Post\Users\ListItems\Responses\TraktUserListItemsPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\ListItems\Responses\TraktUserListItemsRemovePostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\ListItems\TraktUserListItemsRemovePostTests.cs" />
-    <Compile Include="Objects\Post\Users\ListItems\TraktUserListItemsPostTests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserListPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserListUpdatePostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\TraktUserListPostTests.cs" />
-    <Compile Include="Objects\Post\Users\TraktUserListUpdatePostTests.cs" />
+    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListUpdatePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
+    <Compile Include="Objects\Post\Users\TraktUserCustomListUpdatePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -512,11 +512,11 @@
     <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistRemovePostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\ListItems\Responses\UserListItemsPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\ListItems\Responses\UserListItemsRemovePostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserListPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserListUpdatePostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListPostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListUpdatePostResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />

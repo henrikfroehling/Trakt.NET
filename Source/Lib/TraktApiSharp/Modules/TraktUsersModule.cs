@@ -8,8 +8,8 @@
     using Objects.Get.Users.Statistics;
     using Objects.Get.Users.Watched;
     using Objects.Post.Users;
-    using Objects.Post.Users.ListItems;
-    using Objects.Post.Users.ListItems.Responses;
+    using Objects.Post.Users.CustomListItems;
+    using Objects.Post.Users.CustomListItems.Responses;
     using Objects.Post.Users.Responses;
     using Requests;
     using Requests.WithOAuth.Users;
@@ -127,11 +127,11 @@
             });
         }
 
-        public async Task<TraktUserListPostResponse> AddCustomListAsync(string username, string listName, string description = null,
-                                                                        TraktAccessScope privacy = TraktAccessScope.Unspecified,
-                                                                        bool displayNumbers = false, bool allowComments = false)
+        public async Task<TraktUserCustomListPostResponse> AddCustomListAsync(string username, string listName, string description = null,
+                                                                              TraktAccessScope privacy = TraktAccessScope.Unspecified,
+                                                                              bool displayNumbers = false, bool allowComments = false)
         {
-            var requestBody = new TraktUserListPost
+            var requestBody = new TraktUserCustomListPost
             {
                 Name = listName,
                 Description = description,
@@ -149,12 +149,12 @@
             });
         }
 
-        public async Task<TraktUserListUpdatePostResponse> UpdateCustomListAsync(string username, string listId,
-                                                                                 string listName, string description = null,
-                                                                                 TraktAccessScope? privacy = null,
-                                                                                 bool displayNumbers = false, bool allowComments = false)
+        public async Task<TraktUserCustomListUpdatePostResponse> UpdateCustomListAsync(string username, string listId,
+                                                                                       string listName, string description = null,
+                                                                                       TraktAccessScope? privacy = null,
+                                                                                       bool displayNumbers = false, bool allowComments = false)
         {
-            var requestBody = new TraktUserListUpdatePost
+            var requestBody = new TraktUserCustomListUpdatePost
             {
                 Name = listName,
                 Description = description,
@@ -168,7 +168,7 @@
             return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
             {
                 Username = username,
-                RequestBody = new TraktUserListUpdatePost
+                RequestBody = new TraktUserCustomListUpdatePost
                 {
                     Name = listName,
                     Description = description,
@@ -188,9 +188,9 @@
             });
         }
 
-        public async Task<TraktUserListItemsPostResponse> AddCustomListItemsAsync(string username, string listId,
-                                                                                  TraktUserListItemsPost listItemsPost,
-                                                                                  TraktListItemType? type = null)
+        public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync(string username, string listId,
+                                                                                        TraktUserCustomListItemsPost listItemsPost,
+                                                                                        TraktListItemType? type = null)
         {
             return await QueryAsync(new TraktUserCustomListItemsAddRequest(Client)
             {
@@ -201,8 +201,8 @@
             });
         }
 
-        public async Task<TraktUserListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
-                                                                                           TraktUserListItemsRemovePost listItemsRemovePost)
+        public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
+                                                                                                 TraktUserCustomListItemsRemovePost listItemsRemovePost)
         {
             return await QueryAsync(new TraktUserCustomListItemsRemoveRequest(Client)
             {

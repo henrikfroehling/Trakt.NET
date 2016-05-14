@@ -8,15 +8,15 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Post.Users.ListItems;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems;
 
     [TestClass]
-    public class TraktUserListItemsRemovePostTests
+    public class TraktUserCustomListItemsRemovePostTests
     {
         [TestMethod]
-        public void TestTraktUserListItemsRemovePostDefaultConstructor()
+        public void TestTraktUserCustomListItemsRemovePostDefaultConstructor()
         {
-            var userListItemsRemovePost = new TraktUserListItemsRemovePost();
+            var userListItemsRemovePost = new TraktUserCustomListItemsRemovePost();
 
             userListItemsRemovePost.Movies.Should().BeNull();
             userListItemsRemovePost.Shows.Should().BeNull();
@@ -24,32 +24,32 @@
         }
 
         [TestMethod]
-        public void TestTraktUserListItemsRemovePostWriteJson()
+        public void TestTraktUserCustomListItemsRemovePostWriteJson()
         {
-            var userListItemsRemovePost = new TraktUserListItemsPost
+            var userListItemsRemovePost = new TraktUserCustomListItemsPost
             {
-                Movies = new List<TraktUserListItemsPostMovieItem>()
+                Movies = new List<TraktUserCustomListItemsPostMovieItem>()
                 {
-                    new TraktUserListItemsPostMovieItem
+                    new TraktUserCustomListItemsPostMovieItem
                     {
                         Ids = new TraktMovieIds { Trakt = 1 }
                     },
-                    new TraktUserListItemsPostMovieItem
+                    new TraktUserCustomListItemsPostMovieItem
                     {
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserListItemsShowItem>()
+                Shows = new List<TraktUserCustomListItemsShowItem>()
                 {
-                    new TraktUserListItemsShowItem
+                    new TraktUserCustomListItemsShowItem
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserListItemsShowItem
+                    new TraktUserCustomListItemsShowItem
                     {
-                        Seasons = new List<TraktUserListItemsShowSeasonItem>()
+                        Seasons = new List<TraktUserCustomListItemsShowSeasonItem>()
                         {
-                            new TraktUserListItemsShowSeasonItem
+                            new TraktUserCustomListItemsShowSeasonItem
                             {
                                 Number = 1
                             }
@@ -59,20 +59,20 @@
                             Trakt = 1
                         }
                     },
-                    new TraktUserListItemsShowItem
+                    new TraktUserCustomListItemsShowItem
                     {
-                        Seasons = new List<TraktUserListItemsShowSeasonItem>()
+                        Seasons = new List<TraktUserCustomListItemsShowSeasonItem>()
                         {
-                            new TraktUserListItemsShowSeasonItem
+                            new TraktUserCustomListItemsShowSeasonItem
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserListItemsShowEpisodeItem>()
+                                Episodes = new List<TraktUserCustomListItemsShowEpisodeItem>()
                                 {
-                                    new TraktUserListItemsShowEpisodeItem
+                                    new TraktUserCustomListItemsShowEpisodeItem
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserListItemsShowEpisodeItem
+                                    new TraktUserCustomListItemsShowEpisodeItem
                                     {
                                         Number = 2
                                     }
@@ -106,7 +106,7 @@
 
             strJson.Should().NotBeNullOrEmpty();
 
-            var userListItemsRemovePostFromJson = JsonConvert.DeserializeObject<TraktUserListItemsPost>(strJson);
+            var userListItemsRemovePostFromJson = JsonConvert.DeserializeObject<TraktUserCustomListItemsPost>(strJson);
 
             userListItemsRemovePostFromJson.Should().NotBeNull();
 

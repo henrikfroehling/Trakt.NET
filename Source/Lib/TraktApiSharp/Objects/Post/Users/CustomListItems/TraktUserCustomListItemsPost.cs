@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.ListItems
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
     using Get.People;
     using Newtonsoft.Json;
@@ -6,13 +6,13 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TraktUserListItemsPost : IValidatable
+    public class TraktUserCustomListItemsPost : IValidatable
     {
         [JsonProperty(PropertyName = "movies")]
-        public IEnumerable<TraktUserListItemsPostMovieItem> Movies { get; set; }
+        public IEnumerable<TraktUserCustomListItemsPostMovieItem> Movies { get; set; }
 
         [JsonProperty(PropertyName = "shows")]
-        public IEnumerable<TraktUserListItemsShowItem> Shows { get; set; }
+        public IEnumerable<TraktUserCustomListItemsShowItem> Shows { get; set; }
 
         [JsonProperty(PropertyName = "people")]
         public IEnumerable<TraktPerson> People { get; set; }

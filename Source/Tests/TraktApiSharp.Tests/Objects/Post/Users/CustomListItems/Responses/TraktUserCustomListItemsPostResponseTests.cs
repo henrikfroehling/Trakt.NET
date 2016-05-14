@@ -4,16 +4,16 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Linq;
-    using TraktApiSharp.Objects.Post.Users.ListItems.Responses;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using Utils;
 
     [TestClass]
-    public class TraktUserListItemsPostResponseTests
+    public class TraktUserCustomListItemsPostResponseTests
     {
         [TestMethod]
-        public void TestTraktUserListItemsPostResponseDefaultConstructor()
+        public void TestTraktUserCustomListItemsPostResponseDefaultConstructor()
         {
-            var userListItemsPostResponse = new TraktUserListItemsPostResponse();
+            var userListItemsPostResponse = new TraktUserCustomListItemsPostResponse();
 
             userListItemsPostResponse.Added.Should().BeNull();
             userListItemsPostResponse.Existing.Should().BeNull();
@@ -21,13 +21,13 @@
         }
 
         [TestMethod]
-        public void TestTraktUserListItemsPostResponseReadFromJson()
+        public void TestTraktUserCustomListItemsPostResponseReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\ListItems\Responses\UserListItemsPostResponse.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var userListItemsPostResponse = JsonConvert.DeserializeObject<TraktUserListItemsPostResponse>(jsonFile);
+            var userListItemsPostResponse = JsonConvert.DeserializeObject<TraktUserCustomListItemsPostResponse>(jsonFile);
 
             userListItemsPostResponse.Should().NotBeNull();
 

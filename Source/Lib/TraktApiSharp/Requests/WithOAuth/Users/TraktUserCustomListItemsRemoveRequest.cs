@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Users
 {
     using Base.Post;
-    using Objects.Post.Users.ListItems;
-    using Objects.Post.Users.ListItems.Responses;
+    using Objects.Post.Users.CustomListItems;
+    using Objects.Post.Users.CustomListItems.Responses;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListItemsRemoveRequest : TraktPostByIdRequest<TraktUserListItemsRemovePostResponse, TraktUserListItemsRemovePostResponse, TraktUserListItemsRemovePost>
+    internal class TraktUserCustomListItemsRemoveRequest : TraktPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsRemovePost>
     {
         internal TraktUserCustomListItemsRemoveRequest(TraktClient client) : base(client) { }
 

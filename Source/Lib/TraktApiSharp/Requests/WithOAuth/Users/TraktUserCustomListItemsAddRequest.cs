@@ -2,11 +2,11 @@
 {
     using Base.Post;
     using Enums;
-    using Objects.Post.Users.ListItems;
-    using Objects.Post.Users.ListItems.Responses;
+    using Objects.Post.Users.CustomListItems;
+    using Objects.Post.Users.CustomListItems.Responses;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListItemsAddRequest : TraktPostByIdRequest<TraktUserListItemsPostResponse, TraktUserListItemsPostResponse, TraktUserListItemsPost>
+    internal class TraktUserCustomListItemsAddRequest : TraktPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>
     {
         internal TraktUserCustomListItemsAddRequest(TraktClient client) : base(client) { }
 

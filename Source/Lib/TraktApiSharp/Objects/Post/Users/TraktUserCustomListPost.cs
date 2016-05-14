@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktUserListPost : IValidatable
+    public class TraktUserCustomListPost : IValidatable
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
