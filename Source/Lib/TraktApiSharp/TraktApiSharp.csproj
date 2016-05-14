@@ -344,6 +344,7 @@
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikePostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentPostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyPostRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdatePostRequest.cs" />
