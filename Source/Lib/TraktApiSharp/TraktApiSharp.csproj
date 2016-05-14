@@ -408,6 +408,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserListAddRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserListDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserListItemsAddRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserListItemsRemoveRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserListLikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserListUnlikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserListUpdateRequest.cs" />
