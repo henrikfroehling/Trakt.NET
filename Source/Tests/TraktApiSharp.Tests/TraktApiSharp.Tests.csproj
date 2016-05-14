@@ -282,6 +282,10 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Users\ListItems\Responses\TraktUserListItemsPostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\ListItems\Responses\TraktUserListItemsRemovePostResponseTests.cs" />
+    <Compile Include="Objects\Post\Users\ListItems\TraktUserListItemsRemovePostTests.cs" />
+    <Compile Include="Objects\Post\Users\ListItems\TraktUserListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserListPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserListUpdatePostResponseTests.cs" />
@@ -508,6 +512,8 @@
     <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistRemovePostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\ListItems\Responses\UserListItemsPostResponse.json" />
+    <None Include="TestData\Objects\Post\Users\ListItems\Responses\UserListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\UserListPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\UserListUpdatePostResponse.json" />

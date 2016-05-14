@@ -1,0 +1,22 @@
+﻿{
+  "deleted": {
+    "movies": 1,
+    "shows": 1,
+    "seasons": 1,
+    "episodes": 2,
+    "people": 1
+  },
+  "not_found": {
+    "movies": [
+      {
+        "ids": {
+          "imdb": "tt0000111"
+        }
+      }
+    ],
+    "shows": [ ],
+    "seasons": [ ],
+    "episodes": [ ],
+    "people": [ ]
+  }
+}
