@@ -403,6 +403,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserRatingsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserSettingsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserStatisticsRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserUnfollowUserRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedHistoryRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedMoviesRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
