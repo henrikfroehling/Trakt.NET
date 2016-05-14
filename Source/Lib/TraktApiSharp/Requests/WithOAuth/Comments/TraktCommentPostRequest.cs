@@ -2,8 +2,9 @@
 {
     using Base.Post;
     using Objects.Post;
+    using Objects.Post.Comments.Responses;
 
-    internal class TraktCommentPostRequest<TResponse, TRequest> : TraktPostRequest<TResponse, TResponse, TRequest> where TRequest : IValidatable
+    internal class TraktCommentPostRequest<TRequest> : TraktPostRequest<TraktCommentPostResponse, TraktCommentPostResponse, TRequest> where TRequest : IValidatable
     {
         internal TraktCommentPostRequest(TraktClient client) : base(client) { }
 
