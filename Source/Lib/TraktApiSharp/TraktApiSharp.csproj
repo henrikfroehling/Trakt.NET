@@ -331,6 +331,7 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowItem.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowSeasonItem.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePost.cs" />
+    <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponse.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserListPostResponse.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserListUpdatePostResponse.cs" />
     <Compile Include="Objects\Post\Users\TraktUserListPost.cs" />
@@ -388,6 +389,7 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserDenyFollowerRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowersRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowingRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Users\TraktUserFollowUserRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserFriendsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserHiddenItemsRequest.cs" />
