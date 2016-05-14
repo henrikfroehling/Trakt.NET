@@ -175,5 +175,13 @@
 
             client.Checkins.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetScrobbleModule()
+        {
+            var client = new TraktClient();
+
+            client.Scrobble.Should().NotBeNull();
+        }
     }
 }
