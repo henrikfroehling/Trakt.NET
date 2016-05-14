@@ -7,22 +7,22 @@
     using TraktApiSharp.Objects.Post.Users;
 
     [TestClass]
-    public class TraktUserListUpdatePostTests
+    public class TraktUserCustomListUpdatePostTests
     {
         [TestMethod]
-        public void TestTraktUserListUpdatePostDefaultConstructor()
+        public void TestTraktUserCustomListUpdatePostDefaultConstructor()
         {
-            var userListUpdatePost = new TraktUserListUpdatePost();
+            var userListUpdatePost = new TraktUserCustomListUpdatePost();
 
             userListUpdatePost.Name.Should().BeNullOrEmpty();
             userListUpdatePost.Description.Should().BeNullOrEmpty();
-            userListUpdatePost.Privacy.Should().Be(TraktAccessScope.Unspecified);
+            userListUpdatePost.Privacy.Should().BeNull();
             userListUpdatePost.DisplayNumbers.Should().NotHaveValue();
             userListUpdatePost.AllowComments.Should().NotHaveValue();
         }
 
         [TestMethod]
-        public void TestTraktUserListUpdatePostWriteJson()
+        public void TestTraktUserCustomListUpdatePostWriteJson()
         {
             var name = "list name";
             var description = "list description";
@@ -30,7 +30,7 @@
             var displayNumbers = true;
             var allowComments = false;
 
-            var userListUpdatePost = new TraktUserListUpdatePost
+            var userListUpdatePost = new TraktUserCustomListUpdatePost
             {
                 Name = name,
                 Description = description,
@@ -43,7 +43,7 @@
 
             strJson.Should().NotBeNullOrEmpty();
 
-            var userListUpdatePostFromJson = JsonConvert.DeserializeObject<TraktUserListUpdatePost>(strJson);
+            var userListUpdatePostFromJson = JsonConvert.DeserializeObject<TraktUserCustomListUpdatePost>(strJson);
 
             userListUpdatePostFromJson.Should().NotBeNull();
 

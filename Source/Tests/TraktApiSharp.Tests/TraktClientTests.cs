@@ -167,5 +167,21 @@
 
             client.Users.Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void TestTraktClientGetCheckinsModule()
+        {
+            var client = new TraktClient();
+
+            client.Checkins.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktClientGetScrobbleModule()
+        {
+            var client = new TraktClient();
+
+            client.Scrobble.Should().NotBeNull();
+        }
     }
 }

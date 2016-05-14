@@ -17,10 +17,7 @@
 
             movieScrobble.Progress.Should().Be(0.0f);
             movieScrobble.AppVersion.Should().BeNullOrEmpty();
-
-            var appDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            movieScrobble.AppDate.Should().NotBeNull().And.NotBeEmpty().And.Be(appDate);
-
+            movieScrobble.AppDate.Should().BeNull();
             movieScrobble.Movie.Should().BeNull();
         }
 
@@ -55,6 +52,7 @@
             {
                 Progress = progress,
                 AppVersion = appVersion,
+                AppDate = appDate,
                 Movie = movie
             };
 

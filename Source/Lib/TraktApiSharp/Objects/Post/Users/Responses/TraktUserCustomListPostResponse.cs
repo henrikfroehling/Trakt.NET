@@ -2,7 +2,7 @@
 {
     using Get.Users.Lists;
 
-    public class TraktUserListPostResponse : TraktList
+    public class TraktUserCustomListPostResponse : TraktList
     {
 
     }
