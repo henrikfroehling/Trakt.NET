@@ -12,7 +12,7 @@
     {
         public TraktCalendarModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                     TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarUserShowsRequest(Client)
@@ -23,7 +23,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarUserNewShowsRequest(Client)
@@ -34,7 +34,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                               TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarUserSeasonPremieresRequest(Client)
@@ -56,7 +56,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarAllShowsRequest(Client)
@@ -67,7 +67,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarAllNewShowsRequest(Client)
@@ -78,7 +78,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarShowItem>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                              TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarAllSeasonPremieresRequest(Client)

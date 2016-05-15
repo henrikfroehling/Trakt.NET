@@ -5,7 +5,7 @@
     using Shows.Episodes;
     using System;
 
-    public class TraktCalendarShowItem
+    public class TraktCalendarShow
     {
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime FirstAired { get; set; }
