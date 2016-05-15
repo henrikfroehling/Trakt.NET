@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktShowsMostPlayedDefaultConstructor()
         {
-            var playedShow = new TraktShowsMostPlayedItem();
+            var playedShow = new TraktMostPlayedShow();
 
             playedShow.WatcherCount.Should().Be(0);
             playedShow.PlayCount.Should().Be(0);
@@ -30,7 +30,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var playedShows = JsonConvert.DeserializeObject<IEnumerable<TraktShowsMostPlayedItem>>(jsonFile);
+            var playedShows = JsonConvert.DeserializeObject<IEnumerable<TraktMostPlayedShow>>(jsonFile);
 
             playedShows.Should().NotBeNull().And.HaveCount(2);
 
