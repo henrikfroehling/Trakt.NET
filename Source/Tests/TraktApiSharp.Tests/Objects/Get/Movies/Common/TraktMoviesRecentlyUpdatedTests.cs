@@ -15,7 +15,7 @@
         [TestMethod]
         public void TestTraktMoviesRecentlyUpdatedDefaultConstructor()
         {
-            var updatedMovie = new TraktMoviesRecentlyUpdatedItem();
+            var updatedMovie = new TraktRecentlyUpdatedMovie();
 
             updatedMovie.UpdatedAt.Should().Be(DateTime.MinValue);
             updatedMovie.Movie.Should().BeNull();
@@ -28,7 +28,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var updatedMovies = JsonConvert.DeserializeObject<IEnumerable<TraktMoviesRecentlyUpdatedItem>>(jsonFile);
+            var updatedMovies = JsonConvert.DeserializeObject<IEnumerable<TraktRecentlyUpdatedMovie>>(jsonFile);
 
             updatedMovies.Should().NotBeNull().And.HaveCount(2);
 

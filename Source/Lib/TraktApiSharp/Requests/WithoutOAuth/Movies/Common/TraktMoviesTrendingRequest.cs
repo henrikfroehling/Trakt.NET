@@ -4,7 +4,7 @@
     using Objects.Basic;
     using Objects.Get.Movies.Common;
 
-    internal class TraktMoviesTrendingRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesTrendingItem>, TraktMoviesTrendingItem>
+    internal class TraktMoviesTrendingRequest : TraktGetRequest<TraktPaginationListResult<TraktTrendingMovie>, TraktTrendingMovie>
     {
         internal TraktMoviesTrendingRequest(TraktClient client) : base(client) { }
 

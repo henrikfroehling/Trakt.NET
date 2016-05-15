@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Common
+﻿namespace TraktApiSharp.Objects.Get.Movies.Common
 {
     using Newtonsoft.Json;
 
-    public class TraktShowsMostPlayedItem
+    public class TraktMostPlayedMovie
     {
         [JsonProperty(PropertyName = "watcher_count")]
         public int WatcherCount { get; set; }
@@ -13,10 +13,7 @@
         [JsonProperty(PropertyName = "collected_count")]
         public int CollectedCount { get; set; }
 
-        [JsonProperty(PropertyName = "collector_count")]
-        public int CollectorCount { get; set; }
-
-        [JsonProperty(PropertyName = "show")]
-        public TraktShow Show { get; set; }
+        [JsonProperty(PropertyName = "movie")]
+        public TraktMovie Movie { get; set; }
     }
 }

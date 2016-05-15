@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktShowsMostAnticipatedDefaultConstructor()
         {
-            var anticipatedShow = new TraktShowsMostAnticipatedItem();
+            var anticipatedShow = new TraktMostAnticipatedShow();
 
             anticipatedShow.ListCount.Should().Be(0);
             anticipatedShow.Show.Should().BeNull();
@@ -27,7 +27,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var anticipatedShows = JsonConvert.DeserializeObject<IEnumerable<TraktShowsMostAnticipatedItem>>(jsonFile);
+            var anticipatedShows = JsonConvert.DeserializeObject<IEnumerable<TraktMostAnticipatedShow>>(jsonFile);
 
             anticipatedShows.Should().NotBeNull().And.HaveCount(2);
 

@@ -2,7 +2,7 @@
 {
     using Objects.Get.Calendars;
 
-    internal class TraktCalendarUserSeasonPremieresRequest : TraktCalendarUserRequest<TraktCalendarShowItem>
+    internal class TraktCalendarUserSeasonPremieresRequest : TraktCalendarUserRequest<TraktCalendarShow>
     {
         internal TraktCalendarUserSeasonPremieresRequest(TraktClient client) : base(client) { }
 

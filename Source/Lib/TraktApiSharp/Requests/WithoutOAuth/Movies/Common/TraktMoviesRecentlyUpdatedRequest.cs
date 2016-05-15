@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktMoviesRecentlyUpdatedRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesRecentlyUpdatedItem>, TraktMoviesRecentlyUpdatedItem>
+    internal class TraktMoviesRecentlyUpdatedRequest : TraktGetRequest<TraktPaginationListResult<TraktRecentlyUpdatedMovie>, TraktRecentlyUpdatedMovie>
     {
         internal TraktMoviesRecentlyUpdatedRequest(TraktClient client) : base(client) { StartDate = DateTime.UtcNow; }
 

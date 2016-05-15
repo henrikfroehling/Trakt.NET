@@ -141,7 +141,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsTrendingItem>> GetTrendingShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
@@ -151,7 +151,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsPopularItem>> GetPopularShowsAsync(TraktExtendedOption extend = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOption extend = TraktExtendedOption.Unspecified,
                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
@@ -161,7 +161,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsMostPlayedItem>> GetMostPlayedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                        int? page = null, int? limit = null)
         {
@@ -173,7 +173,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsMostWatchedItem>> GetMostWatchedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                          TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                          int? page = null, int? limit = null)
         {
@@ -185,7 +185,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsMostCollectedItem>> GetMostCollectedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                              TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                              int? page = null, int? limit = null)
         {
@@ -197,7 +197,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsMostAnticipatedItem>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
@@ -207,7 +207,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsRecentlyUpdatedItem>> GetRecentlyUpdatedShowsAsync(DateTime? startDate,
+        public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate,
                                                                                                                  TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                  int? page = null, int? limit = null)
         {

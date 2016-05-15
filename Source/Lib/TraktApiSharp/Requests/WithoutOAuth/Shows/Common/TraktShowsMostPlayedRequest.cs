@@ -6,7 +6,7 @@
     using Objects.Get.Shows.Common;
     using System.Collections.Generic;
 
-    internal class TraktShowsMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktShowsMostPlayedItem>, TraktShowsMostPlayedItem>
+    internal class TraktShowsMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMostPlayedShow>, TraktMostPlayedShow>
     {
         internal TraktShowsMostPlayedRequest(TraktClient client) : base(client) { Period = TraktPeriod.Weekly; }
 

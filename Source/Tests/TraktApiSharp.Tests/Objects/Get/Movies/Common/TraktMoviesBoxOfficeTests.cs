@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktMoviesBoxOfficeDefaultConstructor()
         {
-            var boxOfficeMovie = new TraktMoviesBoxOfficeItem();
+            var boxOfficeMovie = new TraktBoxOfficeMovie();
 
             boxOfficeMovie.Revenue.Should().Be(0);
             boxOfficeMovie.Movie.Should().BeNull();
@@ -27,7 +27,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var boxOfficeMovies = JsonConvert.DeserializeObject<IEnumerable<TraktMoviesBoxOfficeItem>>(jsonFile);
+            var boxOfficeMovies = JsonConvert.DeserializeObject<IEnumerable<TraktBoxOfficeMovie>>(jsonFile);
 
             boxOfficeMovies.Should().NotBeNull().And.HaveCount(2);
 

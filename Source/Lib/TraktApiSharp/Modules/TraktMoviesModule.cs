@@ -137,7 +137,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesTrendingItem>> GetTrendingMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                      int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesTrendingRequest(Client)
@@ -147,7 +147,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesPopularItem>> GetPopularMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktPopularMovie>> GetPopularMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesPopularRequest(Client)
@@ -157,7 +157,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesMostPlayedItem>> GetMostPlayedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                          TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                          int? page = null, int? limit = null)
         {
@@ -169,7 +169,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesMostWatchedItem>> GetMostWatchedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                            TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                            int? page = null, int? limit = null)
         {
@@ -181,7 +181,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesMostCollectedItem>> GetMostCollectedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
                                                                                                                TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                int? page = null, int? limit = null)
         {
@@ -193,7 +193,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesMostAnticipatedItem>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostAnticipatedRequest(Client)
@@ -203,7 +203,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktMoviesBoxOfficeItem>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client)
             {
@@ -211,7 +211,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesRecentlyUpdatedItem>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate,
+        public async Task<TraktPaginationListResult<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate,
                                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {

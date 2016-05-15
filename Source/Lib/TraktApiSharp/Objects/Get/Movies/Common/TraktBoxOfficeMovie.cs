@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktMoviesBoxOfficeItem
+    public class TraktBoxOfficeMovie
     {
         [JsonProperty(PropertyName = "revenue")]
         public int Revenue { get; set; }

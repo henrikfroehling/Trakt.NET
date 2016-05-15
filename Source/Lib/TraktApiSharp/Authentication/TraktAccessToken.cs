@@ -24,26 +24,12 @@
         [JsonProperty(PropertyName = "expires_in")]
         public int ExpiresInSeconds { get; set; }
 
-        private long? _createdAt;
-
-        [JsonIgnore]
-        public long? CreatedAt
-        {
-            get { return _createdAt; }
-
-            set
-            {
-                _createdAt = value;
-                Created = DateTime.FromFileTimeUtc(value.GetValueOrDefault());
-            }
-        }
-
         [JsonProperty(PropertyName = "token_type")]
         [JsonConverter(typeof(TraktAccessTokenTypeConverter))]
         public TraktAccessTokenType TokenType { get; set; }
 
         [JsonIgnore]
-        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && DateTime.UtcNow.AddSeconds(ExpiresInSeconds) >= DateTime.UtcNow;
+        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow;
 
         [JsonIgnore]
         public DateTime Created { get; private set; }

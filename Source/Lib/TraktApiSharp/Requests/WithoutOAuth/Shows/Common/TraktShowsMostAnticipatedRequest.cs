@@ -4,7 +4,7 @@
     using Objects.Basic;
     using Objects.Get.Shows.Common;
 
-    internal class TraktShowsMostAnticipatedRequest : TraktGetRequest<TraktPaginationListResult<TraktShowsMostAnticipatedItem>, TraktShowsMostAnticipatedItem>
+    internal class TraktShowsMostAnticipatedRequest : TraktGetRequest<TraktPaginationListResult<TraktMostAnticipatedShow>, TraktMostAnticipatedShow>
     {
         internal TraktShowsMostAnticipatedRequest(TraktClient client) : base(client) { }
 
