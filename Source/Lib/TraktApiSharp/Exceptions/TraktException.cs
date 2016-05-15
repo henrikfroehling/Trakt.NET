@@ -16,5 +16,7 @@
         public string RequestBody { get; set; }
 
         public string Response { get; set; }
+
+        public string ServerReasonPhrase { get; set; }
     }
 }

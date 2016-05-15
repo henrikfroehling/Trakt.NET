@@ -338,29 +338,69 @@ namespace TraktApiSharp.Requests.Base
                             {
                                 case TraktRequestObjectType.Episodes:
                                     throw new TraktEpisodeNotFoundException(Id, Season, Episode)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Seasons:
                                     throw new TraktSeasonNotFoundException(Id, Season)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Shows:
                                     throw new TraktShowNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Movies:
                                     throw new TraktMovieNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.People:
                                     throw new TraktPersonNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Comments:
                                     throw new TraktCommentNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Lists:
                                     throw new TraktListNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                             }
                         }
 
@@ -368,44 +408,106 @@ namespace TraktApiSharp.Requests.Base
                     }
                 case HttpStatusCode.BadRequest:
                     throw new TraktBadRequestException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Unauthorized:
                     throw new TraktBadRequestException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Forbidden:
                     throw new TraktForbiddenException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.MethodNotAllowed:
                     throw new TraktMethodNotFoundException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Conflict:
                     throw new TraktConflictException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.InternalServerError:
                     throw new TraktServerException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.BadGateway:
                     throw new TraktBadGatewayException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)422:
                     throw new TraktValidationException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)429:
                     throw new TraktRateLimitException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)503:
                 case (HttpStatusCode)504:
                     throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, StatusCode = HttpStatusCode.ServiceUnavailable, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)520:
                 case (HttpStatusCode)521:
                 case (HttpStatusCode)522:
                     throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, StatusCode = HttpStatusCode.ServiceUnavailable, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
             }
 
             throw new TraktException(errorMessage)
-            { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+            {
+                RequestUrl = Url,
+                RequestBody = RequestBodyJson,
+                Response = responseContent,
+                ServerReasonPhrase = response.ReasonPhrase
+            };
         }
     }
 }
