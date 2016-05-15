@@ -203,7 +203,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktMoviesBoxOfficeItem>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client)
             {
