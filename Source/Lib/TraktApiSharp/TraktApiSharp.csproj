@@ -80,6 +80,7 @@
     <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
     <Compile Include="Enums\TraktUserLikeType.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceException.cs" />
+    <Compile Include="Exceptions\TraktAuthenticationOAuthException.cs" />
     <Compile Include="Exceptions\TraktAuthorizationException.cs" />
     <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktCommentNotFoundException.cs" />
