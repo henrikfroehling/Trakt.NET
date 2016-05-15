@@ -193,7 +193,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesMostAnticipatedItem>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostAnticipatedRequest(Client)
