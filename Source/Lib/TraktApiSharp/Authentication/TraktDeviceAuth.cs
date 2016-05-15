@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Authentication
 {
     using Core;
+    using Exceptions;
     using Newtonsoft.Json;
     using System;
     using System.Net;
@@ -46,7 +47,15 @@
                         return device;
                     }
                     else
-                        throw new Exception(""); // TODO create exception
+                    {
+                        throw new TraktAuthenticationDeviceException("error on generating authentication device")
+                        {
+                            StatusCode = response.StatusCode,
+                            RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}",
+                            RequestBody = postContent,
+                            Response = await response.Content.ReadAsStringAsync()
+                        };
+                    }
                 }
             }
         }
@@ -68,7 +77,7 @@
 
                 using (var content = new StringContent(postContent))
                 {
-                    HttpStatusCode responseCode;
+                    HttpStatusCode responseCode = HttpStatusCode.OK;
                     int totalExpiredSeconds = 0;
 
                     while (totalExpiredSeconds < device.ExpiresInSeconds)
@@ -99,9 +108,28 @@
                         }
                     }
 
-                    // TODO handle error codes
-                    // TODO use an appropiate exception
-                    throw new Exception("expired seconds");
+                    var requestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
+
+                    switch (responseCode)
+                    {
+                        case HttpStatusCode.NotFound:
+                            throw new TraktAuthenticationDeviceException("Not Found - invalid device_code")
+                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                        case HttpStatusCode.Conflict:   // Already Used
+                            throw new TraktAuthenticationDeviceException("Already Used - user already approved this code")
+                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                        case HttpStatusCode.Gone:       // Expired
+                            throw new TraktAuthenticationDeviceException("Expired - the tokens have expired, restart the process")
+                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                        case (HttpStatusCode)418:       // Denied
+                            throw new TraktAuthenticationDeviceException("Denied - user explicitly denied this code")
+                            { StatusCode = (HttpStatusCode)418, RequestUrl = requestUrl, RequestBody = postContent };
+                        case (HttpStatusCode)429:       // Slow Down
+                            throw new TraktAuthenticationDeviceException("Slow Down - your app is polling too quickly")
+                            { StatusCode = (HttpStatusCode)429, RequestUrl = requestUrl, RequestBody = postContent };
+                        default:
+                            throw new TraktAuthenticationDeviceException("unknown exception");
+                    }
                 }
             }
         }
