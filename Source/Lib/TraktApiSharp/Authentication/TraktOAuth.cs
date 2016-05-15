@@ -55,6 +55,11 @@
             }
         }
 
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
+        {
+            return await GetAccessTokenAsync(code, Client.ClientId, Client.ClientSecret, Client.Authentication.RedirectUri);
+        }
+
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
         {
             var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();

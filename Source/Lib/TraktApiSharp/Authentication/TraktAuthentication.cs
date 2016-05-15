@@ -2,7 +2,9 @@
 {
     using Core;
     using Enums;
+    using Exceptions;
     using Newtonsoft.Json;
+    using Objects.Basic;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -56,10 +58,8 @@
             get { return AccessToken != null && AccessToken.IsValid; }
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync()
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
         {
-            // TODO catch exceptions
-
             switch (AuthenticationMode)
             {
                 case TraktAuthenticationMode.Device:
@@ -70,7 +70,7 @@
                 case TraktAuthenticationMode.OAuth:
                     {
                         if (await Client.OAuth.AuthorizeAsync())
-                            return await Client.OAuth.GetAccessTokenAsync();
+                            return await Client.OAuth.GetAccessTokenAsync(code);
 
                         return null;
                     }
@@ -82,7 +82,7 @@
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
         {
             if (!IsAuthenticated)
-                throw new ArgumentException("not authenticated");
+                throw new TraktAuthenticationException("not authenticated");
 
             return await RefreshAccessTokenAsync(AccessToken.RefreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
         }
@@ -99,7 +99,6 @@
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
-                httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 using (var content = new StringContent(postContent))
@@ -115,8 +114,22 @@
                         return token;
                     }
 
-                    // TODO use an appropiate exception
-                    throw new Exception("response not valid");
+                    if (response.StatusCode == HttpStatusCode.Unauthorized) // Invalid refresh_token
+                    {
+                        var data = await response.Content.ReadAsStringAsync();
+                        var error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(data));
+
+                        var errorMessage = $"error on refreshing access token\nerror: {error.Error}\ndescription: {error.Description}";
+
+                        throw new TraktAuthenticationException(errorMessage)
+                        {
+                            StatusCode = response.StatusCode,
+                            RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}",
+                            RequestBody = postContent
+                        };
+                    }
+
+                    throw new TraktAuthenticationException("unknown exception");
                 }
             }
         }
@@ -124,7 +137,7 @@
         public async Task<bool> RevokeAccessTokenAsync()
         {
             if (!IsAuthenticated)
-                throw new ArgumentException("not authenticated", "IsAuthenticated");  // TODO create authentication exception
+                throw new TraktAuthenticationException("not authenticated");
 
             return await RevokeAccessTokenAsync(AccessToken.AccessToken, Client.ClientId);
         }
@@ -141,14 +154,11 @@
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
-                httpClient.DefaultRequestHeaders.Clear();
-
-                httpClient.DefaultRequestHeaders.Add("authorization", string.Format("Bearer {0}", accessToken));
-                httpClient.DefaultRequestHeaders.Add("trakt-api-version", string.Format("{0}", Client.Configuration.ApiVersion));
-                httpClient.DefaultRequestHeaders.Add("trakt-api-key", clientId);
-
-                httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
+                httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
                 using (var content = new StringContent(postContent))
                 using (var response = await httpClient.PostAsync(TraktConstants.OAuthRevokeUri, content))
@@ -161,7 +171,7 @@
         private void validateRefreshTokenInput(string refreshToken, string clientId, string clientSecret, string redirectUri, string grantType)
         {
             if (string.IsNullOrEmpty(refreshToken))
-                throw new ArgumentException("refresh token is not valid", "refreshToken");
+                throw new ArgumentException("refresh token not valid", "refreshToken");
 
             if (string.IsNullOrEmpty(clientId))
                 throw new ArgumentException("client id not valid", "clientId");
@@ -170,10 +180,10 @@
                 throw new ArgumentException("client secret not valid", "clientSecret");
 
             if (string.IsNullOrEmpty(redirectUri))
-                throw new ArgumentException("redirect uri is not valid", "redirectUri");
+                throw new ArgumentException("redirect uri not valid", "redirectUri");
 
             if (string.IsNullOrEmpty(grantType))
-                throw new ArgumentException("grant type is not valid", "grantType");
+                throw new ArgumentException("grant type not valid", "grantType");
         }
     }
 }
