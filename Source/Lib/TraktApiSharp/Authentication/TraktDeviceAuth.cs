@@ -31,8 +31,7 @@
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                SetDefaultRequestHeaders(httpClient);
 
                 using (var content = new StringContent(postContent))
                 using (var response = await httpClient.PostAsync(TraktConstants.OAuthDeviceCodeUri, content))
@@ -65,18 +64,20 @@
 
             using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
             {
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                SetDefaultRequestHeaders(httpClient);
 
                 using (var content = new StringContent(postContent))
                 {
+                    HttpStatusCode responseCode;
                     int totalExpiredSeconds = 0;
 
                     while (totalExpiredSeconds < device.ExpiresInSeconds)
                     {
                         using (var response = await httpClient.PostAsync(TraktConstants.OAuthDeviceTokenUri, content))
                         {
-                            if (response.StatusCode == HttpStatusCode.OK)
+                            responseCode = response.StatusCode;
+
+                            if (responseCode == HttpStatusCode.OK) // Success
                             {
                                 var data = await response.Content.ReadAsStringAsync();
                                 var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
@@ -85,20 +86,20 @@
 
                                 return token;
                             }
-                            else if (response.StatusCode == HttpStatusCode.BadRequest)
+                            else if (responseCode == HttpStatusCode.BadRequest) // Pending
                             {
-                                await Task.Delay(device.Interval * 1000);
-                                totalExpiredSeconds += device.Interval;
+                                await Task.Delay(device.IntervalInSeconds * 1000);
+                                totalExpiredSeconds += device.IntervalInSeconds;
                                 continue;
                             }
                             else
                             {
-                                // TODO use an appropiate exception
-                                throw new Exception("response not valid");
+                                break;
                             }
                         }
                     }
 
+                    // TODO handle error codes
                     // TODO use an appropiate exception
                     throw new Exception("expired seconds");
                 }
@@ -125,22 +126,27 @@
             return await Client.Authentication.RevokeAccessTokenAsync(accessToken, clientId);
         }
 
+        private void SetDefaultRequestHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
         private void validateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)
         {
             if (device.IsExpiredUnused)
-                throw new ArgumentException("device code is expired unused", "device.IsExpiredUnused");
+                throw new ArgumentException("device code expired unused", "device");
 
             if (!device.IsValid)
-                throw new ArgumentException("device is not valid", "device.IsValid");
+                throw new ArgumentException("device not valid", "device");
 
             if (string.IsNullOrEmpty(device.DeviceCode))
-                throw new ArgumentException("device code not valid", "device.DeviceCode");
+                throw new ArgumentException("device code not valid", "device");
 
             if (string.IsNullOrEmpty(clientId))
                 throw new ArgumentException("client id not valid", "clientId");
 
             if (string.IsNullOrEmpty(clientSecret))
-                throw new ArgumentException("client secret is not valid", "clientSecret");
+                throw new ArgumentException("client secret not valid", "clientSecret");
         }
     }
 }
