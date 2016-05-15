@@ -211,7 +211,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesRecentlyUpdatedItem>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate,
+        public async Task<TraktPaginationListResult<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate,
                                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {

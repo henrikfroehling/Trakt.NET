@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktMoviesRecentlyUpdatedItem
+    public class TraktRecentlyUpdatedMovie
     {
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
