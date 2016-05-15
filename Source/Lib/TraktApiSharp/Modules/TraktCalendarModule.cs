@@ -45,7 +45,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarMovieItem>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarUserMoviesRequest(Client)
@@ -89,7 +89,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCalendarMovieItem>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
+        public async Task<TraktListResult<TraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
         {
             return await QueryAsync(new TraktCalendarAllMoviesRequest(Client)

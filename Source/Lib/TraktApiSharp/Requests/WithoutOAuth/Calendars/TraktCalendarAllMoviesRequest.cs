@@ -2,7 +2,7 @@
 {
     using Objects.Get.Calendars;
 
-    internal class TraktCalendarAllMoviesRequest : TraktCalendarAllRequest<TraktCalendarMovieItem>
+    internal class TraktCalendarAllMoviesRequest : TraktCalendarAllRequest<TraktCalendarMovie>
     {
         internal TraktCalendarAllMoviesRequest(TraktClient client) : base(client) { }
 

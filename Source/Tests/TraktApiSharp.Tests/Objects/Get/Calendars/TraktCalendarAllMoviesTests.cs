@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktCalendarAllMoviesDefaultConstructor()
         {
-            var allMoviesItem = new TraktCalendarMovieItem();
+            var allMoviesItem = new TraktCalendarMovie();
 
             allMoviesItem.Released.Should().BeNullOrEmpty();
             allMoviesItem.Movie.Should().BeNull();
@@ -27,7 +27,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var allMovies = JsonConvert.DeserializeObject<IEnumerable<TraktCalendarMovieItem>>(jsonFile);
+            var allMovies = JsonConvert.DeserializeObject<IEnumerable<TraktCalendarMovie>>(jsonFile);
 
             allMovies.Should().NotBeNull().And.HaveCount(3);
 

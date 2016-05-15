@@ -3,7 +3,7 @@
     using Movies;
     using Newtonsoft.Json;
 
-    public class TraktCalendarMovieItem
+    public class TraktCalendarMovie
     {
         [JsonProperty(PropertyName = "released")]
         public string Released { get; set; }

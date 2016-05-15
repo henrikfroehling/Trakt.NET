@@ -123,7 +123,7 @@
     <Compile Include="Modules\TraktSyncModule.cs" />
     <Compile Include="Modules\TraktUsersModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
-    <Compile Include="Objects\Get\Calendars\TraktCalendarMovieItem.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem.cs" />
