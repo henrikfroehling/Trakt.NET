@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktMoviesMostPlayedItem
+    public class TraktMostPlayedMovie
     {
         [JsonProperty(PropertyName = "watcher_count")]
         public int WatcherCount { get; set; }

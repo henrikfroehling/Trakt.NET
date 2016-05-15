@@ -6,7 +6,7 @@
     using Objects.Get.Movies.Common;
     using System.Collections.Generic;
 
-    internal class TraktMoviesMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesMostPlayedItem>, TraktMoviesMostPlayedItem>
+    internal class TraktMoviesMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMostPlayedMovie>, TraktMostPlayedMovie>
     {
         internal TraktMoviesMostPlayedRequest(TraktClient client) : base(client) { Period = TraktPeriod.Weekly; }
 

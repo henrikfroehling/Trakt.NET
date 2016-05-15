@@ -194,7 +194,7 @@
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesBoxOfficeItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostCollectedItem.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostPlayedItem.cs" />
+    <Compile Include="Objects\Get\Movies\Common\TraktMostPlayedMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostWatchedItem.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktPopularMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesRecentlyUpdatedItem.cs" />
