@@ -21,7 +21,7 @@
             device.UserCode.Should().BeNullOrEmpty();
             device.VerificationUrl.Should().BeNullOrEmpty();
             device.ExpiresInSeconds.Should().Be(0);
-            device.Interval.Should().Be(0);
+            device.IntervalInSeconds.Should().Be(0);
             device.IsExpiredUnused.Should().BeTrue();
             device.IsValid.Should().BeFalse();
             device.Created.Should().BeCloseTo(dtNowUtc);
@@ -41,7 +41,7 @@
             device.UserCode.Should().Be("5055CC52");
             device.VerificationUrl.Should().Be("https://trakt.tv/activate");
             device.ExpiresInSeconds.Should().Be(600);
-            device.Interval.Should().Be(5);
+            device.IntervalInSeconds.Should().Be(5);
             device.IsExpiredUnused.Should().BeFalse();
             device.IsValid.Should().BeTrue();
         }

@@ -23,7 +23,7 @@
         public int ExpiresInSeconds { get; set; }
 
         [JsonProperty(PropertyName = "interval")]
-        public int Interval { get; set; }
+        public int IntervalInSeconds { get; set; }
 
         [JsonIgnore]
         public bool IsValid => !string.IsNullOrEmpty(DeviceCode) && !IsExpiredUnused;
