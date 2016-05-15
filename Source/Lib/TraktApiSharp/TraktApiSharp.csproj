@@ -216,7 +216,7 @@
     <Compile Include="Objects\Get\Recommendations\TraktMovieRecommendation.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktShowRecommendation.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostAnticipatedItem.cs" />
-    <Compile Include="Objects\Get\Shows\Common\TraktShowsMostCollectedItem.cs" />
+    <Compile Include="Objects\Get\Shows\Common\TraktMostCollectedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostPlayedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostWatchedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktPopularShow.cs" />
