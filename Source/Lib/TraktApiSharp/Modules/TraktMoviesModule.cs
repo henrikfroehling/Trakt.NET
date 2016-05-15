@@ -137,7 +137,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMoviesTrendingItem>> GetTrendingMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                      int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesTrendingRequest(Client)
