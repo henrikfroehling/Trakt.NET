@@ -115,6 +115,7 @@
     <Compile Include="Enums\TraktSyncWatchlistItemTypeTests.cs" />
     <Compile Include="Enums\TraktUserLikeTypeTests.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceExceptionTests.cs" />
+    <Compile Include="Exceptions\TraktAuthenticationOAuthExceptonTests.cs" />
     <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
     <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />

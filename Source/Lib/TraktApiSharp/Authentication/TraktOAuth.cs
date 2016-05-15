@@ -2,6 +2,7 @@
 {
     using Core;
     using Enums;
+    using Exceptions;
     using Newtonsoft.Json;
     using Objects.Basic;
     using System;
@@ -49,7 +50,6 @@
 
                 using (var response = await httpClient.GetAsync(authorizationUri))
                 {
-                    // TODO throw exception on error?
                     return response.StatusCode == HttpStatusCode.OK;
                 }
             }
@@ -86,12 +86,17 @@
                         var data = await response.Content.ReadAsStringAsync();
                         var error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(data));
 
-                        // TODO use an appropiate exception
-                        throw new Exception("response not valid");
+                        var errorMessage = $"error on retrieving oauth access token\nerror: {error.Error}\ndescription: {error.Description}";
+
+                        throw new TraktAuthenticationOAuthException(errorMessage)
+                        {
+                            StatusCode = response.StatusCode,
+                            RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}",
+                            RequestBody = postContent
+                        };
                     }
 
-                    // TODO use an appropiate exception
-                    throw new Exception("response not valid");
+                    throw new TraktAuthenticationOAuthException("unknown exception");
                 }
             }
         }
@@ -136,10 +141,7 @@
             var encodedUri = encodedUriContent.ReadAsStringAsync().Result;
 
             if (string.IsNullOrEmpty(encodedUri))
-            {
-                // TODO create custom exception
                 throw new ArgumentException("authorization uri not valid");
-            }
 
             return $"?{encodedUri}";
         }
