@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Common
 {
-    public class TraktShowsMostWatchedItem : TraktMostPlayedShow
+    public class TraktMostWatchedShow : TraktMostPlayedShow
     {
 
     }
