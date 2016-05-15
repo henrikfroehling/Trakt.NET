@@ -141,7 +141,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowsTrendingItem>> GetTrendingShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)

@@ -221,7 +221,7 @@
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostWatchedItem.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsPopularItem.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsRecentlyUpdatedItem.cs" />
-    <Compile Include="Objects\Get\Shows\Common\TraktShowsTrendingItem.cs" />
+    <Compile Include="Objects\Get\Shows\Common\TraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisode.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeComment.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeIds.cs" />

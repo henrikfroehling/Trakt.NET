@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktShowsTrendingItem
+    public class TraktTrendingShow
     {
         [JsonProperty(PropertyName = "watchers")]
         public int Watchers { get; set; }
