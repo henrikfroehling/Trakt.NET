@@ -16,30 +16,22 @@
 
         internal TraktHiddenItemType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "section", Section.AsString() } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("section", Section.AsString());
+
+            if (Type.HasValue && Type.Value != TraktHiddenItemType.Unspecified)
+                uriParams.Add("type", Type.Value.ToString().ToLower());
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "users/hidden/{section}";
+        protected override string UriTemplate => "users/hidden/{section}{?type}";
 
         protected override bool SupportsPagination => true;
 
         protected override bool IsListResult => true;
-
-        protected override bool UseCustomExtendedOptions => true;
-
-        protected override IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
-        {
-            var optionParams = new Dictionary<string, string>();
-
-            if (Type.HasValue)
-                optionParams["type"] = Type.Value.ToString().ToLower();
-
-            if (ExtendedOption != null)
-                optionParams["extended"] = ExtendedOption.ToString();
-
-            return optionParams;
-        }
     }
 }

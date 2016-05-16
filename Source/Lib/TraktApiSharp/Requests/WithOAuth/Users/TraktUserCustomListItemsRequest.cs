@@ -16,11 +16,16 @@
 
         internal TraktListItemType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id },
-                                                    { "username", Username },
-                                                    { "type", Type.HasValue ? Type.Value.AsStringUriParameter() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (Type.HasValue && Type.Value != TraktListItemType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            return uriParams;
         }
 
         protected override string UriTemplate => "users/{username}/lists/{id}/items/{type}";

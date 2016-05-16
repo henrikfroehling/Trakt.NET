@@ -18,11 +18,19 @@
 
         internal TraktObjectType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username },
-                                                    { "comment_type", CommentType.HasValue ? CommentType.Value.AsStringUriParameter() : string.Empty },
-                                                    { "type", Type.HasValue ? Type.Value.AsStringUriParameter() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (CommentType.HasValue && CommentType.Value != TraktCommentType.Unspecified)
+                uriParams.Add("comment_type", CommentType.Value.AsStringUriParameter());
+
+            if (Type.HasValue && Type.Value != TraktObjectType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            return uriParams;
         }
 
         protected override string UriTemplate => "users/{username}/comments/{comment_type}/{type}";

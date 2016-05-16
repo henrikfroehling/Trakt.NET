@@ -14,9 +14,14 @@
 
         internal TraktUserLikeType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "type", Type.HasValue ? Type.Value.AsStringUriParameter() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Type.HasValue && Type.Value != TraktUserLikeType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            return uriParams;
         }
 
         protected override string UriTemplate => "users/likes/{type}";

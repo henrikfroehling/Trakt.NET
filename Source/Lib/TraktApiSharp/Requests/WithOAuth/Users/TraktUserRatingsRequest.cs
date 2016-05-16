@@ -18,11 +18,19 @@
 
         internal int[] Rating { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username },
-                                                    { "type", Type.HasValue ? Type.Value.AsString() : string.Empty },
-                                                    { "rating", Rating.Length > 0 ? Rating.ToString() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (Type.HasValue && Type.Value != TraktSyncRatingsItemType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            if (Rating != null && Rating.Length > 0)
+                uriParams.Add("rating", string.Join(",", Rating));
+
+            return uriParams;
         }
 
         protected override string UriTemplate => "users/{username}/ratings/{type}/{rating}";

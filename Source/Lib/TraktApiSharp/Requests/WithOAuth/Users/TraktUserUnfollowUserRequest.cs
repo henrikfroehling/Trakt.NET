@@ -9,9 +9,11 @@
 
         internal string Username { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username } };
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("username", Username);
+            return uriParams;
         }
 
         protected override string UriTemplate => "user/{username}/follow";
