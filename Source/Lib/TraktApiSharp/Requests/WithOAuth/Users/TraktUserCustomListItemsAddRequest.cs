@@ -26,7 +26,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/lists/{id}/items/{type}";
+        protected override string UriTemplate => "users/{username}/lists/{id}/items{/type}";
 
         protected override void Validate()
         {

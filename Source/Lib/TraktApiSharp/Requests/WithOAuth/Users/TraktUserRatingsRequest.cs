@@ -33,7 +33,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/ratings/{type}/{rating}";
+        protected override string UriTemplate => "users/{username}/ratings{/type}{/rating}";
 
         protected override bool IsListResult => true;
     }

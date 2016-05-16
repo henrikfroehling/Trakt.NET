@@ -33,7 +33,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/history/{type}/{item_id}";
+        protected override string UriTemplate => "users/{username}/history{/type}{/item_id}";
 
         protected override bool SupportsPagination => true;
 

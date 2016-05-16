@@ -24,7 +24,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/likes/{type}";
+        protected override string UriTemplate => "users/likes{/type}";
 
         protected override bool SupportsPagination => true;
 

@@ -33,7 +33,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/comments/{comment_type}/{type}";
+        protected override string UriTemplate => "users/{username}/comments{/comment_type}{/type}";
 
         protected override bool SupportsPagination => true;
 
