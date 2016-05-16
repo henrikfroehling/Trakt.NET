@@ -12,9 +12,14 @@
 
         internal TraktPeriod Period { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "period", Period.AsString() } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Period != TraktPeriod.Unspecified)
+                uriParams.Add("period", Period.AsString());
+
+            return uriParams;
         }
 
         protected override string UriTemplate => "shows/played/{period}";

@@ -13,19 +13,17 @@
 
         internal bool? Specials { get; set; }
 
-        protected override bool UseCustomExtendedOptions => true;
-
-        protected override IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            var optionParams = new Dictionary<string, string>();
+            var uriParams = base.GetUriPathParameters();
 
             if (Hidden.HasValue)
-                optionParams["hidden"] = Hidden.Value.ToString().ToLower();
+                uriParams.Add("hidden", Hidden.Value.ToString().ToLower());
 
             if (Specials.HasValue)
-                optionParams["specials"] = Specials.Value.ToString().ToLower();
+                uriParams.Add("specials", Specials.Value.ToString().ToLower());
 
-            return optionParams;
+            return uriParams;
         }
     }
 }

@@ -12,10 +12,14 @@
 
         internal TraktCommentSortOrder Sorting { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id},
-                                                    { "sorting", Sorting.AsString() } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Sorting != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.AsString());
+
+            return uriParams;
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
