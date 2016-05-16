@@ -15,6 +15,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Tavis.UriTemplates;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -108,9 +109,49 @@ namespace TraktApiSharp.Requests.Base
 
         internal TRequestBody RequestBody { get; set; }
 
-        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
+        internal string Url => BuildUrl();
 
         protected abstract string UriTemplate { get; }
+
+        protected virtual IDictionary<string, object> GetUriPathParameters()
+        {
+            return new Dictionary<string, object>();
+        }
+
+        private string BuildUrl()
+        {
+            var uriPathTemplate = UriTemplate + "{?extended,page,limit}";
+            var uriPath = new UriTemplate(uriPathTemplate);
+            var pathParams = GetUriPathParameters();
+
+            foreach (var param in pathParams)
+                uriPath.AddParameter(param.Key, param.Value);
+
+            //if (UseCustomExtendedOptions)
+            //{
+            //    var customParams = GetCustomExtendedOptionParameters();
+
+            //    foreach (var param in customParams)
+            //        optionParams[param.Key.ToLower()] = param.Value;
+            //}
+
+            if (ExtendedOption != null)
+            {
+                uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
+            }
+
+            if (SupportsPagination)
+            {
+                if (PaginationOptions.Page != null)
+                    uriPath.AddParameter("page", PaginationOptions.Page.ToString());
+
+                if (PaginationOptions.Limit != null)
+                    uriPath.AddParameter("limit", PaginationOptions.Limit.ToString());
+            }
+
+            var uri = uriPath.Resolve();
+            return $"{Client.Configuration.BaseUrl}{uri}";
+        }
 
         protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
 
@@ -122,46 +163,46 @@ namespace TraktApiSharp.Requests.Base
 
         protected abstract HttpMethod Method { get; }
 
-        protected virtual bool UseCustomExtendedOptions => false;
+        //protected virtual bool UseCustomExtendedOptions => false;
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
-        {
-            return new Dictionary<string, string>();
-        }
+        //protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        //{
+        //    return new Dictionary<string, string>();
+        //}
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
-        {
-            throw new NotImplementedException();
-        }
+        //protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetExtendedOptionParameters()
-        {
-            var optionParams = new Dictionary<string, string>();
+        //protected virtual IEnumerable<KeyValuePair<string, string>> GetExtendedOptionParameters()
+        //{
+        //    var optionParams = new Dictionary<string, string>();
 
-            if (UseCustomExtendedOptions)
-            {
-                var customParams = GetCustomExtendedOptionParameters();
+        //    if (UseCustomExtendedOptions)
+        //    {
+        //        var customParams = GetCustomExtendedOptionParameters();
 
-                foreach (var param in customParams)
-                    optionParams[param.Key.ToLower()] = param.Value;
-            }
-            else
-            {
-                if (ExtendedOption != null)
-                    optionParams["extended"] = ExtendedOption.ToString();
-            }
+        //        foreach (var param in customParams)
+        //            optionParams[param.Key.ToLower()] = param.Value;
+        //    }
+        //    else
+        //    {
+        //        if (ExtendedOption != null)
+        //            optionParams["extended"] = ExtendedOption.ToString();
+        //    }
 
-            if (SupportsPagination)
-            {
-                if (PaginationOptions.Page != null)
-                    optionParams["page"] = PaginationOptions.Page.ToString();
+        //    if (SupportsPagination)
+        //    {
+        //        if (PaginationOptions.Page != null)
+        //            optionParams["page"] = PaginationOptions.Page.ToString();
 
-                if (PaginationOptions.Limit != null)
-                    optionParams["limit"] = PaginationOptions.Limit.ToString();
-            }
+        //        if (PaginationOptions.Limit != null)
+        //            optionParams["limit"] = PaginationOptions.Limit.ToString();
+        //    }
 
-            return optionParams;
-        }
+        //    return optionParams;
+        //}
 
         protected HttpContent RequestBodyContent
         {
@@ -200,32 +241,32 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        private string UriPath
-        {
-            get
-            {
-                return GetPathParameters()
-                    .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
-                    .TrimEnd(new[] { '/' });
-            }
-        }
+        //private string UriPath
+        //{
+        //    get
+        //    {
+        //        return GetPathParameters()
+        //            .Aggregate(UriTemplate.ToLower(),
+        //                       (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
+        //            .TrimEnd(new[] { '/' });
+        //    }
+        //}
 
-        private string OptionParameters
-        {
-            get
-            {
-                using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
-                {
-                    var ret = content.ReadAsStringAsync().Result;
+        //private string OptionParameters
+        //{
+        //    get
+        //    {
+        //        using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
+        //        {
+        //            var ret = content.ReadAsStringAsync().Result;
 
-                    if (!string.IsNullOrEmpty(ret))
-                        ret = $"?{ret}";
+        //            if (!string.IsNullOrEmpty(ret))
+        //                ret = $"?{ret}";
 
-                    return ret;
-                }
-            }
-        }
+        //            return ret;
+        //        }
+        //    }
+        //}
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
