@@ -24,43 +24,63 @@ namespace TraktApiSharp.Requests.Base
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
 
-        internal static HttpClient HTTP_CLIENT = null;
-
         protected TraktRequest(TraktClient client)
         {
             Client = client;
             PaginationOptions = new TraktPaginationOptions();
         }
 
+        public async Task<TResult> QueryAsync()
+        {
+            Validate();
+
+            if (HTTP_CLIENT == null)
+            {
+                HTTP_CLIENT = new HttpClient();
+                SetDefaultRequestHeaders(HTTP_CLIENT);
+            }
+
+            using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
+            {
+                SetRequestHeadersForAuthentication(request);
+
+                using (var response = await HTTP_CLIENT.SendAsync(request))
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+
+                    // Error handling
+                    if (!response.IsSuccessStatusCode)
+                        ErrorHandling(response, responseContent);
+
+                    // No content
+                    if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
+                        return default(TResult);
+
+                    // Handle list result
+                    if (IsListResult)
+                        return await HandleListResult(response, responseContent);
+
+                    // Single object item
+                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
+                }
+            }
+        }
+
+        internal static HttpClient HTTP_CLIENT = null;
+
         internal TraktClient Client { get; private set; }
 
-        protected abstract string UriTemplate { get; }
-
-        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
-
         internal string Id { get; set; }
-
-        protected virtual TraktRequestObjectType? RequestObjectType => null;
 
         internal virtual int Season { get; set; }
 
         internal virtual int Episode { get; set; }
 
-        protected virtual bool IsListResult => false;
-
-        protected virtual bool UsesSeasonExtendedOption => false;
-
         internal virtual TraktExtendedOption ExtendedOption { get; set; }
 
         internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
 
-        protected virtual bool SupportsPagination => false;
-
-        protected abstract HttpMethod Method { get; }
-
         internal TraktPaginationOptions PaginationOptions { get; set; }
-
-        protected virtual bool UseCustomExtendedOptions => false;
 
         private bool _authenticationHeaderRequired;
 
@@ -89,20 +109,29 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
+        internal TRequestBody RequestBody { get; set; }
+
+        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
+
+        protected abstract string UriTemplate { get; }
+
+        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
+
+        protected virtual TraktRequestObjectType? RequestObjectType => null;
+
+        protected virtual bool IsListResult => false;
+
+        protected virtual bool UsesSeasonExtendedOption => false;
+
+        protected virtual bool SupportsPagination => false;
+
+        protected abstract HttpMethod Method { get; }
+
+        protected virtual bool UseCustomExtendedOptions => false;
+
         protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
         {
             return new Dictionary<string, string>();
-        }
-
-        private string UriPath
-        {
-            get
-            {
-                return GetPathParameters()
-                    .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
-                    .TrimEnd(new[] { '/' });
-            }
         }
 
         protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
@@ -144,24 +173,6 @@ namespace TraktApiSharp.Requests.Base
             return optionParams;
         }
 
-        private string OptionParameters
-        {
-            get
-            {
-                using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
-                {
-                    var ret = content.ReadAsStringAsync().Result;
-
-                    if (!string.IsNullOrEmpty(ret))
-                        ret = $"?{ret}";
-
-                    return ret;
-                }
-            }
-        }
-
-        internal TRequestBody RequestBody { get; set; }
-
         protected HttpContent RequestBodyContent
         {
             get
@@ -186,8 +197,6 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
-
         protected virtual void Validate() { }
 
         protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
@@ -201,48 +210,39 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
+        private string UriPath
+        {
+            get
+            {
+                return GetPathParameters()
+                    .Aggregate(UriTemplate.ToLower(),
+                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
+                    .TrimEnd(new[] { '/' });
+            }
+        }
+
+        private string OptionParameters
+        {
+            get
+            {
+                using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
+                {
+                    var ret = content.ReadAsStringAsync().Result;
+
+                    if (!string.IsNullOrEmpty(ret))
+                        ret = $"?{ret}";
+
+                    return ret;
+                }
+            }
+        }
+
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
             httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
             httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-
-        public async Task<TResult> QueryAsync()
-        {
-            Validate();
-
-            if (HTTP_CLIENT == null)
-            {
-                HTTP_CLIENT = new HttpClient();
-                SetDefaultRequestHeaders(HTTP_CLIENT);
-            }
-
-            using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
-            {
-                SetRequestHeadersForAuthentication(request);
-
-                using (var response = await HTTP_CLIENT.SendAsync(request))
-                {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-
-                    // Error handling
-                    if (!response.IsSuccessStatusCode)
-                        ErrorHandling(response, responseContent);
-
-                    // No content
-                    if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
-                        return default(TResult);
-
-                    // Handle list result
-                    if (IsListResult)
-                        return await HandleListResult(response, responseContent);
-
-                    // Single object item
-                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
-                }
-            }
         }
 
         private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)
