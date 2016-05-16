@@ -127,14 +127,6 @@ namespace TraktApiSharp.Requests.Base
             foreach (var param in pathParams)
                 uriPath.AddParameter(param.Key, param.Value);
 
-            //if (UseCustomExtendedOptions)
-            //{
-            //    var customParams = GetCustomExtendedOptionParameters();
-
-            //    foreach (var param in customParams)
-            //        optionParams[param.Key.ToLower()] = param.Value;
-            //}
-
             if (ExtendedOption != null)
             {
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
@@ -162,47 +154,6 @@ namespace TraktApiSharp.Requests.Base
         protected virtual bool SupportsPagination => false;
 
         protected abstract HttpMethod Method { get; }
-
-        //protected virtual bool UseCustomExtendedOptions => false;
-
-        //protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
-        //{
-        //    return new Dictionary<string, string>();
-        //}
-
-        //protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //protected virtual IEnumerable<KeyValuePair<string, string>> GetExtendedOptionParameters()
-        //{
-        //    var optionParams = new Dictionary<string, string>();
-
-        //    if (UseCustomExtendedOptions)
-        //    {
-        //        var customParams = GetCustomExtendedOptionParameters();
-
-        //        foreach (var param in customParams)
-        //            optionParams[param.Key.ToLower()] = param.Value;
-        //    }
-        //    else
-        //    {
-        //        if (ExtendedOption != null)
-        //            optionParams["extended"] = ExtendedOption.ToString();
-        //    }
-
-        //    if (SupportsPagination)
-        //    {
-        //        if (PaginationOptions.Page != null)
-        //            optionParams["page"] = PaginationOptions.Page.ToString();
-
-        //        if (PaginationOptions.Limit != null)
-        //            optionParams["limit"] = PaginationOptions.Limit.ToString();
-        //    }
-
-        //    return optionParams;
-        //}
 
         protected HttpContent RequestBodyContent
         {
@@ -240,33 +191,6 @@ namespace TraktApiSharp.Requests.Base
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
             }
         }
-
-        //private string UriPath
-        //{
-        //    get
-        //    {
-        //        return GetPathParameters()
-        //            .Aggregate(UriTemplate.ToLower(),
-        //                       (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
-        //            .TrimEnd(new[] { '/' });
-        //    }
-        //}
-
-        //private string OptionParameters
-        //{
-        //    get
-        //    {
-        //        using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
-        //        {
-        //            var ret = content.ReadAsStringAsync().Result;
-
-        //            if (!string.IsNullOrEmpty(ret))
-        //                ret = $"?{ret}";
-
-        //            return ret;
-        //        }
-        //    }
-        //}
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
