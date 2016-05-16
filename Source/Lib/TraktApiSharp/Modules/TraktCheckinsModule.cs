@@ -18,8 +18,7 @@
         public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, TraktSharing sharing = null,
                                                                            string message = "", string foursquareVenueID = "",
                                                                            string foursquareVenueName = "", string appVersion = "",
-                                                                           DateTime? appDate = null,
-                                                                           TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                           DateTime? appDate = null, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
@@ -38,15 +37,14 @@
                     AppVersion = appVersion,
                     AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
                 },
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharing sharing = null,
                                                                                string message = "", string foursquareVenueID = "",
                                                                                string foursquareVenueName = "", string appVersion = "",
-                                                                               DateTime? appDate = null,
-                                                                               TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                               DateTime? appDate = null, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
@@ -69,7 +67,7 @@
                     AppVersion = appVersion,
                     AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
                 },
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 

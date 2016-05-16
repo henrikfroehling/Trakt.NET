@@ -12,12 +12,17 @@
 
         internal DateTime? StartDate { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "start_date", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (StartDate.HasValue)
+                uriParams.Add("start_date", StartDate.Value.ToString("yyyy-MM-dd"));
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "movies/updates/{start_date}";
+        protected override string UriTemplate => "movies/updates{/start_date}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

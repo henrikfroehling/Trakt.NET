@@ -15,7 +15,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using WithoutOAuth.Shows.Seasons;
+    using Tavis.UriTemplates;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -24,189 +24,10 @@ namespace TraktApiSharp.Requests.Base
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
 
-        internal static HttpClient HTTP_CLIENT = null;
-
         protected TraktRequest(TraktClient client)
         {
             Client = client;
             PaginationOptions = new TraktPaginationOptions();
-        }
-
-        internal TraktClient Client { get; private set; }
-
-        protected abstract string UriTemplate { get; }
-
-        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
-
-        internal string Id { get; set; }
-
-        protected virtual TraktRequestObjectType? RequestObjectType => null;
-
-        internal virtual int Season { get; set; }
-
-        internal virtual int Episode { get; set; }
-
-        protected virtual bool IsListResult => false;
-
-        protected virtual bool UsesSeasonExtendedOption => false;
-
-        internal virtual TraktExtendedOption ExtendedOption { get; set; }
-
-        internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
-
-        protected virtual bool SupportsPagination => false;
-
-        protected abstract HttpMethod Method { get; }
-
-        internal TraktPaginationOptions PaginationOptions { get; set; }
-
-        protected virtual bool UseCustomExtendedOptions => false;
-
-        private bool _authenticationHeaderRequired;
-
-        internal bool AuthenticationHeaderRequired
-        {
-            get
-            {
-                if (AuthenticationRequirement == TraktAuthenticationRequirement.Required)
-                    return true;
-
-                if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    return false;
-
-                return _authenticationHeaderRequired;
-            }
-
-            set
-            {
-                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required)
-                    throw new InvalidOperationException("request type requires authentication");
-
-                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    throw new InvalidOperationException("request type does not allow authentication");
-
-                _authenticationHeaderRequired = value;
-            }
-        }
-
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
-        {
-            return new Dictionary<string, string>();
-        }
-
-        private string UriPath
-        {
-            get
-            {
-                return GetPathParameters()
-                    .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
-                    .TrimEnd(new[] { '/' });
-            }
-        }
-
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetExtendedOptionParameters()
-        {
-            var optionParams = new Dictionary<string, string>();
-
-            if (UsesSeasonExtendedOption)
-            {
-                if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
-                    optionParams["extended"] = SeasonExtendedOption.AsString();
-            }
-            else if (UseCustomExtendedOptions)
-            {
-                var customParams = GetCustomExtendedOptionParameters();
-
-                foreach (var param in customParams)
-                    optionParams[param.Key.ToLower()] = param.Value;
-            }
-            else
-            {
-                if (ExtendedOption != TraktExtendedOption.Unspecified)
-                    optionParams["extended"] = ExtendedOption.AsString();
-            }
-
-            if (SupportsPagination)
-            {
-                if (PaginationOptions.Page != null)
-                    optionParams["page"] = PaginationOptions.Page.ToString();
-
-                if (PaginationOptions.Limit != null)
-                    optionParams["limit"] = PaginationOptions.Limit.ToString();
-            }
-
-            return optionParams;
-        }
-
-        private string OptionParameters
-        {
-            get
-            {
-                using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
-                {
-                    var ret = content.ReadAsStringAsync().Result;
-
-                    if (!string.IsNullOrEmpty(ret))
-                        ret = $"?{ret}";
-
-                    return ret;
-                }
-            }
-        }
-
-        internal TRequestBody RequestBody { get; set; }
-
-        protected HttpContent RequestBodyContent
-        {
-            get
-            {
-                var json = RequestBodyJson;
-                return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, "application/json") : null;
-            }
-        }
-
-        protected string RequestBodyJson
-        {
-            get
-            {
-                if (RequestBody == null)
-                    return null;
-
-                return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.None,
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-            }
-        }
-
-        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
-
-        protected virtual void Validate() { }
-
-        protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
-        {
-            if (AuthenticationHeaderRequired)
-            {
-                if (!Client.Authentication.IsAuthenticated)
-                    throw new TraktAuthorizationException("authentication is required for this request, but the current authentication parameters are invalid");
-
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
-            }
-        }
-
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
-        {
-            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
-            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
-
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<TResult> QueryAsync()
@@ -243,6 +64,140 @@ namespace TraktApiSharp.Requests.Base
                     return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
                 }
             }
+        }
+
+        internal static HttpClient HTTP_CLIENT = null;
+
+        internal TraktClient Client { get; private set; }
+
+        internal string Id { get; set; }
+
+        internal virtual int Season { get; set; }
+
+        internal virtual int Episode { get; set; }
+
+        internal virtual TraktExtendedOption ExtendedOption { get; set; }
+
+        internal TraktPaginationOptions PaginationOptions { get; set; }
+
+        private bool _authenticationHeaderRequired;
+
+        internal bool AuthenticationHeaderRequired
+        {
+            get
+            {
+                if (AuthenticationRequirement == TraktAuthenticationRequirement.Required)
+                    return true;
+
+                if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
+                    return false;
+
+                return _authenticationHeaderRequired;
+            }
+
+            set
+            {
+                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required)
+                    throw new InvalidOperationException("request type requires authentication");
+
+                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
+                    throw new InvalidOperationException("request type does not allow authentication");
+
+                _authenticationHeaderRequired = value;
+            }
+        }
+
+        internal TRequestBody RequestBody { get; set; }
+
+        internal string Url => BuildUrl();
+
+        protected abstract string UriTemplate { get; }
+
+        protected virtual IDictionary<string, object> GetUriPathParameters()
+        {
+            return new Dictionary<string, object>();
+        }
+
+        private string BuildUrl()
+        {
+            var uriPathTemplate = UriTemplate + "{?extended,page,limit}";
+            var uriPath = new UriTemplate(uriPathTemplate);
+            var pathParams = GetUriPathParameters();
+
+            foreach (var param in pathParams)
+                uriPath.AddParameter(param.Key, param.Value);
+
+            if (ExtendedOption != null)
+            {
+                uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
+            }
+
+            if (SupportsPagination)
+            {
+                if (PaginationOptions.Page != null)
+                    uriPath.AddParameter("page", PaginationOptions.Page.ToString());
+
+                if (PaginationOptions.Limit != null)
+                    uriPath.AddParameter("limit", PaginationOptions.Limit.ToString());
+            }
+
+            var uri = uriPath.Resolve();
+            return $"{Client.Configuration.BaseUrl}{uri}";
+        }
+
+        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
+
+        protected virtual TraktRequestObjectType? RequestObjectType => null;
+
+        protected virtual bool IsListResult => false;
+
+        protected virtual bool SupportsPagination => false;
+
+        protected abstract HttpMethod Method { get; }
+
+        protected HttpContent RequestBodyContent
+        {
+            get
+            {
+                var json = RequestBodyJson;
+                return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, "application/json") : null;
+            }
+        }
+
+        protected string RequestBodyJson
+        {
+            get
+            {
+                if (RequestBody == null)
+                    return null;
+
+                return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings()
+                {
+                    Formatting = Formatting.None,
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            }
+        }
+
+        protected virtual void Validate() { }
+
+        protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
+        {
+            if (AuthenticationHeaderRequired)
+            {
+                if (!Client.Authentication.IsAuthenticated)
+                    throw new TraktAuthorizationException("authentication is required for this request, but the current authentication parameters are invalid");
+
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
+            }
+        }
+
+        private void SetDefaultRequestHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
+            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
+
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)

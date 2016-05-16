@@ -30,13 +30,13 @@
             return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetSyncPlaybackProgressAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetSyncPlaybackProgressAsync(TraktExtendedOption extended = null,
                                                                                                        TraktSyncType? type = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
@@ -45,14 +45,20 @@
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetSyncCollectionMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetSyncCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedOption = extended });
+            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
+            {
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+            });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetSyncCollectionShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetSyncCollectionShowsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedOption = extended });
+            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
+            {
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+            });
         }
 
         public async Task<TraktSyncCollectionPostResponse> SyncCollectionAddAsync(TraktSyncCollectionPost collectionPost)
@@ -65,25 +71,31 @@
             return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedMovieItem>> GetSyncWatchedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSyncWatchedMovieItem>> GetSyncWatchedMoviesAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedOption = extended });
+            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
+            {
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+            });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedShowItem>> GetSyncWatchedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSyncWatchedShowItem>> GetSyncWatchedShowsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedOption = extended });
+            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
+            {
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+            });
         }
 
         public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetSyncWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string id = null,
-                                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                      TraktExtendedOption extended = null,
                                                                                                       int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
                 Type = type,
                 ItemId = id,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -100,13 +112,13 @@
 
         public async Task<TraktListResult<TraktSyncRatingsItem>> GetSyncRatingsAsync(TraktSyncRatingsItemType? type = null,
                                                                                      int[] rating = null,
-                                                                                     TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                     TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncRatingsRequest(Client)
             {
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
@@ -121,12 +133,12 @@
         }
 
         public async Task<TraktListResult<TraktSyncWatchlistItem>> GetSyncWatchlistAsync(TraktSyncWatchlistItemType? type = null,
-                                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                         TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 

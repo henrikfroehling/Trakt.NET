@@ -12,16 +12,16 @@
     {
         public TraktPeopleModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOption extended = null)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -39,21 +39,21 @@
             return new TraktListResult<TraktPerson> { Items = persons };
         }
 
-        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
     }

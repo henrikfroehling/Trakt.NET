@@ -18,14 +18,22 @@
 
         internal string ItemId { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username },
-                                                    { "type", Type.HasValue ? Type.Value.AsString() : string.Empty },
-                                                    { "id", ItemId != null ? ItemId : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (Type.HasValue && Type.Value != TraktSyncHistoryItemType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            if (!string.IsNullOrEmpty(ItemId))
+                uriParams.Add("item_id", ItemId);
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/history/{type}/{id}";
+        protected override string UriTemplate => "users/{username}/history{/type}{/item_id}";
 
         protected override bool SupportsPagination => true;
 

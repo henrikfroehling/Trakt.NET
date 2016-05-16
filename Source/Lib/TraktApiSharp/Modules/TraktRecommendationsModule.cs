@@ -11,12 +11,12 @@
         public TraktRecommendationsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktListResult<TraktMovieRecommendation>> GetUserMovieRecommendationsAsync(int? limit = null,
-                                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                      TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
@@ -29,12 +29,12 @@
         }
 
         public async Task<TraktListResult<TraktShowRecommendation>> GetUserShowRecommendationsAsync(int? limit = null,
-                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                    TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 

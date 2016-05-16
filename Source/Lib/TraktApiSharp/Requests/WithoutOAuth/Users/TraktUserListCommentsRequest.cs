@@ -15,14 +15,19 @@
 
         internal TraktCommentSortOrder? Sorting { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id },
-                                                    { "username", Username },
-                                                    { "sorting", Sorting.HasValue ? Sorting.Value.AsString() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (Sorting.HasValue && Sorting.Value != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.Value.AsString());
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/lists/{id}/comments/{sorting}";
+        protected override string UriTemplate => "users/{username}/lists/{id}/comments{/sorting}";
 
         protected override bool SupportsPagination => true;
 

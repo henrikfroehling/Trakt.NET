@@ -31,14 +31,14 @@
 
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetUserHiddenItemsAsync(TraktHiddenItemsSection section,
                                                                                                   TraktHiddenItemType? type = null,
-                                                                                                  TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                  TraktExtendedOption extended = null,
                                                                                                   int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
             {
                 Section = section,
                 Type = type,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -62,29 +62,29 @@
         }
 
         public async Task<TraktListResult<TraktUserCollectionMovieItem>> GetUserCollectionMoviesAsync(string username,
-                                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                      TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktListResult<TraktUserCollectionShowItem>> GetUserCollectionShowsAsync(string username,
-                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                    TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktPaginationListResult<TraktUserComment>> GetUserCommentsAsync(string username,
                                                                                             TraktCommentType? commentType = null,
                                                                                             TraktObjectType? type = null,
-                                                                                            TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                            TraktExtendedOption extended = null,
                                                                                             int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserCommentsRequest(Client)
@@ -92,7 +92,7 @@
                 Username = username,
                 CommentType = commentType,
                 Type = type,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -116,14 +116,14 @@
 
         public async Task<TraktListResult<TraktListItem>> GetUserCustomListItemsAsync(string username, string listId,
                                                                                       TraktListItemType? type = null,
-                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                      TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserCustomListItemsRequest(Client)
             {
                 Username = username,
                 Id = listId,
                 Type = type,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
@@ -275,7 +275,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetUserWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
-                                                                                                      string id = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                      string id = null, TraktExtendedOption extended = null,
                                                                                                       int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserWatchedHistoryRequest(Client)
@@ -283,58 +283,58 @@
                 Username = username,
                 Type = type,
                 ItemId = id,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
         public async Task<TraktListResult<TraktUserRatingsItem>> GetUserRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
-                                                                                     int[] rating = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                     int[] rating = null, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserRatingsRequest(Client)
             {
                 Username = username,
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktListResult<TraktUserWatchlistItem>> GetUserWatchlistAsync(string username, TraktSyncWatchlistItemType? type = null,
-                                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                         TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserWatchlistRequest(Client)
             {
                 Username = username,
                 Type = type,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktUserWatchingItem> GetUserWatchingAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktUserWatchingItem> GetUserWatchingAsync(string username, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetUserWatchedMoviesAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetUserWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowAsync(string username, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 

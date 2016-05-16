@@ -14,12 +14,17 @@
 
         internal TraktSyncType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "type", Type.HasValue ? Type.Value.AsString() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Type.HasValue && Type != TraktSyncType.Unspecified)
+                uriParams.Add("type", Type.Value.AsString());
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "sync/playback/{type}";
+        protected override string UriTemplate => "sync/playback{/type}";
 
         protected override bool IsListResult => true;
     }

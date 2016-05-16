@@ -10,10 +10,11 @@
 
         internal string LanguageCode { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id },
-                                                    { "language", LanguageCode } };
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("language", LanguageCode);
+            return uriParams;
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;

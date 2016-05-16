@@ -12,28 +12,28 @@
     {
         public TraktSeasonsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktSeasonExtendedOption extended = TraktSeasonExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showId,
-                SeasonExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktListResult<TraktEpisode>> GetSeasonAsync(string showId, int season,
-                                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                        TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSeasonSingleRequest(Client)
             {
                 Id = showId,
                 Season = season,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
         public async Task<TraktPaginationListResult<TraktSeasonComment>> GetSeasonCommentsAsync(string showId, int season,
-                                                                                                TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                                TraktCommentSortOrder? sorting = null,
                                                                                                 int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSeasonCommentsRequest(Client)

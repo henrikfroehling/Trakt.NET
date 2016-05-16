@@ -13,7 +13,5 @@
         protected override string UriTemplate => "shows/{id}/seasons";
 
         protected override bool IsListResult => true;
-
-        protected override bool UsesSeasonExtendedOption => true;
     }
 }
