@@ -33,7 +33,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktSeasonComment>> GetSeasonCommentsAsync(string showId, int season,
-                                                                                                TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                                TraktCommentSortOrder? sorting = null,
                                                                                                 int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSeasonCommentsRequest(Client)
