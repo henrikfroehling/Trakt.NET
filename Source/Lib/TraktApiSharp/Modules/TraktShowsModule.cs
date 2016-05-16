@@ -69,7 +69,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktShowComment>> GetShowCommentsAsync(string id,
-                                                                                            TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                            TraktCommentSortOrder? sorting = null,
                                                                                             int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowCommentsRequest(Client)
