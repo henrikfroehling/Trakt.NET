@@ -12,7 +12,7 @@
         public TraktEpisodesModule(TraktClient client) : base(client) { }
 
         public async Task<TraktEpisode> GetEpisodeAsync(string showId, int season, int episode,
-                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                        TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktEpisodeSummaryRequest(Client)
             {

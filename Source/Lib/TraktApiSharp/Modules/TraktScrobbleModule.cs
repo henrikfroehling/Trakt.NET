@@ -17,7 +17,7 @@
 
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = "", DateTime? appDate = null,
-                                                                          TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                          TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
@@ -25,7 +25,7 @@
 
         public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = "", DateTime? appDate = null,
-                                                                          TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                          TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
@@ -33,7 +33,7 @@
 
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
                                                                          string appVersion = "", DateTime? appDate = null,
-                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                         TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
@@ -41,7 +41,7 @@
 
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
                                                                              string appVersion = "", DateTime? appDate = null,
-                                                                             TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                             TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
@@ -49,7 +49,7 @@
 
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
                                                                               string appVersion = "", DateTime? appDate = null,
-                                                                              TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                              TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
@@ -57,26 +57,26 @@
 
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
                                                                              string appVersion = "", DateTime? appDate = null,
-                                                                             TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                             TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = TraktExtendedOption.Unspecified) where U : IValidatable
+                                                                                 TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified) where U : IValidatable
         {
             return new TraktScrobbleStartRequest<T, U>(Client) { RequestBody = requestBody, ExtendedOption = extended };
         }
 
         private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = TraktExtendedOption.Unspecified) where U : IValidatable
+                                                                                 TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified) where U : IValidatable
         {
             return new TraktScrobblePauseRequest<T, U>(Client) { RequestBody = requestBody, ExtendedOption = extended };
         }
 
         private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = TraktExtendedOption.Unspecified) where U : IValidatable
+                                                                                 TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified) where U : IValidatable
         {
             return new TraktScrobbleStopRequest<T, U>(Client) { RequestBody = requestBody, ExtendedOption = extended };
         }

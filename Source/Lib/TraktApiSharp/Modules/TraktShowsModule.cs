@@ -16,7 +16,7 @@
     {
         public TraktShowsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
@@ -25,7 +25,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktShow>> GetShowsAsync(string[] ids, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktShow>> GetShowsAsync(string[] ids, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -141,7 +141,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
@@ -151,7 +151,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOption extend = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOptionOld extend = TraktExtendedOptionOld.Unspecified,
                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
@@ -162,7 +162,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                       TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                       TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                        int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
@@ -174,7 +174,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                         TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                          int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
@@ -186,7 +186,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                             TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                             TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                              int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
@@ -197,7 +197,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
@@ -208,7 +208,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate,
-                                                                                                                 TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                                 TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)

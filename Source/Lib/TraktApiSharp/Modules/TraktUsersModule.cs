@@ -31,7 +31,7 @@
 
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetUserHiddenItemsAsync(TraktHiddenItemsSection section,
                                                                                                   TraktHiddenItemType? type = null,
-                                                                                                  TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                  TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                   int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
@@ -62,7 +62,7 @@
         }
 
         public async Task<TraktListResult<TraktUserCollectionMovieItem>> GetUserCollectionMoviesAsync(string username,
-                                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                      TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
@@ -72,7 +72,7 @@
         }
 
         public async Task<TraktListResult<TraktUserCollectionShowItem>> GetUserCollectionShowsAsync(string username,
-                                                                                                    TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                                    TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
@@ -84,7 +84,7 @@
         public async Task<TraktPaginationListResult<TraktUserComment>> GetUserCommentsAsync(string username,
                                                                                             TraktCommentType? commentType = null,
                                                                                             TraktObjectType? type = null,
-                                                                                            TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                            TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                             int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserCommentsRequest(Client)
@@ -116,7 +116,7 @@
 
         public async Task<TraktListResult<TraktListItem>> GetUserCustomListItemsAsync(string username, string listId,
                                                                                       TraktListItemType? type = null,
-                                                                                      TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                      TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserCustomListItemsRequest(Client)
             {
@@ -275,7 +275,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetUserWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
-                                                                                                      string id = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                      string id = null, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                       int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktUserWatchedHistoryRequest(Client)
@@ -289,7 +289,7 @@
         }
 
         public async Task<TraktListResult<TraktUserRatingsItem>> GetUserRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
-                                                                                     int[] rating = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                     int[] rating = null, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserRatingsRequest(Client)
             {
@@ -301,7 +301,7 @@
         }
 
         public async Task<TraktListResult<TraktUserWatchlistItem>> GetUserWatchlistAsync(string username, TraktSyncWatchlistItemType? type = null,
-                                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                                         TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserWatchlistRequest(Client)
             {
@@ -311,7 +311,7 @@
             });
         }
 
-        public async Task<TraktUserWatchingItem> GetUserWatchingAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktUserWatchingItem> GetUserWatchingAsync(string username, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
@@ -320,7 +320,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetUserWatchedMoviesAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetUserWatchedMoviesAsync(string username, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
@@ -329,7 +329,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowAsync(string username, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowAsync(string username, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {

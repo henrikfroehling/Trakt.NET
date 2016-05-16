@@ -15,7 +15,7 @@
     {
         public TraktMoviesModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktMovie> GetMovieAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktMovie> GetMovieAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktMovieSummaryRequest(Client)
             {
@@ -24,7 +24,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktMovie>> GetMoviesAsync(string[] ids, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktMovie>> GetMoviesAsync(string[] ids, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -137,7 +137,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                      int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesTrendingRequest(Client)
@@ -147,7 +147,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularMovie>> GetPopularMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktPopularMovie>> GetPopularMoviesAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesPopularRequest(Client)
@@ -158,7 +158,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                         TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                         TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                          int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostPlayedRequest(Client)
@@ -170,7 +170,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                           TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                           TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                            int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostWatchedRequest(Client)
@@ -182,7 +182,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                               TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                               TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                                int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostCollectedRequest(Client)
@@ -193,7 +193,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostAnticipatedRequest(Client)
@@ -203,7 +203,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client)
             {
@@ -212,7 +212,7 @@
         }
 
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate,
-                                                                                                                   TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+                                                                                                                   TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
                                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesRecentlyUpdatedRequest(Client)

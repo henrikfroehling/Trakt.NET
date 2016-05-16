@@ -22,7 +22,7 @@
         }
 
         public async Task<TraktListResult<TraktEpisode>> GetSeasonAsync(string showId, int season,
-                                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                        TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktSeasonSingleRequest(Client)
             {

@@ -76,7 +76,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        internal virtual TraktExtendedOption ExtendedOption { get; set; }
+        internal virtual TraktExtendedOptionOld ExtendedOption { get; set; }
 
         internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
 
@@ -157,7 +157,7 @@ namespace TraktApiSharp.Requests.Base
             }
             else
             {
-                if (ExtendedOption != TraktExtendedOption.Unspecified)
+                if (ExtendedOption != TraktExtendedOptionOld.Unspecified)
                     optionParams["extended"] = ExtendedOption.AsString();
             }
 

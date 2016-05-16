@@ -12,7 +12,7 @@
     {
         public TraktPeopleModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
@@ -21,7 +21,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -39,7 +39,7 @@
             return new TraktListResult<TraktPerson> { Items = persons };
         }
 
-        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
@@ -48,7 +48,7 @@
             });
         }
 
-        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {

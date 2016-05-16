@@ -19,7 +19,7 @@
                                                                            string message = "", string foursquareVenueID = "",
                                                                            string foursquareVenueName = "", string appVersion = "",
                                                                            DateTime? appDate = null,
-                                                                           TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                           TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
@@ -46,7 +46,7 @@
                                                                                string message = "", string foursquareVenueID = "",
                                                                                string foursquareVenueName = "", string appVersion = "",
                                                                                DateTime? appDate = null,
-                                                                               TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                               TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
