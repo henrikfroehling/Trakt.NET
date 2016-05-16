@@ -13,10 +13,17 @@
 
         internal int? Days { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "start_date", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : string.Empty },
-                                                    { "days", Days.HasValue ? Days.Value.ToString() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (StartDate.HasValue)
+                uriParams.Add("start_date", StartDate.Value.ToString("yyyy-MM-dd"));
+
+            if (Days.HasValue)
+                uriParams.Add("days", Days.Value);
+
+            return uriParams;
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
