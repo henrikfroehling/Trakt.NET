@@ -6,6 +6,6 @@
     {
         internal TraktCalendarUserMoviesRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "calendars/my/movies/{start_date}/{days}";
+        protected override string UriTemplate => "calendars/my/movies{/start_date}{/days}";
     }
 }
