@@ -22,7 +22,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/collected/{period}";
+        protected override string UriTemplate => "shows/collected{/period}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
