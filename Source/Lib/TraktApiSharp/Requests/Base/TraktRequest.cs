@@ -15,7 +15,6 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using WithoutOAuth.Shows.Seasons;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -76,11 +75,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        internal virtual TraktExtendedOptionOld ExtendedOptionOld { get; set; }
-
         internal virtual TraktExtendedOption ExtendedOption { get; set; }
-
-        internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
@@ -123,8 +118,6 @@ namespace TraktApiSharp.Requests.Base
 
         protected virtual bool IsListResult => false;
 
-        protected virtual bool UsesSeasonExtendedOption => false;
-
         protected virtual bool SupportsPagination => false;
 
         protected abstract HttpMethod Method { get; }
@@ -145,12 +138,7 @@ namespace TraktApiSharp.Requests.Base
         {
             var optionParams = new Dictionary<string, string>();
 
-            if (UsesSeasonExtendedOption)
-            {
-                if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
-                    optionParams["extended"] = SeasonExtendedOption.AsString();
-            }
-            else if (UseCustomExtendedOptions)
+            if (UseCustomExtendedOptions)
             {
                 var customParams = GetCustomExtendedOptionParameters();
 
@@ -159,8 +147,8 @@ namespace TraktApiSharp.Requests.Base
             }
             else
             {
-                if (ExtendedOptionOld != TraktExtendedOptionOld.Unspecified)
-                    optionParams["extended"] = ExtendedOptionOld.AsString();
+                if (ExtendedOption != null)
+                    optionParams["extended"] = ExtendedOption.ToString();
             }
 
             if (SupportsPagination)

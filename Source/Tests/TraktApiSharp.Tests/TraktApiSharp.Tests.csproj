@@ -106,7 +106,6 @@
     <Compile Include="Enums\TraktScrobbleActionTypeTests.cs" />
     <Compile Include="Enums\TraktSearchLookupIdTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
-    <Compile Include="Enums\TraktSeasonExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Enums\TraktSyncHistoryActionTypeTests.cs" />
     <Compile Include="Enums\TraktSyncHistoryItemTypeTests.cs" />

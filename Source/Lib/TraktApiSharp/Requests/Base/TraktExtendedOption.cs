@@ -1,26 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
-
-namespace TraktApiSharp.Requests
+﻿namespace TraktApiSharp.Requests
 {
-    using System;
     using System.Collections.Generic;
-    public enum TraktExtendedOptionOld
-    {
-        Unspecified,
-        Minimal,
-        Metadata,
-        Images,
-        Full,
-        FullAndImages,
-        NoSeasons,
-        MinimalAndNoSeasons,
-        MetadataAndNoSeasons,
-        ImagesAndNoSeasons,
-        FullAndNoSeasons,
-        FullAndImagesAndNoSeasons
-    }
 
     public class TraktExtendedOption
     {
@@ -31,6 +11,7 @@ namespace TraktApiSharp.Requests
             Images = false;
             Full = false;
             NoSeasons = false;
+            Episodes = false;
         }
 
         public bool Minimal { get; set; }
@@ -42,6 +23,8 @@ namespace TraktApiSharp.Requests
         public bool Full { get; set; }
 
         public bool NoSeasons { get; set; }
+
+        public bool Episodes { get; set; }
 
         public TraktExtendedOption SetMinimal()
         {
@@ -103,23 +86,15 @@ namespace TraktApiSharp.Requests
             return this;
         }
 
-        public TraktExtendedOption SetAll()
+        public TraktExtendedOption SetEpisodes()
         {
-            Minimal = true;
-            Metadata = true;
-            Images = true;
-            Full = true;
-            NoSeasons = false;
+            Episodes = true;
             return this;
         }
 
-        public TraktExtendedOption SetAllAndNoSeasons()
+        public TraktExtendedOption ResetEpisodes()
         {
-            Minimal = true;
-            Metadata = true;
-            Images = true;
-            Full = true;
-            NoSeasons = true;
+            Episodes = false;
             return this;
         }
 
@@ -130,6 +105,7 @@ namespace TraktApiSharp.Requests
             Images = false;
             Full = false;
             NoSeasons = false;
+            Episodes = false;
             return this;
         }
 
@@ -152,6 +128,9 @@ namespace TraktApiSharp.Requests
             if (NoSeasons)
                 options.Add("noseasons");
 
+            if (Episodes)
+                options.Add("episodes");
+
             return options;
         }
 
@@ -159,30 +138,6 @@ namespace TraktApiSharp.Requests
         {
             var options = Resolve();
             return string.Join(",", options);
-        }
-    }
-
-    internal static class TraktExtendedOptionExtensions
-    {
-        internal static string AsString(this TraktExtendedOptionOld extendedOption)
-        {
-            switch (extendedOption)
-            {
-                case TraktExtendedOptionOld.Unspecified: return string.Empty;
-                case TraktExtendedOptionOld.Minimal: return "min";
-                case TraktExtendedOptionOld.Metadata: return "metadata";
-                case TraktExtendedOptionOld.Images: return "images";
-                case TraktExtendedOptionOld.Full: return "full";
-                case TraktExtendedOptionOld.FullAndImages: return "full,images";
-                case TraktExtendedOptionOld.NoSeasons: return "noseasons";
-                case TraktExtendedOptionOld.MinimalAndNoSeasons: return "min,noseasons";
-                case TraktExtendedOptionOld.MetadataAndNoSeasons: return "metadata,noseasons";
-                case TraktExtendedOptionOld.ImagesAndNoSeasons: return "images,noseasons";
-                case TraktExtendedOptionOld.FullAndNoSeasons: return "full,noseasons";
-                case TraktExtendedOptionOld.FullAndImagesAndNoSeasons: return "full,images,noseasons";
-                default:
-                    throw new NotSupportedException(extendedOption.ToString());
-            }
         }
     }
 }

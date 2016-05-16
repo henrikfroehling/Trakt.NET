@@ -17,6 +17,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -31,6 +32,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
 
             extendedOption.ResetMinimal().Should().BeSameAs(extendedOption);
 
@@ -39,6 +41,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -53,6 +56,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
 
             extendedOption.ResetMetadata().Should().BeSameAs(extendedOption);
 
@@ -61,6 +65,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -75,6 +80,7 @@
             extendedOption.Images.Should().BeTrue();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
 
             extendedOption.ResetImages().Should().BeSameAs(extendedOption);
 
@@ -83,6 +89,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -97,6 +104,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeTrue();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
 
             extendedOption.ResetFull().Should().BeSameAs(extendedOption);
 
@@ -105,6 +113,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -119,6 +128,7 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeTrue();
+            extendedOption.Episodes.Should().BeFalse();
 
             extendedOption.ResetNoSeasons().Should().BeSameAs(extendedOption);
 
@@ -127,50 +137,31 @@
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
-        public void TestTraktExtendedOptionSetAll()
+        public void TestTraktExtendedOptionSetEpisodes()
         {
             var extendedOption = new TraktExtendedOption();
 
-            extendedOption.SetAll().Should().BeSameAs(extendedOption);
-
-            extendedOption.Minimal.Should().BeTrue();
-            extendedOption.Metadata.Should().BeTrue();
-            extendedOption.Images.Should().BeTrue();
-            extendedOption.Full.Should().BeTrue();
-            extendedOption.NoSeasons.Should().BeFalse();
-
-            extendedOption.Reset().Should().BeSameAs(extendedOption);
+            extendedOption.SetEpisodes().Should().BeSameAs(extendedOption);
 
             extendedOption.Minimal.Should().BeFalse();
             extendedOption.Metadata.Should().BeFalse();
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
-        }
+            extendedOption.Episodes.Should().BeTrue();
 
-        [TestMethod]
-        public void TestTraktExtendedOptionSetAllAndNoSeasons()
-        {
-            var extendedOption = new TraktExtendedOption();
-
-            extendedOption.SetAllAndNoSeasons().Should().BeSameAs(extendedOption);
-
-            extendedOption.Minimal.Should().BeTrue();
-            extendedOption.Metadata.Should().BeTrue();
-            extendedOption.Images.Should().BeTrue();
-            extendedOption.Full.Should().BeTrue();
-            extendedOption.NoSeasons.Should().BeTrue();
-
-            extendedOption.Reset().Should().BeSameAs(extendedOption);
+            extendedOption.ResetEpisodes().Should().BeSameAs(extendedOption);
 
             extendedOption.Minimal.Should().BeFalse();
             extendedOption.Metadata.Should().BeFalse();
             extendedOption.Images.Should().BeFalse();
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
+            extendedOption.Episodes.Should().BeFalse();
         }
 
         [TestMethod]
@@ -194,6 +185,9 @@
 
             extendedOption.SetNoSeasons();
             extendedOption.Resolve().Should().NotBeNull().And.HaveCount(5).And.Contain("min", "metadata", "images", "full", "noseasons");
+
+            extendedOption.SetEpisodes();
+            extendedOption.Resolve().Should().NotBeNull().And.HaveCount(6).And.Contain("min", "metadata", "images", "full", "noseasons", "episodes");
         }
 
         [TestMethod]
@@ -217,32 +211,9 @@
 
             extendedOption.SetNoSeasons();
             extendedOption.ToString().Should().NotBeNull().And.Be("min,metadata,images,full,noseasons");
-        }
 
-        [TestMethod]
-        public void TestTraktExtendedOptionHasMembers()
-        {
-            typeof(TraktExtendedOptionOld).GetEnumNames().Should().HaveCount(12)
-                                                      .And.Contain("Unspecified", "Minimal", "Metadata", "Images", "Full", "FullAndImages",
-                                                                   "NoSeasons", "MinimalAndNoSeasons", "MetadataAndNoSeasons",
-                                                                   "ImagesAndNoSeasons", "FullAndNoSeasons", "FullAndImagesAndNoSeasons");
-        }
-
-        [TestMethod]
-        public void TestTraktExtendedOptionGetAsString()
-        {
-            TraktExtendedOptionOld.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktExtendedOptionOld.Minimal.AsString().Should().Be("min");
-            TraktExtendedOptionOld.Metadata.AsString().Should().Be("metadata");
-            TraktExtendedOptionOld.Images.AsString().Should().Be("images");
-            TraktExtendedOptionOld.Full.AsString().Should().Be("full");
-            TraktExtendedOptionOld.FullAndImages.AsString().Should().Be("full,images");
-            TraktExtendedOptionOld.NoSeasons.AsString().Should().Be("noseasons");
-            TraktExtendedOptionOld.MinimalAndNoSeasons.AsString().Should().Be("min,noseasons");
-            TraktExtendedOptionOld.MetadataAndNoSeasons.AsString().Should().Be("metadata,noseasons");
-            TraktExtendedOptionOld.ImagesAndNoSeasons.AsString().Should().Be("images,noseasons");
-            TraktExtendedOptionOld.FullAndNoSeasons.AsString().Should().Be("full,noseasons");
-            TraktExtendedOptionOld.FullAndImagesAndNoSeasons.AsString().Should().Be("full,images,noseasons");
+            extendedOption.SetEpisodes();
+            extendedOption.ToString().Should().NotBeNull().And.Be("min,metadata,images,full,noseasons,episodes");
         }
     }
 }
