@@ -22,7 +22,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "movies/updates/{start_date}";
+        protected override string UriTemplate => "movies/updates{/start_date}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
