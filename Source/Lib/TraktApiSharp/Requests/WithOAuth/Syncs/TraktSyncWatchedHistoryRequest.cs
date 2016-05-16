@@ -29,7 +29,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/history/{type}/{item_id}";
+        protected override string UriTemplate => "sync/history{/type}{/item_id}";
 
         protected override bool SupportsPagination => true;
 

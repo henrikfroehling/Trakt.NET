@@ -24,7 +24,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/watchlist/{type}";
+        protected override string UriTemplate => "sync/watchlist{/type}";
 
         protected override bool IsListResult => true;
     }

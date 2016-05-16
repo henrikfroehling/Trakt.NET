@@ -29,7 +29,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/ratings/{type}/{rating}";
+        protected override string UriTemplate => "sync/ratings{/type}{/rating}";
 
         protected override bool IsListResult => true;
     }

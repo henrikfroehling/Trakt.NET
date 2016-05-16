@@ -24,7 +24,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/playback/{type}";
+        protected override string UriTemplate => "sync/playback{/type}";
 
         protected override bool IsListResult => true;
     }
