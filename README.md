@@ -17,8 +17,8 @@ The goal is a feature-complete library in terms of API coverage.
 **Create a new TraktApiSharp Client.**
 ```csharp
 var client = new TraktClient("Your Trakt Client ID");  // Client ID is sufficient for usage without OAuth
-var client = new TraktClient("Your Trakt Client ID", "Your Client Secret");  // Both parameters are required,
-                                                                             // if you want to use OAuth required features
+var client = new TraktClient("Your Trakt Client ID", "Your Trakt Client Secret");  // Both parameters are required,
+                                                                                   // if you want to use OAuth required features
 ```
 
 **Configure the client.**
