@@ -16,16 +16,16 @@
     {
         public TraktShowsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
+        public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktListResult<TraktShow>> GetShowsAsync(string[] ids, TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified)
+        public async Task<TraktListResult<TraktShow>> GetShowsAsync(string[] ids, TraktExtendedOption extended = null)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -141,80 +141,80 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                   int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extended = null,
+                                                                                              int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOptionOld extend = TraktExtendedOptionOld.Unspecified,
-                                                                                                 int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
+                                                                                            int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
-                ExtendedOption = extend,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                       TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                       int? page = null, int? limit = null)
+                                                                                                  TraktExtendedOption extended = null,
+                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                         TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                         int? page = null, int? limit = null)
+                                                                                                    TraktExtendedOption extended = null,
+                                                                                                    int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
-                                                                                                             TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                             int? page = null, int? limit = null)
+                                                                                                        TraktExtendedOption extended = null,
+                                                                                                        int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                                 int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = null,
+                                                                                                            int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate,
-                                                                                                                 TraktExtendedOptionOld extended = TraktExtendedOptionOld.Unspecified,
-                                                                                                                 int? page = null, int? limit = null)
+                                                                                                            TraktExtendedOption extended = null,
+                                                                                                            int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extended,
+                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

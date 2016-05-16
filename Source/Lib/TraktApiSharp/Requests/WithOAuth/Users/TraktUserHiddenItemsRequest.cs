@@ -36,8 +36,8 @@
             if (Type.HasValue)
                 optionParams["type"] = Type.Value.ToString().ToLower();
 
-            if (ExtendedOption != TraktExtendedOptionOld.Unspecified)
-                optionParams["extended"] = ExtendedOption.AsString();
+            if (ExtendedOptionOld != TraktExtendedOptionOld.Unspecified)
+                optionParams["extended"] = ExtendedOptionOld.AsString();
 
             return optionParams;
         }
