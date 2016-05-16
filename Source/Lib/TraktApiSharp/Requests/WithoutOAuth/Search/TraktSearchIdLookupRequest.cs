@@ -12,14 +12,16 @@
 
         internal string LookupId { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            var searchParams = new Dictionary<string, string>();
+            var uriParams = base.GetUriPathParameters();
 
-            searchParams["id_type"] = Type.AsString();
-            searchParams["id"] = LookupId;
+            uriParams.Add("id_type", Type.AsString());
+            uriParams.Add("lookup_id", LookupId);
 
-            return searchParams;
+            return uriParams;
         }
+
+        protected override string UriTemplate => "search{?id_type,lookup_id}";
     }
 }

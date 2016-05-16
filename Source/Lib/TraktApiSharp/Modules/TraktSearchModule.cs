@@ -10,7 +10,7 @@
     {
         public TraktSearchModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPaginationListResult<TraktSearchResult>> SearchTextQueryAsync(string query, TraktSearchResultType type = TraktSearchResultType.Unspecified,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> SearchTextQueryAsync(string query, TraktSearchResultType? type = null,
                                                                                              int? year = null, int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
