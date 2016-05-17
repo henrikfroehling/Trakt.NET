@@ -44,7 +44,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth("calendars/all/shows", calendarShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllShowsAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync().Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -60,7 +60,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/{today.ToString("yyyy-MM-dd")}", calendarShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllShowsAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -76,7 +76,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/{days}", calendarShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllShowsAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -93,7 +93,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/{today.ToString("yyyy-MM-dd")}/{days}", calendarShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllShowsAsync(today, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -110,7 +110,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth("calendars/all/shows/new", calendarNewShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllNewShowsAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync().Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -126,7 +126,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/new/{today.ToString("yyyy-MM-dd")}", calendarNewShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllNewShowsAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -142,7 +142,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/new/{days}", calendarNewShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllNewShowsAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -159,7 +159,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/new/{today.ToString("yyyy-MM-dd")}/{days}", calendarNewShowsJson);
 
-            var response = new TraktClient().Calendar.GetAllNewShowsAsync(today, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -176,7 +176,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth("calendars/all/shows/premieres", calendarSeasonPremieresJson);
 
-            var response = new TraktClient().Calendar.GetAllSeasonPremieresAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync().Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -192,7 +192,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/premieres/{today.ToString("yyyy-MM-dd")}", calendarSeasonPremieresJson);
 
-            var response = new TraktClient().Calendar.GetAllSeasonPremieresAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -208,7 +208,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/premieres/{days}", calendarSeasonPremieresJson);
 
-            var response = new TraktClient().Calendar.GetAllSeasonPremieresAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -225,7 +225,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/shows/premieres/{today.ToString("yyyy-MM-dd")}/{days}", calendarSeasonPremieresJson);
 
-            var response = new TraktClient().Calendar.GetAllSeasonPremieresAsync(today, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -242,7 +242,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth("calendars/all/movies", calendarMoviesJson);
 
-            var response = new TraktClient().Calendar.GetAllMoviesAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync().Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -258,7 +258,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/movies/{today.ToString("yyyy-MM-dd")}", calendarMoviesJson);
 
-            var response = new TraktClient().Calendar.GetAllMoviesAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -274,7 +274,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/movies/{days}", calendarMoviesJson);
 
-            var response = new TraktClient().Calendar.GetAllMoviesAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -291,7 +291,7 @@
 
             TestUtility.SetupMockRequestWithoutOAuth($"calendars/all/movies/{today.ToString("yyyy-MM-dd")}/{days}", calendarMoviesJson);
 
-            var response = new TraktClient().Calendar.GetAllMoviesAsync(today, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -303,19 +303,64 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserShows()
         {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
 
+            TestUtility.SetupMockRequestWithOAuth("calendars/my/shows", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithStartDate()
         {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/{today.ToString("yyyy-MM-dd")}", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithDays()
         {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
 
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/{days}", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithStartDateAndDays()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/{today.ToString("yyyy-MM-dd")}/{days}", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         // -----------------------------------------------------------------------------------------------
@@ -324,19 +369,64 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShows()
         {
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
+            TestUtility.SetupMockRequestWithOAuth("calendars/my/shows/new", calendarNewShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithStartDate()
         {
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/new/{today.ToString("yyyy-MM-dd")}", calendarNewShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithDays()
         {
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/new/{days}", calendarNewShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserNewShowsWithStartDateAndDays()
+        {
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/new/{today.ToString("yyyy-MM-dd")}/{days}", calendarNewShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         // -----------------------------------------------------------------------------------------------
@@ -345,19 +435,64 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieres()
         {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            TestUtility.SetupMockRequestWithOAuth("calendars/my/shows/premieres", calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithStartDate()
         {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/premieres/{today.ToString("yyyy-MM-dd")}", calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithDays()
         {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/premieres/{days}", calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithStartDateAndDays()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/shows/premieres/{today.ToString("yyyy-MM-dd")}/{days}", calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         // -----------------------------------------------------------------------------------------------
@@ -366,19 +501,64 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserMovies()
         {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
 
+            TestUtility.SetupMockRequestWithOAuth("calendars/my/movies", calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithStartDate()
         {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/movies/{today.ToString("yyyy-MM-dd")}", calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithDays()
         {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
 
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/movies/{days}", calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithStartDateAndDays()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            TestUtility.SetupMockRequestWithOAuth($"calendars/my/movies/{today.ToString("yyyy-MM-dd")}/{days}", calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
         }
     }
 }
