@@ -49,11 +49,11 @@ namespace TraktApiSharp.Requests.Base
 
                 using (var response = await httpClient.SendAsync(request))
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-
                     // Error handling
                     if (!response.IsSuccessStatusCode)
-                        ErrorHandling(response, responseContent);
+                        ErrorHandling(response);
+
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : "";
 
                     // No content
                     if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -262,21 +262,14 @@ namespace TraktApiSharp.Requests.Base
             return (TResult)listResult;
         }
 
-        private void ErrorHandling(HttpResponseMessage response, string responseContent)
+        private void ErrorHandling(HttpResponseMessage response)
         {
+            var responseContent = "";
+
+            if (response.Content != null)
+                responseContent = response.Content.ReadAsStringAsync().Result;
+
             var code = response.StatusCode;
-
-            TraktError error = null;
-
-            try
-            {
-                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
-            }
-            catch { }
-
-            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-                                    ? $"Trakt API error without content. Response status code was {(int)code}"
-                                    : error.Description;
 
             switch (code)
             {
@@ -412,6 +405,14 @@ namespace TraktApiSharp.Requests.Base
                         Response = responseContent,
                         ServerReasonPhrase = response.ReasonPhrase
                     };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)422:
                     throw new TraktValidationException()
                     {
@@ -450,6 +451,21 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
             }
+
+            TraktError error = null;
+
+            try
+            {
+                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
+            }
+            catch (Exception ex)
+            {
+                throw new TraktException("json convert excepton", ex);
+            }
+
+            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
+                                    : error.Description;
 
             throw new TraktException(errorMessage)
             {
