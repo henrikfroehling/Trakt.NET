@@ -358,7 +358,7 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
                 case HttpStatusCode.Unauthorized:
-                    throw new TraktBadRequestException()
+                    throw new TraktAuthorizationException()
                     {
                         RequestUrl = Url,
                         RequestBody = RequestBodyJson,
