@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Requests
+﻿namespace TraktApiSharp.Tests.Requests.Base
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
