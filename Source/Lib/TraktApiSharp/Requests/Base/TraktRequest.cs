@@ -122,7 +122,7 @@ namespace TraktApiSharp.Requests.Base
             foreach (var param in pathParams)
                 uriPath.AddParameter(param.Key, param.Value);
 
-            if (ExtendedOption != null)
+            if (ExtendedOption != null && ExtendedOption.HasAnySet)
             {
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
             }

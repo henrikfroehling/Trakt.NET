@@ -165,6 +165,37 @@
         }
 
         [TestMethod]
+        public void TestTraktExtendedOptionHasAnySet()
+        {
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.HasAnySet.Should().BeFalse();
+
+            extendedOption.Minimal = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Metadata = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Images = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Full = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.NoSeasons = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Episodes = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+        }
+
+        [TestMethod]
         public void TestTraktExtendedOptionResolve()
         {
             var extendedOption = new TraktExtendedOption();
