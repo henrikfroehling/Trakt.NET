@@ -2,6 +2,7 @@
 {
     using Enums;
     using System;
+    using System.Net.Http;
 
     public class TraktConfiguration
     {
@@ -11,6 +12,8 @@
             AuthenticationMode = TraktAuthenticationMode.Device;
             UseStagingUrl = false;
         }
+
+        internal static HttpClient HTTP_CLIENT = null;
 
         public int ApiVersion { get; set; }
 
