@@ -10,8 +10,8 @@
         [TestMethod]
         public void TestTraktAuthenticationRequirementHasMembers()
         {
-            typeof(TraktAuthenticationRequirement).GetEnumNames().Should().HaveCount(4)
-                                                                 .And.Contain("Required", "NotRequired", "Optional", "Forbidden");
+            typeof(TraktAuthenticationRequirement).GetEnumNames().Should().HaveCount(3)
+                                                                 .And.Contain("Required", "NotRequired", "Optional");
         }
     }
 }

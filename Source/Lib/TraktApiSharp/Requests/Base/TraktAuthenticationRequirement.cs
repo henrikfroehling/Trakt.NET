@@ -8,7 +8,6 @@ namespace TraktApiSharp.Requests
     {
         Required,
         NotRequired,
-        Optional,
-        Forbidden
+        Optional
     }
 }

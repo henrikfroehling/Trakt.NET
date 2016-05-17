@@ -89,19 +89,13 @@ namespace TraktApiSharp.Requests.Base
                 if (AuthenticationRequirement == TraktAuthenticationRequirement.Required)
                     return true;
 
-                if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    return false;
-
                 return _authenticationHeaderRequired;
             }
 
             set
             {
                 if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required)
-                    throw new InvalidOperationException("request type requires authentication");
-
-                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    throw new InvalidOperationException("request type does not allow authentication");
+                    throw new TraktAuthenticationException("request type requires authentication");
 
                 _authenticationHeaderRequired = value;
             }
