@@ -4,6 +4,7 @@
 
 namespace TraktApiSharp.Requests.Base
 {
+    using Core;
     using Exceptions;
     using Newtonsoft.Json;
     using Objects.Basic;
@@ -34,17 +35,19 @@ namespace TraktApiSharp.Requests.Base
         {
             Validate();
 
-            if (HTTP_CLIENT == null)
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
             {
-                HTTP_CLIENT = new HttpClient();
-                SetDefaultRequestHeaders(HTTP_CLIENT);
+                httpClient = new HttpClient();
+                SetDefaultRequestHeaders(httpClient);
             }
 
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
                 SetRequestHeadersForAuthentication(request);
 
-                using (var response = await HTTP_CLIENT.SendAsync(request))
+                using (var response = await httpClient.SendAsync(request))
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
 
@@ -65,8 +68,6 @@ namespace TraktApiSharp.Requests.Base
                 }
             }
         }
-
-        internal static HttpClient HTTP_CLIENT = null;
 
         internal TraktClient Client { get; private set; }
 
