@@ -17,7 +17,7 @@
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showId,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -28,7 +28,7 @@
             {
                 Id = showId,
                 Season = season,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 

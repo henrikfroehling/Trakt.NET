@@ -17,7 +17,7 @@
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -44,7 +44,7 @@
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -53,7 +53,7 @@
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
     }

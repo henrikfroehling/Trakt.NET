@@ -36,7 +36,7 @@
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -49,7 +49,7 @@
         {
             return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -57,7 +57,7 @@
         {
             return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -75,7 +75,7 @@
         {
             return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -83,7 +83,7 @@
         {
             return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -95,7 +95,7 @@
             {
                 Type = type,
                 ItemId = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -118,7 +118,7 @@
             {
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -138,7 +138,7 @@
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 

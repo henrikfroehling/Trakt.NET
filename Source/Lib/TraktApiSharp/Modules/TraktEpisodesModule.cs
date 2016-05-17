@@ -19,7 +19,7 @@
                 Id = showId,
                 Season = season,
                 Episode = episode,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 

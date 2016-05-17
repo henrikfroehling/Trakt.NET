@@ -19,7 +19,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -30,7 +30,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -41,7 +41,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -52,7 +52,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -63,7 +63,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -74,7 +74,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -85,7 +85,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -96,7 +96,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
     }

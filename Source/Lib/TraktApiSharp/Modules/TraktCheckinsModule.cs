@@ -37,7 +37,7 @@
                     AppVersion = appVersion,
                     AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
                 },
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -67,7 +67,7 @@
                     AppVersion = appVersion,
                     AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
                 },
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 

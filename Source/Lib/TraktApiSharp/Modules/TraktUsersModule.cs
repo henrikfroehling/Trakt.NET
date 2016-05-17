@@ -38,7 +38,7 @@
             {
                 Section = section,
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -67,7 +67,7 @@
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -77,7 +77,7 @@
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -92,7 +92,7 @@
                 Username = username,
                 CommentType = commentType,
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -123,7 +123,7 @@
                 Username = username,
                 Id = listId,
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -232,26 +232,17 @@
 
         public async Task<TraktListResult<TraktUserFollower>> GetUserFollowersAsync(string username)
         {
-            return await QueryAsync(new TraktUserFollowersRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username });
         }
 
         public async Task<TraktListResult<TraktUserFollower>> GetUserFollowingAsync(string username)
         {
-            return await QueryAsync(new TraktUserFollowingRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username });
         }
 
         public async Task<TraktListResult<TraktUserFriend>> GetUserFriendsAsync(string username)
         {
-            return await QueryAsync(new TraktUserFriendsRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = username });
         }
 
         public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string username)
@@ -283,7 +274,7 @@
                 Username = username,
                 Type = type,
                 ItemId = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -296,7 +287,7 @@
                 Username = username,
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -307,7 +298,7 @@
             {
                 Username = username,
                 Type = type,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -316,7 +307,7 @@
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -325,7 +316,7 @@
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -334,16 +325,13 @@
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
         public async Task<TraktUserStatistics> GetUserStatisticsAsync(string username)
         {
-            return await QueryAsync(new TraktUserStatisticsRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserStatisticsRequest(Client) { Username = username });
         }
     }
 }

@@ -69,7 +69,7 @@
             return new TraktScrobbleStartRequest<T, U>(Client)
             {
                 RequestBody = requestBody,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             };
         }
 
@@ -79,7 +79,7 @@
             return new TraktScrobblePauseRequest<T, U>(Client)
             {
                 RequestBody = requestBody,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             };
         }
 
@@ -89,7 +89,7 @@
             return new TraktScrobbleStopRequest<T, U>(Client)
             {
                 RequestBody = requestBody,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             };
         }
 

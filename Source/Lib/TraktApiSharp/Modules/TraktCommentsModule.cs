@@ -20,10 +20,7 @@
 
         public async Task<TraktComment> GetCommentAsync(string id)
         {
-            return await QueryAsync(new TraktCommentSummaryRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
         }
 
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,

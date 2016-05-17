@@ -21,7 +21,7 @@
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -45,18 +45,12 @@
 
         public async Task<TraktListResult<TraktShowAlias>> GetShowAliasesAsync(string id)
         {
-            return await QueryAsync(new TraktShowAliasesRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowAliasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktShowTranslation>> GetShowTranslationsAsync(string id)
         {
-            return await QueryAsync(new TraktShowTranslationsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = id });
         }
 
         public async Task<TraktShowTranslation> GetShowSingleTranslationAsync(string id, string languageCode)
@@ -82,18 +76,12 @@
 
         public async Task<TraktShowPeople> GetShowPeopleAsync(string id)
         {
-            return await QueryAsync(new TraktShowPeopleRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowPeopleRequest(Client) { Id = id });
         }
 
         public async Task<TraktShowRating> GetShowRatingsAsync(string id)
         {
-            return await QueryAsync(new TraktShowRatingsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowRatingsRequest(Client) { Id = id });
         }
 
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string id, int? page = null, int? limit = null)
@@ -107,18 +95,12 @@
 
         public async Task<TraktShowStatistics> GetShowStatisticsAsync(string id)
         {
-            return await QueryAsync(new TraktShowStatisticsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id)
         {
-            return await QueryAsync(new TraktShowWatchingUsersRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id });
         }
 
         public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = false, bool? specials = false)
@@ -146,7 +128,7 @@
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -156,7 +138,7 @@
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -168,7 +150,7 @@
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -180,7 +162,7 @@
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -192,7 +174,7 @@
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -202,7 +184,7 @@
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -214,7 +196,7 @@
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

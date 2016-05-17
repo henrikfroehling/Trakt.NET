@@ -20,7 +20,7 @@
             return await QueryAsync(new TraktMovieSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -44,18 +44,12 @@
 
         public async Task<TraktListResult<TraktMovieAlias>> GetMovieAliasesAsync(string id)
         {
-            return await QueryAsync(new TraktMovieAliasesRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieAliasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktMovieRelease>> GetMovieReleasesAsync(string id)
         {
-            return await QueryAsync(new TraktMovieReleasesRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string id, string languageCode)
@@ -69,10 +63,7 @@
 
         public async Task<TraktListResult<TraktMovieTranslation>> GetMovieTranslationsAsync(string id)
         {
-            return await QueryAsync(new TraktMovieTranslationsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync(string id, string languageCode)
@@ -98,18 +89,12 @@
 
         public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id)
         {
-            return await QueryAsync(new TraktMoviePeopleRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)
         {
-            return await QueryAsync(new TraktMovieRatingsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieRatingsRequest(Client) { Id = id });
         }
 
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string id, int? page = null, int? limit = null)
@@ -123,18 +108,12 @@
 
         public async Task<TraktMovieStatistics> GetMovieStatisticsAsync(string id)
         {
-            return await QueryAsync(new TraktMovieStatisticsRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id)
         {
-            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client)
-            {
-                Id = id
-            });
+            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = id });
         }
 
         public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extended = null,
@@ -142,7 +121,7 @@
         {
             return await QueryAsync(new TraktMoviesTrendingRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -152,7 +131,7 @@
         {
             return await QueryAsync(new TraktMoviesPopularRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -164,7 +143,7 @@
             return await QueryAsync(new TraktMoviesMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -176,7 +155,7 @@
             return await QueryAsync(new TraktMoviesMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -188,7 +167,7 @@
             return await QueryAsync(new TraktMoviesMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -198,7 +177,7 @@
         {
             return await QueryAsync(new TraktMoviesMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -207,7 +186,7 @@
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client)
             {
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -218,7 +197,7 @@
             return await QueryAsync(new TraktMoviesRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extended != null ? extended : new TraktExtendedOption(),
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

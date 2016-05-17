@@ -22,10 +22,7 @@
 
         public async Task HideMovieRecommendationAsync(string movieId)
         {
-            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client)
-            {
-                Id = movieId
-            });
+            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieId });
         }
 
         public async Task<TraktListResult<TraktShowRecommendation>> GetUserShowRecommendationsAsync(int? limit = null,
@@ -40,10 +37,7 @@
 
         public async Task HideShowRecommendationAsync(string showId)
         {
-            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client)
-            {
-                Id = showId
-            });
+            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client) { Id = showId });
         }
     }
 }
