@@ -15,10 +15,10 @@
     {
         public TraktCheckinsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, TraktSharing sharing = null,
-                                                                           string message = "", string foursquareVenueID = "",
-                                                                           string foursquareVenueName = "", string appVersion = "",
-                                                                           DateTime? appDate = null, TraktExtendedOption extended = null)
+        public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, string appVersion, DateTime appBuildDate,
+                                                                           string message = null, TraktSharing sharing = null,
+                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                           TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
@@ -35,16 +35,44 @@
                     FoursquareVenueId = foursquareVenueID,
                     FoursquareVenueName = foursquareVenueName,
                     AppVersion = appVersion,
-                    AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
+                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
                 },
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharing sharing = null,
-                                                                               string message = "", string foursquareVenueID = "",
-                                                                               string foursquareVenueName = "", string appVersion = "",
-                                                                               DateTime? appDate = null, TraktExtendedOption extended = null)
+        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, string appVersion, DateTime appBuildDate,
+                                                                               string message = null, TraktSharing sharing = null,
+                                                                               string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                               TraktExtendedOption extended = null)
+        {
+            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
+            {
+                RequestBody = new TraktEpisodeCheckinPost
+                {
+                    Episode = new TraktEpisode
+                    {
+                        Ids = episode.Ids,
+                        SeasonNumber = episode.SeasonNumber,
+                        Number = episode.Number
+                    },
+                    Show = null,
+                    Message = message,
+                    Sharing = sharing,
+                    FoursquareVenueId = foursquareVenueID,
+                    FoursquareVenueName = foursquareVenueName,
+                    AppVersion = appVersion,
+                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                },
+                ExtendedOption = extended ?? new TraktExtendedOption()
+            });
+        }
+
+        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show,
+                                                                               string appVersion, DateTime appBuildDate,
+                                                                               string message = null, TraktSharing sharing = null,
+                                                                               string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                               TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
@@ -65,7 +93,7 @@
                     FoursquareVenueId = foursquareVenueID,
                     FoursquareVenueName = foursquareVenueName,
                     AppVersion = appVersion,
-                    AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
+                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
                 },
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
