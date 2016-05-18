@@ -438,7 +438,7 @@
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
-            act.ShouldThrow<TraktConflictException>();
+            act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
@@ -908,7 +908,7 @@
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
-            act.ShouldThrow<TraktConflictException>();
+            act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
@@ -1458,7 +1458,7 @@
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
-            act.ShouldThrow<TraktConflictException>();
+            act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
