@@ -9,6 +9,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
     using Utils;
@@ -484,6 +485,476 @@
             TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region CheckinEpisode
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisode()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessage()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
+                                                                                     message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
+                                                                                     null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
+                                                                                     null, null, foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate, null, null,
+                                                                                     null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeComplete()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+            var message = "checkin message";
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueId = "venue id";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
+                Message = message,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueId,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate, message, sharing,
+                                                                                     foursquareVenueId, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeExceptions()
+        {
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth("checkin", HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktEpisodeCheckinPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
