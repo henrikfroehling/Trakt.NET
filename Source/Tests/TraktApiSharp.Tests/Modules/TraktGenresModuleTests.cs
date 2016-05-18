@@ -16,7 +16,7 @@
     public class TraktGenresModuleTests
     {
         [TestMethod]
-        public void TestTraktCalendarModuleIsModule()
+        public void TestTraktGenresModuleIsModule()
         {
             typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktGenresModule)).Should().BeTrue();
         }
