@@ -8,6 +8,7 @@ namespace TraktApiSharp.Requests.Base
     using Exceptions;
     using Newtonsoft.Json;
     using Objects.Basic;
+    using Objects.Post.Checkins.Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -147,6 +148,8 @@ namespace TraktApiSharp.Requests.Base
         protected virtual bool IsListResult => false;
 
         protected virtual bool SupportsPagination => false;
+
+        protected virtual bool IsCheckinRequest => false;
 
         protected abstract HttpMethod Method { get; }
 
@@ -382,6 +385,23 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
                 case HttpStatusCode.Conflict:
+                    if (IsCheckinRequest)
+                    {
+                        TraktCheckinPostErrorResponse errorResponse = null;
+
+                        if (!string.IsNullOrEmpty(responseContent))
+                            errorResponse = JsonConvert.DeserializeObject<TraktCheckinPostErrorResponse>(responseContent);
+
+                        throw new TraktCheckinException("checkin is already in progress")
+                        {
+                            RequestUrl = Url,
+                            RequestBody = RequestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = response.ReasonPhrase,
+                            ExpiresAt = errorResponse?.ExpiresAt
+                        };
+                    }
+
                     throw new TraktConflictException()
                     {
                         RequestUrl = Url,
@@ -460,7 +480,7 @@ namespace TraktApiSharp.Requests.Base
             }
             catch (Exception ex)
             {
-                throw new TraktException("json convert excepton", ex);
+                throw new TraktException("json convert exception", ex);
             }
 
             var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))

@@ -91,8 +91,10 @@
     <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
     <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
+    <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
+    <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
