@@ -78,10 +78,7 @@
                         SeasonNumber = episode.SeasonNumber,
                         Number = episode.Number
                     },
-                    Show = show != null ? new TraktShow
-                    {
-                        Title = show.Title
-                    } : null,
+                    Show = new TraktShow { Title = show.Title },
                     Message = message,
                     Sharing = sharing,
                     FoursquareVenueId = foursquareVenueID,
