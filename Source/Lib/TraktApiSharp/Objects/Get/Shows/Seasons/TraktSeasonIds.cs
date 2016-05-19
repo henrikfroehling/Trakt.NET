@@ -34,6 +34,7 @@
         /// <summary>
         /// Tests, if at least one id has been set.
         /// </summary>
+        [JsonIgnore]
         public bool HasAnyId => Trakt > 0 || Tvdb > 0 || Tvdb > 0 || TvRage > 0;
     }
 }

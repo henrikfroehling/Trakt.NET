@@ -7,6 +7,8 @@
     {
         public TraktException(string message) : base(message) { }
 
+        public TraktException(string message, Exception innerException) : base(message, innerException) { }
+
         public override string Message => base.Message;
 
         public HttpStatusCode StatusCode { get; internal set; }

@@ -4,9 +4,11 @@
 
 namespace TraktApiSharp.Requests.Base
 {
+    using Core;
     using Exceptions;
     using Newtonsoft.Json;
     using Objects.Basic;
+    using Objects.Post.Checkins.Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -34,23 +36,25 @@ namespace TraktApiSharp.Requests.Base
         {
             Validate();
 
-            if (HTTP_CLIENT == null)
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
             {
-                HTTP_CLIENT = new HttpClient();
-                SetDefaultRequestHeaders(HTTP_CLIENT);
+                httpClient = new HttpClient();
+                SetDefaultRequestHeaders(httpClient);
             }
 
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
                 SetRequestHeadersForAuthentication(request);
 
-                using (var response = await HTTP_CLIENT.SendAsync(request))
+                using (var response = await httpClient.SendAsync(request))
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-
                     // Error handling
                     if (!response.IsSuccessStatusCode)
-                        ErrorHandling(response, responseContent);
+                        ErrorHandling(response);
+
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : "";
 
                     // No content
                     if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -65,8 +69,6 @@ namespace TraktApiSharp.Requests.Base
                 }
             }
         }
-
-        internal static HttpClient HTTP_CLIENT = null;
 
         internal TraktClient Client { get; private set; }
 
@@ -121,7 +123,7 @@ namespace TraktApiSharp.Requests.Base
             foreach (var param in pathParams)
                 uriPath.AddParameter(param.Key, param.Value);
 
-            if (ExtendedOption != null)
+            if (ExtendedOption != null && ExtendedOption.HasAnySet)
             {
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
             }
@@ -146,6 +148,8 @@ namespace TraktApiSharp.Requests.Base
         protected virtual bool IsListResult => false;
 
         protected virtual bool SupportsPagination => false;
+
+        protected virtual bool IsCheckinRequest => false;
 
         protected abstract HttpMethod Method { get; }
 
@@ -261,21 +265,14 @@ namespace TraktApiSharp.Requests.Base
             return (TResult)listResult;
         }
 
-        private void ErrorHandling(HttpResponseMessage response, string responseContent)
+        private void ErrorHandling(HttpResponseMessage response)
         {
+            var responseContent = "";
+
+            if (response.Content != null)
+                responseContent = response.Content.ReadAsStringAsync().Result;
+
             var code = response.StatusCode;
-
-            TraktError error = null;
-
-            try
-            {
-                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
-            }
-            catch { }
-
-            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-                                    ? $"Trakt API error without content. Response status code was {(int)code}"
-                                    : error.Description;
 
             switch (code)
             {
@@ -364,7 +361,7 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
                 case HttpStatusCode.Unauthorized:
-                    throw new TraktBadRequestException()
+                    throw new TraktAuthorizationException()
                     {
                         RequestUrl = Url,
                         RequestBody = RequestBodyJson,
@@ -388,6 +385,23 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
                 case HttpStatusCode.Conflict:
+                    if (IsCheckinRequest)
+                    {
+                        TraktCheckinPostErrorResponse errorResponse = null;
+
+                        if (!string.IsNullOrEmpty(responseContent))
+                            errorResponse = JsonConvert.DeserializeObject<TraktCheckinPostErrorResponse>(responseContent);
+
+                        throw new TraktCheckinException("checkin is already in progress")
+                        {
+                            RequestUrl = Url,
+                            RequestBody = RequestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = response.ReasonPhrase,
+                            ExpiresAt = errorResponse?.ExpiresAt
+                        };
+                    }
+
                     throw new TraktConflictException()
                     {
                         RequestUrl = Url,
@@ -405,6 +419,14 @@ namespace TraktApiSharp.Requests.Base
                     };
                 case HttpStatusCode.BadGateway:
                     throw new TraktBadGatewayException()
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
                     {
                         RequestUrl = Url,
                         RequestBody = RequestBodyJson,
@@ -449,6 +471,21 @@ namespace TraktApiSharp.Requests.Base
                         ServerReasonPhrase = response.ReasonPhrase
                     };
             }
+
+            TraktError error = null;
+
+            try
+            {
+                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
+            }
+            catch (Exception ex)
+            {
+                throw new TraktException("json convert exception", ex);
+            }
+
+            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
+                                    : error.Description;
 
             throw new TraktException(errorMessage)
             {

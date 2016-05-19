@@ -26,6 +26,8 @@
 
         public bool Episodes { get; set; }
 
+        public bool HasAnySet => Minimal || Metadata || Images || Full || NoSeasons || Episodes;
+
         public TraktExtendedOption SetMinimal()
         {
             Minimal = true;

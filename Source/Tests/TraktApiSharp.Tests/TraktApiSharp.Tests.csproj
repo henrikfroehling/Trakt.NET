@@ -64,6 +64,10 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Tavis.UriTemplates, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Tavis.UriTemplates.1.0.0\lib\Net45\Tavis.UriTemplates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -87,10 +91,26 @@
     <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
     <Compile Include="Enums\TraktAuthenticationModeTests.cs" />
-    <Compile Include="Enums\TraktAuthenticationRequirementTests.cs" />
+    <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
+    <Compile Include="Modules\TraktBaseModuleTests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests.cs" />
+    <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
+    <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
+    <Compile Include="Modules\TraktGenresModuleTests.cs" />
+    <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
+    <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
+    <Compile Include="Requests\Base\Get\TraktGetByIdRequestTests.cs" />
+    <Compile Include="Requests\Base\Get\TraktGetRequestTests.cs" />
+    <Compile Include="Requests\Base\Post\TraktBodylessPostByIdRequestTests.cs" />
+    <Compile Include="Requests\Base\Post\TraktBodylessPostRequestTests.cs" />
+    <Compile Include="Requests\Base\Post\TraktPostByIdRequestTests.cs" />
+    <Compile Include="Requests\Base\Post\TraktPostRequestTests.cs" />
+    <Compile Include="Requests\Base\Put\TraktPutByIdRequestTests.cs" />
+    <Compile Include="Requests\Base\Put\TraktPutRequestTests.cs" />
+    <Compile Include="Requests\Base\TraktAuthenticationRequirementTests.cs" />
     <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktCommentTypeTests.cs" />
-    <Compile Include="Requests\TraktExtendedOptionTests.cs" />
+    <Compile Include="Requests\Base\TraktExtendedOptionTests.cs" />
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemsSectionTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
@@ -99,7 +119,7 @@
     <Compile Include="Enums\TraktMediaAudioTests.cs" />
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
     <Compile Include="Enums\TraktMediaTypeTests.cs" />
-    <Compile Include="Enums\TraktObjectTypeTests.cs" />
+    <Compile Include="Requests\Base\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
     <Compile Include="Enums\TraktRequestObjectTypeTests.cs" />
@@ -298,7 +318,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Requests\ITraktRequestTests.cs" />
+    <Compile Include="Requests\Base\ITraktRequestTests.cs" />
+    <Compile Include="Requests\Base\TraktPaginationOptionsTests.cs" />
+    <Compile Include="Requests\Base\TraktRequestTests.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequestTests.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequestTests.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequestTests.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequestTests.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequestTests.cs" />
     <Compile Include="TraktClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraktConfigurationTests.cs" />
@@ -520,9 +552,7 @@
     <None Include="TestData\Objects\Post\Users\Responses\UserCustomListPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\UserCustomListUpdatePostResponse.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

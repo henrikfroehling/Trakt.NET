@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Requests
+﻿namespace TraktApiSharp.Tests.Requests.Base
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -162,6 +162,37 @@
             extendedOption.Full.Should().BeFalse();
             extendedOption.NoSeasons.Should().BeFalse();
             extendedOption.Episodes.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktExtendedOptionHasAnySet()
+        {
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.HasAnySet.Should().BeFalse();
+
+            extendedOption.Minimal = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Metadata = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Images = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Full = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.NoSeasons = true;
+            extendedOption.HasAnySet.Should().BeTrue();
+
+            extendedOption.Reset();
+            extendedOption.Episodes = true;
+            extendedOption.HasAnySet.Should().BeTrue();
         }
 
         [TestMethod]

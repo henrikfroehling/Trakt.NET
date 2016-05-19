@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Requests
+﻿namespace TraktApiSharp.Tests.Requests.Base
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +10,7 @@
         [TestMethod]
         public void TestITraktRequestIsInterface()
         {
-            typeof(ITraktRequest<string, string>).IsInterface.Should().BeTrue();
+            typeof(ITraktRequest<object, object>).IsInterface.Should().BeTrue();
         }
     }
 }
