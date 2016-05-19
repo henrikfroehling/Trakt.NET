@@ -15,6 +15,11 @@
 
     public static class TestUtility
     {
+        private static string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
+        private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
+        private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
+        private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
 
@@ -80,6 +85,33 @@
                      .Respond("application/json", responseContent);
         }
 
+        public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
+                                                                   int page = 0, int limit = 0,
+                                                                   int pageCount = 0, int itemCount = 0)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            uri.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            var response = new HttpResponseMessage();
+            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
+            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
+            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
+            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+            response.Headers.Add("Accept", "application/json");
+            response.Content = new StringContent(responseContent);
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-version", "2" }
+                     })
+                     .Respond(response);
+        }
+
         public static void SetupMockErrorResponseWithoutOAuth(string uri, HttpStatusCode httpStatusCode)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -141,6 +173,34 @@
                      })
                      .WithContent(requestContent)
                      .Respond("application/json", responseContent);
+        }
+
+        public static void SetupMockPaginationResponseWithOAuth(string uri, string responseContent,
+                                                                int page = 0, int limit = 0,
+                                                                int pageCount = 0, int itemCount = 0)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            uri.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            var response = new HttpResponseMessage();
+            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
+            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
+            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
+            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+            response.Headers.Add("Accept", "application/json");
+            response.Content = new StringContent(responseContent);
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                     })
+                     .Respond(response);
         }
 
         public static void SetupMockErrorResponseWithOAuth(string uri, HttpStatusCode httpStatusCode)

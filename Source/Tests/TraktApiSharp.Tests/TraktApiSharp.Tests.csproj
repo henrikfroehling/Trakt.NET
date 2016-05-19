@@ -97,6 +97,7 @@
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
+    <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
     <Compile Include="Requests\Base\Get\TraktGetByIdRequestTests.cs" />
@@ -440,6 +441,7 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
+    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryFull.json" />
