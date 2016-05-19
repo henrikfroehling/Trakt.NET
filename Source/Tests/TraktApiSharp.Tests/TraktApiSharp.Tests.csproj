@@ -441,6 +441,7 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
+    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryFull.json" />
