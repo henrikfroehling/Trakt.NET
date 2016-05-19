@@ -219,6 +219,9 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(string.Empty, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, -1, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -484,6 +487,9 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(string.Empty, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, -1, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -615,6 +621,9 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(string.Empty, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(showId, -1, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -741,6 +750,9 @@
 
             Func<Task<TraktEpisodeStatistics>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(null, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(string.Empty, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(showId, -1, episodeNr);
@@ -888,6 +900,9 @@
 
             Func<Task<TraktListResult<TraktEpisodeWatchingUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(null, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(string.Empty, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, -1, episodeNr);
