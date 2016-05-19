@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -99,7 +100,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended=images,full", episode);
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended={extendedOption.ToString()}",
+                                                      episode);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr, extendedOption).Result;
 
@@ -234,61 +236,259 @@
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommments()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithSortOrder()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var sortOrder = TraktCommentSortOrder.Likes;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments/{sortOrder.AsString()}",
+                                                      episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithPage()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var page = 1;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments?page={page}", episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithSortOrderAndPage()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var sortOrder = TraktCommentSortOrder.Likes;
+            var page = 1;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments/{sortOrder.AsString()}?page={page}",
+                                                      episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithLimit()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var limit = 10;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments?limit={limit}", episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithSortOrderAndLimit()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var sortOrder = TraktCommentSortOrder.Likes;
+            var limit = 10;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments/{sortOrder.AsString()}?limit={limit}",
+                                                      episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsWithPageAndLimit()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var page = 1;
+            var limit = 10;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments?page={page}&limit={limit}",
+                                                      episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsComplete()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+            var sortOrder = TraktCommentSortOrder.Likes;
+            var page = 1;
+            var limit = 10;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+                                                      episodeComments);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktEpisodeComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktEpisodeNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeCommmentsArgumentExceptions()
         {
-            Assert.Fail();
+            var episodeComments = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeComments.json");
+            episodeComments.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", episodeComments);
+
+            Func<Task<TraktPaginationListResult<TraktEpisodeComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(null, seasonNr, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, -1, episodeNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, -1);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -591,7 +791,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended=images,full", episodeWatchingUsers);
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended={extendedOption.ToString()}",
+                                                      episodeWatchingUsers);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedOption).Result;
 
