@@ -415,75 +415,76 @@
 
             var appVersion = "app_version";
             var appBuildDate = DateTime.UtcNow;
+            var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth("checkin", HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.BadRequest);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Forbidden);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)429);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)503);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)504);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)520);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)521);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)522);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
@@ -947,75 +948,76 @@
 
             var appVersion = "app_version";
             var appBuildDate = DateTime.UtcNow;
+            var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth("checkin", HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.BadRequest);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Forbidden);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)429);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)503);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)504);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)520);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)521);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)522);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
@@ -1561,75 +1563,76 @@
 
             var appVersion = "app_version";
             var appBuildDate = DateTime.UtcNow;
+            var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth("checkin", HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.BadRequest);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Forbidden);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.Conflict);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)412);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)429);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)503);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)504);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)520);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)521);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth("checkin", (HttpStatusCode)522);
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
             act.ShouldThrow<TraktServerUnavailableException>();

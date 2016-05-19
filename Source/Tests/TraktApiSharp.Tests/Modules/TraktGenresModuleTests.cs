@@ -62,62 +62,64 @@
         [TestMethod]
         public void TestTraktGenresModuleGetMovieGenresExceptions()
         {
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", HttpStatusCode.BadRequest);
+            var uri = "genres/movies";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktListResult<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", HttpStatusCode.Forbidden);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)412);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)429);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)503);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)504);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)520);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)521);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/movies", (HttpStatusCode)522);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
@@ -143,62 +145,64 @@
         [TestMethod]
         public void TestTraktGenresModuleGetShowGenresExceptions()
         {
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", HttpStatusCode.BadRequest);
+            var uri = "genres/shows";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktListResult<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", HttpStatusCode.Forbidden);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)412);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)429);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)503);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)504);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)520);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)521);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithoutOAuth("genres/shows", (HttpStatusCode)522);
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
