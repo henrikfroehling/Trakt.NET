@@ -63,12 +63,14 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSeasonWatchingUser>> GetSeasonWatchingUsersAsync(string showId, int season)
+        public async Task<TraktListResult<TraktSeasonWatchingUser>> GetSeasonWatchingUsersAsync(string showId, int season,
+                                                                                                TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSeasonWatchingUsersRequest(Client)
             {
                 Id = showId,
-                Season = season
+                Season = season,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
     }
