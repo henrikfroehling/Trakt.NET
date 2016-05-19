@@ -203,56 +203,38 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -422,56 +404,38 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -641,56 +605,38 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -860,56 +806,38 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -1079,62 +1007,42 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -1304,62 +1212,42 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -1529,62 +1417,42 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -1754,62 +1622,42 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 

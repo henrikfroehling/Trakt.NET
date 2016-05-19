@@ -97,56 +97,38 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -230,62 +212,42 @@
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
-
-            //act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
