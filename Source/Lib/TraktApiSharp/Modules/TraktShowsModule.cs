@@ -74,9 +74,13 @@
             });
         }
 
-        public async Task<TraktShowPeople> GetShowPeopleAsync(string id)
+        public async Task<TraktShowPeople> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktShowPeopleRequest(Client) { Id = id });
+            return await QueryAsync(new TraktShowPeopleRequest(Client)
+            {
+                Id = id,
+                ExtendedOption = extended ?? new TraktExtendedOption()
+            });
         }
 
         public async Task<TraktShowRating> GetShowRatingsAsync(string id)
