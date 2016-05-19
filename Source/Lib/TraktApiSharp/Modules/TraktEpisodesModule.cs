@@ -66,7 +66,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktEpisodeWatchingUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode)
+        public async Task<TraktListResult<TraktEpisodeWatchingUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
+                                                                                                  TraktExtendedOption extended = null)
         {
             Validate(showId, season, episode);
 
@@ -74,7 +75,8 @@
             {
                 Id = showId,
                 Season = season,
-                Episode = episode
+                Episode = episode,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
