@@ -174,7 +174,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod? period = null,
                                                                                                       TraktExtendedOption extended = null,
                                                                                                       int? page = null, int? limit = null)
         {
