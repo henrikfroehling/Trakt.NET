@@ -97,6 +97,7 @@
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
+    <Compile Include="Modules\TraktMoviesModuleTests.cs" />
     <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
