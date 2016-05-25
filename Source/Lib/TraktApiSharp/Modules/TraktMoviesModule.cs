@@ -135,11 +135,11 @@
             return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id)
+        public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
-            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = id });
+            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
         public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extended = null,

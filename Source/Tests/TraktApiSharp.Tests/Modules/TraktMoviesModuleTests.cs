@@ -1628,25 +1628,110 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieWatchingUsers()
         {
-            Assert.Fail();
+            var movieWatchingUsers = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieWatchingUsers.json");
+            movieWatchingUsers.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", movieWatchingUsers);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieWatchingUsersWithExtendedOption()
         {
-            Assert.Fail();
+            var movieWatchingUsers = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieWatchingUsers.json");
+            movieWatchingUsers.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching?extended={extendedOption.ToString()}", movieWatchingUsers);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieWatchingUsersExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+            var uri = $"movies/{movieId}/watching";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieWatchingUsersArgumentExceptions()
         {
-            Assert.Fail();
+            var movieWatchingUsers = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieWatchingUsers.json");
+            movieWatchingUsers.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", movieWatchingUsers);
+
+            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -1710,12 +1795,6 @@
             Assert.Fail();
         }
 
-        [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesArgumentExceptions()
-        {
-            Assert.Fail();
-        }
-
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -1773,12 +1852,6 @@
 
         [TestMethod]
         public void TestTraktMoviesModuleGetPopularMoviesExceptions()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesArgumentExceptions()
         {
             Assert.Fail();
         }
@@ -1868,12 +1941,6 @@
             Assert.Fail();
         }
 
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesArgumentExceptions()
-        {
-            Assert.Fail();
-        }
-
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -1955,12 +2022,6 @@
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMostWatchedMoviesExceptions()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMosWatchedMoviesArgumentExceptions()
         {
             Assert.Fail();
         }
@@ -2050,12 +2111,6 @@
             Assert.Fail();
         }
 
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMosCollectedMoviesArgumentExceptions()
-        {
-            Assert.Fail();
-        }
-
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -2117,12 +2172,6 @@
             Assert.Fail();
         }
 
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesArgumentExceptions()
-        {
-            Assert.Fail();
-        }
-
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -2144,12 +2193,6 @@
 
         [TestMethod]
         public void TestTraktMoviesModuleGetBoxOfficeMoviesExceptions()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetBoxOfficeMoviesArgumentExceptions()
         {
             Assert.Fail();
         }
@@ -2235,12 +2278,6 @@
 
         [TestMethod]
         public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesExceptions()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesArgumentExceptions()
         {
             Assert.Fail();
         }
