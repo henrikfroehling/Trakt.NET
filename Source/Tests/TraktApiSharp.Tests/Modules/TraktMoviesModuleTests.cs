@@ -1749,8 +1749,9 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending", moviesTrending, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending", moviesTrending, 1, 10, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync().Result;
 
@@ -1760,6 +1761,7 @@
             response.Limit.Should().Be(10);
             response.Page.Should().Be(1);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1769,6 +1771,7 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -1777,7 +1780,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}",
-                                                                moviesTrending, 1, 10, 1, itemCount);
+                                                                moviesTrending, 1, 10, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption).Result;
 
@@ -1787,6 +1790,7 @@
             response.Limit.Should().Be(10);
             response.Page.Should().Be(1);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1796,9 +1800,10 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}", moviesTrending, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}", moviesTrending, page, 10, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page).Result;
 
@@ -1808,6 +1813,7 @@
             response.Limit.Should().Be(10);
             response.Page.Should().Be(page);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1817,6 +1823,7 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var page = 2;
 
             var extendedOption = new TraktExtendedOption
@@ -1826,7 +1833,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}",
-                                                                moviesTrending, page, 10, 1, itemCount);
+                                                                moviesTrending, page, 10, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page).Result;
 
@@ -1836,6 +1843,7 @@
             response.Limit.Should().Be(10);
             response.Page.Should().Be(page);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1845,9 +1853,10 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?limit={limit}", moviesTrending, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?limit={limit}", moviesTrending, 1, limit, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, limit).Result;
 
@@ -1857,6 +1866,7 @@
             response.Limit.Should().Be(limit);
             response.Page.Should().Be(1);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1866,6 +1876,7 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var limit = 4;
 
             var extendedOption = new TraktExtendedOption
@@ -1875,7 +1886,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&limit={limit}",
-                                                                moviesTrending, 1, limit, 1, itemCount);
+                                                                moviesTrending, 1, limit, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, limit).Result;
 
@@ -1885,6 +1896,7 @@
             response.Limit.Should().Be(limit);
             response.Page.Should().Be(1);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1894,11 +1906,12 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var page = 2;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}",
-                                                                moviesTrending, page, limit, 1, itemCount);
+                                                                moviesTrending, page, limit, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page, limit).Result;
 
@@ -1908,6 +1921,7 @@
             response.Limit.Should().Be(limit);
             response.Page.Should().Be(page);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
@@ -1917,6 +1931,7 @@
             moviesTrending.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
+            var userCount = 300;
             var page = 2;
             var limit = 4;
 
@@ -1927,7 +1942,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
-                                                                moviesTrending, page, limit, 1, itemCount);
+                                                                moviesTrending, page, limit, 1, itemCount, userCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page, limit).Result;
 
@@ -1937,6 +1952,7 @@
             response.Limit.Should().Be(limit);
             response.Page.Should().Be(page);
             response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]

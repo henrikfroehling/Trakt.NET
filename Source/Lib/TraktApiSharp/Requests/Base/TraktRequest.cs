@@ -25,6 +25,7 @@ namespace TraktApiSharp.Requests.Base
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+        private static string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
 
         protected TraktRequest(TraktClient client)
         {
@@ -248,6 +249,15 @@ namespace TraktApiSharp.Requests.Base
 
                     if (Int32.TryParse(strItemCount, out itemCount))
                         (paginationListResult as TraktPaginationListResult<TItem>).ItemCount = itemCount;
+                }
+
+                if (headers.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
+                {
+                    var strUserCount = values.First();
+                    int userCount;
+
+                    if (Int32.TryParse(strUserCount, out userCount))
+                        (paginationListResult as TraktPaginationListResult<TItem>).UserCount = userCount;
                 }
 
                 return (TResult)paginationListResult;
