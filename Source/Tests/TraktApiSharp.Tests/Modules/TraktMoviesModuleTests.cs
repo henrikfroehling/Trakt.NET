@@ -5,6 +5,7 @@
     using System;
     using System.Net;
     using System.Threading.Tasks;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -57,6 +58,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieAsync(movieId).Result;
 
             response.Should().NotBeNull();
+            response.Title.Should().Be("Star Wars: The Force Awakens");
+            response.Year.Should().Be(2015);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(94024);
+            response.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            response.Ids.Imdb.Should().Be("tt2488496");
+            response.Ids.Tmdb.Should().Be(140607);
         }
 
         [TestMethod]
@@ -78,6 +86,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieAsync(movieId, extendedOption).Result;
 
             response.Should().NotBeNull();
+            response.Title.Should().Be("Star Wars: The Force Awakens");
+            response.Year.Should().Be(2015);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(94024);
+            response.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            response.Ids.Imdb.Should().Be("tt2488496");
+            response.Ids.Tmdb.Should().Be(140607);
+            response.Images.Should().NotBeNull();
+            response.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/original/707a0ae2ab.jpg");
+            response.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/medium/707a0ae2ab.jpg");
+            response.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/thumb/707a0ae2ab.jpg");
+            response.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/original/45feef2558.jpg");
+            response.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/medium/45feef2558.jpg");
+            response.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/thumb/45feef2558.jpg");
+            response.Images.Logo.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/logos/original/077cc27594.png");
+            response.Images.ClearArt.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/cleararts/original/a31ab70d60.png");
+            response.Images.Banner.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/banners/original/b20b70cbf5.jpg");
+            response.Images.Thumb.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/thumbs/original/627810fb39.jpg");
+            response.Tagline.Should().Be("Every generation has a story.");
+            response.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
+            response.Released.Should().Be(DateTime.Parse("2015-12-18"));
+            response.Runtime.Should().Be(136);
+            response.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            response.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+            response.TrailerUri.Should().NotBeNull();
+            response.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+            response.HomepageUri.Should().NotBeNull();
+            response.Rating.Should().Be(8.31988f);
+            response.Votes.Should().Be(9338);
+            response.LanguageCode.Should().Be("en");
+            response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+            response.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+            response.Certification.Should().Be("PG-13");
         }
 
         [TestMethod]
@@ -373,19 +414,107 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleRelease()
         {
-            Assert.Fail();
+            var movieRelease = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleRelease.json");
+            movieRelease.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var countryCode = "us";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieRelease);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, countryCode).Result;
+
+            response.Should().NotBeNull();
+            response.CountryCode.Should().Be(countryCode);
+            response.Certification.Should().Be("PG-13");
+            response.ReleaseDate.Should().Be(DateTime.Parse("2015-12-14"));
+            response.ReleaseType.Should().Be(TraktReleaseType.Premiere);
+            response.Note.Should().Be("Los Angeles, California");
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleReleaseExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+            var countryCode = "us";
+            var uri = $"movies/{movieId}/releases/{countryCode}";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktMovieRelease>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, countryCode);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleReleaseArgumentExceptions()
         {
-            Assert.Fail();
+            var movieRelease = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleRelease.json");
+            movieRelease.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var countryCode = "us";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieRelease);
+
+            Func<Task<TraktMovieRelease>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(null, countryCode);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(string.Empty, countryCode);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, "u");
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, "usa");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

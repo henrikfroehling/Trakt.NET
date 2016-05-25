@@ -58,14 +58,14 @@
             return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = id });
         }
 
-        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string id, string languageCode)
+        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string id, string countryCode)
         {
-            Validate(id, languageCode);
+            Validate(id, countryCode);
 
             return await QueryAsync(new TraktMovieSingleReleaseRequest(Client)
             {
                 Id = id,
-                LanguageCode = languageCode
+                LanguageCode = countryCode
             });
         }
 
