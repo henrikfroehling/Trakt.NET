@@ -17,6 +17,8 @@
 
         public async Task<TraktMovie> GetMovieAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieSummaryRequest(Client)
             {
                 Id = id,
@@ -44,16 +46,22 @@
 
         public async Task<TraktListResult<TraktMovieAlias>> GetMovieAliasesAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieAliasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktMovieRelease>> GetMovieReleasesAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string id, string languageCode)
         {
+            Validate(id, languageCode);
+
             return await QueryAsync(new TraktMovieSingleReleaseRequest(Client)
             {
                 Id = id,
@@ -63,11 +71,15 @@
 
         public async Task<TraktListResult<TraktMovieTranslation>> GetMovieTranslationsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync(string id, string languageCode)
         {
+            Validate(id, languageCode);
+
             return await QueryAsync(new TraktMovieSingleTranslationRequest(Client)
             {
                 Id = id,
@@ -79,6 +91,8 @@
                                                                                               TraktCommentSortOrder? sorting = null,
                                                                                               int? page = null, int? limit = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieCommentsRequest(Client)
             {
                 Id = id,
@@ -89,16 +103,22 @@
 
         public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id });
         }
 
         public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieRatingsRequest(Client) { Id = id });
         }
 
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string id, int? page = null, int? limit = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieRelatedMoviesRequest(Client)
             {
                 Id = id,
@@ -108,11 +128,15 @@
 
         public async Task<TraktMovieStatistics> GetMovieStatisticsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = id });
         }
 
@@ -200,6 +224,20 @@
                 ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
+        }
+
+        private void Validate(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("movie id not valid", "id");
+        }
+
+        private void Validate(string id, string languageCode)
+        {
+            Validate(id);
+
+            if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
+                throw new ArgumentException("movie language code not valid", "languageCode");
         }
     }
 }
