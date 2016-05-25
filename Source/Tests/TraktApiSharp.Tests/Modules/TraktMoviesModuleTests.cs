@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests;
     using Utils;
@@ -158,27 +159,20 @@
         #region MultipleMovies
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMultipleMovies()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMultipleMoviesWithExtendedOption()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktMoviesModuleGetMultipleMoviesExceptions()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
         public void TestTraktMoviesModuleGetMultipleMoviesArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktMovie>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { null });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { string.Empty });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { });
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(null);
+            act.ShouldNotThrow();
         }
 
         #endregion
