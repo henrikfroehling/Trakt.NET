@@ -105,7 +105,7 @@
         {
             Validate(id);
 
-            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id, ExtendedOption = extended });
+            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
         public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)
@@ -115,13 +115,15 @@
             return await QueryAsync(new TraktMovieRatingsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string id, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string id, TraktExtendedOption extended = null,
+                                                                                            int? page = null, int? limit = null)
         {
             Validate(id);
 
             return await QueryAsync(new TraktMovieRelatedMoviesRequest(Client)
             {
                 Id = id,
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
