@@ -11,6 +11,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -1744,55 +1745,246 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMovies()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending", moviesTrending, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOption()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}",
+                                                                moviesTrending, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithPage()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}", moviesTrending, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndPage()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}",
+                                                                moviesTrending, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithLimit()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?limit={limit}", moviesTrending, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndLimit()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&limit={limit}",
+                                                                moviesTrending, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithPageAndLimit()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}",
+                                                                moviesTrending, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesComplete()
         {
-            Assert.Fail();
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                moviesTrending, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesExceptions()
         {
-            Assert.Fail();
+            var uri = $"movies/trending";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktTrendingMovie>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync();
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
