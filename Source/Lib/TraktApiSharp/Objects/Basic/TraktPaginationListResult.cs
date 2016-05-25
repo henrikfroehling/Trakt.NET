@@ -9,5 +9,7 @@
         public int PageCount { get; set; }
 
         public int ItemCount { get; set; }
+
+        public int? UserCount { get; set; }
     }
 }

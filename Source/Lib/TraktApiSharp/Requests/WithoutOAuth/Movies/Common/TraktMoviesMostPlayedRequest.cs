@@ -10,14 +10,14 @@
     {
         internal TraktMoviesMostPlayedRequest(TraktClient client) : base(client) { Period = TraktPeriod.Weekly; }
 
-        internal TraktPeriod Period { get; set; }
+        internal TraktPeriod? Period { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Period != TraktPeriod.Unspecified)
-                uriParams.Add("period", Period.AsString());
+            if (Period.HasValue && Period != TraktPeriod.Unspecified)
+                uriParams.Add("period", Period.Value.AsString());
 
             return uriParams;
         }

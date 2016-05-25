@@ -19,6 +19,7 @@
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+        private static string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
 
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
@@ -87,7 +88,8 @@
 
         public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
                                                                    int page = 0, int limit = 0,
-                                                                   int pageCount = 0, int itemCount = 0)
+                                                                   int pageCount = 0, int itemCount = 0,
+                                                                   int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
@@ -100,6 +102,10 @@
             response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
             response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
             response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (userCount.HasValue)
+                response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
+
             response.Headers.Add("Accept", "application/json");
             response.Content = new StringContent(responseContent);
 
@@ -177,7 +183,8 @@
 
         public static void SetupMockPaginationResponseWithOAuth(string uri, string responseContent,
                                                                 int page = 0, int limit = 0,
-                                                                int pageCount = 0, int itemCount = 0)
+                                                                int pageCount = 0, int itemCount = 0,
+                                                                int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
@@ -190,6 +197,10 @@
             response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
             response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
             response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (userCount.HasValue)
+                response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
+
             response.Headers.Add("Accept", "application/json");
             response.Content = new StringContent(responseContent);
 
