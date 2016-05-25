@@ -101,11 +101,11 @@
             });
         }
 
-        public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id)
+        public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
-            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id });
+            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id, ExtendedOption = extended });
         }
 
         public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)

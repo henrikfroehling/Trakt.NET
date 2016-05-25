@@ -999,25 +999,134 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMoviePeople()
         {
-            Assert.Fail();
+            var moviePeople = TestUtility.ReadFileContents(@"Objects\Get\Movies\MoviePeople.json");
+            moviePeople.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people", moviePeople);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId).Result;
+
+            response.Should().NotBeNull();
+            response.Cast.Should().NotBeNull().And.HaveCount(3);
+            response.Crew.Should().NotBeNull();
+            response.Crew.Production.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Art.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Crew.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
+            response.Crew.Writing.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Sound.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Camera.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Editing.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMoviePeopleWithExtendedOption()
         {
-            Assert.Fail();
+            var moviePeople = TestUtility.ReadFileContents(@"Objects\Get\Movies\MoviePeople.json");
+            moviePeople.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people?extended={extendedOption.ToString()}", moviePeople);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Cast.Should().NotBeNull().And.HaveCount(3);
+            response.Crew.Should().NotBeNull();
+            response.Crew.Production.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Art.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Crew.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
+            response.Crew.Writing.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Sound.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Camera.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            response.Crew.Editing.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMoviePeopleExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+            var uri = $"movies/{movieId}/people";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktMoviePeople>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMoviePeopleArgumentExceptions()
         {
-            Assert.Fail();
+            var moviePeople = TestUtility.ReadFileContents(@"Objects\Get\Movies\MoviePeople.json");
+            moviePeople.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people", moviePeople);
+
+            Func<Task<TraktMoviePeople>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
