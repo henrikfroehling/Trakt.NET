@@ -1528,19 +1528,94 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieStatistics()
         {
-            Assert.Fail();
+            var movieStatistics = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieStatistics.json");
+            movieStatistics.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/stats", movieStatistics);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(movieId).Result;
+
+            response.Should().NotBeNull();
+            response.Watchers.Should().Be(40619);
+            response.Plays.Should().Be(64620);
+            response.Collectors.Should().Be(17519);
+            response.CollectedEpisodes.Should().NotHaveValue();
+            response.Comments.Should().Be(99);
+            response.Lists.Should().Be(17089);
+            response.Votes.Should().Be(10359);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieStatisticsExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+            var uri = $"movies/{movieId}/stats";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktMovieStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(movieId);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieStatisticsArgumentExceptions()
         {
-            Assert.Fail();
+            var movieStatistics = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieStatistics.json");
+            movieStatistics.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/stats", movieStatistics);
+
+            Func<Task<TraktMovieStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
