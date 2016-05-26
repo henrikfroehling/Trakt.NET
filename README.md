@@ -4,12 +4,21 @@ TraktApiSharp
 
 ## Status
 
-The library **is not yet ready for production use**.
+The library **has currently beta status**.
 
-There are still some features missing and already implemented features are not yet completely tested.
-The goal is a feature-complete library in terms of API coverage.
+The library is feature-complete in terms of API coverage, but there are features, that are not completely tested.
 
-**Future releases will be available as NuGet packages.**
+Following modules are not completely tested and can contain bugs:
+- Authentication Module
+- Comments Module
+- People Module
+- Recommendations Module
+- Scrobble Module
+- Search Module
+- Sync Module
+- Users Module
+
+Alpha and beta versions are available as NuGet packages under the [Release](https://github.com/henrikfroehling/TraktApiSharp/releases) tab.
 
 
 ## Basic Usage
