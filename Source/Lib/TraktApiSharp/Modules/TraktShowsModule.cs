@@ -18,6 +18,8 @@
 
         public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
                 Id = id,
@@ -45,16 +47,22 @@
 
         public async Task<TraktListResult<TraktShowAlias>> GetShowAliasesAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowAliasesRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktShowTranslation>> GetShowTranslationsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = id });
         }
 
         public async Task<TraktShowTranslation> GetShowSingleTranslationAsync(string id, string languageCode)
         {
+            Validate(id, languageCode);
+
             return await QueryAsync(new TraktShowSingleTranslationRequest(Client)
             {
                 Id = id,
@@ -66,6 +74,8 @@
                                                                                             TraktCommentSortOrder? sorting = null,
                                                                                             int? page = null, int? limit = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowCommentsRequest(Client)
             {
                 Id = id,
@@ -76,6 +86,8 @@
 
         public async Task<TraktShowPeople> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowPeopleRequest(Client)
             {
                 Id = id,
@@ -85,11 +97,15 @@
 
         public async Task<TraktShowRating> GetShowRatingsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowRatingsRequest(Client) { Id = id });
         }
 
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string id, int? page = null, int? limit = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowRelatedShowsRequest(Client)
             {
                 Id = id,
@@ -99,16 +115,22 @@
 
         public async Task<TraktShowStatistics> GetShowStatisticsAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = id });
         }
 
         public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id });
         }
 
         public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = false, bool? specials = false)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowCollectionProgressRequest(Client)
             {
                 Id = id,
@@ -119,6 +141,8 @@
 
         public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string id, bool? hidden = false, bool? specials = false)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktShowWatchedProgressRequest(Client)
             {
                 Id = id,
@@ -203,6 +227,20 @@
                 ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
+        }
+
+        private void Validate(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("show id not valid", "id");
+        }
+
+        private void Validate(string id, string languageCode)
+        {
+            Validate(id);
+
+            if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
+                throw new ArgumentException("show language code not valid", "languageCode");
         }
     }
 }
