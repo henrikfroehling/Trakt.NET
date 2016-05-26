@@ -4260,91 +4260,397 @@
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowss()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates", recentlyUpdatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithStartDate()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}",
+                                                                recentlyUpdatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithExtendedOption()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedOption.ToString()}",
+                                                                recentlyUpdatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithPage()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?page={page}", recentlyUpdatedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?limit={limit}", recentlyUpdatedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithStartDateAndExtendedOption()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var today = DateTime.UtcNow;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}",
+                                                                recentlyUpdatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithStartDateAndPage()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?page={page}",
+                                                                recentlyUpdatedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithStartDateAndLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?limit={limit}",
+                                                                recentlyUpdatedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithExtendedOptionAndPage()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedOption.ToString()}&page={page}",
+                                                                recentlyUpdatedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithExtendedOptionAndLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedOption.ToString()}&limit={limit}",
+                                                                recentlyUpdatedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithPageAndLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?page={page}&limit={limit}",
+                                                                recentlyUpdatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithExtendedOptionAndPageAndLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                recentlyUpdatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsWithStartDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var today = DateTime.UtcNow;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?page={page}&limit={limit}",
+                                                                recentlyUpdatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsComplete()
         {
-            Assert.Fail();
+            var recentlyUpdatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsRecentlyUpdated.json");
+            recentlyUpdatedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var today = DateTime.UtcNow;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                recentlyUpdatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetRecentlyUpdatedShowsExceptions()
         {
-            Assert.Fail();
+            var uri = $"shows/updates";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync();
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion

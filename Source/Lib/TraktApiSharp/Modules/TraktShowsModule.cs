@@ -219,7 +219,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate,
+        public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
                                                                                                             TraktExtendedOption extended = null,
                                                                                                             int? page = null, int? limit = null)
         {
