@@ -784,7 +784,7 @@
 
             var showId = "1390";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/comments", showComments);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments", showComments);
 
             Func<Task<TraktPaginationListResult<TraktShowComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(null);
@@ -1047,61 +1047,277 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShows()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related", showRelatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedOption()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?extended={extendedOption.ToString()}",
+                                                                showRelatedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithPage()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?page={page}", showRelatedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedOptionAndPage()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?extended={extendedOption.ToString()}&page={page}",
+                                                                showRelatedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithLimit()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?limit={limit}", showRelatedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedOptionAndLimit()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?extended={extendedOption.ToString()}&limit={limit}",
+                                                                showRelatedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithPageAndLimit()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?page={page}&limit={limit}",
+                                                                showRelatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsComplete()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                showRelatedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var uri = $"shows/{showId}/related";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsArgumentExceptions()
         {
-            Assert.Fail();
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            showRelatedShows.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related", showRelatedShows);
+
+            Func<Task<TraktPaginationListResult<TraktShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

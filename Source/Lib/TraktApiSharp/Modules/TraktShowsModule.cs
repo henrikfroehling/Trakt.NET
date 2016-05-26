@@ -102,13 +102,15 @@
             return await QueryAsync(new TraktShowRatingsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string id, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string id, TraktExtendedOption extended = null,
+                                                                                         int? page = null, int? limit = null)
         {
             Validate(id);
 
             return await QueryAsync(new TraktShowRelatedShowsRequest(Client)
             {
                 Id = id,
+                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
