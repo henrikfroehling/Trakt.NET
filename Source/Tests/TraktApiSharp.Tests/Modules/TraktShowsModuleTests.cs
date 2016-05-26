@@ -332,19 +332,88 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowTranslations()
         {
-            Assert.Fail();
+            var showTranslations = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowTranslations.json");
+            showTranslations.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations", showTranslations);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowTranslationsExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var uri = $"shows/{showId}/translations";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktListResult<TraktShowTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowTranslationsArgumentExceptions()
         {
-            Assert.Fail();
+            var showTranslations = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowTranslations.json");
+            showTranslations.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations", showTranslations);
+
+            Func<Task<TraktListResult<TraktShowTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
