@@ -21,6 +21,12 @@ Following modules are not completely tested and can contain bugs:
 Alpha and beta versions are available as NuGet packages under the [Release](https://github.com/henrikfroehling/TraktApiSharp/releases) tab.
 
 
+## NuGet
+```
+Install-Package TraktApiSharp -Pre
+```
+
+
 ## Basic Usage
 
 **Create a new TraktApiSharp Client.**
