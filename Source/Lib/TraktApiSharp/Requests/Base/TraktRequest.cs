@@ -17,7 +17,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using Tavis.UriTemplates;
+    using UriTemplates;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
