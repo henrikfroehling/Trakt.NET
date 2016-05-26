@@ -9,12 +9,8 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override bool UseCustomExtendedOptions => true;
-
         protected override bool IsListResult => true;
 
         protected override bool SupportsPagination => true;
-
-        protected override string UriTemplate => "search";
     }
 }

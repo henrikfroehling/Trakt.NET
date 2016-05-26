@@ -9,6 +9,8 @@
 
         protected override string UriTemplate => "checkin";
 
+        protected override bool IsCheckinRequest => true;
+
         protected override void Validate()
         {
             base.Validate();

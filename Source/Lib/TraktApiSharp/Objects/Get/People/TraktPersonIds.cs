@@ -41,7 +41,8 @@
         /// <summary>
         /// Tests, if at least one id has been set.
         /// </summary>
-        public bool HasAnyId() => Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0 || TvRage > 0;
+        [JsonIgnore]
+        public bool HasAnyId => Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0 || TvRage > 0;
 
         /// <summary>
         /// Get the most reliable id from those that have been set for the person.

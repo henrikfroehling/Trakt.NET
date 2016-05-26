@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktMoviesTrendingDefaultConstructor()
         {
-            var trendingShow = new TraktMoviesTrendingItem();
+            var trendingShow = new TraktTrendingMovie();
 
             trendingShow.Watchers.Should().Be(0);
             trendingShow.Movie.Should().BeNull();
@@ -27,7 +27,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var trendingMovies = JsonConvert.DeserializeObject<IEnumerable<TraktMoviesTrendingItem>>(jsonFile);
+            var trendingMovies = JsonConvert.DeserializeObject<IEnumerable<TraktTrendingMovie>>(jsonFile);
 
             trendingMovies.Should().NotBeNull().And.HaveCount(2);
 

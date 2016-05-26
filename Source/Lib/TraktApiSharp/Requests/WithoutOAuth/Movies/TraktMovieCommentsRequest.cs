@@ -10,17 +10,21 @@
     {
         internal TraktMovieCommentsRequest(TraktClient client) : base(client) { }
 
-        internal TraktCommentSortOrder Sorting { get; set; }
+        internal TraktCommentSortOrder? Sorting { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id},
-                                                    { "sorting", Sorting.AsString() } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Sorting.HasValue && Sorting.Value != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.Value.AsString());
+
+            return uriParams;
         }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override string UriTemplate => "movies/{id}/comments/{sorting}";
+        protected override string UriTemplate => "movies/{id}/comments{/sorting}";
 
         protected override bool SupportsPagination => true;
 

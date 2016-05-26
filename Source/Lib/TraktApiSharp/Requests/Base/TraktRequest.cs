@@ -4,9 +4,11 @@
 
 namespace TraktApiSharp.Requests.Base
 {
+    using Core;
     using Exceptions;
     using Newtonsoft.Json;
     using Objects.Basic;
+    using Objects.Post.Checkins.Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,7 +17,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using WithoutOAuth.Shows.Seasons;
+    using UriTemplates;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -23,8 +25,7 @@ namespace TraktApiSharp.Requests.Base
         private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
-
-        internal static HttpClient HTTP_CLIENT = null;
+        private static string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
 
         protected TraktRequest(TraktClient client)
         {
@@ -32,35 +33,55 @@ namespace TraktApiSharp.Requests.Base
             PaginationOptions = new TraktPaginationOptions();
         }
 
+        public async Task<TResult> QueryAsync()
+        {
+            Validate();
+
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
+            {
+                httpClient = new HttpClient();
+                SetDefaultRequestHeaders(httpClient);
+            }
+
+            using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
+            {
+                SetRequestHeadersForAuthentication(request);
+
+                using (var response = await httpClient.SendAsync(request))
+                {
+                    // Error handling
+                    if (!response.IsSuccessStatusCode)
+                        ErrorHandling(response);
+
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : "";
+
+                    // No content
+                    if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
+                        return default(TResult);
+
+                    // Handle list result
+                    if (IsListResult)
+                        return await HandleListResult(response, responseContent);
+
+                    // Single object item
+                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
+                }
+            }
+        }
+
         internal TraktClient Client { get; private set; }
 
-        protected abstract string UriTemplate { get; }
-
-        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
-
         internal string Id { get; set; }
-
-        protected virtual TraktRequestObjectType? RequestObjectType => null;
 
         internal virtual int Season { get; set; }
 
         internal virtual int Episode { get; set; }
 
-        protected virtual bool IsListResult => false;
-
-        protected virtual bool UsesSeasonExtendedOption => false;
-
         internal virtual TraktExtendedOption ExtendedOption { get; set; }
 
-        internal virtual TraktSeasonExtendedOption SeasonExtendedOption { get; set; }
-
-        protected virtual bool SupportsPagination => false;
-
-        protected abstract HttpMethod Method { get; }
-
         internal TraktPaginationOptions PaginationOptions { get; set; }
-
-        protected virtual bool UseCustomExtendedOptions => false;
 
         private bool _authenticationHeaderRequired;
 
@@ -71,96 +92,67 @@ namespace TraktApiSharp.Requests.Base
                 if (AuthenticationRequirement == TraktAuthenticationRequirement.Required)
                     return true;
 
-                if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    return false;
-
                 return _authenticationHeaderRequired;
             }
 
             set
             {
                 if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required)
-                    throw new InvalidOperationException("request type requires authentication");
-
-                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)
-                    throw new InvalidOperationException("request type does not allow authentication");
+                    throw new TraktAuthenticationException("request type requires authentication");
 
                 _authenticationHeaderRequired = value;
             }
         }
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        internal TRequestBody RequestBody { get; set; }
+
+        internal string Url => BuildUrl();
+
+        protected abstract string UriTemplate { get; }
+
+        protected virtual IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string>();
+            return new Dictionary<string, object>();
         }
 
-        private string UriPath
+        private string BuildUrl()
         {
-            get
-            {
-                return GetPathParameters()
-                    .Aggregate(UriTemplate.ToLower(),
-                               (current, parameter) => current.Replace($"{{{parameter.Key.ToLower()}}}", parameter.Value.ToLower()))
-                    .TrimEnd(new[] { '/' });
-            }
-        }
+            var uriPathTemplate = UriTemplate + "{?extended,page,limit}";
+            var uriPath = new UriTemplate(uriPathTemplate);
+            var pathParams = GetUriPathParameters();
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
-        {
-            throw new NotImplementedException();
-        }
+            foreach (var param in pathParams)
+                uriPath.AddParameter(param.Key, param.Value);
 
-        protected virtual IEnumerable<KeyValuePair<string, string>> GetExtendedOptionParameters()
-        {
-            var optionParams = new Dictionary<string, string>();
-
-            if (UsesSeasonExtendedOption)
+            if (ExtendedOption != null && ExtendedOption.HasAnySet)
             {
-                if (SeasonExtendedOption != TraktSeasonExtendedOption.Unspecified)
-                    optionParams["extended"] = SeasonExtendedOption.AsString();
-            }
-            else if (UseCustomExtendedOptions)
-            {
-                var customParams = GetCustomExtendedOptionParameters();
-
-                foreach (var param in customParams)
-                    optionParams[param.Key.ToLower()] = param.Value;
-            }
-            else
-            {
-                if (ExtendedOption != TraktExtendedOption.Unspecified)
-                    optionParams["extended"] = ExtendedOption.AsString();
+                uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
             }
 
             if (SupportsPagination)
             {
                 if (PaginationOptions.Page != null)
-                    optionParams["page"] = PaginationOptions.Page.ToString();
+                    uriPath.AddParameter("page", PaginationOptions.Page.ToString());
 
                 if (PaginationOptions.Limit != null)
-                    optionParams["limit"] = PaginationOptions.Limit.ToString();
+                    uriPath.AddParameter("limit", PaginationOptions.Limit.ToString());
             }
 
-            return optionParams;
+            var uri = uriPath.Resolve();
+            return $"{Client.Configuration.BaseUrl}{uri}";
         }
 
-        private string OptionParameters
-        {
-            get
-            {
-                using (var content = new FormUrlEncodedContent(GetExtendedOptionParameters()))
-                {
-                    var ret = content.ReadAsStringAsync().Result;
+        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
 
-                    if (!string.IsNullOrEmpty(ret))
-                        ret = $"?{ret}";
+        protected virtual TraktRequestObjectType? RequestObjectType => null;
 
-                    return ret;
-                }
-            }
-        }
+        protected virtual bool IsListResult => false;
 
-        internal TRequestBody RequestBody { get; set; }
+        protected virtual bool SupportsPagination => false;
+
+        protected virtual bool IsCheckinRequest => false;
+
+        protected abstract HttpMethod Method { get; }
 
         protected HttpContent RequestBodyContent
         {
@@ -186,8 +178,6 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        internal string Url => $"{Client.Configuration.BaseUrl}{UriPath}{OptionParameters}";
-
         protected virtual void Validate() { }
 
         protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
@@ -207,42 +197,6 @@ namespace TraktApiSharp.Requests.Base
             httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-
-        public async Task<TResult> QueryAsync()
-        {
-            Validate();
-
-            if (HTTP_CLIENT == null)
-            {
-                HTTP_CLIENT = new HttpClient();
-                SetDefaultRequestHeaders(HTTP_CLIENT);
-            }
-
-            using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
-            {
-                SetRequestHeadersForAuthentication(request);
-
-                using (var response = await HTTP_CLIENT.SendAsync(request))
-                {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-
-                    // Error handling
-                    if (!response.IsSuccessStatusCode)
-                        ErrorHandling(response, responseContent);
-
-                    // No content
-                    if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
-                        return default(TResult);
-
-                    // Handle list result
-                    if (IsListResult)
-                        return await HandleListResult(response, responseContent);
-
-                    // Single object item
-                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
-                }
-            }
         }
 
         private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)
@@ -297,6 +251,15 @@ namespace TraktApiSharp.Requests.Base
                         (paginationListResult as TraktPaginationListResult<TItem>).ItemCount = itemCount;
                 }
 
+                if (headers.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
+                {
+                    var strUserCount = values.First();
+                    int userCount;
+
+                    if (Int32.TryParse(strUserCount, out userCount))
+                        (paginationListResult as TraktPaginationListResult<TItem>).UserCount = userCount;
+                }
+
                 return (TResult)paginationListResult;
             }
 
@@ -312,21 +275,14 @@ namespace TraktApiSharp.Requests.Base
             return (TResult)listResult;
         }
 
-        private void ErrorHandling(HttpResponseMessage response, string responseContent)
+        private void ErrorHandling(HttpResponseMessage response)
         {
+            var responseContent = "";
+
+            if (response.Content != null)
+                responseContent = response.Content.ReadAsStringAsync().Result;
+
             var code = response.StatusCode;
-
-            TraktError error = null;
-
-            try
-            {
-                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
-            }
-            catch { }
-
-            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-                                    ? $"Trakt API error without content. Response status code was {(int)code}"
-                                    : error.Description;
 
             switch (code)
             {
@@ -338,29 +294,69 @@ namespace TraktApiSharp.Requests.Base
                             {
                                 case TraktRequestObjectType.Episodes:
                                     throw new TraktEpisodeNotFoundException(Id, Season, Episode)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Seasons:
                                     throw new TraktSeasonNotFoundException(Id, Season)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Shows:
                                     throw new TraktShowNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Movies:
                                     throw new TraktMovieNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.People:
                                     throw new TraktPersonNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Comments:
                                     throw new TraktCommentNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Lists:
                                     throw new TraktListNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                                 case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)
-                                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                                    {
+                                        RequestUrl = Url,
+                                        RequestBody = RequestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
                             }
                         }
 
@@ -368,44 +364,146 @@ namespace TraktApiSharp.Requests.Base
                     }
                 case HttpStatusCode.BadRequest:
                     throw new TraktBadRequestException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Unauthorized:
-                    throw new TraktBadRequestException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    throw new TraktAuthorizationException()
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Forbidden:
                     throw new TraktForbiddenException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.MethodNotAllowed:
                     throw new TraktMethodNotFoundException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.Conflict:
+                    if (IsCheckinRequest)
+                    {
+                        TraktCheckinPostErrorResponse errorResponse = null;
+
+                        if (!string.IsNullOrEmpty(responseContent))
+                            errorResponse = JsonConvert.DeserializeObject<TraktCheckinPostErrorResponse>(responseContent);
+
+                        throw new TraktCheckinException("checkin is already in progress")
+                        {
+                            RequestUrl = Url,
+                            RequestBody = RequestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = response.ReasonPhrase,
+                            ExpiresAt = errorResponse?.ExpiresAt
+                        };
+                    }
+
                     throw new TraktConflictException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.InternalServerError:
                     throw new TraktServerException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case HttpStatusCode.BadGateway:
                     throw new TraktBadGatewayException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)422:
                     throw new TraktValidationException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)429:
                     throw new TraktRateLimitException()
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)503:
                 case (HttpStatusCode)504:
                     throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, StatusCode = HttpStatusCode.ServiceUnavailable, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 case (HttpStatusCode)520:
                 case (HttpStatusCode)521:
                 case (HttpStatusCode)522:
                     throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
-                    { RequestUrl = Url, RequestBody = RequestBodyJson, StatusCode = HttpStatusCode.ServiceUnavailable, Response = responseContent };
+                    {
+                        RequestUrl = Url,
+                        RequestBody = RequestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
             }
 
+            TraktError error = null;
+
+            try
+            {
+                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
+            }
+            catch (Exception ex)
+            {
+                throw new TraktException("json convert exception", ex);
+            }
+
+            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
+                                    : error.Description;
+
             throw new TraktException(errorMessage)
-            { RequestUrl = Url, RequestBody = RequestBodyJson, Response = responseContent };
+            {
+                RequestUrl = Url,
+                RequestBody = RequestBodyJson,
+                Response = responseContent,
+                ServerReasonPhrase = response.ReasonPhrase
+            };
         }
     }
 }

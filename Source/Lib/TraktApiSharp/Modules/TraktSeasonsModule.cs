@@ -6,36 +6,43 @@
     using Objects.Get.Shows.Seasons;
     using Requests;
     using Requests.WithoutOAuth.Shows.Seasons;
+    using System;
     using System.Threading.Tasks;
 
     public class TraktSeasonsModule : TraktBaseModule
     {
         public TraktSeasonsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktSeasonExtendedOption extended = TraktSeasonExtendedOption.Unspecified)
+        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktExtendedOption extended = null)
         {
+            Validate(showId);
+
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showId,
-                SeasonExtendedOption = extended
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
         public async Task<TraktListResult<TraktEpisode>> GetSeasonAsync(string showId, int season,
-                                                                        TraktExtendedOption extended = TraktExtendedOption.Unspecified)
+                                                                        TraktExtendedOption extended = null)
         {
+            Validate(showId, season);
+
             return await QueryAsync(new TraktSeasonSingleRequest(Client)
             {
                 Id = showId,
                 Season = season,
-                ExtendedOption = extended
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
         public async Task<TraktPaginationListResult<TraktSeasonComment>> GetSeasonCommentsAsync(string showId, int season,
-                                                                                                TraktCommentSortOrder sorting = TraktCommentSortOrder.Unspecified,
+                                                                                                TraktCommentSortOrder? sorting = null,
                                                                                                 int? page = null, int? limit = null)
         {
+            Validate(showId, season);
+
             return await QueryAsync(new TraktSeasonCommentsRequest(Client)
             {
                 Id = showId,
@@ -47,6 +54,8 @@
 
         public async Task<TraktSeasonRating> GetSeasonRatingsAsync(string showId, int season)
         {
+            Validate(showId, season);
+
             return await QueryAsync(new TraktSeasonRatingsRequest(Client)
             {
                 Id = showId,
@@ -56,6 +65,8 @@
 
         public async Task<TraktSeasonStatistics> GetSeasonStatisticsAsync(string showId, int season)
         {
+            Validate(showId, season);
+
             return await QueryAsync(new TraktSeasonStatisticsRequest(Client)
             {
                 Id = showId,
@@ -63,13 +74,26 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSeasonWatchingUser>> GetSeasonWatchingUsersAsync(string showId, int season)
+        public async Task<TraktListResult<TraktSeasonWatchingUser>> GetSeasonWatchingUsersAsync(string showId, int season,
+                                                                                                TraktExtendedOption extended = null)
         {
+            Validate(showId, season);
+
             return await QueryAsync(new TraktSeasonWatchingUsersRequest(Client)
             {
                 Id = showId,
-                Season = season
+                Season = season,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
+        }
+
+        private void Validate(string showId, int season = 0)
+        {
+            if (string.IsNullOrEmpty(showId))
+                throw new ArgumentException("show id not valid", "showId");
+
+            if (season < 0)
+                throw new ArgumentException("season nr not valid", "season");
         }
     }
 }

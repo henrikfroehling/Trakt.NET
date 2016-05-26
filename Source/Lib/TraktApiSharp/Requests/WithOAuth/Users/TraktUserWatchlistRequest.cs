@@ -16,13 +16,19 @@
 
         internal TraktSyncWatchlistItemType? Type { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "username", Username },
-                                                    { "type", Type.HasValue ? Type.Value.AsString() : string.Empty } };
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (Type.HasValue && Type.Value != TraktSyncWatchlistItemType.Unspecified)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/watchlist/{type}";
+        protected override string UriTemplate => "users/{username}/watchlist{/type}";
 
         protected override bool IsListResult => true;
     }

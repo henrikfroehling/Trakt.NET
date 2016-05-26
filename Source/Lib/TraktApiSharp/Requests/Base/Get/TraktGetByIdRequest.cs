@@ -7,9 +7,11 @@
     {
         protected TraktGetByIdRequest(TraktClient client) : base(client) { }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "id", Id } };
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("id", Id);
+            return uriParams;
         }
 
         protected override void Validate()

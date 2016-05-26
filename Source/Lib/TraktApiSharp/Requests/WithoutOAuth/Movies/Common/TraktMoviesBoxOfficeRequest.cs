@@ -4,7 +4,7 @@
     using Objects.Basic;
     using Objects.Get.Movies.Common;
 
-    internal class TraktMoviesBoxOfficeRequest : TraktGetRequest<TraktListResult<TraktMoviesBoxOfficeItem>, TraktMoviesBoxOfficeItem>
+    internal class TraktMoviesBoxOfficeRequest : TraktGetRequest<TraktListResult<TraktBoxOfficeMovie>, TraktBoxOfficeMovie>
     {
         internal TraktMoviesBoxOfficeRequest(TraktClient client) : base(client) { }
 

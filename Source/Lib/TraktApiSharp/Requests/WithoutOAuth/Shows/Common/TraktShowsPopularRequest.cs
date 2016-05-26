@@ -4,7 +4,7 @@
     using Objects.Basic;
     using Objects.Get.Shows.Common;
 
-    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktShowsPopularItem>, TraktShowsPopularItem>
+    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktPopularShow>, TraktPopularShow>
     {
         internal TraktShowsPopularRequest(TraktClient client) : base(client) { }
 

@@ -6,18 +6,23 @@
     using Objects.Get.Movies.Common;
     using System.Collections.Generic;
 
-    internal class TraktMoviesMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMoviesMostPlayedItem>, TraktMoviesMostPlayedItem>
+    internal class TraktMoviesMostPlayedRequest : TraktGetRequest<TraktPaginationListResult<TraktMostPlayedMovie>, TraktMostPlayedMovie>
     {
         internal TraktMoviesMostPlayedRequest(TraktClient client) : base(client) { Period = TraktPeriod.Weekly; }
 
-        internal TraktPeriod Period { get; set; }
+        internal TraktPeriod? Period { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            return new Dictionary<string, string> { { "period", Period.AsString() } };
+            var uriParams = base.GetUriPathParameters();
+
+            if (Period.HasValue && Period.Value != TraktPeriod.Unspecified)
+                uriParams.Add("period", Period.Value.AsString());
+
+            return uriParams;
         }
 
-        protected override string UriTemplate => "movies/played/{period}";
+        protected override string UriTemplate => "movies/played{/period}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

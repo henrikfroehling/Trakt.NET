@@ -19,6 +19,7 @@
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
+            exception.ServerReasonPhrase.Should().BeNullOrEmpty();
         }
     }
 }

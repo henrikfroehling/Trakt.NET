@@ -2,10 +2,10 @@
 {
     using Objects.Get.Calendars;
 
-    internal class TraktCalendarAllSeasonPremieresRequest : TraktCalendarAllRequest<TraktCalendarShowItem>
+    internal class TraktCalendarAllSeasonPremieresRequest : TraktCalendarAllRequest<TraktCalendarShow>
     {
         internal TraktCalendarAllSeasonPremieresRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "calendars/all/shows/premieres/{start_date}/{days}";
+        protected override string UriTemplate => "calendars/all/shows/premieres{/start_date}{/days}";
     }
 }

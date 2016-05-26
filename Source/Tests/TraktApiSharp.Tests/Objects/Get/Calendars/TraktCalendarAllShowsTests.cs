@@ -15,7 +15,7 @@
         [TestMethod]
         public void TestTraktCalendarAllShowsDefaultConstructor()
         {
-            var allShowsItem = new TraktCalendarShowItem();
+            var allShowsItem = new TraktCalendarShow();
 
             allShowsItem.FirstAired.Should().Be(DateTime.MinValue);
             allShowsItem.Episode.Should().BeNull();
@@ -29,7 +29,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var allShows = JsonConvert.DeserializeObject<IEnumerable<TraktCalendarShowItem>>(jsonFile);
+            var allShows = JsonConvert.DeserializeObject<IEnumerable<TraktCalendarShow>>(jsonFile);
 
             allShows.Should().NotBeNull().And.HaveCount(2);
 

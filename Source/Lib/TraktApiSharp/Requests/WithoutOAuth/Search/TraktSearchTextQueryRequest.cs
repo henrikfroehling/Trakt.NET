@@ -10,23 +10,25 @@
 
         internal string Query { get; set; }
 
-        internal TraktSearchResultType Type { get; set; }
+        internal TraktSearchResultType? Type { get; set; }
 
         internal int? Year { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetCustomExtendedOptionParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            var searchParams = new Dictionary<string, string>();
+            var uriParams = base.GetUriPathParameters();
 
-            searchParams["query"] = Query;
+            uriParams.Add("query", Query);
 
-            if (Type != TraktSearchResultType.Unspecified)
-                searchParams["type"] = Type.AsString();
+            if (Type.HasValue)
+                uriParams.Add("type", Type.Value.AsString());
 
             if (Year.HasValue)
-                searchParams["year"] = Year.Value.ToString();
+                uriParams.Add("year", Year.Value.ToString());
 
-            return searchParams;
+            return uriParams;
         }
+
+        protected override string UriTemplate => "search{?query,type,year}";
     }
 }

@@ -53,7 +53,8 @@
                             StatusCode = response.StatusCode,
                             RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}",
                             RequestBody = postContent,
-                            Response = await response.Content.ReadAsStringAsync()
+                            Response = await response.Content.ReadAsStringAsync(),
+                            ServerReasonPhrase = response.ReasonPhrase
                         };
                     }
                 }
@@ -78,6 +79,7 @@
                 using (var content = new StringContent(postContent))
                 {
                     HttpStatusCode responseCode = HttpStatusCode.OK;
+                    string reasonPhrase = null;
                     int totalExpiredSeconds = 0;
 
                     while (totalExpiredSeconds < device.ExpiresInSeconds)
@@ -114,21 +116,46 @@
                     {
                         case HttpStatusCode.NotFound:
                             throw new TraktAuthenticationDeviceException("Not Found - invalid device_code")
-                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                            {
+                                StatusCode = responseCode,
+                                RequestUrl = requestUrl,
+                                RequestBody = postContent,
+                                ServerReasonPhrase = reasonPhrase
+                            };
                         case HttpStatusCode.Conflict:   // Already Used
                             throw new TraktAuthenticationDeviceException("Already Used - user already approved this code")
-                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                            {
+                                StatusCode = responseCode,
+                                RequestUrl = requestUrl,
+                                RequestBody = postContent,
+                                ServerReasonPhrase = reasonPhrase
+                            };
                         case HttpStatusCode.Gone:       // Expired
                             throw new TraktAuthenticationDeviceException("Expired - the tokens have expired, restart the process")
-                            { StatusCode = responseCode, RequestUrl = requestUrl, RequestBody = postContent };
+                            {
+                                StatusCode = responseCode,
+                                RequestUrl = requestUrl,
+                                RequestBody = postContent,
+                                ServerReasonPhrase = reasonPhrase
+                            };
                         case (HttpStatusCode)418:       // Denied
                             throw new TraktAuthenticationDeviceException("Denied - user explicitly denied this code")
-                            { StatusCode = (HttpStatusCode)418, RequestUrl = requestUrl, RequestBody = postContent };
+                            {
+                                StatusCode = (HttpStatusCode)418,
+                                RequestUrl = requestUrl,
+                                RequestBody = postContent,
+                                ServerReasonPhrase = reasonPhrase
+                            };
                         case (HttpStatusCode)429:       // Slow Down
                             throw new TraktAuthenticationDeviceException("Slow Down - your app is polling too quickly")
-                            { StatusCode = (HttpStatusCode)429, RequestUrl = requestUrl, RequestBody = postContent };
+                            {
+                                StatusCode = (HttpStatusCode)429,
+                                RequestUrl = requestUrl,
+                                RequestBody = postContent,
+                                ServerReasonPhrase = reasonPhrase
+                            };
                         default:
-                            throw new TraktAuthenticationDeviceException("unknown exception");
+                            throw new TraktAuthenticationDeviceException("unknown exception") { ServerReasonPhrase = reasonPhrase };
                     }
                 }
             }

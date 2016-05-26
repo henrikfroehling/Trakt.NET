@@ -2,10 +2,10 @@
 {
     using Objects.Get.Calendars;
 
-    internal class TraktCalendarAllMoviesRequest : TraktCalendarAllRequest<TraktCalendarMovieItem>
+    internal class TraktCalendarAllMoviesRequest : TraktCalendarAllRequest<TraktCalendarMovie>
     {
         internal TraktCalendarAllMoviesRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "calendars/all/movies/{start_date}/{days}";
+        protected override string UriTemplate => "calendars/all/movies{/start_date}{/days}";
     }
 }

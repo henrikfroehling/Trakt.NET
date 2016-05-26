@@ -9,22 +9,19 @@
     {
         internal TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
 
-        internal TraktCommentSortOrder Sorting { get; set; }
+        internal TraktCommentSortOrder? Sorting { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            var parameters = new Dictionary<string, string>();
+            var uriParams = base.GetUriPathParameters();
 
-            var baseParameters = base.GetPathParameters();
-            foreach (var p in baseParameters)
-                parameters.Add(p.Key, p.Value);
+            if (Sorting.HasValue && Sorting.Value != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.Value.AsString());
 
-            parameters.Add("sorting", Sorting.AsString());
-
-            return parameters;
+            return uriParams;
         }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments/{sorting}";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments{/sorting}";
 
         protected override bool SupportsPagination => true;
 

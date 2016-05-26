@@ -14,7 +14,7 @@
         [TestMethod]
         public void TestTraktMoviesPopularDefaultConstructor()
         {
-            var popularShow = new TraktMoviesPopularItem();
+            var popularShow = new TraktPopularMovie();
 
             popularShow.Title.Should().BeNullOrEmpty();
             popularShow.Year.Should().Be(0);
@@ -28,7 +28,7 @@
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var popularMovies = JsonConvert.DeserializeObject<IEnumerable<TraktMoviesPopularItem>>(jsonFile);
+            var popularMovies = JsonConvert.DeserializeObject<IEnumerable<TraktPopularMovie>>(jsonFile);
 
             popularMovies.Should().NotBeNull().And.HaveCount(2);
 

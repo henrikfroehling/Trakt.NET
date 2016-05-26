@@ -35,6 +35,7 @@
         /// <summary>
         /// Tests, if at least one id has been set.
         /// </summary>
+        [JsonIgnore]
         public bool HasAnyId => Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0;
 
         /// <summary>

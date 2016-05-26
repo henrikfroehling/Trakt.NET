@@ -125,7 +125,8 @@
                         {
                             StatusCode = response.StatusCode,
                             RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}",
-                            RequestBody = postContent
+                            RequestBody = postContent,
+                            ServerReasonPhrase = response.ReasonPhrase
                         };
                     }
 

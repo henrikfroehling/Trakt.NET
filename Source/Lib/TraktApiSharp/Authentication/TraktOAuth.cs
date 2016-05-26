@@ -97,11 +97,12 @@
                         {
                             StatusCode = response.StatusCode,
                             RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}",
-                            RequestBody = postContent
+                            RequestBody = postContent,
+                            ServerReasonPhrase = response.ReasonPhrase
                         };
                     }
 
-                    throw new TraktAuthenticationOAuthException("unknown exception");
+                    throw new TraktAuthenticationOAuthException("unknown exception") { ServerReasonPhrase = response.ReasonPhrase };
                 }
             }
         }

@@ -3,7 +3,6 @@
     using Base.Get;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     internal abstract class TraktGetByIdSeasonRequest<ResultType, ItemType> : TraktGetByIdRequest<ResultType, ItemType>
     {
@@ -13,17 +12,11 @@
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Seasons;
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters()
+        protected override IDictionary<string, object> GetUriPathParameters()
         {
-            var parameters = new Dictionary<string, string>();
-
-            var baseParameters = base.GetPathParameters();
-            foreach (var p in baseParameters)
-                parameters.Add(p.Key, p.Value);
-
-            parameters.Add("season", Season.ToString(CultureInfo.InvariantCulture));
-
-            return parameters;
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("season", Season.ToString());
+            return uriParams;
         }
 
         protected override void Validate()
