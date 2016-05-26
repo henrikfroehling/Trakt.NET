@@ -1,7 +1,6 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
-    "Microsoft.Net.Http": "2.2.29",
     "Newtonsoft.Json": "8.0.3",
     "Tavis.UriTemplates": "1.0.0"
   },
