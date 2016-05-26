@@ -173,7 +173,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod period = TraktPeriod.Weekly,
+        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod? period = null,
                                                                                                   TraktExtendedOption extended = null,
                                                                                                   int? page = null, int? limit = null)
         {
