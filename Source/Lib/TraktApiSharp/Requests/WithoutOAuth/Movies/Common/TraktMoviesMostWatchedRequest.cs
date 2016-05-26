@@ -16,7 +16,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Period.HasValue && Period != TraktPeriod.Unspecified)
+            if (Period.HasValue && Period.Value != TraktPeriod.Unspecified)
                 uriParams.Add("period", Period.Value.AsString());
 
             return uriParams;
