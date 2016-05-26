@@ -129,7 +129,7 @@
             return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
-        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = false, bool? specials = false)
+        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = null, bool? specials = null)
         {
             Validate(id);
 
@@ -141,7 +141,7 @@
             });
         }
 
-        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string id, bool? hidden = false, bool? specials = false)
+        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string id, bool? hidden = null, bool? specials = null)
         {
             Validate(id);
 
