@@ -8,6 +8,7 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests;
     using Utils;
@@ -213,7 +214,18 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new string[] { null });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new string[] { string.Empty });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new string[] { });
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(null);
+            act.ShouldNotThrow();
         }
 
         #endregion
