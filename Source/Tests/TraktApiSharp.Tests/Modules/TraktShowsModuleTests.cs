@@ -2,7 +2,14 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Requests;
     using Utils;
 
     [TestClass]
@@ -40,25 +47,160 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShow()
         {
-            Assert.Fail();
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            show.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}", show);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Title.Should().Be("Game of Thrones");
+            response.Year.Should().Be(2011);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(1390);
+            response.Ids.Slug.Should().Be("game-of-thrones");
+            response.Ids.Tvdb.Should().Be(121361);
+            response.Ids.Imdb.Should().Be("tt0944947");
+            response.Ids.Tmdb.Should().Be(1399);
+            response.Ids.TvRage.Should().Be(24493);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWithExtendedOption()
         {
-            Assert.Fail();
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            show.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}?extended={extendedOption.ToString()}", show);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(showId, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Title.Should().Be("Game of Thrones");
+            response.Year.Should().Be(2011);
+            response.Airs.Should().NotBeNull();
+            response.Airs.Day.Should().Be("Sunday");
+            response.Airs.Time.Should().Be("21:00");
+            response.Airs.TimeZoneId.Should().Be("America/New_York");
+            response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(1390);
+            response.Ids.Slug.Should().Be("game-of-thrones");
+            response.Ids.Tvdb.Should().Be(121361);
+            response.Ids.Imdb.Should().Be("tt0944947");
+            response.Ids.Tmdb.Should().Be(1399);
+            response.Ids.TvRage.Should().Be(24493);
+            response.Images.Should().NotBeNull();
+            response.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/original/76d5df8aed.jpg");
+            response.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/medium/76d5df8aed.jpg");
+            response.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/thumb/76d5df8aed.jpg");
+            response.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/original/93df9cd612.jpg");
+            response.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/medium/93df9cd612.jpg");
+            response.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/thumb/93df9cd612.jpg");
+            response.Images.Logo.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/logos/original/13b614ad43.png");
+            response.Images.ClearArt.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/cleararts/original/5cbde9e647.png");
+            response.Images.Banner.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/banners/original/9fefff703d.jpg");
+            response.Images.Thumb.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/thumbs/original/7beccbd5a1.jpg");
+            response.Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "fantasy", "science-fiction", "action", "adventure");
+            response.Seasons.Should().BeNull();
+            response.Overview.Should().Be("Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.");
+            response.FirstAired.Should().Be(DateTime.Parse("2011-04-17T07:00:00Z").ToUniversalTime());
+            response.Runtime.Should().Be(60);
+            response.Certification.Should().Be("TV-MA");
+            response.Network.Should().Be("HBO");
+            response.CountryCode.Should().Be("us");
+            response.UpdatedAt.Should().Be(DateTime.Parse("2016-04-06T10:39:11Z").ToUniversalTime());
+            response.Trailer.Should().Be("http://youtube.com/watch?v=F9Bo89m2f6g");
+            response.TrailerUri.Should().NotBeNull();
+            response.Homepage.Should().Be("http://www.hbo.com/game-of-thrones");
+            response.HomepageUri.Should().NotBeNull();
+            response.Status.Should().Be(TraktShowStatus.ReturningSeries);
+            response.Rating.Should().Be(9.38327f);
+            response.Votes.Should().Be(44773);
+            response.LanguageCode.Should().Be("en");
+            response.AiredEpisodes.Should().Be(50);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var uri = $"shows/{showId}";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktShow>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowArgumentExceptions()
         {
-            Assert.Fail();
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            show.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}", show);
+
+            Func<Task<TraktShow>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
