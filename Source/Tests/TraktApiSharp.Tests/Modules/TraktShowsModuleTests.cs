@@ -1913,37 +1913,360 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgress()
         {
-            Assert.Fail();
+            var showWatchedProgress = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowWatchedProgressComplete.json");
+            showWatchedProgress.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/watched", showWatchedProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId).Result;
+
+            response.Should().NotBeNull();
+
+            response.Aired.Should().Be(6);
+            response.Completed.Should().Be(6);
+            response.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Should().HaveCount(1);
+
+            var seasons = response.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            var episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            response.HiddenSeasons.Should().NotBeNull();
+            response.HiddenSeasons.Should().HaveCount(1);
+
+            var hiddenSeasons = response.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+
+            response.NextEpisode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgressWithHidden()
         {
-            Assert.Fail();
+            var showWatchedProgress = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowWatchedProgressComplete.json");
+            showWatchedProgress.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var hidden = true;
+
+            TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/watched?hidden={hidden.ToString().ToLower()}",
+                                                   showWatchedProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId, hidden).Result;
+
+            response.Should().NotBeNull();
+
+            response.Aired.Should().Be(6);
+            response.Completed.Should().Be(6);
+            response.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Should().HaveCount(1);
+
+            var seasons = response.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            var episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            response.HiddenSeasons.Should().NotBeNull();
+            response.HiddenSeasons.Should().HaveCount(1);
+
+            var hiddenSeasons = response.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+
+            response.NextEpisode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgressWithSpecials()
         {
-            Assert.Fail();
+            var showWatchedProgress = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowWatchedProgressComplete.json");
+            showWatchedProgress.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var specials = true;
+
+            TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/watched?specials={specials.ToString().ToLower()}",
+                                                   showWatchedProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId, null, specials).Result;
+
+            response.Should().NotBeNull();
+
+            response.Aired.Should().Be(6);
+            response.Completed.Should().Be(6);
+            response.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Should().HaveCount(1);
+
+            var seasons = response.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            var episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            response.HiddenSeasons.Should().NotBeNull();
+            response.HiddenSeasons.Should().HaveCount(1);
+
+            var hiddenSeasons = response.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+
+            response.NextEpisode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgressComplete()
         {
-            Assert.Fail();
+            var showWatchedProgress = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowWatchedProgressComplete.json");
+            showWatchedProgress.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var hidden = true;
+            var specials = true;
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"shows/{showId}/progress/watched?hidden={hidden.ToString().ToLower()}&specials={specials.ToString().ToLower()}",
+                showWatchedProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId, hidden, specials).Result;
+
+            response.Should().NotBeNull();
+
+            response.Aired.Should().Be(6);
+            response.Completed.Should().Be(6);
+            response.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Should().HaveCount(1);
+
+            var seasons = response.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            var episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            response.HiddenSeasons.Should().NotBeNull();
+            response.HiddenSeasons.Should().HaveCount(1);
+
+            var hiddenSeasons = response.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+
+            response.NextEpisode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgressExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var uri = $"shows/{showId}/progress/watched";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktShowWatchedProgress>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowWatchedProgressArgumentExceptions()
         {
-            Assert.Fail();
+            var showWatchedProgress = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowWatchedProgressComplete.json");
+            showWatchedProgress.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/watched", showWatchedProgress);
+
+            Func<Task<TraktShowWatchedProgress>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
