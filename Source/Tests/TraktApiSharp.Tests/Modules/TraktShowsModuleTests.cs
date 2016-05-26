@@ -12,6 +12,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -2279,55 +2280,262 @@
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShows()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending", showsTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithExtendedOption()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}",
+                                                                showsTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithPage()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}", showsTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithExtendedOptionAndPage()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&page={page}",
+                                                                showsTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithLimit()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?limit={limit}", showsTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithExtendedOptionAndLimit()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&limit={limit}",
+                                                                showsTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithPageAndLimit()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}&limit={limit}",
+                                                                showsTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsComplete()
         {
-            Assert.Fail();
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                showsTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsExceptions()
         {
-            Assert.Fail();
+            var uri = $"shows/trending";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktTrendingShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync();
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
