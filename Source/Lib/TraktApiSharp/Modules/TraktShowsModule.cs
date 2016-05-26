@@ -122,11 +122,11 @@
             return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id)
+        public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
-            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id });
+            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
         public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string id, bool? hidden = false, bool? specials = false)
