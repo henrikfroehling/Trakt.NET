@@ -3605,91 +3605,397 @@
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShows()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected", mostCollectedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPeriod()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}",
+                                                                mostCollectedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithExtendedOption()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?extended={extendedOption.ToString()}",
+                                                                mostCollectedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPage()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?page={page}", mostCollectedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?limit={limit}", mostCollectedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPeriodAndExtendedOption()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}",
+                                                                mostCollectedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPeriodAndPage()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var period = TraktPeriod.Monthly;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?page={page}",
+                                                                mostCollectedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPeriodAndLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?limit={limit}",
+                                                                mostCollectedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithExtendedOptionAndPage()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?extended={extendedOption.ToString()}&page={page}",
+                                                                mostCollectedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithExtendedOptionAndLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?extended={extendedOption.ToString()}&limit={limit}",
+                                                                mostCollectedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPageAndLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?page={page}&limit={limit}",
+                                                                mostCollectedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithExtendedOptionAndPageAndLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                mostCollectedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(null, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsWithPeriodAndPageAndLimit()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?page={page}&limit={limit}",
+                                                                mostCollectedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsComplete()
         {
-            Assert.Fail();
+            var mostCollectedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostCollected.json");
+            mostCollectedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                mostCollectedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetMostCollectedShowsExceptions()
         {
-            Assert.Fail();
+            var uri = $"shows/collected";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktMostCollectedShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync();
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
