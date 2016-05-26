@@ -1330,19 +1330,94 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowStatistics()
         {
-            Assert.Fail();
+            var showStatistics = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowStatistics.json");
+            showStatistics.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/stats", showStatistics);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Watchers.Should().Be(265955);
+            response.Plays.Should().Be(12491168);
+            response.Collectors.Should().Be(106028);
+            response.CollectedEpisodes.Should().Be(4092901);
+            response.Comments.Should().Be(233);
+            response.Lists.Should().Be(103943);
+            response.Votes.Should().Be(44590);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowStatisticsExceptions()
         {
-            Assert.Fail();
+            var showId = "1390";
+            var uri = $"shows/{showId}/stats";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktShowStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowStatisticsArgumentExceptions()
         {
-            Assert.Fail();
+            var showStatistics = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowStatistics.json");
+            showStatistics.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/stats", showStatistics);
+
+            Func<Task<TraktShowStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
