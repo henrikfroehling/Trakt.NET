@@ -379,6 +379,7 @@
     <None Include="TestData\Objects\Basic\Search\SearchResultList.json" />
     <None Include="TestData\Objects\Basic\Search\SearchResultMovie.json" />
     <None Include="TestData\Objects\Basic\Search\SearchResultPerson.json" />
+    <None Include="TestData\Objects\Basic\Search\SearchResults.json" />
     <None Include="TestData\Objects\Basic\Search\SearchResultShow.json" />
     <None Include="TestData\Objects\Basic\Sharing.json" />
     <None Include="TestData\Objects\Basic\Statistics.json" />

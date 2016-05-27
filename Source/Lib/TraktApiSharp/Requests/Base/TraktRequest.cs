@@ -117,7 +117,7 @@ namespace TraktApiSharp.Requests.Base
 
         private string BuildUrl()
         {
-            var uriPathTemplate = UriTemplate + "{?extended,page,limit}";
+            var uriPathTemplate = UriTemplate; // + "{?extended,page,limit}";
             var uriPath = new UriTemplate(uriPathTemplate);
             var pathParams = GetUriPathParameters();
 
