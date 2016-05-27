@@ -470,37 +470,177 @@
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookup()
         {
-            Assert.Fail();
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
+                                                                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookupWithPage()
         {
-            Assert.Fail();
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search?id_type={type.AsString()}&id={lookupId}&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(10);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookupWithLimit()
         {
-            Assert.Fail();
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var limit = 4;
+
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search?id_type={type.AsString()}&id={lookupId}&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookupComplete()
         {
-            Assert.Fail();
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+            var limit = 4;
+
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search?id_type={type.AsString()}&id={lookupId}&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().Be(itemCount);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
+            response.PageCount.Should().Be(1);
         }
 
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookupExceptions()
         {
-            Assert.Fail();
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+            var uri = $"search?id_type={type.AsString()}&id={lookupId}";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktSearchModuleSearchIdLookupArgumentExceptions()
         {
-            Assert.Fail();
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var lookupId = "tt0848228";
+            var type = TraktSearchLookupIdType.ImDB;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
+                                                                searchResults);
+
+            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(TraktSearchLookupIdType.Unspecified, lookupId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, null);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

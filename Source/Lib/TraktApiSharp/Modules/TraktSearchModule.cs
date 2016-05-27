@@ -14,7 +14,7 @@
         public async Task<TraktPaginationListResult<TraktSearchResult>> SearchTextQueryAsync(string query, TraktSearchResultType? type = null,
                                                                                              int? year = null, int? page = null, int? limit = null)
         {
-            ValidateQuery(query);
+            Validate(query);
 
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
             {
@@ -28,7 +28,7 @@
         public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> SearchIdLookupAsync(TraktSearchLookupIdType type, string lookupId,
                                                                                                     int? page = null, int? limit = null)
         {
-            ValidateIdLookup(lookupId);
+            Validate(type, lookupId);
 
             return await QueryAsync(new TraktSearchIdLookupRequest(Client)
             {
@@ -38,14 +38,17 @@
             });
         }
 
-        private void ValidateQuery(string query)
+        private void Validate(string query)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("search query not valid", "query");
         }
 
-        private void ValidateIdLookup(string lookupId)
+        private void Validate(TraktSearchLookupIdType type, string lookupId)
         {
+            if (type == TraktSearchLookupIdType.Unspecified)
+                throw new ArgumentException("search id lookup type not valid", "type");
+
             if (string.IsNullOrEmpty(lookupId))
                 throw new ArgumentException("search lookup id not valid", "lookupId");
         }

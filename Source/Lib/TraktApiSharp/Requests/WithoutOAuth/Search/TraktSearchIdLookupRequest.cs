@@ -17,11 +17,11 @@
             var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("id_type", Type.AsString());
-            uriParams.Add("lookup_id", LookupId);
+            uriParams.Add("id", LookupId);
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "search{?id_type,lookup_id}";
+        protected override string UriTemplate => "search{?id_type,id,page,limit}";
     }
 }

@@ -374,6 +374,7 @@
     <None Include="TestData\Objects\Basic\Rating.json" />
     <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultEpisode.json" />
     <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultMovie.json" />
+    <None Include="TestData\Objects\Basic\Search\SearchIdLookupResults.json" />
     <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultShow.json" />
     <None Include="TestData\Objects\Basic\Search\SearchResultEpisode.json" />
     <None Include="TestData\Objects\Basic\Search\SearchResultList.json" />
