@@ -8,7 +8,7 @@
     {
         internal TraktShowsMostAnticipatedRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/anticipated";
+        protected override string UriTemplate => "shows/anticipated{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

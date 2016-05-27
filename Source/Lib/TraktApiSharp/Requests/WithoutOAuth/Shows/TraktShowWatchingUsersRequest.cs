@@ -10,7 +10,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override string UriTemplate => "shows/{id}/watching";
+        protected override string UriTemplate => "shows/{id}/watching{?extended}";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
 

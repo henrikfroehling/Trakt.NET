@@ -24,7 +24,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override string UriTemplate => "shows/{id}/comments{/sorting}";
+        protected override string UriTemplate => "shows/{id}/comments{/sorting}{?page,limit}";
 
         protected override bool SupportsPagination => true;
 
