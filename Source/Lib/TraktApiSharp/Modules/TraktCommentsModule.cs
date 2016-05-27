@@ -162,7 +162,7 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var comments = new List<TraktComment>();
+            var comments = new List<TraktComment>(ids.Length);
 
             foreach (var id in ids)
             {
