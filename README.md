@@ -13,7 +13,6 @@ Following modules are not completely tested and can contain bugs:
 - Comments Module
 - Recommendations Module
 - Scrobble Module
-- Search Module
 - Sync Module
 - Users Module
 
