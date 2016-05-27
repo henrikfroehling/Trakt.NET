@@ -8,7 +8,7 @@
     {
         internal TraktMoviesMostAnticipatedRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "movies/anticipated";
+        protected override string UriTemplate => "movies/anticipated{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
