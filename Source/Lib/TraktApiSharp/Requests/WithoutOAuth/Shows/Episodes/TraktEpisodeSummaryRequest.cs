@@ -6,6 +6,6 @@
     {
         internal TraktEpisodeSummaryRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}{?extended}";
     }
 }
