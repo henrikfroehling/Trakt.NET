@@ -31,9 +31,9 @@
 
             var persons = new List<TraktPerson>(ids.Length);
 
-            foreach (var id in ids)
+            for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetPersonAsync(id, extended);
+                var show = await GetPersonAsync(ids[i], extended);
 
                 if (show != null)
                     persons.Add(show);

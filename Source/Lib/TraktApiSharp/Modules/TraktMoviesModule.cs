@@ -33,9 +33,9 @@
 
             var movies = new List<TraktMovie>(ids.Length);
 
-            foreach (var id in ids)
+            for (int i = 0; i < ids.Length; i++)
             {
-                var movie = await GetMovieAsync(id, extended);
+                var movie = await GetMovieAsync(ids[i], extended);
 
                 if (movie != null)
                     movies.Add(movie);
