@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Requests;
     using Utils;
@@ -189,7 +190,18 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktPerson>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { null });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { string.Empty });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { });
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(null);
+            act.ShouldNotThrow();
         }
 
         #endregion
