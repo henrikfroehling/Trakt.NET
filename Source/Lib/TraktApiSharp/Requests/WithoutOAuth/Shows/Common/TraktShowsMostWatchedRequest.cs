@@ -22,7 +22,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/watched{/period}";
+        protected override string UriTemplate => "shows/watched{/period}{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

@@ -21,7 +21,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}/comments{/sorting}";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}/comments{/sorting}{?page,limit}";
 
         protected override bool SupportsPagination => true;
 

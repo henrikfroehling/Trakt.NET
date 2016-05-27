@@ -10,7 +10,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override string UriTemplate => "shows/{id}/related";
+        protected override string UriTemplate => "shows/{id}/related{?extended,page,limit}";
 
         protected override bool SupportsPagination => true;
 

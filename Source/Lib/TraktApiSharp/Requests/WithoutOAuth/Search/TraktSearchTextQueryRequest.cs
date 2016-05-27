@@ -29,6 +29,6 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "search{?query,type,year}";
+        protected override string UriTemplate => "search{?query,type,year,page,limit}";
     }
 }

@@ -22,7 +22,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/updates{/start_date}";
+        protected override string UriTemplate => "shows/updates{/start_date}{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

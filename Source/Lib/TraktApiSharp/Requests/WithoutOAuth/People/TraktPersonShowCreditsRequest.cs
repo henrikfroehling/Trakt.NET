@@ -11,6 +11,6 @@
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.People;
 
-        protected override string UriTemplate => "people/{id}/shows";
+        protected override string UriTemplate => "people/{id}/shows{?extended}";
     }
 }
