@@ -7,7 +7,7 @@
     {
         internal TraktSeasonSingleRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}{?extended}";
 
         protected override bool IsListResult => true;
     }

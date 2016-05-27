@@ -10,7 +10,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override string UriTemplate => "shows/{id}/seasons";
+        protected override string UriTemplate => "shows/{id}/seasons{?extended}";
 
         protected override bool IsListResult => true;
     }
