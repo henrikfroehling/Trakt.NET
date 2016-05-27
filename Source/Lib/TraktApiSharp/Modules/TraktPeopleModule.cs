@@ -5,6 +5,7 @@
     using Objects.Get.People.Credits;
     using Requests;
     using Requests.WithoutOAuth.People;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -14,6 +15,8 @@
 
         public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
@@ -41,6 +44,8 @@
 
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
@@ -50,11 +55,19 @@
 
         public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
+        }
+
+        private void Validate(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("person id not valid", "id");
         }
     }
 }
