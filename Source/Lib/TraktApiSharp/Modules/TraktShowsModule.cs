@@ -32,7 +32,7 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var shows = new List<TraktShow>();
+            var shows = new List<TraktShow>(ids.Length);
 
             foreach (var id in ids)
             {

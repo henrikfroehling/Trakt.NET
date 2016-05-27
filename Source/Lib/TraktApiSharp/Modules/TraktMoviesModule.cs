@@ -31,7 +31,7 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var movies = new List<TraktMovie>();
+            var movies = new List<TraktMovie>(ids.Length);
 
             foreach (var id in ids)
             {

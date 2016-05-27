@@ -26,7 +26,7 @@
             if (availableTranslationLanguageCodes == null || availableTranslationLanguageCodes.Count() <= 0)
                 return null;
 
-            var languages = new List<string>();
+            var languages = new List<string>(availableTranslationLanguageCodes.Count());
 
             foreach (var languageCode in availableTranslationLanguageCodes)
             {

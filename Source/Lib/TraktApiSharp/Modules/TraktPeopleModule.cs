@@ -29,7 +29,7 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var persons = new List<TraktPerson>();
+            var persons = new List<TraktPerson>(ids.Length);
 
             foreach (var id in ids)
             {

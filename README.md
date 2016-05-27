@@ -11,7 +11,6 @@ The library is feature-complete in terms of API coverage, but there are features
 Following modules are not completely tested and can contain bugs:
 - Authentication Module
 - Comments Module
-- People Module
 - Recommendations Module
 - Scrobble Module
 - Search Module

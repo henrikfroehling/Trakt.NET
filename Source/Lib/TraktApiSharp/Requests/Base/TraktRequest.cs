@@ -212,53 +212,8 @@ namespace TraktApiSharp.Requests.Base
 
                 (paginationListResult as TraktPaginationListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
-                var headers = response.Headers;
-                IEnumerable<string> values;
-
-                if (headers.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
-                {
-                    var strPage = values.First();
-                    int page;
-
-                    if (Int32.TryParse(strPage, out page))
-                        (paginationListResult as TraktPaginationListResult<TItem>).Page = page;
-                }
-
-                if (headers.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
-                {
-                    var strLimit = values.First();
-                    int limit;
-
-                    if (Int32.TryParse(strLimit, out limit))
-                        (paginationListResult as TraktPaginationListResult<TItem>).Limit = limit;
-                }
-
-                if (headers.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
-                {
-                    var strPageCount = values.First();
-                    int pageCount;
-
-                    if (Int32.TryParse(strPageCount, out pageCount))
-                        (paginationListResult as TraktPaginationListResult<TItem>).PageCount = pageCount;
-                }
-
-                if (headers.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
-                {
-                    var strItemCount = values.First();
-                    int itemCount;
-
-                    if (Int32.TryParse(strItemCount, out itemCount))
-                        (paginationListResult as TraktPaginationListResult<TItem>).ItemCount = itemCount;
-                }
-
-                if (headers.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
-                {
-                    var strUserCount = values.First();
-                    int userCount;
-
-                    if (Int32.TryParse(strUserCount, out userCount))
-                        (paginationListResult as TraktPaginationListResult<TItem>).UserCount = userCount;
-                }
+                if (response.Headers != null)
+                    ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
 
                 return (TResult)paginationListResult;
             }
@@ -273,6 +228,56 @@ namespace TraktApiSharp.Requests.Base
             (listResult as TraktListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
             return (TResult)listResult;
+        }
+
+        private void ParseHeaderValues(TraktPaginationListResult<TItem> paginationListResult, HttpResponseHeaders headers)
+        {
+            IEnumerable<string> values;
+
+            if (headers.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
+            {
+                var strPage = values.First();
+                int page;
+
+                if (Int32.TryParse(strPage, out page))
+                    paginationListResult.Page = page;
+            }
+
+            if (headers.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
+            {
+                var strLimit = values.First();
+                int limit;
+
+                if (Int32.TryParse(strLimit, out limit))
+                    paginationListResult.Limit = limit;
+            }
+
+            if (headers.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
+            {
+                var strPageCount = values.First();
+                int pageCount;
+
+                if (Int32.TryParse(strPageCount, out pageCount))
+                    paginationListResult.PageCount = pageCount;
+            }
+
+            if (headers.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
+            {
+                var strItemCount = values.First();
+                int itemCount;
+
+                if (Int32.TryParse(strItemCount, out itemCount))
+                    paginationListResult.ItemCount = itemCount;
+            }
+
+            if (headers.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
+            {
+                var strUserCount = values.First();
+                int userCount;
+
+                if (Int32.TryParse(strUserCount, out userCount))
+                    paginationListResult.UserCount = userCount;
+            }
         }
 
         private void ErrorHandling(HttpResponseMessage response)
