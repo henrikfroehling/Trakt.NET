@@ -7,7 +7,7 @@
     {
         internal TraktEpisodeWatchingUsersRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/watching";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/watching{?extended}";
 
         protected override bool IsListResult => true;
     }

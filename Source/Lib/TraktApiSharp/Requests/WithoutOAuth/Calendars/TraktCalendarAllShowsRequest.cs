@@ -6,6 +6,6 @@
     {
         internal TraktCalendarAllShowsRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "calendars/all/shows{/start_date}{/days}";
+        protected override string UriTemplate => "calendars/all/shows{/start_date}{/days}{?extended}";
     }
 }

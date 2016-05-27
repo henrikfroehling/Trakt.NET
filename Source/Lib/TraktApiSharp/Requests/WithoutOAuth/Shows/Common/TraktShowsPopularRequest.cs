@@ -8,7 +8,7 @@
     {
         internal TraktShowsPopularRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/popular";
+        protected override string UriTemplate => "shows/popular{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

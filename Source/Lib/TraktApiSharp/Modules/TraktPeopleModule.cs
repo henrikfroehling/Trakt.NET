@@ -5,6 +5,7 @@
     using Objects.Get.People.Credits;
     using Requests;
     using Requests.WithoutOAuth.People;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -14,6 +15,8 @@
 
         public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
@@ -26,11 +29,11 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var persons = new List<TraktPerson>();
+            var persons = new List<TraktPerson>(ids.Length);
 
-            foreach (var id in ids)
+            for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetPersonAsync(id, extended);
+                var show = await GetPersonAsync(ids[i], extended);
 
                 if (show != null)
                     persons.Add(show);
@@ -41,6 +44,8 @@
 
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
@@ -50,11 +55,19 @@
 
         public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string id, TraktExtendedOption extended = null)
         {
+            Validate(id);
+
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
+        }
+
+        private void Validate(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("person id not valid", "id");
         }
     }
 }

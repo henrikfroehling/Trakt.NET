@@ -162,11 +162,11 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var comments = new List<TraktComment>();
+            var comments = new List<TraktComment>(ids.Length);
 
-            foreach (var id in ids)
+            for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetCommentAsync(id);
+                var show = await GetCommentAsync(ids[i]);
 
                 if (show != null)
                     comments.Add(show);

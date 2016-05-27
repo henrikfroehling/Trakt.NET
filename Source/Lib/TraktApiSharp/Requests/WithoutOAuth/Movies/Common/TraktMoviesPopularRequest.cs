@@ -8,7 +8,7 @@
     {
         internal TraktMoviesPopularRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "movies/popular";
+        protected override string UriTemplate => "movies/popular{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

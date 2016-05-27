@@ -8,7 +8,7 @@
     {
         internal TraktMoviesTrendingRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "movies/trending";
+        protected override string UriTemplate => "movies/trending{?extended,page,limit}";
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 

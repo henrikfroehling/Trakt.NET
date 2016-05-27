@@ -32,11 +32,11 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var shows = new List<TraktShow>();
+            var shows = new List<TraktShow>(ids.Length);
 
-            foreach (var id in ids)
+            for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetShowAsync(id, extended);
+                var show = await GetShowAsync(ids[i], extended);
 
                 if (show != null)
                     shows.Add(show);
