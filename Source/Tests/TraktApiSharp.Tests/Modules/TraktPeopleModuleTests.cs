@@ -481,25 +481,221 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonShowCredits()
         {
-            Assert.Fail();
+            var personShowCredits = TestUtility.ReadFileContents(@"Objects\Get\People\Credits\PersonShowCredits.json");
+            personShowCredits.Should().NotBeNullOrEmpty();
+
+            var personId = "297737";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows", personShowCredits);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId).Result;
+
+            response.Should().NotBeNull();
+
+            response.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = response.Cast.ToArray();
+
+            cast[0].Character.Should().Be("Walter White");
+            cast[0].Show.Should().NotBeNull();
+            cast[0].Show.Title.Should().Be("Breaking Bad");
+            cast[0].Show.Year.Should().Be(2008);
+            cast[0].Show.Ids.Should().NotBeNull();
+            cast[0].Show.Ids.Trakt.Should().Be(1);
+            cast[0].Show.Ids.Slug.Should().Be("breaking-bad");
+            cast[0].Show.Ids.Tvdb.Should().Be(81189);
+            cast[0].Show.Ids.Imdb.Should().Be("tt0903747");
+            cast[0].Show.Ids.Tmdb.Should().Be(1396);
+            cast[0].Show.Ids.TvRage.Should().Be(18164);
+
+            cast[1].Character.Should().Be("Hal");
+            cast[1].Show.Should().NotBeNull();
+            cast[1].Show.Title.Should().Be("Malcolm in the Middle");
+            cast[1].Show.Year.Should().Be(2000);
+            cast[1].Show.Ids.Should().NotBeNull();
+            cast[1].Show.Ids.Trakt.Should().Be(1991);
+            cast[1].Show.Ids.Slug.Should().Be("malcolm-in-the-middle");
+            cast[1].Show.Ids.Tvdb.Should().Be(73838);
+            cast[1].Show.Ids.Imdb.Should().Be("tt0212671");
+            cast[1].Show.Ids.Tmdb.Should().Be(2004);
+            cast[1].Show.Ids.TvRage.Should().NotHaveValue();
+
+            response.Crew.Should().NotBeNull();
+            response.Crew.Art.Should().BeNull();
+            response.Crew.Camera.Should().BeNull();
+            response.Crew.CostumeAndMakeup.Should().BeNull();
+            response.Crew.Crew.Should().BeNull();
+            response.Crew.Directing.Should().BeNull();
+            response.Crew.Editing.Should().BeNull();
+            response.Crew.Lighting.Should().BeNull();
+            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+
+            var production = response.Crew.Production.ToArray();
+
+            production[0].Job.Should().Be("Producer");
+            production[0].Show.Should().NotBeNull();
+            production[0].Show.Title.Should().Be("Breaking Bad");
+            production[0].Show.Year.Should().Be(2008);
+            production[0].Show.Ids.Should().NotBeNull();
+            production[0].Show.Ids.Trakt.Should().Be(1);
+            production[0].Show.Ids.Slug.Should().Be("breaking-bad");
+            production[0].Show.Ids.Tvdb.Should().Be(81189);
+            production[0].Show.Ids.Imdb.Should().Be("tt0903747");
+            production[0].Show.Ids.Tmdb.Should().Be(1396);
+            production[0].Show.Ids.TvRage.Should().Be(18164);
+
+            response.Crew.Sound.Should().BeNull();
+            response.Crew.VisualEffects.Should().BeNull();
+            response.Crew.Writing.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonShowCreditsWithExtendedOption()
         {
-            Assert.Fail();
+            var personShowCredits = TestUtility.ReadFileContents(@"Objects\Get\People\Credits\PersonShowCredits.json");
+            personShowCredits.Should().NotBeNullOrEmpty();
+
+            var personId = "297737";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows?extended={extendedOption.ToString()}",
+                                                      personShowCredits);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId, extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = response.Cast.ToArray();
+
+            cast[0].Character.Should().Be("Walter White");
+            cast[0].Show.Should().NotBeNull();
+            cast[0].Show.Title.Should().Be("Breaking Bad");
+            cast[0].Show.Year.Should().Be(2008);
+            cast[0].Show.Ids.Should().NotBeNull();
+            cast[0].Show.Ids.Trakt.Should().Be(1);
+            cast[0].Show.Ids.Slug.Should().Be("breaking-bad");
+            cast[0].Show.Ids.Tvdb.Should().Be(81189);
+            cast[0].Show.Ids.Imdb.Should().Be("tt0903747");
+            cast[0].Show.Ids.Tmdb.Should().Be(1396);
+            cast[0].Show.Ids.TvRage.Should().Be(18164);
+
+            cast[1].Character.Should().Be("Hal");
+            cast[1].Show.Should().NotBeNull();
+            cast[1].Show.Title.Should().Be("Malcolm in the Middle");
+            cast[1].Show.Year.Should().Be(2000);
+            cast[1].Show.Ids.Should().NotBeNull();
+            cast[1].Show.Ids.Trakt.Should().Be(1991);
+            cast[1].Show.Ids.Slug.Should().Be("malcolm-in-the-middle");
+            cast[1].Show.Ids.Tvdb.Should().Be(73838);
+            cast[1].Show.Ids.Imdb.Should().Be("tt0212671");
+            cast[1].Show.Ids.Tmdb.Should().Be(2004);
+            cast[1].Show.Ids.TvRage.Should().NotHaveValue();
+
+            response.Crew.Should().NotBeNull();
+            response.Crew.Art.Should().BeNull();
+            response.Crew.Camera.Should().BeNull();
+            response.Crew.CostumeAndMakeup.Should().BeNull();
+            response.Crew.Crew.Should().BeNull();
+            response.Crew.Directing.Should().BeNull();
+            response.Crew.Editing.Should().BeNull();
+            response.Crew.Lighting.Should().BeNull();
+            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+
+            var production = response.Crew.Production.ToArray();
+
+            production[0].Job.Should().Be("Producer");
+            production[0].Show.Should().NotBeNull();
+            production[0].Show.Title.Should().Be("Breaking Bad");
+            production[0].Show.Year.Should().Be(2008);
+            production[0].Show.Ids.Should().NotBeNull();
+            production[0].Show.Ids.Trakt.Should().Be(1);
+            production[0].Show.Ids.Slug.Should().Be("breaking-bad");
+            production[0].Show.Ids.Tvdb.Should().Be(81189);
+            production[0].Show.Ids.Imdb.Should().Be("tt0903747");
+            production[0].Show.Ids.Tmdb.Should().Be(1396);
+            production[0].Show.Ids.TvRage.Should().Be(18164);
+
+            response.Crew.Sound.Should().BeNull();
+            response.Crew.VisualEffects.Should().BeNull();
+            response.Crew.Writing.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonShowCreditsExceptions()
         {
-            Assert.Fail();
+            var personId = "297737";
+            var uri = $"people/{personId}/shows";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPersonShowCredits>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId);
+            act.ShouldThrow<TraktPersonNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonShowCreditsArgumentExceptions()
         {
-            Assert.Fail();
+            var personShowCredits = TestUtility.ReadFileContents(@"Objects\Get\People\Credits\PersonShowCredits.json");
+            personShowCredits.Should().NotBeNullOrEmpty();
+
+            var personId = "297737";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows", personShowCredits);
+
+            Func<Task<TraktPersonShowCredits>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
