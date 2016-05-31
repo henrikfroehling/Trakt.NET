@@ -11,8 +11,8 @@
     {
         public TraktRecommendationsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktMovieRecommendation>> GetUserMovieRecommendationsAsync(int? limit = null,
-                                                                                                      TraktExtendedOption extended = null)
+        public async Task<TraktPaginationListResult<TraktMovieRecommendation>> GetUserMovieRecommendationsAsync(int? limit = null,
+                                                                                                                TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
