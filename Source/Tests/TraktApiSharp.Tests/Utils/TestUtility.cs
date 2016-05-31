@@ -196,6 +196,11 @@
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
