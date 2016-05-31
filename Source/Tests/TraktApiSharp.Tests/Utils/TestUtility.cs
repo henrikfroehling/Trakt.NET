@@ -87,8 +87,8 @@
         }
 
         public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
-                                                                   int page = 0, int limit = 0,
-                                                                   int pageCount = 0, int itemCount = 0,
+                                                                   int? page = null, int? limit = null,
+                                                                   int? pageCount = null, int? itemCount = null,
                                                                    int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -98,10 +98,18 @@
             responseContent.Should().NotBeNullOrEmpty();
 
             var response = new HttpResponseMessage();
-            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
-            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
-            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
-            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (page.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page.GetValueOrDefault()}");
+
+            if (limit.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit.GetValueOrDefault()}");
+
+            if (pageCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount.GetValueOrDefault()}");
+
+            if (itemCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
 
             if (userCount.HasValue)
                 response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
@@ -182,8 +190,8 @@
         }
 
         public static void SetupMockPaginationResponseWithOAuth(string uri, string responseContent,
-                                                                int page = 0, int limit = 0,
-                                                                int pageCount = 0, int itemCount = 0,
+                                                                int? page = null, int? limit = null,
+                                                                int? pageCount = null, int? itemCount = null,
                                                                 int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -193,10 +201,18 @@
             responseContent.Should().NotBeNullOrEmpty();
 
             var response = new HttpResponseMessage();
-            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
-            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
-            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
-            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (page.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page.GetValueOrDefault()}");
+
+            if (limit.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit.GetValueOrDefault()}");
+
+            if (pageCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount.GetValueOrDefault()}");
+
+            if (itemCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
 
             if (userCount.HasValue)
                 response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
