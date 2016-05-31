@@ -4,6 +4,7 @@
     using Objects.Get.Recommendations;
     using Requests;
     using Requests.WithOAuth.Recommendations;
+    using System;
     using System.Threading.Tasks;
 
     public class TraktRecommendationsModule : TraktBaseModule
@@ -22,6 +23,8 @@
 
         public async Task HideMovieRecommendationAsync(string movieId)
         {
+            Validate(movieId);
+
             await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieId });
         }
 
@@ -37,7 +40,15 @@
 
         public async Task HideShowRecommendationAsync(string showId)
         {
+            Validate(showId);
+
             await QueryAsync(new TraktUserRecommendationHideShowRequest(Client) { Id = showId });
+        }
+
+        private void Validate(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("id not valid", "id");
         }
     }
 }
