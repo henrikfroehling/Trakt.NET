@@ -4,13 +4,15 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktMovieScrobblePost : TraktScrobblePost, IValidatable
+    public class TraktMovieScrobblePost : TraktScrobblePost
     {
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }
 
-        public void Validate()
+        public override void Validate()
         {
+            base.Validate();
+
             if (Movie == null)
                 throw new ArgumentException("movie not set");
 
