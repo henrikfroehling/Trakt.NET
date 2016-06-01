@@ -189,19 +189,82 @@
         [TestMethod]
         public void TestTraktRecommendationsModuleHideUserMovieRecommendation()
         {
-            Assert.Fail();
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithOAuth($"recommendations/movies/{movieId}", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
+            act.ShouldNotThrow();
         }
 
         [TestMethod]
         public void TestTraktRecommendationsModuleHideUserMovieRecommendationExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+            var uri = $"recommendations/movies/{movieId}";
+
+            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktRecommendationsModuleHideUserMovieRecommendationArgumentExceptions()
         {
-            Assert.Fail();
+            var movieId = "94024";
+
+            TestUtility.SetupMockResponseWithOAuth($"recommendations/movies/{movieId}", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
