@@ -9,6 +9,8 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Scrobbles;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Requests;
@@ -1837,61 +1839,1337 @@
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisode()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShow()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithAppVersion()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndAppVersion()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithAppDate()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndAppDate()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithExtendedOption()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndExtendedOption()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithAppVersionAndAppDate()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndAppVersionAndAppDate()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithAppVersionAndExtendedOption()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndAppVersionAndExtendedOption()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeWithAppDateAndExtendedOption()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowAndAppDateAndExtendedOption()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeComplete()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowComplete()
+        {
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Start);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeExceptions()
         {
-            Assert.Fail();
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var progress = 10.0f;
+
+            var uri = "scrobble/start";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktScrobbleModuleStartEpisodeWithShowExceptions()
+        {
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+
+            var uri = "scrobble/start";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStartEpisodeArgumentExceptions()
         {
-            Assert.Fail();
+            var episodeStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json");
+            episodeStartScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                SeasonNumber = 0,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            var progress = 10.0f;
+
+            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = episode,
+                Show = show,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
+
+            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(null, progress);
+
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = null;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds
+            {
+                Trakt = 16,
+                Tvdb = 349232,
+                Imdb = "tt0959621",
+                Tmdb = 62085,
+                TvRage = 637041
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.01f);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.01f);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = null;
+            episode.SeasonNumber = -1;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = null;
+            episode.SeasonNumber = 0;
+            episode.Number = 0;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds();
+            episode.Number = 0;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = null;
+            episode.Number = 1;
+            show.Title = string.Empty;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = null;
+            show.Title = "Breaking Bad";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.01f, show);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.01f, show);
+            act.ShouldThrow<ArgumentException>();
+
+            episode.Ids = new TraktEpisodeIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.01f, show);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.01f, show);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
