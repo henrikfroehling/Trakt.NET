@@ -4,13 +4,13 @@
     using Objects.Basic;
     using Objects.Get.Recommendations;
 
-    internal class TraktUserShowRecommendationsRequest : TraktGetRequest<TraktListResult<TraktShowRecommendation>, TraktShowRecommendation>
+    internal class TraktUserShowRecommendationsRequest : TraktGetRequest<TraktPaginationListResult<TraktShowRecommendation>, TraktShowRecommendation>
     {
         internal TraktUserShowRecommendationsRequest(TraktClient client) : base(client) { }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        protected override string UriTemplate => "recommendations/shows";
+        protected override string UriTemplate => "recommendations/shows{?extended,limit}";
 
         protected override bool SupportsPagination => true;
 

@@ -87,8 +87,8 @@
         }
 
         public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
-                                                                   int page = 0, int limit = 0,
-                                                                   int pageCount = 0, int itemCount = 0,
+                                                                   int? page = null, int? limit = null,
+                                                                   int? pageCount = null, int? itemCount = null,
                                                                    int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -98,10 +98,18 @@
             responseContent.Should().NotBeNullOrEmpty();
 
             var response = new HttpResponseMessage();
-            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
-            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
-            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
-            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (page.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page.GetValueOrDefault()}");
+
+            if (limit.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit.GetValueOrDefault()}");
+
+            if (pageCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount.GetValueOrDefault()}");
+
+            if (itemCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
 
             if (userCount.HasValue)
                 response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
@@ -182,21 +190,34 @@
         }
 
         public static void SetupMockPaginationResponseWithOAuth(string uri, string responseContent,
-                                                                int page = 0, int limit = 0,
-                                                                int pageCount = 0, int itemCount = 0,
+                                                                int? page = null, int? limit = null,
+                                                                int? pageCount = null, int? itemCount = null,
                                                                 int? userCount = null)
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
 
             var response = new HttpResponseMessage();
-            response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page}");
-            response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit}");
-            response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount}");
-            response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount}");
+
+            if (page.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page.GetValueOrDefault()}");
+
+            if (limit.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit.GetValueOrDefault()}");
+
+            if (pageCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount.GetValueOrDefault()}");
+
+            if (itemCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
 
             if (userCount.HasValue)
                 response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
@@ -212,6 +233,28 @@
                          { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
                      })
                      .Respond(response);
+        }
+
+        public static void SetupMockResponseWithOAuth(string uri, HttpStatusCode httpStatusCode)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.Should().NotBeNull();
+            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
+
+            uri.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                     })
+                     .Respond(httpStatusCode);
         }
 
         public static void SetupMockErrorResponseWithOAuth(string uri, HttpStatusCode httpStatusCode)
