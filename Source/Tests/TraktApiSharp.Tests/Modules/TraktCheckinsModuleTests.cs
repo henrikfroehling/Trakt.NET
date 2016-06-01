@@ -413,14 +413,12 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -487,14 +485,9 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var movieCheckinPost = new TraktMovieCheckinPost
             {
-                Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Movie = movie
             };
 
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
@@ -503,30 +496,24 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(null, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
             movie.Year = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -924,14 +911,12 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -999,14 +984,9 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
-                Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Episode = episode
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1015,31 +995,25 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1517,14 +1491,12 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -1594,14 +1566,10 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Show = show
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1610,34 +1578,28 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null, show, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null, show);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show: null);
             act.ShouldThrow<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
 
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds
@@ -1651,7 +1613,7 @@
 
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
         }
 
