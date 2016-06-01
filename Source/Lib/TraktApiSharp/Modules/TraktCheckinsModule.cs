@@ -6,6 +6,7 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
+    using Requests;
     using Requests.WithOAuth.Checkins;
     using System;
     using System.Threading.Tasks;
@@ -16,7 +17,8 @@
 
         public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                            string message = null, TraktSharing sharing = null,
-                                                                           string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                           TraktExtendedOption extended = null)
         {
             Validate(movie);
 
@@ -40,12 +42,17 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
 
-            return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client) { RequestBody = requestBody });
+            return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
+            {
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
+            });
         }
 
         public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                string message = null, TraktSharing sharing = null,
-                                                                               string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                               string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                               TraktExtendedOption extended = null)
         {
             Validate(episode);
 
@@ -70,13 +77,18 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
 
-            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client) { RequestBody = requestBody });
+            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
+            {
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
+            });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show,
-                                                                               string appVersion = null, DateTime? appBuildDate = null,
-                                                                               string message = null, TraktSharing sharing = null,
-                                                                               string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
+                                                                                       string appVersion = null, DateTime? appBuildDate = null,
+                                                                                       string message = null, TraktSharing sharing = null,
+                                                                                       string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                       TraktExtendedOption extended = null)
         {
             Validate(episode, show);
 
@@ -101,7 +113,11 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
 
-            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client) { RequestBody = requestBody });
+            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
+            {
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
+            });
         }
 
         public async Task DeleteActiveCheckinsAsync()
