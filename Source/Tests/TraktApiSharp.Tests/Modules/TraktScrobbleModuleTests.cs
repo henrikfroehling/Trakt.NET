@@ -1241,61 +1241,590 @@
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovie()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieWithAppVersion()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appVersion = "app_version";
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModulevMovieWithAppDate()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieWithExtendedOption()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieWithAppVersionAndAppDate()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieWithAppVersionAndExtendedOption()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appVersion = "app_version";
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieWithAppDateAndExtendedOption()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, null, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieComplete()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 85.0f;
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, movieStopScrobbleResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Action.Should().Be(TraktScrobbleActionType.Stop);
+            response.Progress.Should().Be(progress);
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeFalse();
+            response.Sharing.Twitter.Should().BeFalse();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieExceptions()
         {
-            Assert.Fail();
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 75.0f;
+
+            var uri = "scrobble/stop";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktMovieScrobblePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktScrobbleModuleStopMovieArgumentExceptions()
         {
-            Assert.Fail();
+            var movieStopScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json");
+            movieStopScrobbleResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var progress = 1.25f;
+
+            var movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = movie,
+                Progress = progress
+            };
+
+            var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
+
+            Func<Task<TraktMovieScrobblePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(null, progress);
+
+            act.ShouldThrow<ArgumentException>();
+
+            movie.Title = string.Empty;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            movie.Title = "Guardians of the Galaxy";
+            movie.Year = 0;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            movie.Year = 2014;
+            movie.Ids = null;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            movie.Ids = new TraktMovieIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentException>();
+
+            movie.Ids = new TraktMovieIds
+            {
+                Trakt = 28,
+                Slug = "guardians-of-the-galaxy-2014",
+                Imdb = "tt2015381",
+                Tmdb = 118340
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, -0.01f);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, 100.01f);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
