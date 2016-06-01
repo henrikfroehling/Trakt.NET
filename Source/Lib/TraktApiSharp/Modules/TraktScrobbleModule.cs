@@ -16,7 +16,7 @@
         public TraktScrobbleModule(TraktClient client) : base(client) { }
 
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
-                                                                          string appVersion = "", DateTime? appDate = null,
+                                                                          string appVersion = null, DateTime? appDate = null,
                                                                           TraktExtendedOption extended = null)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
@@ -24,7 +24,7 @@
         }
 
         public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync(TraktMovie movie, float progress,
-                                                                          string appVersion = "", DateTime? appDate = null,
+                                                                          string appVersion = null, DateTime? appDate = null,
                                                                           TraktExtendedOption extended = null)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
@@ -32,7 +32,7 @@
         }
 
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
-                                                                         string appVersion = "", DateTime? appDate = null,
+                                                                         string appVersion = null, DateTime? appDate = null,
                                                                          TraktExtendedOption extended = null)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
@@ -40,7 +40,7 @@
         }
 
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                             string appVersion = "", DateTime? appDate = null,
+                                                                             string appVersion = null, DateTime? appDate = null,
                                                                              TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
@@ -48,7 +48,7 @@
         }
 
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                              string appVersion = "", DateTime? appDate = null,
+                                                                              string appVersion = null, DateTime? appDate = null,
                                                                               TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
@@ -56,7 +56,7 @@
         }
 
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                             string appVersion = "", DateTime? appDate = null,
+                                                                             string appVersion = null, DateTime? appDate = null,
                                                                              TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
@@ -94,41 +94,40 @@
         }
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
-                                                               string appVersion = "", DateTime? appDate = null)
+                                                               string appVersion = null, DateTime? appDate = null)
         {
-            return new TraktMovieScrobblePost
+            var movieScrobblePost = new TraktMovieScrobblePost
             {
-                Movie = new TraktMovie
-                {
-                    Title = movie.Title,
-                    Year = movie.Year,
-                    Ids = movie.Ids
-                },
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
+                Movie = movie,
+                Progress = progress
             };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                movieScrobblePost.AppVersion = appVersion;
+
+            if (appDate.HasValue)
+                movieScrobblePost.AppDate = appDate.Value.ToString("yyyy-MM-dd");
+
+            return movieScrobblePost;
         }
 
         private TraktEpisodeScrobblePost CreateEpisodeScrobblePost(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                   string appVersion = "", DateTime? appDate = null)
+                                                                   string appVersion = null, DateTime? appDate = null)
         {
-            return new TraktEpisodeScrobblePost
+            var episodeScrobblePost = new TraktEpisodeScrobblePost
             {
-                Episode = new TraktEpisode
-                {
-                    Ids = episode.Ids,
-                    SeasonNumber = episode.SeasonNumber,
-                    Number = episode.Number
-                },
-                Show = show != null ? new TraktShow
-                {
-                    Title = show.Title
-                } : null,
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appDate.HasValue ? appDate.Value.ToString("yyyy-MM-dd") : DateTime.UtcNow.ToString("yyyy-MM-dd")
+                Episode = episode,
+                Show = show,
+                Progress = progress
             };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                episodeScrobblePost.AppVersion = appVersion;
+
+            if (appDate.HasValue)
+                episodeScrobblePost.AppDate = appDate.Value.ToString("yyyy-MM-dd");
+
+            return episodeScrobblePost;
         }
     }
 }
