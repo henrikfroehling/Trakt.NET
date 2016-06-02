@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
@@ -40,7 +41,7 @@
                 requestBody.AppVersion = appVersion;
 
             if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
@@ -75,7 +76,7 @@
                 requestBody.AppVersion = appVersion;
 
             if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
@@ -111,7 +112,7 @@
                 requestBody.AppVersion = appVersion;
 
             if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToString("yyyy-MM-dd");
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {

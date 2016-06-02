@@ -6,6 +6,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -170,7 +171,7 @@
             var movieCheckinPost = new TraktMovieCheckinPost
             {
                 Movie = movie,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
@@ -631,7 +632,7 @@
             {
                 Episode = episode,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -739,7 +740,7 @@
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1352,7 +1353,7 @@
             {
                 Episode = episode,
                 Show = show,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
