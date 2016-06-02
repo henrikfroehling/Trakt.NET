@@ -55,5 +55,17 @@
             datetime7.YearsBetween(datetime8).Should().Be(5);
             datetime8.YearsBetween(datetime7).Should().Be(5);
         }
+
+        [TestMethod]
+        public void TestDateTimeExtensionsToTraktDateString()
+        {
+            var dateTime = DateTime.UtcNow;
+            var day = dateTime.Day;
+            var month = dateTime.Month;
+            var year = dateTime.Year;
+
+            var dateTraktString = dateTime.ToTraktDateString();
+            dateTraktString.Should().NotBeNullOrEmpty().And.Be($"{year}-{month:00}-{day:00}");
+        }
     }
 }

@@ -63,5 +63,10 @@
         {
             return (new DateTime(1, 1, 1) + (value.Max(otherDate) - value.Min(otherDate))).Year - 1;
         }
+
+        public static string ToTraktDateString(this DateTime value)
+        {
+            return value.ToUniversalTime().ToString("yyyy-MM-dd");
+        }
     }
 }
