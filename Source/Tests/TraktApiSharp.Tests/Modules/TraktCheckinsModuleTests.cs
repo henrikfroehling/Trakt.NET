@@ -149,6 +149,42 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndAppDate()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithAppDate()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -200,6 +236,36 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithMessage()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -248,6 +314,30 @@
             response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             response.Movie.Ids.Imdb.Should().Be("tt2015381");
             response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -307,6 +397,24 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueId()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -359,6 +467,18 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueIdAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueName()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -408,6 +528,12 @@
             response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             response.Movie.Ids.Imdb.Should().Be("tt2015381");
             response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueNameAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -778,6 +904,42 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndAppDate()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeWithAppDate()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -832,6 +994,36 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeWithMessage()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -883,6 +1075,30 @@
             response.Episode.Ids.Imdb.Should().Be("tt0959621");
             response.Episode.Ids.Tmdb.Should().Be(62085);
             response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -945,6 +1161,24 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueId()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1000,6 +1234,18 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueIdAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueName()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1052,6 +1298,12 @@
             response.Episode.Ids.Imdb.Should().Be("tt0959621");
             response.Episode.Ids.Tmdb.Should().Be(62085);
             response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueNameAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -1452,6 +1704,42 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndAppDate()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDate()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1519,6 +1807,36 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndMessage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessage()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1583,6 +1901,30 @@
             response.Show.Ids.Imdb.Should().Be("tt0903747");
             response.Show.Ids.Tmdb.Should().Be(1396);
             response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndSharing()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -1658,6 +2000,24 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndFoursquareVenueId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueId()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1726,6 +2086,18 @@
         }
 
         [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueIdAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueName()
         {
             var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
@@ -1791,6 +2163,12 @@
             response.Show.Ids.Imdb.Should().Be("tt0903747");
             response.Show.Ids.Tmdb.Should().Be(1396);
             response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueNameAndExtendedOption()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -2098,6 +2476,25 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region DeleteCheckins
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleDeleteCheckins()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleDeleteCheckinsExceptions()
+        {
+            Assert.Fail();
         }
 
         #endregion
