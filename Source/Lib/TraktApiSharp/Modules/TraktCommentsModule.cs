@@ -63,7 +63,7 @@
         }
 
         public async Task<TraktCommentPostResponse> PostShowCommentAsync(TraktShow show, string comment,
-                                                                         bool spoiler = false, TraktSharing sharing = null)
+                                                                         bool? spoiler = null, TraktSharing sharing = null)
         {
             ValidateComment(comment);
 
@@ -71,11 +71,7 @@
             {
                 RequestBody = new TraktShowCommentPost
                 {
-                    Show = new TraktShow
-                    {
-                        Title = show.Title,
-                        Ids = show.Ids
-                    },
+                    Show = show,
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing

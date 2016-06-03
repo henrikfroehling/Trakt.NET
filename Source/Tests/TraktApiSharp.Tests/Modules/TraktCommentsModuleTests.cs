@@ -9,6 +9,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
     using Utils;
@@ -584,37 +585,405 @@
         [TestMethod]
         public void TestTraktCommentsModulePostShowComment()
         {
-            Assert.Fail();
+            var showCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            showCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var showCommentPost = new TraktShowCommentPost
+            {
+                Show = show,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(showCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostShowCommentWithSpoiler()
         {
-            Assert.Fail();
+            var showCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            showCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var showCommentPost = new TraktShowCommentPost
+            {
+                Show = show,
+                Comment = comment,
+                Spoiler = spoiler
+            };
+
+            var postJson = TestUtility.SerializeObject(showCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostShowCommentWithSharing()
         {
-            Assert.Fail();
+            var showCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            showCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+
+            var showCommentPost = new TraktShowCommentPost
+            {
+                Show = show,
+                Comment = comment,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(showCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, null, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostShowCommentComplete()
         {
-            Assert.Fail();
+            var showCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            showCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var showCommentPost = new TraktShowCommentPost
+            {
+                Show = show,
+                Comment = comment,
+                Spoiler = spoiler,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(showCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostShowCommentExceptions()
         {
-            Assert.Fail();
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var uri = "comments";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostShowCommentArgumentExceptions()
         {
-            Assert.Fail();
+            var showCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            showCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1388,
+                    Slug = "breaking bad",
+                    Tvdb = 81189,
+                    Imdb = "tt0903747",
+                    Tmdb = 1396,
+                    TvRage = 18164
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var showCommentPost = new TraktShowCommentPost
+            {
+                Show = show,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(showCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(null, comment);
+
+            act.ShouldThrow<ArgumentNullException>();
+
+            show.Title = string.Empty;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            show.Title = "Breaking Bad";
+            show.Ids = null;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            show.Ids = new TraktShowIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            show.Ids = new TraktShowIds
+            {
+                Trakt = 1388,
+                Slug = "breaking bad",
+                Tvdb = 81189,
+                Imdb = "tt0903747",
+                Tmdb = 1396,
+                TvRage = 18164
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            comment = "one two three four";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
