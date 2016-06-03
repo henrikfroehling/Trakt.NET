@@ -10,6 +10,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Seasons;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
     using Utils;
@@ -996,37 +997,372 @@
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonComment()
         {
-            Assert.Fail();
+            var seasonCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            seasonCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = season,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(seasonCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonCommentWithSpoiler()
         {
-            Assert.Fail();
+            var seasonCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            seasonCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = season,
+                Comment = comment,
+                Spoiler = spoiler
+            };
+
+            var postJson = TestUtility.SerializeObject(seasonCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonCommentWithSharing()
         {
-            Assert.Fail();
+            var seasonCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            seasonCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+
+            var seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = season,
+                Comment = comment,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(seasonCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, null, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonCommentComplete()
         {
-            Assert.Fail();
+            var seasonCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            seasonCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = season,
+                Comment = comment,
+                Spoiler = spoiler,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(seasonCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonCommentExceptions()
         {
-            Assert.Fail();
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var uri = "comments";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostSeasonCommentArgumentExceptions()
         {
-            Assert.Fail();
+            var seasonCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            seasonCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds
+                {
+                    Trakt = 3950,
+                    Tvdb = 30272,
+                    Tmdb = 3572
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = season,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(seasonCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(null, comment);
+
+            act.ShouldThrow<ArgumentNullException>();
+
+            season.Ids = null;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            season.Ids = new TraktSeasonIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            season.Ids = new TraktSeasonIds
+            {
+                Trakt = 3950,
+                Tvdb = 30272,
+                Tmdb = 3572
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            comment = "one two three four";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

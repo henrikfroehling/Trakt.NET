@@ -80,7 +80,7 @@
         }
 
         public async Task<TraktCommentPostResponse> PostSeasonCommentAsync(TraktSeason season, string comment,
-                                                                           bool spoiler = false, TraktSharing sharing = null)
+                                                                           bool? spoiler = null, TraktSharing sharing = null)
         {
             ValidateComment(comment);
 
@@ -88,10 +88,7 @@
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
-                    Season = new TraktSeason
-                    {
-                        Ids = season.Ids
-                    },
+                    Season = season,
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
