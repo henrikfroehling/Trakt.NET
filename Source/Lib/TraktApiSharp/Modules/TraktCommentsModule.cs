@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
@@ -11,6 +12,7 @@
     using Requests;
     using Requests.WithOAuth.Comments;
     using Requests.WithoutOAuth.Comments;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -20,12 +22,16 @@
 
         public async Task<TraktComment> GetCommentAsync(string id)
         {
+            ValidateId(id);
+
             return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
         }
 
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,
                                                                           bool spoiler = false, TraktSharing sharing = null)
         {
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentPostRequest<TraktMovieCommentPost>(Client)
             {
                 RequestBody = new TraktMovieCommentPost
@@ -46,6 +52,8 @@
         public async Task<TraktCommentPostResponse> PostShowCommentAsync(TraktShow show, string comment,
                                                                          bool spoiler = false, TraktSharing sharing = null)
         {
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentPostRequest<TraktShowCommentPost>(Client)
             {
                 RequestBody = new TraktShowCommentPost
@@ -65,6 +73,8 @@
         public async Task<TraktCommentPostResponse> PostSeasonCommentAsync(TraktSeason season, string comment,
                                                                            bool spoiler = false, TraktSharing sharing = null)
         {
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentPostRequest<TraktSeasonCommentPost>(Client)
             {
                 RequestBody = new TraktSeasonCommentPost
@@ -83,6 +93,8 @@
         public async Task<TraktCommentPostResponse> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
                                                                             bool spoiler = false, TraktSharing sharing = null)
         {
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentPostRequest<TraktEpisodeCommentPost>(Client)
             {
                 RequestBody = new TraktEpisodeCommentPost
@@ -101,6 +113,8 @@
         public async Task<TraktCommentPostResponse> PostListCommentAsync(TraktList list, string comment,
                                                                          bool spoiler = false, TraktSharing sharing = null)
         {
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentPostRequest<TraktListCommentPost>(Client)
             {
                 RequestBody = new TraktListCommentPost
@@ -118,6 +132,9 @@
 
         public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool spoiler = false)
         {
+            ValidateId(commentId);
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentUpdateRequest(Client)
             {
                 Id = commentId,
@@ -131,6 +148,9 @@
 
         public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool spoiler = false)
         {
+            ValidateId(commentId);
+            ValidateComment(comment);
+
             return await QueryAsync(new TraktCommentReplyRequest(Client)
             {
                 Id = commentId,
@@ -144,16 +164,22 @@
 
         public async Task DeleteCommentAsync(string commentId)
         {
+            ValidateId(commentId);
+
             await QueryAsync(new TraktCommentDeleteRequest(Client) { Id = commentId });
         }
 
         public async Task LikeCommentAsync(string commentId)
         {
+            ValidateId(commentId);
+
             await QueryAsync(new TraktCommentLikeRequest(Client) { Id = commentId });
         }
 
         public async Task UnlikeCommentAsync(string commentId)
         {
+            ValidateId(commentId);
+
             await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId });
         }
 
@@ -177,19 +203,35 @@
 
         public async Task<TraktComment> GetCommentReplyAsync(string replyId)
         {
-            return await QueryAsync(new TraktCommentReplySummaryRequest(Client)
-            {
-                Id = replyId
-            });
+            ValidateId(replyId);
+
+            return await QueryAsync(new TraktCommentReplySummaryRequest(Client) { Id = replyId });
         }
 
         public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(string id, int? page = null, int? limit = null)
         {
+            ValidateId(id);
+
             return await QueryAsync(new TraktCommentRepliesRequest(Client)
             {
                 Id = id,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
+        }
+
+        private void ValidateId(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentException("comment id not valid", "id");
+        }
+
+        private void ValidateComment(string comment)
+        {
+            if (string.IsNullOrEmpty(comment))
+                throw new ArgumentException("comment is empty", "comment");
+
+            if (comment.WordCount() < 5)
+                throw new ArgumentException("comment has too few words - at least five words are required", "comment");
         }
     }
 }

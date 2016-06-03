@@ -12,7 +12,7 @@
         public void Validate()
         {
             if (Show == null)
-                throw new ArgumentException("show not set");
+                throw new ArgumentNullException("show not set");
 
             if (string.IsNullOrEmpty(Show.Title))
                 throw new ArgumentException("show title not set");

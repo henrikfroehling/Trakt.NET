@@ -14,7 +14,7 @@
         public void Validate()
         {
             if (string.IsNullOrEmpty(Comment))
-                throw new ArgumentException("comment not set");
+                throw new ArgumentException("comment is empty");
         }
     }
 }
