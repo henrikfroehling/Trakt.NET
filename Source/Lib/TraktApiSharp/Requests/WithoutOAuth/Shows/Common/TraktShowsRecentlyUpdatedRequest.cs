@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Common
 {
     using Base.Get;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows.Common;
     using System;
@@ -17,7 +18,7 @@
             var uriParams = base.GetUriPathParameters();
 
             if (StartDate.HasValue)
-                uriParams.Add("start_date", StartDate.Value.ToString("yyyy-MM-dd"));
+                uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
 
             return uriParams;
         }

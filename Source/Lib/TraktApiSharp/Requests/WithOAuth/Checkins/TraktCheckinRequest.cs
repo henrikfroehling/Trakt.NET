@@ -7,7 +7,7 @@
     {
         internal TraktCheckinRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "checkin";
+        protected override string UriTemplate => "checkin{?extended}";
 
         protected override bool IsCheckinRequest => true;
 

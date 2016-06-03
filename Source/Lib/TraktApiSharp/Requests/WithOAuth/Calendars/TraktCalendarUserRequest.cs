@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Calendars
 {
     using Base.Get;
+    using Extensions;
     using Objects.Basic;
     using System;
     using System.Collections.Generic;
@@ -18,7 +19,7 @@
             var uriParams = base.GetUriPathParameters();
 
             if (StartDate.HasValue)
-                uriParams.Add("start_date", StartDate.Value.ToString("yyyy-MM-dd"));
+                uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
 
             if (Days.HasValue)
                 uriParams.Add("days", Days.Value);

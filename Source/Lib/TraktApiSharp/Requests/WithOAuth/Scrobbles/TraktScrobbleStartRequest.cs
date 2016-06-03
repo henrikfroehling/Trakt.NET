@@ -7,7 +7,7 @@
     {
         internal TraktScrobbleStartRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "scrobble/start";
+        protected override string UriTemplate => "scrobble/start{?extended}";
 
         protected override void Validate()
         {

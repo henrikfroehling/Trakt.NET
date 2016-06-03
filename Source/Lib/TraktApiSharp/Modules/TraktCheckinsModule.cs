@@ -1,11 +1,13 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
+    using Requests;
     using Requests.WithOAuth.Checkins;
     using System;
     using System.Threading.Tasks;
@@ -14,84 +16,108 @@
     {
         public TraktCheckinsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, string appVersion, DateTime appBuildDate,
+        public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                            string message = null, TraktSharing sharing = null,
-                                                                           string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                           TraktExtendedOption extended = null)
         {
-            Validate(movie, appVersion);
+            Validate(movie);
+
+            var requestBody = new TraktMovieCheckinPost
+            {
+                Movie = new TraktMovie
+                {
+                    Title = movie.Title,
+                    Year = movie.Year,
+                    Ids = movie.Ids
+                },
+                Message = message,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueID,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                requestBody.AppVersion = appVersion;
+
+            if (appBuildDate.HasValue)
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
-                RequestBody = new TraktMovieCheckinPost
-                {
-                    Movie = new TraktMovie
-                    {
-                        Title = movie.Title,
-                        Year = movie.Year,
-                        Ids = movie.Ids
-                    },
-                    Message = message,
-                    Sharing = sharing,
-                    FoursquareVenueId = foursquareVenueID,
-                    FoursquareVenueName = foursquareVenueName,
-                    AppVersion = appVersion,
-                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
-                }
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, string appVersion, DateTime appBuildDate,
+        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                string message = null, TraktSharing sharing = null,
-                                                                               string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                               string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                               TraktExtendedOption extended = null)
         {
-            Validate(episode, appVersion);
+            Validate(episode);
+
+            var requestBody = new TraktEpisodeCheckinPost
+            {
+                Episode = new TraktEpisode
+                {
+                    Ids = episode.Ids,
+                    SeasonNumber = episode.SeasonNumber,
+                    Number = episode.Number
+                },
+                Show = null,
+                Message = message,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueID,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                requestBody.AppVersion = appVersion;
+
+            if (appBuildDate.HasValue)
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
-                RequestBody = new TraktEpisodeCheckinPost
-                {
-                    Episode = new TraktEpisode
-                    {
-                        Ids = episode.Ids,
-                        SeasonNumber = episode.SeasonNumber,
-                        Number = episode.Number
-                    },
-                    Show = null,
-                    Message = message,
-                    Sharing = sharing,
-                    FoursquareVenueId = foursquareVenueID,
-                    FoursquareVenueName = foursquareVenueName,
-                    AppVersion = appVersion,
-                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
-                }
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show,
-                                                                               string appVersion, DateTime appBuildDate,
-                                                                               string message = null, TraktSharing sharing = null,
-                                                                               string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
+                                                                                       string appVersion = null, DateTime? appBuildDate = null,
+                                                                                       string message = null, TraktSharing sharing = null,
+                                                                                       string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                       TraktExtendedOption extended = null)
         {
-            Validate(episode, show, appVersion);
+            Validate(episode, show);
+
+            var requestBody = new TraktEpisodeCheckinPost
+            {
+                Episode = new TraktEpisode
+                {
+                    Ids = episode.Ids,
+                    SeasonNumber = episode.SeasonNumber,
+                    Number = episode.Number
+                },
+                Show = new TraktShow { Title = show.Title },
+                Message = message,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueID,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                requestBody.AppVersion = appVersion;
+
+            if (appBuildDate.HasValue)
+                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
-                RequestBody = new TraktEpisodeCheckinPost
-                {
-                    Episode = new TraktEpisode
-                    {
-                        Ids = episode.Ids,
-                        SeasonNumber = episode.SeasonNumber,
-                        Number = episode.Number
-                    },
-                    Show = new TraktShow { Title = show.Title },
-                    Message = message,
-                    Sharing = sharing,
-                    FoursquareVenueId = foursquareVenueID,
-                    FoursquareVenueName = foursquareVenueName,
-                    AppVersion = appVersion,
-                    AppDate = appBuildDate.ToString("yyyy-MM-dd")
-                }
+                RequestBody = requestBody,
+                ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
 
@@ -100,7 +126,7 @@
             await QueryAsync(new TraktCheckinsDeleteRequest(Client));
         }
 
-        private void Validate(TraktMovie movie, string appVersion)
+        private void Validate(TraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException("movie", "movie instance must not be null");
@@ -116,12 +142,9 @@
 
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("movie.Ids have no valid id", "movie");
-
-            if (string.IsNullOrEmpty(appVersion))
-                throw new ArgumentException("app version not valid", "appVersion");
         }
 
-        private void Validate(TraktEpisode episode, string appVersion)
+        private void Validate(TraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException("episode", "episode instance must not be null");
@@ -137,14 +160,11 @@
 
             if (episode.Number < 0)
                 throw new ArgumentException("episode number not valid", "episode");
-
-            if (string.IsNullOrEmpty(appVersion))
-                throw new ArgumentException("app version not valid", "appVersion");
         }
 
-        private void Validate(TraktEpisode episode, TraktShow show, string appVersion)
+        private void Validate(TraktEpisode episode, TraktShow show)
         {
-            Validate(episode, appVersion);
+            Validate(episode);
 
             if (show == null)
                 throw new ArgumentNullException("show", "show instance must not be null");
