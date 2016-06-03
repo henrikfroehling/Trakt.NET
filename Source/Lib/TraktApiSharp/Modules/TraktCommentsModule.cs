@@ -27,6 +27,24 @@
             return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
         }
 
+        public async Task<TraktListResult<TraktComment>> GetCommentsAsync(string[] ids)
+        {
+            if (ids == null || ids.Length <= 0)
+                return null;
+
+            var comments = new List<TraktComment>(ids.Length);
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                var show = await GetCommentAsync(ids[i]);
+
+                if (show != null)
+                    comments.Add(show);
+            }
+
+            return new TraktListResult<TraktComment> { Items = comments };
+        }
+
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,
                                                                           bool spoiler = false, TraktSharing sharing = null)
         {
@@ -181,24 +199,6 @@
             ValidateId(commentId);
 
             await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId });
-        }
-
-        public async Task<TraktListResult<TraktComment>> GetCommentsAsync(string[] ids)
-        {
-            if (ids == null || ids.Length <= 0)
-                return null;
-
-            var comments = new List<TraktComment>(ids.Length);
-
-            for (int i = 0; i < ids.Length; i++)
-            {
-                var show = await GetCommentAsync(ids[i]);
-
-                if (show != null)
-                    comments.Add(show);
-            }
-
-            return new TraktListResult<TraktComment> { Items = comments };
         }
 
         public async Task<TraktComment> GetCommentReplyAsync(string replyId)
