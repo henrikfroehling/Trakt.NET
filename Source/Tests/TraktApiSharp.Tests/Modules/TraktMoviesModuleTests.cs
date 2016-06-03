@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -3841,7 +3842,7 @@
             var itemCount = 2;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToString("yyyy-MM-dd")}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}",
                                                                 recentlyUpdatedMovies, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today).Result;
@@ -3938,8 +3939,9 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}",
-                                                                recentlyUpdatedMovies, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}",
+                recentlyUpdatedMovies, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedOption).Result;
 
@@ -3961,7 +3963,7 @@
             var page = 2;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToString("yyyy-MM-dd")}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?page={page}",
                                                                 recentlyUpdatedMovies, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, page).Result;
@@ -3984,7 +3986,7 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToString("yyyy-MM-dd")}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?limit={limit}",
                                                                 recentlyUpdatedMovies, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, null, limit).Result;
@@ -4116,7 +4118,7 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToString("yyyy-MM-dd")}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, page, limit).Result;
@@ -4147,7 +4149,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"movies/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedOption, page, limit).Result;
