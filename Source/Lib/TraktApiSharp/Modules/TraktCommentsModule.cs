@@ -114,7 +114,7 @@
         }
 
         public async Task<TraktCommentPostResponse> PostListCommentAsync(TraktList list, string comment,
-                                                                         bool spoiler = false, TraktSharing sharing = null)
+                                                                         bool? spoiler = null, TraktSharing sharing = null)
         {
             ValidateComment(comment);
 
@@ -122,10 +122,7 @@
             {
                 RequestBody = new TraktListCommentPost
                 {
-                    List = new TraktList
-                    {
-                        Ids = list.Ids
-                    },
+                    List = list,
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing

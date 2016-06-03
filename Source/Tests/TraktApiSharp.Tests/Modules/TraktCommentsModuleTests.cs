@@ -12,6 +12,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Shows.Seasons;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
     using Utils;
@@ -1768,37 +1769,365 @@
         [TestMethod]
         public void TestTraktCommentsModulePostListComment()
         {
-            Assert.Fail();
+            var listCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            listCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var listCommentPost = new TraktListCommentPost
+            {
+                List = list,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(listCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostListCommentWithSpoiler()
         {
-            Assert.Fail();
+            var listCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            listCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var listCommentPost = new TraktListCommentPost
+            {
+                List = list,
+                Comment = comment,
+                Spoiler = spoiler
+            };
+
+            var postJson = TestUtility.SerializeObject(listCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostListCommentWithSharing()
         {
-            Assert.Fail();
+            var listCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            listCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+
+            var listCommentPost = new TraktListCommentPost
+            {
+                List = list,
+                Comment = comment,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(listCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, null, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostListCommentComplete()
         {
-            Assert.Fail();
+            var listCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            listCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var comment = "one two three four five";
+            var spoiler = false;
+
+            var listCommentPost = new TraktListCommentPost
+            {
+                List = list,
+                Comment = comment,
+                Spoiler = spoiler,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(listCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler, sharing).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(190);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            response.Comment.Should().Be("Oh, I wasn't really listening.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(0);
+            response.Likes.Should().Be(0);
+            response.UserRating.Should().NotHaveValue();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostListCommentExceptions()
         {
-            Assert.Fail();
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var uri = "comments";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktCommentsModulePostListCommentArgumentExceptions()
         {
-            Assert.Fail();
+            var listCommentPostResponse = TestUtility.ReadFileContents(@"Objects\Post\Comments\Responses\CommentPostResponse.json");
+            listCommentPostResponse.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = 2228577,
+                    Slug = "oscars-2016"
+                }
+            };
+
+            var comment = "one two three four five";
+
+            var listCommentPost = new TraktListCommentPost
+            {
+                List = list,
+                Comment = comment
+            };
+
+            var postJson = TestUtility.SerializeObject(listCommentPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
+
+            Func<Task<TraktCommentPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, comment);
+
+            act.ShouldThrow<ArgumentNullException>();
+
+            list.Ids = null;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            list.Ids = new TraktListIds();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
+            act.ShouldThrow<ArgumentException>();
+
+            list.Ids = new TraktListIds
+            {
+                Trakt = 2228577,
+                Slug = "oscars-2016"
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            comment = "one two three four";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
