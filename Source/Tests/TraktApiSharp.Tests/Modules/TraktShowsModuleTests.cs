@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
@@ -4286,7 +4287,7 @@
             var itemCount = 2;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}",
                                                                 recentlyUpdatedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today).Result;
@@ -4383,8 +4384,9 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}",
-                                                                recentlyUpdatedShows, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}",
+                recentlyUpdatedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedOption).Result;
 
@@ -4406,7 +4408,7 @@
             var page = 2;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?page={page}",
                                                                 recentlyUpdatedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, page).Result;
@@ -4429,7 +4431,7 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?limit={limit}",
                                                                 recentlyUpdatedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, null, limit).Result;
@@ -4561,7 +4563,7 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToString("yyyy-MM-dd")}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?page={page}&limit={limit}",
                                                                 recentlyUpdatedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, page, limit).Result;
@@ -4592,7 +4594,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/updates/{today.ToString("yyyy-MM-dd")}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"shows/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 recentlyUpdatedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedOption, page, limit).Result;
