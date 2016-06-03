@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
@@ -178,7 +179,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
@@ -290,7 +291,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
@@ -402,7 +403,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
@@ -463,7 +464,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
@@ -774,7 +775,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(moviePauseScrobblePost);
@@ -886,7 +887,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(moviePauseScrobblePost);
@@ -998,7 +999,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(moviePauseScrobblePost);
@@ -1059,7 +1060,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(moviePauseScrobblePost);
@@ -1370,7 +1371,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
@@ -1482,7 +1483,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
@@ -1594,7 +1595,7 @@
             {
                 Movie = movie,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
@@ -1655,7 +1656,7 @@
                 Movie = movie,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieStopScrobblePost);
@@ -2115,7 +2116,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2177,7 +2178,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2381,7 +2382,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2445,7 +2446,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2651,7 +2652,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2719,7 +2720,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2793,7 +2794,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -2863,7 +2864,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStartScrobblePost);
@@ -3456,7 +3457,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -3518,7 +3519,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -3720,7 +3721,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -3784,7 +3785,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -3988,7 +3989,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -4056,7 +4057,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -4129,7 +4130,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -4199,7 +4200,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodePauseScrobblePost);
@@ -4791,7 +4792,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -4853,7 +4854,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5055,7 +5056,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5119,7 +5120,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5323,7 +5324,7 @@
             {
                 Episode = episode,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5391,7 +5392,7 @@
                 Episode = episode,
                 Show = show,
                 Progress = progress,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5464,7 +5465,7 @@
                 Episode = episode,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);
@@ -5534,7 +5535,7 @@
                 Show = show,
                 Progress = progress,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeStopScrobblePost);

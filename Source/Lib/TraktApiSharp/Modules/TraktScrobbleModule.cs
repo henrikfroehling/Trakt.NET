@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
@@ -106,7 +107,7 @@
                 movieScrobblePost.AppVersion = appVersion;
 
             if (appDate.HasValue)
-                movieScrobblePost.AppDate = appDate.Value.ToString("yyyy-MM-dd");
+                movieScrobblePost.AppDate = appDate.Value.ToTraktDateString();
 
             return movieScrobblePost;
         }
@@ -125,7 +126,7 @@
                 episodeScrobblePost.AppVersion = appVersion;
 
             if (appDate.HasValue)
-                episodeScrobblePost.AppDate = appDate.Value.ToString("yyyy-MM-dd");
+                episodeScrobblePost.AppDate = appDate.Value.ToTraktDateString();
 
             return episodeScrobblePost;
         }
