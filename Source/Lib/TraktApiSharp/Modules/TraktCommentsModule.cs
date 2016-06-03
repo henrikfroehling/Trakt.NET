@@ -46,7 +46,7 @@
         }
 
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,
-                                                                          bool spoiler = false, TraktSharing sharing = null)
+                                                                          bool? spoiler = null, TraktSharing sharing = null)
         {
             ValidateComment(comment);
 
@@ -54,12 +54,7 @@
             {
                 RequestBody = new TraktMovieCommentPost
                 {
-                    Movie = new TraktMovie
-                    {
-                        Title = movie.Title,
-                        Year = movie.Year,
-                        Ids = movie.Ids
-                    },
+                    Movie = movie,
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing

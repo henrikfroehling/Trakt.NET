@@ -16,7 +16,7 @@
             var episodeComment = new TraktEpisodeCommentPost();
 
             episodeComment.Comment.Should().BeNullOrEmpty();
-            episodeComment.Spoiler.Should().BeFalse();
+            episodeComment.Spoiler.Should().NotHaveValue();
             episodeComment.Sharing.Should().BeNull();
             episodeComment.Episode.Should().BeNull();
         }

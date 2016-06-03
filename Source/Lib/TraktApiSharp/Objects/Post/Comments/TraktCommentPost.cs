@@ -9,7 +9,7 @@
         public string Comment { get; set; }
 
         [JsonProperty(PropertyName = "spoiler")]
-        public bool Spoiler { get; set; }
+        public bool? Spoiler { get; set; }
 
         [JsonProperty(PropertyName = "sharing")]
         public TraktSharing Sharing { get; set; }
