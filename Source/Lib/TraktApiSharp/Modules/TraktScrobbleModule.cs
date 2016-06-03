@@ -40,25 +40,49 @@
             return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
         }
 
-        public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
+        public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress,
                                                                              string appVersion = null, DateTime? appDate = null,
                                                                              TraktExtendedOption extended = null)
+        {
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+        }
+
+        public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress,
+                                                                              string appVersion = null, DateTime? appDate = null,
+                                                                              TraktExtendedOption extended = null)
+        {
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+        }
+
+        public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress,
+                                                                             string appVersion = null, DateTime? appDate = null,
+                                                                             TraktExtendedOption extended = null)
+        {
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+        }
+
+        public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                      string appVersion = null, DateTime? appDate = null,
+                                                                                      TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
-        public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                              string appVersion = null, DateTime? appDate = null,
-                                                                              TraktExtendedOption extended = null)
+        public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                      string appVersion = null, DateTime? appDate = null,
+                                                                                      TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
-        public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress, TraktShow show = null,
-                                                                             string appVersion = null, DateTime? appDate = null,
-                                                                             TraktExtendedOption extended = null)
+        public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                     string appVersion = null, DateTime? appDate = null,
+                                                                                     TraktExtendedOption extended = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));

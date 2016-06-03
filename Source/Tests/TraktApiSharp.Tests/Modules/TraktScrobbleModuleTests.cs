@@ -1930,7 +1930,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -1996,7 +1996,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2058,7 +2058,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2124,7 +2124,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2186,7 +2186,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2256,7 +2256,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2322,7 +2322,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2390,7 +2390,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2454,7 +2454,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2526,7 +2526,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2594,7 +2594,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2666,7 +2666,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2734,7 +2734,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2808,7 +2808,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -2878,7 +2878,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, episodeStartScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
@@ -3006,7 +3006,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -3122,54 +3122,54 @@
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.Number = 1;
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             show.Title = "Breaking Bad";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -3273,7 +3273,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3338,7 +3338,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3400,7 +3400,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3465,7 +3465,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3527,7 +3527,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3596,7 +3596,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3662,7 +3662,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3729,7 +3729,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3793,7 +3793,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3864,7 +3864,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -3932,7 +3932,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -4003,7 +4003,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -4071,7 +4071,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -4144,7 +4144,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -4214,7 +4214,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/pause?extended={extendedOption.ToString()}", postJson, episodePauseScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
@@ -4341,7 +4341,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -4457,54 +4457,54 @@
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.Number = 1;
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             show.Title = "Breaking Bad";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -4608,7 +4608,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4673,7 +4673,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4735,7 +4735,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4800,7 +4800,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4862,7 +4862,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4931,7 +4931,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -4997,7 +4997,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5064,7 +5064,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5128,7 +5128,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5199,7 +5199,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5267,7 +5267,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, appVersion, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, null, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5338,7 +5338,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5406,7 +5406,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, null, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, null, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5479,7 +5479,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5549,7 +5549,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"scrobble/stop?extended={extendedOption.ToString()}", postJson, episodeStopScrobbleResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
@@ -5676,7 +5676,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -5792,54 +5792,54 @@
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             episode.Number = 1;
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
             show.Title = "Breaking Bad";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, -0.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, -0.0001f);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, 100.0001f, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, 100.0001f);
             act.ShouldThrow<ArgumentException>();
         }
 
