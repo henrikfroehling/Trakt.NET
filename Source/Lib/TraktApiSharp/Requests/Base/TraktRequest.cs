@@ -364,7 +364,7 @@ namespace TraktApiSharp.Requests.Base
                             }
                         }
 
-                        throw new TraktNotFoundException("Resource not found");
+                        throw new TraktNotFoundException($"Resource not found - Reason Phrase: {response.ReasonPhrase}");
                     }
                 case HttpStatusCode.BadRequest:
                     throw new TraktBadRequestException()

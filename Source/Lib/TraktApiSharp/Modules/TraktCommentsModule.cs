@@ -130,7 +130,7 @@
             });
         }
 
-        public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool spoiler = false)
+        public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool? spoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
@@ -146,7 +146,7 @@
             });
         }
 
-        public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool spoiler = false)
+        public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool? spoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
