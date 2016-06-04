@@ -4,13 +4,13 @@
     using Objects.Basic;
     using Objects.Get.Recommendations;
 
-    internal class TraktUserMovieRecommendationsRequest : TraktGetRequest<TraktListResult<TraktMovieRecommendation>, TraktMovieRecommendation>
+    internal class TraktUserMovieRecommendationsRequest : TraktGetRequest<TraktPaginationListResult<TraktMovieRecommendation>, TraktMovieRecommendation>
     {
         internal TraktUserMovieRecommendationsRequest(TraktClient client) : base(client) { }
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        protected override string UriTemplate => "recommendations/movies";
+        protected override string UriTemplate => "recommendations/movies{?extended,limit}";
 
         protected override bool SupportsPagination => true;
 

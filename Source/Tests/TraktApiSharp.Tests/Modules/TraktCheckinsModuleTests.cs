@@ -6,6 +6,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -13,6 +14,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
+    using TraktApiSharp.Requests;
     using Utils;
 
     [TestClass]
@@ -66,6 +68,105 @@
                 }
             };
 
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersion()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appVersion = "app_version";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndAppDate()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
             var appVersion = "app_version";
             var appBuildDate = DateTime.UtcNow;
 
@@ -73,7 +174,7 @@
             {
                 Movie = movie,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
@@ -82,6 +183,613 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndMessage()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appVersion = "app_version";
+            var message = "checkin message";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndSharing()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appVersion = "app_version";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndFoursquareVenueId()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appVersion = "app_version";
+            var foursquareVenueId = "venue id";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+                                                                                   foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionFoursquareVenueName()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appVersion = "app_version";
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+                                                                                   null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appVersion = "app_version";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+                                                                                   null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDate()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndMessage()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var message = "checkin message";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndSharing()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndFoursquareVenueId()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueId = "venue id";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+                                                                                   foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndFoursquareVenueName()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+                                                                                   null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+                                                                                   null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -119,15 +827,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var message = "checkin message";
 
             var movieCheckinPost = new TraktMovieCheckinPost
             {
                 Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Message = message
             };
 
@@ -136,7 +840,232 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndSharing()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var message = "checkin message";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Message = message,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndFoursquareVenueId()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var message = "checkin message";
+            var foursquareVenueId = "venue id";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Message = message,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+                                                                                   foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndFoursquareVenueName()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var message = "checkin message";
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Message = message,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+                                                                                   null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var message = "checkin message";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+                                                                                   null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -174,8 +1103,181 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndFoursquareVenueId()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueId = "venue id";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+                                                                                   foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndFoursquareVenueName()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                Sharing = sharing,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+                                                                                   null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
 
             var sharing = new TraktSharing
             {
@@ -187,17 +1289,22 @@
             var movieCheckinPost = new TraktMovieCheckinPost
             {
                 Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Sharing = sharing
             };
 
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, null, sharing).Result;
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+                                                                                   null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -235,15 +1342,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueId = "venue id";
 
             var movieCheckinPost = new TraktMovieCheckinPost
             {
                 Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueId = foursquareVenueId
             };
 
@@ -252,8 +1355,120 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
                                                                                    foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var foursquareVenueId = "venue id";
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                FoursquareVenueId = foursquareVenueId,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+                                                                                   foursquareVenueId, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueIdAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var foursquareVenueId = "venue id";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+                                                                                   foursquareVenueId, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -291,15 +1506,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueName = "venue name";
 
             var movieCheckinPost = new TraktMovieCheckinPost
             {
                 Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueName = foursquareVenueName
             };
 
@@ -308,8 +1519,121 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
                                                                                    null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueNameAndExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var foursquareVenueName = "venue name";
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+                                                                                   null, foursquareVenueName, extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Guardians of the Galaxy");
+            response.Movie.Year.Should().Be(2014);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(28);
+            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            response.Movie.Ids.Imdb.Should().Be("tt2015381");
+            response.Movie.Ids.Tmdb.Should().Be(118340);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinMovieWithExtendedOption()
+        {
+            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
+            checkinMovieResponse.Should().NotBeNullOrEmpty();
+
+            var movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            var movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = movie
+            };
+
+            var postJson = TestUtility.SerializeObject(movieCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+                                                                                   null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -375,10 +1699,16 @@
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, message, sharing,
-                                                                                   foursquareVenueId, foursquareVenueName).Result;
+                                                                                   foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -413,58 +1743,56 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -487,14 +1815,9 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var movieCheckinPost = new TraktMovieCheckinPost
             {
-                Movie = movie,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Movie = movie
             };
 
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
@@ -503,30 +1826,24 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(null, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
             movie.Year = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -564,7 +1881,7 @@
             {
                 Episode = episode,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -573,6 +1890,756 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersion()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndAppDate()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndMessage()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+                                                                                     foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+                                                                                     null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppVersionAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+                                                                                     null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDate()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndMessage()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+                                                                                     foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+                                                                                     null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithAppDateAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+                                                                                     null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -613,15 +2680,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var message = "checkin message";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Message = message
             };
 
@@ -630,8 +2693,244 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
-                                                                                     message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Message = message,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var message = "checkin message";
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Message = message,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+                                                                                     foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var message = "checkin message";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Message = message,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+                                                                                     null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithMessageAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+                                                                                     null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -672,8 +2971,190 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+                                                                                     foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Sharing = sharing,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+                                                                                     null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithSharingAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
 
             var sharing = new TraktSharing
             {
@@ -685,18 +3166,22 @@
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Sharing = sharing
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
-                                                                                     null, sharing).Result;
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+                                                                                     null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -737,15 +3222,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueId = "venue id";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueId = foursquareVenueId
             };
 
@@ -754,8 +3235,126 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null,
                                                                                      null, null, foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var foursquareVenueId = "venue id";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                FoursquareVenueId = foursquareVenueId,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+                                                                                     foursquareVenueId, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueIdAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+                                                                                     foursquareVenueId, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -796,15 +3395,11 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueName = "venue name";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueName = foursquareVenueName
             };
 
@@ -813,8 +3408,127 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
                                                                                      null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithFoursquareVenueNameAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+                                                                                     null, foursquareVenueName, extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeWithExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+                                                                                     null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -883,10 +3597,16 @@
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate, message, sharing,
-                                                                                     foursquareVenueId, foursquareVenueName).Result;
+                                                                                     foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -924,58 +3644,56 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -999,14 +3717,9 @@
                 }
             };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
-                Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Episode = episode
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1015,31 +3728,25 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1072,6 +3779,137 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersion()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndAppDate()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
             var appVersion = "app_version";
             var appBuildDate = DateTime.UtcNow;
 
@@ -1080,7 +3918,7 @@
                 Episode = episode,
                 Show = show,
                 AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                AppDate = appBuildDate.ToTraktDateString()
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1088,7 +3926,801 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndMessage()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appVersion = "app_version";
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appVersion = "app_version";
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             null, null, null,
+                                                                                             foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appVersion = "app_version";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             null, null, null,
+                                                                                             null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppVersionAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appVersion = "app_version";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppVersion = appVersion
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+                                                                                             null, null, null, null, null,
+                                                                                             extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDate()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, appBuildDate).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndMessage()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appBuildDate = DateTime.UtcNow;
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             appBuildDate, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString(),
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             appBuildDate, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             appBuildDate, null, null,
+                                                                                             foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appBuildDate = DateTime.UtcNow;
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString(),
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             appBuildDate, null, null,
+                                                                                             null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithAppDateAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var appBuildDate = DateTime.UtcNow;
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                AppDate = appBuildDate.ToTraktDateString()
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             appBuildDate, null, null,
+                                                                                             null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1141,16 +4773,12 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var message = "checkin message";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
                 Show = show,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Message = message
             };
 
@@ -1159,8 +4787,300 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate,
-                                                                                     message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, message).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndSharing()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Message = message,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, message, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var message = "checkin message";
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Message = message,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, message, null,
+                                                                                             foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var message = "checkin message";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Message = message,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, message, null,
+                                                                                             null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithMessageAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var message = "checkin message";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Message = message
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, message, null,
+                                                                                             null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1213,8 +5133,231 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Sharing = sharing
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, sharing).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndFoursquareVenueId()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Sharing = sharing,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, sharing,
+                                                                                             foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var sharing = new TraktSharing
+            {
+                Facebook = true,
+                Google = false,
+                Twitter = true
+            };
+
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                Sharing = sharing,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, sharing,
+                                                                                             null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithSharingAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
 
             var sharing = new TraktSharing
             {
@@ -1227,18 +5370,23 @@
             {
                 Episode = episode,
                 Show = show,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 Sharing = sharing
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate,
-                                                                                     null, sharing).Result;
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, sharing,
+                                                                                             null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1291,16 +5439,12 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueId = "venue id";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
                 Show = show,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueId = foursquareVenueId
             };
 
@@ -1309,8 +5453,155 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate,
-                                                                                     null, null, foursquareVenueId).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null,
+                                                                                             null, null, foursquareVenueId).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueIdAndFoursquareVenueName()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var foursquareVenueId = "venue id";
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                FoursquareVenueId = foursquareVenueId,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, null,
+                                                                                             foursquareVenueId, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueIdAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var foursquareVenueId = "venue id";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                FoursquareVenueId = foursquareVenueId
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, null,
+                                                                                             foursquareVenueId, null,
+                                                                                             extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1363,16 +5654,12 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var foursquareVenueName = "venue name";
 
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
                 Show = show,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd"),
                 FoursquareVenueName = foursquareVenueName
             };
 
@@ -1381,8 +5668,155 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate, null, null,
-                                                                                     null, foursquareVenueName).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, null,
+                                                                                             null, foursquareVenueName).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithFoursquareVenueNameAndExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var foursquareVenueName = "venue name";
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show,
+                FoursquareVenueName = foursquareVenueName
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+                                                                                             null, null, null,
+                                                                                             null, foursquareVenueName,
+                                                                                             extendedOption).Result;
+
+            response.Should().NotBeNull();
+
+            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            response.Sharing.Should().NotBeNull();
+            response.Sharing.Facebook.Should().BeTrue();
+            response.Sharing.Twitter.Should().BeTrue();
+            response.Sharing.Tumblr.Should().BeFalse();
+            response.Episode.Should().NotBeNull();
+            response.Episode.SeasonNumber.Should().Be(1);
+            response.Episode.Number.Should().Be(1);
+            response.Episode.Title.Should().Be("Pilot");
+            response.Episode.Ids.Should().NotBeNull();
+            response.Episode.Ids.Trakt.Should().Be(16);
+            response.Episode.Ids.Tvdb.Should().Be(349232);
+            response.Episode.Ids.Imdb.Should().Be("tt0959621");
+            response.Episode.Ids.Tmdb.Should().Be(62085);
+            response.Episode.Ids.TvRage.Should().Be(637041);
+            response.Show.Should().NotBeNull();
+            response.Show.Title.Should().Be("Breaking Bad");
+            response.Show.Year.Should().Be(2008);
+            response.Show.Ids.Should().NotBeNull();
+            response.Show.Ids.Trakt.Should().Be(1);
+            response.Show.Ids.Slug.Should().Be("breaking-bad");
+            response.Show.Ids.Tvdb.Should().Be(81189);
+            response.Show.Ids.Imdb.Should().Be("tt0903747");
+            response.Show.Ids.Tmdb.Should().Be(1396);
+            response.Show.Ids.TvRage.Should().Be(18164);
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleCheckinEpisodeShowWithExtendedOption()
+        {
+            var checkinEpisodeResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json");
+            checkinEpisodeResponse.Should().NotBeNullOrEmpty();
+
+            var episode = new TraktEpisode
+            {
+                Number = 1,
+                SeasonNumber = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+            var show = new TraktShow { Title = "Breaking Bad" };
+
+            var episodeCheckinPost = new TraktEpisodeCheckinPost
+            {
+                Episode = episode,
+                Show = show
+            };
+
+            var postJson = TestUtility.SerializeObject(episodeCheckinPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, null,
+                                                                                             null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1464,10 +5898,16 @@
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate, message, sharing,
-                                                                                     foursquareVenueId, foursquareVenueName).Result;
+            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion, appBuildDate, message, sharing,
+                                                                                             foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
 
@@ -1517,58 +5957,56 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
             var uri = "checkin";
 
-            TestUtility.SetupMockErrorResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
             act.ShouldThrow<TraktCheckinException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)412);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
             act.ShouldThrow<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)429);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
             act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
             act.ShouldThrow<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)503);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)504);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)520);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)521);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockErrorResponseWithOAuth(uri, (HttpStatusCode)522);
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
@@ -1594,14 +6032,10 @@
 
             var show = new TraktShow { Title = "Breaking Bad" };
 
-            var appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
             var episodeCheckinPost = new TraktEpisodeCheckinPost
             {
                 Episode = episode,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToString("yyyy-MM-dd")
+                Show = show
             };
 
             var postJson = TestUtility.SerializeObject(episodeCheckinPost);
@@ -1610,34 +6044,28 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null, show, appVersion, appBuildDate);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(null, show);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, null);
             act.ShouldThrow<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, null, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, string.Empty, appBuildDate);
-            act.ShouldThrow<ArgumentException>();
 
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds
@@ -1651,8 +6079,74 @@
 
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, show, appVersion, appBuildDate);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region DeleteCheckins
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleDeleteCheckins()
+        {
+            TestUtility.SetupMockResponseWithOAuth("checkin", HttpStatusCode.NoContent);
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteActiveCheckinsAsync();
+            act.ShouldNotThrow();
+        }
+
+        [TestMethod]
+        public void TestTraktCheckinsModuleDeleteCheckinsExceptions()
+        {
+            var uri = "checkin";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteActiveCheckinsAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion

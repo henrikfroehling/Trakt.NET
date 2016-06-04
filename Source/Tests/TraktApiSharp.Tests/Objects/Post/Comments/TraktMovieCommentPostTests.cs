@@ -16,7 +16,7 @@
             var movieComment = new TraktMovieCommentPost();
 
             movieComment.Comment.Should().BeNullOrEmpty();
-            movieComment.Spoiler.Should().BeFalse();
+            movieComment.Spoiler.Should().NotHaveValue();
             movieComment.Sharing.Should().BeNull();
             movieComment.Movie.Should().BeNull();
         }

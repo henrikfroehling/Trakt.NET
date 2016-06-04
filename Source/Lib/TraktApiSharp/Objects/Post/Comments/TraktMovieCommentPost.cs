@@ -12,7 +12,7 @@
         public void Validate()
         {
             if (Movie == null)
-                throw new ArgumentException("movie not set");
+                throw new ArgumentNullException("movie not set");
 
             if (string.IsNullOrEmpty(Movie.Title))
                 throw new ArgumentException("movie title not set");

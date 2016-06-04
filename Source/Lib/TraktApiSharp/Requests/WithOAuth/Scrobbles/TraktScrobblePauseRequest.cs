@@ -7,7 +7,7 @@
     {
         internal TraktScrobblePauseRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "scrobble/pause";
+        protected override string UriTemplate => "scrobble/pause{?extended}";
 
         protected override void Validate()
         {

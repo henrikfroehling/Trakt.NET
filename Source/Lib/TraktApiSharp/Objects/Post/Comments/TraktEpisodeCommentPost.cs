@@ -12,9 +12,9 @@
         public void Validate()
         {
             if (Episode == null)
-                throw new ArgumentException("episode not set");
+                throw new ArgumentNullException("episode not set");
 
-            if (!Episode.Ids.HasAnyId)
+            if (Episode.Ids == null || !Episode.Ids.HasAnyId)
                 throw new ArgumentException("episode ids not set");
         }
     }

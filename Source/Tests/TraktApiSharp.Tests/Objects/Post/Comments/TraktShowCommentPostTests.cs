@@ -16,7 +16,7 @@
             var showComment = new TraktShowCommentPost();
 
             showComment.Comment.Should().BeNullOrEmpty();
-            showComment.Spoiler.Should().BeFalse();
+            showComment.Spoiler.Should().NotHaveValue();
             showComment.Sharing.Should().BeNull();
             showComment.Show.Should().BeNull();
         }
