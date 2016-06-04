@@ -137,8 +137,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"comments/{commentId}", comment);
 
-            Func<Task<TraktComment>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(null);
+            Func<Task<TraktComment>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(null);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(string.Empty);
@@ -2812,19 +2811,96 @@
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentReply()
         {
-            Assert.Fail();
+            var comment = TestUtility.ReadFileContents(@"Objects\Basic\Comment.json");
+            comment.Should().NotBeNullOrEmpty();
+
+            var commentId = "76957";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"comments/{commentId}", comment);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentReplyAsync(commentId).Result;
+
+            response.Should().NotBeNull();
+            response.Id.Should().Be(76957);
+            response.ParentId.Should().Be(0);
+            response.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
+            response.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
+            response.Spoiler.Should().BeFalse();
+            response.Review.Should().BeFalse();
+            response.Replies.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.UserRating.Should().Be(7.3f);
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentReplyExceptions()
         {
-            Assert.Fail();
+            var commentId = "76957";
+            var uri = $"comments/{commentId}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktComment>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentReplyAsync(commentId);
+            act.ShouldThrow<TraktCommentNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentReplyArgumentExceptions()
         {
-            Assert.Fail();
+            var comment = TestUtility.ReadFileContents(@"Objects\Basic\Comment.json");
+            comment.Should().NotBeNullOrEmpty();
+
+            var commentId = "76957";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"comments/{commentId}", comment);
+
+            Func<Task<TraktComment>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentReplyAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentReplyAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
