@@ -40,10 +40,9 @@ namespace TraktApiSharp.Requests.Base
             var httpClient = TraktConfiguration.HTTP_CLIENT;
 
             if (httpClient == null)
-            {
                 httpClient = new HttpClient();
-                SetDefaultRequestHeaders(httpClient);
-            }
+
+            SetDefaultRequestHeaders(httpClient);
 
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
@@ -192,10 +191,16 @@ namespace TraktApiSharp.Requests.Base
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
-            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
 
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, Client.ClientId);
+
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIVersionHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
+
+            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
+                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)

@@ -136,8 +136,10 @@
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
+
+            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
+                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
