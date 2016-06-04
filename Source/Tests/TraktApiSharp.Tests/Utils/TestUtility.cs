@@ -26,7 +26,7 @@
 
         private static TraktAccessToken MOCK_ACCESS_TOKEN = new TraktAccessToken { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
-        public static TraktClient MOCK_TEST_CLIENT = new TraktClient("trakt client id");
+        public static TraktClient MOCK_TEST_CLIENT = new TraktClient("traktClientId");
 
         public static void SetupMockHttpClient()
         {
@@ -41,6 +41,13 @@
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public static void SetupMockAuthenticationHttpClient()
+        {
+            MOCK_HTTP = new MockHttpMessageHandler();
+            TraktConfiguration.HTTP_CLIENT = new HttpClient(MOCK_HTTP);
+            TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
         public static void ResetMockHttpClient()
         {
             TraktConfiguration.HTTP_CLIENT = null;
@@ -49,6 +56,13 @@
         public static void ClearMockHttpClient()
         {
             MOCK_HTTP.Clear();
+        }
+
+        public static void SetupMockOAuthAuthorizeResponse(string uri, HttpStatusCode httpStatusCode)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            uri.Should().NotBeNullOrEmpty();
+            MOCK_HTTP.When($"{TraktConstants.OAuthBaseAuthorizeUrl}/{uri}").Respond(httpStatusCode);
         }
 
         public static void SetupMockResponseWithoutOAuth(string uri, string responseContent)

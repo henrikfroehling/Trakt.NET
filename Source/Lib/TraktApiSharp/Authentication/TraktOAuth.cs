@@ -40,9 +40,8 @@
         {
             validateAuthorizationWithStateInput(clientId, redirectUri, state);
 
-            var baseUri = new Uri(TraktConstants.OAuthBaseAuthorizeUrl);
             var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
-            var authorizationUri = $"{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
+            var authorizationUri = $"{TraktConstants.OAuthBaseAuthorizeUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
 
             var httpClient = TraktConfiguration.HTTP_CLIENT;
 
