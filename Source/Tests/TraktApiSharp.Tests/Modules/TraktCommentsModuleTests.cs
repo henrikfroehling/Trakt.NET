@@ -2913,37 +2913,166 @@
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentReplies()
         {
-            Assert.Fail();
+            var commentReplies = TestUtility.ReadFileContents(@"Objects\Basic\CommentReplies.json");
+            commentReplies.Should().NotBeNullOrEmpty();
+
+            var commentId = "190";
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies",
+                                                                commentReplies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentRepliesWithPage()
         {
-            Assert.Fail();
+            var commentReplies = TestUtility.ReadFileContents(@"Objects\Basic\CommentReplies.json");
+            commentReplies.Should().NotBeNullOrEmpty();
+
+            var commentId = "190";
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?page={page}",
+                                                                commentReplies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentRepliesWithLimit()
         {
-            Assert.Fail();
+            var commentReplies = TestUtility.ReadFileContents(@"Objects\Basic\CommentReplies.json");
+            commentReplies.Should().NotBeNullOrEmpty();
+
+            var commentId = "190";
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?limit={limit}",
+                                                                commentReplies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentRepliesComplete()
         {
-            Assert.Fail();
+            var commentReplies = TestUtility.ReadFileContents(@"Objects\Basic\CommentReplies.json");
+            commentReplies.Should().NotBeNullOrEmpty();
+
+            var commentId = "190";
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?page={page}&limit={limit}",
+                                                                commentReplies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentRepliesExceptions()
         {
-            Assert.Fail();
+            var commentId = "190";
+            var uri = $"comments/{commentId}/replies";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId);
+            act.ShouldThrow<TraktCommentNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentRepliesArgumentExceptions()
         {
-            Assert.Fail();
+            var commentReplies = TestUtility.ReadFileContents(@"Objects\Basic\CommentReplies.json");
+            commentReplies.Should().NotBeNullOrEmpty();
+
+            var commentId = "190";
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies",
+                                                                commentReplies, 1, 10, 1, itemCount);
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

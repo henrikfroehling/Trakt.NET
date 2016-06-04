@@ -364,6 +364,7 @@
     <None Include="TestData\Objects\Basic\CastAndCrew.json" />
     <None Include="TestData\Objects\Basic\CastMember.json" />
     <None Include="TestData\Objects\Basic\Comment.json" />
+    <None Include="TestData\Objects\Basic\CommentReplies.json" />
     <None Include="TestData\Objects\Basic\Connections.json" />
     <None Include="TestData\Objects\Basic\Crew.json" />
     <None Include="TestData\Objects\Basic\CrewMember.json" />
