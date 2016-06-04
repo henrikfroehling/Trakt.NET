@@ -12,7 +12,7 @@
         public void Validate()
         {
             if (List == null)
-                throw new ArgumentException("list not set");
+                throw new ArgumentNullException("list not set");
 
             if (List.Ids == null || !List.Ids.HasAnyId)
                 throw new ArgumentException("list ids not set");

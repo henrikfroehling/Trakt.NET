@@ -16,7 +16,7 @@
             var seasonComment = new TraktSeasonCommentPost();
 
             seasonComment.Comment.Should().BeNullOrEmpty();
-            seasonComment.Spoiler.Should().BeFalse();
+            seasonComment.Spoiler.Should().NotHaveValue();
             seasonComment.Sharing.Should().BeNull();
             seasonComment.Season.Should().BeNull();
         }

@@ -15,6 +15,6 @@
 
         protected override bool SupportsPagination => true;
 
-        protected override string UriTemplate => "comments/{id}/replies";
+        protected override string UriTemplate => "comments/{id}/replies{?page,limit}";
     }
 }

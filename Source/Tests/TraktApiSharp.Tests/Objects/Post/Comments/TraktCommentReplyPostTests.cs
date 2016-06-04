@@ -14,7 +14,7 @@
             var commentReply = new TraktCommentReplyPost();
 
             commentReply.Comment.Should().BeNullOrEmpty();
-            commentReply.Spoiler.Should().BeFalse();
+            commentReply.Spoiler.Should().NotHaveValue();
         }
 
         [TestMethod]

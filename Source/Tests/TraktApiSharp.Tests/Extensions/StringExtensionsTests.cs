@@ -68,5 +68,27 @@
             value23.FirstToUpper().Should().Be(expectedValue);
             value24.FirstToUpper().Should().Be(expectedValue);
         }
+
+        [TestMethod]
+        public void TestStringExtensionsWordCount()
+        {
+            string value1 = string.Empty;
+            string value2 = " one\t";
+            string value3 = " one";
+            string value4 = "one";
+            string value5 = " one\ttwo three:four,five six\nseven eight;";
+            string value6 = "\tone\ttwo three:four,five six\nseven eight;nine.";
+            string value7 = "\tone\ttwo three:four,five six\nseven eight;nine";
+            string value8 = "one\ttwo three:four,five six\nseven eight;nine";
+
+            value1.WordCount().Should().Be(0);
+            value2.WordCount().Should().Be(1);
+            value3.WordCount().Should().Be(1);
+            value4.WordCount().Should().Be(1);
+            value5.WordCount().Should().Be(8);
+            value6.WordCount().Should().Be(9);
+            value7.WordCount().Should().Be(9);
+            value8.WordCount().Should().Be(9);
+        }
     }
 }
