@@ -20,6 +20,7 @@
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
             client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
 
+            client.IsValid.Should().BeFalse();
             client.Authentication.ClientId.Should().BeNull();
             client.Authentication.ClientSecret.Should().BeNull();
         }

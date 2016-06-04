@@ -15,27 +15,69 @@
         }
 
         [TestMethod]
-        public void TestTraktOAuthAuthorizeAsync()
+        public void TestTraktOAuthAuthorize()
         {
-            // TODO
+            Assert.Fail();
         }
 
         [TestMethod]
-        public void TestTraktOAuthGetAccessTokenAsync()
+        public void TestTraktOAuthAuthorizeWithClientIdAndRedirectUri()
         {
-            // TODO
+            Assert.Fail();
         }
 
         [TestMethod]
-        public void TestTraktOAuthRefreshAccessTokenAsync()
+        public void TestTraktOAuthAuthorizeWithState()
         {
-            // TODO
+            Assert.Fail();
         }
 
         [TestMethod]
-        public void TestTraktOAuthRevokeAccessTokenAsync()
+        public void TestTraktOAuthAuthorizeWithStateAndClientIdAndRedirectUri()
         {
-            // TODO
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthGetAccessTokenWithCode()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthGetAccessTokenWithCodeAndClientIdAndClientSecretAndRedirectUri()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthRefreshAccessToken()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthRefreshAccessTokenWithRefreshTokenAndClientIdAndClientSecretAndRedirectUri()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthRevokeAccessToken()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthRevokeAccessTokenWithAccessTokenAndClientId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCompleteAuthenticationFlow()
+        {
+            Assert.Fail();
         }
     }
 }
