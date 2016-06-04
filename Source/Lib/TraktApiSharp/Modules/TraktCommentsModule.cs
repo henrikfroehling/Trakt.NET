@@ -140,7 +140,7 @@
                 Id = commentId,
                 RequestBody = new TraktCommentUpdatePost
                 {
-                    Comment = commentId,
+                    Comment = comment,
                     Spoiler = spoiler
                 }
             });

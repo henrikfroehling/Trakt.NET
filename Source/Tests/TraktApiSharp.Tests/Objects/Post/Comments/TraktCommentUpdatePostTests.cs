@@ -14,7 +14,7 @@
             var commentUpdate = new TraktCommentUpdatePost();
 
             commentUpdate.Comment.Should().BeNullOrEmpty();
-            commentUpdate.Spoiler.Should().BeFalse();
+            commentUpdate.Spoiler.Should().NotHaveValue();
         }
 
         [TestMethod]
