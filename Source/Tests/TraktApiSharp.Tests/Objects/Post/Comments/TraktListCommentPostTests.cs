@@ -16,7 +16,7 @@
             var listComment = new TraktListCommentPost();
 
             listComment.Comment.Should().BeNullOrEmpty();
-            listComment.Spoiler.Should().BeFalse();
+            listComment.Spoiler.Should().NotHaveValue();
             listComment.Sharing.Should().BeNull();
             listComment.List.Should().BeNull();
         }

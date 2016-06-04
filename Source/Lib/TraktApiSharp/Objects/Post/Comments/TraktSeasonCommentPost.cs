@@ -12,7 +12,7 @@
         public void Validate()
         {
             if (Season == null)
-                throw new ArgumentException("season not set");
+                throw new ArgumentNullException("season not set");
 
             if (Season.Ids == null || !Season.Ids.HasAnyId)
                 throw new ArgumentException("season ids not set");
