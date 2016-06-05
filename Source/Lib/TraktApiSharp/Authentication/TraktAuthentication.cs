@@ -31,6 +31,8 @@
 
         public TraktAuthenticationMode AuthenticationMode { get; set; }
 
+        public string OAuthAuthorizationCode { get; set; }
+
         public TraktAccessToken AccessToken
         {
             get { return _accessToken = _accessToken ?? new TraktAccessToken(); }

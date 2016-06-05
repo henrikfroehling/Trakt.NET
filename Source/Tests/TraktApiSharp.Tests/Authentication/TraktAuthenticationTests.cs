@@ -19,6 +19,7 @@
             client.Authentication.AuthenticationMode.Should().Be(TraktAuthenticationMode.Device);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
             client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
 
             client.IsValid.Should().BeFalse();
             client.Authentication.ClientId.Should().BeNull();
@@ -34,6 +35,7 @@
             client.Authentication.AuthenticationMode.Should().Be(TraktAuthenticationMode.Device);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
             client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
 
             client.IsValid.Should().BeTrue();
             client.Authentication.ClientId.Should().Be(CLIENT_ID);
