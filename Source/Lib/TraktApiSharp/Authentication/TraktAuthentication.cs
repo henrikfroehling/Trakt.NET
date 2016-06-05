@@ -68,12 +68,7 @@
                         return await Client.DeviceAuth.GetAccessTokenAsync();
                     }
                 case TraktAuthenticationMode.OAuth:
-                    {
-                        if (await Client.OAuth.AuthorizeAsync())
-                            return await Client.OAuth.GetAccessTokenAsync(code);
-
-                        return null;
-                    }
+                    return await Client.OAuth.GetAccessTokenAsync(code);
             }
 
             return null;

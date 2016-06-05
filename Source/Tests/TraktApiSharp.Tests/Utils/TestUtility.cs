@@ -58,13 +58,6 @@
             MOCK_HTTP.Clear();
         }
 
-        public static void SetupMockOAuthAuthorizeResponse(string uri, HttpStatusCode httpStatusCode)
-        {
-            MOCK_HTTP.Should().NotBeNull();
-            uri.Should().NotBeNullOrEmpty();
-            MOCK_HTTP.When($"{TraktConstants.OAuthBaseAuthorizeUrl}/{uri}").Respond(httpStatusCode);
-        }
-
         public static void SetupMockResponseWithoutOAuth(string uri, string responseContent)
         {
             MOCK_HTTP.Should().NotBeNull();

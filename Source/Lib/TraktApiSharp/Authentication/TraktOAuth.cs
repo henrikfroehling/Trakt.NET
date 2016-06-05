@@ -69,44 +69,6 @@
             return CreateAuthorizationUrl(clientId, redirectUri, state);
         }
 
-        public async Task<bool> AuthorizeAsync()
-        {
-            return await AuthorizeAsync(Client.ClientId, Client.Authentication.RedirectUri);
-        }
-
-        public async Task<bool> AuthorizeWithStateAsync()
-        {
-            return await AuthorizeWithStateAsync(Client.ClientId, Client.Authentication.RedirectUri, Client.Authentication.AntiForgeryToken);
-        }
-
-        public async Task<bool> AuthorizeAsync(string clientId, string redirectUri)
-        {
-            return await AuthorizeWithStateAsync(clientId, redirectUri);
-        }
-
-        public async Task<bool> AuthorizeWithStateAsync(string clientId, string redirectUri, string state = null)
-        {
-            validateAuthorizationWithStateInput(clientId, redirectUri, state);
-
-            var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
-            var authorizationUrl = $"{TraktConstants.OAuthBaseAuthorizeUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
-
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
-            SetDefaultRequestHeaders(httpClient);
-
-            using (var response = await httpClient.GetAsync(authorizationUrl))
-            {
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    throw new TraktAuthorizationException();
-
-                return response.StatusCode == HttpStatusCode.OK;
-            }
-        }
-
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
         {
             return await GetAccessTokenAsync(code, Client.ClientId, Client.ClientSecret, Client.Authentication.RedirectUri);
@@ -116,7 +78,7 @@
         {
             var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
 
-            validateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
+            ValidateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
 
             var postContent = $"{{ \"code\": \"{code}\", \"client_id\": \"{clientId}\", " +
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
@@ -238,24 +200,7 @@
                 throw new ArgumentException("state not valid", "state");
         }
 
-        private void validateAuthorizationInput(string clientId, string redirectUri)
-        {
-            if (string.IsNullOrEmpty(clientId))
-                throw new ArgumentException("client id not valid", "clientId");
-
-            if (string.IsNullOrEmpty(redirectUri))
-                throw new ArgumentException("redirect uri not valid", "redirectUri");
-        }
-
-        private void validateAuthorizationWithStateInput(string clientId, string redirectUri, string state)
-        {
-            validateAuthorizationInput(clientId, redirectUri);
-
-            if (state != null && state == string.Empty)
-                throw new ArgumentException("state not valid", "state");
-        }
-
-        private void validateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
+        private void ValidateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
         {
             if (string.IsNullOrEmpty(code))
                 throw new ArgumentException("code not valid", "code");
