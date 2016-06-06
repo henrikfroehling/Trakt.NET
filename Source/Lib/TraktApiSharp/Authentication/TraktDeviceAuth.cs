@@ -2,6 +2,7 @@
 {
     using Core;
     using Exceptions;
+    using Extensions;
     using Newtonsoft.Json;
     using System;
     using System.Net;
@@ -25,38 +26,49 @@
 
         public async Task<TraktDevice> GenerateDeviceAsync(string clientId)
         {
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
+                httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(httpClient);
+
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
+
+            using (var content = new StringContent(postContent))
+            using (var response = await httpClient.PostAsync(tokenUrl, content))
             {
-                SetDefaultRequestHeaders(httpClient);
+                var statusCode = response.StatusCode;
 
-                using (var content = new StringContent(postContent))
-                using (var response = await httpClient.PostAsync(TraktConstants.OAuthDeviceCodeUri, content))
+                if (statusCode == HttpStatusCode.OK)
                 {
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
-                        var device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(data));
+                    var data = await response.Content.ReadAsStringAsync();
+                    var device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(data));
 
-                        Client.Authentication.Device = device;
+                    Client.Authentication.Device = device;
 
-                        return device;
-                    }
-                    else
+                    return device;
+                }
+                else
+                {
+                    var responseContent = string.Empty;
+
+                    if (response.Content != null)
+                        responseContent = await response.Content.ReadAsStringAsync();
+
+                    throw new TraktAuthenticationDeviceException("error on generating authentication device")
                     {
-                        throw new TraktAuthenticationDeviceException("error on generating authentication device")
-                        {
-                            StatusCode = response.StatusCode,
-                            RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}",
-                            RequestBody = postContent,
-                            Response = await response.Content.ReadAsStringAsync(),
-                            ServerReasonPhrase = response.ReasonPhrase
-                        };
-                    }
+                        StatusCode = statusCode,
+                        RequestUrl = tokenUrl,
+                        RequestBody = postContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 }
             }
         }
@@ -66,9 +78,19 @@
             return await GetAccessTokenAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
         }
 
+        public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device)
+        {
+            return await GetAccessTokenAsync(device, Client.ClientId, Client.ClientSecret);
+        }
+
+        public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device, string clientId)
+        {
+            return await GetAccessTokenAsync(device, clientId, Client.ClientSecret);
+        }
+
         public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device, string clientId, string clientSecret)
         {
-            validateAccessTokenInput(device, clientId, clientSecret);
+            ValidateAccessTokenInput(device, clientId, clientSecret);
 
             var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
@@ -183,10 +205,13 @@
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
+
+            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
+                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
-        private void validateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)
+        private void ValidateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)
         {
             if (device.IsExpiredUnused)
                 throw new ArgumentException("device code expired unused", "device");
@@ -194,13 +219,13 @@
             if (!device.IsValid)
                 throw new ArgumentException("device not valid", "device");
 
-            if (string.IsNullOrEmpty(device.DeviceCode))
+            if (device.DeviceCode.ContainsSpace())
                 throw new ArgumentException("device code not valid", "device");
 
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
-            if (string.IsNullOrEmpty(clientSecret))
+            if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
         }
     }

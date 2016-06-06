@@ -98,6 +98,28 @@
                      .Respond(httpStatusCode, "application/json", responseContent);
         }
 
+        public static void SetupMockGetAccessTokenErrorResponse(string url, string requestContent, HttpStatusCode httpStatusCode)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{url}")
+                     .WithContent(requestContent)
+                     .Respond(httpStatusCode);
+        }
+
+        public static void SetupMockGetAccessTokenErrorResponse(string url, HttpStatusCode httpStatusCode)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{url}").Respond(httpStatusCode);
+        }
+
         public static void SetupMockResponseWithoutOAuth(string uri, string responseContent)
         {
             MOCK_HTTP.Should().NotBeNull();

@@ -1,7 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
+    using Core;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Newtonsoft.Json;
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using TraktApiSharp.Authentication;
+    using TraktApiSharp.Exceptions;
     using Utils;
 
     [TestClass]
@@ -45,37 +52,151 @@
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDevice()
         {
-            Assert.Fail();
+            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+
+            var device = new TraktDevice
+            {
+                DeviceCode = "mockDeviceCode",
+                UserCode = "5055CC52",
+                VerificationUrl = "https://trakt.tv/activate",
+                ExpiresInSeconds = 600,
+                IntervalInSeconds = 5
+            };
+
+            var deviceJson = JsonConvert.SerializeObject(device);
+            deviceJson.Should().NotBeNullOrEmpty();
+
+            var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
+
+            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceCodeUri, postContent, deviceJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync().Result;
+
+            response.Should().NotBeNull();
+            response.DeviceCode.Should().Be(device.DeviceCode);
+            response.UserCode.Should().Be(device.UserCode);
+            response.VerificationUrl.Should().Be(device.VerificationUrl);
+            response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
+            response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
+            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.IsExpiredUnused.Should().BeFalse();
+            response.IsValid.Should().BeTrue();
+
+            var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
+
+            clientDevice.Should().NotBeNull();
+            clientDevice.DeviceCode.Should().Be(response.DeviceCode);
+            clientDevice.UserCode.Should().Be(response.UserCode);
+            clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
+            clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
+            clientDevice.Created.Should().Be(response.Created);
+            clientDevice.IsExpiredUnused.Should().BeFalse();
+            clientDevice.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceExceptions()
         {
-            Assert.Fail();
+            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthDeviceCodeUri, HttpStatusCode.NotFound);
+
+            var errorMessage = "error on generating authentication device";
+
+            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+            act.ShouldThrow<TraktAuthenticationDeviceException>().WithMessage(errorMessage);
         }
 
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceArgumentExceptions()
         {
-            Assert.Fail();
+            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+
+            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+            act.ShouldThrow<ArgumentException>();
+
+            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+            act.ShouldThrow<ArgumentException>();
+
+            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceWithClientId()
         {
-            Assert.Fail();
+            var clientId = "clientId";
+
+            var device = new TraktDevice
+            {
+                DeviceCode = "mockDeviceCode",
+                UserCode = "5055CC52",
+                VerificationUrl = "https://trakt.tv/activate",
+                ExpiresInSeconds = 600,
+                IntervalInSeconds = 5
+            };
+
+            var deviceJson = JsonConvert.SerializeObject(device);
+            deviceJson.Should().NotBeNullOrEmpty();
+
+            var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
+
+            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceCodeUri, postContent, deviceJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId).Result;
+
+            response.Should().NotBeNull();
+            response.DeviceCode.Should().Be(device.DeviceCode);
+            response.UserCode.Should().Be(device.UserCode);
+            response.VerificationUrl.Should().Be(device.VerificationUrl);
+            response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
+            response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
+            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.IsExpiredUnused.Should().BeFalse();
+            response.IsValid.Should().BeTrue();
+
+            var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
+
+            clientDevice.Should().NotBeNull();
+            clientDevice.DeviceCode.Should().Be(response.DeviceCode);
+            clientDevice.UserCode.Should().Be(response.UserCode);
+            clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
+            clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
+            clientDevice.Created.Should().Be(response.Created);
+            clientDevice.IsExpiredUnused.Should().BeFalse();
+            clientDevice.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceWithClientIdExceptions()
         {
-            Assert.Fail();
+            var clientId = "clientId";
+
+            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthDeviceCodeUri, HttpStatusCode.NotFound);
+
+            var errorMessage = "error on generating authentication device";
+
+            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+            act.ShouldThrow<TraktAuthenticationDeviceException>().WithMessage(errorMessage);
         }
 
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceWithClientIdArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            var clientId = "client id";
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
