@@ -62,14 +62,6 @@
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationGetAuthorizationCode()
-        {
-            var client = new TraktClient();
-
-            client.Authentication.AuthorizationCode.Should().BeNull();
-        }
-
-        [TestMethod]
         public void TestTraktAuthenticationGetAccessTokenAsync()
         {
             // TODO

@@ -26,7 +26,11 @@
 
         private static TraktAccessToken MOCK_ACCESS_TOKEN = new TraktAccessToken { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
-        public static TraktClient MOCK_TEST_CLIENT = new TraktClient("traktClientId");
+        private static readonly string TRAKT_CLIENT_ID = "traktClientId";
+        private static readonly string TRAKT_CLIENT_SECRET = "traktClientSecret";
+        private static readonly string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
+
+        public static TraktClient MOCK_TEST_CLIENT = new TraktClient(TRAKT_CLIENT_ID, TRAKT_CLIENT_SECRET);
 
         public static void SetupMockHttpClient()
         {
@@ -43,6 +47,7 @@
 
         public static void SetupMockAuthenticationHttpClient()
         {
+            BASE_URL = MOCK_TEST_CLIENT.Configuration.BaseUrl;
             MOCK_HTTP = new MockHttpMessageHandler();
             TraktConfiguration.HTTP_CLIENT = new HttpClient(MOCK_HTTP);
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -56,6 +61,41 @@
         public static void ClearMockHttpClient()
         {
             MOCK_HTTP.Clear();
+        }
+
+        public static void SetDefaultClientValues()
+        {
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+
+            MOCK_TEST_CLIENT.ClientId = TRAKT_CLIENT_ID;
+            MOCK_TEST_CLIENT.ClientSecret = TRAKT_CLIENT_SECRET;
+            MOCK_TEST_CLIENT.Authentication.RedirectUri = DEFAULT_REDIRECT_URI;
+        }
+
+        public static void SetupMockAuthenticationResponse(string url, string requestContent, string responseContent)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{url}")
+                     .WithContent(requestContent)
+                     .Respond("application/json", responseContent);
+        }
+
+        public static void SetupMockGetAccessTokenErrorResponse(string url, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{url}")
+                     .WithContent(requestContent)
+                     .Respond(httpStatusCode, "application/json", responseContent);
         }
 
         public static void SetupMockResponseWithoutOAuth(string uri, string responseContent)

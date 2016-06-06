@@ -45,8 +45,6 @@
             set { _device = value; }
         }
 
-        public string AuthorizationCode { get; set; }
-
         public string AntiForgeryToken { get; private set; }
 
         public string ClientId { get; set; }
@@ -55,10 +53,7 @@
 
         public string RedirectUri { get; set; }
 
-        public bool IsAuthenticated
-        {
-            get { return AccessToken != null && AccessToken.IsValid; }
-        }
+        public bool IsAuthenticated => AccessToken != null && AccessToken.IsValid;
 
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
         {

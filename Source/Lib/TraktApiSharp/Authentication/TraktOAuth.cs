@@ -3,6 +3,7 @@
     using Core;
     using Enums;
     using Exceptions;
+    using Extensions;
     using Newtonsoft.Json;
     using Objects.Basic;
     using System;
@@ -69,9 +70,24 @@
             return CreateAuthorizationUrl(clientId, redirectUri, state);
         }
 
+        public async Task<TraktAccessToken> GetAccessTokenAsync()
+        {
+            return await GetAccessTokenAsync(Client.Authentication.OAuthAuthorizationCode);
+        }
+
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
         {
             return await GetAccessTokenAsync(code, Client.ClientId, Client.ClientSecret, Client.Authentication.RedirectUri);
+        }
+
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId)
+        {
+            return await GetAccessTokenAsync(code, clientId, Client.ClientSecret, Client.Authentication.RedirectUri);
+        }
+
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret)
+        {
+            return await GetAccessTokenAsync(code, clientId, clientSecret, Client.Authentication.RedirectUri);
         }
 
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
@@ -185,10 +201,10 @@
 
         private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri)
         {
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
-            if (string.IsNullOrEmpty(redirectUri))
+            if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
                 throw new ArgumentException("redirect uri not valid", "redirectUri");
         }
 
@@ -196,22 +212,22 @@
         {
             ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
-            if (string.IsNullOrEmpty(state))
+            if (string.IsNullOrEmpty(state) || state.ContainsSpace())
                 throw new ArgumentException("state not valid", "state");
         }
 
         private void ValidateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
         {
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(code) || code.ContainsSpace())
                 throw new ArgumentException("code not valid", "code");
 
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
-            if (string.IsNullOrEmpty(clientSecret))
+            if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
 
-            if (string.IsNullOrEmpty(redirectUri))
+            if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
                 throw new ArgumentException("redirect uri not valid", "redirectUri");
 
             if (string.IsNullOrEmpty(grantType))
