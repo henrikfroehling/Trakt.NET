@@ -450,6 +450,17 @@
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsValid.Should().BeTrue();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+            clientAccessToken.TokenType.Should().Be(response.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
+            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
@@ -593,6 +604,17 @@
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsValid.Should().BeTrue();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+            clientAccessToken.TokenType.Should().Be(response.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
+            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
@@ -731,6 +753,17 @@
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsValid.Should().BeTrue();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+            clientAccessToken.TokenType.Should().Be(response.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
+            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
@@ -867,6 +900,17 @@
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsValid.Should().BeTrue();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+            clientAccessToken.TokenType.Should().Be(response.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
+            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1001,6 +1045,17 @@
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsValid.Should().BeTrue();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+            clientAccessToken.TokenType.Should().Be(response.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
+            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.IsValid.Should().BeTrue();
         }
 
         [TestMethod]
