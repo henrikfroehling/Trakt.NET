@@ -121,8 +121,7 @@
 
                     return token;
                 }
-
-                if (response.StatusCode == HttpStatusCode.Unauthorized) // Invalid code
+                else if (response.StatusCode == HttpStatusCode.Unauthorized) // Invalid code
                 {
                     var data = await response.Content.ReadAsStringAsync();
                     var error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(data));
@@ -221,18 +220,13 @@
             if (string.IsNullOrEmpty(code) || code.ContainsSpace())
                 throw new ArgumentException("code not valid", "code");
 
-            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+            ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
 
-            if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
-                throw new ArgumentException("redirect uri not valid", "redirectUri");
-
             if (string.IsNullOrEmpty(grantType))
                 throw new ArgumentException("grant type not valid", "grantType");
-
         }
     }
 }
