@@ -73,74 +73,70 @@
             }
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync()
+        public async Task<TraktAccessToken> PollForAccessTokenAsync()
         {
-            return await GetAccessTokenAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
+            return await PollForAccessTokenAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device)
+        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device)
         {
-            return await GetAccessTokenAsync(device, Client.ClientId, Client.ClientSecret);
+            return await PollForAccessTokenAsync(device, Client.ClientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device, string clientId)
+        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device, string clientId)
         {
-            return await GetAccessTokenAsync(device, clientId, Client.ClientSecret);
+            return await PollForAccessTokenAsync(device, clientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(TraktDevice device, string clientId, string clientSecret)
+        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device, string clientId, string clientSecret)
         {
             ValidateAccessTokenInput(device, clientId, clientSecret);
 
             var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
-            using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
+                httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(httpClient);
+
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
+
+            HttpStatusCode responseCode = HttpStatusCode.OK;
+            string reasonPhrase = null;
+            int totalExpiredSeconds = 0;
+
+            while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
-                SetDefaultRequestHeaders(httpClient);
+                var content = new StringContent(postContent);
+                var response = await httpClient.PostAsync(tokenUrl, content);
+                responseCode = response.StatusCode;
 
-                using (var content = new StringContent(postContent))
+                if (responseCode == HttpStatusCode.OK) // Success
                 {
-                    HttpStatusCode responseCode = HttpStatusCode.OK;
-                    string reasonPhrase = null;
-                    int totalExpiredSeconds = 0;
+                    var data = await response.Content.ReadAsStringAsync();
+                    var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
 
-                    while (totalExpiredSeconds < device.ExpiresInSeconds)
-                    {
-                        using (var response = await httpClient.PostAsync(TraktConstants.OAuthDeviceTokenUri, content))
-                        {
-                            responseCode = response.StatusCode;
+                    Client.Authentication.AccessToken = token;
 
-                            if (responseCode == HttpStatusCode.OK) // Success
-                            {
-                                var data = await response.Content.ReadAsStringAsync();
-                                var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
-
-                                Client.Authentication.AccessToken = token;
-
-                                return token;
-                            }
-                            else if (responseCode == HttpStatusCode.BadRequest) // Pending
-                            {
-                                await Task.Delay(device.IntervalInSeconds * 1000);
-                                totalExpiredSeconds += device.IntervalInSeconds;
-                                continue;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-
-                    var requestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
-
+                    return token;
+                }
+                else if (responseCode == HttpStatusCode.BadRequest) // Pending
+                {
+                    await Task.Delay(device.IntervalInSeconds * 1000);
+                    totalExpiredSeconds += device.IntervalInSeconds;
+                    continue;
+                }
+                else
+                {
                     switch (responseCode)
                     {
                         case HttpStatusCode.NotFound:
                             throw new TraktAuthenticationDeviceException("Not Found - invalid device_code")
                             {
                                 StatusCode = responseCode,
-                                RequestUrl = requestUrl,
+                                RequestUrl = tokenUrl,
                                 RequestBody = postContent,
                                 ServerReasonPhrase = reasonPhrase
                             };
@@ -148,7 +144,7 @@
                             throw new TraktAuthenticationDeviceException("Already Used - user already approved this code")
                             {
                                 StatusCode = responseCode,
-                                RequestUrl = requestUrl,
+                                RequestUrl = tokenUrl,
                                 RequestBody = postContent,
                                 ServerReasonPhrase = reasonPhrase
                             };
@@ -156,7 +152,7 @@
                             throw new TraktAuthenticationDeviceException("Expired - the tokens have expired, restart the process")
                             {
                                 StatusCode = responseCode,
-                                RequestUrl = requestUrl,
+                                RequestUrl = tokenUrl,
                                 RequestBody = postContent,
                                 ServerReasonPhrase = reasonPhrase
                             };
@@ -164,7 +160,7 @@
                             throw new TraktAuthenticationDeviceException("Denied - user explicitly denied this code")
                             {
                                 StatusCode = (HttpStatusCode)418,
-                                RequestUrl = requestUrl,
+                                RequestUrl = tokenUrl,
                                 RequestBody = postContent,
                                 ServerReasonPhrase = reasonPhrase
                             };
@@ -172,15 +168,17 @@
                             throw new TraktAuthenticationDeviceException("Slow Down - your app is polling too quickly")
                             {
                                 StatusCode = (HttpStatusCode)429,
-                                RequestUrl = requestUrl,
+                                RequestUrl = tokenUrl,
                                 RequestBody = postContent,
                                 ServerReasonPhrase = reasonPhrase
                             };
-                        default:
-                            throw new TraktAuthenticationDeviceException("unknown exception") { ServerReasonPhrase = reasonPhrase };
                     }
+
+                    break;
                 }
             }
+
+            throw new TraktAuthenticationDeviceException("unknown exception") { ServerReasonPhrase = reasonPhrase };
         }
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
@@ -213,6 +211,9 @@
 
         private void ValidateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)
         {
+            if (device == null)
+                throw new ArgumentNullException("device must not be null", "device");
+
             if (device.IsExpiredUnused)
                 throw new ArgumentException("device code expired unused", "device");
 
