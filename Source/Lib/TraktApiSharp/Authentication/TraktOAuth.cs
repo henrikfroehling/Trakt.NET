@@ -3,6 +3,7 @@
     using Core;
     using Enums;
     using Exceptions;
+    using Extensions;
     using Newtonsoft.Json;
     using Objects.Basic;
     using System;
@@ -21,38 +22,57 @@
 
         public TraktClient Client { get; private set; }
 
-        public async Task<bool> AuthorizeAsync()
+        public string CreateAuthorizationUrl()
         {
-            return await AuthorizeAsync(Client.ClientId, Client.Authentication.RedirectUri);
+            var clientId = Client.ClientId;
+            var redirectUri = Client.Authentication.RedirectUri;
+
+            return CreateAuthorizationUrl(clientId, redirectUri);
         }
 
-        public async Task<bool> AuthorizeWithStateAsync()
+        public string CreateAuthorizationUrl(string clientId)
         {
-            return await AuthorizeWithStateAsync(Client.ClientId, Client.Authentication.RedirectUri, Client.Authentication.AntiForgeryToken);
+            var redirectUri = Client.Authentication.RedirectUri;
+            return CreateAuthorizationUrl(clientId, redirectUri);
         }
 
-        public async Task<bool> AuthorizeAsync(string clientId, string redirectUri)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri)
         {
-            return await AuthorizeWithStateAsync(clientId, redirectUri);
+            ValidateAuthorizationUrlParameters(clientId, redirectUri);
+            return BuildAuthorizationUrl(clientId, redirectUri);
         }
 
-        public async Task<bool> AuthorizeWithStateAsync(string clientId, string redirectUri, string state = null)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
         {
-            validateAuthorizationWithStateInput(clientId, redirectUri, state);
+            ValidateAuthorizationUrlParameters(clientId, redirectUri, state);
+            return BuildAuthorizationUrl(clientId, redirectUri, state);
+        }
 
-            var baseUri = new Uri(TraktConstants.OAuthBaseAuthorizeUrl);
-            var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
-            var authorizationUri = $"{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
+        public string CreateAuthorizationUrlWithDefaultState()
+        {
+            var clientId = Client.ClientId;
+            var redirectUri = Client.Authentication.RedirectUri;
+            var state = Client.Authentication.AntiForgeryToken;
 
-            using (var httpClient = new HttpClient { BaseAddress = baseUri })
-            {
-                SetDefaultRequestHeaders(httpClient);
+            return CreateAuthorizationUrl(clientId, redirectUri, state);
+        }
 
-                using (var response = await httpClient.GetAsync(authorizationUri))
-                {
-                    return response.StatusCode == HttpStatusCode.OK;
-                }
-            }
+        public string CreateAuthorizationUrlWithDefaultState(string clientId)
+        {
+            var redirectUri = Client.Authentication.RedirectUri;
+            var state = Client.Authentication.AntiForgeryToken;
+            return CreateAuthorizationUrl(clientId, redirectUri, state);
+        }
+
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri)
+        {
+            var state = Client.Authentication.AntiForgeryToken;
+            return CreateAuthorizationUrl(clientId, redirectUri, state);
+        }
+
+        public async Task<TraktAccessToken> GetAccessTokenAsync()
+        {
+            return await GetAccessTokenAsync(Client.Authentication.OAuthAuthorizationCode);
         }
 
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
@@ -60,51 +80,74 @@
             return await GetAccessTokenAsync(code, Client.ClientId, Client.ClientSecret, Client.Authentication.RedirectUri);
         }
 
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId)
+        {
+            return await GetAccessTokenAsync(code, clientId, Client.ClientSecret, Client.Authentication.RedirectUri);
+        }
+
+        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret)
+        {
+            return await GetAccessTokenAsync(code, clientId, clientSecret, Client.Authentication.RedirectUri);
+        }
+
         public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
         {
             var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
 
-            validateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
+            ValidateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
 
-            var postContent = $"{{ \"code\": \"{code}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\", " +
-                              $"\"redirect_uri\": \"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+            var postContent = $"{{ \"code\": \"{code}\", \"client_id\": \"{clientId}\", " +
+                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
+                httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(httpClient);
+
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
+            var content = new StringContent(postContent);
+
+            var response = await httpClient.PostAsync(tokenUrl, content);
+
+            HttpStatusCode responseCode = response.StatusCode;
+            string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+            string reasonPhrase = response.ReasonPhrase;
+
+            if (responseCode == HttpStatusCode.OK)
             {
-                SetDefaultRequestHeaders(httpClient);
+                var token = default(TraktAccessToken);
 
-                using (var content = new StringContent(postContent))
-                using (var response = await httpClient.PostAsync(TraktConstants.OAuthTokenUri, content))
-                {
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
-                        var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
+                if (!string.IsNullOrEmpty(responseContent))
+                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(responseContent));
 
-                        Client.Authentication.AccessToken = token;
-
-                        return token;
-                    }
-
-                    if (response.StatusCode == HttpStatusCode.Unauthorized) // Invalid code
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
-                        var error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(data));
-
-                        var errorMessage = $"error on retrieving oauth access token\nerror: {error.Error}\ndescription: {error.Description}";
-
-                        throw new TraktAuthenticationOAuthException(errorMessage)
-                        {
-                            StatusCode = response.StatusCode,
-                            RequestUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}",
-                            RequestBody = postContent,
-                            ServerReasonPhrase = response.ReasonPhrase
-                        };
-                    }
-
-                    throw new TraktAuthenticationOAuthException("unknown exception") { ServerReasonPhrase = response.ReasonPhrase };
-                }
+                Client.Authentication.AccessToken = token;
+                return token;
             }
+            else if (responseCode == HttpStatusCode.Unauthorized) // Invalid code
+            {
+                var error = default(TraktError);
+
+                if (!string.IsNullOrEmpty(responseContent))
+                    error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(responseContent));
+
+                var errorMessage = error != null ? ($"error on retrieving oauth access token\nerror: {error.Error}\n" +
+                                                    $"description: {error.Description}")
+                                                 : "unknown error";
+
+                throw new TraktAuthenticationOAuthException(errorMessage)
+                {
+                    StatusCode = responseCode,
+                    RequestUrl = tokenUrl,
+                    RequestBody = postContent,
+                    ServerReasonPhrase = reasonPhrase
+                };
+            }
+
+            await ErrorHandling(response, tokenUrl, postContent);
+            return default(TraktAccessToken);
         }
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
@@ -112,24 +155,47 @@
             return await Client.Authentication.RefreshAccessTokenAsync();
         }
 
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret);
+        }
+
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, redirectUri);
         }
 
-        public async Task<bool> RevokeAccessTokenAsync()
+        public async Task RevokeAccessTokenAsync()
         {
-            return await Client.Authentication.RevokeAccessTokenAsync();
+            await Client.Authentication.RevokeAccessTokenAsync();
         }
 
-        public async Task<bool> RevokeAccessTokenAsync(string accessToken, string clientId)
+        public async Task RevokeAccessTokenAsync(string accessToken)
         {
-            return await Client.Authentication.RevokeAccessTokenAsync(accessToken, clientId);
+            await Client.Authentication.RevokeAccessTokenAsync(accessToken);
+        }
+
+        public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
+        {
+            await Client.Authentication.RevokeAccessTokenAsync(accessToken, clientId);
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
+
+            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
+                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
@@ -152,40 +218,161 @@
             return $"?{encodedUri}";
         }
 
-        private void validateAuthorizationInput(string clientId, string redirectUri)
+        private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
-            if (string.IsNullOrEmpty(clientId))
+            var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
+            var authorizationUrl = $"{TraktConstants.OAuthBaseAuthorizeUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
+
+            return authorizationUrl;
+        }
+
+        private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri)
+        {
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
-            if (string.IsNullOrEmpty(redirectUri))
+            if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
                 throw new ArgumentException("redirect uri not valid", "redirectUri");
         }
 
-        private void validateAuthorizationWithStateInput(string clientId, string redirectUri, string state)
+        private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri, string state)
         {
-            validateAuthorizationInput(clientId, redirectUri);
+            ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
-            if (string.IsNullOrEmpty(state))
+            if (string.IsNullOrEmpty(state) || state.ContainsSpace())
                 throw new ArgumentException("state not valid", "state");
         }
 
-        private void validateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
+        private void ValidateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
         {
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(code) || code.ContainsSpace())
                 throw new ArgumentException("code not valid", "code");
 
-            if (string.IsNullOrEmpty(clientId))
-                throw new ArgumentException("client id not valid", "clientId");
+            ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
-            if (string.IsNullOrEmpty(clientSecret))
+            if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
-
-            if (string.IsNullOrEmpty(redirectUri))
-                throw new ArgumentException("redirect uri not valid", "redirectUri");
 
             if (string.IsNullOrEmpty(grantType))
                 throw new ArgumentException("grant type not valid", "grantType");
+        }
 
+        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)
+        {
+            var responseContent = string.Empty;
+
+            if (response.Content != null)
+                responseContent = await response.Content.ReadAsStringAsync();
+
+            var code = response.StatusCode;
+            var reasonPhrase = response.ReasonPhrase;
+
+            switch (code)
+            {
+                case HttpStatusCode.NotFound:
+                    throw new TraktNotFoundException("Resource not found")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.BadRequest:
+                    throw new TraktBadRequestException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.Conflict:
+                    throw new TraktConflictException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.Forbidden:
+                    throw new TraktForbiddenException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.MethodNotAllowed:
+                    throw new TraktMethodNotFoundException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.InternalServerError:
+                    throw new TraktServerException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.BadGateway:
+                    throw new TraktBadGatewayException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)422:
+                    throw new TraktValidationException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)429:
+                    throw new TraktRateLimitException
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)503:
+                case (HttpStatusCode)504:
+                    throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)520:
+                case (HttpStatusCode)521:
+                case (HttpStatusCode)522:
+                    throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+            }
+
+            throw new TraktAuthenticationOAuthException("unknown exception") { ServerReasonPhrase = reasonPhrase };
         }
     }
 }
