@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Core
 {
-    using Enums;
     using System;
     using System.Net.Http;
 
@@ -9,7 +8,6 @@
         internal TraktConfiguration()
         {
             ApiVersion = 2;
-            AuthenticationMode = TraktAuthenticationMode.Device;
             UseStagingUrl = false;
         }
 
@@ -21,7 +19,5 @@
 
         public string BaseUrl => UseStagingUrl ? "https://api-staging.trakt.tv/" : $"https://api-v{ApiVersion}launch.trakt.tv/";
         public Uri BaseUri => new Uri(BaseUrl);
-
-        public TraktAuthenticationMode AuthenticationMode { get; set; }
     }
 }

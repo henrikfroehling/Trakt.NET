@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TraktApiSharp.Enums;
 
     [TestClass]
     public class TraktAuthenticationTests
@@ -16,7 +15,6 @@
             var client = new TraktClient();
 
             client.Authentication.Client.Should().Be(client);
-            client.Authentication.AuthenticationMode.Should().Be(TraktAuthenticationMode.Device);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
             client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
             client.Authentication.OAuthAuthorizationCode.Should().BeNull();
@@ -32,7 +30,6 @@
             var client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
             client.Authentication.Client.Should().Be(client);
-            client.Authentication.AuthenticationMode.Should().Be(TraktAuthenticationMode.Device);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
             client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
             client.Authentication.OAuthAuthorizationCode.Should().BeNull();

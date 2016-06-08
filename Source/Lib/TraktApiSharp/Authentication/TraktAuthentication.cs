@@ -3,6 +3,7 @@
     using Core;
     using Enums;
     using Exceptions;
+    using Extensions;
     using Newtonsoft.Json;
     using Objects.Basic;
     using System;
@@ -13,7 +14,6 @@
 
     public class TraktAuthentication
     {
-        private const TraktAuthenticationMode DEFAULT_AUTHENTICATION_MODE = TraktAuthenticationMode.Device;
         private const string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
 
         private TraktAccessToken _accessToken;
@@ -22,14 +22,11 @@
         internal TraktAuthentication(TraktClient client)
         {
             Client = client;
-            AuthenticationMode = DEFAULT_AUTHENTICATION_MODE;
             AntiForgeryToken = Guid.NewGuid().ToString();
             RedirectUri = DEFAULT_REDIRECT_URI;
         }
 
         public TraktClient Client { get; private set; }
-
-        public TraktAuthenticationMode AuthenticationMode { get; set; }
 
         public string OAuthAuthorizationCode { get; set; }
 
@@ -55,35 +52,19 @@
 
         public bool IsAuthenticated => AccessToken != null && AccessToken.IsValid;
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
-        {
-            switch (AuthenticationMode)
-            {
-                case TraktAuthenticationMode.Device:
-                    {
-                        await Client.DeviceAuth.GenerateDeviceAsync();
-                        return await Client.DeviceAuth.PollForAccessTokenAsync();
-                    }
-                case TraktAuthenticationMode.OAuth:
-                    return await Client.OAuth.GetAccessTokenAsync(code);
-            }
-
-            return null;
-        }
-
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
         {
-            if (!IsAuthenticated)
-                throw new TraktAuthenticationException("not authenticated");
-
             return await RefreshAccessTokenAsync(AccessToken.RefreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
         }
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
+            if (!IsAuthenticated)
+                throw new TraktAuthenticationException("not authenticated");
+
             var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
 
-            validateRefreshTokenInput(refreshToken, clientId, clientSecret, redirectUri, grantType);
+            ValidateRefreshTokenInput(refreshToken, clientId, clientSecret, redirectUri, grantType);
 
             var postContent = $"{{ \"refresh_token\": \"{refreshToken}\", \"client_id\": \"{clientId}\"," +
                               $" \"client_secret\": \"{clientSecret}\", \"redirect_uri\": \"{redirectUri}\"," +
@@ -129,14 +110,14 @@
 
         public async Task<bool> RevokeAccessTokenAsync()
         {
-            if (!IsAuthenticated)
-                throw new TraktAuthenticationException("not authenticated");
-
             return await RevokeAccessTokenAsync(AccessToken.AccessToken, Client.ClientId);
         }
 
         public async Task<bool> RevokeAccessTokenAsync(string accessToken, string clientId)
         {
+            if (!IsAuthenticated)
+                throw new TraktAuthenticationException("not authenticated");
+
             if (string.IsNullOrEmpty(accessToken))
                 throw new ArgumentException("access token not valid", "accessToken");
 
@@ -161,18 +142,18 @@
             }
         }
 
-        private void validateRefreshTokenInput(string refreshToken, string clientId, string clientSecret, string redirectUri, string grantType)
+        private void ValidateRefreshTokenInput(string refreshToken, string clientId, string clientSecret, string redirectUri, string grantType)
         {
-            if (string.IsNullOrEmpty(refreshToken))
+            if (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace())
                 throw new ArgumentException("refresh token not valid", "refreshToken");
 
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
-            if (string.IsNullOrEmpty(clientSecret))
+            if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
 
-            if (string.IsNullOrEmpty(redirectUri))
+            if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
                 throw new ArgumentException("redirect uri not valid", "redirectUri");
 
             if (string.IsNullOrEmpty(grantType))
