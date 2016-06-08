@@ -40,10 +40,9 @@ namespace TraktApiSharp.Requests.Base
             var httpClient = TraktConfiguration.HTTP_CLIENT;
 
             if (httpClient == null)
-            {
                 httpClient = new HttpClient();
-                SetDefaultRequestHeaders(httpClient);
-            }
+
+            SetDefaultRequestHeaders(httpClient);
 
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
@@ -55,7 +54,7 @@ namespace TraktApiSharp.Requests.Base
                     if (!response.IsSuccessStatusCode)
                         ErrorHandling(response);
 
-                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : "";
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
                     // No content
                     if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -192,10 +191,16 @@ namespace TraktApiSharp.Requests.Base
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
-            httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
 
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, Client.ClientId);
+
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIVersionHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
+
+            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
+                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)
@@ -281,7 +286,7 @@ namespace TraktApiSharp.Requests.Base
 
         private void ErrorHandling(HttpResponseMessage response)
         {
-            var responseContent = "";
+            var responseContent = string.Empty;
 
             if (response.Content != null)
                 responseContent = response.Content.ReadAsStringAsync().Result;

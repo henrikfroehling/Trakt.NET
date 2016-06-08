@@ -66,7 +66,6 @@
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />
     <Compile Include="Enums\TraktAccessTokenType.cs" />
-    <Compile Include="Enums\TraktAuthenticationMode.cs" />
     <Compile Include="Enums\TraktGenreType.cs" />
     <Compile Include="Enums\TraktHiddenItemType.cs" />
     <Compile Include="Enums\TraktPeriod.cs" />
