@@ -29,5 +29,10 @@
             var filteredWords = words.Where(s => !string.IsNullOrEmpty(s));
             return filteredWords.Count();
         }
+
+        public static bool ContainsSpace(this string value)
+        {
+            return value.Contains(" ");
+        }
     }
 }

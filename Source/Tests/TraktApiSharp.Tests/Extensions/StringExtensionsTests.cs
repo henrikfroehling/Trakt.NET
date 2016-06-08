@@ -90,5 +90,23 @@
             value7.WordCount().Should().Be(9);
             value8.WordCount().Should().Be(9);
         }
+
+        [TestMethod]
+        public void TestStringExtensionsContainsSpace()
+        {
+            string value1 = string.Empty;
+            string value2 = "value2";
+            string value3 = " value3";
+            string value4 = "value4 ";
+            string value5 = " value5 ";
+            string value6 = "val ue6";
+
+            value1.ContainsSpace().Should().BeFalse();
+            value2.ContainsSpace().Should().BeFalse();
+            value3.ContainsSpace().Should().BeTrue();
+            value4.ContainsSpace().Should().BeTrue();
+            value5.ContainsSpace().Should().BeTrue();
+            value6.ContainsSpace().Should().BeTrue();
+        }
     }
 }
