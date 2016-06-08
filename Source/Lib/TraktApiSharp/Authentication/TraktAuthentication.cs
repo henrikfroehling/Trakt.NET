@@ -57,6 +57,21 @@
             return await RefreshAccessTokenAsync(AccessToken.RefreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
         }
 
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken)
+        {
+            return await RefreshAccessTokenAsync(refreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        {
+            return await RefreshAccessTokenAsync(refreshToken, clientId, Client.ClientSecret, RedirectUri);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        {
+            return await RefreshAccessTokenAsync(refreshToken, clientId, Client.ClientSecret, RedirectUri);
+        }
+
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             if (!IsAuthenticated)
@@ -111,6 +126,11 @@
         public async Task<bool> RevokeAccessTokenAsync()
         {
             return await RevokeAccessTokenAsync(AccessToken.AccessToken, Client.ClientId);
+        }
+
+        public async Task<bool> RevokeAccessTokenAsync(string accessToken)
+        {
+            return await RevokeAccessTokenAsync(accessToken, Client.ClientId);
         }
 
         public async Task<bool> RevokeAccessTokenAsync(string accessToken, string clientId)

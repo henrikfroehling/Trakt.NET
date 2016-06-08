@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Utils;
 
     [TestClass]
     public class TraktAuthenticationTests
@@ -39,6 +40,33 @@
             client.Authentication.ClientSecret.Should().Be(CLIENT_SECRET);
         }
 
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        [ClassInitialize]
+        public static void InitializeTests(TestContext context)
+        {
+            TestUtility.SetupMockAuthenticationHttpClient();
+        }
+
+        [ClassCleanup]
+        public static void CleanupTests()
+        {
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [TestCleanup]
+        public void CleanupSingleTest()
+        {
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
+        }
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region GetAccessToken
+
         [TestMethod]
         public void TestTraktAuthenticationGetAccessToken()
         {
@@ -50,6 +78,19 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthenticationGetAccessTokenWithValidClient()
+        {
+            Assert.Fail();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region GetDevice
+
+        [TestMethod]
         public void TestTraktAuthenticationGetDevice()
         {
             var client = new TraktClient();
@@ -59,21 +100,151 @@
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationGetAccessTokenAsync()
+        public void TestTraktAuthenticationGetDeviceWithValidClient()
         {
-            // TODO
+            Assert.Fail();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region RefreshAccessToken
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessToken()
+        {
+            Assert.Fail();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationRefreshAccessTokenAsync()
+        public void TestTraktAuthenticationRefreshAccessTokenExceptions()
         {
-            // TODO
+            Assert.Fail();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationRevokeAccessTokenAsync()
+        public void TestTraktAuthenticationRefreshAccessTokenArgumentExceptions()
         {
-            // TODO
+            Assert.Fail();
         }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithToken()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientId()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecret()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecretExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecretArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecretAndRedirectUri()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecretAndRedirectUriExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRefreshAccessTokenWithTokenAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region RevokeAccessToken
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessToken()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessTokenExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessTokenArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessTokenWithToken()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessTokenWithTokenExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationRevokeAccessTokenWithTokenArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        #endregion
     }
 }
