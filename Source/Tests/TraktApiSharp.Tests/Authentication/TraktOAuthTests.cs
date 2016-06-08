@@ -490,11 +490,87 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthTokenUri, postContent, errorJson,
-                                                             HttpStatusCode.Unauthorized);
+            var uri = TraktConstants.OAuthTokenUri;
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
             act.ShouldThrow<TraktAuthenticationOAuthException>().WithMessage(errorMessage);
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync();
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -643,11 +719,87 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthTokenUri, postContent, errorJson,
-                                                             HttpStatusCode.Unauthorized);
+            var uri = TraktConstants.OAuthTokenUri;
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
             act.ShouldThrow<TraktAuthenticationOAuthException>().WithMessage(errorMessage);
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -792,11 +944,87 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthTokenUri, postContent, errorJson,
-                                                             HttpStatusCode.Unauthorized);
+            var uri = TraktConstants.OAuthTokenUri;
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
             act.ShouldThrow<TraktAuthenticationOAuthException>().WithMessage(errorMessage);
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -939,11 +1167,87 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthTokenUri, postContent, errorJson,
-                                                             HttpStatusCode.Unauthorized);
+            var uri = TraktConstants.OAuthTokenUri;
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
             act.ShouldThrow<TraktAuthenticationOAuthException>().WithMessage(errorMessage);
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -1084,11 +1388,87 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockGetAccessTokenErrorResponse(TraktConstants.OAuthTokenUri, postContent, errorJson,
-                                                             HttpStatusCode.Unauthorized);
+            var uri = TraktConstants.OAuthTokenUri;
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
             act.ShouldThrow<TraktAuthenticationOAuthException>().WithMessage(errorMessage);
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAccessTokenAsync(mockAuthCode, clientId, clientSecret, redirectUri);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]

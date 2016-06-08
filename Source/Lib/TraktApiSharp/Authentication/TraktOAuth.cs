@@ -108,38 +108,46 @@
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
+            var content = new StringContent(postContent);
 
-            using (var content = new StringContent(postContent))
-            using (var response = await httpClient.PostAsync(tokenUrl, content))
+            var response = await httpClient.PostAsync(tokenUrl, content);
+
+            HttpStatusCode responseCode = response.StatusCode;
+            string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+            string reasonPhrase = response.ReasonPhrase;
+
+            if (responseCode == HttpStatusCode.OK)
             {
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var data = await response.Content.ReadAsStringAsync();
-                    var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
+                var token = default(TraktAccessToken);
 
-                    Client.Authentication.AccessToken = token;
+                if (!string.IsNullOrEmpty(responseContent))
+                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(responseContent));
 
-                    return token;
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized) // Invalid code
-                {
-                    var data = await response.Content.ReadAsStringAsync();
-                    var error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(data));
-
-                    var errorMessage = $"error on retrieving oauth access token\nerror: {error.Error}\n" +
-                                       $"description: {error.Description}";
-
-                    throw new TraktAuthenticationOAuthException(errorMessage)
-                    {
-                        StatusCode = response.StatusCode,
-                        RequestUrl = tokenUrl,
-                        RequestBody = postContent,
-                        ServerReasonPhrase = response.ReasonPhrase
-                    };
-                }
-
-                throw new TraktAuthenticationOAuthException("unknown exception") { ServerReasonPhrase = response.ReasonPhrase };
+                Client.Authentication.AccessToken = token;
+                return token;
             }
+            else if (responseCode == HttpStatusCode.Unauthorized) // Invalid code
+            {
+                var error = default(TraktError);
+
+                if (!string.IsNullOrEmpty(responseContent))
+                    error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(responseContent));
+
+                var errorMessage = error != null ? ($"error on retrieving oauth access token\nerror: {error.Error}\n" +
+                                                    $"description: {error.Description}")
+                                                 : "unknown error";
+
+                throw new TraktAuthenticationOAuthException(errorMessage)
+                {
+                    StatusCode = responseCode,
+                    RequestUrl = tokenUrl,
+                    RequestBody = postContent,
+                    ServerReasonPhrase = reasonPhrase
+                };
+            }
+
+            await ErrorHandling(response, tokenUrl, postContent);
+            return default(TraktAccessToken);
         }
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
@@ -227,6 +235,124 @@
 
             if (string.IsNullOrEmpty(grantType))
                 throw new ArgumentException("grant type not valid", "grantType");
+        }
+
+        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)
+        {
+            var responseContent = string.Empty;
+
+            if (response.Content != null)
+                responseContent = await response.Content.ReadAsStringAsync();
+
+            var code = response.StatusCode;
+            var reasonPhrase = response.ReasonPhrase;
+
+            switch (code)
+            {
+                case HttpStatusCode.NotFound:
+                    throw new TraktNotFoundException("Resource not found")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.BadRequest:
+                    throw new TraktBadRequestException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.Conflict:
+                    throw new TraktConflictException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.Forbidden:
+                    throw new TraktForbiddenException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.MethodNotAllowed:
+                    throw new TraktMethodNotFoundException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.InternalServerError:
+                    throw new TraktServerException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.BadGateway:
+                    throw new TraktBadGatewayException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)422:
+                    throw new TraktValidationException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)429:
+                    throw new TraktRateLimitException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)503:
+                case (HttpStatusCode)504:
+                    throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)520:
+                case (HttpStatusCode)521:
+                case (HttpStatusCode)522:
+                    throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+            }
+
+            throw new TraktAuthenticationOAuthException("unknown exception") { ServerReasonPhrase = reasonPhrase };
         }
     }
 }

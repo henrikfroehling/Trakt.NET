@@ -54,7 +54,7 @@ namespace TraktApiSharp.Requests.Base
                     if (!response.IsSuccessStatusCode)
                         ErrorHandling(response);
 
-                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : "";
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
                     // No content
                     if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -286,7 +286,7 @@ namespace TraktApiSharp.Requests.Base
 
         private void ErrorHandling(HttpResponseMessage response)
         {
-            var responseContent = "";
+            var responseContent = string.Empty;
 
             if (response.Content != null)
                 responseContent = response.Content.ReadAsStringAsync().Result;

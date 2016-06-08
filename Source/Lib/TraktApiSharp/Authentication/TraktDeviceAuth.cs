@@ -8,6 +8,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
     using System.Threading.Tasks;
 
     public class TraktDeviceAuth
@@ -39,38 +40,22 @@
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
+            var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            using (var content = new StringContent(postContent))
-            using (var response = await httpClient.PostAsync(tokenUrl, content))
-            {
-                var statusCode = response.StatusCode;
+            var response = await httpClient.PostAsync(tokenUrl, content);
 
-                if (statusCode == HttpStatusCode.OK)
-                {
-                    var data = await response.Content.ReadAsStringAsync();
-                    var device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(data));
+            if (!response.IsSuccessStatusCode)
+                await ErrorHandling(response, tokenUrl, postContent, true);
 
-                    Client.Authentication.Device = device;
+            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
-                    return device;
-                }
-                else
-                {
-                    var responseContent = string.Empty;
+            var device = default(TraktDevice);
 
-                    if (response.Content != null)
-                        responseContent = await response.Content.ReadAsStringAsync();
+            if (!string.IsNullOrEmpty(responseContent))
+                device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(responseContent));
 
-                    throw new TraktAuthenticationDeviceException("error on generating authentication device")
-                    {
-                        StatusCode = statusCode,
-                        RequestUrl = tokenUrl,
-                        RequestBody = postContent,
-                        Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
-                    };
-                }
-            }
+            Client.Authentication.Device = device;
+            return device;
         }
 
         public async Task<TraktAccessToken> PollForAccessTokenAsync()
@@ -103,23 +88,28 @@
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
 
-            HttpStatusCode responseCode = HttpStatusCode.OK;
-            string reasonPhrase = null;
+            HttpStatusCode responseCode = default(HttpStatusCode);
+            string responseContent = string.Empty;
+            string reasonPhrase = string.Empty;
             int totalExpiredSeconds = 0;
 
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
                 var content = new StringContent(postContent);
                 var response = await httpClient.PostAsync(tokenUrl, content);
+
                 responseCode = response.StatusCode;
+                reasonPhrase = response.ReasonPhrase;
+                responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
                 if (responseCode == HttpStatusCode.OK) // Success
                 {
-                    var data = await response.Content.ReadAsStringAsync();
-                    var token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(data));
+                    var token = default(TraktAccessToken);
+
+                    if (!string.IsNullOrEmpty(responseContent))
+                        token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(responseContent));
 
                     Client.Authentication.AccessToken = token;
-
                     return token;
                 }
                 else if (responseCode == HttpStatusCode.BadRequest) // Pending
@@ -128,54 +118,53 @@
                     totalExpiredSeconds += device.IntervalInSeconds;
                     continue;
                 }
-                else
-                {
-                    switch (responseCode)
-                    {
-                        case HttpStatusCode.NotFound:
-                            throw new TraktAuthenticationDeviceException("Not Found - invalid device_code")
-                            {
-                                StatusCode = responseCode,
-                                RequestUrl = tokenUrl,
-                                RequestBody = postContent,
-                                ServerReasonPhrase = reasonPhrase
-                            };
-                        case HttpStatusCode.Conflict:   // Already Used
-                            throw new TraktAuthenticationDeviceException("Already Used - user already approved this code")
-                            {
-                                StatusCode = responseCode,
-                                RequestUrl = tokenUrl,
-                                RequestBody = postContent,
-                                ServerReasonPhrase = reasonPhrase
-                            };
-                        case HttpStatusCode.Gone:       // Expired
-                            throw new TraktAuthenticationDeviceException("Expired - the tokens have expired, restart the process")
-                            {
-                                StatusCode = responseCode,
-                                RequestUrl = tokenUrl,
-                                RequestBody = postContent,
-                                ServerReasonPhrase = reasonPhrase
-                            };
-                        case (HttpStatusCode)418:       // Denied
-                            throw new TraktAuthenticationDeviceException("Denied - user explicitly denied this code")
-                            {
-                                StatusCode = (HttpStatusCode)418,
-                                RequestUrl = tokenUrl,
-                                RequestBody = postContent,
-                                ServerReasonPhrase = reasonPhrase
-                            };
-                        case (HttpStatusCode)429:       // Slow Down
-                            throw new TraktAuthenticationDeviceException("Slow Down - your app is polling too quickly")
-                            {
-                                StatusCode = (HttpStatusCode)429,
-                                RequestUrl = tokenUrl,
-                                RequestBody = postContent,
-                                ServerReasonPhrase = reasonPhrase
-                            };
-                    }
 
-                    break;
+                switch (responseCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        throw new TraktAuthenticationDeviceException("Not Found - invalid device_code")
+                        {
+                            StatusCode = responseCode,
+                            RequestUrl = tokenUrl,
+                            RequestBody = postContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case HttpStatusCode.Conflict:   // Already Used
+                        throw new TraktAuthenticationDeviceException("Already Used - user already approved this code")
+                        {
+                            StatusCode = responseCode,
+                            RequestUrl = tokenUrl,
+                            RequestBody = postContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case HttpStatusCode.Gone:       // Expired
+                        throw new TraktAuthenticationDeviceException("Expired - the tokens have expired, restart the process")
+                        {
+                            StatusCode = responseCode,
+                            RequestUrl = tokenUrl,
+                            RequestBody = postContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case (HttpStatusCode)418:       // Denied
+                        throw new TraktAuthenticationDeviceException("Denied - user explicitly denied this code")
+                        {
+                            StatusCode = (HttpStatusCode)418,
+                            RequestUrl = tokenUrl,
+                            RequestBody = postContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case (HttpStatusCode)429:       // Slow Down
+                        throw new TraktAuthenticationDeviceException("Slow Down - your app is polling too quickly")
+                        {
+                            StatusCode = (HttpStatusCode)429,
+                            RequestUrl = tokenUrl,
+                            RequestBody = postContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
                 }
+
+                await ErrorHandling(response, tokenUrl, postContent, true);
+                break;
             }
 
             throw new TraktAuthenticationDeviceException("unknown exception") { ServerReasonPhrase = reasonPhrase };
@@ -228,6 +217,146 @@
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", "clientSecret");
+        }
+
+        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent, bool handleAdditionalCodes)
+        {
+            var responseContent = string.Empty;
+
+            if (response.Content != null)
+                responseContent = await response.Content.ReadAsStringAsync();
+
+            var code = response.StatusCode;
+            var reasonPhrase = response.ReasonPhrase;
+
+            switch (code)
+            {
+                case HttpStatusCode.Unauthorized:
+                    throw new TraktAuthorizationException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.Forbidden:
+                    throw new TraktForbiddenException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.MethodNotAllowed:
+                    throw new TraktMethodNotFoundException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.InternalServerError:
+                    throw new TraktServerException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case HttpStatusCode.BadGateway:
+                    throw new TraktBadGatewayException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)422:
+                    throw new TraktValidationException()
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)503:
+                case (HttpStatusCode)504:
+                    throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+                case (HttpStatusCode)520:
+                case (HttpStatusCode)521:
+                case (HttpStatusCode)522:
+                    throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
+                    {
+                        RequestUrl = requestUrl,
+                        RequestBody = requestContent,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = reasonPhrase
+                    };
+            }
+
+            if (handleAdditionalCodes)
+            {
+                switch (code)
+                {
+                    case HttpStatusCode.NotFound:
+                        throw new TraktNotFoundException("Resource not found")
+                        {
+                            RequestUrl = requestUrl,
+                            RequestBody = requestContent,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case HttpStatusCode.BadRequest:
+                        throw new TraktBadRequestException()
+                        {
+                            RequestUrl = requestUrl,
+                            RequestBody = requestContent,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case HttpStatusCode.Conflict:
+                        throw new TraktConflictException()
+                        {
+                            RequestUrl = requestUrl,
+                            RequestBody = requestContent,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case (HttpStatusCode)429:
+                        throw new TraktRateLimitException()
+                        {
+                            RequestUrl = requestUrl,
+                            RequestBody = requestContent,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                }
+            }
+
+            throw new TraktAuthenticationDeviceException("unknown error")
+            {
+                StatusCode = code,
+                RequestUrl = requestUrl,
+                RequestBody = requestContent,
+                Response = responseContent,
+                ServerReasonPhrase = reasonPhrase
+            };
         }
     }
 }
