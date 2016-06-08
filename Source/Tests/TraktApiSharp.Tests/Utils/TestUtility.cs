@@ -277,6 +277,52 @@
                      .Respond("application/json", responseContent);
         }
 
+        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAccessToken accessToken)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            accessToken.Should().NotBeNull();
+            accessToken.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
+
+            uri.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
+                     })
+                     .WithContent(requestContent)
+                     .Respond(HttpStatusCode.OK);
+        }
+
+        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAccessToken accessToken, string clientId)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            accessToken.Should().NotBeNull();
+            accessToken.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
+
+            uri.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{clientId}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
+                     })
+                     .WithContent(requestContent)
+                     .Respond(HttpStatusCode.OK);
+        }
+
         public static void SetupMockResponseWithOAuth(string uri, HttpStatusCode httpStatusCode)
         {
             MOCK_HTTP.Should().NotBeNull();

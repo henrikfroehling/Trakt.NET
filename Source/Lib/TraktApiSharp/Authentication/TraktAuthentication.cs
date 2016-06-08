@@ -138,42 +138,58 @@
             return default(TraktAccessToken);
         }
 
-        public async Task<bool> RevokeAccessTokenAsync()
+        public async Task RevokeAccessTokenAsync()
         {
-            return await RevokeAccessTokenAsync(AccessToken.AccessToken, Client.ClientId);
+            await RevokeAccessTokenAsync(AccessToken.AccessToken, Client.ClientId);
         }
 
-        public async Task<bool> RevokeAccessTokenAsync(string accessToken)
+        public async Task RevokeAccessTokenAsync(string accessToken)
         {
-            return await RevokeAccessTokenAsync(accessToken, Client.ClientId);
+            await RevokeAccessTokenAsync(accessToken, Client.ClientId);
         }
 
-        public async Task<bool> RevokeAccessTokenAsync(string accessToken, string clientId)
+        public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
         {
-            if (!IsAuthenticated)
+            if (!IsAuthenticated && (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace()))
                 throw new TraktAuthenticationException("not authenticated");
 
-            if (string.IsNullOrEmpty(accessToken))
+            if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
                 throw new ArgumentException("access token not valid", "accessToken");
 
-            if (string.IsNullOrEmpty(clientId))
+            if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", "clientId");
 
             var postContent = $"{{ \"access_token\": \"{accessToken}\" }}";
 
-            using (var httpClient = new HttpClient { BaseAddress = Client.Configuration.BaseUri })
+            var httpClient = TraktConfiguration.HTTP_CLIENT;
+
+            if (httpClient == null)
+                httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(httpClient);
+            SetAuthorizationRequestHeaders(httpClient, accessToken, clientId);
+
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthRevokeUri}";
+            var content = new StringContent(postContent);
+
+            var response = await httpClient.PostAsync(tokenUrl, content);
+
+            if (!response.IsSuccessStatusCode)
             {
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                httpClient.DefaultRequestHeaders.Add("trakt-api-key", Client.ClientId);
-                httpClient.DefaultRequestHeaders.Add("trakt-api-version", $"{Client.Configuration.ApiVersion}");
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-                using (var content = new StringContent(postContent))
-                using (var response = await httpClient.PostAsync(TraktConstants.OAuthRevokeUri, content))
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    return response.StatusCode == HttpStatusCode.OK;
+                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+
+                    throw new TraktAuthorizationException
+                    {
+                        RequestUrl = tokenUrl,
+                        RequestBody = postContent,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
                 }
+
+                await ErrorHandling(response, tokenUrl, postContent);
             }
         }
 
@@ -183,6 +199,17 @@
 
             if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
                 httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
+        }
+
+        private void SetAuthorizationRequestHeaders(HttpClient httpClient, string accessToken, string clientId)
+        {
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, clientId);
+
+            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIVersionHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
+
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
 
         private void ValidateRefreshTokenInput(string clientId, string clientSecret, string redirectUri, string grantType)
@@ -221,7 +248,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.BadRequest:
-                    throw new TraktBadRequestException()
+                    throw new TraktBadRequestException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -229,7 +256,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Conflict:
-                    throw new TraktConflictException()
+                    throw new TraktConflictException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -237,7 +264,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Forbidden:
-                    throw new TraktForbiddenException()
+                    throw new TraktForbiddenException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -245,7 +272,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.MethodNotAllowed:
-                    throw new TraktMethodNotFoundException()
+                    throw new TraktMethodNotFoundException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -253,7 +280,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.InternalServerError:
-                    throw new TraktServerException()
+                    throw new TraktServerException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -261,7 +288,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.BadGateway:
-                    throw new TraktBadGatewayException()
+                    throw new TraktBadGatewayException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -269,7 +296,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)412:
-                    throw new TraktPreconditionFailedException()
+                    throw new TraktPreconditionFailedException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -277,7 +304,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)422:
-                    throw new TraktValidationException()
+                    throw new TraktValidationException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -285,7 +312,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)429:
-                    throw new TraktRateLimitException()
+                    throw new TraktRateLimitException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,

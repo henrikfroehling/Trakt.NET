@@ -175,14 +175,19 @@
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, redirectUri);
         }
 
-        public async Task<bool> RevokeAccessTokenAsync()
+        public async Task RevokeAccessTokenAsync()
         {
-            return await Client.Authentication.RevokeAccessTokenAsync();
+            await Client.Authentication.RevokeAccessTokenAsync();
         }
 
-        public async Task<bool> RevokeAccessTokenAsync(string accessToken, string clientId)
+        public async Task RevokeAccessTokenAsync(string accessToken)
         {
-            return await Client.Authentication.RevokeAccessTokenAsync(accessToken, clientId);
+            await Client.Authentication.RevokeAccessTokenAsync(accessToken);
+        }
+
+        public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
+        {
+            await Client.Authentication.RevokeAccessTokenAsync(accessToken, clientId);
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
@@ -273,7 +278,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.BadRequest:
-                    throw new TraktBadRequestException()
+                    throw new TraktBadRequestException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -281,7 +286,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Conflict:
-                    throw new TraktConflictException()
+                    throw new TraktConflictException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -289,7 +294,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Forbidden:
-                    throw new TraktForbiddenException()
+                    throw new TraktForbiddenException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -297,7 +302,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.MethodNotAllowed:
-                    throw new TraktMethodNotFoundException()
+                    throw new TraktMethodNotFoundException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -305,7 +310,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.InternalServerError:
-                    throw new TraktServerException()
+                    throw new TraktServerException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -313,7 +318,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.BadGateway:
-                    throw new TraktBadGatewayException()
+                    throw new TraktBadGatewayException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -321,7 +326,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)412:
-                    throw new TraktPreconditionFailedException()
+                    throw new TraktPreconditionFailedException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -329,7 +334,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)422:
-                    throw new TraktValidationException()
+                    throw new TraktValidationException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
@@ -337,7 +342,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)429:
-                    throw new TraktRateLimitException()
+                    throw new TraktRateLimitException
                     {
                         RequestUrl = requestUrl,
                         RequestBody = requestContent,
