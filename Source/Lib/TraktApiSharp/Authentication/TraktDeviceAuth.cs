@@ -175,6 +175,21 @@
             return await Client.Authentication.RefreshAccessTokenAsync();
         }
 
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId);
+        }
+
+        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        {
+            return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret);
+        }
+
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, redirectUri);
