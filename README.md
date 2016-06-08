@@ -9,7 +9,6 @@ The library **has currently beta status**.
 The library is feature-complete in terms of API coverage, but there are features, that are not completely tested.
 
 Following modules are not completely tested and can contain bugs:
-- Authentication Module
 - Sync Module
 - Users Module
 
