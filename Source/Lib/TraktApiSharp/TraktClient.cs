@@ -42,6 +42,20 @@ namespace TraktApiSharp
             Authentication = new TraktAuthentication(this);
             OAuth = new TraktOAuth(this);
             DeviceAuth = new TraktDeviceAuth(this);
+            Shows = new TraktShowsModule(this);
+            Seasons = new TraktSeasonsModule(this);
+            Episodes = new TraktEpisodesModule(this);
+            Movies = new TraktMoviesModule(this);
+            Calendar = new TraktCalendarModule(this);
+            Comments = new TraktCommentsModule(this);
+            People = new TraktPeopleModule(this);
+            Genres = new TraktGenresModule(this);
+            Search = new TraktSearchModule(this);
+            Recommendations = new TraktRecommendationsModule(this);
+            Sync = new TraktSyncModule(this);
+            Users = new TraktUsersModule(this);
+            Checkins = new TraktCheckinsModule(this);
+            Scrobble = new TraktScrobbleModule(this);
         }
 
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
