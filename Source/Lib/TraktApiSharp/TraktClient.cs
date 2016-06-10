@@ -6,6 +6,7 @@ namespace TraktApiSharp
 {
     using Authentication;
     using Core;
+    using Extensions;
     using Modules;
 
     /// <summary>
@@ -92,7 +93,7 @@ namespace TraktApiSharp
         /// <para>To enable this behavior, you must set a valid Trakt Client Id.</para>
         /// See <seealso cref="ClientId" />.
         /// </summary>
-        public bool IsValidForUseWithoutAuthorization => !string.IsNullOrEmpty(ClientId);
+        public bool IsValidForUseWithoutAuthorization => !string.IsNullOrEmpty(ClientId) && !ClientId.ContainsSpace();
 
         /// <summary>
         /// Returns, whether the client is valid to use for API requests, that require OAuth authentication.
@@ -100,7 +101,7 @@ namespace TraktApiSharp
         /// See <seealso cref="ClientId" />.
         /// See <seealso cref="ClientSecret" />.
         /// </summary>
-        public bool IsValid => !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret);
+        public bool IsValid => IsValidForUseWithoutAuthorization && !string.IsNullOrEmpty(ClientSecret) && !ClientSecret.ContainsSpace();
 
         /// <summary>
         /// Provides access to the configuration settings for the <see cref="TraktClient" />.
