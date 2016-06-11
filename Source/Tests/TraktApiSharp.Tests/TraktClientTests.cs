@@ -31,12 +31,25 @@
             client1.IsValid.Should().BeFalse();
             client1.IsValidForUseWithoutAuthorization.Should().BeTrue();
 
+            client1.ClientId = "client id";
+            client1.IsValid.Should().BeFalse();
+            client1.IsValidForUseWithoutAuthorization.Should().BeFalse();
+
             var client2 = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
             client2.ClientId.Should().Be(CLIENT_ID);
             client2.ClientSecret.Should().Be(CLIENT_SECRET);
 
             client2.IsValid.Should().BeTrue();
+            client2.IsValidForUseWithoutAuthorization.Should().BeTrue();
+
+            client2.ClientId = "client id";
+            client2.IsValid.Should().BeFalse();
+            client2.IsValidForUseWithoutAuthorization.Should().BeFalse();
+
+            client2.ClientId = CLIENT_ID;
+            client2.ClientSecret = "client secret";
+            client2.IsValid.Should().BeFalse();
             client2.IsValidForUseWithoutAuthorization.Should().BeTrue();
         }
 
