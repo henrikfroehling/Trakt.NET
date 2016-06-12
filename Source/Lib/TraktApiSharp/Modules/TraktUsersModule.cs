@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Users;
     using Objects.Get.Users.Collections;
@@ -59,6 +60,9 @@
 
         public async Task<TraktUser> GetUserProfileAsync(string username)
         {
+            if (string.IsNullOrEmpty(username) || username.ContainsSpace())
+                throw new ArgumentException("username not valid", "username");
+
             return await QueryAsync(new TraktUserProfileRequest(Client)
             {
                 Username = username

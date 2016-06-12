@@ -528,6 +528,7 @@
     <None Include="TestData\Objects\Get\Users\UserLikeList.json" />
     <None Include="TestData\Objects\Get\Users\UserLikes.json" />
     <None Include="TestData\Objects\Get\Users\UserMinimal.json" />
+    <None Include="TestData\Objects\Get\Users\UserProfile.json" />
     <None Include="TestData\Objects\Get\Users\UserSettings.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
