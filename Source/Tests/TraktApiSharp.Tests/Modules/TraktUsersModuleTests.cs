@@ -2,7 +2,12 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Get.Users;
     using Utils;
 
     [TestClass]
@@ -40,13 +45,94 @@
         [TestMethod]
         public void TestTraktUsersModuleGetSettings()
         {
-            Assert.Fail();
+            var userSettings = TestUtility.ReadFileContents(@"Objects\Get\Users\UserSettings.json");
+            userSettings.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/settings", userSettings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserSettingsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("justin");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Justin Nemeth");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
+            response.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            response.User.Location.Should().Be("San Diego, CA");
+            response.User.About.Should().Be("Co-founder of trakt.");
+            response.User.Gender.Should().Be("male");
+            response.User.Age.Should().Be(32);
+            response.User.Images.Should().NotBeNull();
+            response.User.Images.Avatar.Should().NotBeNull();
+            response.User.Images.Avatar.Full.Should().Be("https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256");
+            response.Account.Should().NotBeNull();
+            response.Account.TimeZoneId.Should().Be("America/Los_Angeles");
+            response.Account.Time24Hr.Should().BeFalse();
+            response.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            response.Connections.Should().NotBeNull();
+            response.Connections.Facebook.Should().BeTrue();
+            response.Connections.Twitter.Should().BeTrue();
+            response.Connections.Google.Should().BeTrue();
+            response.Connections.Tumblr.Should().BeFalse();
+            response.Connections.Medium.Should().BeFalse();
+            response.Connections.Slack.Should().BeFalse();
+            response.SharingText.Should().NotBeNull();
+            response.SharingText.Watching.Should().Be("I'm watching [item]");
+            response.SharingText.Watched.Should().Be("I just watched [item]");
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetSettingsExceptions()
         {
-            Assert.Fail();
+            var uri = "users/settings";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktUserSettings>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserSettingsAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
