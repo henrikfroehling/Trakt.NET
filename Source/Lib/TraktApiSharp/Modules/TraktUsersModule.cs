@@ -13,6 +13,7 @@
     using Objects.Post.Users.Responses;
     using Requests;
     using Requests.WithOAuth.Users;
+    using System;
     using System.Threading.Tasks;
 
     public class TraktUsersModule : TraktBaseModule
@@ -34,6 +35,9 @@
                                                                                                   TraktExtendedOption extended = null,
                                                                                                   int? page = null, int? limit = null)
         {
+            if (section == TraktHiddenItemsSection.Unspecified)
+                throw new ArgumentException("section not valid", "section");
+
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
             {
                 Section = section,

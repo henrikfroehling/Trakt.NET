@@ -28,7 +28,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/hidden/{section}{?type}";
+        protected override string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
 
         protected override bool SupportsPagination => true;
 
