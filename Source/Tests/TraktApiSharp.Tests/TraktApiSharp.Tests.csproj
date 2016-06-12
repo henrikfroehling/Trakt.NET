@@ -514,6 +514,7 @@
     <None Include="TestData\Objects\Get\Users\SharingText.json" />
     <None Include="TestData\Objects\Get\Users\UserComments.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
+    <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
     <None Include="TestData\Objects\Get\Users\UserHistory.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionMovies.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionShows.json" />
