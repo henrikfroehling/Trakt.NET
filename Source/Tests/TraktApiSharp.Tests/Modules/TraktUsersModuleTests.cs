@@ -667,43 +667,229 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikes()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes", userLikes, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesWithType()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var type = TraktUserLikeType.Comment;
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}", userLikes, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserLikesWithTypeAndPage()
+        {
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var type = TraktUserLikeType.Comment;
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?page={page}",
+                                                             userLikes, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(type, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserLikesWithTypeAndLimit()
+        {
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var type = TraktUserLikeType.List;
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?limit={limit}",
+                                                             userLikes, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(type, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesWithPage()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?page={page}", userLikes, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesWithLimit()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?limit={limit}", userLikes, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesWithPageAndLimit()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?page={page}&limit={limit}", userLikes, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesComplete()
         {
-            Assert.Fail();
+            var userLikes = TestUtility.ReadFileContents(@"Objects\Get\Users\UserLikes.json");
+            userLikes.Should().NotBeNullOrEmpty();
+
+            var type = TraktUserLikeType.List;
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?page={page}&limit={limit}",
+                                                             userLikes, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(type, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserLikesExceptions()
         {
-            Assert.Fail();
+            var type = TraktUserLikeType.List;
+            var uri = $"users/likes/{type.AsStringUriParameter()}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktPaginationListResult<TraktUserLikeItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserLikesAsync(type);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
