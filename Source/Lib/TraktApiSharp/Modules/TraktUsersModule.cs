@@ -83,6 +83,8 @@
         public async Task<TraktListResult<TraktUserCollectionShowItem>> GetUserCollectionShowsAsync(string username,
                                                                                                     TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = username,
