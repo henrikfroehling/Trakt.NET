@@ -10,6 +10,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Collections;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -996,25 +997,103 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMovies()
         {
-            Assert.Fail();
+            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionMovies.json");
+            moviesCollection.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/collection/movies", moviesCollection);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesWithExtendedOption()
         {
-            Assert.Fail();
+            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionMovies.json");
+            moviesCollection.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/collection/movies?extended={extendedOption.ToString()}",
+                                                      moviesCollection);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/collection/movies";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserCollectionMovieItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserCollectionMovieItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserCollectionMoviesAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

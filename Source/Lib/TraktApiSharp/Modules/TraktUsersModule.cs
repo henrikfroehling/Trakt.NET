@@ -60,8 +60,7 @@
 
         public async Task<TraktUser> GetUserProfileAsync(string username)
         {
-            if (string.IsNullOrEmpty(username) || username.ContainsSpace())
-                throw new ArgumentException("username not valid", "username");
+            ValidateUsername(username);
 
             return await QueryAsync(new TraktUserProfileRequest(Client)
             {
@@ -72,6 +71,8 @@
         public async Task<TraktListResult<TraktUserCollectionMovieItem>> GetUserCollectionMoviesAsync(string username,
                                                                                                       TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = username,
@@ -340,6 +341,12 @@
         public async Task<TraktUserStatistics> GetUserStatisticsAsync(string username)
         {
             return await QueryAsync(new TraktUserStatisticsRequest(Client) { Username = username });
+        }
+
+        private void ValidateUsername(string username)
+        {
+            if (string.IsNullOrEmpty(username) || username.ContainsSpace())
+                throw new ArgumentException("username not valid", "username");
         }
     }
 }
