@@ -122,6 +122,11 @@
 
         public async Task<TraktList> GetUserCustomSingleListAsync(string username, string listId)
         {
+            ValidateUsername(username);
+
+            if (string.IsNullOrEmpty(listId) || listId.ContainsSpace())
+                throw new ArgumentException("list id not valid", "listId");
+
             return await QueryAsync(new TraktUserCustomSingleListRequest(Client)
             {
                 Username = username,
