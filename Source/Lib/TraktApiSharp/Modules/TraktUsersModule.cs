@@ -98,6 +98,8 @@
                                                                                             TraktExtendedOption extended = null,
                                                                                             int? page = null, int? limit = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserCommentsRequest(Client)
             {
                 Username = username,
