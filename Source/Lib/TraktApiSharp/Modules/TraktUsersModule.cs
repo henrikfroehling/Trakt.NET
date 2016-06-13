@@ -112,6 +112,8 @@
 
         public async Task<TraktListResult<TraktList>> GetUserCustomListsAsync(string username)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserCustomListsRequest(Client)
             {
                 Username = username

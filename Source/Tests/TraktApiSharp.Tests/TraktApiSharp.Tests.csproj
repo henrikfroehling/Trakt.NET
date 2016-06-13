@@ -504,6 +504,7 @@
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistShows.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
+    <None Include="TestData\Objects\Get\Users\Lists\CustomLists.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
