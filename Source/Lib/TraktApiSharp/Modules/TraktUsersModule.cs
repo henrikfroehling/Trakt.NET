@@ -263,6 +263,9 @@
                                                                                         TraktCommentSortOrder? sorting = null,
                                                                                         int? page = null, int? limit = null)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
             return await QueryAsync(new TraktUserListCommentsRequest(Client)
             {
                 Username = username,

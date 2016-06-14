@@ -5323,61 +5323,281 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommments()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments",
+                                                                listComments, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrder()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Likes;
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}",
+                                                                listComments, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithPage()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?page={page}",
+                                                                listComments, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrderAndPage()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Newest;
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}",
+                listComments, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?limit={limit}",
+                                                                listComments, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrderAndLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Oldest;
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?limit={limit}",
+                listComments, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithPageAndLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments?page={page}&limit={limit}",
+                listComments, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsComplete()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Replies;
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+                listComments, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+            var uri = $"users/{username}/lists/{listId}/comments";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsArgumentExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(null, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(string.Empty, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync("user name", listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, "list id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
