@@ -149,9 +149,14 @@
         }
 
         public async Task<TraktList> CreateCustomListAsync(string username, string listName, string description = null,
-                                                           TraktAccessScope privacy = TraktAccessScope.Unspecified,
-                                                           bool displayNumbers = false, bool allowComments = false)
+                                                           TraktAccessScope? privacy = null,
+                                                           bool? displayNumbers = null, bool? allowComments = null)
         {
+            ValidateUsername(username);
+
+            if (string.IsNullOrEmpty(listName))
+                throw new ArgumentException("list name not valid", "listName");
+
             var requestBody = new TraktUserCustomListPost
             {
                 Name = listName,
@@ -160,8 +165,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy;
+            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy.Value;
 
             return await QueryAsync(new TraktUserCustomListAddRequest(Client)
             {
