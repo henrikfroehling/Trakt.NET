@@ -15,6 +15,7 @@
     using Requests;
     using Requests.WithOAuth.Users;
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktUsersModule : TraktBaseModule
@@ -229,6 +230,23 @@
                                                                                         TraktUserCustomListItemsPost listItemsPost,
                                                                                         TraktListItemType? type = null)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
+            if (listItemsPost == null)
+                throw new ArgumentNullException("list items post must not be null", "listItemsPost");
+
+            var movies = listItemsPost.Movies;
+            var shows = listItemsPost.Shows;
+            var people = listItemsPost.People;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoPeople = people == null || !people.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
+                throw new ArgumentException("no items set");
+
             return await QueryAsync(new TraktUserCustomListItemsAddRequest(Client)
             {
                 Username = username,
