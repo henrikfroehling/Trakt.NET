@@ -289,6 +289,9 @@
 
         public async Task UnlikeListAsync(string username, string listId)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
             await QueryAsync(new TraktUserListUnlikeRequest(Client)
             {
                 Username = username,
