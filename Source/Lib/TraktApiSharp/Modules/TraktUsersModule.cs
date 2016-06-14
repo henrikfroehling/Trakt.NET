@@ -277,6 +277,9 @@
 
         public async Task LikeListAsync(string username, string listId)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
             await QueryAsync(new TraktUserListLikeRequest(Client)
             {
                 Username = username,
