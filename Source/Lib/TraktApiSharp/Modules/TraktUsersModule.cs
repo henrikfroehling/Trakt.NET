@@ -232,20 +232,7 @@
         {
             ValidateUsername(username);
             ValidateListId(listId);
-
-            if (listItemsPost == null)
-                throw new ArgumentNullException("list items post must not be null", "listItemsPost");
-
-            var movies = listItemsPost.Movies;
-            var shows = listItemsPost.Shows;
-            var people = listItemsPost.People;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoPeople = people == null || !people.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
-                throw new ArgumentException("no items set");
+            ValidateCustomListItemsPost(listItemsPost);
 
             return await QueryAsync(new TraktUserCustomListItemsAddRequest(Client)
             {
@@ -259,6 +246,10 @@
         public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
                                                                                                  TraktUserCustomListItemsRemovePost listItemsRemovePost)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+            ValidateCustomListItemsPost(listItemsRemovePost);
+
             return await QueryAsync(new TraktUserCustomListItemsRemoveRequest(Client)
             {
                 Username = username,
@@ -399,6 +390,23 @@
         {
             if (string.IsNullOrEmpty(listId) || listId.ContainsSpace())
                 throw new ArgumentException("list id not valid", "listId");
+        }
+
+        private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
+        {
+            if (customListItemsPost == null)
+                throw new ArgumentNullException("list items post must not be null", "customListItemsPost");
+
+            var movies = customListItemsPost.Movies;
+            var shows = customListItemsPost.Shows;
+            var people = customListItemsPost.People;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoPeople = people == null || !people.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
+                throw new ArgumentException("no items set");
         }
     }
 }
