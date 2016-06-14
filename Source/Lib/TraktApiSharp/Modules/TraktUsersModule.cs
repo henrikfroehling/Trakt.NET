@@ -176,10 +176,24 @@
         }
 
         public async Task<TraktList> UpdateCustomListAsync(string username, string listId,
-                                                           string listName, string description = null,
+                                                           string listName = null, string description = null,
                                                            TraktAccessScope? privacy = null,
-                                                           bool displayNumbers = false, bool allowComments = false)
+                                                           bool? displayNumbers = null, bool? allowComments = null)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
+            var isListNameNotValid = string.IsNullOrEmpty(listName);
+            var isDescriptionNotSet = description == null;
+            var isPrivacyNotSetOrValid = !privacy.HasValue || privacy.Value == TraktAccessScope.Unspecified;
+            var isDisplayNumbersNotSet = !displayNumbers.HasValue;
+            var isAllowCommentsNotSet = !allowComments.HasValue;
+
+            if (isListNameNotValid && isDescriptionNotSet && isPrivacyNotSetOrValid && isDisplayNumbersNotSet && isAllowCommentsNotSet)
+            {
+                throw new ArgumentException("no list specific values set");
+            }
+
             var requestBody = new TraktUserCustomListUpdatePost
             {
                 Name = listName,
@@ -188,20 +202,14 @@
                 AllowComments = allowComments
             };
 
-            if (privacy != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy;
+            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy.Value;
 
             return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
             {
                 Username = username,
-                RequestBody = new TraktUserCustomListUpdatePost
-                {
-                    Name = listName,
-                    Description = description,
-                    Privacy = privacy,
-                    DisplayNumbers = displayNumbers,
-                    AllowComments = allowComments
-                }
+                Id = listId,
+                RequestBody = requestBody
             });
         }
 

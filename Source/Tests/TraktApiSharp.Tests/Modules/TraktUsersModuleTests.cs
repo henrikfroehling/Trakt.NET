@@ -3289,99 +3289,1145 @@
         #region UpdateCustomList
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomList()
+        public void TestTraktUsersModuleUpdateCustomListWithName()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescription()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndPrivacy()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                Privacy = privacy
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, privacy).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndPrivacyAndDisplayNumbers()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                Privacy = privacy,
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, privacy,
+                                                                                    displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndPrivacyAndAllowComments()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                Privacy = privacy,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, privacy,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndDisplayNumbers()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, null,
+                                                                                    displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndAllowComments()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, null,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithNameAndDescriptionAndDisplayNumbersAndAllowComments()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var displayNumbers = false;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, null,
+                                                                                    displayNumbers, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDescription()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndScope()
+        public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndPrivacy()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                Privacy = privacy
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, privacy).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndPrivacyAndDisplayNumbers()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                Privacy = privacy,
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, privacy,
+                                                                                    displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndPrivacyAndAllowComments()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                Privacy = privacy,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, privacy,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndDisplayNumbers()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, null,
+                                                                                    displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, null,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDescriptionAndDisplayNumbersAndAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var description = "new list description";
+            var displayNumbers = false;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, null,
+                                                                                    displayNumbers, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomListWithScope()
+        public void TestTraktUsersModuleUpdateCustomListWithPrivacy()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var privacy = TraktAccessScope.Private;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Privacy = privacy
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomListWithScopeAndDisplayNumbers()
+        public void TestTraktUsersModuleUpdateCustomListWithPrivacyAndDisplayNumbers()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var privacy = TraktAccessScope.Private;
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Privacy = privacy,
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy, displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomListWithScopeAndAllowComments()
+        public void TestTraktUsersModuleUpdateCustomListWithPrivacyAndAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var privacy = TraktAccessScope.Private;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Privacy = privacy,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleUpdateCustomListWithScopeAndDisplayNumbersAndAllowComments()
+        public void TestTraktUsersModuleUpdateCustomListWithPrivacyAndDisplayNumbersAndAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var privacy = TraktAccessScope.Private;
+            var displayNumbers = false;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Privacy = privacy,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy,
+                                                                                    displayNumbers, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDisplayNumbers()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var displayNumbers = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                DisplayNumbers = displayNumbers
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, null, displayNumbers).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, null,
+                                                                                    null, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListWithDisplayNumbersAndAllowComments()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var displayNumbers = false;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, null,
+                                                                                    displayNumbers, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListComplete()
         {
-            Assert.Fail();
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var listName = "new list name";
+            var description = "new list description";
+            var privacy = TraktAccessScope.Private;
+            var displayNumbers = false;
+            var allowComments = false;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Name = listName,
+                Description = description,
+                Privacy = privacy,
+                DisplayNumbers = displayNumbers,
+                AllowComments = allowComments
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, privacy,
+                                                                                    displayNumbers, allowComments).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            var uri = $"users/{username}/lists/{listId}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktList>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUpdateCustomListArgumentExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task<TraktList>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(null, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(string.Empty, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync("user name", listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, "list id");
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var description = string.Empty;
+
+            var createListPost = new TraktUserCustomListPost
+            {
+                Description = description
+            };
+
+            var postJson = TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", postJson, customList);
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description);
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null,
+                                                                                             TraktAccessScope.Unspecified);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
