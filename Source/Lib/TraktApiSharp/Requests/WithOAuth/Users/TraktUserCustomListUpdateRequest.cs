@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Users
 {
     using Base.Put;
+    using Objects.Get.Users.Lists;
     using Objects.Post.Users;
-    using Objects.Post.Users.Responses;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListUpdateRequest : TraktPutByIdRequest<TraktUserCustomListUpdatePostResponse, TraktUserCustomListUpdatePostResponse, TraktUserCustomListUpdatePost>
+    internal class TraktUserCustomListUpdateRequest : TraktPutByIdRequest<TraktList, TraktList, TraktUserCustomListUpdatePost>
     {
         internal TraktUserCustomListUpdateRequest(TraktClient client) : base(client) { }
 

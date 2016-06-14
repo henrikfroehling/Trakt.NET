@@ -345,8 +345,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowSeasonItem.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponse.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListPostResponse.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListUpdatePostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPost.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPost.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListUpdatePost.cs" />

@@ -148,9 +148,9 @@
             });
         }
 
-        public async Task<TraktUserCustomListPostResponse> AddCustomListAsync(string username, string listName, string description = null,
-                                                                              TraktAccessScope privacy = TraktAccessScope.Unspecified,
-                                                                              bool displayNumbers = false, bool allowComments = false)
+        public async Task<TraktList> CreateCustomListAsync(string username, string listName, string description = null,
+                                                           TraktAccessScope privacy = TraktAccessScope.Unspecified,
+                                                           bool displayNumbers = false, bool allowComments = false)
         {
             var requestBody = new TraktUserCustomListPost
             {
@@ -170,10 +170,10 @@
             });
         }
 
-        public async Task<TraktUserCustomListUpdatePostResponse> UpdateCustomListAsync(string username, string listId,
-                                                                                       string listName, string description = null,
-                                                                                       TraktAccessScope? privacy = null,
-                                                                                       bool displayNumbers = false, bool allowComments = false)
+        public async Task<TraktList> UpdateCustomListAsync(string username, string listId,
+                                                           string listName, string description = null,
+                                                           TraktAccessScope? privacy = null,
+                                                           bool displayNumbers = false, bool allowComments = false)
         {
             var requestBody = new TraktUserCustomListUpdatePost
             {

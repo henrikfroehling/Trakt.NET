@@ -317,8 +317,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsRemovePostTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListUpdatePostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListUpdatePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -565,8 +563,6 @@
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListUpdatePostResponse.json" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
