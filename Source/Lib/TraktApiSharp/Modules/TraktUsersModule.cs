@@ -215,6 +215,9 @@
 
         public async Task DeleteCustomListAsync(string username, string listId)
         {
+            ValidateUsername(username);
+            ValidateListId(listId);
+
             await QueryAsync(new TraktUserCustomListDeleteRequest(Client)
             {
                 Username = username,
