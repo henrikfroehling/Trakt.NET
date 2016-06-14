@@ -14,6 +14,7 @@
     using Objects.Post.Users.Responses;
     using Requests;
     using Requests.WithOAuth.Users;
+    using Requests.WithoutOAuth.Users;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
@@ -255,6 +256,19 @@
                 Username = username,
                 Id = listId,
                 RequestBody = listItemsRemovePost
+            });
+        }
+
+        public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync(string username, string listId,
+                                                                                        TraktCommentSortOrder? sorting = null,
+                                                                                        int? page = null, int? limit = null)
+        {
+            return await QueryAsync(new TraktUserListCommentsRequest(Client)
+            {
+                Username = username,
+                Id = listId,
+                Sorting = sorting,
+                PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
