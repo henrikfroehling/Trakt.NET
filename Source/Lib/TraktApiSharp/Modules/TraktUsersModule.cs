@@ -336,6 +336,9 @@
 
         public async Task<TraktUserFollower> ApproveFollowerAsync(string followerRequestId)
         {
+            if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
+                throw new ArgumentException("follower request id is not valid", "followerRequestId");
+
             return await QueryAsync(new TraktUserApproveFollowerRequest(Client) { Id = followerRequestId });
         }
 
