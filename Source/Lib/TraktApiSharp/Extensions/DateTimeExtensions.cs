@@ -71,7 +71,7 @@
 
         public static string ToTraktLongDateTimeString(this DateTime value)
         {
-            return value.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss.fffZ");
+            return value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
         }
     }
 }
