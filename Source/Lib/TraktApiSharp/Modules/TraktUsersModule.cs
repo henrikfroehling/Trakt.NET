@@ -329,6 +329,8 @@
 
         public async Task UnfollowUserAsync(string username)
         {
+            ValidateUsername(username);
+
             await QueryAsync(new TraktUserUnfollowUserRequest(Client) { Username = username });
         }
 
