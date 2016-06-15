@@ -68,5 +68,10 @@
         {
             return value.ToUniversalTime().ToString("yyyy-MM-dd");
         }
+
+        public static string ToTraktLongDateTimeString(this DateTime value)
+        {
+            return value.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss.fffZ");
+        }
     }
 }

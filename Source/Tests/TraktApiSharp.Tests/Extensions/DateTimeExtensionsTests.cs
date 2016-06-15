@@ -67,5 +67,23 @@
             var dateTraktString = dateTime.ToTraktDateString();
             dateTraktString.Should().NotBeNullOrEmpty().And.Be($"{year}-{month:00}-{day:00}");
         }
+
+        [TestMethod]
+        public void TestDateTimeExtensionsToTraktLongDateTimeString()
+        {
+            var dateTime = DateTime.UtcNow;
+            var day = dateTime.Day;
+            var month = dateTime.Month;
+            var year = dateTime.Year;
+            var hour = dateTime.Hour;
+            var minute = dateTime.Minute;
+            var second = dateTime.Second;
+            var millisecond = dateTime.Millisecond;
+
+            var value = $"{year}-{month:00}-{day:00}T{hour:00}:{minute:00}:{second:00}.{millisecond:000}Z";
+
+            var dateTraktString = dateTime.ToTraktLongDateTimeString();
+            dateTraktString.Should().NotBeNullOrEmpty().And.Be(value);
+        }
     }
 }
