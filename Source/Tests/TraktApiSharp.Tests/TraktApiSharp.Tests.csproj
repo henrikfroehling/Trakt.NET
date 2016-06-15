@@ -506,6 +506,7 @@
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
+    <None Include="TestData\Objects\Get\Users\Ratings\UserRatings.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />

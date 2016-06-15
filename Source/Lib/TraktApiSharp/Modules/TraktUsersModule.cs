@@ -368,6 +368,8 @@
         public async Task<TraktListResult<TraktUserRatingsItem>> GetUserRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
                                                                                      int[] rating = null, TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserRatingsRequest(Client)
             {
                 Username = username,

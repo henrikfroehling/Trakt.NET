@@ -7575,61 +7575,483 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatings()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithType()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter()
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithRatingsFilter()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, null, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            Assert.Fail();
-        }
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithRatingFilter()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithRatingFilterAndExtendedOption()
-        {
-            Assert.Fail();
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithExtendedOption()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings?extended={extendedOption.ToString()}",
+                                                      userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsComplete()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/ratings";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
