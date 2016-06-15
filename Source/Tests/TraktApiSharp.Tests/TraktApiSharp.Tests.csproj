@@ -506,12 +506,14 @@
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
+    <None Include="TestData\Objects\Get\Users\Ratings\UserRatings.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsShows.json" />
     <None Include="TestData\Objects\Get\Users\SharingText.json" />
     <None Include="TestData\Objects\Get\Users\UserComments.json" />
+    <None Include="TestData\Objects\Get\Users\UserFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
     <None Include="TestData\Objects\Get\Users\UserHistory.json" />
@@ -538,6 +540,7 @@
     <None Include="TestData\Objects\Get\Users\Watched\UserWatchedShowsNoSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
+    <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlist.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistMovies.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistSeasons.json" />

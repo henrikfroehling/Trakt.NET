@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -17,9 +18,12 @@
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Collections;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Objects.Get.Users.Statistics;
+    using TraktApiSharp.Objects.Get.Users.Watched;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
+    using TraktApiSharp.Objects.Post.Users.Responses;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -2256,6 +2260,10 @@
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
@@ -2423,6 +2431,10 @@
             Func<Task<TraktListResult<TraktListItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserCustomListItemsAsync(username, listId);
             act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
@@ -4326,18 +4338,23 @@
         {
             var username = "sean";
             var listId = "55";
+            var listName = "new list name";
 
             var uri = $"users/{username}/lists/{listId}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktList>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
@@ -4472,6 +4489,10 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
@@ -4875,6 +4896,10 @@
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
@@ -5198,6 +5223,10 @@
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
             act.ShouldThrow<TraktForbiddenException>();
 
@@ -5323,61 +5352,285 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommments()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments",
+                                                                listComments, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrder()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Likes;
+            var itemCount = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}",
+                                                                listComments, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithPage()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?page={page}",
+                                                                listComments, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrderAndPage()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Newest;
+            var itemCount = 2;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}",
+                listComments, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?limit={limit}",
+                                                                listComments, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithSortOrderAndLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Oldest;
+            var itemCount = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?limit={limit}",
+                listComments, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsWithPageAndLimit()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments?page={page}&limit={limit}",
+                listComments, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsComplete()
         {
-            Assert.Fail();
+            var listComments = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListComments.json");
+            listComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+            var sortOrder = TraktCommentSortOrder.Replies;
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+                listComments, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+            var uri = $"users/{username}/lists/{listId}/comments";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListCommmentsArgumentExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(null, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(string.Empty, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync("user name", listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, "list id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5390,19 +5643,100 @@
         [TestMethod]
         public void TestTraktUsersModuleLikeList()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/like", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
+            act.ShouldNotThrow();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleLikeListExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            var uri = $"users/{username}/lists/{listId}/like";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleLikeListArgumentExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(null, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(string.Empty, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync("user name", listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, "list id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5415,19 +5749,100 @@
         [TestMethod]
         public void TestTraktUsersModuleUnlikeList()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/like", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId);
+            act.ShouldNotThrow();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUnlikeListExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            var uri = $"users/{username}/lists/{listId}/like";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktListNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUnlikeListArgumentExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(null, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(string.Empty, listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync("user name", listId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, "list id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5440,19 +5855,81 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowers()
         {
-            Assert.Fail();
+            var userFollowers = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");
+            userFollowers.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/followers", userFollowers);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowersAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowersExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            var uri = $"users/{username}/followers";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserFollower>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowersAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowersArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserFollower>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowersAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowersAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowersAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5465,19 +5942,81 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowing()
         {
-            Assert.Fail();
+            var userFollowing = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");
+            userFollowing.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/following", userFollowing);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowingAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            var uri = $"users/{username}/following";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserFollower>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowingAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserFollower>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowingAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowingAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFollowingAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5490,19 +6029,81 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFriends()
         {
-            Assert.Fail();
+            var userFriends = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFriends.json");
+            userFriends.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/friends", userFriends);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserFriendsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFriendsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            var uri = $"users/{username}/friends";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserFriend>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFriendsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserFriendsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserFriend>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFriendsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFriendsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserFriendsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5515,19 +6116,95 @@
         [TestMethod]
         public void TestTraktUsersModuleFollowUser()
         {
-            Assert.Fail();
+            var followedUser = TestUtility.ReadFileContents(@"Objects\Post\Users\Responses\FollowUserPostResponse.json");
+            followedUser.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/follow", followedUser);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleFollowUserExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            var uri = $"users/{username}/follow";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktUserFollowUserPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleFollowUserArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserFollowUserPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5540,19 +6217,84 @@
         [TestMethod]
         public void TestTraktUsersModuleUnfollowUser()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/follow", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username);
+            act.ShouldNotThrow();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUnfollowUserExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+
+            var uri = $"users/{username}/follow";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleUnfollowUserArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5565,19 +6307,99 @@
         [TestMethod]
         public void TestTraktUsersModuleApproveFollower()
         {
-            Assert.Fail();
+            var approvedUser = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollower.json");
+            approvedUser.Should().NotBeNullOrEmpty();
+
+            var requestId = "3";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", approvedUser);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowerAsync(requestId).Result;
+
+            response.Should().NotBeNull();
+            response.FollowedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            response.User.Should().NotBeNull();
+            response.User.Username.Should().Be("sean");
+            response.User.Private.Should().BeFalse();
+            response.User.Name.Should().Be("Sean Rudford");
+            response.User.VIP.Should().BeTrue();
+            response.User.VIP_EP.Should().BeFalse();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleApproveFollowerExceptions()
         {
-            Assert.Fail();
+            var requestId = "3";
+
+            var uri = $"users/requests/{requestId}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktUserFollower>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowerAsync(requestId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleApproveFollowerArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserFollower>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowerAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowerAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowerAsync("request id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5590,19 +6412,87 @@
         [TestMethod]
         public void TestTraktUsersModuleDenyFollower()
         {
-            Assert.Fail();
+            var requestId = "3";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", HttpStatusCode.NoContent);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowerAsync(requestId);
+            act.ShouldNotThrow();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleDenyFollowerExceptions()
         {
-            Assert.Fail();
+            var requestId = "3";
+
+            var uri = $"users/requests/{requestId}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowerAsync(requestId);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleDenyFollowerArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowerAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowerAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowerAsync("request id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5615,247 +6505,1107 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistory()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history", userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithType()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}",
+                                                                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndId()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}/{itemId}",
+                                                                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDate()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var type = TraktSyncHistoryItemType.Season;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Episode;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndPage()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndPage()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemId = "4";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDate()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDate()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, startAt, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, startAt, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDate()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndExtendedOption()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndPageAndLimit()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndExtendedOptionAndPageAndLimit()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
-        }
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndExtendedOptionAndPageAndLimit()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndExtendedOptionAndPageAndLimit()
-        {
-            Assert.Fail();
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithId()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndPageAndLimit()
         {
-            Assert.Fail();
-        }
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithIdAndStartDate()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var type = TraktSyncHistoryItemType.Show;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithIdAndEndDate()
-        {
-            Assert.Fail();
-        }
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"?page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithIdAndExtendedOption()
-        {
-            Assert.Fail();
-        }
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, null, null, null, page, limit).Result;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithIdAndPage()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithIdAndLimit()
-        {
-            Assert.Fail();
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDate()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDate()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndExtendedOption()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndPageAndLimit()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndExtendedOptionAndPageAndLimit()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndPageAndLimit()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, startAt, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDate()
         {
-            Assert.Fail();
-        }
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndExtendedOption()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndPageAndLimit()
-        {
-            Assert.Fail();
-        }
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}",
+                userHistory, 1, 10, 1, itemCount);
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndExtendedOptionAndPageAndLimit()
-        {
-            Assert.Fail();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithExtendedOption()
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndPageAndLimit()
         {
-            Assert.Fail();
-        }
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithExtendedOptionAndPage()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithExtendedOptionAndLimit()
-        {
-            Assert.Fail();
-        }
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserWatchedHistoryWithExtendedOptionAndPageAndLimit()
-        {
-            Assert.Fail();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithPage()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?page={page}",
+                userHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?limit={limit}",
+                userHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithPageAndLimit()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history" +
+                $"?page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, null, null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryComplete()
         {
-            Assert.Fail();
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "4";
+            var startAt = DateTime.Now.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                userHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username, type, itemId, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/history";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktPaginationListResult<TraktUserHistoryItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktObjectNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktPaginationListResult<TraktUserHistoryItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedHistoryAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5868,61 +7618,483 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatings()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithType()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter()
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Show;
+            var ratingsFilter = new int[] { 1, 2, 3 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Season;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Episode;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.All;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithRatingsFilter()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings", userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, null, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            Assert.Fail();
-        }
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithRatingFilter()
-        {
-            Assert.Fail();
-        }
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
 
-        [TestMethod]
-        public void TestTraktUsersModuleGetUserRatingsWithRatingFilterAndExtendedOption()
-        {
-            Assert.Fail();
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithExtendedOption()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings?extended={extendedOption.ToString()}",
+                                                      userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsComplete()
         {
-            Assert.Fail();
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var username = "sean";
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                userRatings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username, type, ratingsFilter, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/ratings";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserRatingsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5935,37 +8107,144 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlist()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithType()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncWatchlistItemType.Movie;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.AsStringUriParameter()}", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithExtendedOption()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist?extended={extendedOption.ToString()}", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistComplete()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncWatchlistItemType.Show;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, type, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watchlist";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -5978,25 +8257,128 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatching()
         {
-            Assert.Fail();
+            var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
+            userWatching.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watching", userWatching);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Type.Should().Be(TraktSyncType.Movie);
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Super 8");
+            response.Movie.Year.Should().Be(2011);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Slug.Should().Be("super-8-2011");
+            response.Movie.Ids.Imdb.Should().Be("tt1650062");
+            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Show.Should().BeNull();
+            response.Episode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingComplete()
         {
-            Assert.Fail();
+            var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
+            userWatching.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watching?extended={extendedOption.ToString()}", userWatching);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Type.Should().Be(TraktSyncType.Movie);
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Super 8");
+            response.Movie.Year.Should().Be(2011);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Slug.Should().Be("super-8-2011");
+            response.Movie.Ids.Imdb.Should().Be("tt1650062");
+            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Show.Should().BeNull();
+            response.Episode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watching";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktUserWatchingItem>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserWatchingItem>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -6009,25 +8391,102 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMovies()
         {
-            Assert.Fail();
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedMovies.json");
+            watchedMovies.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/movies", watchedMovies);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesComplete()
         {
-            Assert.Fail();
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedMovies.json");
+            watchedMovies.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/movies?extended={extendedOption.ToString()}", watchedMovies);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watched/movies";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserWatchedMovieItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserWatchedMovieItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedMoviesAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -6040,25 +8499,102 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShows()
         {
-            Assert.Fail();
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            watchedShows.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/shows", watchedShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsComplete()
         {
-            Assert.Fail();
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            watchedShows.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/shows?extended={extendedOption.ToString()}", watchedShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watched/shows";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -6071,19 +8607,121 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatistics()
         {
-            Assert.Fail();
+            var userStatistics = TestUtility.ReadFileContents(@"Objects\Get\Users\UserStatistics.json");
+            userStatistics.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/stats", userStatistics);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(username).Result;
+
+            response.Should().NotBeNull();
+
+            response.Movies.Should().NotBeNull();
+            response.Movies.Plays.Should().Be(155);
+            response.Movies.Watched.Should().Be(114);
+            response.Movies.Minutes.Should().Be(15650);
+            response.Movies.Collected.Should().Be(933);
+            response.Movies.Ratings.Should().Be(256);
+            response.Movies.Comments.Should().Be(28);
+
+            response.Shows.Should().NotBeNull();
+            response.Shows.Watched.Should().Be(16);
+            response.Shows.Collected.Should().Be(7);
+            response.Shows.Ratings.Should().Be(63);
+            response.Shows.Comments.Should().Be(20);
+
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Ratings.Should().Be(6);
+            response.Seasons.Comments.Should().Be(1);
+
+            response.Episodes.Should().NotBeNull();
+            response.Episodes.Plays.Should().Be(552);
+            response.Episodes.Watched.Should().Be(534);
+            response.Episodes.Minutes.Should().Be(17330);
+            response.Episodes.Collected.Should().Be(117);
+            response.Episodes.Ratings.Should().Be(64);
+            response.Episodes.Comments.Should().Be(14);
+
+            response.Network.Should().NotBeNull();
+            response.Network.Friends.Should().Be(1);
+            response.Network.Followers.Should().Be(4);
+            response.Network.Following.Should().Be(11);
+
+            response.Ratings.Should().NotBeNull();
+            response.Ratings.Total.Should().Be(389);
+
+            var distribution = new Dictionary<string, int>()
+            {
+                { "1",  18 }, { "2", 1 }, { "3", 4 }, { "4", 1 }, { "5", 10 },
+                { "6",  9 }, { "7", 37 }, { "8", 37 }, { "9", 57 }, { "10", 215 }
+            };
+
+            response.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatisticsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/stats";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktUserStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatisticsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
