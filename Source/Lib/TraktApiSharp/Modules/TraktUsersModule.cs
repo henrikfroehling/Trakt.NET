@@ -405,6 +405,8 @@
 
         public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetUserWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = username,
