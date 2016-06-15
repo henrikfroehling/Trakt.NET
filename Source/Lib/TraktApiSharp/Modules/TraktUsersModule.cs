@@ -382,6 +382,8 @@
         public async Task<TraktListResult<TraktUserWatchlistItem>> GetUserWatchlistAsync(string username, TraktSyncWatchlistItemType? type = null,
                                                                                          TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserWatchlistRequest(Client)
             {
                 Username = username,

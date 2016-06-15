@@ -7658,7 +7658,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktSyncRatingsItemType.Show;
             var ratingsFilter = new int[] { 1, 2, 3 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -7702,7 +7702,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktSyncRatingsItemType.Season;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -7746,7 +7746,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktSyncRatingsItemType.Episode;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -7790,7 +7790,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktSyncRatingsItemType.All;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -8064,37 +8064,144 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlist()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithType()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncWatchlistItemType.Movie;
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.AsStringUriParameter()}", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithExtendedOption()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist?extended={extendedOption.ToString()}", userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistComplete()
         {
-            Assert.Fail();
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var type = TraktSyncWatchlistItemType.Show;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                userWatchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username, type, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(8);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watchlist";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchlistAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

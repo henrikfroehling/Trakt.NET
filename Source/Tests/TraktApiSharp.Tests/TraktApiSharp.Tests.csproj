@@ -540,6 +540,7 @@
     <None Include="TestData\Objects\Get\Users\Watched\UserWatchedShowsNoSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
+    <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlist.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistMovies.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistSeasons.json" />
