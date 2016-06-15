@@ -349,15 +349,18 @@
         }
 
         public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetUserWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
-                                                                                                      string id = null, TraktExtendedOption extended = null,
-                                                                                                      int? page = null, int? limit = null)
+                                                                                                      string itemId = null, DateTime? startAt = null,
+                                                                                                      DateTime? endAt = null, int? page = null, int? limit = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserWatchedHistoryRequest(Client)
             {
                 Username = username,
                 Type = type,
-                ItemId = id,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ItemId = itemId,
+                StartAt = startAt,
+                EndAt = endAt,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
