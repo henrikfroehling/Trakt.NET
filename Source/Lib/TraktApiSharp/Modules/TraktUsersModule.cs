@@ -414,8 +414,10 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowAsync(string username, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetUserWatchedShowsAsync(string username, TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = username,

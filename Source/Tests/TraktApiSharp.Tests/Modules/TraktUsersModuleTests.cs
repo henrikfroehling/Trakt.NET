@@ -8458,25 +8458,102 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShows()
         {
-            Assert.Fail();
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            watchedShows.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/shows", watchedShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsComplete()
         {
-            Assert.Fail();
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            watchedShows.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watched/shows?extended={extendedOption.ToString()}", watchedShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watched/shows";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchedShowsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
