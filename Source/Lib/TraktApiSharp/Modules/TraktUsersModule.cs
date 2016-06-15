@@ -336,14 +336,15 @@
 
         public async Task<TraktUserFollower> ApproveFollowerAsync(string followerRequestId)
         {
-            if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
-                throw new ArgumentException("follower request id is not valid", "followerRequestId");
+            ValidateFollowerRequestId(followerRequestId);
 
             return await QueryAsync(new TraktUserApproveFollowerRequest(Client) { Id = followerRequestId });
         }
 
         public async Task DenyFollowerAsync(string followerRequestId)
         {
+            ValidateFollowerRequestId(followerRequestId);
+
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
@@ -443,6 +444,12 @@
 
             if (bHasNoMovies && bHasNoShows && bHasNoPeople)
                 throw new ArgumentException("no items set");
+        }
+
+        private void ValidateFollowerRequestId(string followerRequestId)
+        {
+            if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
+                throw new ArgumentException("follower request id is not valid", "followerRequestId");
         }
     }
 }
