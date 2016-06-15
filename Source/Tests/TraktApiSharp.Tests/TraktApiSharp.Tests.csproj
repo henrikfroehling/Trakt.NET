@@ -104,6 +104,7 @@
     <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
+    <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
     <Compile Include="Requests\Base\Get\TraktGetByIdRequestTests.cs" />
@@ -316,8 +317,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsRemovePostTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserCustomListUpdatePostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListUpdatePostTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -503,16 +502,20 @@
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistShows.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
+    <None Include="TestData\Objects\Get\Users\Lists\CustomLists.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
+    <None Include="TestData\Objects\Get\Users\Ratings\UserRatings.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsShows.json" />
     <None Include="TestData\Objects\Get\Users\SharingText.json" />
     <None Include="TestData\Objects\Get\Users\UserComments.json" />
+    <None Include="TestData\Objects\Get\Users\UserFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
+    <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
     <None Include="TestData\Objects\Get\Users\UserHistory.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionMovies.json" />
     <None Include="TestData\Objects\Get\Users\UserCollectionShows.json" />
@@ -524,7 +527,9 @@
     <None Include="TestData\Objects\Get\Users\UserImages.json" />
     <None Include="TestData\Objects\Get\Users\UserLikeComment.json" />
     <None Include="TestData\Objects\Get\Users\UserLikeList.json" />
+    <None Include="TestData\Objects\Get\Users\UserLikes.json" />
     <None Include="TestData\Objects\Get\Users\UserMinimal.json" />
+    <None Include="TestData\Objects\Get\Users\UserProfile.json" />
     <None Include="TestData\Objects\Get\Users\UserSettings.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
@@ -535,6 +540,7 @@
     <None Include="TestData\Objects\Get\Users\Watched\UserWatchedShowsNoSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
+    <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlist.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistMovies.json" />
     <None Include="TestData\Objects\Get\Users\Watchlist\UserWatchlistSeasons.json" />
@@ -560,8 +566,6 @@
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\UserCustomListUpdatePostResponse.json" />
   </ItemGroup>
   <ItemGroup />
   <Choose>

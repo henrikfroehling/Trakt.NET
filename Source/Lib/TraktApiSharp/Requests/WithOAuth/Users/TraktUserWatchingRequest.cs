@@ -19,6 +19,6 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/watching";
+        protected override string UriTemplate => "users/{username}/watching{?extended}";
     }
 }
