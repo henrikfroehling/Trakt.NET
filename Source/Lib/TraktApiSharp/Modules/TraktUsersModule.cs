@@ -427,6 +427,8 @@
 
         public async Task<TraktUserStatistics> GetUserStatisticsAsync(string username)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserStatisticsRequest(Client) { Username = username });
         }
 

@@ -18,6 +18,7 @@
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Collections;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Watched;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
@@ -8566,19 +8567,121 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatistics()
         {
-            Assert.Fail();
+            var userStatistics = TestUtility.ReadFileContents(@"Objects\Get\Users\UserStatistics.json");
+            userStatistics.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/stats", userStatistics);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(username).Result;
+
+            response.Should().NotBeNull();
+
+            response.Movies.Should().NotBeNull();
+            response.Movies.Plays.Should().Be(155);
+            response.Movies.Watched.Should().Be(114);
+            response.Movies.Minutes.Should().Be(15650);
+            response.Movies.Collected.Should().Be(933);
+            response.Movies.Ratings.Should().Be(256);
+            response.Movies.Comments.Should().Be(28);
+
+            response.Shows.Should().NotBeNull();
+            response.Shows.Watched.Should().Be(16);
+            response.Shows.Collected.Should().Be(7);
+            response.Shows.Ratings.Should().Be(63);
+            response.Shows.Comments.Should().Be(20);
+
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Ratings.Should().Be(6);
+            response.Seasons.Comments.Should().Be(1);
+
+            response.Episodes.Should().NotBeNull();
+            response.Episodes.Plays.Should().Be(552);
+            response.Episodes.Watched.Should().Be(534);
+            response.Episodes.Minutes.Should().Be(17330);
+            response.Episodes.Collected.Should().Be(117);
+            response.Episodes.Ratings.Should().Be(64);
+            response.Episodes.Comments.Should().Be(14);
+
+            response.Network.Should().NotBeNull();
+            response.Network.Friends.Should().Be(1);
+            response.Network.Followers.Should().Be(4);
+            response.Network.Following.Should().Be(11);
+
+            response.Ratings.Should().NotBeNull();
+            response.Ratings.Total.Should().Be(389);
+
+            var distribution = new Dictionary<string, int>()
+            {
+                { "1",  18 }, { "2", 1 }, { "3", 4 }, { "4", 1 }, { "5", 10 },
+                { "6",  9 }, { "7", 37 }, { "8", 37 }, { "9", 57 }, { "10", 215 }
+            };
+
+            response.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatisticsExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/stats";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktUserStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatisticsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserStatistics>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserStatisticsAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
