@@ -322,6 +322,8 @@
 
         public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string username)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserFollowUserRequest(Client) { Username = username });
         }
 
