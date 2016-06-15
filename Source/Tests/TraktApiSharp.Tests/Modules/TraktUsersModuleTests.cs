@@ -8214,25 +8214,128 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatching()
         {
-            Assert.Fail();
+            var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
+            userWatching.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watching", userWatching);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Type.Should().Be(TraktSyncType.Movie);
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Super 8");
+            response.Movie.Year.Should().Be(2011);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Slug.Should().Be("super-8-2011");
+            response.Movie.Ids.Imdb.Should().Be("tt1650062");
+            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Show.Should().BeNull();
+            response.Episode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingComplete()
         {
-            Assert.Fail();
+            var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
+            userWatching.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watching?extended={extendedOption.ToString()}", userWatching);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Type.Should().Be(TraktSyncType.Movie);
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Super 8");
+            response.Movie.Year.Should().Be(2011);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Slug.Should().Be("super-8-2011");
+            response.Movie.Ids.Imdb.Should().Be("tt1650062");
+            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Show.Should().BeNull();
+            response.Episode.Should().BeNull();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingExceptions()
         {
-            Assert.Fail();
+            var username = "sean";
+            var uri = $"users/{username}/watching";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktUserWatchingItem>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(username);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktUserWatchingItem>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserWatchingAsync("user name");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

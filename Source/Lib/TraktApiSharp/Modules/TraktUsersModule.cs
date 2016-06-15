@@ -394,6 +394,8 @@
 
         public async Task<TraktUserWatchingItem> GetUserWatchingAsync(string username, TraktExtendedOption extended = null)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = username,
