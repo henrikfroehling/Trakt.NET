@@ -301,6 +301,8 @@
 
         public async Task<TraktListResult<TraktUserFollower>> GetUserFollowersAsync(string username)
         {
+            ValidateUsername(username);
+
             return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username });
         }
 
