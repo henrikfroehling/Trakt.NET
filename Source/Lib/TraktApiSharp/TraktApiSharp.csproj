@@ -201,7 +201,6 @@
     <Compile Include="Objects\Get\Movies\Common\TraktTrendingMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAlias.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieComment.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieIds.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieImages.cs" />
     <Compile Include="Objects\Get\Movies\TraktMoviePeople.cs" />

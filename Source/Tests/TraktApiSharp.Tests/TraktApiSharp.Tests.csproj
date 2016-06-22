@@ -180,7 +180,6 @@
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesTrendingTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAliasesTests.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieCommentsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMoviePeopleTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRatingTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelatedMoviesTests.cs" />
@@ -397,7 +396,6 @@
     <None Include="TestData\Objects\Get\Movies\Common\MoviesRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesTrending.json" />
     <None Include="TestData\Objects\Get\Movies\MovieAliases.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieComments.json" />
     <None Include="TestData\Objects\Get\Movies\MoviePeople.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRatings.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
