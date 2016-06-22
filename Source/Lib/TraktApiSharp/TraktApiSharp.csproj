@@ -262,7 +262,6 @@
     <Compile Include="Objects\Basic\TraktSharing.cs" />
     <Compile Include="Objects\Basic\TraktStatistics.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktList.cs" />
-    <Compile Include="Objects\Get\Users\Lists\TraktListComment.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListIds.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettings.cs" />
     <Compile Include="Objects\Get\Users\TraktSharingText.cs" />
