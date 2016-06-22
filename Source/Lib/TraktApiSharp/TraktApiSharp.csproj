@@ -238,7 +238,6 @@
     <Compile Include="Objects\Get\Shows\TraktShow.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAirs.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAlias.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowComment.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowIds.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowImages.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowPeople.cs" />

@@ -70,9 +70,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowComment>> GetShowCommentsAsync(string id,
-                                                                                            TraktCommentSortOrder? sorting = null,
-                                                                                            int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync(string id,
+                                                                                        TraktCommentSortOrder? sorting = null,
+                                                                                        int? page = null, int? limit = null)
         {
             Validate(id);
 
