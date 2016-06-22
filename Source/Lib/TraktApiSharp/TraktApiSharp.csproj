@@ -201,7 +201,6 @@
     <Compile Include="Objects\Get\Movies\Common\TraktTrendingMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAlias.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieComment.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieIds.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieImages.cs" />
     <Compile Include="Objects\Get\Movies\TraktMoviePeople.cs" />
@@ -223,14 +222,12 @@
     <Compile Include="Objects\Get\Shows\Common\TraktRecentlyUpdatedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisode.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeComment.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeIds.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeImages.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeRating.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeStatistics.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchingUser.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeason.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonComment.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonIds.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonImages.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonRating.cs" />
@@ -239,7 +236,6 @@
     <Compile Include="Objects\Get\Shows\TraktShow.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAirs.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAlias.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowComment.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowIds.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowImages.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowPeople.cs" />
@@ -266,7 +262,6 @@
     <Compile Include="Objects\Basic\TraktSharing.cs" />
     <Compile Include="Objects\Basic\TraktStatistics.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktList.cs" />
-    <Compile Include="Objects\Get\Users\Lists\TraktListComment.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListIds.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettings.cs" />
     <Compile Include="Objects\Get\Users\TraktSharingText.cs" />

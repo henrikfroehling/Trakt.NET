@@ -26,9 +26,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktEpisodeComment>> GetEpisodeCommentsAsync(string showId, int season, int episode,
-                                                                                                  TraktCommentSortOrder? sorting = null,
-                                                                                                  int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showId, int season, int episode,
+                                                                                           TraktCommentSortOrder? sorting = null,
+                                                                                           int? page = null, int? limit = null)
         {
             Validate(showId, season, episode);
 
