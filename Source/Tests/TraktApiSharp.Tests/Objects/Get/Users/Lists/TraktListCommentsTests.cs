@@ -32,6 +32,7 @@
             comments[0].Review.Should().BeFalse();
             comments[0].ParentId.Should().Be(0);
             comments[0].CreatedAt.Should().Be(DateTime.Parse("2011-03-25T22:35:17.000Z").ToUniversalTime());
+            comments[0].UpdatedAt.Should().Be(DateTime.Parse("2011-03-26T11:34:21.000Z").ToUniversalTime());
             comments[0].Replies.Should().Be(3);
             comments[0].Likes.Should().Be(0);
             comments[0].UserRating.Should().NotHaveValue();
@@ -43,6 +44,7 @@
             comments[1].Review.Should().BeTrue();
             comments[1].ParentId.Should().Be(1);
             comments[1].CreatedAt.Should().Be(DateTime.Parse("2011-04-17T22:35:17.000Z").ToUniversalTime());
+            comments[1].UpdatedAt.Should().Be(DateTime.Parse("2011-04-19T15:23:56.000Z").ToUniversalTime());
             comments[1].Replies.Should().Be(0);
             comments[1].Likes.Should().Be(2);
             comments[1].UserRating.Should().Be(9.0f);
