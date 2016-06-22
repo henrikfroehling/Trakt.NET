@@ -180,7 +180,6 @@
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesTrendingTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAliasesTests.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieCommentsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMoviePeopleTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRatingTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelatedMoviesTests.cs" />
@@ -206,19 +205,16 @@
     <Compile Include="Objects\Get\Shows\Common\TraktShowsPopularTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsTrendingTests.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchingUsersTests.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonsAllTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchingUsersTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgressTests.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAliasesTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowPeopleTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowRatingTests.cs" />
@@ -255,7 +251,6 @@
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItemTests.cs" />
-    <Compile Include="Objects\Get\Users\Lists\TraktListCommentsTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
@@ -397,7 +392,6 @@
     <None Include="TestData\Objects\Get\Movies\Common\MoviesRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesTrending.json" />
     <None Include="TestData\Objects\Get\Movies\MovieAliases.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieComments.json" />
     <None Include="TestData\Objects\Get\Movies\MoviePeople.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRatings.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
@@ -432,7 +426,6 @@
     <None Include="TestData\Objects\Get\Shows\Common\ShowsPopular.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsTrending.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeComments.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />
@@ -448,7 +441,6 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonStatistics.json" />
@@ -464,7 +456,6 @@
     <None Include="TestData\Objects\Get\Shows\ShowAliases.json" />
     <None Include="TestData\Objects\Get\Shows\ShowCollectionProgress.json" />
     <None Include="TestData\Objects\Get\Shows\ShowCollectionProgressComplete.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowComments.json" />
     <None Include="TestData\Objects\Get\Shows\ShowPeople.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRatings.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFull.json" />
@@ -504,7 +495,6 @@
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\CustomLists.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
-    <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatings.json" />
     <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />

@@ -2,10 +2,9 @@
 {
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Shows.Episodes;
     using System.Collections.Generic;
 
-    internal class TraktEpisodeCommentsRequest : TraktGetByIdEpisodeRequest<TraktPaginationListResult<TraktEpisodeComment>, TraktEpisodeComment>
+    internal class TraktEpisodeCommentsRequest : TraktGetByIdEpisodeRequest<TraktPaginationListResult<TraktComment>, TraktComment>
     {
         internal TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
 

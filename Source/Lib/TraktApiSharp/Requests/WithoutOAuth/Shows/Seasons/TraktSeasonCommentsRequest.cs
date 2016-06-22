@@ -2,10 +2,9 @@
 {
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Shows.Seasons;
     using System.Collections.Generic;
 
-    internal class TraktSeasonCommentsRequest : TraktGetByIdSeasonRequest<TraktPaginationListResult<TraktSeasonComment>, TraktSeasonComment>
+    internal class TraktSeasonCommentsRequest : TraktGetByIdSeasonRequest<TraktPaginationListResult<TraktComment>, TraktComment>
     {
         internal TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
