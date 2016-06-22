@@ -104,6 +104,7 @@
     <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
+    <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
