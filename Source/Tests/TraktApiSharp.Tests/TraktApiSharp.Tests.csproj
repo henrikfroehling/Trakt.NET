@@ -205,7 +205,6 @@
     <Compile Include="Objects\Get\Shows\Common\TraktShowsPopularTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsTrendingTests.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
@@ -428,7 +427,6 @@
     <None Include="TestData\Objects\Get\Shows\Common\ShowsPopular.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsTrending.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeComments.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />

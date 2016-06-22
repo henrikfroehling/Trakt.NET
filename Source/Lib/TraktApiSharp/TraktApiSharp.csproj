@@ -222,7 +222,6 @@
     <Compile Include="Objects\Get\Shows\Common\TraktRecentlyUpdatedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisode.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeComment.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeIds.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeImages.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeRating.cs" />
