@@ -210,7 +210,6 @@
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchingUsersTests.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonCommentsTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonsAllTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonStatisticsTests.cs" />
@@ -445,7 +444,6 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
-    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonStatistics.json" />
