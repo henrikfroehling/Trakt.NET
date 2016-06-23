@@ -30,13 +30,15 @@
             return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktExtendedOption extended = null,
-                                                                                                   TraktSyncType? type = null)
+        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? type = null,
+                                                                                                   TraktExtendedOption extended = null,
+                                                                                                   int? limit = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption(),
+                PaginationOptions = new TraktPaginationOptions(null, limit)
             });
         }
 

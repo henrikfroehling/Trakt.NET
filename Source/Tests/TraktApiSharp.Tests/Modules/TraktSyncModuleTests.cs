@@ -5,9 +5,13 @@
     using System;
     using System.Net;
     using System.Threading.Tasks;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
+    using TraktApiSharp.Objects.Get.Syncs.Playback;
+    using TraktApiSharp.Requests;
     using Utils;
 
     [TestClass]
@@ -152,31 +156,185 @@
         [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgress()
         {
-            Assert.Fail();
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/playback", playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressWithExtendedOption()
         {
-            Assert.Fail();
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback?extended={extendedOption.ToString()}", playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetPlaybackProgressWithExtendedOptionAndLimit()
+        {
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback?extended={extendedOption.ToString()}&limit={limit}",
+                                                   playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, extendedOption, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressWithType()
         {
-            Assert.Fail();
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncType.Episode;
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}", playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetPlaybackProgressWithTypeAndLimit()
+        {
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncType.Episode;
+            var limit = 4;
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}?limit={limit}",
+                                                   playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetPlaybackProgressWithLimit()
+        {
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var limit = 4;
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback?limit={limit}", playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressComplete()
         {
-            Assert.Fail();
+            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
+            playbackProgress.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncType.Episode;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"sync/playback/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&limit={limit}",
+                playbackProgress);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, extendedOption, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressExceptions()
         {
-            Assert.Fail();
+            var uri = "sync/playback";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktListResult<TraktSyncPlaybackProgressItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion

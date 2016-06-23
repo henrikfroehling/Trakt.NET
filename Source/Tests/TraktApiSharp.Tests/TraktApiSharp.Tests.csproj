@@ -480,6 +480,7 @@
     <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
     <None Include="TestData\Objects\Get\Syncs\History\SyncHistory.json" />
+    <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsEpisodes.json" />
