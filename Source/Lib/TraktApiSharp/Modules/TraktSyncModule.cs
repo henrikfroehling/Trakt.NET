@@ -99,15 +99,16 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string id = null,
-                                                                                                  TraktExtendedOption extended = null,
+        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string itemId = null,
+                                                                                                  DateTime? startAt = null, DateTime? endAt = null,
                                                                                                   int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
                 Type = type,
-                ItemId = id,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ItemId = itemId,
+                StartAt = startAt,
+                EndAt = endAt,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

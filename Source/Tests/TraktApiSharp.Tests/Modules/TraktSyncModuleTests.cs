@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -16,6 +17,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Collection;
+    using TraktApiSharp.Objects.Get.Syncs.History;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
@@ -1406,247 +1408,1038 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistory()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history", watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithType()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}",
+                                                             watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndId()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}/{itemId}",
+                                                             watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?start_at={startAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}?page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDate()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}",
+                watchedHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPage()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history?page={page}",
+                                                             watchedHistory, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history?limit={limit}",
+                                                             watchedHistory, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPageAndLimit()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history?page={page}&limit={limit}",
+                                                             watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryComplete()
         {
-            Assert.Fail();
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            watchedHistory.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncHistoryItemType.Movie;
+            var itemId = "123";
+            var startAt = DateTime.UtcNow.AddMonths(-1);
+            var endAt = DateTime.UtcNow;
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"&page={page}&limit={limit}",
+                watchedHistory, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryExceptions()
         {
-            Assert.Fail();
-        }
+            var uri = "sync/history";
 
-        [TestMethod]
-        public void TestTraktSyncModuleGetWatchedHistoryArgumentExceptions()
-        {
-            Assert.Fail();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktPaginationListResult<TraktSyncHistoryItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            act.ShouldThrow<TraktObjectNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
