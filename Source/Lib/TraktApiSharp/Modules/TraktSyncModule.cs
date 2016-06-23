@@ -25,13 +25,13 @@
     {
         public TraktSyncModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktSyncLastActivities> GetSyncLastActivitiesAsync()
+        public async Task<TraktSyncLastActivities> GetLastActivitiesAsync()
         {
             return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetSyncPlaybackProgressAsync(TraktExtendedOption extended = null,
-                                                                                                       TraktSyncType? type = null)
+        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktExtendedOption extended = null,
+                                                                                                   TraktSyncType? type = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
@@ -40,12 +40,12 @@
             });
         }
 
-        public async Task RemovePlaybackAsync(string playbackId)
+        public async Task RemovePlaybackItemAsync(string playbackId)
         {
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetSyncCollectionMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
             {
@@ -53,7 +53,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetSyncCollectionShowsAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
             {
@@ -61,17 +61,17 @@
             });
         }
 
-        public async Task<TraktSyncCollectionPostResponse> SyncCollectionAddAsync(TraktSyncCollectionPost collectionPost)
+        public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
         {
             return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
         }
 
-        public async Task<TraktSyncCollectionRemovePostResponse> SyncCollectionRemoveAsync(TraktSyncCollectionRemovePost collectionRemovePost)
+        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionRemovePost collectionRemovePost)
         {
             return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedMovieItem>> GetSyncWatchedMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncWatchedMovieItem>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
             {
@@ -79,7 +79,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedShowItem>> GetSyncWatchedShowsAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncWatchedShowItem>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
             {
@@ -87,9 +87,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetSyncWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string id = null,
-                                                                                                      TraktExtendedOption extended = null,
-                                                                                                      int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string id = null,
+                                                                                                  TraktExtendedOption extended = null,
+                                                                                                  int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
@@ -100,19 +100,19 @@
             });
         }
 
-        public async Task<TraktSyncHistoryPostResponse> SyncWatchedHistoryAddAsync(TraktSyncHistoryPost historyPost)
+        public async Task<TraktSyncHistoryPostResponse> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryAddRequest(Client) { RequestBody = historyPost });
         }
 
-        public async Task<TraktSyncHistoryRemovePostResponse> SyncWatchedHistoryRemoveAsync(TraktSyncHistoryRemovePost historyRemovePost)
+        public async Task<TraktSyncHistoryRemovePostResponse> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncRatingsItem>> GetSyncRatingsAsync(TraktSyncRatingsItemType? type = null,
-                                                                                     int[] rating = null,
-                                                                                     TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
+                                                                                 int[] rating = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncRatingsRequest(Client)
             {
@@ -122,18 +122,18 @@
             });
         }
 
-        public async Task<TraktSyncRatingsPostResponse> SyncRatingsAddAsync(TraktSyncRatingsPost ratingsPost)
+        public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync(TraktSyncRatingsPost ratingsPost)
         {
             return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
         }
 
-        public async Task<TraktSyncRatingsRemovePostResponse> SyncRatingsRemoveAsync(TraktSyncRatingsRemovePost ratingsRemovePost)
+        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsRemovePost ratingsRemovePost)
         {
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetSyncWatchlistAsync(TraktSyncWatchlistItemType? type = null,
-                                                                                         TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetWatchlistAsync(TraktSyncWatchlistItemType? type = null,
+                                                                                     TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
@@ -142,12 +142,12 @@
             });
         }
 
-        public async Task<TraktSyncWatchlistPostResponse> SyncWatchlistAddAsync(TraktSyncWatchlistPost watchlistPost)
+        public async Task<TraktSyncWatchlistPostResponse> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost)
         {
             return await QueryAsync(new TraktSyncWatchlistAddRequest(Client) { RequestBody = watchlistPost });
         }
 
-        public async Task<TraktSyncWatchlistRemovePostResponse> SyncWatchlistRemoveAsync(TraktSyncWatchlistRemovePost watchlistRemovePost)
+        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistRemovePost watchlistRemovePost)
         {
             return await QueryAsync(new TraktSyncWatchlistRemoveRequest(Client) { RequestBody = watchlistRemovePost });
         }
