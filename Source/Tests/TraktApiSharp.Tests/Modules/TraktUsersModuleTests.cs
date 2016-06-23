@@ -7947,7 +7947,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings", userRatings);
 

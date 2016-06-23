@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Syncs.Ratings;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal class TraktSyncRatingsRequest : TraktGetRequest<TraktListResult<TraktSyncRatingsItem>, TraktSyncRatingsItem>
     {
@@ -20,16 +21,26 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Type.HasValue && Type != TraktSyncRatingsItemType.Unspecified)
-                uriParams.Add("type", Type.Value.AsString());
+            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncRatingsItemType.Unspecified;
 
-            if (Rating != null && Rating.Length > 0)
-                uriParams.Add("rating", string.Join(",", Rating));
+            if (isTypeSetAndValid)
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
+
+            if (Rating != null && isTypeSetAndValid)
+            {
+                var ratingMin = Rating.Min();
+                var ratingMax = Rating.Max();
+
+                var isRatingsSetAndValid = Rating.Length > 0 && Rating.Length <= 10 && ratingMin >= 1 && ratingMax <= 10;
+
+                if (isRatingsSetAndValid)
+                    uriParams.Add("rating", string.Join(",", Rating));
+            }
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/ratings{/type}{/rating}";
+        protected override string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
 
         protected override bool IsListResult => true;
     }

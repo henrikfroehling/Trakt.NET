@@ -19,13 +19,15 @@
             var uriParams = base.GetUriPathParameters();
 
             if (Type.HasValue && Type != TraktSyncType.Unspecified)
-                uriParams.Add("type", Type.Value.AsString());
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/playback{/type}";
+        protected override string UriTemplate => "sync/playback{/type}{?extended,limit}";
 
         protected override bool IsListResult => true;
+
+        protected override bool SupportsPaginationParameters => true;
     }
 }

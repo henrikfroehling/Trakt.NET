@@ -19,12 +19,12 @@
             var uriParams = base.GetUriPathParameters();
 
             if (Type.HasValue && Type != TraktSyncWatchlistItemType.Unspecified)
-                uriParams.Add("type", Type.Value.AsString());
+                uriParams.Add("type", Type.Value.AsStringUriParameter());
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/watchlist{/type}";
+        protected override string UriTemplate => "sync/watchlist{/type}{?extended}";
 
         protected override bool IsListResult => true;
     }
