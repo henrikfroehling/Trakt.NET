@@ -11,8 +11,8 @@
     {
         public TraktSearchModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPaginationListResult<TraktSearchResult>> SearchTextQueryAsync(string query, TraktSearchResultType? type = null,
-                                                                                             int? year = null, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string query, TraktSearchResultType? type = null,
+                                                                                                 int? year = null, int? page = null, int? limit = null)
         {
             Validate(query);
 
@@ -25,8 +25,8 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> SearchIdLookupAsync(TraktSearchLookupIdType type, string lookupId,
-                                                                                                    int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> GetIdLookupResultsAsync(TraktSearchLookupIdType type, string lookupId,
+                                                                                                        int? page = null, int? limit = null)
         {
             Validate(type, lookupId);
 
