@@ -4,7 +4,6 @@
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
-    using Objects.Post;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
     using Requests;
@@ -89,7 +88,7 @@
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : IValidatable
+                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
         {
             return new TraktScrobbleStartRequest<T, U>(Client)
             {
@@ -99,7 +98,7 @@
         }
 
         private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : IValidatable
+                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
         {
             return new TraktScrobblePauseRequest<T, U>(Client)
             {
@@ -109,7 +108,7 @@
         }
 
         private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : IValidatable
+                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
         {
             return new TraktScrobbleStopRequest<T, U>(Client)
             {
@@ -121,6 +120,8 @@
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
                                                                string appVersion = null, DateTime? appDate = null)
         {
+            Validate(movie);
+
             var movieScrobblePost = new TraktMovieScrobblePost
             {
                 Movie = movie,
@@ -139,6 +140,8 @@
         private TraktEpisodeScrobblePost CreateEpisodeScrobblePost(TraktEpisode episode, float progress, TraktShow show = null,
                                                                    string appVersion = null, DateTime? appDate = null)
         {
+            Validate(episode, show);
+
             var episodeScrobblePost = new TraktEpisodeScrobblePost
             {
                 Episode = episode,
@@ -153,6 +156,45 @@
                 episodeScrobblePost.AppDate = appDate.Value.ToTraktDateString();
 
             return episodeScrobblePost;
+        }
+
+        private void Validate(TraktMovie movie)
+        {
+            if (movie == null)
+                throw new ArgumentException("movie must not be null", nameof(movie));
+
+            if (string.IsNullOrEmpty(movie.Title))
+                throw new ArgumentException("movie title not valid", nameof(movie.Title));
+
+            if (movie.Year <= 0)
+                throw new ArgumentException("movie year not valid", nameof(movie));
+
+            if (movie.Ids == null)
+                throw new ArgumentException("movie.Ids must not be null", nameof(movie.Ids));
+
+            if (!movie.Ids.HasAnyId)
+                throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
+        }
+
+        private void Validate(TraktEpisode episode, TraktShow show)
+        {
+            if (episode == null)
+                throw new ArgumentException("episode must not be null", nameof(episode));
+
+            if (episode.Ids == null || !episode.Ids.HasAnyId)
+            {
+                if (show == null)
+                    throw new ArgumentException("episode ids not set or have no valid id - show must not be null", nameof(show));
+
+                if (string.IsNullOrEmpty(show.Title))
+                    throw new ArgumentException("episode ids not set or have no valid id  - show title not valid", nameof(show.Title));
+
+                if (episode.SeasonNumber < 0)
+                    throw new ArgumentException("episode ids not set or have no valid id  - episode season number not valid", nameof(episode.SeasonNumber));
+
+                if (episode.Number <= 0)
+                    throw new ArgumentException("episode ids not set or have no valid id  - episode number not valid", nameof(episode.Number));
+            }
         }
     }
 }
