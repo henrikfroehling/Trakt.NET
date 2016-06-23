@@ -180,6 +180,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync("person id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -469,6 +472,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync("person id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -695,6 +701,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync("person id");
             act.ShouldThrow<ArgumentException>();
         }
 
