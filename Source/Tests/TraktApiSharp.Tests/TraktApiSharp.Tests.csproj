@@ -491,6 +491,7 @@
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShows.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlist.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json" />

@@ -21,6 +21,7 @@
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Ratings;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
+    using TraktApiSharp.Objects.Get.Syncs.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Objects.Post.Syncs.History;
@@ -4073,31 +4074,127 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlist()
         {
-            Assert.Fail();
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist", watchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithType()
         {
-            Assert.Fail();
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncWatchlistItemType.Episode;
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist/{type.AsStringUriParameter()}", watchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithExtendedOption()
         {
-            Assert.Fail();
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist?extended={extendedOption.ToString()}", watchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistComplete()
         {
-            Assert.Fail();
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncWatchlistItemType.Episode;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"sync/watchlist/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                watchlist);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistExceptions()
         {
-            Assert.Fail();
+            var uri = "sync/watchlist";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktListResult<TraktSyncWatchlistItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
