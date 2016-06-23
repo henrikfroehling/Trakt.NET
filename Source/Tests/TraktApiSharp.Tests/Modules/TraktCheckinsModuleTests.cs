@@ -1828,7 +1828,7 @@
             Func<Task<TraktMovieCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(null);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             movie.Year = 0;
 
@@ -1839,7 +1839,7 @@
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -3730,21 +3730,15 @@
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(null);
 
-            act.ShouldThrow<ArgumentNullException>();
-
-            episode.Number = -1;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
-            episode.Number = 1;
-            episode.SeasonNumber = -1;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(new TraktEpisode());
             act.ShouldThrow<ArgumentException>();
 
-            episode.SeasonNumber = 1;
-            episode.Ids = new TraktEpisodeIds();
+            episode = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds()
+            };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
@@ -6019,15 +6013,7 @@
             var episode = new TraktEpisode
             {
                 Number = 1,
-                SeasonNumber = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                SeasonNumber = 1
             };
 
             var show = new TraktShow { Title = "Breaking Bad" };
@@ -6046,10 +6032,10 @@
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, null);
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             episode.Number = -1;
 
@@ -6063,19 +6049,6 @@
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
-            episode.Ids = new TraktEpisodeIds();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.ShouldThrow<ArgumentException>();
-
-            episode.Ids = new TraktEpisodeIds
-            {
-                Trakt = 16,
-                Tvdb = 349232,
-                Imdb = "tt0959621",
-                Tmdb = 62085,
-                TvRage = 637041
-            };
 
             show.Title = string.Empty;
 
