@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Requests;
     using Requests.WithoutOAuth.Search;
@@ -41,16 +42,16 @@
         private void Validate(string query)
         {
             if (string.IsNullOrEmpty(query))
-                throw new ArgumentException("search query not valid", "query");
+                throw new ArgumentException("search query not valid", nameof(query));
         }
 
         private void Validate(TraktSearchLookupIdType type, string lookupId)
         {
             if (type == TraktSearchLookupIdType.Unspecified)
-                throw new ArgumentException("search id lookup type not valid", "type");
+                throw new ArgumentException("search id lookup type not valid", nameof(type));
 
-            if (string.IsNullOrEmpty(lookupId))
-                throw new ArgumentException("search lookup id not valid", "lookupId");
+            if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())
+                throw new ArgumentException("search lookup id not valid", nameof(lookupId));
         }
     }
 }
