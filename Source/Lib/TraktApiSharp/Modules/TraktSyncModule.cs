@@ -21,6 +21,7 @@
     using Requests;
     using Requests.WithOAuth.Syncs;
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktSyncModule : TraktBaseModule
@@ -70,6 +71,20 @@
 
         public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
         {
+            if (collectionPost == null)
+                throw new ArgumentNullException("collection items post must not be null", "collectionPost");
+
+            var movies = collectionPost.Movies;
+            var shows = collectionPost.Shows;
+            var episodes = collectionPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
+
             return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
         }
 

@@ -3,15 +3,22 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Collection;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
+    using TraktApiSharp.Objects.Post.Syncs.Collection;
+    using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -630,19 +637,290 @@
         [TestMethod]
         public void TestTraktSyncModuleAddCollectionItems()
         {
-            Assert.Fail();
+            var addedCollectionItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Collection\Responses\SyncCollectionPostResponse.json");
+            addedCollectionItems.Should().NotBeNullOrEmpty();
+
+            var collectionPost = new TraktSyncCollectionPost
+            {
+                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                {
+                    new TraktSyncCollectionPostMovieItem
+                    {
+                        CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    },
+                    new TraktSyncCollectionPostMovieItem
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncCollectionPostShowItem>()
+                {
+                    new TraktSyncCollectionPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    },
+                    new TraktSyncCollectionPostShowItem
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402,
+                            TvRage = 25056
+                        },
+                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        {
+                            new TraktSyncCollectionPostShowSeasonItem
+                            {
+                                Number = 3
+                            }
+                        }
+                    },
+                    new TraktSyncCollectionPostShowItem
+                    {
+                        Title = "Mad Men",
+                        Year = 2007,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 4,
+                            Slug = "mad-men",
+                            Tvdb = 80337,
+                            Imdb = "tt0804503",
+                            Tmdb = 1104,
+                            TvRage = 16356
+                        },
+                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        {
+                            new TraktSyncCollectionPostShowSeasonItem
+                            {
+                                Number = 1,
+                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                {
+                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    {
+                                        CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
+                                        Number = 1
+                                    },
+                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    {
+                                        Number = 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                {
+                    new TraktSyncCollectionPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var postJson = TestUtility.SerializeObject(collectionPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/collection", postJson, addedCollectionItems);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost).Result;
+
+            response.Should().NotBeNull();
+
+            response.Added.Should().NotBeNull();
+            response.Added.Movies.Should().Be(1);
+            response.Added.Episodes.Should().Be(12);
+            response.Added.Shows.Should().NotHaveValue();
+            response.Added.Seasons.Should().NotHaveValue();
+
+            response.Updated.Should().NotBeNull();
+            response.Updated.Movies.Should().Be(3);
+            response.Updated.Episodes.Should().Be(1);
+            response.Updated.Shows.Should().NotHaveValue();
+            response.Updated.Seasons.Should().NotHaveValue();
+
+            response.Existing.Should().NotBeNull();
+            response.Existing.Movies.Should().Be(2);
+            response.Existing.Episodes.Should().Be(0);
+            response.Existing.Shows.Should().NotHaveValue();
+            response.Existing.Seasons.Should().NotHaveValue();
+
+            response.NotFound.Should().NotBeNull();
+            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = response.NotFound.Movies.ToArray();
+
+            movies[0].Ids.Should().NotBeNull();
+            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Slug.Should().BeNullOrEmpty();
+            movies[0].Ids.Imdb.Should().Be("tt0000111");
+            movies[0].Ids.Tmdb.Should().NotHaveValue();
+
+            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
         public void TestTraktSyncModuleAddCollectionItemsExceptions()
         {
-            Assert.Fail();
+            var collectionPost = new TraktSyncCollectionPost
+            {
+                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                {
+                    new TraktSyncCollectionPostMovieItem
+                    {
+                        CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncCollectionPostShowItem>()
+                {
+                    new TraktSyncCollectionPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                {
+                    new TraktSyncCollectionPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var uri = "sync/collection";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktSyncCollectionPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktSyncModuleAddCollectionItemsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktSyncCollectionPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(new TraktSyncCollectionPost());
+            act.ShouldThrow<ArgumentException>();
+
+            var collectionPost = new TraktSyncCollectionPost
+            {
+                Movies = new List<TraktSyncCollectionPostMovieItem>(),
+                Shows = new List<TraktSyncCollectionPostShowItem>(),
+                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
