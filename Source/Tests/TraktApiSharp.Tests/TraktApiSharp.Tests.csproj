@@ -483,6 +483,7 @@
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
+    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatings.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsSeasons.json" />

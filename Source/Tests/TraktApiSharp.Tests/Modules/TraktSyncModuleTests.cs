@@ -19,6 +19,7 @@
     using TraktApiSharp.Objects.Get.Syncs.Collection;
     using TraktApiSharp.Objects.Get.Syncs.History;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
+    using TraktApiSharp.Objects.Get.Syncs.Ratings;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
@@ -3025,133 +3026,464 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatings()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithType()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncRatingsItemType.Movie;
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
+                                                   ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithRatingsFilter()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, ratingsFilter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var type = TraktSyncRatingsItemType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"sync/ratings/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithExtendedOption()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings?extended={extendedOption.ToString()}", ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, null, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsComplete()
         {
-            Assert.Fail();
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            ratings.Should().NotBeNullOrEmpty();
+
+            var encodedComma = "%2C";
+
+            var type = TraktSyncRatingsItemType.Movie;
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                ratings);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsExceptions()
         {
-            Assert.Fail();
-        }
+            var uri = "sync/ratings";
 
-        [TestMethod]
-        public void TestTraktSyncModuleGetUserRatingsArgumentExceptions()
-        {
-            Assert.Fail();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktListResult<TraktSyncRatingsItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
