@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Shows.Seasons;
@@ -89,11 +90,11 @@
 
         private void Validate(string showId, int season = 0)
         {
-            if (string.IsNullOrEmpty(showId))
-                throw new ArgumentException("show id not valid", "showId");
+            if (string.IsNullOrEmpty(showId) || showId.ContainsSpace())
+                throw new ArgumentException("show id not valid", nameof(showId));
 
             if (season < 0)
-                throw new ArgumentException("season nr not valid", "season");
+                throw new ArgumentException("season nr not valid", nameof(season));
         }
     }
 }

@@ -150,6 +150,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -269,6 +272,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(string.Empty, seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync("show id", seasonNr);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, -1);
@@ -550,6 +556,9 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(string.Empty, seasonNr);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync("show id", seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, -1);
             act.ShouldThrow<ArgumentException>();
         }
@@ -659,6 +668,9 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonRatingsAsync(string.Empty, seasonNr);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonRatingsAsync("show id", seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonRatingsAsync(showId, -1);
             act.ShouldThrow<ArgumentException>();
         }
@@ -763,6 +775,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonStatisticsAsync(string.Empty, seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonStatisticsAsync("show id", seasonNr);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonStatisticsAsync(showId, -1);
@@ -887,6 +902,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonWatchingUsersAsync(string.Empty, seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonWatchingUsersAsync("show id", seasonNr);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonWatchingUsersAsync(showId, -1);
