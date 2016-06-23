@@ -71,25 +71,15 @@
 
         public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
         {
-            if (collectionPost == null)
-                throw new ArgumentNullException("collection items post must not be null", "collectionPost");
-
-            var movies = collectionPost.Movies;
-            var shows = collectionPost.Shows;
-            var episodes = collectionPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+            ValidateCollectionPost(collectionPost);
 
             return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
         }
 
         public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionRemovePost collectionRemovePost)
         {
+            ValidateCollectionPost(collectionRemovePost);
+
             return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
         }
 
@@ -172,6 +162,23 @@
         public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistRemovePost watchlistRemovePost)
         {
             return await QueryAsync(new TraktSyncWatchlistRemoveRequest(Client) { RequestBody = watchlistRemovePost });
+        }
+
+        private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
+        {
+            if (collectionPost == null)
+                throw new ArgumentNullException("collection items post must not be null", "collectionPost");
+
+            var movies = collectionPost.Movies;
+            var shows = collectionPost.Shows;
+            var episodes = collectionPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
         }
     }
 }
