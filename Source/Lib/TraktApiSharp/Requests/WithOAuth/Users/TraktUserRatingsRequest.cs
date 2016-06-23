@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Users;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal class TraktUserRatingsRequest : TraktGetRequest<TraktListResult<TraktUserRatingsItem>, TraktUserRatingsItem>
     {
@@ -24,16 +25,26 @@
 
             uriParams.Add("username", Username);
 
-            if (Type.HasValue && Type.Value != TraktSyncRatingsItemType.Unspecified)
+            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncRatingsItemType.Unspecified;
+
+            if (isTypeSetAndValid)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());
 
-            if (Rating != null && Rating.Length > 0)
-                uriParams.Add("rating", string.Join(",", Rating));
+            if (Rating != null && isTypeSetAndValid)
+            {
+                var ratingMin = Rating.Min();
+                var ratingMax = Rating.Max();
+
+                var isRatingsSetAndValid = Rating.Length > 0 && Rating.Length <= 10 && ratingMin >= 1 && ratingMax <= 10;
+
+                if (isRatingsSetAndValid)
+                    uriParams.Add("rating", string.Join(",", Rating));
+            }
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/ratings{/type}{/rating}";
+        protected override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
 
         protected override bool IsListResult => true;
     }

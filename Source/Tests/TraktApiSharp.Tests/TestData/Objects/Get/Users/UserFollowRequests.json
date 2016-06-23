@@ -1,0 +1,24 @@
+﻿[
+  {
+    "id": 3,
+    "requested_at": "2014-09-22T04:23:48.000Z",
+    "user": {
+      "username": "sean",
+      "private": false,
+      "name": "Sean Rudford",
+      "vip": true,
+      "vip_ep": false
+    }
+  },
+  {
+    "id": 5,
+    "requested_at": "2014-11-01T09:12:23.000Z",
+    "user": {
+      "username": "paul",
+      "private": false,
+      "name": "Paul",
+      "vip": false,
+      "vip_ep": false
+    }
+  }
+]

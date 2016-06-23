@@ -55,7 +55,7 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}", searchResults, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -79,7 +79,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -103,7 +103,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&year={year}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, year).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, year).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -128,7 +128,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&year={year}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type, year).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, year).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -152,7 +152,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -177,7 +177,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -202,7 +202,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&year={year}&page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, year, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, year, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -226,7 +226,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -251,7 +251,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -276,7 +276,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&year={year}&limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, year, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, year, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -301,7 +301,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&page={page}&limit={limit}",
                                                                 searchResults, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -328,7 +328,7 @@
                 $"search?query={query}&type={type.AsString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -355,7 +355,7 @@
                 $"search?query={query}&year={year}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, null, year, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, null, year, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -383,7 +383,7 @@
                 $"search?query={query}&type={type.AsString()}&year={year}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query, type, year, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, year, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -402,7 +402,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(query);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
@@ -453,10 +453,10 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}", searchResults);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchTextQueryAsync(string.Empty);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -481,7 +481,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -507,7 +507,7 @@
                 $"search?id_type={type.AsString()}&id={lookupId}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -533,7 +533,7 @@
                 $"search?id_type={type.AsString()}&id={lookupId}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -560,7 +560,7 @@
                 $"search?id_type={type.AsString()}&id={lookupId}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -580,7 +580,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, lookupId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
@@ -633,13 +633,13 @@
                                                                 searchResults);
 
             Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(TraktSearchLookupIdType.Unspecified, lookupId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchLookupIdType.Unspecified, lookupId);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, string.Empty);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.SearchIdLookupAsync(type, null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, null);
             act.ShouldThrow<ArgumentException>();
         }
 

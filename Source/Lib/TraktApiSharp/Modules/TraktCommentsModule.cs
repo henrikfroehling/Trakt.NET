@@ -183,13 +183,6 @@
             await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId });
         }
 
-        public async Task<TraktComment> GetCommentReplyAsync(string replyId)
-        {
-            ValidateId(replyId);
-
-            return await QueryAsync(new TraktCommentReplySummaryRequest(Client) { Id = replyId });
-        }
-
         public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(string id, int? page = null, int? limit = null)
         {
             ValidateId(id);

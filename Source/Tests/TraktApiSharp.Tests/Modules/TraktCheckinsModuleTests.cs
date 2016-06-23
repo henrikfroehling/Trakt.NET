@@ -78,7 +78,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie).Result;
 
             response.Should().NotBeNull();
 
@@ -129,7 +129,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion).Result;
 
             response.Should().NotBeNull();
 
@@ -182,7 +182,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -235,7 +235,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
 
@@ -294,7 +294,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -347,7 +347,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, null,
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -401,7 +401,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, null,
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -459,7 +459,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, null,
                                                                                    null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -511,7 +511,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -564,7 +564,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
 
@@ -623,7 +623,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -676,7 +676,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, null,
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -730,7 +730,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, null,
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -788,7 +788,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, null,
                                                                                    null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -840,7 +840,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message).Result;
 
             response.Should().NotBeNull();
 
@@ -899,7 +899,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -952,7 +952,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, null,
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -1006,7 +1006,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, null,
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -1064,7 +1064,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, null,
                                                                                    null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1121,7 +1121,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -1180,7 +1180,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing,
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -1240,7 +1240,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing,
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -1303,7 +1303,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing,
                                                                                    null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1355,7 +1355,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -1409,7 +1409,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -1467,7 +1467,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    foursquareVenueId, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1519,7 +1519,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -1577,7 +1577,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    null, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1632,7 +1632,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
                                                                                    null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1707,7 +1707,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie, appVersion, appBuildDate, message, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, appBuildDate, message, sharing,
                                                                                    foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -1748,7 +1748,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -1826,24 +1826,24 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             Func<Task<TraktMovieCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
             movie.Year = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinMovieAsync(movie);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1889,7 +1889,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -1943,7 +1943,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion).Result;
 
             response.Should().NotBeNull();
 
@@ -1999,7 +1999,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -2055,7 +2055,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
 
@@ -2117,7 +2117,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -2173,7 +2173,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, null,
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -2230,7 +2230,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, null,
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -2291,7 +2291,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, null,
                                                                                      null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -2346,7 +2346,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -2402,7 +2402,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
 
@@ -2464,7 +2464,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -2520,7 +2520,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, null,
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -2577,7 +2577,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, null,
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -2638,7 +2638,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, appBuildDate, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, null,
                                                                                      null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -2693,7 +2693,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message).Result;
 
             response.Should().NotBeNull();
 
@@ -2755,7 +2755,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -2811,7 +2811,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, null,
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -2868,7 +2868,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, null,
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -2929,7 +2929,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, message, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, null,
                                                                                      null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -2989,7 +2989,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -3051,7 +3051,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing,
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -3114,7 +3114,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing,
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -3180,7 +3180,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing,
                                                                                      null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -3235,7 +3235,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null,
                                                                                      null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -3292,7 +3292,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, null,
                                                                                      foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -3353,7 +3353,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, null,
                                                                                      foursquareVenueId, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -3408,7 +3408,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, null,
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -3469,7 +3469,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, null,
                                                                                      null, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -3527,7 +3527,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, null,
                                                                                      null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -3605,7 +3605,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode, appVersion, appBuildDate, message, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate, message, sharing,
                                                                                      foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -3649,7 +3649,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -3728,25 +3728,25 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
 
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeAsync(episode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -3790,7 +3790,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show).Result;
 
             response.Should().NotBeNull();
 
@@ -3857,7 +3857,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion).Result;
 
             response.Should().NotBeNull();
 
@@ -3926,7 +3926,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              appBuildDate).Result;
 
             response.Should().NotBeNull();
@@ -3996,7 +3996,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              null, message).Result;
 
             response.Should().NotBeNull();
@@ -4072,7 +4072,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              null, null, sharing).Result;
 
             response.Should().NotBeNull();
@@ -4142,7 +4142,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              null, null, null,
                                                                                              foursquareVenueId).Result;
 
@@ -4213,7 +4213,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              null, null, null,
                                                                                              null, foursquareVenueName).Result;
 
@@ -4288,7 +4288,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion,
                                                                                              null, null, null, null, null,
                                                                                              extendedOption).Result;
 
@@ -4357,7 +4357,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, appBuildDate).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
 
@@ -4426,7 +4426,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              appBuildDate, message).Result;
 
             response.Should().NotBeNull();
@@ -4502,7 +4502,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
@@ -4572,7 +4572,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              appBuildDate, null, null,
                                                                                              foursquareVenueId).Result;
 
@@ -4643,7 +4643,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              appBuildDate, null, null,
                                                                                              null, foursquareVenueName).Result;
 
@@ -4718,7 +4718,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              appBuildDate, null, null,
                                                                                              null, null, extendedOption).Result;
 
@@ -4787,7 +4787,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, message).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, message).Result;
 
             response.Should().NotBeNull();
 
@@ -4862,7 +4862,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, message, sharing).Result;
 
             response.Should().NotBeNull();
@@ -4932,7 +4932,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, message, null,
                                                                                              foursquareVenueId).Result;
 
@@ -5003,7 +5003,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, message, null,
                                                                                              null, foursquareVenueName).Result;
 
@@ -5078,7 +5078,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, message, null,
                                                                                              null, null, extendedOption).Result;
 
@@ -5152,7 +5152,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, sharing).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
 
@@ -5227,7 +5227,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, sharing,
                                                                                              foursquareVenueId).Result;
 
@@ -5304,7 +5304,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, sharing,
                                                                                              null, foursquareVenueName).Result;
 
@@ -5384,7 +5384,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, sharing,
                                                                                              null, null, extendedOption).Result;
 
@@ -5453,7 +5453,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null,
                                                                                              null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
@@ -5523,7 +5523,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, null,
                                                                                              foursquareVenueId, foursquareVenueName).Result;
 
@@ -5598,7 +5598,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, null,
                                                                                              foursquareVenueId, null,
                                                                                              extendedOption).Result;
@@ -5668,7 +5668,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, null, null,
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
@@ -5742,7 +5742,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null,
                                                                                              null, null, null,
                                                                                              null, foursquareVenueName,
                                                                                              extendedOption).Result;
@@ -5815,7 +5815,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, null, null, null, null,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, null, null,
                                                                                              null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -5906,7 +5906,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinEpisodeResponse);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show, appVersion, appBuildDate, message, sharing,
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion, appBuildDate, message, sharing,
                                                                                              foursquareVenueId, foursquareVenueName, extendedOption).Result;
 
             response.Should().NotBeNull();
@@ -5962,7 +5962,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -6044,28 +6044,28 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(null, show);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
 
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, null);
             act.ShouldThrow<ArgumentNullException>();
 
             episode.Number = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.SeasonNumber = 1;
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds
@@ -6079,7 +6079,7 @@
 
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckinEpisodeWithShowAsync(episode, show);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -6094,7 +6094,7 @@
         public void TestTraktCheckinsModuleDeleteCheckins()
         {
             TestUtility.SetupMockResponseWithOAuth("checkin", HttpStatusCode.NoContent);
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteActiveCheckinsAsync();
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
             act.ShouldNotThrow();
         }
 
@@ -6105,7 +6105,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteActiveCheckinsAsync();
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();

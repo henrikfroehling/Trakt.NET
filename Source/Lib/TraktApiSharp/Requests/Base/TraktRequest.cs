@@ -127,7 +127,7 @@ namespace TraktApiSharp.Requests.Base
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
             }
 
-            if (SupportsPagination)
+            if (SupportsPagination || SupportsPaginationParameters)
             {
                 if (PaginationOptions.Page != null)
                     uriPath.AddParameter("page", PaginationOptions.Page.ToString());
@@ -147,6 +147,8 @@ namespace TraktApiSharp.Requests.Base
         protected virtual bool IsListResult => false;
 
         protected virtual bool SupportsPagination => false;
+
+        protected virtual bool SupportsPaginationParameters => false;
 
         protected virtual bool IsCheckinRequest => false;
 

@@ -13,7 +13,7 @@
     {
         public TraktSeasonsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSeason>> GetAllSeasonsAsync(string showId, TraktExtendedOption extended = null)
         {
             Validate(showId);
 
@@ -37,9 +37,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSeasonComment>> GetSeasonCommentsAsync(string showId, int season,
-                                                                                                TraktCommentSortOrder? sorting = null,
-                                                                                                int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync(string showId, int season,
+                                                                                          TraktCommentSortOrder? sorting = null,
+                                                                                          int? page = null, int? limit = null)
         {
             Validate(showId, season);
 

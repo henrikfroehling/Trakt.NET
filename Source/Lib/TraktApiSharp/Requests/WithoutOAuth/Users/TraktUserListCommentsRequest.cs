@@ -27,7 +27,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/lists/{id}/comments{/sorting}";
+        protected override string UriTemplate => "users/{username}/lists/{id}/comments{/sorting}{?page,limit}";
 
         protected override bool SupportsPagination => true;
 

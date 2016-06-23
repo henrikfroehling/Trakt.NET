@@ -10,7 +10,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        protected override string UriTemplate => "sync/collection/shows";
+        protected override string UriTemplate => "sync/collection/shows{?extended}";
 
         protected override bool IsListResult => true;
     }

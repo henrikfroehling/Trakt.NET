@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
+    using Basic;
     using Get.Shows;
     using Newtonsoft.Json;
     using System;
@@ -21,5 +22,8 @@
 
         [JsonProperty(PropertyName = "seasons")]
         public IEnumerable<TraktSyncCollectionPostShowSeasonItem> Seasons { get; set; }
+
+        [JsonProperty(PropertyName = "metadata")]
+        public TraktMetadata Metadata { get; set; }
     }
 }

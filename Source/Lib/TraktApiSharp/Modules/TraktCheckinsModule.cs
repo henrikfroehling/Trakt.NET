@@ -16,10 +16,10 @@
     {
         public TraktCheckinsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktMovieCheckinPostResponse> CheckinMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                           string message = null, TraktSharing sharing = null,
-                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                           TraktExtendedOption extended = null)
+        public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
+                                                                             string message = null, TraktSharing sharing = null,
+                                                                             string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                             TraktExtendedOption extended = null)
         {
             Validate(movie);
 
@@ -50,10 +50,10 @@
             });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                               string message = null, TraktSharing sharing = null,
-                                                                               string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                               TraktExtendedOption extended = null)
+        public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                 string message = null, TraktSharing sharing = null,
+                                                                                 string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             Validate(episode);
 
@@ -85,11 +85,11 @@
             });
         }
 
-        public async Task<TraktEpisodeCheckinPostResponse> CheckinEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
-                                                                                       string appVersion = null, DateTime? appBuildDate = null,
-                                                                                       string message = null, TraktSharing sharing = null,
-                                                                                       string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                       TraktExtendedOption extended = null)
+        public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
+                                                                                         string appVersion = null, DateTime? appBuildDate = null,
+                                                                                         string message = null, TraktSharing sharing = null,
+                                                                                         string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                         TraktExtendedOption extended = null)
         {
             Validate(episode, show);
 
@@ -121,7 +121,7 @@
             });
         }
 
-        public async Task DeleteActiveCheckinsAsync()
+        public async Task DeleteAnyActiveCheckinsAsync()
         {
             await QueryAsync(new TraktCheckinsDeleteRequest(Client));
         }

@@ -10,7 +10,7 @@
 
         protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        protected override string UriTemplate => "sync/collection/movies";
+        protected override string UriTemplate => "sync/collection/movies{?extended}";
 
         protected override bool IsListResult => true;
     }

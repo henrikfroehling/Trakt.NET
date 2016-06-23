@@ -20,7 +20,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/collection/shows";
+        protected override string UriTemplate => "users/{username}/collection/shows{?extended}";
 
         protected override bool IsListResult => true;
     }

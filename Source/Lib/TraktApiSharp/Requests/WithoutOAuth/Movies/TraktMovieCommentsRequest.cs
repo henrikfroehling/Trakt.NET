@@ -3,10 +3,9 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Movies;
     using System.Collections.Generic;
 
-    internal class TraktMovieCommentsRequest : TraktGetByIdRequest<TraktPaginationListResult<TraktMovieComment>, TraktMovieComment>
+    internal class TraktMovieCommentsRequest : TraktGetByIdRequest<TraktPaginationListResult<TraktComment>, TraktComment>
     {
         internal TraktMovieCommentsRequest(TraktClient client) : base(client) { }
 

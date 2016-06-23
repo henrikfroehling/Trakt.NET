@@ -3,10 +3,9 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Shows;
     using System.Collections.Generic;
 
-    internal class TraktShowCommentsRequest : TraktGetByIdRequest<TraktPaginationListResult<TraktShowComment>, TraktShowComment>
+    internal class TraktShowCommentsRequest : TraktGetByIdRequest<TraktPaginationListResult<TraktComment>, TraktComment>
     {
         internal TraktShowCommentsRequest(TraktClient client) : base(client) { }
 

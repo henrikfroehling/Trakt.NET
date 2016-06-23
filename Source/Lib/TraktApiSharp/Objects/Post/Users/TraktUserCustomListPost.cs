@@ -22,7 +22,7 @@
         [JsonProperty(PropertyName = "allow_comments")]
         public bool? AllowComments { get; set; }
 
-        public void Validate()
+        public virtual void Validate()
         {
             if (string.IsNullOrEmpty(Name))
                 throw new ArgumentException("name not set");
