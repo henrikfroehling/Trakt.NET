@@ -2741,19 +2741,278 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchedHistoryItems()
         {
-            Assert.Fail();
+            var removedHistoryItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\History\Responses\SyncHistoryRemovePostResponse.json");
+            removedHistoryItems.Should().NotBeNullOrEmpty();
+
+            var historyRemovePost = new TraktSyncHistoryRemovePost
+            {
+                Movies = new List<TraktSyncHistoryPostMovieItem>()
+                {
+                    new TraktSyncHistoryPostMovieItem
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    },
+                    new TraktSyncHistoryPostMovieItem
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncHistoryPostShowItem>()
+                {
+                    new TraktSyncHistoryPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    },
+                    new TraktSyncHistoryPostShowItem
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402,
+                            TvRage = 25056
+                        },
+                        Seasons = new List<TraktSyncHistoryPostShowSeasonItem>()
+                        {
+                            new TraktSyncHistoryPostShowSeasonItem
+                            {
+                                Number = 3
+                            }
+                        }
+                    },
+                    new TraktSyncHistoryPostShowItem
+                    {
+                        Title = "Mad Men",
+                        Year = 2007,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 4,
+                            Slug = "mad-men",
+                            Tvdb = 80337,
+                            Imdb = "tt0804503",
+                            Tmdb = 1104,
+                            TvRage = 16356
+                        },
+                        Seasons = new List<TraktSyncHistoryPostShowSeasonItem>()
+                        {
+                            new TraktSyncHistoryPostShowSeasonItem
+                            {
+                                Number = 1,
+                                Episodes = new List<TraktSyncHistoryPostShowEpisodeItem>()
+                                {
+                                    new TraktSyncHistoryPostShowEpisodeItem
+                                    {
+                                        Number = 1
+                                    },
+                                    new TraktSyncHistoryPostShowEpisodeItem
+                                    {
+                                        Number = 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncHistoryPostEpisodeItem>()
+                {
+                    new TraktSyncHistoryPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var postJson = TestUtility.SerializeObject(historyRemovePost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/history/remove", postJson, removedHistoryItems);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(historyRemovePost).Result;
+
+            response.Should().NotBeNull();
+
+            response.Deleted.Should().NotBeNull();
+            response.Deleted.Movies.Should().Be(2);
+            response.Deleted.Episodes.Should().Be(72);
+            response.Deleted.Shows.Should().NotHaveValue();
+            response.Deleted.Seasons.Should().NotHaveValue();
+
+            response.NotFound.Should().NotBeNull();
+            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = response.NotFound.Movies.ToArray();
+
+            movies[0].Ids.Should().NotBeNull();
+            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Slug.Should().BeNullOrEmpty();
+            movies[0].Ids.Imdb.Should().Be("tt0000111");
+            movies[0].Ids.Tmdb.Should().NotHaveValue();
+
+            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+
+            response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
+            response.NotFound.Ids.Should().Contain(new List<int>() { 23, 42 });
         }
 
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchedHistoryItemsExceptions()
         {
-            Assert.Fail();
+            var historyRemovePost = new TraktSyncHistoryRemovePost
+            {
+                Movies = new List<TraktSyncHistoryPostMovieItem>()
+                {
+                    new TraktSyncHistoryPostMovieItem
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncHistoryPostShowItem>()
+                {
+                    new TraktSyncHistoryPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncHistoryPostEpisodeItem>()
+                {
+                    new TraktSyncHistoryPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var uri = "sync/history/remove";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktSyncHistoryRemovePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(historyRemovePost);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchedHistoryItemsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktSyncHistoryRemovePostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(new TraktSyncHistoryRemovePost());
+            act.ShouldThrow<ArgumentException>();
+
+            var collectionPost = new TraktSyncHistoryRemovePost
+            {
+                Movies = new List<TraktSyncHistoryPostMovieItem>(),
+                Shows = new List<TraktSyncHistoryPostShowItem>(),
+                Episodes = new List<TraktSyncHistoryPostEpisodeItem>()
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(collectionPost);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

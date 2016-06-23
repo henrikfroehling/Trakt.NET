@@ -26,7 +26,7 @@
         [TestMethod]
         public void TestTraktSyncHistoryRemovePostWriteJson()
         {
-            var historyRemovePost = new TraktSyncHistoryPost
+            var historyRemovePost = new TraktSyncHistoryRemovePost
             {
                 Movies = new List<TraktSyncHistoryPostMovieItem>()
                 {

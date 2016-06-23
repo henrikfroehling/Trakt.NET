@@ -115,25 +115,15 @@
 
         public async Task<TraktSyncHistoryPostResponse> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost)
         {
-            if (historyPost == null)
-                throw new ArgumentNullException("history items post must not be null", "historyPost");
-
-            var movies = historyPost.Movies;
-            var shows = historyPost.Shows;
-            var episodes = historyPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+            ValidateHistoryPost(historyPost);
 
             return await QueryAsync(new TraktSyncWatchedHistoryAddRequest(Client) { RequestBody = historyPost });
         }
 
         public async Task<TraktSyncHistoryRemovePostResponse> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost)
         {
+            ValidateHistoryPost(historyRemovePost);
+
             return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
         }
 
@@ -187,6 +177,23 @@
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
             var episodes = collectionPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
+        }
+
+        private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
+        {
+            if (historyPost == null)
+                throw new ArgumentNullException("history items post must not be null", "historyPost");
+
+            var movies = historyPost.Movies;
+            var shows = historyPost.Shows;
+            var episodes = historyPost.Episodes;
 
             var bHasNoMovies = movies == null || !movies.Any();
             var bHasNoShows = shows == null || !shows.Any();
