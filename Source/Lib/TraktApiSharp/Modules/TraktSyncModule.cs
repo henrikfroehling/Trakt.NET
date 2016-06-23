@@ -141,25 +141,15 @@
 
         public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync(TraktSyncRatingsPost ratingsPost)
         {
-            if (ratingsPost == null)
-                throw new ArgumentNullException("ratings post must not be null", "ratingsPost");
-
-            var movies = ratingsPost.Movies;
-            var shows = ratingsPost.Shows;
-            var episodes = ratingsPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+            ValidateRatingsPost(ratingsPost);
 
             return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
         }
 
         public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsRemovePost ratingsRemovePost)
         {
+            ValidateRatingsPost(ratingsRemovePost);
+
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
@@ -208,6 +198,23 @@
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
             var episodes = historyPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
+        }
+
+        private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
+        {
+            if (ratingsPost == null)
+                throw new ArgumentNullException("ratings post must not be null", "ratingsPost");
+
+            var movies = ratingsPost.Movies;
+            var shows = ratingsPost.Shows;
+            var episodes = ratingsPost.Episodes;
 
             var bHasNoMovies = movies == null || !movies.Any();
             var bHasNoShows = shows == null || !shows.Any();
