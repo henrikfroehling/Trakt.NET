@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Collection;
@@ -19,6 +20,7 @@
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests;
     using Requests.WithOAuth.Syncs;
+    using System;
     using System.Threading.Tasks;
 
     public class TraktSyncModule : TraktBaseModule
@@ -44,6 +46,9 @@
 
         public async Task RemovePlaybackItemAsync(string playbackId)
         {
+            if (string.IsNullOrEmpty(playbackId) || playbackId.ContainsSpace())
+                throw new ArgumentException("playback id not valid", "playbackId");
+
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
