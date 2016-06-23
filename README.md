@@ -4,15 +4,9 @@ TraktApiSharp
 
 ## Status
 
-The library **has currently beta status**.
+The current library version is a release candidate.
 
-The library is feature-complete in terms of API coverage, but there are features, that are not completely tested.
-
-Following modules are not completely tested and can contain bugs:
-- Sync Module
-- Users Module
-
-Alpha and beta versions are available as NuGet packages under the [Release](https://github.com/henrikfroehling/TraktApiSharp/releases) tab.
+All library versions are available as NuGet packages under the [Release](https://github.com/henrikfroehling/TraktApiSharp/releases) tab or at [Nuget.org](https://www.nuget.org/packages/TraktApiSharp).
 
 
 ## NuGet
