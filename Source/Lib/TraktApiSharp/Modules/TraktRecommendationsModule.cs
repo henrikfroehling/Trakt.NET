@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Recommendations;
     using Requests;
@@ -47,8 +48,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("id not valid", nameof(id));
         }
     }
 }

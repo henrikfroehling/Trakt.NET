@@ -265,6 +265,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync("movie id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -494,6 +497,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
