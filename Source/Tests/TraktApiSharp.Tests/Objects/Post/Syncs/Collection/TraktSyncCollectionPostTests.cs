@@ -325,8 +325,24 @@
                         {
                             new TraktSyncCollectionPostShowSeasonItem
                             {
-                                Number = 3
+                                Number = 3,
+                                Metadata = new TraktMetadata
+                                {
+                                    Audio = TraktMediaAudio.AAC,
+                                    AudioChannels = TraktMediaAudioChannel.Channels_5_1,
+                                    MediaResolution = TraktMediaResolution.HD_720p,
+                                    MediaType = TraktMediaType.Digital,
+                                    ThreeDimensional = false
+                                }
                             }
+                        },
+                        Metadata = new TraktMetadata
+                        {
+                            Audio = TraktMediaAudio.AAC,
+                            AudioChannels = TraktMediaAudioChannel.Channels_5_1,
+                            MediaResolution = TraktMediaResolution.HD_720p,
+                            MediaType = TraktMediaType.Digital,
+                            ThreeDimensional = false
                         }
                     },
                     new TraktSyncCollectionPostShowItem
@@ -471,12 +487,24 @@
             shows[1].Ids.Imdb.Should().Be("tt1520211");
             shows[1].Ids.Tmdb.Should().Be(1402);
             shows[1].Ids.TvRage.Should().Be(25056);
+            shows[1].Metadata.Should().NotBeNull();
+            shows[1].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            shows[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            shows[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            shows[1].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            shows[1].Metadata.ThreeDimensional.Should().BeFalse();
             shows[1].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             var show2Seasons = shows[1].Seasons.ToArray();
 
             show2Seasons[0].CollectedAt.Should().NotHaveValue();
             show2Seasons[0].Number.Should().Be(3);
+            show2Seasons[0].Metadata.Should().NotBeNull();
+            show2Seasons[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            show2Seasons[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            show2Seasons[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            show2Seasons[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            show2Seasons[0].Metadata.ThreeDimensional.Should().BeFalse();
             show2Seasons[0].Episodes.Should().BeNull();
 
             shows[2].CollectedAt.Should().NotHaveValue();

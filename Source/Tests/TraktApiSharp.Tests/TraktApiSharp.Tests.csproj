@@ -104,6 +104,7 @@
     <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
+    <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
@@ -479,8 +480,10 @@
     <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
     <None Include="TestData\Objects\Get\Syncs\History\SyncHistory.json" />
+    <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
+    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatings.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsSeasons.json" />
@@ -488,6 +491,7 @@
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShows.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json" />
+    <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlist.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json" />

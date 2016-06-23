@@ -13,7 +13,7 @@
     {
         public TraktSeasonsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktSeason>> GetSeasonsAllAsync(string showId, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktSeason>> GetAllSeasonsAsync(string showId, TraktExtendedOption extended = null)
         {
             Validate(showId);
 
