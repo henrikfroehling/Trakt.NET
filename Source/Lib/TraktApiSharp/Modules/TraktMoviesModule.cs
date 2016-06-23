@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Common;
@@ -230,8 +231,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("movie id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("movie id not valid", nameof(id));
         }
 
         private void Validate(string id, string languageCode)
@@ -239,7 +240,7 @@
             Validate(id);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
-                throw new ArgumentException("movie language code not valid", "languageCode");
+                throw new ArgumentException("movie language code not valid", nameof(languageCode));
         }
     }
 }
