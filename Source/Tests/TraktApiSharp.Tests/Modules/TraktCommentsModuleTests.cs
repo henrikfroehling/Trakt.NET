@@ -142,6 +142,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync("comment id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -533,7 +536,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             movie.Title = string.Empty;
 
@@ -948,7 +951,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             show.Title = string.Empty;
 
@@ -1335,7 +1338,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             season.Ids = null;
 
@@ -1725,7 +1728,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             episode.Ids = null;
 
@@ -2099,7 +2102,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentNullException>();
+            act.ShouldThrow<ArgumentException>();
 
             list.Ids = null;
 
@@ -2321,6 +2324,9 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(string.Empty, comment);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync("comment id", comment);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2525,6 +2531,9 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(string.Empty, comment);
             act.ShouldThrow<ArgumentException>();
 
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync("comment id", comment);
+            act.ShouldThrow<ArgumentException>();
+
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2623,6 +2632,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync("comment id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -2711,6 +2723,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync("comment id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -2798,6 +2813,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync("comment id");
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2970,6 +2988,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync("comment id");
             act.ShouldThrow<ArgumentException>();
         }
 
