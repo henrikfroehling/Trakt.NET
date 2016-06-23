@@ -57,7 +57,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons", seasons);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -79,7 +79,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?extended={extendedOption.ToString()}", seasons);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedOption).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -94,7 +94,7 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktListResult<TraktSeason>>> act =
-                act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(showId);
+                act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
@@ -145,10 +145,10 @@
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons", seasons);
 
             Func<Task<TraktListResult<TraktSeason>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAllAsync(string.Empty);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -487,7 +487,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktSeasonComment>>> act =
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr);
             act.ShouldThrow<TraktSeasonNotFoundException>();
 
@@ -543,7 +543,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments", seasonComments);
 
-            Func<Task<TraktPaginationListResult<TraktSeasonComment>>> act =
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(null, seasonNr);
             act.ShouldThrow<ArgumentException>();
 

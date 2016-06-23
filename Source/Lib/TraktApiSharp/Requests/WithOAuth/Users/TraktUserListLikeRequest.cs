@@ -17,5 +17,7 @@
         }
 
         protected override string UriTemplate => "users/{username}/lists/{id}/like";
+
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Lists;
     }
 }

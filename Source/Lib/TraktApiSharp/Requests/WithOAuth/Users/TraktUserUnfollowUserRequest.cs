@@ -16,6 +16,6 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "user/{username}/follow";
+        protected override string UriTemplate => "users/{username}/follow";
     }
 }

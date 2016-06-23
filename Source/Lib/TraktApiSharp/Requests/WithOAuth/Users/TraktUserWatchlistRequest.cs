@@ -28,7 +28,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/watchlist{/type}";
+        protected override string UriTemplate => "users/{username}/watchlist{/type}{?extended}";
 
         protected override bool IsListResult => true;
     }

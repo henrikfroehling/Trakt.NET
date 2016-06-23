@@ -28,7 +28,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/lists/{id}/items{/type}";
+        protected override string UriTemplate => "users/{username}/lists/{id}/items{/type}{?extended}";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Lists;
 

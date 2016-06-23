@@ -431,7 +431,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktEpisodeComment>>> act =
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -488,7 +488,7 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", episodeComments);
 
-            Func<Task<TraktPaginationListResult<TraktEpisodeComment>>> act =
+            Func<Task<TraktPaginationListResult<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 

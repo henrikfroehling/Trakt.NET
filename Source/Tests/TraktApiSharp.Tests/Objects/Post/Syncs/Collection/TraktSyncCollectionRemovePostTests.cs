@@ -158,7 +158,6 @@
             movies[0].Ids.Slug.Should().Be("batman-begins-2005");
             movies[0].Ids.Imdb.Should().Be("tt0372784");
             movies[0].Ids.Tmdb.Should().Be(272);
-            movies[0].Metadata.Should().BeNull();
 
             movies[1].CollectedAt.Should().NotHaveValue();
             movies[1].Title.Should().BeNullOrEmpty();
@@ -168,7 +167,6 @@
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
             movies[1].Ids.Tmdb.Should().NotHaveValue();
-            movies[1].Metadata.Should().BeNull();
 
             var shows = collectionPostFromJson.Shows.ToArray();
 
@@ -219,16 +217,13 @@
 
             show3Season1Episodes[0].CollectedAt.Should().NotHaveValue();
             show3Season1Episodes[0].Number.Should().Be(1);
-            show3Season1Episodes[0].Metadata.Should().BeNull();
 
             show3Season1Episodes[1].CollectedAt.Should().NotHaveValue();
             show3Season1Episodes[1].Number.Should().Be(2);
-            show3Season1Episodes[1].Metadata.Should().BeNull();
 
             var episodes = collectionPostFromJson.Episodes.ToArray();
 
             episodes[0].CollectedAt.Should().NotHaveValue();
-            episodes[0].Metadata.Should().BeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(1061);
             episodes[0].Ids.Slug.Should().BeNullOrEmpty();

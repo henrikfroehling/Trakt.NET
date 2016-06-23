@@ -15,6 +15,9 @@
         [JsonProperty(PropertyName = "created_at")]
         public DateTime CreatedAt { get; set; }
 
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime? UpdatedAt { get; set; }
+
         [JsonProperty(PropertyName = "comment")]
         public string Comment { get; set; }
 

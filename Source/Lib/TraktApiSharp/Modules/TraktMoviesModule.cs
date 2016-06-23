@@ -87,9 +87,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktMovieComment>> GetMovieCommentsAsync(string id,
-                                                                                              TraktCommentSortOrder? sorting = null,
-                                                                                              int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync(string id,
+                                                                                         TraktCommentSortOrder? sorting = null,
+                                                                                         int? page = null, int? limit = null)
         {
             Validate(id);
 
