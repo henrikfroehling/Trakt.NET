@@ -28,6 +28,8 @@
     using TraktApiSharp.Objects.Post.Syncs.History.Responses;
     using TraktApiSharp.Objects.Post.Syncs.Ratings;
     using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.Watchlist;
+    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -4207,19 +4209,281 @@
         [TestMethod]
         public void TestTraktSyncModuleAddWatchlistItems()
         {
-            Assert.Fail();
+            var addedWatchlistItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistPostResponse.json");
+            addedWatchlistItems.Should().NotBeNullOrEmpty();
+
+            var watchlistPost = new TraktSyncWatchlistPost
+            {
+                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                {
+                    new TraktSyncWatchlistPostMovieItem
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    },
+                    new TraktSyncWatchlistPostMovieItem
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                {
+                    new TraktSyncWatchlistPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    },
+                    new TraktSyncWatchlistPostShowItem
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402,
+                            TvRage = 25056
+                        },
+                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        {
+                            new TraktSyncWatchlistPostShowSeasonItem
+                            {
+                                Number = 3
+                            }
+                        }
+                    },
+                    new TraktSyncWatchlistPostShowItem
+                    {
+                        Title = "Mad Men",
+                        Year = 2007,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 4,
+                            Slug = "mad-men",
+                            Tvdb = 80337,
+                            Imdb = "tt0804503",
+                            Tmdb = 1104,
+                            TvRage = 16356
+                        },
+                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        {
+                            new TraktSyncWatchlistPostShowSeasonItem
+                            {
+                                Number = 1,
+                                Episodes = new List<TraktSyncWatchlistPostShowEpisodeItem>()
+                                {
+                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    {
+                                        Number = 1
+                                    },
+                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    {
+                                        Number = 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                {
+                    new TraktSyncWatchlistPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var postJson = TestUtility.SerializeObject(watchlistPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/watchlist", postJson, addedWatchlistItems);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost).Result;
+
+            response.Should().NotBeNull();
+
+            response.Added.Should().NotBeNull();
+            response.Added.Movies.Should().Be(1);
+            response.Added.Episodes.Should().Be(2);
+            response.Added.Shows.Should().Be(1);
+            response.Added.Seasons.Should().Be(1);
+
+            response.Existing.Should().NotBeNull();
+            response.Existing.Movies.Should().Be(0);
+            response.Existing.Episodes.Should().Be(0);
+            response.Existing.Shows.Should().Be(1);
+            response.Existing.Seasons.Should().Be(0);
+
+            response.NotFound.Should().NotBeNull();
+            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = response.NotFound.Movies.ToArray();
+
+            movies[0].Ids.Should().NotBeNull();
+            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Slug.Should().BeNullOrEmpty();
+            movies[0].Ids.Imdb.Should().Be("tt0000111");
+            movies[0].Ids.Tmdb.Should().NotHaveValue();
+
+            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
         public void TestTraktSyncModuleAddWatchlistItemsExceptions()
         {
-            Assert.Fail();
+            var watchlistPost = new TraktSyncWatchlistPost
+            {
+                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                {
+                    new TraktSyncWatchlistPostMovieItem
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        }
+                    }
+                },
+                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                {
+                    new TraktSyncWatchlistPostShowItem
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396,
+                            TvRage = 18164
+                        }
+                    }
+                },
+                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                {
+                    new TraktSyncWatchlistPostEpisodeItem
+                    {
+                        Ids = new TraktEpisodeIds
+                        {
+                            Trakt = 1061,
+                            Tvdb = 1555111,
+                            Imdb = "tt007404",
+                            Tmdb = 422183,
+                            TvRage = 12345
+                        }
+                    }
+                }
+            };
+
+            var uri = "sync/watchlist";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktSyncWatchlistPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktSyncModuleAddWatchlistItemsArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<TraktSyncWatchlistPostResponse>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(new TraktSyncWatchlistPost());
+            act.ShouldThrow<ArgumentException>();
+
+            var watchlistPost = new TraktSyncWatchlistPost
+            {
+                Movies = new List<TraktSyncWatchlistPostMovieItem>(),
+                Shows = new List<TraktSyncWatchlistPostShowItem>(),
+                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+            };
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost);
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
