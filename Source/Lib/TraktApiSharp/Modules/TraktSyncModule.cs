@@ -165,25 +165,15 @@
 
         public async Task<TraktSyncWatchlistPostResponse> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost)
         {
-            if (watchlistPost == null)
-                throw new ArgumentNullException("watchlist post must not be null", "watchlistPost");
-
-            var movies = watchlistPost.Movies;
-            var shows = watchlistPost.Shows;
-            var episodes = watchlistPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+            ValidateWatchlistPost(watchlistPost);
 
             return await QueryAsync(new TraktSyncWatchlistAddRequest(Client) { RequestBody = watchlistPost });
         }
 
         public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistRemovePost watchlistRemovePost)
         {
+            ValidateWatchlistPost(watchlistRemovePost);
+
             return await QueryAsync(new TraktSyncWatchlistRemoveRequest(Client) { RequestBody = watchlistRemovePost });
         }
 
@@ -229,6 +219,23 @@
             var movies = ratingsPost.Movies;
             var shows = ratingsPost.Shows;
             var episodes = ratingsPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
+        }
+
+        private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
+        {
+            if (watchlistPost == null)
+                throw new ArgumentNullException("watchlist post must not be null", "watchlistPost");
+
+            var movies = watchlistPost.Movies;
+            var shows = watchlistPost.Shows;
+            var episodes = watchlistPost.Episodes;
 
             var bHasNoMovies = movies == null || !movies.Any();
             var bHasNoShows = shows == null || !shows.Any();
