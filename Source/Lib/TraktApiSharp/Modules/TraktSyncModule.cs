@@ -141,6 +141,20 @@
 
         public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync(TraktSyncRatingsPost ratingsPost)
         {
+            if (ratingsPost == null)
+                throw new ArgumentNullException("ratings post must not be null", "ratingsPost");
+
+            var movies = ratingsPost.Movies;
+            var shows = ratingsPost.Shows;
+            var episodes = ratingsPost.Episodes;
+
+            var bHasNoMovies = movies == null || !movies.Any();
+            var bHasNoShows = shows == null || !shows.Any();
+            var bHasNoEpisodes = episodes == null || !episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no items set");
+
             return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
         }
 
@@ -172,7 +186,7 @@
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
-                throw new ArgumentNullException("collection items post must not be null", "collectionPost");
+                throw new ArgumentNullException("collection post must not be null", "collectionPost");
 
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
@@ -189,7 +203,7 @@
         private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
-                throw new ArgumentNullException("history items post must not be null", "historyPost");
+                throw new ArgumentNullException("history post must not be null", "historyPost");
 
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
