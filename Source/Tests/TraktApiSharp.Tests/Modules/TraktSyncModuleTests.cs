@@ -535,19 +535,89 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShows()
         {
-            Assert.Fail();
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            collectionShows.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/collection/shows", collectionShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync().Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShowsComplete()
         {
-            Assert.Fail();
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            collectionShows.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true,
+                Metadata = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"sync/collection/shows?extended={extendedOption.ToString()}",
+                                                   collectionShows);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync(extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShowsExceptions()
         {
-            Assert.Fail();
+            var uri = "sync/collection/shows";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktListResult<TraktSyncCollectionShowItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync();
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         #endregion
