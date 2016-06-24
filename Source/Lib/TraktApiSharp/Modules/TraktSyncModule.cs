@@ -48,7 +48,7 @@
         public async Task RemovePlaybackItemAsync(string playbackId)
         {
             if (string.IsNullOrEmpty(playbackId) || playbackId.ContainsSpace())
-                throw new ArgumentException("playback id not valid", "playbackId");
+                throw new ArgumentException("playback id not valid", nameof(playbackId));
 
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
@@ -180,7 +180,7 @@
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
-                throw new ArgumentNullException("collection post must not be null", "collectionPost");
+                throw new ArgumentNullException("collection post must not be null", nameof(collectionPost));
 
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
@@ -191,13 +191,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no collection items set");
         }
 
         private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
-                throw new ArgumentNullException("history post must not be null", "historyPost");
+                throw new ArgumentNullException("history post must not be null", nameof(historyPost));
 
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
@@ -208,13 +208,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no watched history items set");
         }
 
         private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
         {
             if (ratingsPost == null)
-                throw new ArgumentNullException("ratings post must not be null", "ratingsPost");
+                throw new ArgumentNullException("ratings post must not be null", nameof(ratingsPost));
 
             var movies = ratingsPost.Movies;
             var shows = ratingsPost.Shows;
@@ -225,13 +225,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no ratings items set");
         }
 
         private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
         {
             if (watchlistPost == null)
-                throw new ArgumentNullException("watchlist post must not be null", "watchlistPost");
+                throw new ArgumentNullException("watchlist post must not be null", nameof(watchlistPost));
 
             var movies = watchlistPost.Movies;
             var shows = watchlistPost.Shows;
@@ -242,7 +242,7 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no watchlist items set");
         }
     }
 }

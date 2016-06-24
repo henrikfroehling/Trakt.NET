@@ -9,11 +9,5 @@
         internal TraktSyncRatingsAddRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "sync/ratings";
-
-        protected override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }
