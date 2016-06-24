@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Core
 {
-    using System;
     using System.Net.Http;
 
     public class TraktConfiguration
@@ -18,6 +17,5 @@
         public bool UseStagingUrl { get; set; }
 
         public string BaseUrl => UseStagingUrl ? "https://api-staging.trakt.tv/" : $"https://api-v{ApiVersion}launch.trakt.tv/";
-        public Uri BaseUri => new Uri(BaseUrl);
     }
 }
