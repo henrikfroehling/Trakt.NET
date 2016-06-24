@@ -55,7 +55,12 @@
             {
                 RequestBody = new TraktMovieCommentPost
                 {
-                    Movie = movie,
+                    Movie = new TraktMovie
+                    {
+                        Title = movie.Title,
+                        Year = movie.Year,
+                        Ids = movie.Ids
+                    },
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
@@ -73,7 +78,11 @@
             {
                 RequestBody = new TraktShowCommentPost
                 {
-                    Show = show,
+                    Show = new TraktShow
+                    {
+                        Title = show.Title,
+                        Ids = show.Ids
+                    },
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
@@ -91,7 +100,7 @@
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
-                    Season = season,
+                    Season = new TraktSeason { Ids = season.Ids },
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
@@ -109,7 +118,7 @@
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
-                    Episode = episode,
+                    Episode = new TraktEpisode { Ids = episode.Ids },
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
@@ -127,7 +136,7 @@
             {
                 RequestBody = new TraktListCommentPost
                 {
-                    List = list,
+                    List = new TraktList { Ids = list.Ids },
                     Comment = comment,
                     Spoiler = spoiler,
                     Sharing = sharing
