@@ -124,7 +124,12 @@
 
             var movieScrobblePost = new TraktMovieScrobblePost
             {
-                Movie = movie,
+                Movie = new TraktMovie
+                {
+                    Title = movie.Title,
+                    Year = movie.Year,
+                    Ids = movie.Ids
+                },
                 Progress = progress
             };
 
@@ -144,8 +149,13 @@
 
             var episodeScrobblePost = new TraktEpisodeScrobblePost
             {
-                Episode = episode,
-                Show = show,
+                Episode = new TraktEpisode
+                {
+                    Ids = episode.Ids,
+                    SeasonNumber = episode.SeasonNumber,
+                    Number = episode.Number
+                },
+                Show = show != null ? new TraktShow { Title = show.Title } : null,
                 Progress = progress
             };
 
