@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
@@ -233,8 +234,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("show id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("show id not valid", nameof(id));
         }
 
         private void Validate(string id, string languageCode)
@@ -242,7 +243,7 @@
             Validate(id);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
-                throw new ArgumentException("show language code not valid", "languageCode");
+                throw new ArgumentException("show language code not valid", nameof(languageCode));
         }
     }
 }

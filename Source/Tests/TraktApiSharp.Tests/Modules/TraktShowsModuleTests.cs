@@ -206,6 +206,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -324,6 +327,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAliasesAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAliasesAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -417,6 +423,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -516,6 +525,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(string.Empty, languageCode);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync("show id", languageCode);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, null);
@@ -795,6 +807,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -935,6 +950,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -1037,6 +1055,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRatingsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRatingsAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1321,6 +1342,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -1420,6 +1444,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1536,6 +1563,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchingUsersAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchingUsersAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1903,6 +1933,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCollectionProgressAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCollectionProgressAsync("show id");
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion
@@ -2268,6 +2301,9 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
