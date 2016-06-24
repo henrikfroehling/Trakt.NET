@@ -88,20 +88,43 @@ namespace TraktApiSharp
             set { Authentication.ClientSecret = value; }
         }
 
+        /// <summary>Gets or sets the Trakt Access Token. See also <seealso cref="TraktAuthentication.AccessToken" />.</summary>
+        public string AccessToken
+        {
+            get { return Authentication.AccessToken.AccessToken; }
+            set
+            {
+                Authentication.AccessToken = new TraktAccessToken
+                {
+                    AccessToken = value,
+                    IgnoreExpiration = true
+                };
+            }
+        }
+
         /// <summary>
-        /// Returns, whether the client is valid to use for API requests, that do not require OAuth authentication.
+        /// Returns, whether the client is valid to use for API requests, that do not require OAuth authorization.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id.</para>
         /// See <seealso cref="ClientId" />.
         /// </summary>
         public bool IsValidForUseWithoutAuthorization => !string.IsNullOrEmpty(ClientId) && !ClientId.ContainsSpace();
 
         /// <summary>
-        /// Returns, whether the client is valid to use for API requests, that require OAuth authentication.
+        /// Returns, whether the client is valid to use for API requests, that require OAuth authorization.
+        /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Access Token.</para>
+        /// See <seealso cref="ClientId" />.
+        /// See <seealso cref="AccessToken" />.
+        /// See <seealso cref="TraktAuthentication.AccessToken" />.
+        /// </summary>
+        public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.AccessToken.IsValid;
+
+        /// <summary>
+        /// Returns, whether the client is valid to use for OAuth authentication.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Client Secret.</para>
         /// See <seealso cref="ClientId" />.
         /// See <seealso cref="ClientSecret" />.
         /// </summary>
-        public bool IsValid => IsValidForUseWithoutAuthorization && !string.IsNullOrEmpty(ClientSecret) && !ClientSecret.ContainsSpace();
+        public bool IsValidForAuthenticationProcess => IsValidForUseWithoutAuthorization && !string.IsNullOrEmpty(ClientSecret) && !ClientSecret.ContainsSpace();
 
         /// <summary>
         /// Provides access to the configuration settings for the <see cref="TraktClient" />.

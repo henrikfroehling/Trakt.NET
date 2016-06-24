@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Authentication
 {
     using Enums;
+    using Extensions;
     using Newtonsoft.Json;
     using System;
 
@@ -29,7 +30,8 @@
         public TraktAccessTokenType TokenType { get; set; }
 
         [JsonIgnore]
-        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && (IgnoreExpiration || DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow);
+        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace()
+                                    && (IgnoreExpiration || DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow);
 
         [JsonIgnore]
         public DateTime Created { get; private set; }

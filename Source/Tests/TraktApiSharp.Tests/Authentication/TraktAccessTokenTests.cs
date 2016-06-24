@@ -56,11 +56,17 @@
             token.ExpiresInSeconds = 3600;
             token.IsValid.Should().BeFalse();
 
+            token.AccessToken = "acces token";
+            token.IsValid.Should().BeFalse();
+
             token.AccessToken = "accessToken";
             token.IsValid.Should().BeTrue();
 
             token = new TraktAccessToken();
             token.IgnoreExpiration = true;
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "access token";
             token.IsValid.Should().BeFalse();
 
             token.AccessToken = "accessToken";
