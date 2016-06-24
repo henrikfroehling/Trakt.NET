@@ -21,11 +21,5 @@
         protected override string UriTemplate => "users/{username}/lists/{id}";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Lists;
-
-        protected override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }

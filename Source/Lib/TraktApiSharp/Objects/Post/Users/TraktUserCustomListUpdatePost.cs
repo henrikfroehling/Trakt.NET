@@ -2,6 +2,6 @@
 {
     public class TraktUserCustomListUpdatePost : TraktUserCustomListPost
     {
-        public override void Validate() { }
+
     }
 }

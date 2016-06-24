@@ -39,7 +39,7 @@
                                                                                               int? page = null, int? limit = null)
         {
             if (section == TraktHiddenItemsSection.Unspecified)
-                throw new ArgumentException("section not valid", "section");
+                throw new ArgumentException("section not valid", nameof(section));
 
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
             {
@@ -157,7 +157,7 @@
             ValidateUsername(username);
 
             if (string.IsNullOrEmpty(listName))
-                throw new ArgumentException("list name not valid", "listName");
+                throw new ArgumentException("list name not valid", nameof(listName));
 
             var requestBody = new TraktUserCustomListPost
             {
@@ -435,19 +435,19 @@
         private void ValidateUsername(string username)
         {
             if (string.IsNullOrEmpty(username) || username.ContainsSpace())
-                throw new ArgumentException("username not valid", "username");
+                throw new ArgumentException("username not valid", nameof(username));
         }
 
         private void ValidateListId(string listId)
         {
             if (string.IsNullOrEmpty(listId) || listId.ContainsSpace())
-                throw new ArgumentException("list id not valid", "listId");
+                throw new ArgumentException("list id not valid", nameof(listId));
         }
 
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
         {
             if (customListItemsPost == null)
-                throw new ArgumentNullException("list items post must not be null", "customListItemsPost");
+                throw new ArgumentNullException("list items post must not be null", nameof(customListItemsPost));
 
             var movies = customListItemsPost.Movies;
             var shows = customListItemsPost.Shows;
@@ -464,7 +464,7 @@
         private void ValidateFollowerRequestId(string followerRequestId)
         {
             if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
-                throw new ArgumentException("follower request id is not valid", "followerRequestId");
+                throw new ArgumentException("follower request id is not valid", nameof(followerRequestId));
         }
     }
 }
