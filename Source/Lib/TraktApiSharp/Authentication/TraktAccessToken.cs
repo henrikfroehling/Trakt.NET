@@ -29,9 +29,12 @@
         public TraktAccessTokenType TokenType { get; set; }
 
         [JsonIgnore]
-        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow;
+        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && (IgnoreExpiration || DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow);
 
         [JsonIgnore]
         public DateTime Created { get; private set; }
+
+        [JsonIgnore]
+        internal bool IgnoreExpiration { get; set; }
     }
 }
