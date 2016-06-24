@@ -25,6 +25,7 @@
             token.RefreshToken.Should().BeNullOrEmpty();
             token.IsValid.Should().BeFalse();
             token.Created.Should().BeCloseTo(dtNowUtc);
+            token.IgnoreExpiration.Should().BeFalse();
         }
 
         [TestMethod]
@@ -42,6 +43,33 @@
             token.ExpiresInSeconds.Should().Be(7200);
             token.RefreshToken.Should().Be("76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c");
             token.AccessScope.Should().Be(TraktAccessScope.Public);
+            token.IsValid.Should().BeTrue();
+            token.IgnoreExpiration.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktAccessTokenIsValid()
+        {
+            var token = new TraktAccessToken();
+            token.IsValid.Should().BeFalse();
+
+            token.ExpiresInSeconds = 3600;
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "acces token";
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "accessToken";
+            token.IsValid.Should().BeTrue();
+
+            token = new TraktAccessToken();
+            token.IgnoreExpiration = true;
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "access token";
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "accessToken";
             token.IsValid.Should().BeTrue();
         }
     }

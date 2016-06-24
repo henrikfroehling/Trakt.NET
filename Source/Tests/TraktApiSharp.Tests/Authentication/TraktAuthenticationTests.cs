@@ -18,6 +18,8 @@
     {
         private const string CLIENT_ID = "CLIENT_ID";
         private const string CLIENT_SECRET = "CLIENT_SECRET";
+        private const string ACCESS_TOKEN = "ACCESS_TOKEN";
+        private const string REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
 
         [TestMethod]
         public void TestTraktAuthenticationConstructor()
@@ -26,27 +28,120 @@
 
             client.Authentication.Client.Should().Be(client);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
-            client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
             client.Authentication.OAuthAuthorizationCode.Should().BeNull();
 
-            client.IsValid.Should().BeFalse();
+            client.IsValidForUseWithoutAuthorization.Should().BeFalse();
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
             client.Authentication.ClientId.Should().BeNull();
             client.Authentication.ClientSecret.Should().BeNull();
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.IsValid.Should().BeFalse();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationConstructorWithValidClient()
+        public void TestTraktAuthenticationConstructorWithValidAccessToken()
+        {
+            var client = new TraktClient() { AccessToken = ACCESS_TOKEN };
+
+            client.Authentication.Client.Should().Be(client);
+            client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
+
+            client.IsValidForUseWithoutAuthorization.Should().BeFalse();
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.Authentication.ClientId.Should().BeNull();
+            client.Authentication.ClientSecret.Should().BeNull();
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.AccessToken.Should().Be(ACCESS_TOKEN);
+            client.Authentication.AccessToken.IsValid.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationConstructorWithValidClientId()
+        {
+            var client = new TraktClient(CLIENT_ID);
+
+            client.Authentication.Client.Should().Be(client);
+            client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
+
+            client.IsValidForUseWithoutAuthorization.Should().BeTrue();
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.Authentication.ClientId.Should().Be(CLIENT_ID);
+            client.Authentication.ClientSecret.Should().BeNull();
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.IsValid.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationConstructorWithValidClientIdAndAccessToken()
+        {
+            var client = new TraktClient(CLIENT_ID) { AccessToken = ACCESS_TOKEN };
+
+            client.Authentication.Client.Should().Be(client);
+            client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
+
+            client.IsValidForUseWithoutAuthorization.Should().BeTrue();
+            client.IsValidForUseWithAuthorization.Should().BeTrue();
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.Authentication.ClientId.Should().Be(CLIENT_ID);
+            client.Authentication.ClientSecret.Should().BeNull();
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.AccessToken.Should().Be(ACCESS_TOKEN);
+            client.Authentication.AccessToken.IsValid.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationConstructorWithValidClientIdAndClientSecret()
         {
             var client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
             client.Authentication.Client.Should().Be(client);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
-            client.Authentication.RedirectUri.Should().Be("urn:ietf:wg:oauth:2.0:oob");
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
             client.Authentication.OAuthAuthorizationCode.Should().BeNull();
 
-            client.IsValid.Should().BeTrue();
+            client.IsValidForUseWithoutAuthorization.Should().BeTrue();
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+            client.IsValidForAuthenticationProcess.Should().BeTrue();
+
             client.Authentication.ClientId.Should().Be(CLIENT_ID);
             client.Authentication.ClientSecret.Should().Be(CLIENT_SECRET);
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.IsValid.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationConstructorWithValidClientIdAndClientSecretAndAccessToken()
+        {
+            var client = new TraktClient(CLIENT_ID, CLIENT_SECRET) { AccessToken = ACCESS_TOKEN };
+
+            client.Authentication.Client.Should().Be(client);
+            client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
+            client.Authentication.RedirectUri.Should().Be(REDIRECT_URI);
+            client.Authentication.OAuthAuthorizationCode.Should().BeNull();
+
+            client.IsValidForUseWithoutAuthorization.Should().BeTrue();
+            client.IsValidForUseWithAuthorization.Should().BeTrue();
+            client.IsValidForAuthenticationProcess.Should().BeTrue();
+
+            client.Authentication.ClientId.Should().Be(CLIENT_ID);
+            client.Authentication.ClientSecret.Should().Be(CLIENT_SECRET);
+            client.Authentication.AccessToken.Should().NotBeNull();
+            client.Authentication.AccessToken.AccessToken.Should().Be(ACCESS_TOKEN);
+            client.Authentication.AccessToken.IsValid.Should().BeTrue();
         }
 
         // -----------------------------------------------------------------------------------------------

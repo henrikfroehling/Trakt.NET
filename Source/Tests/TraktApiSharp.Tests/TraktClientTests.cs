@@ -8,6 +8,7 @@
     {
         private const string CLIENT_ID = "CLIENT_ID";
         private const string CLIENT_SECRET = "CLIENT_SECRET";
+        private const string ACCESS_TOKEN = "ACCESS_TOKEN";
 
         [TestMethod]
         public void TestTraktClientDefaultConstructor()
@@ -16,8 +17,7 @@
 
             client.ClientId.Should().BeNull();
             client.ClientSecret.Should().BeNull();
-
-            client.IsValid.Should().BeFalse();
+            client.AccessToken.Should().BeNullOrEmpty();
         }
 
         [TestMethod]
@@ -27,30 +27,64 @@
 
             client1.ClientId.Should().Be(CLIENT_ID);
             client1.ClientSecret.Should().BeNull();
-
-            client1.IsValid.Should().BeFalse();
-            client1.IsValidForUseWithoutAuthorization.Should().BeTrue();
-
-            client1.ClientId = "client id";
-            client1.IsValid.Should().BeFalse();
-            client1.IsValidForUseWithoutAuthorization.Should().BeFalse();
+            client1.AccessToken.Should().BeNullOrEmpty();
 
             var client2 = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
             client2.ClientId.Should().Be(CLIENT_ID);
             client2.ClientSecret.Should().Be(CLIENT_SECRET);
+            client2.AccessToken.Should().BeNullOrEmpty();
+        }
 
-            client2.IsValid.Should().BeTrue();
-            client2.IsValidForUseWithoutAuthorization.Should().BeTrue();
+        [TestMethod]
+        public void TestTraktClientIsValidForUseWithoutAuthorization()
+        {
+            var client = new TraktClient();
+            client.IsValidForUseWithoutAuthorization.Should().BeFalse();
 
-            client2.ClientId = "client id";
-            client2.IsValid.Should().BeFalse();
-            client2.IsValidForUseWithoutAuthorization.Should().BeFalse();
+            client.ClientId = "client id";
+            client.IsValidForUseWithoutAuthorization.Should().BeFalse();
 
-            client2.ClientId = CLIENT_ID;
-            client2.ClientSecret = "client secret";
-            client2.IsValid.Should().BeFalse();
-            client2.IsValidForUseWithoutAuthorization.Should().BeTrue();
+            client.ClientId = CLIENT_ID;
+            client.IsValidForUseWithoutAuthorization.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void TestTraktClientIsValidForAuthenticationProcess()
+        {
+            var client = new TraktClient();
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.ClientId = "client id";
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.ClientId = CLIENT_ID;
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.ClientSecret = "client secret";
+            client.IsValidForAuthenticationProcess.Should().BeFalse();
+
+            client.ClientSecret = CLIENT_SECRET;
+            client.IsValidForAuthenticationProcess.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void TestTraktClientIsValidForUseWithAuthorization()
+        {
+            var client = new TraktClient();
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+
+            client.ClientId = "client id";
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+
+            client.ClientId = CLIENT_ID;
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+
+            client.AccessToken = "access token";
+            client.IsValidForUseWithAuthorization.Should().BeFalse();
+
+            client.AccessToken = ACCESS_TOKEN;
+            client.IsValidForUseWithAuthorization.Should().BeTrue();
         }
 
         [TestMethod]
