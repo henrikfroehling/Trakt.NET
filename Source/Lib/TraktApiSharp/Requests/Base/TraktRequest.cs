@@ -187,7 +187,7 @@ namespace TraktApiSharp.Requests.Base
                 if (!Client.Authentication.IsAuthorized)
                     throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
 
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.Authorization.AccessToken);
             }
         }
 

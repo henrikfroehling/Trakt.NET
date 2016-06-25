@@ -24,7 +24,7 @@
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
 
-        private static TraktAccessToken MOCK_ACCESS_TOKEN = new TraktAccessToken { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
+        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
         private static readonly string TRAKT_CLIENT_ID = "traktClientId";
         private static readonly string TRAKT_CLIENT_SECRET = "traktClientSecret";
@@ -235,10 +235,10 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+            MOCK_AUTHORIZATION.Should().NotBeNull();
+            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
+            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
@@ -248,7 +248,7 @@
                      {
                          { "trakt-api-key", "trakt client id" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
                      .Respond("application/json", responseContent);
         }
@@ -258,10 +258,10 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+            MOCK_AUTHORIZATION.Should().NotBeNull();
+            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
+            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
@@ -271,13 +271,13 @@
                      {
                          { "trakt-api-key", "trakt client id" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
                      .WithContent(requestContent)
                      .Respond("application/json", responseContent);
         }
 
-        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAccessToken accessToken)
+        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAuthorization accessToken)
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
@@ -285,7 +285,7 @@
             accessToken.Should().NotBeNull();
             accessToken.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
+            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
 
             uri.Should().NotBeNullOrEmpty();
 
@@ -300,7 +300,7 @@
                      .Respond(HttpStatusCode.OK);
         }
 
-        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAccessToken accessToken, string clientId)
+        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAuthorization accessToken, string clientId)
         {
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
@@ -308,7 +308,7 @@
             accessToken.Should().NotBeNull();
             accessToken.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
+            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
 
             uri.Should().NotBeNullOrEmpty();
 
@@ -328,10 +328,10 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+            MOCK_AUTHORIZATION.Should().NotBeNull();
+            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
+            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
 
@@ -340,7 +340,7 @@
                      {
                          { "trakt-api-key", "trakt client id" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
                      .Respond(httpStatusCode);
         }
@@ -353,10 +353,10 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.Should().NotBeNull();
-            MOCK_ACCESS_TOKEN.AccessToken.Should().NotBeNullOrEmpty();
+            MOCK_AUTHORIZATION.Should().NotBeNull();
+            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.AccessToken = MOCK_ACCESS_TOKEN;
+            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
@@ -386,7 +386,7 @@
                      {
                          { "trakt-api-key", "trakt client id" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_ACCESS_TOKEN.AccessToken}" }
+                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
                      .Respond(response);
         }

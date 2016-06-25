@@ -45,7 +45,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAccessToken.cs" />
+    <Compile Include="Authentication\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
     <Compile Include="Authentication\TraktDevice.cs" />
     <Compile Include="Authentication\TraktDeviceAuth.cs" />

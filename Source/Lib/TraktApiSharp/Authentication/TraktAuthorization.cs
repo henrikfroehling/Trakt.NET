@@ -5,9 +5,9 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktAccessToken
+    public class TraktAuthorization
     {
-        public TraktAccessToken()
+        public TraktAuthorization()
         {
             Created = DateTime.UtcNow;
         }

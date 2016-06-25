@@ -58,22 +58,22 @@
             return device;
         }
 
-        public async Task<TraktAccessToken> PollForAccessTokenAsync()
+        public async Task<TraktAuthorization> PollForAccessTokenAsync()
         {
             return await PollForAccessTokenAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device)
+        public async Task<TraktAuthorization> PollForAccessTokenAsync(TraktDevice device)
         {
             return await PollForAccessTokenAsync(device, Client.ClientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device, string clientId)
+        public async Task<TraktAuthorization> PollForAccessTokenAsync(TraktDevice device, string clientId)
         {
             return await PollForAccessTokenAsync(device, clientId, Client.ClientSecret);
         }
 
-        public async Task<TraktAccessToken> PollForAccessTokenAsync(TraktDevice device, string clientId, string clientSecret)
+        public async Task<TraktAuthorization> PollForAccessTokenAsync(TraktDevice device, string clientId, string clientSecret)
         {
             ValidateAccessTokenInput(device, clientId, clientSecret);
 
@@ -104,12 +104,12 @@
 
                 if (responseCode == HttpStatusCode.OK) // Success
                 {
-                    var token = default(TraktAccessToken);
+                    var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(responseContent));
+                        token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent));
 
-                    Client.Authentication.AccessToken = token;
+                    Client.Authentication.Authorization = token;
                     return token;
                 }
                 else if (responseCode == HttpStatusCode.BadRequest) // Pending
@@ -170,27 +170,27 @@
             throw new TraktAuthenticationDeviceException("unknown exception") { ServerReasonPhrase = reasonPhrase };
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync()
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync()
         {
             return await Client.Authentication.RefreshAccessTokenAsync();
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, redirectUri);
         }

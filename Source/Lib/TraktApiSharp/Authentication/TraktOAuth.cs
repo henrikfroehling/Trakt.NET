@@ -70,27 +70,27 @@
             return CreateAuthorizationUrl(clientId, redirectUri, state);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync()
+        public async Task<TraktAuthorization> GetAccessTokenAsync()
         {
             return await GetAccessTokenAsync(Client.Authentication.OAuthAuthorizationCode);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(string code)
+        public async Task<TraktAuthorization> GetAccessTokenAsync(string code)
         {
             return await GetAccessTokenAsync(code, Client.ClientId, Client.ClientSecret, Client.Authentication.RedirectUri);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId)
+        public async Task<TraktAuthorization> GetAccessTokenAsync(string code, string clientId)
         {
             return await GetAccessTokenAsync(code, clientId, Client.ClientSecret, Client.Authentication.RedirectUri);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret)
+        public async Task<TraktAuthorization> GetAccessTokenAsync(string code, string clientId, string clientSecret)
         {
             return await GetAccessTokenAsync(code, clientId, clientSecret, Client.Authentication.RedirectUri);
         }
 
-        public async Task<TraktAccessToken> GetAccessTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
+        public async Task<TraktAuthorization> GetAccessTokenAsync(string code, string clientId, string clientSecret, string redirectUri)
         {
             var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
 
@@ -118,12 +118,12 @@
 
             if (responseCode == HttpStatusCode.OK)
             {
-                var token = default(TraktAccessToken);
+                var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAccessToken>(responseContent));
+                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent));
 
-                Client.Authentication.AccessToken = token;
+                Client.Authentication.Authorization = token;
                 return token;
             }
             else if (responseCode == HttpStatusCode.Unauthorized) // Invalid code
@@ -147,30 +147,30 @@
             }
 
             await ErrorHandling(response, tokenUrl, postContent);
-            return default(TraktAccessToken);
+            return default(TraktAuthorization);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync()
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync()
         {
             return await Client.Authentication.RefreshAccessTokenAsync();
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret);
         }
 
-        public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
+        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             return await Client.Authentication.RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, redirectUri);
         }

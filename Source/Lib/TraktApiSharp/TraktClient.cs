@@ -88,13 +88,13 @@ namespace TraktApiSharp
             set { Authentication.ClientSecret = value; }
         }
 
-        /// <summary>Gets or sets the Trakt Access Token. See also <seealso cref="TraktAuthentication.AccessToken" />.</summary>
+        /// <summary>Gets or sets the Trakt Access Token. See also <seealso cref="TraktAuthorization.AccessToken" />.</summary>
         public string AccessToken
         {
-            get { return Authentication.AccessToken.AccessToken; }
+            get { return Authentication.Authorization.AccessToken; }
             set
             {
-                Authentication.AccessToken = new TraktAccessToken
+                Authentication.Authorization = new TraktAuthorization
                 {
                     AccessToken = value,
                     IgnoreExpiration = true
@@ -114,7 +114,7 @@ namespace TraktApiSharp
         /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Access Token.</para>
         /// See <seealso cref="ClientId" />.
         /// See <seealso cref="AccessToken" />.
-        /// See <seealso cref="TraktAuthentication.AccessToken" />.
+        /// See <seealso cref="TraktAuthentication.IsAuthorized" />.
         /// </summary>
         public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthorized;
 

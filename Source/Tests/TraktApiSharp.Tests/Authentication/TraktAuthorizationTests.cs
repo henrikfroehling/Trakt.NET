@@ -9,14 +9,14 @@
     using Utils;
 
     [TestClass]
-    public class TraktAccessTokenTests
+    public class TraktAuthorizationTests
     {
         [TestMethod]
-        public void TestTraktAccessTokenDefaultConstructor()
+        public void TestTraktAuthorizationDefaultConstructor()
         {
             var dtNowUtc = DateTime.UtcNow;
 
-            var token = new TraktAccessToken();
+            var token = new TraktAuthorization();
 
             token.AccessToken.Should().BeNullOrEmpty();
             token.AccessScope.Should().Be(TraktAccessScope.Unspecified);
@@ -29,13 +29,13 @@
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenReadFromJson()
+        public void TestTraktAuthorizationReadFromJson()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Authentication\AccessToken.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var token = JsonConvert.DeserializeObject<TraktAccessToken>(jsonFile);
+            var token = JsonConvert.DeserializeObject<TraktAuthorization>(jsonFile);
 
             token.Should().NotBeNull();
             token.AccessToken.Should().Be("dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781");
@@ -48,9 +48,9 @@
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenIsValid()
+        public void TestTraktAuthorizationIsValid()
         {
-            var token = new TraktAccessToken();
+            var token = new TraktAuthorization();
             token.IsValid.Should().BeFalse();
 
             token.ExpiresInSeconds = 3600;
@@ -62,7 +62,7 @@
             token.AccessToken = "accessToken";
             token.IsValid.Should().BeTrue();
 
-            token = new TraktAccessToken();
+            token = new TraktAuthorization();
             token.IgnoreExpiration = true;
             token.IsValid.Should().BeFalse();
 

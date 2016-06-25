@@ -82,7 +82,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAccessTokenTests.cs" />
+    <Compile Include="Authentication\TraktAuthorizationTests.cs" />
     <Compile Include="Authentication\TraktAuthenticationTests.cs" />
     <Compile Include="Authentication\TraktDeviceAuthTests.cs" />
     <Compile Include="Authentication\TraktDeviceTests.cs" />
