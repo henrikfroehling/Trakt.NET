@@ -26,7 +26,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> GetIdLookupResultsAsync(TraktSearchLookupIdType type, string lookupId,
+        public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
                                                                                                         int? page = null, int? limit = null)
         {
             Validate(type, lookupId);
@@ -45,9 +45,9 @@
                 throw new ArgumentException("search query not valid", nameof(query));
         }
 
-        private void Validate(TraktSearchLookupIdType type, string lookupId)
+        private void Validate(TraktSearchIdLookupType type, string lookupId)
         {
-            if (type == TraktSearchLookupIdType.Unspecified)
+            if (type == TraktSearchIdLookupType.Unspecified)
                 throw new ArgumentException("search id lookup type not valid", nameof(type));
 
             if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())

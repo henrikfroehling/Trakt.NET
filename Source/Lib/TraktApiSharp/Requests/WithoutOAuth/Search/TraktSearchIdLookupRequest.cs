@@ -8,7 +8,7 @@
     {
         internal TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
 
-        internal TraktSearchLookupIdType Type { get; set; }
+        internal TraktSearchIdLookupType Type { get; set; }
 
         internal string LookupId { get; set; }
 
