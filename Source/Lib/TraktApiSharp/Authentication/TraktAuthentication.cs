@@ -52,27 +52,27 @@
 
         public bool IsAuthorized => Authorization != null && Authorization.IsValid;
 
-        public async Task<TraktAuthorization> RefreshAccessTokenAsync()
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync()
         {
-            return await RefreshAccessTokenAsync(Authorization.RefreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
+            return await RefreshAuthorizationAsync(Authorization.RefreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
         }
 
-        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken)
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken)
         {
-            return await RefreshAccessTokenAsync(refreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
+            return await RefreshAuthorizationAsync(refreshToken, Client.ClientId, Client.ClientSecret, RedirectUri);
         }
 
-        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId)
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId)
         {
-            return await RefreshAccessTokenAsync(refreshToken, clientId, Client.ClientSecret, RedirectUri);
+            return await RefreshAuthorizationAsync(refreshToken, clientId, Client.ClientSecret, RedirectUri);
         }
 
-        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret)
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId, string clientSecret)
         {
-            return await RefreshAccessTokenAsync(refreshToken, clientId, clientSecret, RedirectUri);
+            return await RefreshAuthorizationAsync(refreshToken, clientId, clientSecret, RedirectUri);
         }
 
-        public async Task<TraktAuthorization> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             if (!IsAuthorized && (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace()))
                 throw new TraktAuthorizationException("not authorized");
@@ -138,17 +138,17 @@
             return default(TraktAuthorization);
         }
 
-        public async Task RevokeAccessTokenAsync()
+        public async Task RevokeAuthorizationAsync()
         {
-            await RevokeAccessTokenAsync(Authorization.AccessToken, Client.ClientId);
+            await RevokeAuthorizationAsync(Authorization.AccessToken, Client.ClientId);
         }
 
-        public async Task RevokeAccessTokenAsync(string accessToken)
+        public async Task RevokeAuthorizationAsync(string accessToken)
         {
-            await RevokeAccessTokenAsync(accessToken, Client.ClientId);
+            await RevokeAuthorizationAsync(accessToken, Client.ClientId);
         }
 
-        public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
+        public async Task RevokeAuthorizationAsync(string accessToken, string clientId)
         {
             if (!IsAuthorized && (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace()))
                 throw new TraktAuthorizationException("not authorized");
