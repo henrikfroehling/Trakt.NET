@@ -113,9 +113,7 @@
             response.Runtime.Should().Be(136);
             response.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
             response.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
-            response.TrailerUri.Should().NotBeNull();
             response.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
-            response.HomepageUri.Should().NotBeNull();
             response.Rating.Should().Be(8.31988f);
             response.Votes.Should().Be(9338);
             response.LanguageCode.Should().Be("en");

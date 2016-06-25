@@ -127,9 +127,7 @@
             response.CountryCode.Should().Be("us");
             response.UpdatedAt.Should().Be(DateTime.Parse("2016-04-06T10:39:11Z").ToUniversalTime());
             response.Trailer.Should().Be("http://youtube.com/watch?v=F9Bo89m2f6g");
-            response.TrailerUri.Should().NotBeNull();
             response.Homepage.Should().Be("http://www.hbo.com/game-of-thrones");
-            response.HomepageUri.Should().NotBeNull();
             response.Status.Should().Be(TraktShowStatus.ReturningSeries);
             response.Rating.Should().Be(9.38327f);
             response.Votes.Should().Be(44773);

@@ -139,9 +139,7 @@
             shows[0].Network.Should().Be("BBC One");
             shows[0].CountryCode.Should().Be("gb");
             shows[0].Trailer.Should().Be("http://youtube.com/watch?v=JP5Dr63TbSU");
-            shows[0].TrailerUri.Should().NotBeNull();
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
-            shows[0].HomepageUri.Should().NotBeNull();
             shows[0].Status.Should().Be(TraktShowStatus.ReturningSeries);
             shows[0].Rating.Should().Be(9.26159f);
             shows[0].Votes.Should().Be(22268);
@@ -171,9 +169,7 @@
             shows[1].Network.Should().Be("Hulu");
             shows[1].CountryCode.Should().Be("us");
             shows[1].Trailer.Should().Be("http://youtube.com/watch?v=NXUx__qQGew");
-            shows[1].TrailerUri.Should().NotBeNull();
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
-            shows[1].HomepageUri.Should().NotBeNull();
             shows[1].Status.Should().Be(TraktShowStatus.Unspecified);
             shows[1].Rating.Should().Be(8.26689f);
             shows[1].Votes.Should().Be(607);
@@ -229,9 +225,7 @@
             shows[0].Network.Should().Be("BBC One");
             shows[0].CountryCode.Should().Be("gb");
             shows[0].Trailer.Should().Be("http://youtube.com/watch?v=JP5Dr63TbSU");
-            shows[0].TrailerUri.Should().NotBeNull();
             shows[0].Homepage.Should().Be("http://www.bbc.co.uk/programmes/b018ttws");
-            shows[0].HomepageUri.Should().NotBeNull();
             shows[0].Status.Should().Be(TraktShowStatus.ReturningSeries);
             shows[0].Rating.Should().Be(9.26159f);
             shows[0].Votes.Should().Be(22268);
@@ -272,9 +266,7 @@
             shows[1].Network.Should().Be("Hulu");
             shows[1].CountryCode.Should().Be("us");
             shows[1].Trailer.Should().Be("http://youtube.com/watch?v=NXUx__qQGew");
-            shows[1].TrailerUri.Should().NotBeNull();
             shows[1].Homepage.Should().Be("http://www.hulu.com/112263");
-            shows[1].HomepageUri.Should().NotBeNull();
             shows[1].Status.Should().Be(TraktShowStatus.Unspecified);
             shows[1].Rating.Should().Be(8.26689f);
             shows[1].Votes.Should().Be(607);
