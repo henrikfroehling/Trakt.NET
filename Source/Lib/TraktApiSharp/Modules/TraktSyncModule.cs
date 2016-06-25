@@ -153,7 +153,7 @@
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetWatchlistAsync(TraktSyncWatchlistItemType? type = null,
+        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
                                                                                      TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)

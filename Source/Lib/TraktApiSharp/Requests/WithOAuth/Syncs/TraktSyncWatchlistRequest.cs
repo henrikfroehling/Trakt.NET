@@ -12,13 +12,13 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktSyncWatchlistItemType? Type { get; set; }
+        internal TraktSyncItemType? Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Type.HasValue && Type != TraktSyncWatchlistItemType.Unspecified)
+            if (Type.HasValue && Type != TraktSyncItemType.Unspecified)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());
 
             return uriParams;

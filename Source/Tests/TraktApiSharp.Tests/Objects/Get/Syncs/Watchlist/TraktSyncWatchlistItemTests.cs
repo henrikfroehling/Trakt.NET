@@ -19,7 +19,7 @@
             var watchlistItem = new TraktSyncWatchlistItem();
 
             watchlistItem.ListedAt.Should().Be(DateTime.MinValue);
-            watchlistItem.Type.Should().Be(TraktSyncWatchlistItemType.Unspecified);
+            watchlistItem.Type.Should().Be(TraktSyncItemType.Unspecified);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().BeNull();
             watchlistItem.Season.Should().BeNull();
@@ -41,7 +41,7 @@
             var movies = movieItems.ToArray();
 
             movies[0].ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            movies[0].Type.Should().Be(TraktSyncWatchlistItemType.Movie);
+            movies[0].Type.Should().Be(TraktSyncItemType.Movie);
             movies[0].Movie.Should().NotBeNull();
             movies[0].Movie.Title.Should().Be("TRON: Legacy");
             movies[0].Movie.Year.Should().Be(2010);
@@ -55,7 +55,7 @@
             movies[0].Episode.Should().BeNull();
 
             movies[1].ListedAt.Should().Be(DateTime.Parse("2014-09-02T09:10:11.000Z").ToUniversalTime());
-            movies[1].Type.Should().Be(TraktSyncWatchlistItemType.Movie);
+            movies[1].Type.Should().Be(TraktSyncItemType.Movie);
             movies[1].Movie.Should().NotBeNull();
             movies[1].Movie.Title.Should().Be("The Dark Knight");
             movies[1].Movie.Year.Should().Be(2008);
@@ -84,7 +84,7 @@
             var shows = showItems.ToArray();
 
             shows[0].ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            shows[0].Type.Should().Be(TraktSyncWatchlistItemType.Show);
+            shows[0].Type.Should().Be(TraktSyncItemType.Show);
             shows[0].Movie.Should().BeNull();
             shows[0].Show.Should().NotBeNull();
             shows[0].Show.Title.Should().Be("Breaking Bad");
@@ -100,7 +100,7 @@
             shows[0].Episode.Should().BeNull();
 
             shows[1].ListedAt.Should().Be(DateTime.Parse("2014-09-02T09:10:11.000Z").ToUniversalTime());
-            shows[1].Type.Should().Be(TraktSyncWatchlistItemType.Show);
+            shows[1].Type.Should().Be(TraktSyncItemType.Show);
             shows[1].Movie.Should().BeNull();
             shows[1].Show.Should().NotBeNull();
             shows[1].Show.Title.Should().Be("The Walking Dead");
@@ -131,7 +131,7 @@
             var seasons = seasonItems.ToArray();
 
             seasons[0].ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            seasons[0].Type.Should().Be(TraktSyncWatchlistItemType.Season);
+            seasons[0].Type.Should().Be(TraktSyncItemType.Season);
             seasons[0].Movie.Should().BeNull();
             seasons[0].Show.Should().NotBeNull();
             seasons[0].Show.Title.Should().Be("Breaking Bad");
@@ -153,7 +153,7 @@
             seasons[0].Episode.Should().BeNull();
 
             seasons[1].ListedAt.Should().Be(DateTime.Parse("2014-09-02T09:10:11.000Z").ToUniversalTime());
-            seasons[1].Type.Should().Be(TraktSyncWatchlistItemType.Season);
+            seasons[1].Type.Should().Be(TraktSyncItemType.Season);
             seasons[1].Movie.Should().BeNull();
             seasons[1].Show.Should().NotBeNull();
             seasons[1].Show.Title.Should().Be("Breaking Bad");
@@ -190,7 +190,7 @@
             var episodes = episodeItems.ToArray();
 
             episodes[0].ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodes[0].Type.Should().Be(TraktSyncWatchlistItemType.Episode);
+            episodes[0].Type.Should().Be(TraktSyncItemType.Episode);
             episodes[0].Movie.Should().BeNull();
             episodes[0].Show.Should().NotBeNull();
             episodes[0].Show.Title.Should().Be("Breaking Bad");
@@ -216,7 +216,7 @@
             episodes[0].Episode.Ids.TvRage.Should().NotHaveValue();
 
             episodes[1].ListedAt.Should().Be(DateTime.Parse("2014-09-02T09:10:11.000Z").ToUniversalTime());
-            episodes[1].Type.Should().Be(TraktSyncWatchlistItemType.Episode);
+            episodes[1].Type.Should().Be(TraktSyncItemType.Episode);
             episodes[1].Movie.Should().BeNull();
             episodes[1].Show.Should().NotBeNull();
             episodes[1].Show.Title.Should().Be("Breaking Bad");

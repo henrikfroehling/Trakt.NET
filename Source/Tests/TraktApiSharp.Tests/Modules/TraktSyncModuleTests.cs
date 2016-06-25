@@ -4093,7 +4093,7 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncWatchlistItemType.Episode;
+            var type = TraktSyncItemType.Episode;
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watchlist/{type.AsStringUriParameter()}", watchlist);
 
@@ -4129,7 +4129,7 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncWatchlistItemType.Episode;
+            var type = TraktSyncItemType.Episode;
 
             var extendedOption = new TraktExtendedOption
             {

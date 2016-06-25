@@ -379,7 +379,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchlistItem>> GetWatchlistAsync(string username, TraktSyncWatchlistItemType? type = null,
+        public async Task<TraktListResult<TraktUserWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
                                                                                      TraktExtendedOption extended = null)
         {
             ValidateUsername(username);

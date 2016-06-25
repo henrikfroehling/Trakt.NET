@@ -14,8 +14,8 @@
         public DateTime ListedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncWatchlistItemTypeConverter))]
-        public TraktSyncWatchlistItemType Type { get; set; }
+        [JsonConverter(typeof(TraktSyncItemTypeConverter))]
+        public TraktSyncItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

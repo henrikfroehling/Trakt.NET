@@ -14,7 +14,7 @@
 
         internal string Username { get; set; }
 
-        internal TraktSyncWatchlistItemType? Type { get; set; }
+        internal TraktSyncItemType? Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
@@ -22,7 +22,7 @@
 
             uriParams.Add("username", Username);
 
-            if (Type.HasValue && Type.Value != TraktSyncWatchlistItemType.Unspecified)
+            if (Type.HasValue && Type.Value != TraktSyncItemType.Unspecified)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());
 
             return uriParams;

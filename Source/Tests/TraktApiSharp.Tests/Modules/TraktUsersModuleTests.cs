@@ -8127,7 +8127,7 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncWatchlistItemType.Movie;
+            var type = TraktSyncItemType.Movie;
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.AsStringUriParameter()}", userWatchlist);
 
@@ -8166,7 +8166,7 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncWatchlistItemType.Show;
+            var type = TraktSyncItemType.Show;
 
             var extendedOption = new TraktExtendedOption
             {
