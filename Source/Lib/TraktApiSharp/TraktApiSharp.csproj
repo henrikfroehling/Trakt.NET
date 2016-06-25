@@ -489,7 +489,7 @@
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowTranslationsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowWatchingUsersRequest.cs" />
-    <Compile Include="Requests\Base\TraktAuthenticationRequirement.cs" />
+    <Compile Include="Requests\Base\TraktAuthorizationRequirement.cs" />
     <Compile Include="Requests\Base\Post\TraktBodylessPostByIdRequest.cs" />
     <Compile Include="Requests\Base\Post\TraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequest.cs" />

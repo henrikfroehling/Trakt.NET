@@ -50,7 +50,7 @@
 
         public string RedirectUri { get; set; }
 
-        public bool IsAuthenticated => AccessToken != null && AccessToken.IsValid;
+        public bool IsAuthorized => AccessToken != null && AccessToken.IsValid;
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync()
         {
@@ -74,7 +74,7 @@
 
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
-            if (!IsAuthenticated && (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace()))
+            if (!IsAuthorized && (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace()))
                 throw new TraktAuthenticationException("not authenticated");
 
             if (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace())
@@ -150,7 +150,7 @@
 
         public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
         {
-            if (!IsAuthenticated && (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace()))
+            if (!IsAuthorized && (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace()))
                 throw new TraktAuthenticationException("not authenticated");
 
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())

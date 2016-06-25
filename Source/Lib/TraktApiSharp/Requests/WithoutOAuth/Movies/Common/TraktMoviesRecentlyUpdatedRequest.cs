@@ -25,7 +25,7 @@
 
         protected override string UriTemplate => "movies/updates{/start_date}{?extended,page,limit}";
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override bool SupportsPagination => true;
 

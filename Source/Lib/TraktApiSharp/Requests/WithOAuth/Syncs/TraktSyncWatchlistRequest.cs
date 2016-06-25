@@ -10,7 +10,7 @@
     {
         internal TraktSyncWatchlistRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktSyncWatchlistItemType? Type { get; set; }
 

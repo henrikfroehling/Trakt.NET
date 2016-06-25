@@ -116,7 +116,7 @@
     <Compile Include="Requests\Base\Post\TraktPostRequestTests.cs" />
     <Compile Include="Requests\Base\Put\TraktPutByIdRequestTests.cs" />
     <Compile Include="Requests\Base\Put\TraktPutRequestTests.cs" />
-    <Compile Include="Requests\Base\TraktAuthenticationRequirementTests.cs" />
+    <Compile Include="Requests\Base\TraktAuthorizationRequirementTests.cs" />
     <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktCommentTypeTests.cs" />
     <Compile Include="Requests\Base\TraktExtendedOptionTests.cs" />

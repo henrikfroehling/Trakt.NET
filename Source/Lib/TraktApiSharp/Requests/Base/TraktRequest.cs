@@ -46,7 +46,7 @@ namespace TraktApiSharp.Requests.Base
 
             using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
             {
-                SetRequestHeadersForAuthentication(request);
+                SetRequestHeadersForAuthorization(request);
 
                 using (var response = await httpClient.SendAsync(request))
                 {
@@ -82,24 +82,24 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
-        private bool _authenticationHeaderRequired;
+        private bool _authorizationHeaderRequired;
 
-        internal bool AuthenticationHeaderRequired
+        internal bool AuthorizationHeaderRequired
         {
             get
             {
-                if (AuthenticationRequirement == TraktAuthenticationRequirement.Required)
+                if (AuthorizationRequirement == TraktAuthorizationRequirement.Required)
                     return true;
 
-                return _authenticationHeaderRequired;
+                return _authorizationHeaderRequired;
             }
 
             set
             {
-                if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required)
+                if (!value && AuthorizationRequirement == TraktAuthorizationRequirement.Required)
                     throw new TraktAuthenticationException("request type requires authentication");
 
-                _authenticationHeaderRequired = value;
+                _authorizationHeaderRequired = value;
             }
         }
 
@@ -140,7 +140,7 @@ namespace TraktApiSharp.Requests.Base
             return $"{Client.Configuration.BaseUrl}{uri}";
         }
 
-        protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
+        protected abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 
         protected virtual TraktRequestObjectType? RequestObjectType => null;
 
@@ -180,12 +180,12 @@ namespace TraktApiSharp.Requests.Base
 
         protected virtual void Validate() { }
 
-        protected virtual void SetRequestHeadersForAuthentication(HttpRequestMessage request)
+        protected virtual void SetRequestHeadersForAuthorization(HttpRequestMessage request)
         {
-            if (AuthenticationHeaderRequired)
+            if (AuthorizationHeaderRequired)
             {
-                if (!Client.Authentication.IsAuthenticated)
-                    throw new TraktAuthorizationException("authentication is required for this request, but the current authentication parameters are invalid");
+                if (!Client.Authentication.IsAuthorized)
+                    throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.AccessToken.AccessToken);
             }

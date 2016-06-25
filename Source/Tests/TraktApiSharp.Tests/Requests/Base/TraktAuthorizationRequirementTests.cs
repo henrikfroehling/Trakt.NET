@@ -5,12 +5,12 @@
     using TraktApiSharp.Requests;
 
     [TestClass]
-    public class TraktAuthenticationRequirementTests
+    public class TraktAuthorizationRequirementTests
     {
         [TestMethod]
-        public void TestTraktAuthenticationRequirementHasMembers()
+        public void TestTraktAuthorizationRequirementHasMembers()
         {
-            typeof(TraktAuthenticationRequirement).GetEnumNames().Should().HaveCount(3)
+            typeof(TraktAuthorizationRequirement).GetEnumNames().Should().HaveCount(3)
                                                                  .And.Contain("Required", "NotRequired", "Optional");
         }
     }

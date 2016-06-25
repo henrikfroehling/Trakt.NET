@@ -9,7 +9,7 @@
 
         protected override HttpMethod Method { get { return HttpMethod.Put; } }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+        protected override TraktAuthorizationRequirement AuthorizationRequirement { get { return TraktAuthorizationRequirement.Required; } }
 
         protected override void Validate()
         {

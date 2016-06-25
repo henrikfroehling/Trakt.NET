@@ -178,7 +178,7 @@
 
             client.Authentication.AccessToken.Should().NotBeNull();
             client.Authentication.AccessToken.IsValid.Should().BeFalse();
-            client.Authentication.IsAuthenticated.Should().BeFalse();
+            client.Authentication.IsAuthorized.Should().BeFalse();
         }
 
         [TestMethod]
@@ -216,7 +216,7 @@
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken.Should().NotBeNull();
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken.IsValid.Should().BeTrue();
-            TestUtility.MOCK_TEST_CLIENT.Authentication.IsAuthenticated.Should().BeTrue();
+            TestUtility.MOCK_TEST_CLIENT.Authentication.IsAuthorized.Should().BeTrue();
         }
 
         #endregion

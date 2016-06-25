@@ -10,7 +10,7 @@
     {
         internal TraktUserHiddenItemsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktHiddenItemsSection Section { get; set; }
 

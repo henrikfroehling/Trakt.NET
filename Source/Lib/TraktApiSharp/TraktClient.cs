@@ -116,7 +116,7 @@ namespace TraktApiSharp
         /// See <seealso cref="AccessToken" />.
         /// See <seealso cref="TraktAuthentication.AccessToken" />.
         /// </summary>
-        public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthenticated;
+        public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthorized;
 
         /// <summary>
         /// Returns, whether the client is valid to use for OAuth authentication.

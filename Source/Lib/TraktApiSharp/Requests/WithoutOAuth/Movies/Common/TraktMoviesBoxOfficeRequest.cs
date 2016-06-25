@@ -10,7 +10,7 @@
 
         protected override string UriTemplate => "movies/boxoffice{?extended}";
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override bool IsListResult => true;
     }

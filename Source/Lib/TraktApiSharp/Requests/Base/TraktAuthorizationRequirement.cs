@@ -4,7 +4,7 @@
 
 namespace TraktApiSharp.Requests
 {
-    internal enum TraktAuthenticationRequirement
+    internal enum TraktAuthorizationRequirement
     {
         Required,
         NotRequired,

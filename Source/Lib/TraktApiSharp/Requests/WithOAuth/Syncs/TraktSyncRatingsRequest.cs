@@ -11,7 +11,7 @@
     {
         internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktSyncRatingsItemType? Type { get; set; }
 

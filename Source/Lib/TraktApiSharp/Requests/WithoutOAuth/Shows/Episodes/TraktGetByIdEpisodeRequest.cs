@@ -8,7 +8,7 @@
     {
         protected TraktGetByIdEpisodeRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+        protected override TraktAuthorizationRequirement AuthorizationRequirement { get { return TraktAuthorizationRequirement.NotRequired; } }
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Episodes;
 
