@@ -76,7 +76,6 @@
     <Compile Include="Enums\TraktSyncItemType.cs" />
     <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
-    <Compile Include="Enums\TraktSyncWatchlistItemType.cs" />
     <Compile Include="Enums\TraktUserLikeType.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceException.cs" />
     <Compile Include="Exceptions\TraktAuthenticationException.cs" />
