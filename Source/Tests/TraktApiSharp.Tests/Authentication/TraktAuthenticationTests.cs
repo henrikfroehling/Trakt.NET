@@ -453,32 +453,32 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
             TestUtility.MOCK_TEST_CLIENT.ClientId = null;
@@ -710,65 +710,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 
@@ -1012,65 +1012,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 
@@ -1309,65 +1309,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 
@@ -1601,65 +1601,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task<TraktAccessToken>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(null, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RefreshAccessTokenAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 
@@ -1758,7 +1758,7 @@
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.ShouldThrow<TraktAuthenticationException>();
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
@@ -1851,32 +1851,32 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync();
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
             TestUtility.MOCK_TEST_CLIENT.ClientId = null;
@@ -1946,7 +1946,7 @@
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(accessToken.AccessToken);
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.ShouldThrow<TraktAuthenticationException>();
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
@@ -2039,65 +2039,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token");
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 
@@ -2181,7 +2181,7 @@
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(accessToken.AccessToken, clientId);
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.ShouldThrow<TraktAuthenticationException>();
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
@@ -2276,65 +2276,65 @@
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = null;
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = null, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = new TraktAccessToken { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(null, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync(string.Empty, clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAccessTokenAsync("mock refresh token", clientId);
-            act.ShouldThrow<TraktAuthenticationException>();
+            act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.AccessToken = accessToken;
 

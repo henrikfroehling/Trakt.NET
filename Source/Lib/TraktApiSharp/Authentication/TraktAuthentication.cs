@@ -75,7 +75,7 @@
         public async Task<TraktAccessToken> RefreshAccessTokenAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
         {
             if (!IsAuthorized && (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace()))
-                throw new TraktAuthenticationException("not authenticated");
+                throw new TraktAuthorizationException("not authorized");
 
             if (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace())
                 throw new ArgumentException("refresh token not valid", "refreshToken");
@@ -151,7 +151,7 @@
         public async Task RevokeAccessTokenAsync(string accessToken, string clientId)
         {
             if (!IsAuthorized && (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace()))
-                throw new TraktAuthenticationException("not authenticated");
+                throw new TraktAuthorizationException("not authorized");
 
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
                 throw new ArgumentException("access token not valid", "accessToken");
@@ -180,7 +180,7 @@
                 {
                     var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
-                    throw new TraktAuthorizationException
+                    throw new TraktAuthenticationException("error on revoking access token")
                     {
                         RequestUrl = tokenUrl,
                         RequestBody = postContent,
