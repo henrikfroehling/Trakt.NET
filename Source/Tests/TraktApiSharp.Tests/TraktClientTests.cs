@@ -18,6 +18,8 @@
             client.ClientId.Should().BeNull();
             client.ClientSecret.Should().BeNull();
             client.AccessToken.Should().BeNullOrEmpty();
+            client.Authorization.Should().NotBeNull();
+            client.Authorization.IsValid.Should().BeFalse();
         }
 
         [TestMethod]
@@ -28,12 +30,16 @@
             client1.ClientId.Should().Be(CLIENT_ID);
             client1.ClientSecret.Should().BeNull();
             client1.AccessToken.Should().BeNullOrEmpty();
+            client1.Authorization.Should().NotBeNull();
+            client1.Authorization.IsValid.Should().BeFalse();
 
             var client2 = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
             client2.ClientId.Should().Be(CLIENT_ID);
             client2.ClientSecret.Should().Be(CLIENT_SECRET);
             client2.AccessToken.Should().BeNullOrEmpty();
+            client2.Authorization.Should().NotBeNull();
+            client2.Authorization.IsValid.Should().BeFalse();
         }
 
         [TestMethod]

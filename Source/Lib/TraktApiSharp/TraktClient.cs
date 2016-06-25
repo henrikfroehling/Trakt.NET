@@ -102,6 +102,13 @@ namespace TraktApiSharp
             }
         }
 
+        /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="TraktAuthorization" />.</summary>
+        public TraktAuthorization Authorization
+        {
+            get { return Authentication.Authorization; }
+            set { Authentication.Authorization = value; }
+        }
+
         /// <summary>
         /// Returns, whether the client is valid to use for API requests, that do not require OAuth authorization.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id.</para>
