@@ -1439,7 +1439,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}",
@@ -1461,7 +1461,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var itemCount = 4;
 
@@ -1484,7 +1484,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1509,7 +1509,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
@@ -1536,7 +1536,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1563,7 +1563,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1590,7 +1590,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1618,7 +1618,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1645,7 +1645,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1672,7 +1672,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1700,7 +1700,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1724,7 +1724,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1750,7 +1750,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1777,7 +1777,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1804,7 +1804,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1833,7 +1833,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
@@ -1857,7 +1857,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1882,7 +1882,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -1907,7 +1907,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1934,7 +1934,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
 
@@ -1958,7 +1958,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var limit = 4;
 
@@ -1982,7 +1982,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -2370,7 +2370,7 @@
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;

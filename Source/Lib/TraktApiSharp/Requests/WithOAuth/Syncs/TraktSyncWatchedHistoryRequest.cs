@@ -14,7 +14,7 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktSyncHistoryItemType? Type { get; set; }
+        internal TraktSyncItemType? Type { get; set; }
 
         internal string ItemId { get; set; }
 
@@ -26,7 +26,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncHistoryItemType.Unspecified;
+            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncItemType.Unspecified;
 
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());

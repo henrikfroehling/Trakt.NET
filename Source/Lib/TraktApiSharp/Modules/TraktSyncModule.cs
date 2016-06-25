@@ -99,7 +99,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string itemId = null,
+        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
                                                                                                   DateTime? startAt = null, DateTime? endAt = null,
                                                                                                   int? page = null, int? limit = null)
         {

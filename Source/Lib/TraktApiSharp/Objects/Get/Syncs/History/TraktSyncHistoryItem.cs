@@ -21,8 +21,8 @@
         public TraktSyncHistoryActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncHistoryItemTypeConverter))]
-        public TraktSyncHistoryItemType Type { get; set; }
+        [JsonConverter(typeof(TraktSyncItemTypeConverter))]
+        public TraktSyncItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

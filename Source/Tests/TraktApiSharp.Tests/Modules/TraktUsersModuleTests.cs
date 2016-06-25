@@ -6530,7 +6530,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}",
@@ -6554,7 +6554,7 @@
 
             var username = "sean";
             var itemId = "4";
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}/{itemId}",
@@ -6579,7 +6579,7 @@
             var username = "sean";
             var itemId = "4";
             var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncHistoryItemType.Season;
+            var type = TraktSyncItemType.Season;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
@@ -6606,7 +6606,7 @@
             var itemId = "4";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Episode;
+            var type = TraktSyncItemType.Episode;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
@@ -6633,7 +6633,7 @@
             var username = "sean";
             var itemId = "4";
             var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
 
@@ -6661,7 +6661,7 @@
             var username = "sean";
             var itemId = "4";
             var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var limit = 4;
 
@@ -6689,7 +6689,7 @@
             var username = "sean";
             var itemId = "4";
             var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -6718,7 +6718,7 @@
             var username = "sean";
             var itemId = "4";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
 
@@ -6746,7 +6746,7 @@
             var username = "sean";
             var itemId = "4";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var limit = 4;
 
@@ -6774,7 +6774,7 @@
             var username = "sean";
             var itemId = "4";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -6802,7 +6802,7 @@
 
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
@@ -6829,7 +6829,7 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
@@ -6856,7 +6856,7 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
 
@@ -6884,7 +6884,7 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var limit = 4;
 
@@ -6912,7 +6912,7 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -6940,7 +6940,7 @@
 
             var username = "sean";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
@@ -6966,7 +6966,7 @@
 
             var username = "sean";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
 
@@ -6993,7 +6993,7 @@
 
             var username = "sean";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var limit = 4;
 
@@ -7020,7 +7020,7 @@
 
             var username = "sean";
             var endAt = DateTime.UtcNow;
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -7047,7 +7047,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
 
@@ -7073,7 +7073,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var limit = 4;
 
@@ -7099,7 +7099,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncHistoryItemType.Show;
+            var type = TraktSyncItemType.Show;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -7518,7 +7518,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "4";
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;

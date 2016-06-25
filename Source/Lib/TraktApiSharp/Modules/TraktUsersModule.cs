@@ -348,7 +348,7 @@
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
-        public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
+        public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
                                                                                                   string itemId = null, DateTime? startAt = null,
                                                                                                   DateTime? endAt = null, int? page = null, int? limit = null)
         {

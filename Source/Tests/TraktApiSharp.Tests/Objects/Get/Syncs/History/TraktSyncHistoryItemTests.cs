@@ -21,7 +21,7 @@
             historyItem.Id.Should().Be(0);
             historyItem.WatchedAt.Should().Be(DateTime.MinValue);
             historyItem.Action.Should().Be(TraktSyncHistoryActionType.Unspecified);
-            historyItem.Type.Should().Be(TraktSyncHistoryItemType.Unspecified);
+            historyItem.Type.Should().Be(TraktSyncItemType.Unspecified);
             historyItem.Movie.Should().BeNull();
             historyItem.Show.Should().BeNull();
             historyItem.Season.Should().BeNull();
@@ -44,7 +44,7 @@
             items[0].Id.Should().Be(1982346);
             items[0].WatchedAt.Should().Be(DateTime.Parse("2014-03-31T09:28:53.000Z").ToUniversalTime());
             items[0].Action.Should().Be(TraktSyncHistoryActionType.Scrobble);
-            items[0].Type.Should().Be(TraktSyncHistoryItemType.Movie);
+            items[0].Type.Should().Be(TraktSyncItemType.Movie);
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("The Dark Knight");
             items[0].Movie.Year.Should().Be(2008);
@@ -60,7 +60,7 @@
             items[1].Id.Should().Be(1982347);
             items[1].WatchedAt.Should().Be(DateTime.Parse("2014-02-27T09:28:53.000Z").ToUniversalTime());
             items[1].Action.Should().Be(TraktSyncHistoryActionType.Checkin);
-            items[1].Type.Should().Be(TraktSyncHistoryItemType.Episode);
+            items[1].Type.Should().Be(TraktSyncItemType.Episode);
             items[1].Movie.Should().BeNull();
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("Parks and Recreation");
@@ -87,7 +87,7 @@
             items[2].Id.Should().Be(1982348);
             items[2].WatchedAt.Should().Be(DateTime.Parse("2013-06-15T05:54:27.000Z").ToUniversalTime());
             items[2].Action.Should().Be(TraktSyncHistoryActionType.Checkin);
-            items[2].Type.Should().Be(TraktSyncHistoryItemType.Show);
+            items[2].Type.Should().Be(TraktSyncItemType.Show);
             items[2].Movie.Should().BeNull();
             items[2].Show.Should().NotBeNull();
             items[2].Show.Title.Should().Be("Parks and Recreation");
@@ -105,7 +105,7 @@
             items[3].Id.Should().Be(1982344);
             items[3].WatchedAt.Should().Be(DateTime.Parse("2013-05-15T05:54:27.000Z").ToUniversalTime());
             items[3].Action.Should().Be(TraktSyncHistoryActionType.Watch);
-            items[3].Type.Should().Be(TraktSyncHistoryItemType.Season);
+            items[3].Type.Should().Be(TraktSyncItemType.Season);
             items[3].Movie.Should().BeNull();
             items[3].Show.Should().BeNull();
             items[3].Season.Should().NotBeNull();
