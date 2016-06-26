@@ -5,7 +5,7 @@
     using Objects.Post.Users;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListUpdateRequest : TraktPutByIdRequest<TraktList, TraktList, TraktUserCustomListUpdatePost>
+    internal class TraktUserCustomListUpdateRequest : TraktPutByIdRequest<TraktList, TraktList, TraktUserCustomListPost>
     {
         internal TraktUserCustomListUpdateRequest(TraktClient client) : base(client) { }
 

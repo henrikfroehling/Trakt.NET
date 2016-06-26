@@ -199,7 +199,7 @@
                 throw new ArgumentException("no list specific values set");
             }
 
-            var requestBody = new TraktUserCustomListUpdatePost
+            var requestBody = new TraktUserCustomListPost
             {
                 Name = listName,
                 Description = description,
