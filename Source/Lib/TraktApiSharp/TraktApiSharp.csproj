@@ -125,9 +125,9 @@
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCredits.cs" />
-    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCastItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrewItem.cs" />
@@ -206,7 +206,6 @@
     <Compile Include="Objects\Get\People\TraktPerson.cs" />
     <Compile Include="Objects\Get\People\TraktPersonIds.cs" />
     <Compile Include="Objects\Get\People\TraktPersonImages.cs" />
-    <Compile Include="Objects\Get\Recommendations\TraktMovieRecommendation.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktShowRecommendation.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostCollectedShow.cs" />

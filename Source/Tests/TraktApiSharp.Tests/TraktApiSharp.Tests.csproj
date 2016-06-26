@@ -189,8 +189,6 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsTests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
     <Compile Include="Objects\Get\People\TraktPersonTests.cs" />
-    <Compile Include="Objects\Get\Recommendations\TraktMovieRecommendationsTests.cs" />
-    <Compile Include="Objects\Get\Recommendations\TraktMovieSingleRecommendationTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktShowRecommendationsTests.cs" />
     <Compile Include="Objects\Get\Recommendations\TraktShowSingleRecommendationTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostAnticipatedTests.cs" />

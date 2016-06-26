@@ -8,6 +8,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Recommendations;
     using TraktApiSharp.Requests;
     using Utils;
@@ -134,7 +135,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktMovieRecommendation>>> act =
+            Func<Task<TraktPaginationListResult<TraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
