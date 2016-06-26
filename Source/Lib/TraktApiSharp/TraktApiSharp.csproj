@@ -72,7 +72,7 @@
     <Compile Include="Enums\TraktReleaseType.cs" />
     <Compile Include="Enums\TraktSearchResultType.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
-    <Compile Include="Enums\TraktSyncHistoryActionType.cs" />
+    <Compile Include="Enums\TraktHistoryActionType.cs" />
     <Compile Include="Enums\TraktSyncItemType.cs" />
     <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />

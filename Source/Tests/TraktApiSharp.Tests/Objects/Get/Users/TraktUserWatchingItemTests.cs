@@ -18,7 +18,7 @@
 
             watchingItem.ExpiresAt.Should().Be(DateTime.MinValue);
             watchingItem.StartedAt.Should().Be(DateTime.MinValue);
-            watchingItem.Action.Should().Be(TraktSyncHistoryActionType.Unspecified);
+            watchingItem.Action.Should().Be(TraktHistoryActionType.Unspecified);
             watchingItem.Type.Should().Be(TraktSyncType.Unspecified);
             watchingItem.Movie.Should().BeNull();
             watchingItem.Show.Should().BeNull();
@@ -38,7 +38,7 @@
 
             userWatchlistItemMovie.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
             userWatchlistItemMovie.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            userWatchlistItemMovie.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            userWatchlistItemMovie.Action.Should().Be(TraktHistoryActionType.Checkin);
             userWatchlistItemMovie.Type.Should().Be(TraktSyncType.Movie);
             userWatchlistItemMovie.Movie.Should().NotBeNull();
             userWatchlistItemMovie.Movie.Title.Should().Be("Super 8");
@@ -65,7 +65,7 @@
 
             userWatchlistItemEpisode.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T07:09:12.000Z").ToUniversalTime());
             userWatchlistItemEpisode.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:24:12.000Z").ToUniversalTime());
-            userWatchlistItemEpisode.Action.Should().Be(TraktSyncHistoryActionType.Scrobble);
+            userWatchlistItemEpisode.Action.Should().Be(TraktHistoryActionType.Scrobble);
             userWatchlistItemEpisode.Type.Should().Be(TraktSyncType.Episode);
             userWatchlistItemEpisode.Movie.Should().BeNull();
             userWatchlistItemEpisode.Show.Should().NotBeNull();
