@@ -215,7 +215,6 @@
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisode.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeIds.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeImages.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeStatistics.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchingUser.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeason.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonIds.cs" />
