@@ -116,7 +116,7 @@
             });
         }
 
-        public async Task<TraktShowStatistics> GetShowStatisticsAsync(string id)
+        public async Task<TraktStatistics> GetShowStatisticsAsync(string id)
         {
             Validate(id);
 
