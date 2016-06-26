@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithOAuth.Shows;
     using Requests.WithoutOAuth.Shows;
@@ -123,7 +124,7 @@
             return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 

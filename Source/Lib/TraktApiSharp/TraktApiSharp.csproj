@@ -230,7 +230,6 @@
     <Compile Include="Objects\Get\Shows\TraktShowIds.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowImages.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowTranslation.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowWatchingUser.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\TraktCastMember.cs" />
     <Compile Include="Objects\Basic\TraktComment.cs" />
