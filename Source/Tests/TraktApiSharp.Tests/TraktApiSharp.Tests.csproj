@@ -229,7 +229,6 @@
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktCastMemberTests.cs" />
     <Compile Include="Objects\Basic\TraktCommentTests.cs" />
-    <Compile Include="Objects\Basic\TraktConnectionsTests.cs" />
     <Compile Include="Objects\Basic\TraktCrewMemberTests.cs" />
     <Compile Include="Objects\Basic\TraktCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktErrorTests.cs" />

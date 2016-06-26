@@ -245,7 +245,6 @@
     <Compile Include="Objects\Basic\TraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\TraktCastMember.cs" />
     <Compile Include="Objects\Basic\TraktComment.cs" />
-    <Compile Include="Objects\Basic\TraktConnections.cs" />
     <Compile Include="Objects\Basic\TraktCrew.cs" />
     <Compile Include="Objects\Basic\TraktCrewMember.cs" />
     <Compile Include="Objects\Basic\TraktError.cs" />

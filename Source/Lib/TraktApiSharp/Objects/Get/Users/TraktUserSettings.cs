@@ -12,7 +12,7 @@
         public TraktAccountSettings Account { get; set; }
 
         [JsonProperty(PropertyName = "connections")]
-        public TraktConnections Connections { get; set; }
+        public TraktSharing Connections { get; set; }
 
         [JsonProperty(PropertyName = "sharing_text")]
         public TraktSharingText SharingText { get; set; }
