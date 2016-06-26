@@ -164,8 +164,8 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
-                                                                                            int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
+                                                                                     int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
