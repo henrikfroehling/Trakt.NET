@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Shows;
+    using Get.Movies;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
 
-    public class TraktSyncWatchlistPostShowItem
+    public class TraktSyncWatchlistPostMovie
     {
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
@@ -13,9 +12,6 @@
         public int? Year { get; set; }
 
         [JsonProperty(PropertyName = "ids")]
-        public TraktShowIds Ids { get; set; }
-
-        [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncWatchlistPostShowSeasonItem> Seasons { get; set; }
+        public TraktMovieIds Ids { get; set; }
     }
 }

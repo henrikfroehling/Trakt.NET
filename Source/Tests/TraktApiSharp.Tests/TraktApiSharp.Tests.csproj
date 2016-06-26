@@ -276,7 +276,6 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistPostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePostTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsRemovePostTests.cs" />

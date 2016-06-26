@@ -289,12 +289,11 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPost.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostMovieItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowSeasonItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistRemovePost.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostMovie.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShow.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostShowSeason.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFound.cs" />

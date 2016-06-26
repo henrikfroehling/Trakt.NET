@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktSyncWatchlistPostShowEpisodeItem
+    public class TraktSyncWatchlistPostShowEpisode
     {
         [JsonProperty(PropertyName = "number")]
         public int Number { get; set; }

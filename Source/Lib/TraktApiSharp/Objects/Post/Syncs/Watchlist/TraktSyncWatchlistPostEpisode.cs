@@ -3,7 +3,7 @@
     using Get.Shows.Episodes;
     using Newtonsoft.Json;
 
-    public class TraktSyncWatchlistPostEpisodeItem
+    public class TraktSyncWatchlistPostEpisode
     {
         [JsonProperty(PropertyName = "ids")]
         public TraktEpisodeIds Ids { get; set; }

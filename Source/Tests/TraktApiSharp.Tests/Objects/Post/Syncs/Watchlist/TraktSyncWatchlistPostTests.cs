@@ -28,9 +28,9 @@
         {
             var watchlistPost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>()
                 {
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -42,7 +42,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -50,9 +50,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                Shows = new List<TraktSyncWatchlistPostShow>()
                 {
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -66,7 +66,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -79,15 +79,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -100,18 +100,18 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncWatchlistPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncWatchlistPostShowEpisode>()
                                 {
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -120,9 +120,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
                 {
-                    new TraktSyncWatchlistPostEpisodeItem
+                    new TraktSyncWatchlistPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
