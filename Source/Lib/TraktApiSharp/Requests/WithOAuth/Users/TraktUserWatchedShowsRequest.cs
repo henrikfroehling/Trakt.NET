@@ -2,10 +2,10 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Users.Watched;
+    using Objects.Get.Watched;
     using System.Collections.Generic;
 
-    internal class TraktUserWatchedShowsRequest : TraktGetRequest<TraktListResult<TraktUserWatchedShowItem>, TraktUserWatchedShowItem>
+    internal class TraktUserWatchedShowsRequest : TraktGetRequest<TraktListResult<TraktWatchedShow>, TraktWatchedShow>
     {
         internal TraktUserWatchedShowsRequest(TraktClient client) : base(client) { }
 

@@ -20,7 +20,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
-    using TraktApiSharp.Objects.Get.Syncs.Watched;
+    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
@@ -1228,7 +1228,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedMovies()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/watched/movies", watchedMovies);
@@ -1242,7 +1242,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedMoviesComplete()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -1267,7 +1267,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchedMovieItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1322,7 +1322,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedShows()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/watched/shows", watchedShows);
@@ -1336,7 +1336,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedShowsComplete()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -1361,7 +1361,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchedShowItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

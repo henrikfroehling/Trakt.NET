@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Watched
+﻿namespace TraktApiSharp.Objects.Get.Watched
 {
     using Movies;
     using Newtonsoft.Json;
     using System;
 
-    public class TraktSyncWatchedMovieItem
+    public class TraktWatchedMovie
     {
         [JsonProperty(PropertyName = "plays")]
         public int Plays { get; set; }

@@ -226,8 +226,8 @@
     <Compile Include="Objects\Get\History\TraktHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Ratings\TraktRatingsItemTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItemTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItemTests.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedMovieTests.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedShowTests.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
@@ -246,8 +246,6 @@
     <Compile Include="Objects\Get\Users\TraktUserStatisticsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItemTests.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedMovieItemTests.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowItemTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponseTests.cs" />
@@ -464,9 +462,9 @@
     <None Include="TestData\Objects\Get\Ratings\RatingsMovies.json" />
     <None Include="TestData\Objects\Get\Ratings\RatingsSeasons.json" />
     <None Include="TestData\Objects\Get\Ratings\RatingsShows.json" />
-    <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedMovies.json" />
-    <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShows.json" />
-    <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json" />
+    <None Include="TestData\Objects\Get\Watched\WatchedMovies.json" />
+    <None Include="TestData\Objects\Get\Watched\WatchedShows.json" />
+    <None Include="TestData\Objects\Get\Watched\WatchedShowsNoSeasons.json" />
     <None Include="TestData\Objects\Get\Watchlist\Watchlist.json" />
     <None Include="TestData\Objects\Get\Watchlist\WatchlistEpisodes.json" />
     <None Include="TestData\Objects\Get\Watchlist\WatchlistMovies.json" />
@@ -498,9 +496,6 @@
     <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
     <None Include="TestData\Objects\Get\Users\UserSingleHiddenItem.json" />
     <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
-    <None Include="TestData\Objects\Get\Users\Watched\UserWatchedMovies.json" />
-    <None Include="TestData\Objects\Get\Users\Watched\UserWatchedShows.json" />
-    <None Include="TestData\Objects\Get\Users\Watched\UserWatchedShowsNoSeasons.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
     <None Include="TestData\Objects\Post\Checkins\Responses\CheckinPostErrorResponse.json" />

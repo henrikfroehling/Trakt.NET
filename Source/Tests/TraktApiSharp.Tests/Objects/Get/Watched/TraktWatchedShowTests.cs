@@ -6,16 +6,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Syncs.Watched;
+    using TraktApiSharp.Objects.Get.Watched;
     using Utils;
 
     [TestClass]
-    public class TraktSyncWatchedShowItemTests
+    public class TraktWatchedShowTests
     {
         [TestMethod]
-        public void TestTraktSyncWatchedShowItemDefaultConstructor()
+        public void TestTraktWatchedShowDefaultConstructor()
         {
-            var showItem = new TraktSyncWatchedShowItem();
+            var showItem = new TraktWatchedShow();
 
             showItem.Plays.Should().Be(0);
             showItem.LastWatchedAt.Should().Be(DateTime.MinValue);
@@ -24,13 +24,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchedShowItemReadFromJson()
+        public void TestTraktWatchedShowReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShows.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchedShowItem>>(jsonFile);
+            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchedShow>>(jsonFile);
 
             showItems.Should().NotBeNull();
             showItems.Should().HaveCount(2);
@@ -129,13 +129,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchedShowItemReadFromJsonNoSeasons()
+        public void TestTraktWatchedShowReadFromJsonNoSeasons()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShowsNoSeasons.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchedShowItem>>(jsonFile);
+            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchedShow>>(jsonFile);
 
             showItems.Should().NotBeNull();
             showItems.Should().HaveCount(2);

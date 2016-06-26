@@ -155,10 +155,10 @@
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />
     <Compile Include="Objects\Get\Ratings\TraktRatingsItem.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItem.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowEpisodeItem.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItem.cs" />
-    <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowSeasonItem.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedMovie.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedShowEpisode.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedShow.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedShowSeason.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItem.cs" />
     <Compile Include="Objects\Get\Users\Statistics\TraktUserEpisodesStatistics.cs" />
@@ -172,10 +172,6 @@
     <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserLikeItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedMovieItem.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowEpisodeItem.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowItem.cs" />
-    <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedShowSeasonItem.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponse.cs" />

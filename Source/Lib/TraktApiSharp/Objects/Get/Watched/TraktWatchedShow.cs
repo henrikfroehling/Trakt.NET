@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Watched
+﻿namespace TraktApiSharp.Objects.Get.Watched
 {
     using Newtonsoft.Json;
     using Shows;
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncWatchedShowItem
+    public class TraktWatchedShow
     {
         [JsonProperty(PropertyName = "plays")]
         public int Plays { get; set; }
@@ -17,6 +17,6 @@
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncWatchedShowSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktWatchedShowSeason> Seasons { get; set; }
     }
 }

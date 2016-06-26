@@ -21,7 +21,7 @@
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Get.Users.Statistics;
-    using TraktApiSharp.Objects.Get.Users.Watched;
+    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
@@ -8394,7 +8394,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMovies()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8410,7 +8410,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesComplete()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8437,7 +8437,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserWatchedMovieItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -8481,7 +8481,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserWatchedMovieItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -8502,7 +8502,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShows()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8518,7 +8518,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsComplete()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8545,7 +8545,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -8589,7 +8589,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserWatchedShowItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(null);
             act.ShouldThrow<ArgumentException>();
 

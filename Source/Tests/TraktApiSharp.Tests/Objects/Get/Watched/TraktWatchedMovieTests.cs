@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Watched
+﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Watched
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -6,16 +6,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Users.Watched;
+    using TraktApiSharp.Objects.Get.Watched;
     using Utils;
 
     [TestClass]
-    public class TraktUserWatchedMovieItemTests
+    public class TraktWatchedMovieTests
     {
         [TestMethod]
-        public void TestTraktUserWatchedMovieItemDefaultConstructor()
+        public void TestTraktWatchedMovieDefaultConstructor()
         {
-            var movieItem = new TraktUserWatchedMovieItem();
+            var movieItem = new TraktWatchedMovie();
 
             movieItem.Plays.Should().Be(0);
             movieItem.LastWatchedAt.Should().Be(DateTime.MinValue);
@@ -23,13 +23,13 @@
         }
 
         [TestMethod]
-        public void TestTraktUserWatchedMovieItemReadFromJson()
+        public void TestTraktWatchedMovieReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Users\Watched\UserWatchedMovies.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var movieItems = JsonConvert.DeserializeObject<IEnumerable<TraktUserWatchedMovieItem>>(jsonFile);
+            var movieItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchedMovie>>(jsonFile);
 
             movieItems.Should().NotBeNull();
             movieItems.Should().HaveCount(2);

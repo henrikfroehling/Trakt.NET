@@ -9,7 +9,7 @@
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
-    using Objects.Get.Users.Watched;
+    using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
@@ -406,7 +406,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedMovie>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -417,7 +417,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedShow>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
