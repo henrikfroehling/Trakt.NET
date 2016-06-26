@@ -299,6 +299,7 @@
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequestTests.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequestTests.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequestTests.cs" />
+    <Compile Include="Services\LanguageServiceTests.cs" />
     <Compile Include="TraktClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraktConfigurationTests.cs" />

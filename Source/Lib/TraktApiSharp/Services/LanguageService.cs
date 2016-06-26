@@ -34,7 +34,10 @@
                 {
                     languages.Add(new RegionInfo(languageCode).DisplayName);
                 }
-                catch { }
+                catch
+                {
+                    return new List<string>();
+                }
             }
 
             return languages;
