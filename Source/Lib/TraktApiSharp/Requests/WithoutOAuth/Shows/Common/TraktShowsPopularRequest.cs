@@ -2,9 +2,9 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Shows.Common;
+    using Objects.Get.Shows;
 
-    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktPopularShow>, TraktPopularShow>
+    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktShow>, TraktShow>
     {
         internal TraktShowsPopularRequest(TraktClient client) : base(client) { }
 

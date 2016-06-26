@@ -12,16 +12,16 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Objects.Get.Syncs.Collection;
-    using TraktApiSharp.Objects.Get.Syncs.History;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
-    using TraktApiSharp.Objects.Get.Syncs.Ratings;
-    using TraktApiSharp.Objects.Get.Syncs.Watched;
-    using TraktApiSharp.Objects.Get.Syncs.Watchlist;
+    using TraktApiSharp.Objects.Get.Watched;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Objects.Post.Syncs.History;
@@ -458,7 +458,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionMovies()
         {
-            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json");
+            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/collection/movies", collectionMovies);
@@ -472,7 +472,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionMoviesComplete()
         {
-            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json");
+            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -498,7 +498,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncCollectionMovieItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -553,7 +553,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShows()
         {
-            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/collection/shows", collectionShows);
@@ -567,7 +567,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShowsComplete()
         {
-            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -593,7 +593,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncCollectionShowItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -653,9 +653,9 @@
 
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -668,7 +668,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -676,9 +676,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -692,7 +692,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -705,15 +705,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -726,19 +726,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncCollectionPostShowEpisode>()
                                 {
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -747,9 +747,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -811,9 +811,9 @@
         {
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -827,9 +827,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -844,9 +844,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -925,9 +925,9 @@
 
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>(),
-                Shows = new List<TraktSyncCollectionPostShowItem>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>(),
+                Shows = new List<TraktSyncCollectionPostShow>(),
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
@@ -947,11 +947,11 @@
             var removedCollectionItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json");
             removedCollectionItems.Should().NotBeNullOrEmpty();
 
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -964,7 +964,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -972,9 +972,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -988,7 +988,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -1001,15 +1001,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -1022,19 +1022,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncCollectionPostShowEpisode>()
                                 {
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -1043,9 +1043,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1093,11 +1093,11 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveCollectionItemsExceptions()
         {
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -1111,9 +1111,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -1128,9 +1128,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1204,14 +1204,14 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionRemovePost());
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionPost());
             act.ShouldThrow<ArgumentException>();
 
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>(),
-                Shows = new List<TraktSyncCollectionPostShowItem>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>(),
+                Shows = new List<TraktSyncCollectionPostShow>(),
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost);
@@ -1228,7 +1228,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedMovies()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/watched/movies", watchedMovies);
@@ -1242,7 +1242,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedMoviesComplete()
         {
-            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedMovies.json");
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -1267,7 +1267,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchedMovieItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1322,7 +1322,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedShows()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/watched/shows", watchedShows);
@@ -1336,7 +1336,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedShowsComplete()
         {
-            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watched\SyncWatchedShows.json");
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -1361,7 +1361,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchedShowItem>>> act =
+            Func<Task<TraktListResult<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1416,7 +1416,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistory()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -1436,10 +1436,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithType()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}",
@@ -1458,10 +1458,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndId()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var itemCount = 4;
 
@@ -1481,10 +1481,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1506,10 +1506,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
@@ -1533,10 +1533,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1560,10 +1560,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1587,10 +1587,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
@@ -1615,10 +1615,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1642,10 +1642,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1669,10 +1669,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1697,10 +1697,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1721,10 +1721,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1747,10 +1747,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1774,10 +1774,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1801,10 +1801,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1830,10 +1830,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
@@ -1854,10 +1854,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1879,10 +1879,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -1904,10 +1904,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1931,10 +1931,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
 
@@ -1955,10 +1955,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var limit = 4;
 
@@ -1979,10 +1979,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
@@ -2004,7 +2004,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2027,7 +2027,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2051,7 +2051,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2077,7 +2077,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2103,7 +2103,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2131,7 +2131,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2155,7 +2155,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2179,7 +2179,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2204,7 +2204,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2227,7 +2227,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2251,7 +2251,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2275,7 +2275,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2300,7 +2300,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2322,7 +2322,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2344,7 +2344,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2367,10 +2367,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryComplete()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncHistoryItemType.Movie;
+            var type = TraktSyncItemType.Movie;
             var itemId = "123";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
@@ -2401,7 +2401,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktSyncHistoryItem>>> act =
+            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3031,7 +3031,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatings()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth($"sync/ratings", ratings);
@@ -3045,7 +3045,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithType()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncRatingsItemType.Movie;
@@ -3061,7 +3061,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3082,7 +3082,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3103,7 +3103,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3124,7 +3124,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3145,7 +3145,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3166,7 +3166,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3187,7 +3187,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3208,7 +3208,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3229,7 +3229,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3250,7 +3250,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3271,7 +3271,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3291,7 +3291,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3311,7 +3311,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3331,7 +3331,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3351,7 +3351,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithRatingsFilter()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3370,7 +3370,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncRatingsItemType.Movie;
@@ -3394,7 +3394,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithExtendedOption()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -3414,7 +3414,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsComplete()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3446,7 +3446,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncRatingsItem>>> act =
+            Func<Task<TraktListResult<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3506,9 +3506,9 @@
 
             var ratingsPost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>()
                 {
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         RatedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Rating = 5,
@@ -3522,7 +3522,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         Rating = 10,
                         Ids = new TraktMovieIds
@@ -3531,9 +3531,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncRatingsPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShow>()
                 {
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Rating = 9,
                         Title = "Breaking Bad",
@@ -3548,7 +3548,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -3561,16 +3561,16 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Rating = 8,
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -3583,19 +3583,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncRatingsPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncRatingsPostShowEpisode>()
                                 {
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Rating = 7,
                                         Number = 1
                                     },
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Rating = 8,
                                         Number = 2
@@ -3605,9 +3605,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
                 {
-                    new TraktSyncRatingsPostEpisodeItem
+                    new TraktSyncRatingsPostEpisode
                     {
                         Rating = 7,
                         Ids = new TraktEpisodeIds
@@ -3659,9 +3659,9 @@
         {
             var ratingsPost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>()
                 {
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         RatedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Rating = 5,
@@ -3676,9 +3676,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncRatingsPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShow>()
                 {
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Rating = 9,
                         Title = "Breaking Bad",
@@ -3694,9 +3694,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
                 {
-                    new TraktSyncRatingsPostEpisodeItem
+                    new TraktSyncRatingsPostEpisode
                     {
                         Rating = 7,
                         Ids = new TraktEpisodeIds
@@ -3776,9 +3776,9 @@
 
             var ratingsPost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>(),
-                Shows = new List<TraktSyncRatingsPostShowItem>(),
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>(),
+                Shows = new List<TraktSyncRatingsPostShow>(),
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(ratingsPost);
@@ -3798,11 +3798,11 @@
             var removedRatingsItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json");
             removedRatingsItems.Should().NotBeNullOrEmpty();
 
-            var ratingsRemovePost = new TraktSyncRatingsRemovePost
+            var ratingsRemovePost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>()
                 {
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -3814,7 +3814,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -3822,9 +3822,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncRatingsPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShow>()
                 {
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -3838,7 +3838,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -3851,15 +3851,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -3872,18 +3872,18 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncRatingsPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncRatingsPostShowEpisode>()
                                 {
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -3892,9 +3892,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
                 {
-                    new TraktSyncRatingsPostEpisodeItem
+                    new TraktSyncRatingsPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -3942,11 +3942,11 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveRatingsExceptions()
         {
-            var ratingsRemovePost = new TraktSyncRatingsRemovePost
+            var ratingsRemovePost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>()
                 {
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -3959,9 +3959,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncRatingsPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShow>()
                 {
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -3976,9 +3976,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
                 {
-                    new TraktSyncRatingsPostEpisodeItem
+                    new TraktSyncRatingsPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -4052,14 +4052,14 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(new TraktSyncRatingsRemovePost());
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(new TraktSyncRatingsPost());
             act.ShouldThrow<ArgumentException>();
 
-            var ratingsRemovePost = new TraktSyncRatingsRemovePost
+            var ratingsRemovePost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>(),
-                Shows = new List<TraktSyncRatingsPostShowItem>(),
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>(),
+                Shows = new List<TraktSyncRatingsPostShow>(),
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(ratingsRemovePost);
@@ -4076,7 +4076,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlist()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watchlist", watchlist);
@@ -4090,10 +4090,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithType()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncWatchlistItemType.Episode;
+            var type = TraktSyncItemType.Episode;
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watchlist/{type.AsStringUriParameter()}", watchlist);
 
@@ -4106,7 +4106,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithExtendedOption()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -4126,10 +4126,10 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistComplete()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncWatchlistItemType.Episode;
+            var type = TraktSyncItemType.Episode;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4154,7 +4154,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchlistItem>>> act =
+            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4214,9 +4214,9 @@
 
             var watchlistPost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>()
                 {
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -4228,7 +4228,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -4236,9 +4236,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                Shows = new List<TraktSyncWatchlistPostShow>()
                 {
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -4252,7 +4252,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -4265,15 +4265,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -4286,18 +4286,18 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncWatchlistPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncWatchlistPostShowEpisode>()
                                 {
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -4306,9 +4306,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
                 {
-                    new TraktSyncWatchlistPostEpisodeItem
+                    new TraktSyncWatchlistPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -4364,9 +4364,9 @@
         {
             var watchlistPost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>()
                 {
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -4379,9 +4379,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                Shows = new List<TraktSyncWatchlistPostShow>()
                 {
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -4396,9 +4396,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
                 {
-                    new TraktSyncWatchlistPostEpisodeItem
+                    new TraktSyncWatchlistPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -4477,9 +4477,9 @@
 
             var watchlistPost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>(),
-                Shows = new List<TraktSyncWatchlistPostShowItem>(),
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>(),
+                Shows = new List<TraktSyncWatchlistPostShow>(),
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost);
@@ -4499,11 +4499,11 @@
             var removedWatchlistItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistRemovePostResponse.json");
             removedWatchlistItems.Should().NotBeNullOrEmpty();
 
-            var watchlistRemovePost = new TraktSyncWatchlistRemovePost
+            var watchlistRemovePost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>()
                 {
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -4515,7 +4515,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -4523,9 +4523,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                Shows = new List<TraktSyncWatchlistPostShow>()
                 {
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -4539,7 +4539,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -4552,15 +4552,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -4573,18 +4573,18 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncWatchlistPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncWatchlistPostShowSeason>()
                         {
-                            new TraktSyncWatchlistPostShowSeasonItem
+                            new TraktSyncWatchlistPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncWatchlistPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncWatchlistPostShowEpisode>()
                                 {
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktSyncWatchlistPostShowEpisodeItem
+                                    new TraktSyncWatchlistPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -4593,9 +4593,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
                 {
-                    new TraktSyncWatchlistPostEpisodeItem
+                    new TraktSyncWatchlistPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -4643,11 +4643,11 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchlistItemsExceptions()
         {
-            var watchlistRemovePost = new TraktSyncWatchlistRemovePost
+            var watchlistRemovePost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>()
                 {
-                    new TraktSyncWatchlistPostMovieItem
+                    new TraktSyncWatchlistPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -4660,9 +4660,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncWatchlistPostShowItem>()
+                Shows = new List<TraktSyncWatchlistPostShow>()
                 {
-                    new TraktSyncWatchlistPostShowItem
+                    new TraktSyncWatchlistPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -4677,9 +4677,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
                 {
-                    new TraktSyncWatchlistPostEpisodeItem
+                    new TraktSyncWatchlistPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -4753,14 +4753,14 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(new TraktSyncWatchlistRemovePost());
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(new TraktSyncWatchlistPost());
             act.ShouldThrow<ArgumentException>();
 
-            var watchlistRemovePost = new TraktSyncWatchlistRemovePost
+            var watchlistRemovePost = new TraktSyncWatchlistPost
             {
-                Movies = new List<TraktSyncWatchlistPostMovieItem>(),
-                Shows = new List<TraktSyncWatchlistPostShowItem>(),
-                Episodes = new List<TraktSyncWatchlistPostEpisodeItem>()
+                Movies = new List<TraktSyncWatchlistPostMovie>(),
+                Shows = new List<TraktSyncWatchlistPostShow>(),
+                Episodes = new List<TraktSyncWatchlistPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);

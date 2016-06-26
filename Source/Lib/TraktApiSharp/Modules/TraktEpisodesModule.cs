@@ -4,6 +4,7 @@
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows.Episodes;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithoutOAuth.Shows.Episodes;
     using System;
@@ -43,7 +44,7 @@
             });
         }
 
-        public async Task<TraktEpisodeRating> GetEpisodeRatingsAsync(string showId, int season, int episode)
+        public async Task<TraktRating> GetEpisodeRatingsAsync(string showId, int season, int episode)
         {
             Validate(showId, season, episode);
 
@@ -55,7 +56,7 @@
             });
         }
 
-        public async Task<TraktEpisodeStatistics> GetEpisodeStatisticsAsync(string showId, int season, int episode)
+        public async Task<TraktStatistics> GetEpisodeStatisticsAsync(string showId, int season, int episode)
         {
             Validate(showId, season, episode);
 
@@ -67,8 +68,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktEpisodeWatchingUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
-                                                                                                  TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
+                                                                                   TraktExtendedOption extended = null)
         {
             Validate(showId, season, episode);
 

@@ -4,7 +4,7 @@
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
 
-    internal class TraktSyncCollectionRemoveRequest : TraktPostRequest<TraktSyncCollectionRemovePostResponse, TraktSyncCollectionRemovePostResponse, TraktSyncCollectionRemovePost>
+    internal class TraktSyncCollectionRemoveRequest : TraktPostRequest<TraktSyncCollectionRemovePostResponse, TraktSyncCollectionRemovePostResponse, TraktSyncCollectionPost>
     {
         internal TraktSyncCollectionRemoveRequest(TraktClient client) : base(client) { }
 

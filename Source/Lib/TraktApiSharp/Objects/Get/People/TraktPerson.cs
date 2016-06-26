@@ -31,12 +31,5 @@
 
         [JsonProperty(PropertyName = "homepage")]
         public string Homepage { get; set; }
-
-        [JsonIgnore]
-        public Uri HomepageUri
-        {
-            get { return !string.IsNullOrEmpty(Homepage) ? new Uri(Homepage) : null; }
-            set { Homepage = value.AbsoluteUri; }
-        }
     }
 }

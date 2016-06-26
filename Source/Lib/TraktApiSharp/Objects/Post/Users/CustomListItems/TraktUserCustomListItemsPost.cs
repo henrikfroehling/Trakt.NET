@@ -7,10 +7,10 @@
     public class TraktUserCustomListItemsPost
     {
         [JsonProperty(PropertyName = "movies")]
-        public IEnumerable<TraktUserCustomListItemsPostMovieItem> Movies { get; set; }
+        public IEnumerable<TraktUserCustomListItemsPostMovie> Movies { get; set; }
 
         [JsonProperty(PropertyName = "shows")]
-        public IEnumerable<TraktUserCustomListItemsShowItem> Shows { get; set; }
+        public IEnumerable<TraktUserCustomListItemsShow> Shows { get; set; }
 
         [JsonProperty(PropertyName = "people")]
         public IEnumerable<TraktPerson> People { get; set; }

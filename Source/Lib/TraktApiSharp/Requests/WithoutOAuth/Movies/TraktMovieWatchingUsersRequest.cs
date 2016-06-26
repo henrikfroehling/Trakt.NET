@@ -2,9 +2,9 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Movies;
+    using Objects.Get.Users;
 
-    internal class TraktMovieWatchingUsersRequest : TraktGetByIdRequest<TraktListResult<TraktMovieWatchingUser>, TraktMovieWatchingUser>
+    internal class TraktMovieWatchingUsersRequest : TraktGetByIdRequest<TraktListResult<TraktUser>, TraktUser>
     {
         internal TraktMovieWatchingUsersRequest(TraktClient client) : base(client) { }
 

@@ -4,7 +4,7 @@
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
 
-    internal class TraktSyncWatchlistRemoveRequest : TraktPostRequest<TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistRemovePost>
+    internal class TraktSyncWatchlistRemoveRequest : TraktPostRequest<TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistPost>
     {
         internal TraktSyncWatchlistRemoveRequest(TraktClient client) : base(client) { }
 

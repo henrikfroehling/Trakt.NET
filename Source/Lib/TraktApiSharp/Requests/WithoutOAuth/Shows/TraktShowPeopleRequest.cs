@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
     using Base.Get;
-    using Objects.Get.Shows;
+    using Objects.Basic;
 
-    internal class TraktShowPeopleRequest : TraktGetByIdRequest<TraktShowPeople, TraktShowPeople>
+    internal class TraktShowPeopleRequest : TraktGetByIdRequest<TraktCastAndCrew, TraktCastAndCrew>
     {
         internal TraktShowPeopleRequest(TraktClient client) : base(client) { }
 

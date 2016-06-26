@@ -13,6 +13,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -113,9 +114,7 @@
             response.Runtime.Should().Be(136);
             response.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
             response.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
-            response.TrailerUri.Should().NotBeNull();
             response.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
-            response.HomepageUri.Should().NotBeNull();
             response.Rating.Should().Be(8.31988f);
             response.Votes.Should().Be(9338);
             response.LanguageCode.Should().Be("en");
@@ -1090,7 +1089,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMoviePeople>> act =
+            Func<Task<TraktCastAndCrew>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1145,7 +1144,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people", moviePeople);
 
-            Func<Task<TraktMoviePeople>> act =
+            Func<Task<TraktCastAndCrew>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1196,7 +1195,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMovieRating>> act =
+            Func<Task<TraktRating>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRatingsAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1251,7 +1250,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/ratings", movieRatings);
 
-            Func<Task<TraktMovieRating>> act =
+            Func<Task<TraktRating>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRatingsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1587,7 +1586,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMovieStatistics>> act =
+            Func<Task<TraktStatistics>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1642,7 +1641,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/stats", movieStatistics);
 
-            Func<Task<TraktMovieStatistics>> act =
+            Func<Task<TraktStatistics>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1706,7 +1705,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+            Func<Task<TraktListResult<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1761,7 +1760,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", movieWatchingUsers);
 
-            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+            Func<Task<TraktListResult<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2251,7 +2250,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktPaginationListResult<TraktPopularMovie>>> act =
+            Func<Task<TraktPaginationListResult<TraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 

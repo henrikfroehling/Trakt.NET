@@ -6,12 +6,12 @@
     public class TraktSyncRatingsPost
     {
         [JsonProperty(PropertyName = "movies")]
-        public IEnumerable<TraktSyncRatingsPostMovieItem> Movies { get; set; }
+        public IEnumerable<TraktSyncRatingsPostMovie> Movies { get; set; }
 
         [JsonProperty(PropertyName = "shows")]
-        public IEnumerable<TraktSyncRatingsPostShowItem> Shows { get; set; }
+        public IEnumerable<TraktSyncRatingsPostShow> Shows { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktSyncRatingsPostEpisodeItem> Episodes { get; set; }
+        public IEnumerable<TraktSyncRatingsPostEpisode> Episodes { get; set; }
     }
 }

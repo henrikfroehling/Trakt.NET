@@ -29,9 +29,9 @@
         {
             var ratingsPost = new TraktSyncRatingsPost
             {
-                Movies = new List<TraktSyncRatingsPostMovieItem>()
+                Movies = new List<TraktSyncRatingsPostMovie>()
                 {
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         RatedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Rating = 5,
@@ -45,7 +45,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncRatingsPostMovieItem
+                    new TraktSyncRatingsPostMovie
                     {
                         Rating = 10,
                         Ids = new TraktMovieIds
@@ -54,9 +54,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncRatingsPostShowItem>()
+                Shows = new List<TraktSyncRatingsPostShow>()
                 {
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Rating = 9,
                         Title = "Breaking Bad",
@@ -71,7 +71,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -84,16 +84,16 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Rating = 8,
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncRatingsPostShowItem
+                    new TraktSyncRatingsPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -106,19 +106,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncRatingsPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncRatingsPostShowSeason>()
                         {
-                            new TraktSyncRatingsPostShowSeasonItem
+                            new TraktSyncRatingsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncRatingsPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncRatingsPostShowEpisode>()
                                 {
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Rating = 7,
                                         Number = 1
                                     },
-                                    new TraktSyncRatingsPostShowEpisodeItem
+                                    new TraktSyncRatingsPostShowEpisode
                                     {
                                         Rating = 8,
                                         Number = 2
@@ -128,9 +128,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncRatingsPostEpisodeItem>()
+                Episodes = new List<TraktSyncRatingsPostEpisode>()
                 {
-                    new TraktSyncRatingsPostEpisodeItem
+                    new TraktSyncRatingsPostEpisode
                     {
                         Rating = 7,
                         Ids = new TraktEpisodeIds

@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies
 {
     using Base.Get;
-    using Objects.Get.Movies;
+    using Objects.Basic;
 
-    internal class TraktMoviePeopleRequest : TraktGetByIdRequest<TraktMoviePeople, TraktMoviePeople>
+    internal class TraktMoviePeopleRequest : TraktGetByIdRequest<TraktCastAndCrew, TraktCastAndCrew>
     {
         internal TraktMoviePeopleRequest(TraktClient client) : base(client) { }
 
