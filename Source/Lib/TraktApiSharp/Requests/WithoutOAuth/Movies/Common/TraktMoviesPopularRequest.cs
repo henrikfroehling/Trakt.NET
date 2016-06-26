@@ -2,9 +2,9 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Movies.Common;
+    using Objects.Get.Movies;
 
-    internal class TraktMoviesPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktPopularMovie>, TraktPopularMovie>
+    internal class TraktMoviesPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktMovie>, TraktMovie>
     {
         internal TraktMoviesPopularRequest(TraktClient client) : base(client) { }
 

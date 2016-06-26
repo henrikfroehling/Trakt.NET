@@ -2249,7 +2249,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktPaginationListResult<TraktPopularMovie>>> act =
+            Func<Task<TraktPaginationListResult<TraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
