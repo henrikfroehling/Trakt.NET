@@ -109,7 +109,7 @@
             return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
-        public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)
+        public async Task<TraktRating> GetMovieRatingsAsync(string id)
         {
             Validate(id);
 
