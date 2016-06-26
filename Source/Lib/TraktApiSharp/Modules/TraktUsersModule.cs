@@ -4,6 +4,7 @@
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Collection;
+    using Objects.Get.History;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
@@ -348,9 +349,9 @@
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
-        public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
-                                                                                                  string itemId = null, DateTime? startAt = null,
-                                                                                                  DateTime? endAt = null, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
+                                                                                              string itemId = null, DateTime? startAt = null,
+                                                                                              DateTime? endAt = null, int? page = null, int? limit = null)
         {
             ValidateUsername(username);
 

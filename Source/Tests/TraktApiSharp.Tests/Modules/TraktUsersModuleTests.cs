@@ -13,6 +13,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.Shows;
@@ -6505,7 +6506,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistory()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6526,7 +6527,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithType()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6549,7 +6550,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndId()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6573,7 +6574,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6599,7 +6600,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6627,7 +6628,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6655,7 +6656,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6683,7 +6684,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6712,7 +6713,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6740,7 +6741,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6768,7 +6769,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6797,7 +6798,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6823,7 +6824,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6850,7 +6851,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6878,7 +6879,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6906,7 +6907,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6935,7 +6936,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6961,7 +6962,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -6988,7 +6989,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7015,7 +7016,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7043,7 +7044,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7069,7 +7070,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7095,7 +7096,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithTypeAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7122,7 +7123,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7147,7 +7148,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7173,7 +7174,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7200,7 +7201,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7227,7 +7228,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7255,7 +7256,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7281,7 +7282,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7307,7 +7308,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithStartDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7334,7 +7335,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDate()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7359,7 +7360,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7385,7 +7386,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7411,7 +7412,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithEndDateAndPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7438,7 +7439,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithPage()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7463,7 +7464,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7488,7 +7489,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryWithPageAndLimit()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7514,7 +7515,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryComplete()
         {
-            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\Users\UserHistory.json");
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7549,7 +7550,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktPaginationListResult<TraktUserHistoryItem>>> act =
+            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -7597,7 +7598,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryArgumentExceptions()
         {
-            Func<Task<TraktPaginationListResult<TraktUserHistoryItem>>> act =
+            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(null);
             act.ShouldThrow<ArgumentException>();
 

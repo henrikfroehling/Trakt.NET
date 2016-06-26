@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.History
+﻿namespace TraktApiSharp.Objects.Get.History
 {
     using Enums;
     using Movies;
@@ -8,7 +8,7 @@
     using Shows.Seasons;
     using System;
 
-    public class TraktSyncHistoryItem
+    public class TraktHistoryItem
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }

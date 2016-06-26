@@ -4,8 +4,8 @@
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Collection;
+    using Objects.Get.History;
     using Objects.Get.Syncs.Activities;
-    using Objects.Get.Syncs.History;
     using Objects.Get.Syncs.Playback;
     using Objects.Get.Syncs.Ratings;
     using Objects.Get.Syncs.Watched;
@@ -99,9 +99,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
-                                                                                                  DateTime? startAt = null, DateTime? endAt = null,
-                                                                                                  int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
+                                                                                              DateTime? startAt = null, DateTime? endAt = null,
+                                                                                              int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {

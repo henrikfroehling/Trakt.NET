@@ -223,7 +223,7 @@
     <Compile Include="Objects\Get\Collection\TraktCollectionMovieTests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionShowTests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
-    <Compile Include="Objects\Get\Syncs\History\TraktSyncHistoryItemTests.cs" />
+    <Compile Include="Objects\Get\History\TraktHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Ratings\TraktSyncRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItemTests.cs" />
@@ -238,7 +238,6 @@
     <Compile Include="Objects\Get\Users\TraktUserFollowRequestTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFriendsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHiddenItemsTests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserLikeItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFollowerTests.cs" />
@@ -458,7 +457,7 @@
     <None Include="TestData\Objects\Get\Collection\CollectionShows.json" />
     <None Include="TestData\Objects\Get\Collection\CollectionShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
-    <None Include="TestData\Objects\Get\Syncs\History\SyncHistory.json" />
+    <None Include="TestData\Objects\Get\History\History.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
@@ -490,7 +489,6 @@
     <None Include="TestData\Objects\Get\Users\UserFollower.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
-    <None Include="TestData\Objects\Get\Users\UserHistory.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowers.json" />
     <None Include="TestData\Objects\Get\Users\UserFriends.json" />
     <None Include="TestData\Objects\Get\Users\UserFull.json" />

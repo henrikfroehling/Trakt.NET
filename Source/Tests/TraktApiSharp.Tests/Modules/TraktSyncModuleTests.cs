@@ -13,11 +13,11 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Objects.Get.Syncs.History;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Ratings;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
@@ -1416,7 +1416,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistory()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -1436,7 +1436,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithType()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1458,7 +1458,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndId()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1481,7 +1481,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1506,7 +1506,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1533,7 +1533,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1560,7 +1560,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1587,7 +1587,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1615,7 +1615,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1642,7 +1642,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1669,7 +1669,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1697,7 +1697,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1721,7 +1721,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1747,7 +1747,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1774,7 +1774,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1801,7 +1801,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1830,7 +1830,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1854,7 +1854,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1879,7 +1879,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1904,7 +1904,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1931,7 +1931,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1955,7 +1955,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -1979,7 +1979,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithTypeAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -2004,7 +2004,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2027,7 +2027,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2051,7 +2051,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2077,7 +2077,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2103,7 +2103,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2131,7 +2131,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2155,7 +2155,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2179,7 +2179,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithStartDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var startAt = DateTime.UtcNow.AddMonths(-1);
@@ -2204,7 +2204,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDate()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2227,7 +2227,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2251,7 +2251,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2275,7 +2275,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithEndDateAndPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var endAt = DateTime.UtcNow;
@@ -2300,7 +2300,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPage()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2322,7 +2322,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2344,7 +2344,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryWithPageAndLimit()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
@@ -2367,7 +2367,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchedHistoryComplete()
         {
-            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
@@ -2401,7 +2401,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktSyncHistoryItem>>> act =
+            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

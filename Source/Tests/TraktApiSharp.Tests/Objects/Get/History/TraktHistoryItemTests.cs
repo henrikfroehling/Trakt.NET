@@ -7,16 +7,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.History;
+    using TraktApiSharp.Objects.Get.History;
     using Utils;
 
     [TestClass]
-    public class TraktSyncHistoryItemTests
+    public class TraktHistoryItemTests
     {
         [TestMethod]
         public void TestTraktSyncHistoryItemDefaultConstructor()
         {
-            var historyItem = new TraktSyncHistoryItem();
+            var historyItem = new TraktHistoryItem();
 
             historyItem.Id.Should().Be(0);
             historyItem.WatchedAt.Should().Be(DateTime.MinValue);
@@ -29,13 +29,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncHistoryItemReadFromJson()
+        public void TestTraktHistoryItemReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\History\SyncHistory.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var historyItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncHistoryItem>>(jsonFile);
+            var historyItems = JsonConvert.DeserializeObject<IEnumerable<TraktHistoryItem>>(jsonFile);
 
             historyItems.Should().NotBeNull();
 

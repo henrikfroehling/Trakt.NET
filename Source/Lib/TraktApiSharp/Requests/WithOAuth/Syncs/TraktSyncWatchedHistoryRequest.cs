@@ -4,11 +4,11 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
-    using Objects.Get.Syncs.History;
+    using Objects.Get.History;
     using System;
     using System.Collections.Generic;
 
-    internal class TraktSyncWatchedHistoryRequest : TraktGetRequest<TraktPaginationListResult<TraktSyncHistoryItem>, TraktSyncHistoryItem>
+    internal class TraktSyncWatchedHistoryRequest : TraktGetRequest<TraktPaginationListResult<TraktHistoryItem>, TraktHistoryItem>
     {
         internal TraktSyncWatchedHistoryRequest(TraktClient client) : base(client) { }
 
