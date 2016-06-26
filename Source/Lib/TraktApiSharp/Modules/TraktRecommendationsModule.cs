@@ -3,7 +3,7 @@
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
-    using Objects.Get.Recommendations;
+    using Objects.Get.Shows;
     using Requests;
     using Requests.WithOAuth.Recommendations;
     using System;
@@ -14,7 +14,7 @@
         public TraktRecommendationsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
-                                                                                                            TraktExtendedOption extended = null)
+                                                                                              TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
@@ -30,8 +30,8 @@
             await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieId });
         }
 
-        public async Task<TraktPaginationListResult<TraktShowRecommendation>> GetShowRecommendationsAsync(int? limit = null,
-                                                                                                          TraktExtendedOption extended = null)
+        public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
+                                                                                            TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
