@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Collection
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collection
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,16 +7,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Collection;
+    using TraktApiSharp.Objects.Get.Collection;
     using Utils;
 
     [TestClass]
-    public class TraktSyncCollectionMovieItemTests
+    public class TraktCollectionMovieTests
     {
         [TestMethod]
-        public void TestTraktSyncCollectionMovieItemDefaultConstructor()
+        public void TestTraktCollectionMovieDefaultConstructor()
         {
-            var collectionMovie = new TraktSyncCollectionMovieItem();
+            var collectionMovie = new TraktCollectionMovie();
 
             collectionMovie.CollectedAt.Should().Be(DateTime.MinValue);
             collectionMovie.Movie.Should().BeNull();
@@ -24,13 +24,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncCollectionMovieItemReadFromJson()
+        public void TestTraktCollectionMovieReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMovies.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMovies.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var collectionMovies = JsonConvert.DeserializeObject<IEnumerable<TraktSyncCollectionMovieItem>>(jsonFile);
+            var collectionMovies = JsonConvert.DeserializeObject<IEnumerable<TraktCollectionMovie>>(jsonFile);
 
             collectionMovies.Should().NotBeNull();
 
@@ -60,13 +60,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncCollectionMovieItemReadFromJsonMetadata()
+        public void TestTraktCollectionMovieReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var collectionMovies = JsonConvert.DeserializeObject<IEnumerable<TraktSyncCollectionMovieItem>>(jsonFile);
+            var collectionMovies = JsonConvert.DeserializeObject<IEnumerable<TraktCollectionMovie>>(jsonFile);
 
             collectionMovies.Should().NotBeNull();
 

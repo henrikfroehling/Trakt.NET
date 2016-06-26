@@ -220,8 +220,8 @@
     <Compile Include="Objects\Basic\TraktSearchResultTests.cs" />
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Collection\TraktSyncCollectionMovieItemTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Collection\TraktSyncCollectionShowItemTests.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionMovieTests.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionShowTests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
     <Compile Include="Objects\Get\Syncs\History\TraktSyncHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
@@ -233,7 +233,6 @@
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktSharingTextTests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserCollectionTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserCommentTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowersTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowRequestTests.cs" />
@@ -454,10 +453,10 @@
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgress.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchingUsers.json" />
-    <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionMovies.json" />
-    <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json" />
-    <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionShows.json" />
-    <None Include="TestData\Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json" />
+    <None Include="TestData\Objects\Get\Collection\CollectionMovies.json" />
+    <None Include="TestData\Objects\Get\Collection\CollectionMoviesMetadata.json" />
+    <None Include="TestData\Objects\Get\Collection\CollectionShows.json" />
+    <None Include="TestData\Objects\Get\Collection\CollectionShowsMetadata.json" />
     <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
     <None Include="TestData\Objects\Get\Syncs\History\SyncHistory.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
@@ -492,8 +491,6 @@
     <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
     <None Include="TestData\Objects\Get\Users\UserHistory.json" />
-    <None Include="TestData\Objects\Get\Users\UserCollectionMovies.json" />
-    <None Include="TestData\Objects\Get\Users\UserCollectionShows.json" />
     <None Include="TestData\Objects\Get\Users\UserFollowers.json" />
     <None Include="TestData\Objects\Get\Users\UserFriends.json" />
     <None Include="TestData\Objects\Get\Users\UserFull.json" />

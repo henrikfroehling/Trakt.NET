@@ -12,11 +12,11 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Objects.Get.Users.Collections;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Watched;
@@ -1010,7 +1010,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMovies()
         {
-            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionMovies.json");
+            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMovies.json");
             moviesCollection.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -1026,7 +1026,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesWithExtendedOption()
         {
-            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionMovies.json");
+            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMovies.json");
             moviesCollection.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -1054,7 +1054,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserCollectionMovieItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1098,7 +1098,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserCollectionMovieItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1119,7 +1119,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShows()
         {
-            var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionShows.json");
+            var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShows.json");
             showsCollection.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -1135,7 +1135,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShowsWithExtendedOption()
         {
-            var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Users\UserCollectionShows.json");
+            var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShows.json");
             showsCollection.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -1163,7 +1163,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserCollectionShowItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1207,7 +1207,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShowsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserCollectionShowItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(null);
             act.ShouldThrow<ArgumentException>();
 

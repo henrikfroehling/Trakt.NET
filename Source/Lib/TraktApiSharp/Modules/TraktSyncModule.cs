@@ -3,8 +3,8 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
+    using Objects.Get.Collection;
     using Objects.Get.Syncs.Activities;
-    using Objects.Get.Syncs.Collection;
     using Objects.Get.Syncs.History;
     using Objects.Get.Syncs.Playback;
     using Objects.Get.Syncs.Ratings;
@@ -53,7 +53,7 @@
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
             {
@@ -61,7 +61,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
             {

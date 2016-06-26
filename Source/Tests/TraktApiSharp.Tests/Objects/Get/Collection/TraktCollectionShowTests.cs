@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Collection
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collection
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,16 +7,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Collection;
+    using TraktApiSharp.Objects.Get.Collection;
     using Utils;
 
     [TestClass]
-    public class TraktSyncCollectionShowItemTests
+    public class TraktCollectionShowTests
     {
         [TestMethod]
-        public void TestTraktSyncCollectionShowItemDefaultConstructor()
+        public void TestTraktCollectionShowDefaultConstructor()
         {
-            var collectionShow = new TraktSyncCollectionShowItem();
+            var collectionShow = new TraktCollectionShow();
 
             collectionShow.LastCollectedAt.Should().Be(DateTime.MinValue);
             collectionShow.Show.Should().BeNull();
@@ -24,13 +24,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncCollectionShowItemReadFromJson()
+        public void TestTraktCollectionShowReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShows.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShows.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var collectionShows = JsonConvert.DeserializeObject<IEnumerable<TraktSyncCollectionShowItem>>(jsonFile);
+            var collectionShows = JsonConvert.DeserializeObject<IEnumerable<TraktCollectionShow>>(jsonFile);
 
             collectionShows.Should().NotBeNull();
 
@@ -138,13 +138,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncCollectionShowItemReadFromJsonMetadata()
+        public void TestTraktCollectionShowReadFromJsonMetadata()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var collectionShows = JsonConvert.DeserializeObject<IEnumerable<TraktSyncCollectionShowItem>>(jsonFile);
+            var collectionShows = JsonConvert.DeserializeObject<IEnumerable<TraktCollectionShow>>(jsonFile);
 
             collectionShows.Should().NotBeNull();
 

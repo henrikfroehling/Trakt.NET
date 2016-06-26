@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Collection
+﻿namespace TraktApiSharp.Objects.Get.Collection
 {
     using Newtonsoft.Json;
     using Shows;
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncCollectionShowItem
+    public class TraktCollectionShow
     {
         [JsonProperty(PropertyName = "last_collected_at")]
         public DateTime LastCollectedAt { get; set; }
@@ -14,6 +14,6 @@
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncCollectionSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktCollectionSeason> Seasons { get; set; }
     }
 }

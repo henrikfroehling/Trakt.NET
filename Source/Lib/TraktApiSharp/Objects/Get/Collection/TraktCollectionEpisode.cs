@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Collection
+﻿namespace TraktApiSharp.Objects.Get.Collection
 {
     using Basic;
     using Newtonsoft.Json;
     using System;
 
-    public class TraktSyncCollectionEpisodeItem
+    public class TraktCollectionEpisode
     {
         [JsonProperty(PropertyName = "number")]
         public int Number { get; set; }

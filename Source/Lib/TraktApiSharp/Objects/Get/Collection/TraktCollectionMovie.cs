@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Collection
+﻿namespace TraktApiSharp.Objects.Get.Collection
 {
     using Basic;
     using Movies;
     using Newtonsoft.Json;
     using System;
 
-    public class TraktSyncCollectionMovieItem
+    public class TraktCollectionMovie
     {
         [JsonProperty(PropertyName = "collected_at")]
         public DateTime CollectedAt { get; set; }

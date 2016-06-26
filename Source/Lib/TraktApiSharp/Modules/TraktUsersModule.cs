@@ -3,8 +3,8 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
+    using Objects.Get.Collection;
     using Objects.Get.Users;
-    using Objects.Get.Users.Collections;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Users.Watched;
@@ -70,8 +70,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserCollectionMovieItem>> GetCollectionMoviesAsync(string username,
-                                                                                                  TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(string username,
+                                                                                          TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -82,8 +82,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserCollectionShowItem>> GetCollectionShowsAsync(string username,
-                                                                                                TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(string username,
+                                                                                        TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 

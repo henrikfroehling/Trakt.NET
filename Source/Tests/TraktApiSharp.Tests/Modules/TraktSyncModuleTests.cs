@@ -12,11 +12,11 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Objects.Get.Syncs.Collection;
     using TraktApiSharp.Objects.Get.Syncs.History;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Ratings;
@@ -458,7 +458,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionMovies()
         {
-            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json");
+            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/collection/movies", collectionMovies);
@@ -472,7 +472,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionMoviesComplete()
         {
-            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionMoviesMetadata.json");
+            var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -498,7 +498,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncCollectionMovieItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -553,7 +553,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShows()
         {
-            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth("sync/collection/shows", collectionShows);
@@ -567,7 +567,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetCollectionShowsComplete()
         {
-            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Collection\SyncCollectionShowsMetadata.json");
+            var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -593,7 +593,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncCollectionShowItem>>> act =
+            Func<Task<TraktListResult<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
