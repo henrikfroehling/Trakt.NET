@@ -64,7 +64,7 @@
             });
         }
 
-        public async Task<TraktSeasonStatistics> GetSeasonStatisticsAsync(string showId, int season)
+        public async Task<TraktStatistics> GetSeasonStatisticsAsync(string showId, int season)
         {
             Validate(showId, season);
 
