@@ -76,7 +76,7 @@
             return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
         }
 
-        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionRemovePost collectionRemovePost)
+        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost)
         {
             ValidateCollectionPost(collectionRemovePost);
 

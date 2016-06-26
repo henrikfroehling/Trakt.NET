@@ -266,7 +266,6 @@
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionPostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostTests.cs" />
-    <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionRemovePostTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostTests.cs" />

@@ -653,9 +653,9 @@
 
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -668,7 +668,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -676,9 +676,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -692,7 +692,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -705,15 +705,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -726,19 +726,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncCollectionPostShowEpisode>()
                                 {
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -747,9 +747,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -811,9 +811,9 @@
         {
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -827,9 +827,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -844,9 +844,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -925,9 +925,9 @@
 
             var collectionPost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>(),
-                Shows = new List<TraktSyncCollectionPostShowItem>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>(),
+                Shows = new List<TraktSyncCollectionPostShow>(),
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
@@ -947,11 +947,11 @@
             var removedCollectionItems = TestUtility.ReadFileContents(@"Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json");
             removedCollectionItems.Should().NotBeNullOrEmpty();
 
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -964,7 +964,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -972,9 +972,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -988,7 +988,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -1001,15 +1001,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -1022,19 +1022,19 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncCollectionPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncCollectionPostShowSeason>()
                         {
-                            new TraktSyncCollectionPostShowSeasonItem
+                            new TraktSyncCollectionPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncCollectionPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncCollectionPostShowEpisode>()
                                 {
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
-                                    new TraktSyncCollectionPostShowEpisodeItem
+                                    new TraktSyncCollectionPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -1043,9 +1043,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1093,11 +1093,11 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveCollectionItemsExceptions()
         {
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>()
                 {
-                    new TraktSyncCollectionPostMovieItem
+                    new TraktSyncCollectionPostMovie
                     {
                         CollectedAt = DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime(),
                         Title = "Batman Begins",
@@ -1111,9 +1111,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncCollectionPostShowItem>()
+                Shows = new List<TraktSyncCollectionPostShow>()
                 {
-                    new TraktSyncCollectionPostShowItem
+                    new TraktSyncCollectionPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -1128,9 +1128,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
                 {
-                    new TraktSyncCollectionPostEpisodeItem
+                    new TraktSyncCollectionPostEpisodeI
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1204,14 +1204,14 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionRemovePost());
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionPost());
             act.ShouldThrow<ArgumentException>();
 
-            var collectionRemovePost = new TraktSyncCollectionRemovePost
+            var collectionRemovePost = new TraktSyncCollectionPost
             {
-                Movies = new List<TraktSyncCollectionPostMovieItem>(),
-                Shows = new List<TraktSyncCollectionPostShowItem>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeItem>()
+                Movies = new List<TraktSyncCollectionPostMovie>(),
+                Shows = new List<TraktSyncCollectionPostShow>(),
+                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost);

@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncCollectionPostShowItem
+    public class TraktSyncCollectionPostShow
     {
         [JsonProperty(PropertyName = "collected_at")]
         public DateTime? CollectedAt { get; set; }
@@ -21,7 +21,7 @@
         public TraktShowIds Ids { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncCollectionPostShowSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktSyncCollectionPostShowSeason> Seasons { get; set; }
 
         [JsonProperty(PropertyName = "metadata")]
         public TraktMetadata Metadata { get; set; }
