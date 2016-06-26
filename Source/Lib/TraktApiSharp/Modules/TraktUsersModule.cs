@@ -10,6 +10,7 @@
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Users.Watched;
+    using Objects.Get.Watchlist;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -381,8 +382,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
-                                                                                     TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 

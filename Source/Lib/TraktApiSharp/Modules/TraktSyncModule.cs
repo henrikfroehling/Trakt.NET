@@ -9,7 +9,7 @@
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Playback;
     using Objects.Get.Syncs.Watched;
-    using Objects.Get.Syncs.Watchlist;
+    using Objects.Get.Watchlist;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
@@ -153,8 +153,8 @@
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
-                                                                                     TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Watchlist
+﻿namespace TraktApiSharp.Objects.Get.Watchlist
 {
     using Enums;
     using Movies;
@@ -8,7 +8,7 @@
     using Shows.Seasons;
     using System;
 
-    public class TraktSyncWatchlistItem
+    public class TraktWatchlistItem
     {
         [JsonProperty(PropertyName = "listed_at")]
         public DateTime ListedAt { get; set; }

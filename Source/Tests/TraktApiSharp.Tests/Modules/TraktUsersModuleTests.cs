@@ -22,6 +22,7 @@
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Watched;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
@@ -8109,7 +8110,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlist()
         {
-            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8119,13 +8120,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithType()
         {
-            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8136,13 +8137,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithExtendedOption()
         {
-            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8158,13 +8159,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistComplete()
         {
-            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Users\Watchlist\UserWatchlist.json");
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8183,7 +8184,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -8194,7 +8195,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -8238,7 +8239,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserWatchlistItem>>> act =
+            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(null);
             act.ShouldThrow<ArgumentException>();
 

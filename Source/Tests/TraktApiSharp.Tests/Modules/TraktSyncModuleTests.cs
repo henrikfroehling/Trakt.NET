@@ -21,7 +21,7 @@
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
-    using TraktApiSharp.Objects.Get.Syncs.Watchlist;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Objects.Post.Syncs.History;
@@ -4076,7 +4076,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlist()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watchlist", watchlist);
@@ -4090,7 +4090,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithType()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Episode;
@@ -4106,7 +4106,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistWithExtendedOption()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -4126,7 +4126,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetWatchlistComplete()
         {
-            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlist.json");
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Episode;
@@ -4154,7 +4154,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncWatchlistItem>>> act =
+            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

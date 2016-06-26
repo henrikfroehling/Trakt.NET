@@ -7,16 +7,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Watchlist;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using Utils;
 
     [TestClass]
-    public class TraktSyncWatchlistItemTests
+    public class TraktWatchlistItemTests
     {
         [TestMethod]
-        public void TestTraktSyncWatchlistItemDefaultConstructor()
+        public void TestTraktWatchlistItemDefaultConstructor()
         {
-            var watchlistItem = new TraktSyncWatchlistItem();
+            var watchlistItem = new TraktWatchlistItem();
 
             watchlistItem.ListedAt.Should().Be(DateTime.MinValue);
             watchlistItem.Type.Should().Be(TraktSyncItemType.Unspecified);
@@ -27,13 +27,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchlistItemReadFromJsonMovies()
+        public void TestTraktWatchlistItemReadFromJsonMovies()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlistMovies.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\WatchlistMovies.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var movieItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchlistItem>>(jsonFile);
+            var movieItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchlistItem>>(jsonFile);
 
             movieItems.Should().NotBeNull();
             movieItems.Should().HaveCount(2);
@@ -70,13 +70,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchlistItemReadFromJsonShows()
+        public void TestTraktWatchlistItemReadFromJsonShows()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlistShows.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\WatchlistShows.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchlistItem>>(jsonFile);
+            var showItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchlistItem>>(jsonFile);
 
             showItems.Should().NotBeNull();
             showItems.Should().HaveCount(2);
@@ -117,13 +117,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchlistItemReadFromJsonSeasons()
+        public void TestTraktWatchlistItemReadFromJsonSeasons()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlistSeasons.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\WatchlistSeasons.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var seasonItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchlistItem>>(jsonFile);
+            var seasonItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchlistItem>>(jsonFile);
 
             seasonItems.Should().NotBeNull();
             seasonItems.Should().HaveCount(2);
@@ -176,13 +176,13 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncWatchlistItemReadFromJsonEpisodes()
+        public void TestTraktWatchlistItemReadFromJsonEpisodes()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Watchlist\SyncWatchlistEpisodes.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\WatchlistEpisodes.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var episodeItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncWatchlistItem>>(jsonFile);
+            var episodeItems = JsonConvert.DeserializeObject<IEnumerable<TraktWatchlistItem>>(jsonFile);
 
             episodeItems.Should().NotBeNull();
             episodeItems.Should().HaveCount(2);
