@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Shows.Seasons;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithoutOAuth.Shows.Seasons;
     using System;
@@ -75,8 +76,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSeasonWatchingUser>> GetSeasonWatchingUsersAsync(string showId, int season,
-                                                                                                TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetSeasonWatchingUsersAsync(string showId, int season,
+                                                                                  TraktExtendedOption extended = null)
         {
             Validate(showId, season);
 

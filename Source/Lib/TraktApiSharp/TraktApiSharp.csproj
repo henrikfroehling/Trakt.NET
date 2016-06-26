@@ -218,7 +218,6 @@
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeason.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonIds.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonImages.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchingUser.cs" />
     <Compile Include="Objects\Get\Shows\TraktShow.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAirs.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAlias.cs" />

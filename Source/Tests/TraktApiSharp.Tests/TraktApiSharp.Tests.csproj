@@ -198,7 +198,6 @@
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonsAllTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonTests.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchingUsersTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgressTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAliasesTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowRelatedShowsTests.cs" />
