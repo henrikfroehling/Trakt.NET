@@ -273,7 +273,6 @@
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostTests.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsRemovePostTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistPostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponseTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />

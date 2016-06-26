@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncRatingsPostShowItem
+    public class TraktSyncRatingsPostShow
     {
         [JsonProperty(PropertyName = "rated_at")]
         public DateTime? RatedAt { get; set; }
@@ -23,6 +23,6 @@
         public TraktShowIds Ids { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncRatingsPostShowSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktSyncRatingsPostShowSeason> Seasons { get; set; }
     }
 }

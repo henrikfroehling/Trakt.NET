@@ -146,7 +146,7 @@
             return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
         }
 
-        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsRemovePost ratingsRemovePost)
+        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost)
         {
             ValidateRatingsPost(ratingsRemovePost);
 

@@ -266,12 +266,11 @@
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\TraktSyncRatingsRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPost.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostMovieItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowSeasonItem.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsRemovePost.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostMovie.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShow.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostShowSeason.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionRemovePostResponse.cs" />

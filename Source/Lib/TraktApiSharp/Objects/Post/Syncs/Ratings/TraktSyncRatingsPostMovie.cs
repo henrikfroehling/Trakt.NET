@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktSyncRatingsPostMovieItem
+    public class TraktSyncRatingsPostMovie
     {
         [JsonProperty(PropertyName = "rated_at")]
         public DateTime? RatedAt { get; set; }
