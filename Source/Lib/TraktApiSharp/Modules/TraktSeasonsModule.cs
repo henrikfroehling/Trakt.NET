@@ -53,7 +53,7 @@
             });
         }
 
-        public async Task<TraktSeasonRating> GetSeasonRatingsAsync(string showId, int season)
+        public async Task<TraktRating> GetSeasonRatingsAsync(string showId, int season)
         {
             Validate(showId, season);
 

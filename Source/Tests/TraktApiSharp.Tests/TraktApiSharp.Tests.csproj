@@ -196,7 +196,6 @@
     <Compile Include="Objects\Get\Shows\Common\TraktShowsRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsTrendingTests.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
-    <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonsAllTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonStatisticsTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonTests.cs" />
