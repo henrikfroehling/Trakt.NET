@@ -1585,7 +1585,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMovieStatistics>> act =
+            Func<Task<TraktStatistics>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1640,7 +1640,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/stats", movieStatistics);
 
-            Func<Task<TraktMovieStatistics>> act =
+            Func<Task<TraktStatistics>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieStatisticsAsync(null);
             act.ShouldThrow<ArgumentException>();
 

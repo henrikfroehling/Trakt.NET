@@ -184,7 +184,6 @@
     <Compile Include="Objects\Get\Movies\TraktMovieSingleAliasTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieSingleReleaseTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieSingleTranslationTests.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieStatisticsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTranslationsTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieWatchingUsersTests.cs" />

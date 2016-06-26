@@ -129,7 +129,7 @@
             });
         }
 
-        public async Task<TraktMovieStatistics> GetMovieStatisticsAsync(string id)
+        public async Task<TraktStatistics> GetMovieStatisticsAsync(string id)
         {
             Validate(id);
 
