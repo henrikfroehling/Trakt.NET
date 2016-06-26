@@ -8812,7 +8812,7 @@
             response.Should().NotBeNull();
             response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
             response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Action.Should().Be(TraktHistoryActionType.Checkin);
             response.Type.Should().Be(TraktSyncType.Movie);
             response.Movie.Should().NotBeNull();
             response.Movie.Title.Should().Be("Super 8");
@@ -8847,7 +8847,7 @@
             response.Should().NotBeNull();
             response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
             response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            response.Action.Should().Be(TraktSyncHistoryActionType.Checkin);
+            response.Action.Should().Be(TraktHistoryActionType.Checkin);
             response.Type.Should().Be(TraktSyncType.Movie);
             response.Movie.Should().NotBeNull();
             response.Movie.Title.Should().Be("Super 8");

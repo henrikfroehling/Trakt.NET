@@ -17,8 +17,8 @@
         public DateTime WatchedAt { get; set; }
 
         [JsonProperty(PropertyName = "action")]
-        [JsonConverter(typeof(TraktSyncHistoryActionTypeConverter))]
-        public TraktSyncHistoryActionType Action { get; set; }
+        [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
+        public TraktHistoryActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncItemTypeConverter))]
