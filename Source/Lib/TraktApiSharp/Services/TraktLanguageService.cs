@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Linq;
 
-    public static class LanguageService
+    public static class TraktLanguageService
     {
         public static string GetLanguage(string languageCode)
         {
