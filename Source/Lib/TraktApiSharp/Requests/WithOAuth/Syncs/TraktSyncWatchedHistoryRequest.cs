@@ -54,7 +54,5 @@
         protected override bool SupportsPagination => true;
 
         protected override bool IsListResult => true;
-
-        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Unspecified;
     }
 }
