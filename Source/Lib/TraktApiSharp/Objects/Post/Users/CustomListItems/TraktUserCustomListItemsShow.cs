@@ -4,12 +4,12 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class TraktUserCustomListItemsShowItem
+    public class TraktUserCustomListItemsShow
     {
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktUserCustomListItemsShowSeasonItem> Seasons { get; set; }
+        public IEnumerable<TraktUserCustomListItemsShowSeason> Seasons { get; set; }
     }
 }

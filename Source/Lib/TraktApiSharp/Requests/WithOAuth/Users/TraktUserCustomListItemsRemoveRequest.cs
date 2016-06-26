@@ -5,7 +5,7 @@
     using Objects.Post.Users.CustomListItems.Responses;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListItemsRemoveRequest : TraktPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsRemovePost>
+    internal class TraktUserCustomListItemsRemoveRequest : TraktPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>
     {
         internal TraktUserCustomListItemsRemoveRequest(TraktClient client) : base(client) { }
 

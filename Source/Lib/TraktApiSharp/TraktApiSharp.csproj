@@ -299,11 +299,10 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponse.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovieItem.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsRemovePost.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowItem.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovie.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowEpisode.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShow.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowSeason.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPost.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPost.cs" />

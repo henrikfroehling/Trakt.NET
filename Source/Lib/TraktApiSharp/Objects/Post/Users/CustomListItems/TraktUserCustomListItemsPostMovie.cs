@@ -3,7 +3,7 @@
     using Get.Movies;
     using Newtonsoft.Json;
 
-    public class TraktUserCustomListItemsPostMovieItem
+    public class TraktUserCustomListItemsPostMovie
     {
         [JsonProperty(PropertyName = "ids")]
         public TraktMovieIds Ids { get; set; }

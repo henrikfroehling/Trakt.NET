@@ -248,7 +248,7 @@
         }
 
         public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
-                                                                                                 TraktUserCustomListItemsRemovePost listItemsRemovePost)
+                                                                                                 TraktUserCustomListItemsPost listItemsRemovePost)
         {
             ValidateUsername(username);
             ValidateListId(listId);

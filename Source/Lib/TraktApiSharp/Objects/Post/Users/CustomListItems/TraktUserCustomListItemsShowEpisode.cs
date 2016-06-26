@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class TraktUserCustomListItemsShowEpisodeItem
+    public class TraktUserCustomListItemsShowEpisode
     {
         [JsonProperty(PropertyName = "number")]
         public int Number { get; set; }
