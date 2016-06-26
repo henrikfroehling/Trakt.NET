@@ -13,5 +13,7 @@
         protected override string UriTemplate => "shows/{id}/seasons{?extended}";
 
         protected override bool IsListResult => true;
+
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
