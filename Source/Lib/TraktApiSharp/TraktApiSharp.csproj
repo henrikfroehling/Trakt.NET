@@ -229,7 +229,6 @@
     <Compile Include="Objects\Get\Shows\TraktShowAlias.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowIds.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowImages.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowRating.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowStatistics.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowTranslation.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchingUser.cs" />

@@ -96,7 +96,7 @@
             });
         }
 
-        public async Task<TraktShowRating> GetShowRatingsAsync(string id)
+        public async Task<TraktRating> GetShowRatingsAsync(string id)
         {
             Validate(id);
 

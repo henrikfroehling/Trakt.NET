@@ -206,7 +206,6 @@
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonWatchingUsersTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgressTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAliasesTests.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowRatingTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowRelatedShowsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowSingleAliasTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowSingleTranslationTests.cs" />
