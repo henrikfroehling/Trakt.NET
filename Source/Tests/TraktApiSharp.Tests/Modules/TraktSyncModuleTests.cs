@@ -15,11 +15,11 @@
     using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
-    using TraktApiSharp.Objects.Get.Syncs.Ratings;
     using TraktApiSharp.Objects.Get.Syncs.Watched;
     using TraktApiSharp.Objects.Get.Syncs.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
@@ -3031,7 +3031,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatings()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             TestUtility.SetupMockResponseWithOAuth($"sync/ratings", ratings);
@@ -3045,7 +3045,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithType()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncRatingsItemType.Movie;
@@ -3061,7 +3061,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3082,7 +3082,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3103,7 +3103,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3124,7 +3124,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3145,7 +3145,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3166,7 +3166,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3187,7 +3187,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3208,7 +3208,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3229,7 +3229,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3250,7 +3250,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3271,7 +3271,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3291,7 +3291,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3311,7 +3311,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3331,7 +3331,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3351,7 +3351,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithRatingsFilter()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3370,7 +3370,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncRatingsItemType.Movie;
@@ -3394,7 +3394,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsWithExtendedOption()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var extendedOption = new TraktExtendedOption
@@ -3414,7 +3414,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetUserRatingsComplete()
         {
-            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatings.json");
+            var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -3446,7 +3446,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktSyncRatingsItem>>> act =
+            Func<Task<TraktListResult<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Ratings
+﻿namespace TraktApiSharp.Objects.Get.Ratings
 {
     using Enums;
     using Movies;
@@ -8,7 +8,7 @@
     using Shows.Seasons;
     using System;
 
-    public class TraktSyncRatingsItem
+    public class TraktRatingsItem
     {
         [JsonProperty(PropertyName = "rated_at")]
         public DateTime RatedAt { get; set; }

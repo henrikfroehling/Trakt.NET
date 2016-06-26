@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
+    using Objects.Get.Ratings;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
@@ -366,8 +367,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
-                                                                                 int[] rating = null, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
+                                                                             int[] rating = null, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 

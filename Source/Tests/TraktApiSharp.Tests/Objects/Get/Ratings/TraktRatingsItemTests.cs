@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Ratings;
+    using TraktApiSharp.Objects.Get.Ratings;
     using Utils;
 
     [TestClass]
@@ -16,7 +16,7 @@
         [TestMethod]
         public void TestTraktSyncRatingsItemDefaultConstructor()
         {
-            var ratingsItem = new TraktSyncRatingsItem();
+            var ratingsItem = new TraktRatingsItem();
 
             ratingsItem.RatedAt.Should().Be(DateTime.MinValue);
             ratingsItem.Rating.Should().Be(0);
@@ -30,11 +30,11 @@
         [TestMethod]
         public void TestTraktSyncRatingsItemReadFromJsonMovies()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatingsMovies.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Ratings\RatingsMovies.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncRatingsItem>>(jsonFile);
+            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktRatingsItem>>(jsonFile);
 
             ratingsItems.Should().NotBeNull();
             ratingsItems.Should().HaveCount(2);
@@ -75,11 +75,11 @@
         [TestMethod]
         public void TestTraktSyncRatingsItemReadFromJsonShows()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatingsShows.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Ratings\RatingsShows.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncRatingsItem>>(jsonFile);
+            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktRatingsItem>>(jsonFile);
 
             ratingsItems.Should().NotBeNull();
             ratingsItems.Should().HaveCount(2);
@@ -124,11 +124,11 @@
         [TestMethod]
         public void TestTraktSyncRatingsItemReadFromJsonSeasons()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatingsSeasons.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Ratings\RatingsSeasons.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncRatingsItem>>(jsonFile);
+            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktRatingsItem>>(jsonFile);
 
             ratingsItems.Should().NotBeNull();
             ratingsItems.Should().HaveCount(2);
@@ -185,11 +185,11 @@
         [TestMethod]
         public void TestTraktSyncRatingsItemReadFromJsonEpisodes()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Ratings\SyncRatingsEpisodes.json");
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Ratings\RatingsEpisodes.json");
 
             jsonFile.Should().NotBeNullOrEmpty();
 
-            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktSyncRatingsItem>>(jsonFile);
+            var ratingsItems = JsonConvert.DeserializeObject<IEnumerable<TraktRatingsItem>>(jsonFile);
 
             ratingsItems.Should().NotBeNull();
             ratingsItems.Should().HaveCount(2);

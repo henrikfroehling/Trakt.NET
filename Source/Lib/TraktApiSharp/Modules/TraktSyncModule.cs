@@ -5,9 +5,9 @@
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
+    using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Playback;
-    using Objects.Get.Syncs.Ratings;
     using Objects.Get.Syncs.Watched;
     using Objects.Get.Syncs.Watchlist;
     using Objects.Post.Syncs.Collection;
@@ -127,9 +127,9 @@
             return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
-                                                                                 int[] rating = null,
-                                                                                 TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
+                                                                             int[] rating = null,
+                                                                             TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncRatingsRequest(Client)
             {

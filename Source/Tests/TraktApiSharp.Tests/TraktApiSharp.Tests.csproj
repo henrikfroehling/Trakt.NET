@@ -225,7 +225,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
     <Compile Include="Objects\Get\History\TraktHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Ratings\TraktSyncRatingsItemTests.cs" />
+    <Compile Include="Objects\Get\Ratings\TraktRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Watchlist\TraktSyncWatchlistItemTests.cs" />
@@ -239,7 +239,6 @@
     <Compile Include="Objects\Get\Users\TraktUserFriendsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserHiddenItemsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserLikeItemTests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFollowerTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFriendTests.cs" />
@@ -461,11 +460,11 @@
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
-    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatings.json" />
-    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsEpisodes.json" />
-    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsMovies.json" />
-    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsSeasons.json" />
-    <None Include="TestData\Objects\Get\Syncs\Ratings\SyncRatingsShows.json" />
+    <None Include="TestData\Objects\Get\Ratings\Ratings.json" />
+    <None Include="TestData\Objects\Get\Ratings\RatingsEpisodes.json" />
+    <None Include="TestData\Objects\Get\Ratings\RatingsMovies.json" />
+    <None Include="TestData\Objects\Get\Ratings\RatingsSeasons.json" />
+    <None Include="TestData\Objects\Get\Ratings\RatingsShows.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedMovies.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShows.json" />
     <None Include="TestData\Objects\Get\Syncs\Watched\SyncWatchedShowsNoSeasons.json" />
@@ -479,11 +478,6 @@
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
     <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
-    <None Include="TestData\Objects\Get\Users\Ratings\UserRatings.json" />
-    <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsEpisodes.json" />
-    <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsMovies.json" />
-    <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsSeasons.json" />
-    <None Include="TestData\Objects\Get\Users\Ratings\UserRatingsShows.json" />
     <None Include="TestData\Objects\Get\Users\SharingText.json" />
     <None Include="TestData\Objects\Get\Users\UserComments.json" />
     <None Include="TestData\Objects\Get\Users\UserFollower.json" />

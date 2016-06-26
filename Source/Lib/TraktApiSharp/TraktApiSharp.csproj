@@ -154,7 +154,7 @@
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />
-    <Compile Include="Objects\Get\Syncs\Ratings\TraktSyncRatingsItem.cs" />
+    <Compile Include="Objects\Get\Ratings\TraktRatingsItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedMovieItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowEpisodeItem.cs" />
     <Compile Include="Objects\Get\Syncs\Watched\TraktSyncWatchedShowItem.cs" />
@@ -171,7 +171,6 @@
     <Compile Include="Objects\Get\Users\TraktUserComment.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollowRequest.cs" />
     <Compile Include="Objects\Get\Users\TraktUserLikeItem.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchlistItem.cs" />
     <Compile Include="Objects\Get\Users\Watched\TraktUserWatchedMovieItem.cs" />

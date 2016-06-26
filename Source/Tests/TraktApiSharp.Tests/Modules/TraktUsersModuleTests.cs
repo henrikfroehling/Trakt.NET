@@ -16,6 +16,7 @@
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
@@ -7619,7 +7620,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatings()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7629,13 +7630,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithType()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7646,13 +7647,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7668,13 +7669,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7690,13 +7691,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7712,13 +7713,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7734,13 +7735,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7756,13 +7757,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7778,13 +7779,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7800,13 +7801,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7822,13 +7823,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7844,13 +7845,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -7866,13 +7867,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7884,13 +7885,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7902,13 +7903,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7920,13 +7921,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7938,13 +7939,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithRatingsFilter()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7955,13 +7956,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, ratingsFilter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithTypeAndExtendedOption()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -7980,13 +7981,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, null, extendedOption).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithExtendedOption()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
@@ -8003,13 +8004,13 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, null, extendedOption).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsComplete()
         {
-            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Users\Ratings\UserRatings.json");
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             userRatings.Should().NotBeNullOrEmpty();
 
             var encodedComma = "%2C";
@@ -8032,7 +8033,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter, extendedOption).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(8);
+            response.Items.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -8043,7 +8044,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+            Func<Task<TraktListResult<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -8087,7 +8088,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserRatingsItem>>> act =
+            Func<Task<TraktListResult<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
