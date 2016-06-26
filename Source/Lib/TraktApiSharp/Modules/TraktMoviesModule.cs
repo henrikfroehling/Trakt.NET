@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Common;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithoutOAuth.Movies;
     using Requests.WithoutOAuth.Movies.Common;
@@ -136,7 +137,7 @@
             return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 

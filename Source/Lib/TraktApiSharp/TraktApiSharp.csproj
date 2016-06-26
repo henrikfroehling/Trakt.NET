@@ -203,7 +203,6 @@
     <Compile Include="Objects\Get\Movies\TraktMovieImages.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelease.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTranslation.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMovieWatchingUser.cs" />
     <Compile Include="Objects\Get\People\TraktPerson.cs" />
     <Compile Include="Objects\Get\People\TraktPersonIds.cs" />
     <Compile Include="Objects\Get\People\TraktPersonImages.cs" />

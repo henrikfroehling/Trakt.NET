@@ -13,6 +13,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
     using Utils;
 
@@ -1704,7 +1705,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+            Func<Task<TraktListResult<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
@@ -1759,7 +1760,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", movieWatchingUsers);
 
-            Func<Task<TraktListResult<TraktMovieWatchingUser>>> act =
+            Func<Task<TraktListResult<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(null);
             act.ShouldThrow<ArgumentException>();
 
