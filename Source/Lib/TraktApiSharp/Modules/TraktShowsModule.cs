@@ -85,7 +85,7 @@
             });
         }
 
-        public async Task<TraktShowPeople> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktCastAndCrew> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
