@@ -237,7 +237,6 @@
     <Compile Include="Objects\Basic\TraktImageSetTests.cs" />
     <Compile Include="Objects\Basic\TraktImageTests.cs" />
     <Compile Include="Objects\Basic\TraktRatingTests.cs" />
-    <Compile Include="Objects\Basic\TraktSearchIdLookupResultTests.cs" />
     <Compile Include="Objects\Basic\TraktSearchResultTests.cs" />
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />

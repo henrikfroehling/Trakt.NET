@@ -26,7 +26,7 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSearchIdLookupResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
                                                                                                         int? page = null, int? limit = null)
         {
             Validate(type, lookupId);

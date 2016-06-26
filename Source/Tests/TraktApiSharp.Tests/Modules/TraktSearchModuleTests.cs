@@ -579,7 +579,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId);
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -632,7 +632,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
                                                                 searchResults);
 
-            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdLookupType.Unspecified, lookupId);
             act.ShouldThrow<ArgumentException>();
 

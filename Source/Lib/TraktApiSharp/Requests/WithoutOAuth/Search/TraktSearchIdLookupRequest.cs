@@ -4,7 +4,7 @@
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal class TraktSearchIdLookupRequest : TraktSearchRequest<TraktSearchIdLookupResult>
+    internal class TraktSearchIdLookupRequest : TraktSearchRequest<TraktSearchResult>
     {
         internal TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
 

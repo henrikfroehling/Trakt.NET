@@ -255,7 +255,6 @@
     <Compile Include="Objects\Basic\TraktListResult.cs" />
     <Compile Include="Objects\Basic\TraktPaginationListResult.cs" />
     <Compile Include="Objects\Basic\TraktRating.cs" />
-    <Compile Include="Objects\Basic\TraktSearchIdLookupResult.cs" />
     <Compile Include="Objects\Basic\TraktSearchResult.cs" />
     <Compile Include="Objects\Basic\TraktSharing.cs" />
     <Compile Include="Objects\Basic\TraktStatistics.cs" />
