@@ -102,7 +102,7 @@
             });
         }
 
-        public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktCastAndCrew> GetMoviePeopleAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
