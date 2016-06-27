@@ -15,7 +15,10 @@
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktDevice" /> class.
-        /// <para>The instantiated device instance is invalid.</para>
+        /// <para>
+        /// Sets <see cref="Created" /> to the DateTime, when it is initialized.
+        /// The instantiated device instance is invalid.
+        /// </para>
         /// </summary>
         public TraktDevice()
         {

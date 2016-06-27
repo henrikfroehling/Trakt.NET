@@ -14,7 +14,7 @@
 
     /// <summary>
     /// Provides access to authentication methods common to both OAuth and Device authentication,
-    /// such as refreshing and revoking the current access token.
+    /// such as refreshing and revoking the current access token.<para />
     /// Besides, contains current authorization state information.
     /// </summary>
     public class TraktAuthentication
