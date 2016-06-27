@@ -1,13 +1,13 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
     using Base.Get;
-    using Objects.Get.Shows;
+    using Objects.Basic;
 
-    internal class TraktShowStatisticsRequest : TraktGetByIdRequest<TraktShowStatistics, TraktShowStatistics>
+    internal class TraktShowStatisticsRequest : TraktGetByIdRequest<TraktStatistics, TraktStatistics>
     {
         internal TraktShowStatisticsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override string UriTemplate => "shows/{id}/stats";
 

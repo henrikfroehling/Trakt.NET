@@ -38,6 +38,10 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = reader.Value as string;
+
+            if (string.IsNullOrEmpty(enumString))
+                return TraktHiddenItemType.Unspecified;
+
             enumString = enumString.FirstToUpper();
             return Enum.Parse(typeof(TraktHiddenItemType), enumString, true);
         }

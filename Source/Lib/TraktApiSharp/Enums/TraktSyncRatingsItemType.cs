@@ -24,7 +24,7 @@
                 case TraktSyncRatingsItemType.Show: return "show";
                 case TraktSyncRatingsItemType.Season: return "season";
                 case TraktSyncRatingsItemType.Episode: return "episode";
-                case TraktSyncRatingsItemType.All:
+                case TraktSyncRatingsItemType.All: return "all";
                 case TraktSyncRatingsItemType.Unspecified:
                     return string.Empty;
                 default:

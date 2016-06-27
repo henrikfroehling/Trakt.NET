@@ -9,7 +9,7 @@
     {
         internal TraktUserFriendsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         internal string Username { get; set; }
 

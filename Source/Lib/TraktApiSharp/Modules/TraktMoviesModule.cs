@@ -1,9 +1,11 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Common;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithoutOAuth.Movies;
     using Requests.WithoutOAuth.Movies.Common;
@@ -101,14 +103,14 @@
             });
         }
 
-        public async Task<TraktMoviePeople> GetMoviePeopleAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktCastAndCrew> GetMoviePeopleAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
             return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
         }
 
-        public async Task<TraktMovieRating> GetMovieRatingsAsync(string id)
+        public async Task<TraktRating> GetMovieRatingsAsync(string id)
         {
             Validate(id);
 
@@ -128,14 +130,14 @@
             });
         }
 
-        public async Task<TraktMovieStatistics> GetMovieStatisticsAsync(string id)
+        public async Task<TraktStatistics> GetMovieStatisticsAsync(string id)
         {
             Validate(id);
 
             return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktMovieWatchingUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
@@ -152,8 +154,8 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularMovie>> GetPopularMoviesAsync(TraktExtendedOption extended = null,
-                                                                                              int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktMovie>> GetPopularMoviesAsync(TraktExtendedOption extended = null,
+                                                                                       int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesPopularRequest(Client)
             {
@@ -230,8 +232,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("movie id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("movie id not valid", nameof(id));
         }
 
         private void Validate(string id, string languageCode)
@@ -239,7 +241,7 @@
             Validate(id);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
-                throw new ArgumentException("movie language code not valid", "languageCode");
+                throw new ArgumentException("movie language code not valid", nameof(languageCode));
         }
     }
 }

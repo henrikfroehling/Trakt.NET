@@ -8,7 +8,7 @@
     {
         internal TraktMovieAliasesRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override string UriTemplate => "movies/{id}/aliases";
 

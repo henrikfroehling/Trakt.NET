@@ -2,13 +2,13 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Syncs.Watched;
+    using Objects.Get.Watched;
 
-    internal class TraktSyncWatchedShowsRequest : TraktGetRequest<TraktListResult<TraktSyncWatchedShowItem>, TraktSyncWatchedShowItem>
+    internal class TraktSyncWatchedShowsRequest : TraktGetRequest<TraktListResult<TraktWatchedShow>, TraktWatchedShow>
     {
         internal TraktSyncWatchedShowsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         protected override string UriTemplate => "sync/watched/shows{?extended}";
 

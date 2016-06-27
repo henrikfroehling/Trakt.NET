@@ -122,9 +122,7 @@
             movies[0].Released.Should().Be(DateTime.Parse("1980-05-17"));
             movies[0].Runtime.Should().Be(124);
             movies[0].Trailer.Should().BeNullOrEmpty();
-            movies[0].TrailerUri.Should().BeNull();
             movies[0].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-v-the-empire-strikes-back");
-            movies[0].HomepageUri.Should().NotBeNull();
             movies[0].Rating.Should().Be(8.77461f);
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
@@ -145,9 +143,7 @@
             movies[1].Released.Should().Be(DateTime.Parse("1983-05-25"));
             movies[1].Runtime.Should().Be(135);
             movies[1].Trailer.Should().Be("http://youtube.com/watch?v=2mqRbh7FJ0Y");
-            movies[1].TrailerUri.Should().NotBeNull();
             movies[1].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vi-return-of-the-jedi");
-            movies[1].HomepageUri.Should().NotBeNull();
             movies[1].Rating.Should().Be(8.61184f);
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());
@@ -194,9 +190,7 @@
             movies[0].Released.Should().Be(DateTime.Parse("1980-05-17"));
             movies[0].Runtime.Should().Be(124);
             movies[0].Trailer.Should().BeNullOrEmpty();
-            movies[0].TrailerUri.Should().BeNull();
             movies[0].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-v-the-empire-strikes-back");
-            movies[0].HomepageUri.Should().NotBeNull();
             movies[0].Rating.Should().Be(8.77461f);
             movies[0].Votes.Should().Be(13421);
             movies[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:50:42Z").ToUniversalTime());
@@ -228,9 +222,7 @@
             movies[1].Released.Should().Be(DateTime.Parse("1983-05-25"));
             movies[1].Runtime.Should().Be(135);
             movies[1].Trailer.Should().Be("http://youtube.com/watch?v=2mqRbh7FJ0Y");
-            movies[1].TrailerUri.Should().NotBeNull();
             movies[1].Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vi-return-of-the-jedi");
-            movies[1].HomepageUri.Should().NotBeNull();
             movies[1].Rating.Should().Be(8.61184f);
             movies[1].Votes.Should().Be(12853);
             movies[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-04T08:51:42Z").ToUniversalTime());

@@ -43,22 +43,8 @@
         [JsonProperty(PropertyName = "trailer")]
         public string Trailer { get; set; }
 
-        [JsonIgnore]
-        public Uri TrailerUri
-        {
-            get { return !string.IsNullOrEmpty(Trailer) ? new Uri(Trailer) : null; }
-            set { Trailer = value.AbsoluteUri; }
-        }
-
         [JsonProperty(PropertyName = "homepage")]
         public string Homepage { get; set; }
-
-        [JsonIgnore]
-        public Uri HomepageUri
-        {
-            get { return !string.IsNullOrEmpty(Homepage) ? new Uri(Homepage) : null; }
-            set { Homepage = value.AbsoluteUri; }
-        }
 
         [JsonProperty(PropertyName = "rating")]
         public float? Rating { get; set; }

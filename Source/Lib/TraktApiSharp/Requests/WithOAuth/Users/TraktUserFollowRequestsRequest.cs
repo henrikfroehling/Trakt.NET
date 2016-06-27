@@ -8,7 +8,7 @@
     {
         internal TraktUserFollowRequestsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         protected override string UriTemplate => "users/requests";
 

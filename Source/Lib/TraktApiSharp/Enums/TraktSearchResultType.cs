@@ -42,6 +42,10 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = reader.Value as string;
+
+            if (string.IsNullOrEmpty(enumString))
+                return TraktSearchResultType.Unspecified;
+
             enumString = enumString.FirstToUpper();
             return Enum.Parse(typeof(TraktSearchResultType), enumString, true);
         }

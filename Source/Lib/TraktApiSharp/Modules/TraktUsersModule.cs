@@ -3,11 +3,14 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
+    using Objects.Get.Collection;
+    using Objects.Get.History;
+    using Objects.Get.Ratings;
     using Objects.Get.Users;
-    using Objects.Get.Users.Collections;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
-    using Objects.Get.Users.Watched;
+    using Objects.Get.Watched;
+    using Objects.Get.Watchlist;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -39,7 +42,7 @@
                                                                                               int? page = null, int? limit = null)
         {
             if (section == TraktHiddenItemsSection.Unspecified)
-                throw new ArgumentException("section not valid", "section");
+                throw new ArgumentException("section not valid", nameof(section));
 
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
             {
@@ -70,8 +73,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserCollectionMovieItem>> GetCollectionMoviesAsync(string username,
-                                                                                                  TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(string username,
+                                                                                          TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -82,8 +85,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserCollectionShowItem>> GetCollectionShowsAsync(string username,
-                                                                                                TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(string username,
+                                                                                        TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -157,7 +160,7 @@
             ValidateUsername(username);
 
             if (string.IsNullOrEmpty(listName))
-                throw new ArgumentException("list name not valid", "listName");
+                throw new ArgumentException("list name not valid", nameof(listName));
 
             var requestBody = new TraktUserCustomListPost
             {
@@ -196,7 +199,7 @@
                 throw new ArgumentException("no list specific values set");
             }
 
-            var requestBody = new TraktUserCustomListUpdatePost
+            var requestBody = new TraktUserCustomListPost
             {
                 Name = listName,
                 Description = description,
@@ -245,7 +248,7 @@
         }
 
         public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync(string username, string listId,
-                                                                                                 TraktUserCustomListItemsRemovePost listItemsRemovePost)
+                                                                                                 TraktUserCustomListItemsPost listItemsRemovePost)
         {
             ValidateUsername(username);
             ValidateListId(listId);
@@ -348,9 +351,9 @@
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
-        public async Task<TraktPaginationListResult<TraktUserHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncHistoryItemType? type = null,
-                                                                                                  string itemId = null, DateTime? startAt = null,
-                                                                                                  DateTime? endAt = null, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
+                                                                                              string itemId = null, DateTime? startAt = null,
+                                                                                              DateTime? endAt = null, int? page = null, int? limit = null)
         {
             ValidateUsername(username);
 
@@ -365,8 +368,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
-                                                                                 int[] rating = null, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
+                                                                             int[] rating = null, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -379,8 +382,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchlistItem>> GetWatchlistAsync(string username, TraktSyncWatchlistItemType? type = null,
-                                                                                     TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -403,7 +406,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedMovieItem>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedMovie>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -414,7 +417,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserWatchedShowItem>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedShow>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -435,19 +438,19 @@
         private void ValidateUsername(string username)
         {
             if (string.IsNullOrEmpty(username) || username.ContainsSpace())
-                throw new ArgumentException("username not valid", "username");
+                throw new ArgumentException("username not valid", nameof(username));
         }
 
         private void ValidateListId(string listId)
         {
             if (string.IsNullOrEmpty(listId) || listId.ContainsSpace())
-                throw new ArgumentException("list id not valid", "listId");
+                throw new ArgumentException("list id not valid", nameof(listId));
         }
 
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
         {
             if (customListItemsPost == null)
-                throw new ArgumentNullException("list items post must not be null", "customListItemsPost");
+                throw new ArgumentNullException("list items post must not be null", nameof(customListItemsPost));
 
             var movies = customListItemsPost.Movies;
             var shows = customListItemsPost.Shows;
@@ -464,7 +467,7 @@
         private void ValidateFollowerRequestId(string followerRequestId)
         {
             if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
-                throw new ArgumentException("follower request id is not valid", "followerRequestId");
+                throw new ArgumentException("follower request id is not valid", nameof(followerRequestId));
         }
     }
 }

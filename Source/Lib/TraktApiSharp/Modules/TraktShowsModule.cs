@@ -1,9 +1,11 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Enums;
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
+    using Objects.Get.Users;
     using Requests;
     using Requests.WithOAuth.Shows;
     using Requests.WithoutOAuth.Shows;
@@ -84,7 +86,7 @@
             });
         }
 
-        public async Task<TraktShowPeople> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktCastAndCrew> GetShowPeopleAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
@@ -95,7 +97,7 @@
             });
         }
 
-        public async Task<TraktShowRating> GetShowRatingsAsync(string id)
+        public async Task<TraktRating> GetShowRatingsAsync(string id)
         {
             Validate(id);
 
@@ -115,14 +117,14 @@
             });
         }
 
-        public async Task<TraktShowStatistics> GetShowStatisticsAsync(string id)
+        public async Task<TraktStatistics> GetShowStatisticsAsync(string id)
         {
             Validate(id);
 
             return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktShowWatchingUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
@@ -163,8 +165,8 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktPopularShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
-                                                                                            int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
+                                                                                     int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
@@ -233,8 +235,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("show id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("show id not valid", nameof(id));
         }
 
         private void Validate(string id, string languageCode)
@@ -242,7 +244,7 @@
             Validate(id);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
-                throw new ArgumentException("show language code not valid", "languageCode");
+                throw new ArgumentException("show language code not valid", nameof(languageCode));
         }
     }
 }

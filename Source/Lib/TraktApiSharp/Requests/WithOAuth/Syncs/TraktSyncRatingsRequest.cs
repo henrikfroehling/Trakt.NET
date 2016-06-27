@@ -3,15 +3,15 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Syncs.Ratings;
+    using Objects.Get.Ratings;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class TraktSyncRatingsRequest : TraktGetRequest<TraktListResult<TraktSyncRatingsItem>, TraktSyncRatingsItem>
+    internal class TraktSyncRatingsRequest : TraktGetRequest<TraktListResult<TraktRatingsItem>, TraktRatingsItem>
     {
         internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktSyncRatingsItemType? Type { get; set; }
 

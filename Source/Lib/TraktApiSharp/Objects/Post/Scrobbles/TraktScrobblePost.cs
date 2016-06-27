@@ -14,7 +14,7 @@
         [JsonProperty(PropertyName = "app_date")]
         public string AppDate { get; set; }
 
-        public virtual void Validate()
+        public void Validate()
         {
             if (Progress.CompareTo(0.0f) < 0)
                 throw new ArgumentException("progress value not valid");
