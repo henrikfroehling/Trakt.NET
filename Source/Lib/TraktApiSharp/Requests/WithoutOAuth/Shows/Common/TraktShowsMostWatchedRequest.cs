@@ -24,7 +24,7 @@
 
         protected override string UriTemplate => "shows/watched{/period}{?extended,page,limit}";
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override bool SupportsPagination => true;
 

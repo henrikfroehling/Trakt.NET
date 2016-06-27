@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Extensions;
     using Objects.Basic;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
@@ -66,8 +67,8 @@
 
         private void Validate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentException("person id not valid", "id");
+            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
+                throw new ArgumentException("person id not valid", nameof(id));
         }
     }
 }

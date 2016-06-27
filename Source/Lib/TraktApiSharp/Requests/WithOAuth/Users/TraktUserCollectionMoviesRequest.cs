@@ -2,14 +2,14 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Users.Collections;
+    using Objects.Get.Collection;
     using System.Collections.Generic;
 
-    internal class TraktUserCollectionMoviesRequest : TraktGetRequest<TraktListResult<TraktUserCollectionMovieItem>, TraktUserCollectionMovieItem>
+    internal class TraktUserCollectionMoviesRequest : TraktGetRequest<TraktListResult<TraktCollectionMovie>, TraktCollectionMovie>
     {
         internal TraktUserCollectionMoviesRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         internal string Username { get; set; }
 

@@ -94,30 +94,10 @@
         public string Trailer { get; set; }
 
         /// <summary>
-        /// The URI of a trailer for the show.
-        /// </summary>
-        [JsonIgnore]
-        public Uri TrailerUri
-        {
-            get { return !string.IsNullOrEmpty(Trailer) ? new Uri(Trailer) : null; }
-            set { Trailer = value.AbsoluteUri; }
-        }
-
-        /// <summary>
         /// The address of the homepage of the show.
         /// </summary>
         [JsonProperty(PropertyName = "homepage")]
         public string Homepage { get; set; }
-
-        /// <summary>
-        /// The URI of the homepage of the show.
-        /// </summary>
-        [JsonIgnore]
-        public Uri HomepageUri
-        {
-            get { return !string.IsNullOrEmpty(Homepage) ? new Uri(Homepage) : null; }
-            set { Homepage = value.AbsoluteUri; }
-        }
 
         /// <summary>
         /// The show's current status.

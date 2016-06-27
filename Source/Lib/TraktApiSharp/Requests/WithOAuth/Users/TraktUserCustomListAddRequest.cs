@@ -19,11 +19,5 @@
         }
 
         protected override string UriTemplate => "users/{username}/lists";
-
-        protected override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }

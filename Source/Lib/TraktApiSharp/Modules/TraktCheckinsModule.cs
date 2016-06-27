@@ -129,48 +129,49 @@
         private void Validate(TraktMovie movie)
         {
             if (movie == null)
-                throw new ArgumentNullException("movie", "movie instance must not be null");
+                throw new ArgumentException("movie must not be null", nameof(movie));
 
             if (string.IsNullOrEmpty(movie.Title))
-                throw new ArgumentException("movie title not valid", "movie");
+                throw new ArgumentException("movie title not valid", nameof(movie.Title));
 
             if (movie.Year <= 0)
-                throw new ArgumentException("movie year not valid", "movie");
+                throw new ArgumentException("movie year not valid", nameof(movie));
 
             if (movie.Ids == null)
-                throw new ArgumentNullException("movie.Ids", "movie.Ids must not be null");
+                throw new ArgumentException("movie.Ids must not be null", nameof(movie.Ids));
 
             if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie.Ids have no valid id", "movie");
+                throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
         }
 
         private void Validate(TraktEpisode episode)
         {
             if (episode == null)
-                throw new ArgumentNullException("episode", "episode instance must not be null");
+                throw new ArgumentException("episode must not be null", nameof(episode));
 
             if (episode.Ids == null)
-                throw new ArgumentNullException("episode.Ids", "episode.Ids must not be null");
+                throw new ArgumentException("episode.Ids must not be null", nameof(episode.Ids));
 
             if (!episode.Ids.HasAnyId)
-                throw new ArgumentException("episode.Ids have no valid id", "episode");
-
-            if (episode.SeasonNumber < 0)
-                throw new ArgumentException("episode season number not valid", "episode");
-
-            if (episode.Number < 0)
-                throw new ArgumentException("episode number not valid", "episode");
+                throw new ArgumentException("episode.Ids have no valid id", nameof(episode.Ids));
         }
 
         private void Validate(TraktEpisode episode, TraktShow show)
         {
-            Validate(episode);
+            if (episode == null)
+                throw new ArgumentException("episode must not be null", nameof(episode));
+
+            if (episode.SeasonNumber < 0)
+                throw new ArgumentException("episode season number not valid", nameof(episode.SeasonNumber));
+
+            if (episode.Number < 0)
+                throw new ArgumentException("episode number not valid", nameof(episode.Number));
 
             if (show == null)
-                throw new ArgumentNullException("show", "show instance must not be null");
+                throw new ArgumentException("show must not be null", nameof(show));
 
             if (string.IsNullOrEmpty(show.Title))
-                throw new ArgumentException("show title not valid", "show");
+                throw new ArgumentException("show title not valid", nameof(show.Title));
         }
     }
 }

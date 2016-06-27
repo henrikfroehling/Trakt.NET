@@ -2,13 +2,13 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Syncs.Collection;
+    using Objects.Get.Collection;
 
-    internal class TraktSyncCollectionShowsRequest : TraktGetRequest<TraktListResult<TraktSyncCollectionShowItem>, TraktSyncCollectionShowItem>
+    internal class TraktSyncCollectionShowsRequest : TraktGetRequest<TraktListResult<TraktCollectionShow>, TraktCollectionShow>
     {
         internal TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         protected override string UriTemplate => "sync/collection/shows{?extended}";
 

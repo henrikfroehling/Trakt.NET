@@ -2,15 +2,15 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using Objects.Get.Shows.Common;
+    using Objects.Get.Shows;
 
-    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktPopularShow>, TraktPopularShow>
+    internal class TraktShowsPopularRequest : TraktGetRequest<TraktPaginationListResult<TraktShow>, TraktShow>
     {
         internal TraktShowsPopularRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "shows/popular{?extended,page,limit}";
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override bool SupportsPagination => true;
 

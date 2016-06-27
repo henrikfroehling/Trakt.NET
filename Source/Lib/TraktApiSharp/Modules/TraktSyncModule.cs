@@ -3,13 +3,13 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
+    using Objects.Get.Collection;
+    using Objects.Get.History;
+    using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
-    using Objects.Get.Syncs.Collection;
-    using Objects.Get.Syncs.History;
     using Objects.Get.Syncs.Playback;
-    using Objects.Get.Syncs.Ratings;
-    using Objects.Get.Syncs.Watched;
-    using Objects.Get.Syncs.Watchlist;
+    using Objects.Get.Watched;
+    using Objects.Get.Watchlist;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
@@ -48,12 +48,12 @@
         public async Task RemovePlaybackItemAsync(string playbackId)
         {
             if (string.IsNullOrEmpty(playbackId) || playbackId.ContainsSpace())
-                throw new ArgumentException("playback id not valid", "playbackId");
+                throw new ArgumentException("playback id not valid", nameof(playbackId));
 
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionMovieItem>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
             {
@@ -61,7 +61,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSyncCollectionShowItem>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
             {
@@ -76,14 +76,14 @@
             return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
         }
 
-        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionRemovePost collectionRemovePost)
+        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost)
         {
             ValidateCollectionPost(collectionRemovePost);
 
             return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedMovieItem>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
             {
@@ -91,7 +91,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchedShowItem>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
             {
@@ -99,9 +99,9 @@
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSyncHistoryItem>> GetWatchedHistoryAsync(TraktSyncHistoryItemType? type = null, string itemId = null,
-                                                                                                  DateTime? startAt = null, DateTime? endAt = null,
-                                                                                                  int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
+                                                                                              DateTime? startAt = null, DateTime? endAt = null,
+                                                                                              int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
@@ -127,9 +127,9 @@
             return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
-                                                                                 int[] rating = null,
-                                                                                 TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
+                                                                             int[] rating = null,
+                                                                             TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncRatingsRequest(Client)
             {
@@ -146,15 +146,15 @@
             return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
         }
 
-        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsRemovePost ratingsRemovePost)
+        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost)
         {
             ValidateRatingsPost(ratingsRemovePost);
 
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
-        public async Task<TraktListResult<TraktSyncWatchlistItem>> GetWatchlistAsync(TraktSyncWatchlistItemType? type = null,
-                                                                                     TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
+                                                                                 TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
@@ -170,7 +170,7 @@
             return await QueryAsync(new TraktSyncWatchlistAddRequest(Client) { RequestBody = watchlistPost });
         }
 
-        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistRemovePost watchlistRemovePost)
+        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost)
         {
             ValidateWatchlistPost(watchlistRemovePost);
 
@@ -180,7 +180,7 @@
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
-                throw new ArgumentNullException("collection post must not be null", "collectionPost");
+                throw new ArgumentNullException("collection post must not be null", nameof(collectionPost));
 
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
@@ -191,13 +191,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no collection items set");
         }
 
         private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
-                throw new ArgumentNullException("history post must not be null", "historyPost");
+                throw new ArgumentNullException("history post must not be null", nameof(historyPost));
 
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
@@ -208,13 +208,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no watched history items set");
         }
 
         private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
         {
             if (ratingsPost == null)
-                throw new ArgumentNullException("ratings post must not be null", "ratingsPost");
+                throw new ArgumentNullException("ratings post must not be null", nameof(ratingsPost));
 
             var movies = ratingsPost.Movies;
             var shows = ratingsPost.Shows;
@@ -225,13 +225,13 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no ratings items set");
         }
 
         private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
         {
             if (watchlistPost == null)
-                throw new ArgumentNullException("watchlist post must not be null", "watchlistPost");
+                throw new ArgumentNullException("watchlist post must not be null", nameof(watchlistPost));
 
             var movies = watchlistPost.Movies;
             var shows = watchlistPost.Shows;
@@ -242,7 +242,7 @@
             var bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
+                throw new ArgumentException("no watchlist items set");
         }
     }
 }

@@ -4,17 +4,17 @@
     using Enums;
     using Extensions;
     using Objects.Basic;
-    using Objects.Get.Syncs.History;
+    using Objects.Get.History;
     using System;
     using System.Collections.Generic;
 
-    internal class TraktSyncWatchedHistoryRequest : TraktGetRequest<TraktPaginationListResult<TraktSyncHistoryItem>, TraktSyncHistoryItem>
+    internal class TraktSyncWatchedHistoryRequest : TraktGetRequest<TraktPaginationListResult<TraktHistoryItem>, TraktHistoryItem>
     {
         internal TraktSyncWatchedHistoryRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktSyncHistoryItemType? Type { get; set; }
+        internal TraktSyncItemType? Type { get; set; }
 
         internal string ItemId { get; set; }
 
@@ -26,7 +26,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncHistoryItemType.Unspecified;
+            var isTypeSetAndValid = Type.HasValue && Type.Value != TraktSyncItemType.Unspecified;
 
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());
@@ -54,7 +54,5 @@
         protected override bool SupportsPagination => true;
 
         protected override bool IsListResult => true;
-
-        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Unspecified;
     }
 }

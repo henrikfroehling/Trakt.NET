@@ -399,10 +399,18 @@
             var query = "batman";
             var uri = $"search?query={query}";
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
@@ -410,16 +418,32 @@
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
             act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
@@ -476,7 +500,7 @@
             var itemCount = 1;
 
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
                                                                 searchResults, 1, 10, 1, itemCount);
@@ -501,7 +525,7 @@
             var page = 2;
 
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search?id_type={type.AsString()}&id={lookupId}&page={page}",
@@ -527,7 +551,7 @@
             var limit = 4;
 
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search?id_type={type.AsString()}&id={lookupId}&limit={limit}",
@@ -554,7 +578,7 @@
             var limit = 4;
 
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search?id_type={type.AsString()}&id={lookupId}&page={page}&limit={limit}",
@@ -574,13 +598,21 @@
         public void TestTraktSearchModuleSearchIdLookupExceptions()
         {
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
             var uri = $"search?id_type={type.AsString()}&id={lookupId}";
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
             act.ShouldThrow<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
@@ -588,16 +620,32 @@
             act.ShouldThrow<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
             act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
@@ -627,19 +675,22 @@
             searchResults.Should().NotBeNullOrEmpty();
 
             var lookupId = "tt0848228";
-            var type = TraktSearchLookupIdType.ImDB;
+            var type = TraktSearchIdLookupType.ImDB;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
                                                                 searchResults);
 
-            Func<Task<TraktPaginationListResult<TraktSearchIdLookupResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchLookupIdType.Unspecified, lookupId);
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdLookupType.Unspecified, lookupId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, null);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, "lookup id");
             act.ShouldThrow<ArgumentException>();
         }
 

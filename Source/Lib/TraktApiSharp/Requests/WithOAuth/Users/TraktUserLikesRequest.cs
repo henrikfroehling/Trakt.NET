@@ -10,7 +10,7 @@
     {
         internal TraktUserLikesRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktUserLikeType? Type { get; set; }
 

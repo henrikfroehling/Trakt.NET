@@ -3,22 +3,22 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Syncs.Watchlist;
+    using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal class TraktSyncWatchlistRequest : TraktGetRequest<TraktListResult<TraktSyncWatchlistItem>, TraktSyncWatchlistItem>
+    internal class TraktSyncWatchlistRequest : TraktGetRequest<TraktListResult<TraktWatchlistItem>, TraktWatchlistItem>
     {
         internal TraktSyncWatchlistRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktSyncWatchlistItemType? Type { get; set; }
+        internal TraktSyncItemType? Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Type.HasValue && Type != TraktSyncWatchlistItemType.Unspecified)
+            if (Type.HasValue && Type != TraktSyncItemType.Unspecified)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());
 
             return uriParams;

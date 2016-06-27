@@ -3,15 +3,15 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
-    using Objects.Get.Users;
+    using Objects.Get.Ratings;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class TraktUserRatingsRequest : TraktGetRequest<TraktListResult<TraktUserRatingsItem>, TraktUserRatingsItem>
+    internal class TraktUserRatingsRequest : TraktGetRequest<TraktListResult<TraktRatingsItem>, TraktRatingsItem>
     {
         internal TraktUserRatingsRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         internal string Username { get; set; }
 

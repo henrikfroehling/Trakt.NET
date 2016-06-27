@@ -7,7 +7,7 @@
     {
         internal TraktPersonSummaryRequest(TraktClient client) : base(client) { }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.People;
 

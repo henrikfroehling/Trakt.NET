@@ -9,11 +9,5 @@
         internal TraktSyncCollectionAddRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "sync/collection";
-
-        protected override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }

@@ -9,5 +9,7 @@
         internal TraktCommentReplyRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "comments/{id}/replies";
+
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Comments;
     }
 }
