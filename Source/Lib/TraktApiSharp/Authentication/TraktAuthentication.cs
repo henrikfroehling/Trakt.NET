@@ -108,12 +108,15 @@
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
-        /// <para>
+        /// Uses the current <see cref="Authorization" />'s refresh token, <see cref="ClientId" />,
+        /// <see cref="ClientSecret" /> and <see cref="RedirectUri" />for the request.
         /// Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// <para>
         /// See also <seealso cref="RefreshAuthorizationAsync(string)" />,
-        /// <seealso cref="RefreshAuthorizationAsync(string, string)" />,
+        /// <seealso cref="RefreshAuthorizationAsync(string, string)" />, 
         /// <seealso cref="RefreshAuthorizationAsync(string, string, string)" /> and
         /// <seealso cref="RefreshAuthorizationAsync(string, string, string, string)" />.
         /// See also <seealso cref="Authorization" />.
@@ -121,15 +124,16 @@
         /// </summary>
         /// <returns>A new <see cref="TraktAuthorization" /> instance, which contains a new access and refresh token.</returns>
         /// <exception cref="TraktAuthorizationException">
-        /// Thrown, if the current <see cref="TraktClient" /> instance is not authorized and the given refresh token is null,
+        /// Thrown, if the current <see cref="TraktClient" /> instance is not authorized and the current refresh token is null,
         /// empty or contains spaces.
         /// </exception>
-        /// <exception cref="TraktAuthenticationException">Thrown, if the given refresh token is invalid.</exception>
+        /// <exception cref="TraktAuthenticationException">Thrown, if the current refresh token is invalid.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the refresh token is null, empty or contains spaces.
-        /// Thrown, if the client id is null, empty of contains spaces.
-        /// Thrown, if the client secret is null, empty or contains spaces.
-        /// Thrown, if the rediret URI is null, empty or contains spaces.
+        /// Thrown, if the current refresh token is null, empty or contains spaces.
+        /// Thrown, if the current client id is null, empty of contains spaces.
+        /// Thrown, if the current client secret is null, empty or contains spaces.
+        /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync()
         {
@@ -138,8 +142,10 @@
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
-        /// <para>
+        /// Uses the current <see cref="ClientId" />, <see cref="ClientSecret" /> and <see cref="RedirectUri" />for the request.
         /// Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// <para>
         /// See also <seealso cref="RefreshAuthorizationAsync()" />,
@@ -156,11 +162,12 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if the given refresh token is invalid.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given refresh token is null, empty or contains spaces.
-        /// Thrown, if the client id is null, empty of contains spaces.
-        /// Thrown, if the client secret is null, empty or contains spaces.
-        /// Thrown, if the rediret URI is null, empty or contains spaces.
+        /// Thrown, if the current client id is null, empty of contains spaces.
+        /// Thrown, if the current client secret is null, empty or contains spaces.
+        /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken)
         {
@@ -169,8 +176,10 @@
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
-        /// <para>
+        /// Uses the current <see cref="ClientSecret" /> and <see cref="RedirectUri" />for the request.
         /// Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// <para>
         /// See also <seealso cref="RefreshAuthorizationAsync()" />,
@@ -188,11 +197,12 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if the given refresh token is invalid.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given refresh token is null, empty or contains spaces.
         /// Thrown, if the given client id is null, empty of contains spaces.
-        /// Thrown, if the client secret is null, empty or contains spaces.
-        /// Thrown, if the rediret URI is null, empty or contains spaces.
+        /// Thrown, if the current client secret is null, empty or contains spaces.
+        /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId)
         {
@@ -201,8 +211,10 @@
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
-        /// <para>
+        /// Uses the current <see cref="ClientSecret" /> and <see cref="RedirectUri" />for the request.
         /// Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// <para>
         /// See also <seealso cref="RefreshAuthorizationAsync()" />,
@@ -221,11 +233,12 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if the given refresh token is invalid.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given refresh token is null, empty or contains spaces.
         /// Thrown, if the given client id is null, empty of contains spaces.
         /// Thrown, if the given client secret is null, empty or contains spaces.
-        /// Thrown, if the rediret URI is null, empty or contains spaces.
+        /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId, string clientSecret)
         {
@@ -234,8 +247,9 @@
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
-        /// <para>
         /// Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// <para>
         /// See also <seealso cref="RefreshAuthorizationAsync()" />,
@@ -255,6 +269,7 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if the given refresh token is invalid.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given refresh token is null, empty or contains spaces.
         /// Thrown, if the given client id is null, empty of contains spaces.
@@ -330,6 +345,10 @@
         /// <summary>
         /// Revokes the current access token. If, successful, the current access token will be invalid
         /// and the user has to be re-authenticated, e.g. by calling <see cref="TraktOAuth.GetAuthorizationAsync() "/>.
+        /// Uses the current <see cref="Authorization" />'s access token and <see cref="ClientId" />.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// </para>
         /// <para>
         /// See also <seealso cref="RevokeAuthorizationAsync(string)" />, <seealso cref="RevokeAuthorizationAsync(string, string)" />.
         /// See also <seealso cref="Authorization" />.
@@ -340,6 +359,7 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if revoking the current access token fails with unknown error.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the current access token is null, empty or contains spaces.
         /// Thrown, if the current client id is null, empty or contains spaces.
@@ -352,6 +372,10 @@
         /// <summary>
         /// Revokes the given access token. If, successful, the given access token will be invalid
         /// and the user has to be re-authenticated, e.g. by calling <see cref="TraktOAuth.GetAuthorizationAsync() "/>.
+        /// Uses the current <see cref="ClientId" />.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// </para>
         /// <para>
         /// See also <seealso cref="RevokeAuthorizationAsync()" />, <seealso cref="RevokeAuthorizationAsync(string, string)" />.
         /// See also <seealso cref="Authorization" />.
@@ -363,6 +387,7 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if revoking the given access token fails with unknown error.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given access token is null, empty or contains spaces.
         /// Thrown, if the current client id is null, empty or contains spaces.
@@ -376,6 +401,9 @@
         /// Revokes the given access token. If, successful, the given access token will be invalid
         /// and the user has to be re-authenticated, e.g. by calling <see cref="TraktOAuth.GetAuthorizationAsync() "/>.
         /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// </para>
+        /// <para>
         /// See also <seealso cref="RevokeAuthorizationAsync()" />, <seealso cref="RevokeAuthorizationAsync(string)" />.
         /// See also <seealso cref="Authorization" />.
         /// </para>
@@ -387,6 +415,7 @@
         /// empty or contains spaces.
         /// </exception>
         /// <exception cref="TraktAuthenticationException">Thrown, if revoking the given access token fails with unknown error.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given access token is null, empty or contains spaces.
         /// Thrown, if the given client id is null, empty or contains spaces.
