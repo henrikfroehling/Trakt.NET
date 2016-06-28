@@ -26,7 +26,7 @@
 
     public class TraktSyncModule : TraktBaseModule
     {
-        public TraktSyncModule(TraktClient client) : base(client) { }
+        internal TraktSyncModule(TraktClient client) : base(client) { }
 
         public async Task<TraktSyncLastActivities> GetLastActivitiesAsync()
         {

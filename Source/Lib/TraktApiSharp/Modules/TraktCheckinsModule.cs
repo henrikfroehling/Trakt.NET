@@ -14,7 +14,7 @@
 
     public class TraktCheckinsModule : TraktBaseModule
     {
-        public TraktCheckinsModule(TraktClient client) : base(client) { }
+        internal TraktCheckinsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                              string message = null, TraktSharing sharing = null,

@@ -12,7 +12,7 @@
 
     public class TraktPeopleModule : TraktBaseModule
     {
-        public TraktPeopleModule(TraktClient client) : base(client) { }
+        internal TraktPeopleModule(TraktClient client) : base(client) { }
 
         public async Task<TraktPerson> GetPersonAsync(string id, TraktExtendedOption extended = null)
         {

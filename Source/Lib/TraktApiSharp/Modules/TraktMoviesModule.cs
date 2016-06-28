@@ -15,7 +15,7 @@
 
     public class TraktMoviesModule : TraktBaseModule
     {
-        public TraktMoviesModule(TraktClient client) : base(client) { }
+        internal TraktMoviesModule(TraktClient client) : base(client) { }
 
         public async Task<TraktMovie> GetMovieAsync(string id, TraktExtendedOption extended = null)
         {

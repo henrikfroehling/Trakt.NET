@@ -24,7 +24,7 @@
 
     public class TraktUsersModule : TraktBaseModule
     {
-        public TraktUsersModule(TraktClient client) : base(client) { }
+        internal TraktUsersModule(TraktClient client) : base(client) { }
 
         public async Task<TraktUserSettings> GetSettingsAsync()
         {

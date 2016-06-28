@@ -7,7 +7,7 @@
 
     public class TraktGenresModule : TraktBaseModule
     {
-        public TraktGenresModule(TraktClient client) : base(client) { }
+        internal TraktGenresModule(TraktClient client) : base(client) { }
 
         public async Task<TraktListResult<TraktGenre>> GetMovieGenresAsync()
         {

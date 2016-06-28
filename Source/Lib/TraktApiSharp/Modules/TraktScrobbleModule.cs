@@ -13,7 +13,7 @@
 
     public class TraktScrobbleModule : TraktBaseModule
     {
-        public TraktScrobbleModule(TraktClient client) : base(client) { }
+        internal TraktScrobbleModule(TraktClient client) : base(client) { }
 
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = null, DateTime? appDate = null,

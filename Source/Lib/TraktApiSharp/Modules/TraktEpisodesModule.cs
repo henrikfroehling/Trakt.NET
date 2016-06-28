@@ -12,7 +12,7 @@
 
     public class TraktEpisodesModule : TraktBaseModule
     {
-        public TraktEpisodesModule(TraktClient client) : base(client) { }
+        internal TraktEpisodesModule(TraktClient client) : base(client) { }
 
         public async Task<TraktEpisode> GetEpisodeAsync(string showId, int season, int episode,
                                                         TraktExtendedOption extended = null)

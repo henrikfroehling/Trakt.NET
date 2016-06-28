@@ -18,7 +18,7 @@
 
     public class TraktCommentsModule : TraktBaseModule
     {
-        public TraktCommentsModule(TraktClient client) : base(client) { }
+        internal TraktCommentsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktComment> GetCommentAsync(string id)
         {

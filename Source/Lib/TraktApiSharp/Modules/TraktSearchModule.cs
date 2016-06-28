@@ -10,7 +10,7 @@
 
     public class TraktSearchModule : TraktBaseModule
     {
-        public TraktSearchModule(TraktClient client) : base(client) { }
+        internal TraktSearchModule(TraktClient client) : base(client) { }
 
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string query, TraktSearchResultType? type = null,
                                                                                                  int? year = null, int? page = null, int? limit = null)

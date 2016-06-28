@@ -10,7 +10,7 @@
 
     public class TraktCalendarModule : TraktBaseModule
     {
-        public TraktCalendarModule(TraktClient client) : base(client) { }
+        internal TraktCalendarModule(TraktClient client) : base(client) { }
 
         public async Task<TraktListResult<TraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                 TraktExtendedOption extended = null)

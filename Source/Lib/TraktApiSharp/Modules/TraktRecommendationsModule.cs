@@ -11,7 +11,7 @@
 
     public class TraktRecommendationsModule : TraktBaseModule
     {
-        public TraktRecommendationsModule(TraktClient client) : base(client) { }
+        internal TraktRecommendationsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
                                                                                               TraktExtendedOption extended = null)

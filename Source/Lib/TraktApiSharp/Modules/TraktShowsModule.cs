@@ -16,7 +16,7 @@
 
     public class TraktShowsModule : TraktBaseModule
     {
-        public TraktShowsModule(TraktClient client) : base(client) { }
+        internal TraktShowsModule(TraktClient client) : base(client) { }
 
         public async Task<TraktShow> GetShowAsync(string id, TraktExtendedOption extended = null)
         {
