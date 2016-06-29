@@ -228,17 +228,20 @@
         public void TestTraktMoviesModuleGetMultipleMoviesArgumentExceptions()
         {
             Func<Task<TraktListResult<TraktMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { null });
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { string.Empty });
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new string[] { });
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new TraktIdAndExtendedOption[] { });
             act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "movie id" } });
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

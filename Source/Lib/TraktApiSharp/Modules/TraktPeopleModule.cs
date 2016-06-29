@@ -8,6 +8,7 @@
     using Requests.WithoutOAuth.People;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktPeopleModule : TraktBaseModule
@@ -25,22 +26,26 @@
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var persons = new List<TraktPerson>(ids.Length);
+            var tasks = new List<Task<TraktPerson>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetPersonAsync(ids[i], extended);
+                var personRequest = ids[i];
 
-                if (show != null)
-                    persons.Add(show);
+                if (personRequest != null)
+                {
+                    Task<TraktPerson> task = GetPersonAsync(personRequest.Id, personRequest.ExtendedOption);
+                    tasks.Add(task);
+                }
             }
 
-            return new TraktListResult<TraktPerson> { Items = persons };
+            var people = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktPerson> { Items = people.ToList() };
         }
 
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)

@@ -9,6 +9,8 @@
     using Requests;
     using Requests.WithoutOAuth.Shows.Seasons;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktSeasonsModule : TraktBaseModule
@@ -38,6 +40,31 @@
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
         }
+
+        public async Task<List<TraktListResult<TraktEpisode>>> GetSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
+        {
+            if (ids == null || ids.Length <= 0)
+                return null;
+
+            var tasks = new List<Task<TraktListResult<TraktEpisode>>>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                var seasonsRequest = ids[i];
+
+                if (seasonsRequest != null)
+                {
+                    Task<TraktListResult<TraktEpisode>> task = GetSeasonAsync(seasonsRequest.ShowId, seasonsRequest.Season,
+                                                                              seasonsRequest.ExtendedOption);
+
+                    tasks.Add(task);
+                }
+            }
+
+            var seasons = await Task.WhenAll(tasks);
+            return seasons.ToList();
+        }
+
 
         public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync(string showId, int season,
                                                                                           TraktCommentSortOrder? sorting = null,

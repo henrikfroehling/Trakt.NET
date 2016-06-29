@@ -331,6 +331,43 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
+        #region MultipleSeasons
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonsArgumentExceptions()
+        {
+            var showId = "1390";
+            var seasonNr = 1;
+
+            Func<Task<List<TraktListResult<TraktEpisode>>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(null);
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(new TraktSeasonIdAndExtendedOption[] { });
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
+            {new TraktSeasonIdAndExtendedOption { ShowId = null, Season = seasonNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
+            { new TraktSeasonIdAndExtendedOption { ShowId = string.Empty, Season = seasonNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
+            { new TraktSeasonIdAndExtendedOption { ShowId = "show id", Season = seasonNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
+            { new TraktSeasonIdAndExtendedOption { ShowId = showId, Season = -1 } });
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
         #region SeasonComments
 
         [TestMethod]
