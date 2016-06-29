@@ -216,17 +216,20 @@
         public void TestTraktPeopleModuleGetPersonsArgumentExceptions()
         {
             Func<Task<TraktListResult<TraktPerson>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { null });
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { string.Empty });
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new string[] { });
+                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new TraktIdAndExtendedOption[] { });
             act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "person id" } });
+            act.ShouldThrow<ArgumentException>();
         }
 
         #endregion

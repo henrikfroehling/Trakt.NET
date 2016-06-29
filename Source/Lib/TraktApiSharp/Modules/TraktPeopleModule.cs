@@ -26,7 +26,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(string[] ids, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -35,8 +35,13 @@
 
             for (int i = 0; i < ids.Length; i++)
             {
-                Task<TraktPerson> task = GetPersonAsync(ids[i], extended);
-                tasks.Add(task);
+                var personRequest = ids[i];
+
+                if (personRequest != null)
+                {
+                    Task<TraktPerson> task = GetPersonAsync(personRequest.Id, personRequest.ExtendedOption);
+                    tasks.Add(task);
+                }
             }
 
             var people = await Task.WhenAll(tasks);
