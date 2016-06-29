@@ -119,6 +119,7 @@
     <Compile Include="Modules\TraktRecommendationsModule.cs" />
     <Compile Include="Modules\TraktScrobbleModule.cs" />
     <Compile Include="Modules\TraktSearchModule.cs" />
+    <Compile Include="Modules\TraktSeasonIdAndExtendedOption.cs" />
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
