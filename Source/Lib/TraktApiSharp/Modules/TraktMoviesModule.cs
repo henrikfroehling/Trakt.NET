@@ -11,6 +11,7 @@
     using Requests.WithoutOAuth.Movies.Common;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktMoviesModule : TraktBaseModule
@@ -33,17 +34,16 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var movies = new List<TraktMovie>(ids.Length);
+            var tasks = new List<Task<TraktMovie>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
-                var movie = await GetMovieAsync(ids[i], extended);
-
-                if (movie != null)
-                    movies.Add(movie);
+                Task<TraktMovie> task = GetMovieAsync(ids[i], extended);
+                tasks.Add(task);
             }
 
-            return new TraktListResult<TraktMovie> { Items = movies };
+            var movies = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktMovie> { Items = movies.ToList() };
         }
 
         public async Task<TraktListResult<TraktMovieAlias>> GetMovieAliasesAsync(string id)
