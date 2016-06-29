@@ -8,6 +8,7 @@
     using Requests.WithoutOAuth.People;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktPeopleModule : TraktBaseModule
@@ -30,17 +31,16 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var persons = new List<TraktPerson>(ids.Length);
+            var tasks = new List<Task<TraktPerson>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetPersonAsync(ids[i], extended);
-
-                if (show != null)
-                    persons.Add(show);
+                Task<TraktPerson> task = GetPersonAsync(ids[i], extended);
+                tasks.Add(task);
             }
 
-            return new TraktListResult<TraktPerson> { Items = persons };
+            var people = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktPerson> { Items = people.ToList() };
         }
 
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)
