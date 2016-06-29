@@ -29,7 +29,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktMovie>> GetMoviesAsync(string[] ids, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktMovie>> GetMoviesAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -38,8 +38,13 @@
 
             for (int i = 0; i < ids.Length; i++)
             {
-                Task<TraktMovie> task = GetMovieAsync(ids[i], extended);
-                tasks.Add(task);
+                var movieRequest = ids[i];
+
+                if (movieRequest != null)
+                {
+                    Task<TraktMovie> task = GetMovieAsync(movieRequest.Id, movieRequest.ExtendedOption);
+                    tasks.Add(task);
+                }
             }
 
             var movies = await Task.WhenAll(tasks);
