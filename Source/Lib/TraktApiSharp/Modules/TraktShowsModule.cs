@@ -12,6 +12,7 @@
     using Requests.WithoutOAuth.Shows.Common;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -75,17 +76,16 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var shows = new List<TraktShow>(ids.Length);
+            var tasks = new List<Task<TraktShow>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetShowAsync(ids[i], extended);
-
-                if (show != null)
-                    shows.Add(show);
+                Task<TraktShow> task = GetShowAsync(ids[i], extended);
+                tasks.Add(task);
             }
 
-            return new TraktListResult<TraktShow> { Items = shows };
+            var shows = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktShow> { Items = shows.ToList() };
         }
 
         /// <summary>
