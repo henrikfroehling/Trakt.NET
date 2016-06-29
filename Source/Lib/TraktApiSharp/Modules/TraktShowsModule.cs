@@ -60,18 +60,15 @@
         /// </para>
         /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedOption)" />.</para>
         /// </summary>
-        /// <param name="ids">The Trakt-Ids or -Slugs for queried shows. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="ids">An array of <see cref="TraktIdAndExtendedOption" />.</param>
         /// <param name="extended">
         /// The extended option, which determines how much data about the show should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>
-        /// A list of <see cref="TraktShow" /> instances with the data of each queried show.
-        /// The returned shows are not necessarily in the same order as the given ids.
-        /// </returns>
+        /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
-        public async Task<TraktListResult<TraktShow>> GetShowsAsync(string[] ids, TraktExtendedOption extended = null)
+        public async Task<TraktListResult<TraktShow>> GetShowsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -80,8 +77,13 @@
 
             for (int i = 0; i < ids.Length; i++)
             {
-                Task<TraktShow> task = GetShowAsync(ids[i], extended);
-                tasks.Add(task);
+                var showRequest = ids[i];
+
+                if (showRequest != null)
+                {
+                    Task<TraktShow> task = GetShowAsync(showRequest.Id, showRequest.ExtendedOption);
+                    tasks.Add(task);
+                }
             }
 
             var shows = await Task.WhenAll(tasks);
