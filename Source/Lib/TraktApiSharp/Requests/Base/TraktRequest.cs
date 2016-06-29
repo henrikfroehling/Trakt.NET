@@ -82,26 +82,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
-        private bool _authorizationHeaderRequired;
-
-        internal bool AuthorizationHeaderRequired
-        {
-            get
-            {
-                if (AuthorizationRequirement == TraktAuthorizationRequirement.Required)
-                    return true;
-
-                return _authorizationHeaderRequired;
-            }
-
-            set
-            {
-                if (!value && AuthorizationRequirement == TraktAuthorizationRequirement.Required)
-                    throw new TraktAuthenticationException("request type requires authentication");
-
-                _authorizationHeaderRequired = value;
-            }
-        }
+        internal bool AuthorizationHeaderRequired => AuthorizationRequirement == TraktAuthorizationRequirement.Required;
 
         internal TRequestBody RequestBody { get; set; }
 
@@ -189,6 +170,9 @@ namespace TraktApiSharp.Requests.Base
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.Authorization.AccessToken);
             }
+
+            if (AuthorizationRequirement == TraktAuthorizationRequirement.Optional && Client.Authentication.IsAuthorized)
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.Authorization.AccessToken);
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
