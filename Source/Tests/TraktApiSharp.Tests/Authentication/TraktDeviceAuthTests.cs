@@ -418,6 +418,7 @@
             clientAccessToken.IsValid.Should().BeTrue();
         }
 
+        // Run this test only individually
         //[TestMethod]
         public void TestTraktDeviceAuthPollForAuthorizationPolling()
         {
@@ -716,6 +717,7 @@
             clientAccessToken.IsValid.Should().BeTrue();
         }
 
+        // Run this test only individually
         //[TestMethod]
         public void TestTraktDeviceAuthPollForAuthorizationWithDevicePolling()
         {
@@ -999,6 +1001,7 @@
             clientAccessToken.IsValid.Should().BeTrue();
         }
 
+        // Run this test only individually
         //[TestMethod]
         public void TestTraktDeviceAuthPollForAuthorizationWithDeviceAndClientIdPolling()
         {
@@ -1282,6 +1285,7 @@
             clientAccessToken.IsValid.Should().BeTrue();
         }
 
+        // Run this test only individually
         //[TestMethod]
         public void TestTraktDeviceAuthPollForAuthorizationWithDeviceAndClientIdAndClientSecretPolling()
         {

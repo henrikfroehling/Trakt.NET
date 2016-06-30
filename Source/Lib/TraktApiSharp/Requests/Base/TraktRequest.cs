@@ -171,7 +171,7 @@ namespace TraktApiSharp.Requests.Base
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.Authorization.AccessToken);
             }
 
-            if (AuthorizationRequirement == TraktAuthorizationRequirement.Optional && Client.Authentication.IsAuthorized)
+            if (AuthorizationRequirement == TraktAuthorizationRequirement.Optional && Client.Configuration.ForceAuthorization && Client.Authentication.IsAuthorized)
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Client.Authentication.Authorization.AccessToken);
         }
 
