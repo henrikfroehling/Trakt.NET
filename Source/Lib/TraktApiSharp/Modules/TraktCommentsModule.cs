@@ -14,6 +14,7 @@
     using Requests.WithoutOAuth.Comments;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktCommentsModule : TraktBaseModule
@@ -32,17 +33,16 @@
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var comments = new List<TraktComment>(ids.Length);
+            var tasks = new List<Task<TraktComment>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
-                var show = await GetCommentAsync(ids[i]);
-
-                if (show != null)
-                    comments.Add(show);
+                Task<TraktComment> task = GetCommentAsync(ids[i]);
+                tasks.Add(task);
             }
 
-            return new TraktListResult<TraktComment> { Items = comments };
+            var comments = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktComment> { Items = comments.ToList() };
         }
 
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,

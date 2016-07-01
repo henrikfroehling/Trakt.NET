@@ -2554,6 +2554,48 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
+        #region UserMultipleCustomLists
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetMultipleCustomListsArgumentExceptions()
+        {
+            var username = "sean";
+            var listId = "55";
+
+            Func<Task<TraktListResult<TraktList>>> act =
+                async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] {});
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId() });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMutlipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { ListId = listId } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = string.Empty, ListId = listId } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = "user name", ListId = listId } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username  } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = string.Empty } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = "list id" } });
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
         #region UserCustomListItems
 
         [TestMethod]

@@ -137,6 +137,28 @@
             });
         }
 
+        public async Task<TraktListResult<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId ids[])
+        {
+            if (ids == null && ids.Length <= 0)
+                return null;
+
+            var tasks = new List<Task<TraktList>>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                 var listRequest = ids[i];
+
+                 if (listRequest != null)
+                 {
+                     Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
+                     tasks.Add(task);
+                 }
+            }
+
+            var lists = await Task.WhenAll(tasks);
+            return new TraktListResult<TraktList> { Items = lists.ToList() };
+        }
+
         public async Task<TraktListResult<TraktListItem>> GetCustomListItemsAsync(string username, string listId,
                                                                                   TraktListItemType? type = null,
                                                                                   TraktExtendedOption extended = null)
