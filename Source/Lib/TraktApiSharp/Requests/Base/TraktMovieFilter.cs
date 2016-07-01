@@ -30,5 +30,17 @@
 
             return this;
         }
+
+        public override string ToString()
+        {
+            var parameters = new List<string>();
+
+            parameters.Add(base.ToString());
+
+            if (Certifications != null && Certifications.Length > 0)
+                parameters.Add($"certifications={string.Join(",", Certifications)}");
+
+            return string.Join("&", parameters);
+        }
     }
 }

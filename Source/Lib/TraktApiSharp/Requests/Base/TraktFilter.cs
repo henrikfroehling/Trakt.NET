@@ -104,5 +104,33 @@
             Ratings = new Range<int>(from, to);
             return this;
         }
+
+        public override string ToString()
+        {
+            var parameters = new List<string>();
+
+            if (!string.IsNullOrEmpty(Query))
+                parameters.Add($"query={Query}");
+
+            if (Years >= 0 && Years.ToString().Length == 4)
+                parameters.Add($"years={Years.ToString()}");
+
+            if (Genres != null && Genres.Length > 0)
+                parameters.Add($"genres={string.Join(",", Genres)}");
+
+            if (Languages != null && Languages.Length > 0)
+                parameters.Add($"languages={string.Join(",", Languages)}");
+
+            if (Countries != null && Countries.Length > 0)
+                parameters.Add($"countries={string.Join(",", Countries)}");
+
+            if (Runtimes != null && Runtimes.From >= 0 && Runtimes.To >= Runtimes.From)
+                parameters.Add($"runtimes={Runtimes.From.ToString()}-{Runtimes.To.ToString()}");
+
+            if (Ratings != null && Ratings.From >= 0 && Ratings.To >= Ratings.From && Ratings.To <= 100)
+                parameters.Add($"ratings={Ratings.From.ToString()}-{Ratings.To.ToString()}");
+
+            return string.Join("&", parameters);
+        }
     }
 }

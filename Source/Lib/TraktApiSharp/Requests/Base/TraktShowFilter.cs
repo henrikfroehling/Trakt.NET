@@ -85,5 +85,30 @@
 
             return this;
         }
+
+        public override string ToString()
+        {
+            var parameters = new List<string>();
+
+            parameters.Add(base.ToString());
+
+            if (Certifications != null && Certifications.Length > 0)
+                parameters.Add($"certifications={string.Join(",", Certifications)}");
+
+            if (Networks != null && Networks.Length > 0)
+                parameters.Add($"networks={string.Join(",", Networks)}");
+
+            if (States != null && States.Length > 0)
+            {
+                var statesAsString = new string[States.Length];
+
+                for (int i = 0; i < States.Length; i++)
+                    statesAsString[i] = States[i].AsString();
+
+                parameters.Add($"status={string.Join(",", statesAsString)}");
+            }
+
+            return string.Join("&", parameters);
+        }
     }
 }
