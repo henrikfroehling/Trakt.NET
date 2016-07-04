@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies.Common
 {
+    using Base;
     using Base.Get;
     using Objects.Basic;
     using Objects.Get.Movies.Common;
@@ -8,9 +9,11 @@
     {
         internal TraktMoviesTrendingRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "movies/trending{?extended,page,limit}";
+        protected override string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
+        internal TraktMovieFilter Filter { get; set; }
 
         protected override bool SupportsPagination => true;
 
