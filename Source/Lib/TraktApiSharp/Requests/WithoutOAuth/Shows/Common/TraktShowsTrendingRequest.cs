@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Common
 {
+    using Base;
     using Base.Get;
     using Objects.Basic;
     using Objects.Get.Shows.Common;
@@ -8,9 +9,11 @@
     {
         internal TraktShowsTrendingRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/trending{?extended,page,limit}";
+        protected override string UriTemplate => "shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
+        internal TraktShowFilter Filter { get; set; }
 
         protected override bool SupportsPagination => true;
 
