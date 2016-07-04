@@ -93,15 +93,15 @@
             return this;
         }
 
-        public TraktFilter WithRuntimes(int from, int to)
+        public TraktFilter WithRuntimes(int begin, int end)
         {
-            Runtimes = new Range<int>(from, to);
+            Runtimes = new Range<int>(begin, end);
             return this;
         }
 
-        public TraktFilter WithRatings(int from, int to)
+        public TraktFilter WithRatings(int begin, int end)
         {
-            Ratings = new Range<int>(from, to);
+            Ratings = new Range<int>(begin, end);
             return this;
         }
 
@@ -124,11 +124,11 @@
             if (Countries != null && Countries.Length > 0)
                 parameters.Add($"countries={string.Join(",", Countries)}");
 
-            if (Runtimes != null && Runtimes.From >= 0 && Runtimes.To >= Runtimes.From)
-                parameters.Add($"runtimes={Runtimes.From.ToString()}-{Runtimes.To.ToString()}");
+            if (Runtimes != null && Runtimes.Begin >= 0 && Runtimes.End >= Runtimes.Begin)
+                parameters.Add($"runtimes={Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
 
-            if (Ratings != null && Ratings.From >= 0 && Ratings.To >= Ratings.From && Ratings.To <= 100)
-                parameters.Add($"ratings={Ratings.From.ToString()}-{Ratings.To.ToString()}");
+            if (Ratings != null && Ratings.Begin >= 0 && Ratings.End >= Ratings.Begin && Ratings.End <= 100)
+                parameters.Add($"ratings={Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
 
             return string.Join("&", parameters);
         }

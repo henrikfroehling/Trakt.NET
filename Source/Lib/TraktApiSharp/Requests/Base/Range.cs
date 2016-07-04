@@ -2,14 +2,14 @@
 {
     public sealed class Range<T>
     {
-        public Range(T from, T to)
+        public Range(T begin, T end)
         {
-            From = from;
-            To = to;
+            Begin = begin;
+            End = end;
         }
 
-        public T From { get; set; }
+        public T Begin { get; set; }
 
-        public T To { get; set; }
+        public T End { get; set; }
     }
 }
