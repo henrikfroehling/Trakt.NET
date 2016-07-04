@@ -13,7 +13,7 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        internet TraktMovieFilter Filter { get; set; }
+        internal TraktMovieFilter Filter { get; set; }
 
         protected override bool SupportsPagination => true;
 
