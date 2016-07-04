@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Common
 {
+    using Base;
     using Base.Get;
     using Enums;
     using Objects.Basic;
@@ -22,9 +23,11 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/watched{/period}{?extended,page,limit}";
+        protected override string UriTemplate => "shows/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
+        internal TraktShowFilter Filter { get; set; }
 
         protected override bool SupportsPagination => true;
 
