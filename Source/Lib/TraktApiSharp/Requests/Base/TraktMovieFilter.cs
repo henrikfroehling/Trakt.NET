@@ -40,7 +40,7 @@
             if (Certifications != null && Certifications.Length > 0)
                 parameters.Add($"certifications={string.Join(",", Certifications)}");
 
-            return string.Join("&", parameters);
+            return parameters.Length > 0 ? string.Join("&", parameters) : string.Empty;
         }
     }
 }
