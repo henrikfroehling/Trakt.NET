@@ -1,5 +1,6 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
+    using Base;
     using Enums;
     using System;
     using System.Collections.Generic;

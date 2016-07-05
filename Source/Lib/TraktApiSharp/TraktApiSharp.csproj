@@ -315,7 +315,7 @@
     <Compile Include="Requests\Base\Range.cs" />
     <Compile Include="Requests\Base\TraktFilter.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieFilter.cs" />
-    <Compile Include="Requests\Base\TraktShowFilter.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\TraktShowFilter.cs" />
     <Compile Include="Requests\Base\UriTemplates\OperatorInfo.cs" />
     <Compile Include="Requests\Base\UriTemplates\Result.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplate.cs" />
