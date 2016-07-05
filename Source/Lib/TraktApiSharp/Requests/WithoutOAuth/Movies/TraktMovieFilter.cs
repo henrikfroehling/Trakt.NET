@@ -1,5 +1,6 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies
 {
+    using Base;
     using System.Collections.Generic;
 
     public class TraktMovieFilter : TraktFilter
