@@ -4,31 +4,22 @@
 
     public class TraktMovieFilter : TraktFilter
     {
-        public string[] Certifications { get; set; }
+        public string[] Certifications { get; private set; }
 
         public TraktMovieFilter AddCertifications(string certification, params string[] certifications)
         {
-            var certificationsList = new List<string>();
-
-            certificationsList.AddRange(this.Certifications);
-            certificationsList.Add(certification);
-            certificationsList.AddRange(certifications);
-
-            this.Certifications = certificationsList.ToArray();
-
-            return this;
+            return AddCertifications(true, certification, certifications);
         }
 
         public TraktMovieFilter WithCertifications(string certification, params string[] certifications)
         {
-            this.Certifications = new string[certifications.Length + 1];
+            return AddCertifications(false, certification, certifications);
+        }
 
-            this.Certifications[0] = certification;
-
-            for (int i = 0; i < certifications.Length; i++)
-                this.Certifications[i + 1] = certifications[i];
-
-            return this;
+        public override void Clear()
+        {
+            base.Clear();
+            Certifications = null;
         }
 
         public override string ToString()
@@ -41,6 +32,24 @@
                 parameters.Add($"certifications={string.Join(",", Certifications)}");
 
             return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+        }
+
+        private TraktMovieFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
+        {
+            var certificationsList = new List<string>();
+
+            if (keepExisting && this.Certifications != null && this.Certifications.Length > 0)
+                certificationsList.AddRange(this.Certifications);
+
+            if (!string.IsNullOrEmpty(certification))
+                certificationsList.Add(certification);
+
+            if (certifications != null && certifications.Length > 0)
+                certificationsList.AddRange(certifications);
+
+            this.Certifications = certificationsList.ToArray();
+
+            return this;
         }
     }
 }
