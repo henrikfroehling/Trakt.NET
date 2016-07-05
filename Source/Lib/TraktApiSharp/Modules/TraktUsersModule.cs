@@ -140,7 +140,7 @@
 
         public async Task<TraktListResult<TraktList>> GetMultipleCustomListsAsync(TrakUserstListId[] ids)
         {
-            if (ids == null && ids.Length <= 0)
+            if (ids == null || ids.Length <= 0)
                 return null;
 
             var tasks = new List<Task<TraktList>>();
