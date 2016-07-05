@@ -130,7 +130,7 @@
             if (Ratings != null && Ratings.Begin >= 0 && Ratings.End >= Ratings.Begin && Ratings.End <= 100)
                 parameters.Add($"ratings={Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
 
-            return parameters.Length > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
         }
     }
 }

@@ -108,7 +108,7 @@
                 parameters.Add($"status={string.Join(",", statesAsString)}");
             }
 
-            return parameters.Length > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
         }
     }
 }

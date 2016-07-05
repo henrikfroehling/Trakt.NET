@@ -1,6 +1,6 @@
 namespace TraktApiSharp.Modules
 {
-i    public class TrakUserstListId
+    public class TrakUserstListId
     {
         public string Username { get; set; }
 

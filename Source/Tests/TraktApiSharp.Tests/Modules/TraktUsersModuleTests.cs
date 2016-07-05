@@ -2563,31 +2563,31 @@
             var listId = "55";
 
             Func<Task<TraktListResult<TraktList>>> act =
-                async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] {});
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { });
             act.ShouldNotThrow();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId() });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId() });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMutlipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = string.Empty, ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { Username = string.Empty, ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = "user name", ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { Username = "user name", ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username  } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { Username = username } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { Username = username, ListId = string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = "list id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TrakUserstListId[] { new TrakUserstListId { Username = username, ListId = "list id" } });
             act.ShouldThrow<ArgumentException>();
         }
 
