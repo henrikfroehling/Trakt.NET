@@ -24,6 +24,30 @@
         }
 
         [TestMethod]
+        public void TestTraktFilterConstructor()
+        {
+            var filter = new TraktFilter("query", 2016, new string[] { "action", "drama" },
+                                         new string[] { "de", "en" },
+                                         new string[] { "gb", "us" },
+                                         new Range<int>(40, 100), new Range<int>(70, 90));
+
+            filter.Query.Should().Be("query");
+            filter.Years.Should().Be(2016);
+
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Begin.Should().Be(40);
+            filter.Runtimes.End.Should().Be(100);
+
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Begin.Should().Be(70);
+            filter.Ratings.End.Should().Be(90);
+        }
+
+        [TestMethod]
         public void TestTraktFilterWithQuery()
         {
             var filter = new TraktFilter();

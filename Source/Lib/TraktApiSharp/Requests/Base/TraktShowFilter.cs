@@ -6,6 +6,18 @@
 
     public class TraktShowFilter : TraktFilter
     {
+        public TraktShowFilter() { }
+
+        public TraktShowFilter(string query, int years, string[] genres = null, string[] languages = null,
+                               string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
+                               string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
+            : base(query, years, genres, languages, countries, runtimes, ratings)
+        {
+            WithCertifications(null, certifications);
+            WithNetworks(null, networks);
+            WithStates(TraktShowStatus.Unspecified, states);
+        }
+
         public string[] Certifications { get; private set; }
 
         public string[] Networks { get; private set; }

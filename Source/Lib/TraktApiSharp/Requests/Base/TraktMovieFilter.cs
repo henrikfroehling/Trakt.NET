@@ -4,6 +4,15 @@
 
     public class TraktMovieFilter : TraktFilter
     {
+        public TraktMovieFilter() { }
+
+        public TraktMovieFilter(string query, int years, string[] genres = null, string[] languages = null,
+                                string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
+                                string[] certifications = null) : base(query, years, genres, languages, countries, runtimes, ratings)
+        {
+            WithCertifications(null, certifications);
+        }
+
         public string[] Certifications { get; private set; }
 
         public TraktMovieFilter AddCertifications(string certification, params string[] certifications)

@@ -5,6 +5,20 @@
 
     public class TraktFilter
     {
+        public TraktFilter() { }
+
+        public TraktFilter(string query, int years, string[] genres = null, string[] languages = null,
+                           string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
+        {
+            WithQuery(query);
+            WithYears(years);
+            WithGenres(null, genres);
+            WithLanguages(null, languages);
+            WithCountries(null, countries);
+            WithRuntimes(runtimes.Begin, runtimes.End);
+            WithRatings(ratings.Begin, ratings.End);
+        }
+
         public string Query { get; protected set; }
 
         public int Years { get; protected set; }

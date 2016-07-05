@@ -28,6 +28,37 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterConstructor()
+        {
+            var filter = new TraktShowFilter("query", 2016, new string[] { "action", "drama" },
+                                             new string[] { "de", "en" },
+                                             new string[] { "gb", "us" },
+                                             new Range<int>(40, 100), new Range<int>(70, 90),
+                                             new string[] { "cert1", "cert2" },
+                                             new string[] { "network1", "network2" },
+                                             new TraktShowStatus[] { TraktShowStatus.Ended, TraktShowStatus.InProduction });
+
+            filter.Query.Should().Be("query");
+            filter.Years.Should().Be(2016);
+
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Begin.Should().Be(40);
+            filter.Runtimes.End.Should().Be(100);
+
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Begin.Should().Be(70);
+            filter.Ratings.End.Should().Be(90);
+
+            filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+            filter.Networks.Should().NotBeNull().And.HaveCount(2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterAddCertifications()
         {
             var filter = new TraktShowFilter();
