@@ -36,16 +36,14 @@
             Certifications = null;
         }
 
-        public override string ToString()
+        public override IDictionary<string, string> GetParameters()
         {
-            var parameters = new List<string>();
-
-            parameters.Add(base.ToString());
+            var parameters = base.GetParameters();
 
             if (HasCertificationsSet)
-                parameters.Add($"certifications={string.Join(",", Certifications)}");
+                parameters.Add("certifications", string.Join(",", Certifications));
 
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters;
         }
 
         private TraktMovieFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)

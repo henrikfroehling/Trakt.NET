@@ -128,32 +128,47 @@
             Ratings = null;
         }
 
-        public override string ToString()
+        public virtual IDictionary<string, string> GetParameters()
         {
-            var parameters = new List<string>();
+            var parameters = new Dictionary<string, string>();
 
             if (HasQuerySet)
-                parameters.Add($"query={Query}");
+                parameters.Add("query", Query);
 
             if (HasYearsSet)
-                parameters.Add($"years={Years.ToString()}");
+                parameters.Add("years", Years.ToString());
 
             if (HasGenresSet)
-                parameters.Add($"genres={string.Join(",", Genres)}");
+                parameters.Add("genres", string.Join(",", Genres));
 
             if (HasLanguagesSet)
-                parameters.Add($"languages={string.Join(",", Languages)}");
+                parameters.Add("languages", string.Join(",", Languages));
 
             if (HasCountriesSet)
-                parameters.Add($"countries={string.Join(",", Countries)}");
+                parameters.Add("countries", string.Join(",", Countries));
 
             if (HasRuntimesSet)
-                parameters.Add($"runtimes={Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
+                parameters.Add("runtimes", $"{Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
 
             if (HasRatingsSet)
-                parameters.Add($"ratings={Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
+                parameters.Add("ratings", $"{Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
 
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters;
+        }
+
+        public override string ToString()
+        {
+            var parameters = GetParameters();
+
+            if (parameters.Count <= 0)
+                return string.Empty;
+
+            var keyValues = new List<string>();
+
+            foreach (var param in parameters)
+                keyValues.Add($"{param.Key}={param.Value}");
+
+            return string.Join("&", keyValues);
         }
 
         private TraktFilter AddGenres(bool keepExisting, string genre, params string[] genres)

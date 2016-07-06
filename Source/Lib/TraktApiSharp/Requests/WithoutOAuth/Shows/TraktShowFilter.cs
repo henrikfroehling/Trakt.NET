@@ -71,17 +71,15 @@
             States = null;
         }
 
-        public override string ToString()
+        public override IDictionary<string, string> GetParameters()
         {
-            var parameters = new List<string>();
-
-            parameters.Add(base.ToString());
+            var parameters = base.GetParameters();
 
             if (HasCertificationsSet)
-                parameters.Add($"certifications={string.Join(",", Certifications)}");
+                parameters.Add("certifications", string.Join(",", Certifications));
 
             if (HasNetworksSet)
-                parameters.Add($"networks={string.Join(",", Networks)}");
+                parameters.Add("networks", string.Join(",", Networks));
 
             if (HasStatesSet)
             {
@@ -90,10 +88,10 @@
                 for (int i = 0; i < States.Length; i++)
                     statesAsString[i] = States[i].AsString();
 
-                parameters.Add($"status={string.Join(",", statesAsString)}");
+                parameters.Add("status", string.Join(",", statesAsString));
             }
 
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters;
         }
 
         private TraktShowFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
