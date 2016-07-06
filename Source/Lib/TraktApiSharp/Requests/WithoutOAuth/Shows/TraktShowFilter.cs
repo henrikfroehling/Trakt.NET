@@ -21,9 +21,17 @@
 
         public string[] Certifications { get; private set; }
 
+        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
+
         public string[] Networks { get; private set; }
 
+        public bool HasNetworksSet => Networks != null && Networks.Length > 0;
+
         public TraktShowStatus[] States { get; private set; }
+
+        public bool HasStatesSet => States != null && States.Length > 0;
+
+        public override bool HasValues => base.HasValues || HasCertificationsSet || HasNetworksSet || HasStatesSet;
 
         public TraktShowFilter AddCertifications(string certification, params string[] certifications)
         {
@@ -69,13 +77,13 @@
 
             parameters.Add(base.ToString());
 
-            if (Certifications != null && Certifications.Length > 0)
+            if (HasCertificationsSet)
                 parameters.Add($"certifications={string.Join(",", Certifications)}");
 
-            if (Networks != null && Networks.Length > 0)
+            if (HasNetworksSet)
                 parameters.Add($"networks={string.Join(",", Networks)}");
 
-            if (States != null && States.Length > 0)
+            if (HasStatesSet)
             {
                 var statesAsString = new string[States.Length];
 

@@ -21,17 +21,33 @@
 
         public string Query { get; protected set; }
 
+        public bool HasQuerySet => !string.IsNullOrEmpty(Query);
+
         public int Years { get; protected set; }
+
+        public bool HasYearsSet => Years > 0 && Years.ToString().Length == 4;
 
         public string[] Genres { get; protected set; }
 
+        public bool HasGenresSet => Genres != null && Genres.Length > 0;
+
         public string[] Languages { get; protected set; }
+
+        public bool HasLanguagesSet => Languages != null && Languages.Length > 0;
 
         public string[] Countries { get; protected set; }
 
+        public bool HasCountriesSet => Countries != null && Countries.Length > 0;
+
         public Range<int> Runtimes { get; protected set; }
 
+        public bool HasRuntimesSet => Runtimes != null && Runtimes.Begin > 0 && Runtimes.End > 0 && Runtimes.End > Runtimes.Begin;
+
         public Range<int> Ratings { get; protected set; }
+
+        public bool HasRatingsSet => Ratings != null && Ratings.Begin > 0 && Ratings.End > 0 && Ratings.End > Ratings.Begin && Ratings.End <= 100;
+
+        public virtual bool HasValues => HasQuerySet || HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
 
         public TraktFilter WithQuery(string query)
         {
@@ -116,25 +132,25 @@
         {
             var parameters = new List<string>();
 
-            if (!string.IsNullOrEmpty(Query))
+            if (HasQuerySet)
                 parameters.Add($"query={Query}");
 
-            if (Years >= 0 && Years.ToString().Length == 4)
+            if (HasYearsSet)
                 parameters.Add($"years={Years.ToString()}");
 
-            if (Genres != null && Genres.Length > 0)
+            if (HasGenresSet)
                 parameters.Add($"genres={string.Join(",", Genres)}");
 
-            if (Languages != null && Languages.Length > 0)
+            if (HasLanguagesSet)
                 parameters.Add($"languages={string.Join(",", Languages)}");
 
-            if (Countries != null && Countries.Length > 0)
+            if (HasCountriesSet)
                 parameters.Add($"countries={string.Join(",", Countries)}");
 
-            if (Runtimes != null && Runtimes.Begin >= 0 && Runtimes.End >= Runtimes.Begin)
+            if (HasRuntimesSet)
                 parameters.Add($"runtimes={Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
 
-            if (Ratings != null && Ratings.Begin >= 0 && Ratings.End >= Ratings.Begin && Ratings.End <= 100)
+            if (HasRatingsSet)
                 parameters.Add($"ratings={Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
 
             return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;

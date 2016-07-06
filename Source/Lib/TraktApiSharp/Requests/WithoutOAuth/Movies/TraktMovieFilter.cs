@@ -16,6 +16,10 @@
 
         public string[] Certifications { get; private set; }
 
+        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
+
+        public override bool HasValues => base.HasValues || HasCertificationsSet;
+
         public TraktMovieFilter AddCertifications(string certification, params string[] certifications)
         {
             return AddCertifications(true, certification, certifications);
@@ -38,7 +42,7 @@
 
             parameters.Add(base.ToString());
 
-            if (Certifications != null && Certifications.Length > 0)
+            if (HasCertificationsSet)
                 parameters.Add($"certifications={string.Join(",", Certifications)}");
 
             return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
