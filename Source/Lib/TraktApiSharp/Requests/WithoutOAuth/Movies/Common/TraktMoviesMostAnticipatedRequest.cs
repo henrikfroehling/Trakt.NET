@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies.Common
 {
-    using Base;
     using Base.Get;
     using Objects.Basic;
     using Objects.Get.Movies.Common;
@@ -12,8 +11,6 @@
         protected override string UriTemplate => "movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        internal TraktMovieFilter Filter { get; set; }
 
         protected override bool SupportsPagination => true;
 
