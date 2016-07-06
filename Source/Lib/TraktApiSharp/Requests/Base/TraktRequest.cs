@@ -78,7 +78,9 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        internal virtual TraktExtendedOption ExtendedOption { get; set; }
+        internal TraktExtendedOption ExtendedOption { get; set; }
+
+        internal TraktFilter Filter { get; set; }
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 
@@ -123,9 +125,10 @@ namespace TraktApiSharp.Requests.Base
                 uriPath.AddParameter(param.Key, param.Value);
 
             if (ExtendedOption != null && ExtendedOption.HasAnySet)
-            {
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
-            }
+
+            if (Filter != null && Filter.HasValues)
+                uriPath.AddParameters(Filter.GetParameters());
 
             if (SupportsPagination || SupportsPaginationParameters)
             {
