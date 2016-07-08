@@ -16,6 +16,6 @@
 
         public bool UseStagingUrl { get; set; }
 
-        public string BaseUrl => UseStagingUrl ? "https://api-staging.trakt.tv/" : $"https://api-v{ApiVersion}launch.trakt.tv/";
+        public string BaseUrl => UseStagingUrl ? "https://api-staging.trakt.tv/" : "https://api.trakt.tv/";
     }
 }
