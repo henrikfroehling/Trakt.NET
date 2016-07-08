@@ -5,9 +5,9 @@
     public abstract class TraktEpisodeProgress
     {
         [JsonProperty(PropertyName = "number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [JsonProperty(PropertyName = "completed")]
-        public bool Completed { get; set; }
+        public bool? Completed { get; set; }
     }
 }

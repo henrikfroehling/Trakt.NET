@@ -15,8 +15,8 @@
         {
             var movieScrobbleResponse = new TraktMovieScrobblePostResponse();
 
-            movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Unspecified);
-            movieScrobbleResponse.Progress.Should().Be(0.0f);
+            movieScrobbleResponse.Action.Should().BeNull();
+            movieScrobbleResponse.Progress.Should().NotHaveValue();
             movieScrobbleResponse.Sharing.Should().BeNull();
             movieScrobbleResponse.Movie.Should().BeNull();
         }

@@ -15,13 +15,13 @@
         /// The season number in which the episode was aired.
         /// </summary>
         [JsonProperty(PropertyName = "season")]
-        public int SeasonNumber { get; set; }
+        public int? SeasonNumber { get; set; }
 
         /// <summary>
         /// The episode number within the season to which it belongs.
         /// </summary>
         [JsonProperty(PropertyName = "number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         /// <summary>
         /// The episode title.

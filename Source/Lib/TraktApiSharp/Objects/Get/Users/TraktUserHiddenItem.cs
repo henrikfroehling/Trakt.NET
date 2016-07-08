@@ -10,11 +10,11 @@
     public class TraktUserHiddenItem
     {
         [JsonProperty(PropertyName = "hidden_at")]
-        public DateTime HiddenAt { get; set; }
+        public DateTime? HiddenAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktHiddenItemTypeConverter))]
-        public TraktHiddenItemType Type { get; set; }
+        public TraktHiddenItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

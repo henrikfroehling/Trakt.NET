@@ -5,9 +5,9 @@
     public class TraktUserSeasonsStatistics
     {
         [JsonProperty(PropertyName = "ratings")]
-        public int Ratings { get; set; }
+        public int? Ratings { get; set; }
 
         [JsonProperty(PropertyName = "comments")]
-        public int Comments { get; set; }
+        public int? Comments { get; set; }
     }
 }

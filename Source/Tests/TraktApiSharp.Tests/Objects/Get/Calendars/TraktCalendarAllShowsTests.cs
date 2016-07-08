@@ -17,7 +17,7 @@
         {
             var allShowsItem = new TraktCalendarShow();
 
-            allShowsItem.FirstAired.Should().Be(DateTime.MinValue);
+            allShowsItem.FirstAired.Should().NotHaveValue();
             allShowsItem.Episode.Should().BeNull();
             allShowsItem.Show.Should().BeNull();
         }

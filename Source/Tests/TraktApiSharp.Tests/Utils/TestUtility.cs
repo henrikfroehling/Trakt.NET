@@ -55,11 +55,13 @@
 
         public static void ResetMockHttpClient()
         {
+            MOCK_TEST_CLIENT.Configuration.ForceAuthorization = false;
             TraktConfiguration.HTTP_CLIENT = null;
         }
 
         public static void ClearMockHttpClient()
         {
+            MOCK_TEST_CLIENT.Configuration.ForceAuthorization = false;
             MOCK_HTTP.Clear();
         }
 

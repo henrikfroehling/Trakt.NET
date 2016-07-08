@@ -6,6 +6,6 @@
     public class TraktCheckinPostErrorResponse
     {
         [JsonProperty(PropertyName = "expires_at")]
-        public DateTime ExpiresAt { get; set; }
+        public DateTime? ExpiresAt { get; set; }
     }
 }

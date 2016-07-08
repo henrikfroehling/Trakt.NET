@@ -15,9 +15,9 @@
         {
             var watchedProgress = new TraktShowWatchedProgress();
 
-            watchedProgress.Aired.Should().Be(0);
-            watchedProgress.Completed.Should().Be(0);
-            watchedProgress.LastWatchedAt.Should().Be(DateTime.MinValue);
+            watchedProgress.Aired.Should().NotHaveValue();
+            watchedProgress.Completed.Should().NotHaveValue();
+            watchedProgress.LastWatchedAt.Should().NotHaveValue();
             watchedProgress.Seasons.Should().BeNull();
             watchedProgress.HiddenSeasons.Should().BeNull();
             watchedProgress.NextEpisode.Should().BeNull();

@@ -19,9 +19,9 @@
             var historyItem = new TraktHistoryItem();
 
             historyItem.Id.Should().Be(0);
-            historyItem.WatchedAt.Should().Be(DateTime.MinValue);
-            historyItem.Action.Should().Be(TraktHistoryActionType.Unspecified);
-            historyItem.Type.Should().Be(TraktSyncItemType.Unspecified);
+            historyItem.WatchedAt.Should().NotHaveValue();
+            historyItem.Action.Should().BeNull();
+            historyItem.Type.Should().BeNull();
             historyItem.Movie.Should().BeNull();
             historyItem.Show.Should().BeNull();
             historyItem.Season.Should().BeNull();

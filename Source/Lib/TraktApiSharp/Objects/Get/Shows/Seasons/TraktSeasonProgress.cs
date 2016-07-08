@@ -5,12 +5,12 @@
     public abstract class TraktSeasonProgress
     {
         [JsonProperty(PropertyName = "number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [JsonProperty(PropertyName = "aired")]
-        public int Aired { get; set; }
+        public int? Aired { get; set; }
 
         [JsonProperty(PropertyName = "completed")]
-        public int Completed { get; set; }
+        public int? Completed { get; set; }
     }
 }

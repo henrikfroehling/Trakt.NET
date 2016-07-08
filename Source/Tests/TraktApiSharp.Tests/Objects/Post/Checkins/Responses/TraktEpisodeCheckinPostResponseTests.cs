@@ -15,7 +15,7 @@
         {
             var episodeCheckinResponse = new TraktEpisodeCheckinPostResponse();
 
-            episodeCheckinResponse.WatchedAt.Should().Be(DateTime.MinValue);
+            episodeCheckinResponse.WatchedAt.Should().NotHaveValue();
             episodeCheckinResponse.Sharing.Should().BeNull();
             episodeCheckinResponse.Episode.Should().BeNull();
             episodeCheckinResponse.Show.Should().BeNull();

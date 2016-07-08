@@ -23,7 +23,7 @@
         /// THe show release year (first episode of the first season).
         /// </summary>
         [JsonProperty(PropertyName = "year")]
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
         /// <summary>
         /// A collection of ids for the show for various web services.
@@ -104,7 +104,7 @@
         /// </summary>
         [JsonProperty(PropertyName = "status")]
         [JsonConverter(typeof(TraktShowStatusConverter))]
-        public TraktShowStatus Status { get; set; }
+        public TraktShowStatus? Status { get; set; }
 
         /// <summary>
         /// The average user rating of the show.

@@ -16,10 +16,10 @@
         {
             var watchingItem = new TraktUserWatchingItem();
 
-            watchingItem.ExpiresAt.Should().Be(DateTime.MinValue);
-            watchingItem.StartedAt.Should().Be(DateTime.MinValue);
-            watchingItem.Action.Should().Be(TraktHistoryActionType.Unspecified);
-            watchingItem.Type.Should().Be(TraktSyncType.Unspecified);
+            watchingItem.ExpiresAt.Should().NotHaveValue();
+            watchingItem.StartedAt.Should().NotHaveValue();
+            watchingItem.Action.Should().BeNull();
+            watchingItem.Type.Should().BeNull();
             watchingItem.Movie.Should().BeNull();
             watchingItem.Show.Should().BeNull();
             watchingItem.Episode.Should().BeNull();

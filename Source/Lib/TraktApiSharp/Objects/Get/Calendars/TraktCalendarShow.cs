@@ -8,7 +8,7 @@
     public class TraktCalendarShow
     {
         [JsonProperty(PropertyName = "first_aired")]
-        public DateTime FirstAired { get; set; }
+        public DateTime? FirstAired { get; set; }
 
         [JsonProperty(PropertyName = "episode")]
         public TraktEpisode Episode { get; set; }

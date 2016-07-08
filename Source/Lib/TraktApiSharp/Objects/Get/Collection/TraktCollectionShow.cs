@@ -8,7 +8,7 @@
     public class TraktCollectionShow
     {
         [JsonProperty(PropertyName = "last_collected_at")]
-        public DateTime LastCollectedAt { get; set; }
+        public DateTime? LastCollectedAt { get; set; }
 
         [JsonProperty(PropertyName = "show")]
         public TraktShow Show { get; set; }

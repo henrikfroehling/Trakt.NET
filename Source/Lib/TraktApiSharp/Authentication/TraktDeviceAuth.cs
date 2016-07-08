@@ -95,7 +95,7 @@
 
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
-                var content = new StringContent(postContent);
+                var content = new StringContent(postContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync(tokenUrl, content);
 
                 responseCode = response.StatusCode;
