@@ -11,6 +11,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
     using System.Threading.Tasks;
 
     public class TraktOAuth
@@ -108,7 +109,7 @@
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
-            var content = new StringContent(postContent);
+            var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(tokenUrl, content);
 
