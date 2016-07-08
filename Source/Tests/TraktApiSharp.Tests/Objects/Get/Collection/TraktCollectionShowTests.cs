@@ -18,7 +18,7 @@
         {
             var collectionShow = new TraktCollectionShow();
 
-            collectionShow.LastCollectedAt.Should().Be(DateTime.MinValue);
+            collectionShow.LastCollectedAt.Should().NotHaveValue();
             collectionShow.Show.Should().BeNull();
             collectionShow.Seasons.Should().BeNull();
         }

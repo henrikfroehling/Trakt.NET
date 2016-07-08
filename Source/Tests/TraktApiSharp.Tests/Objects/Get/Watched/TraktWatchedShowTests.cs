@@ -17,8 +17,8 @@
         {
             var showItem = new TraktWatchedShow();
 
-            showItem.Plays.Should().Be(0);
-            showItem.LastWatchedAt.Should().Be(DateTime.MinValue);
+            showItem.Plays.Should().NotHaveValue();
+            showItem.LastWatchedAt.Should().NotHaveValue();
             showItem.Show.Should().BeNull();
             showItem.Seasons.Should().BeNull();
         }

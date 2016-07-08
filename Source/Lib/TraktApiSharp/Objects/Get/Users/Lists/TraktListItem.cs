@@ -15,10 +15,10 @@
         public string Rank { get; set; }
 
         [JsonProperty(PropertyName = "listed_at")]
-        public DateTime ListedAt { get; set; }
+        public DateTime? ListedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        public TraktListItemType Type { get; set; }
+        public TraktListItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

@@ -10,17 +10,17 @@
     public class TraktSyncPlaybackProgressItem
     {
         [JsonProperty(PropertyName = "progress")]
-        public float Progress { get; set; }
+        public float? Progress { get; set; }
 
         [JsonProperty(PropertyName = "paused_at")]
-        public DateTime PausedAt { get; set; }
+        public DateTime? PausedAt { get; set; }
 
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncTypeConverter))]
-        public TraktSyncType Type { get; set; }
+        public TraktSyncType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

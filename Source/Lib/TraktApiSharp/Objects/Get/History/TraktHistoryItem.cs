@@ -14,15 +14,15 @@
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "watched_at")]
-        public DateTime WatchedAt { get; set; }
+        public DateTime? WatchedAt { get; set; }
 
         [JsonProperty(PropertyName = "action")]
         [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
-        public TraktHistoryActionType Action { get; set; }
+        public TraktHistoryActionType? Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncItemTypeConverter))]
-        public TraktSyncItemType Type { get; set; }
+        public TraktSyncItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

@@ -7,10 +7,10 @@
     public class TraktWatchedMovie
     {
         [JsonProperty(PropertyName = "plays")]
-        public int Plays { get; set; }
+        public int? Plays { get; set; }
 
         [JsonProperty(PropertyName = "last_watched_at")]
-        public DateTime LastWatchedAt { get; set; }
+        public DateTime? LastWatchedAt { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

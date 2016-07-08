@@ -9,11 +9,11 @@
     public class TraktUserLikeItem
     {
         [JsonProperty(PropertyName = "liked_at")]
-        public DateTime LikedAt { get; set; }
+        public DateTime? LikedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktUserLikeTypeConverter))]
-        public TraktUserLikeType Type { get; set; }
+        public TraktUserLikeType? Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         public TraktComment Comment { get; set; }

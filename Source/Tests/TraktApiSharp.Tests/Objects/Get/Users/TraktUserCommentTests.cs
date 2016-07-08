@@ -17,7 +17,7 @@
         {
             var userComment = new TraktUserComment();
 
-            userComment.Type.Should().Be(TraktObjectType.Unspecified);
+            userComment.Type.Should().BeNull();
             userComment.Comment.Should().BeNull();
             userComment.Movie.Should().BeNull();
             userComment.Show.Should().BeNull();

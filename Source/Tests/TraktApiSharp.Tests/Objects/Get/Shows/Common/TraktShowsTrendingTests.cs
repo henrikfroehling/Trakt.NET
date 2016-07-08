@@ -16,7 +16,7 @@
         {
             var trendingShow = new TraktTrendingShow();
 
-            trendingShow.Watchers.Should().Be(0);
+            trendingShow.Watchers.Should().NotHaveValue();
             trendingShow.Show.Should().BeNull();
         }
 

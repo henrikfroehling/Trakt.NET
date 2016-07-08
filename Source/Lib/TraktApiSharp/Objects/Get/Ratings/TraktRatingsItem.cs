@@ -11,14 +11,14 @@
     public class TraktRatingsItem
     {
         [JsonProperty(PropertyName = "rated_at")]
-        public DateTime RatedAt { get; set; }
+        public DateTime? RatedAt { get; set; }
 
         [JsonProperty(PropertyName = "rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncRatingsItemTypeConverter))]
-        public TraktSyncRatingsItemType Type { get; set; }
+        public TraktSyncRatingsItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

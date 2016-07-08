@@ -16,7 +16,7 @@
         {
             var anticipatedMovie = new TraktMostAnticipatedMovie();
 
-            anticipatedMovie.ListCount.Should().Be(0);
+            anticipatedMovie.ListCount.Should().NotHaveValue();
             anticipatedMovie.Movie.Should().BeNull();
         }
 

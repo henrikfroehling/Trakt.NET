@@ -16,9 +16,9 @@
         {
             var collectionProgress = new TraktShowCollectionProgress();
 
-            collectionProgress.Aired.Should().Be(0);
-            collectionProgress.Completed.Should().Be(0);
-            collectionProgress.LastCollectedAt.Should().Be(DateTime.MinValue);
+            collectionProgress.Aired.Should().NotHaveValue();
+            collectionProgress.Completed.Should().NotHaveValue();
+            collectionProgress.LastCollectedAt.Should().NotHaveValue();
             collectionProgress.Seasons.Should().BeNull();
             collectionProgress.HiddenSeasons.Should().BeNull();
             collectionProgress.NextEpisode.Should().BeNull();

@@ -15,7 +15,7 @@
         {
             var friend = new TraktUserFriend();
 
-            friend.FriendsAt.Should().Be(DateTime.MinValue);
+            friend.FriendsAt.Should().NotHaveValue();
             friend.User.Should().BeNull();
         }
 

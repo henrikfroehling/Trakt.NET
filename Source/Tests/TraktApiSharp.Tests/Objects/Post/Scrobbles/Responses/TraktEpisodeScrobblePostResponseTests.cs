@@ -14,8 +14,8 @@
         {
             var episodeScrobbleResponse = new TraktEpisodeScrobblePostResponse();
 
-            episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Unspecified);
-            episodeScrobbleResponse.Progress.Should().Be(0.0f);
+            episodeScrobbleResponse.Action.Should().BeNull();
+            episodeScrobbleResponse.Progress.Should().NotHaveValue();
             episodeScrobbleResponse.Sharing.Should().BeNull();
             episodeScrobbleResponse.Episode.Should().BeNull();
             episodeScrobbleResponse.Show.Should().BeNull();

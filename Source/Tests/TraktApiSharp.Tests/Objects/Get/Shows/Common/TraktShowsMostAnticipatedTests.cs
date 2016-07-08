@@ -16,7 +16,7 @@
         {
             var anticipatedShow = new TraktMostAnticipatedShow();
 
-            anticipatedShow.ListCount.Should().Be(0);
+            anticipatedShow.ListCount.Should().NotHaveValue();
             anticipatedShow.Show.Should().BeNull();
         }
 

@@ -18,8 +18,8 @@
 
             release.CountryCode.Should().BeNullOrEmpty();
             release.Certification.Should().BeNullOrEmpty();
-            release.ReleaseDate.Should().Be(DateTime.MinValue);
-            release.ReleaseType.Should().Be(TraktReleaseType.Unknown);
+            release.ReleaseDate.Should().NotHaveValue();
+            release.ReleaseType.Should().BeNull();
             release.Note.Should().BeNullOrEmpty();
         }
 

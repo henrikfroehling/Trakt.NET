@@ -17,7 +17,7 @@
             var show = new TraktShow();
 
             show.Title.Should().BeNullOrEmpty();
-            show.Year.Should().Be(0);
+            show.Year.Should().NotHaveValue();
             show.Airs.Should().BeNull();
             show.AvailableTranslationLanguageCodes.Should().BeNull();
             show.Ids.Should().BeNull();
@@ -33,7 +33,7 @@
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.Homepage.Should().BeNullOrEmpty();
-            show.Status.Should().Be(TraktShowStatus.Unspecified);
+            show.Status.Should().BeNull();
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
@@ -73,7 +73,7 @@
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.Homepage.Should().BeNullOrEmpty();
-            show.Status.Should().Be(TraktShowStatus.Unspecified);
+            show.Status.Should().BeNull();
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();
@@ -123,7 +123,7 @@
             show.UpdatedAt.Should().NotHaveValue();
             show.Trailer.Should().BeNullOrEmpty();
             show.Homepage.Should().BeNullOrEmpty();
-            show.Status.Should().Be(TraktShowStatus.Unspecified);
+            show.Status.Should().BeNull();
             show.Rating.Should().NotHaveValue();
             show.Votes.Should().NotHaveValue();
             show.LanguageCode.Should().BeNullOrEmpty();

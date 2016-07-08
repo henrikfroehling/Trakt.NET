@@ -15,7 +15,7 @@
         {
             var searchResult = new TraktSearchResult();
 
-            searchResult.Type.Should().Be(TraktSearchResultType.Unspecified);
+            searchResult.Type.Should().BeNull();
             searchResult.Score.Should().NotHaveValue();
             searchResult.Movie.Should().BeNull();
             searchResult.Show.Should().BeNull();

@@ -15,7 +15,7 @@
         {
             var checkinErrorResponse = new TraktCheckinPostErrorResponse();
 
-            checkinErrorResponse.ExpiresAt.Should().BeCloseTo(DateTime.MinValue);
+            checkinErrorResponse.ExpiresAt.Should().NotHaveValue();
         }
 
         [TestMethod]

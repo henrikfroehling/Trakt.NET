@@ -8,10 +8,10 @@
     {
         [JsonProperty(PropertyName = "action")]
         [JsonConverter(typeof(TraktScrobbleActionTypeConverter))]
-        public TraktScrobbleActionType Action { get; set; }
+        public TraktScrobbleActionType? Action { get; set; }
 
         [JsonProperty(PropertyName = "progress")]
-        public float Progress { get; set; }
+        public float? Progress { get; set; }
 
         [JsonProperty(PropertyName = "sharing")]
         public TraktSharing Sharing { get; set; }

@@ -18,7 +18,7 @@
 
             list.Name.Should().BeNullOrEmpty();
             list.Description.Should().BeNullOrEmpty();
-            list.Privacy.Should().Be(TraktAccessScope.Unspecified);
+            list.Privacy.Should().BeNull();
             list.DisplayNumbers.Should().NotHaveValue();
             list.AllowComments.Should().NotHaveValue();
             list.SortBy.Should().BeNullOrEmpty();
