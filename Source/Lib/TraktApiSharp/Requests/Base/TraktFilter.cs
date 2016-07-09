@@ -128,9 +128,9 @@
             Ratings = null;
         }
 
-        public virtual IDictionary<string, string> GetParameters()
+        public virtual IDictionary<string, object> GetParameters()
         {
-            var parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, object>();
 
             if (HasQuerySet)
                 parameters.Add("query", Query);

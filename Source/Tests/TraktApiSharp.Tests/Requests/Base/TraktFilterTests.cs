@@ -453,28 +453,28 @@
 
             filter.WithQuery("query");
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" } });
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
 
             var year = 2016;
 
             filter.WithYears(year);
             filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" } });
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" } });
 
             filter.WithGenres("action", "drama", "fantasy");
             filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" },
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
                                                                                        { "genres", "action,drama,fantasy" } });
 
             filter.WithLanguages("de", "en", "es");
             filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" },
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" } });
 
             filter.WithCountries("gb", "us", "fr");
             filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" },
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" } });
@@ -484,7 +484,7 @@
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
             filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" },
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -495,7 +495,7 @@
 
             filter.WithRatings(ratingBegin, ratingEnd);
             filter.GetParameters().Should().NotBeNull().And.HaveCount(7);
-            filter.GetParameters().Should().Contain(new Dictionary<string, string>() { { "query", "query" }, { "years", "2016" },
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },

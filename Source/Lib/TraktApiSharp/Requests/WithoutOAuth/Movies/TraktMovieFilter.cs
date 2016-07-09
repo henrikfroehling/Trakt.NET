@@ -96,7 +96,7 @@
             Certifications = null;
         }
 
-        public override IDictionary<string, string> GetParameters()
+        public override IDictionary<string, object> GetParameters()
         {
             var parameters = base.GetParameters();
 

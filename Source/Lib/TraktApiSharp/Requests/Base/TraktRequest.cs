@@ -122,21 +122,21 @@ namespace TraktApiSharp.Requests.Base
             var pathParams = GetUriPathParameters();
 
             foreach (var param in pathParams)
-                uriPath.AddParameter(param.Key, param.Value);
+                uriPath.AddParameterFromKeyValuePair(param.Key, param.Value);
 
             if (ExtendedOption != null && ExtendedOption.HasAnySet)
                 uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
 
             if (Filter != null && Filter.HasValues)
-                uriPath.AddParameters(Filter.GetParameters());
+                uriPath.AddParametersFromDictionary(Filter.GetParameters());
 
             if (SupportsPagination || SupportsPaginationParameters)
             {
                 if (PaginationOptions.Page != null)
-                    uriPath.AddParameter("page", PaginationOptions.Page.ToString());
+                    uriPath.AddParameterFromKeyValuePair("page", PaginationOptions.Page.ToString());
 
                 if (PaginationOptions.Limit != null)
-                    uriPath.AddParameter("limit", PaginationOptions.Limit.ToString());
+                    uriPath.AddParameterFromKeyValuePair("limit", PaginationOptions.Limit.ToString());
             }
 
             var uri = uriPath.Resolve();
