@@ -16,6 +16,7 @@
     using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.WithoutOAuth.Shows;
     using Utils;
 
     [TestClass]
@@ -2571,6 +2572,41 @@
         }
 
         [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?{filter.ToString()}",
+                                                                showsTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithExtendedOption()
         {
             var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
@@ -2600,6 +2636,48 @@
         }
 
         [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithExtendedOptionFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/trending?extended={extendedOption.ToString()}&{filter.ToString()}",
+                showsTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
         public void TestTraktShowsModuleGetTrendingShowsWithPage()
         {
             var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
@@ -2611,7 +2689,43 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}", showsTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithPageFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?{filter.ToString()}&page={page}",
+                                                                showsTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2641,7 +2755,50 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&page={page}",
                                                                 showsTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithExtendedOptionAndPageFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/trending?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                showsTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2664,7 +2821,43 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?limit={limit}", showsTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithLimitFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?limit={limit}&{filter.ToString()}",
+                                                                showsTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2694,7 +2887,50 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&limit={limit}",
                                                                 showsTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithExtendedOptionAndLimitFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/trending?extended={extendedOption.ToString()}&{filter.ToString()}&limit={limit}",
+                showsTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2719,7 +2955,44 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}&limit={limit}",
                                                                 showsTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsWithPageAndLimitFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}&limit={limit}&{filter.ToString()}",
+                                                                showsTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2750,7 +3023,51 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 showsTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetTrendingShowsCompleteFiltered()
+        {
+            var showsTrending = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsTrending.json");
+            showsTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                showsTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
