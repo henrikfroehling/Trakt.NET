@@ -2634,6 +2634,36 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?{filter.ToString()}", popularMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOption()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
@@ -2661,6 +2691,43 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}",
+                                                                popularMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetPopularMoviesWithPage()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
@@ -2671,7 +2738,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}", popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithPageFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&{filter.ToString()}",
+                                                                popularMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2699,7 +2798,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&page={page}",
                                                                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndPageFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                popularMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2720,7 +2858,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?limit={limit}", popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithLimitFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?limit={limit}&{filter.ToString()}",
+                                                                popularMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2748,7 +2918,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&limit={limit}",
                                                                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndLimitFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/popular?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                popularMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2771,7 +2980,40 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesWithPageAndLimitFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&limit={limit}&{filter.ToString()}",
+                                                                popularMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2800,7 +3042,47 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetPopularMoviesCompleteFiltered()
+        {
+            var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
+            popularMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("popular movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}&limit={limit}",
+                popularMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
