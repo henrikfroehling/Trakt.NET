@@ -15,6 +15,7 @@
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.WithoutOAuth.Movies;
     using Utils;
 
     [TestClass]
@@ -2044,6 +2045,39 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?{filter.ToString()}",
+                                                                moviesTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOption()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
@@ -2073,6 +2107,45 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&{filter.ToString()}",
+                                                                moviesTrending, 1, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetTrendingMoviesWithPage()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
@@ -2084,7 +2157,41 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}", moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithPageFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?{filter.ToString()}&page={page}",
+                                                                moviesTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2114,7 +2221,48 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}",
                                                                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndPageFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/trending?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                moviesTrending, page, 10, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2137,7 +2285,41 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?limit={limit}", moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithLimitFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?{filter.ToString()}&limit={limit}",
+                                                                moviesTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2167,7 +2349,48 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&limit={limit}",
                                                                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndLimitFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/trending?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                moviesTrending, 1, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2192,7 +2415,42 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesWithPageAndLimitFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}&{filter.ToString()}",
+                                                                moviesTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2223,7 +2481,49 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.UserCount.Should().HaveValue().And.Be(userCount);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetTrendingMoviesCompleteFiltered()
+        {
+            var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
+            moviesTrending.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var userCount = 300;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("trending movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                moviesTrending, page, limit, 1, itemCount, userCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
