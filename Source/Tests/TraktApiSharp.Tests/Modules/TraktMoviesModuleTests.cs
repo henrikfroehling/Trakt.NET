@@ -5967,6 +5967,37 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?{filter.ToString()}",
+                                                                mostAnticipatedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOption()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
@@ -5994,6 +6025,44 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/anticipated?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostAnticipatedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithPage()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
@@ -6004,7 +6073,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}", mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithPageFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&{filter.ToString()}",
+                                                                mostAnticipatedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6032,7 +6133,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&page={page}",
                                                                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndPageFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/anticipated?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                mostAnticipatedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6053,7 +6193,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}", mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithLimitFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}&{filter.ToString()}",
+                                                                mostAnticipatedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6081,7 +6253,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&limit={limit}",
                                                                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndLimitFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/anticipated?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                mostAnticipatedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6104,7 +6315,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithPageAndLimitFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/anticipated?page={page}&limit={limit}&{filter.ToString()}",
+                mostAnticipatedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6133,7 +6378,47 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesCompleteFiltered()
+        {
+            var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
+            mostAnticipatedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/anticipated?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
+                mostAnticipatedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
