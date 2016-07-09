@@ -4114,6 +4114,36 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?{filter.ToString()}", mostWatchedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriod()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
@@ -4126,6 +4156,38 @@
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?{filter.ToString()}",
+                                                                mostWatchedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4163,6 +4225,44 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostWatchedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostWatchedMoviesWithPage()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
@@ -4173,7 +4273,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}", mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPageFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&{filter.ToString()}",
+                                                                mostWatchedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4194,7 +4326,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}", mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}&{filter.ToString()}",
+                                                                mostWatchedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4233,6 +4397,45 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodAndExtendedOptionFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched/{period.AsString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostWatchedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodAndPage()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
@@ -4245,7 +4448,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodAndPageFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched/{period.AsString()}?{filter.ToString()}&page={page}",
+                mostWatchedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4268,7 +4505,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodAndLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched/{period.AsString()}?limit={limit}&{filter.ToString()}",
+                mostWatchedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4296,7 +4567,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPageFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                mostWatchedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4324,7 +4634,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                mostWatchedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4347,7 +4696,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPageAndLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched?page={page}&limit={limit}&{filter.ToString()}",
+                mostWatchedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4376,7 +4759,47 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPageAndLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
+                mostWatchedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4400,7 +4823,42 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithPeriodAndPageAndLimitFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched/{period.AsString()}?page={page}&limit={limit}&{filter.ToString()}",
+                mostWatchedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4431,7 +4889,48 @@
                 $"movies/watched/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostWatchedMoviesCompleteFiltered()
+        {
+            var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
+            mostWatchedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most watched movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/watched/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                mostWatchedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
