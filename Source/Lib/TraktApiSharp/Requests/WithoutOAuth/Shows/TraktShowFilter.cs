@@ -21,9 +21,77 @@
 
         public string[] Certifications { get; private set; }
 
+        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
+
         public string[] Networks { get; private set; }
 
+        public bool HasNetworksSet => Networks != null && Networks.Length > 0;
+
         public TraktShowStatus[] States { get; private set; }
+
+        public bool HasStatesSet => States != null && States.Length > 0;
+
+        public override bool HasValues => base.HasValues || HasCertificationsSet || HasNetworksSet || HasStatesSet;
+
+        public new TraktShowFilter WithQuery(string query)
+        {
+            base.WithQuery(query);
+            return this;
+        }
+
+        public new TraktShowFilter WithYears(int years)
+        {
+            base.WithYears(years);
+            return this;
+        }
+
+        public new TraktShowFilter AddGenres(string genre, params string[] genres)
+        {
+            base.AddGenres(genre, genres);
+            return this;
+        }
+
+        public new TraktShowFilter WithGenres(string genre, params string[] genres)
+        {
+            base.WithGenres(genre, genres);
+            return this;
+        }
+
+        public new TraktShowFilter AddLanguages(string language, params string[] languages)
+        {
+            base.AddLanguages(language, languages);
+            return this;
+        }
+
+        public new TraktShowFilter WithLanguages(string language, params string[] languages)
+        {
+            base.WithLanguages(language, languages);
+            return this;
+        }
+
+        public new TraktShowFilter AddCountries(string country, params string[] countries)
+        {
+            base.AddCountries(country, countries);
+            return this;
+        }
+
+        public new TraktShowFilter WithCountries(string country, params string[] countries)
+        {
+            base.WithCountries(country, countries);
+            return this;
+        }
+
+        public new TraktShowFilter WithRuntimes(int begin, int end)
+        {
+            base.WithRuntimes(begin, end);
+            return this;
+        }
+
+        public new TraktShowFilter WithRatings(int begin, int end)
+        {
+            base.WithRatings(begin, end);
+            return this;
+        }
 
         public TraktShowFilter AddCertifications(string certification, params string[] certifications)
         {
@@ -63,29 +131,27 @@
             States = null;
         }
 
-        public override string ToString()
+        public override IDictionary<string, object> GetParameters()
         {
-            var parameters = new List<string>();
+            var parameters = base.GetParameters();
 
-            parameters.Add(base.ToString());
+            if (HasCertificationsSet)
+                parameters.Add("certifications", string.Join(",", Certifications));
 
-            if (Certifications != null && Certifications.Length > 0)
-                parameters.Add($"certifications={string.Join(",", Certifications)}");
+            if (HasNetworksSet)
+                parameters.Add("networks", string.Join(",", Networks));
 
-            if (Networks != null && Networks.Length > 0)
-                parameters.Add($"networks={string.Join(",", Networks)}");
-
-            if (States != null && States.Length > 0)
+            if (HasStatesSet)
             {
                 var statesAsString = new string[States.Length];
 
                 for (int i = 0; i < States.Length; i++)
                     statesAsString[i] = States[i].AsString();
 
-                parameters.Add($"status={string.Join(",", statesAsString)}");
+                parameters.Add("status", string.Join(",", statesAsString));
             }
 
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters;
         }
 
         private TraktShowFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)

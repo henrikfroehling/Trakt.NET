@@ -21,17 +21,33 @@
 
         public string Query { get; protected set; }
 
+        public bool HasQuerySet => !string.IsNullOrEmpty(Query);
+
         public int Years { get; protected set; }
+
+        public bool HasYearsSet => Years > 0 && Years.ToString().Length == 4;
 
         public string[] Genres { get; protected set; }
 
+        public bool HasGenresSet => Genres != null && Genres.Length > 0;
+
         public string[] Languages { get; protected set; }
+
+        public bool HasLanguagesSet => Languages != null && Languages.Length > 0;
 
         public string[] Countries { get; protected set; }
 
+        public bool HasCountriesSet => Countries != null && Countries.Length > 0;
+
         public Range<int> Runtimes { get; protected set; }
 
+        public bool HasRuntimesSet => Runtimes != null && Runtimes.Begin > 0 && Runtimes.End > 0 && Runtimes.End > Runtimes.Begin;
+
         public Range<int> Ratings { get; protected set; }
+
+        public bool HasRatingsSet => Ratings != null && Ratings.Begin > 0 && Ratings.End > 0 && Ratings.End > Ratings.Begin && Ratings.End <= 100;
+
+        public virtual bool HasValues => HasQuerySet || HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
 
         public TraktFilter WithQuery(string query)
         {
@@ -112,32 +128,47 @@
             Ratings = null;
         }
 
+        public virtual IDictionary<string, object> GetParameters()
+        {
+            var parameters = new Dictionary<string, object>();
+
+            if (HasQuerySet)
+                parameters.Add("query", Query);
+
+            if (HasYearsSet)
+                parameters.Add("years", Years.ToString());
+
+            if (HasGenresSet)
+                parameters.Add("genres", string.Join(",", Genres));
+
+            if (HasLanguagesSet)
+                parameters.Add("languages", string.Join(",", Languages));
+
+            if (HasCountriesSet)
+                parameters.Add("countries", string.Join(",", Countries));
+
+            if (HasRuntimesSet)
+                parameters.Add("runtimes", $"{Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
+
+            if (HasRatingsSet)
+                parameters.Add("ratings", $"{Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
+
+            return parameters;
+        }
+
         public override string ToString()
         {
-            var parameters = new List<string>();
+            var parameters = GetParameters();
 
-            if (!string.IsNullOrEmpty(Query))
-                parameters.Add($"query={Query}");
+            if (parameters.Count <= 0)
+                return string.Empty;
 
-            if (Years >= 0 && Years.ToString().Length == 4)
-                parameters.Add($"years={Years.ToString()}");
+            var keyValues = new List<string>();
 
-            if (Genres != null && Genres.Length > 0)
-                parameters.Add($"genres={string.Join(",", Genres)}");
+            foreach (var param in parameters)
+                keyValues.Add($"{param.Key}={param.Value}");
 
-            if (Languages != null && Languages.Length > 0)
-                parameters.Add($"languages={string.Join(",", Languages)}");
-
-            if (Countries != null && Countries.Length > 0)
-                parameters.Add($"countries={string.Join(",", Countries)}");
-
-            if (Runtimes != null && Runtimes.Begin >= 0 && Runtimes.End >= Runtimes.Begin)
-                parameters.Add($"runtimes={Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
-
-            if (Ratings != null && Ratings.Begin >= 0 && Ratings.End >= Ratings.Begin && Ratings.End <= 100)
-                parameters.Add($"ratings={Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
-
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return string.Join("&", keyValues);
         }
 
         private TraktFilter AddGenres(bool keepExisting, string genre, params string[] genres)

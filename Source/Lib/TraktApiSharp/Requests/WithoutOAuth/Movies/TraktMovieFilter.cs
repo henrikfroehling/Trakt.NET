@@ -16,6 +16,70 @@
 
         public string[] Certifications { get; private set; }
 
+        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
+
+        public override bool HasValues => base.HasValues || HasCertificationsSet;
+
+        public new TraktMovieFilter WithQuery(string query)
+        {
+            base.WithQuery(query);
+            return this;
+        }
+
+        public new TraktMovieFilter WithYears(int years)
+        {
+            base.WithYears(years);
+            return this;
+        }
+
+        public new TraktMovieFilter AddGenres(string genre, params string[] genres)
+        {
+            base.AddGenres(genre, genres);
+            return this;
+        }
+
+        public new TraktMovieFilter WithGenres(string genre, params string[] genres)
+        {
+            base.WithGenres(genre, genres);
+            return this;
+        }
+
+        public new TraktMovieFilter AddLanguages(string language, params string[] languages)
+        {
+            base.AddLanguages(language, languages);
+            return this;
+        }
+
+        public new TraktMovieFilter WithLanguages(string language, params string[] languages)
+        {
+            base.WithLanguages(language, languages);
+            return this;
+        }
+
+        public new TraktMovieFilter AddCountries(string country, params string[] countries)
+        {
+            base.AddCountries(country, countries);
+            return this;
+        }
+
+        public new TraktMovieFilter WithCountries(string country, params string[] countries)
+        {
+            base.WithCountries(country, countries);
+            return this;
+        }
+
+        public new TraktMovieFilter WithRuntimes(int begin, int end)
+        {
+            base.WithRuntimes(begin, end);
+            return this;
+        }
+
+        public new TraktMovieFilter WithRatings(int begin, int end)
+        {
+            base.WithRatings(begin, end);
+            return this;
+        }
+
         public TraktMovieFilter AddCertifications(string certification, params string[] certifications)
         {
             return AddCertifications(true, certification, certifications);
@@ -32,16 +96,14 @@
             Certifications = null;
         }
 
-        public override string ToString()
+        public override IDictionary<string, object> GetParameters()
         {
-            var parameters = new List<string>();
+            var parameters = base.GetParameters();
 
-            parameters.Add(base.ToString());
+            if (HasCertificationsSet)
+                parameters.Add("certifications", string.Join(",", Certifications));
 
-            if (Certifications != null && Certifications.Length > 0)
-                parameters.Add($"certifications={string.Join(",", Certifications)}");
-
-            return parameters.Count > 0 ? string.Join("&", parameters) : string.Empty;
+            return parameters;
         }
 
         private TraktMovieFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
