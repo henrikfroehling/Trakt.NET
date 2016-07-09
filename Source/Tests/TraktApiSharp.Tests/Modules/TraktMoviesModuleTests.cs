@@ -5040,6 +5040,37 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?{filter.ToString()}",
+                                                                mostCollectedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriod()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
@@ -5052,6 +5083,38 @@
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?{filter.ToString()}",
+                                                                mostCollectedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5089,6 +5152,44 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostCollectedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostCollectedMoviesWithPage()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
@@ -5099,7 +5200,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}", mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPageFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&{filter.ToString()}",
+                                                                mostCollectedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5120,7 +5253,39 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}", mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}&{filter.ToString()}",
+                                                                mostCollectedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5159,6 +5324,45 @@
         }
 
         [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodAndExtendedOptionFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected/{period.AsString()}?{filter.ToString()}&extended={extendedOption.ToString()}",
+                mostCollectedMovies, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodAndPage()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
@@ -5171,7 +5375,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodAndPageFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected/{period.AsString()}?page={page}&{filter.ToString()}",
+                mostCollectedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5194,7 +5432,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodAndLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected/{period.AsString()}?limit={limit}&{filter.ToString()}",
+                mostCollectedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5222,7 +5494,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPageFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                mostCollectedMovies, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5250,7 +5561,46 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}&limit={limit}",
+                mostCollectedMovies, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5273,7 +5623,41 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPageAndLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected?page={page}&limit={limit}&{filter.ToString()}",
+                mostCollectedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5302,7 +5686,47 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPageAndLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                mostCollectedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5326,7 +5750,42 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithPeriodAndPageAndLimitFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected/{period.AsString()}?page={page}&{filter.ToString()}&limit={limit}",
+                mostCollectedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5357,7 +5816,48 @@
                 $"movies/collected/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMostCollectedMoviesCompleteFiltered()
+        {
+            var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
+            mostCollectedMovies.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktMovieFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most collected movie")
+                .WithYears(2016)
+                .WithGenres("action", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(90, 180)
+                .WithRatings(70, 90);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/collected/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                mostCollectedMovies, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);

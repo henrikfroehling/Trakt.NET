@@ -202,15 +202,16 @@
             });
         }
 
-        // TODO add filters
         public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktPeriod? period = null,
                                                                                                           TraktExtendedOption extended = null,
+                                                                                                          TraktMovieFilter filter = null,
                                                                                                           int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktMoviesMostCollectedRequest(Client)
             {
                 Period = period,
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
