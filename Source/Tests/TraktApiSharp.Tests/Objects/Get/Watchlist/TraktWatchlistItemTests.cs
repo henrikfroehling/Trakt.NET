@@ -18,8 +18,8 @@
         {
             var watchlistItem = new TraktWatchlistItem();
 
-            watchlistItem.ListedAt.Should().Be(DateTime.MinValue);
-            watchlistItem.Type.Should().Be(TraktSyncItemType.Unspecified);
+            watchlistItem.ListedAt.Should().NotHaveValue();
+            watchlistItem.Type.Should().BeNull();
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().BeNull();
             watchlistItem.Season.Should().BeNull();

@@ -16,7 +16,7 @@
         /// The season number.
         /// </summary>
         [JsonProperty(PropertyName = "number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         /// <summary>
         /// A collection of ids for the season for various web services.

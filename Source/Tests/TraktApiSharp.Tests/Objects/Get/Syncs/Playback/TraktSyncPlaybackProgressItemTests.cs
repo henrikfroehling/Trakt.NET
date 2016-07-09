@@ -16,10 +16,10 @@
         {
             var playbackProgress = new TraktSyncPlaybackProgressItem();
 
-            playbackProgress.Progress.Should().Be(0.0f);
-            playbackProgress.PausedAt.Should().Be(DateTime.MinValue);
+            playbackProgress.Progress.Should().NotHaveValue();
+            playbackProgress.PausedAt.Should().NotHaveValue();
             playbackProgress.Id.Should().Be(0);
-            playbackProgress.Type.Should().Be(TraktSyncType.Unspecified);
+            playbackProgress.Type.Should().BeNull();
             playbackProgress.Movie.Should().BeNull();
             playbackProgress.Episode.Should().BeNull();
             playbackProgress.Show.Should().BeNull();

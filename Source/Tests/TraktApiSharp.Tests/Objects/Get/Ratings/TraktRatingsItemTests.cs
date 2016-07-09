@@ -18,9 +18,9 @@
         {
             var ratingsItem = new TraktRatingsItem();
 
-            ratingsItem.RatedAt.Should().Be(DateTime.MinValue);
-            ratingsItem.Rating.Should().Be(0);
-            ratingsItem.Type.Should().Be(TraktSyncRatingsItemType.Unspecified);
+            ratingsItem.RatedAt.Should().NotHaveValue();
+            ratingsItem.Rating.Should().NotHaveValue();
+            ratingsItem.Type.Should().BeNull();
             ratingsItem.Movie.Should().BeNull();
             ratingsItem.Show.Should().BeNull();
             ratingsItem.Season.Should().BeNull();

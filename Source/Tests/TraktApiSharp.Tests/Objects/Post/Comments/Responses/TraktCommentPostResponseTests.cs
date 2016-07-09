@@ -16,13 +16,13 @@
             var commentPostResponse = new TraktCommentPostResponse();
 
             commentPostResponse.Id.Should().Be(0);
-            commentPostResponse.ParentId.Should().Be(0);
+            commentPostResponse.ParentId.Should().NotHaveValue();
             commentPostResponse.CreatedAt.Should().Be(DateTime.MinValue);
             commentPostResponse.Comment.Should().BeNullOrEmpty();
             commentPostResponse.Spoiler.Should().BeFalse();
             commentPostResponse.Review.Should().BeFalse();
-            commentPostResponse.Replies.Should().Be(0);
-            commentPostResponse.Likes.Should().Be(0);
+            commentPostResponse.Replies.Should().NotHaveValue();
+            commentPostResponse.Likes.Should().NotHaveValue();
             commentPostResponse.UserRating.Should().NotHaveValue();
             commentPostResponse.User.Should().BeNull();
             commentPostResponse.Sharing.Should().BeNull();

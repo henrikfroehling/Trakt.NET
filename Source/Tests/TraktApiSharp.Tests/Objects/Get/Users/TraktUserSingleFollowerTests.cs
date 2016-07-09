@@ -15,7 +15,7 @@
         {
             var follower = new TraktUserFollower();
 
-            follower.FollowedAt.Should().Be(DateTime.MinValue);
+            follower.FollowedAt.Should().NotHaveValue();
             follower.User.Should().BeNull();
         }
 

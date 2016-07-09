@@ -17,8 +17,8 @@
         {
             var movieItem = new TraktWatchedMovie();
 
-            movieItem.Plays.Should().Be(0);
-            movieItem.LastWatchedAt.Should().Be(DateTime.MinValue);
+            movieItem.Plays.Should().NotHaveValue();
+            movieItem.LastWatchedAt.Should().NotHaveValue();
             movieItem.Movie.Should().BeNull();
         }
 

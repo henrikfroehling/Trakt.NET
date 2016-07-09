@@ -12,7 +12,7 @@
     {
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSearchResultTypeConverter))]
-        public TraktSearchResultType Type { get; set; }
+        public TraktSearchResultType? Type { get; set; }
 
         [JsonProperty(PropertyName = "score")]
         public float? Score { get; set; }

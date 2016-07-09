@@ -11,11 +11,11 @@
     public class TraktWatchlistItem
     {
         [JsonProperty(PropertyName = "listed_at")]
-        public DateTime ListedAt { get; set; }
+        public DateTime? ListedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncItemTypeConverter))]
-        public TraktSyncItemType Type { get; set; }
+        public TraktSyncItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }

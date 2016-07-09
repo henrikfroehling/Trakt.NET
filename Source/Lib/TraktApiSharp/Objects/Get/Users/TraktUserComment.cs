@@ -12,7 +12,7 @@
     public class TraktUserComment
     {
         [JsonProperty(PropertyName = "type")]
-        public TraktObjectType Type { get; set; }
+        public TraktObjectType? Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         public TraktComment Comment { get; set; }

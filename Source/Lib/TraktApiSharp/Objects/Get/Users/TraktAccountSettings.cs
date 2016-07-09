@@ -8,7 +8,7 @@
         public string TimeZoneId { get; set; }
 
         [JsonProperty(PropertyName = "time_24hr")]
-        public bool Time24Hr { get; set; }
+        public bool? Time24Hr { get; set; }
 
         [JsonProperty(PropertyName = "cover_image")]
         public string CoverImage { get; set; }

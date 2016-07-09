@@ -11,6 +11,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
     using System.Threading.Tasks;
 
     /// <summary>Provides access to OAuth authentication methods, such as creating a new authorization URL and getting a new access token.</summary>
@@ -295,7 +296,7 @@
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
-            var content = new StringContent(postContent);
+            var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(tokenUrl, content);
 

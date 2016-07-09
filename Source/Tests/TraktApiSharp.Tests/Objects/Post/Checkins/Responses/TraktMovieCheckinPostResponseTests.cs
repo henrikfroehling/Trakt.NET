@@ -15,7 +15,7 @@
         {
             var movieCheckinResponse = new TraktMovieCheckinPostResponse();
 
-            movieCheckinResponse.WatchedAt.Should().Be(DateTime.MinValue);
+            movieCheckinResponse.WatchedAt.Should().NotHaveValue();
             movieCheckinResponse.Sharing.Should().BeNull();
             movieCheckinResponse.Movie.Should().BeNull();
         }

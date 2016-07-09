@@ -1023,6 +1023,33 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserProfileWithOAuthEnforced()
+        {
+            var userProfile = TestUtility.ReadFileContents(@"Objects\Get\Users\UserProfile.json");
+            userProfile.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}", userProfile);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Username.Should().Be("sean");
+            response.Private.Should().BeFalse();
+            response.Name.Should().Be("Sean Rudford");
+            response.VIP.Should().BeTrue();
+            response.VIP_EP.Should().BeTrue();
+            response.JoinedAt.Should().NotHaveValue();
+            response.Location.Should().BeNullOrEmpty();
+            response.About.Should().BeNullOrEmpty();
+            response.Gender.Should().BeNullOrEmpty();
+            response.Age.Should().NotHaveValue();
+            response.Images.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserProfileExceptions()
         {
             var username = "sean";
@@ -1123,6 +1150,23 @@
             var username = "sean";
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/collection/movies", moviesCollection);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserCollectionMoviesWithOAuthEnforced()
+        {
+            var moviesCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMovies.json");
+            moviesCollection.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/collection/movies", moviesCollection);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
 
@@ -1264,6 +1308,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserCollectionShowsWithOAuthEnforced()
+        {
+            var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShows.json");
+            showsCollection.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/collection/shows", showsCollection);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShowsWithExtendedOption()
         {
             var showsCollection = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShows.json");
@@ -1390,6 +1451,28 @@
             var itemCount = 5;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments", userComments, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserCommentsWithOAuthEnforced()
+        {
+            var userComments = TestUtility.ReadFileContents(@"Objects\Get\Users\UserComments.json");
+            userComments.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 5;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/{username}/comments", userComments, 1, 10, 1, itemCount);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
 
@@ -2324,6 +2407,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserCustomListsWithOAuthEnfored()
+        {
+            var customLists = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\CustomLists.json");
+            customLists.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists", customLists);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListsExceptions()
         {
             var username = "sean";
@@ -2427,6 +2527,39 @@
             var listId = "55";
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}", customList);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.Name.Should().Be("Star Wars in machete order");
+            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            response.Privacy.Should().Be(TraktAccessScope.Public);
+            response.DisplayNumbers.Should().BeTrue();
+            response.AllowComments.Should().BeFalse();
+            response.SortBy.Should().Be("rank");
+            response.SortHow.Should().Be("asc");
+            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            response.ItemCount.Should().Be(5);
+            response.CommentCount.Should().Be(1);
+            response.Likes.Should().Be(2);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(55);
+            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            response.User.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserCustomSingleListWithOAuthEnforced()
+        {
+            var customList = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\List.json");
+            customList.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", customList);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, listId).Result;
 
@@ -2563,31 +2696,31 @@
             var listId = "55";
 
             Func<Task<TraktListResult<TraktList>>> act =
-                async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] {});
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { });
             act.ShouldNotThrow();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId() });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId() });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMutlipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMutlipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = string.Empty, ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = string.Empty, ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = "user name", ListId = listId } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = "user name", ListId = listId } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username  } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtilities.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = "list id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(new TraktUsersListId[] { new TraktUsersListId { Username = username, ListId = "list id" } });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2608,6 +2741,24 @@
             var listId = "55";
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items", customListItems);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserCustomListItemsWithOAuthEnforced()
+        {
+            var customListItems = TestUtility.ReadFileContents(@"Objects\Get\Users\Lists\ListItems.json");
+            customListItems.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var listId = "55";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items", customListItems);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
 
@@ -6258,6 +6409,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserFollowersWithOAuthEnforced()
+        {
+            var userFollowers = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");
+            userFollowers.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/followers", userFollowers);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserFollowersExceptions()
         {
             var username = "sean";
@@ -6369,6 +6537,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserFollowingWithOAuthEnforced()
+        {
+            var userFollowing = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");
+            userFollowing.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/following", userFollowing);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingExceptions()
         {
             var username = "sean";
@@ -6472,6 +6657,23 @@
             var username = "sean";
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/friends", userFriends);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserFriendsWithOAuthEnforced()
+        {
+            var userFriends = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFriends.json");
+            userFriends.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/friends", userFriends);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
 
@@ -7029,6 +7231,28 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history", userHistory, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedHistoryWithOAuthEnforced()
+        {
+            var userHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
+            userHistory.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/{username}/history", userHistory, 1, 10, 1, itemCount);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
 
@@ -8169,6 +8393,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserRatingsWithOAuthEnforced()
+        {
+            var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
+            userRatings.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/ratings", userRatings);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsWithType()
         {
             var userRatings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
@@ -8682,6 +8923,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchlistWithOAuthEnforced()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/watchlist", userWatchlist);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistWithType()
         {
             var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
@@ -8869,6 +9127,36 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchingWithOAuthEnforced()
+        {
+            var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
+            userWatching.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/watching", userWatching);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            response.Action.Should().Be(TraktHistoryActionType.Checkin);
+            response.Type.Should().Be(TraktSyncType.Movie);
+            response.Movie.Should().NotBeNull();
+            response.Movie.Title.Should().Be("Super 8");
+            response.Movie.Year.Should().Be(2011);
+            response.Movie.Ids.Should().NotBeNull();
+            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Slug.Should().Be("super-8-2011");
+            response.Movie.Ids.Imdb.Should().Be("tt1650062");
+            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Show.Should().BeNull();
+            response.Episode.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingComplete()
         {
             var userWatching = TestUtility.ReadFileContents(@"Objects\Get\Users\Watching\UserWatchingItemMovie.json");
@@ -9014,6 +9302,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedMoviesWithOAuthEnforced()
+        {
+            var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
+            watchedMovies.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/watched/movies", watchedMovies);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesComplete()
         {
             var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
@@ -9146,6 +9451,23 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserWatchedShowsWithOAuthEnforced()
+        {
+            var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
+            watchedShows.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/watched/shows", watchedShows);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsComplete()
         {
             var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
@@ -9270,6 +9592,64 @@
             var username = "sean";
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/stats", userStatistics);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(username).Result;
+
+            response.Should().NotBeNull();
+
+            response.Movies.Should().NotBeNull();
+            response.Movies.Plays.Should().Be(155);
+            response.Movies.Watched.Should().Be(114);
+            response.Movies.Minutes.Should().Be(15650);
+            response.Movies.Collected.Should().Be(933);
+            response.Movies.Ratings.Should().Be(256);
+            response.Movies.Comments.Should().Be(28);
+
+            response.Shows.Should().NotBeNull();
+            response.Shows.Watched.Should().Be(16);
+            response.Shows.Collected.Should().Be(7);
+            response.Shows.Ratings.Should().Be(63);
+            response.Shows.Comments.Should().Be(20);
+
+            response.Seasons.Should().NotBeNull();
+            response.Seasons.Ratings.Should().Be(6);
+            response.Seasons.Comments.Should().Be(1);
+
+            response.Episodes.Should().NotBeNull();
+            response.Episodes.Plays.Should().Be(552);
+            response.Episodes.Watched.Should().Be(534);
+            response.Episodes.Minutes.Should().Be(17330);
+            response.Episodes.Collected.Should().Be(117);
+            response.Episodes.Ratings.Should().Be(64);
+            response.Episodes.Comments.Should().Be(14);
+
+            response.Network.Should().NotBeNull();
+            response.Network.Friends.Should().Be(1);
+            response.Network.Followers.Should().Be(4);
+            response.Network.Following.Should().Be(11);
+
+            response.Ratings.Should().NotBeNull();
+            response.Ratings.Total.Should().Be(389);
+
+            var distribution = new Dictionary<string, int>()
+            {
+                { "1",  18 }, { "2", 1 }, { "3", 4 }, { "4", 1 }, { "5", 10 },
+                { "6",  9 }, { "7", 37 }, { "8", 37 }, { "9", 57 }, { "10", 215 }
+            };
+
+            response.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetUserStatisticsWithOAuthEnforced()
+        {
+            var userStatistics = TestUtility.ReadFileContents(@"Objects\Get\Users\UserStatistics.json");
+            userStatistics.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/stats", userStatistics);
+            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(username).Result;
 

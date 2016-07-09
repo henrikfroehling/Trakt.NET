@@ -8,10 +8,10 @@
     public abstract class TraktShowProgress
     {
         [JsonProperty(PropertyName = "aired")]
-        public int Aired { get; set; }
+        public int? Aired { get; set; }
 
         [JsonProperty(PropertyName = "completed")]
-        public int Completed { get; set; }
+        public int? Completed { get; set; }
 
         [JsonProperty(PropertyName = "hidden_seasons")]
         public IEnumerable<TraktSeason> HiddenSeasons { get; set; }

@@ -16,10 +16,10 @@
         {
             var watchedShow = new TraktMostWatchedShow();
 
-            watchedShow.WatcherCount.Should().Be(0);
-            watchedShow.PlayCount.Should().Be(0);
-            watchedShow.CollectedCount.Should().Be(0);
-            watchedShow.CollectorCount.Should().Be(0);
+            watchedShow.WatcherCount.Should().NotHaveValue();
+            watchedShow.PlayCount.Should().NotHaveValue();
+            watchedShow.CollectedCount.Should().NotHaveValue();
+            watchedShow.CollectorCount.Should().NotHaveValue();
             watchedShow.Show.Should().BeNull();
         }
 

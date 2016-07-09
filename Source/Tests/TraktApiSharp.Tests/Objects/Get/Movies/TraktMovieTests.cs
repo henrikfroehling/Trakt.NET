@@ -16,7 +16,7 @@
             var movie = new TraktMovie();
 
             movie.Title.Should().BeNullOrEmpty();
-            movie.Year.Should().Be(0);
+            movie.Year.Should().NotHaveValue();
             movie.Ids.Should().BeNull();
             movie.Images.Should().BeNull();
             movie.Tagline.Should().BeNullOrEmpty();

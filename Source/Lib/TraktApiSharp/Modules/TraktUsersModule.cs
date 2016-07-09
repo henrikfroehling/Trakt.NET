@@ -19,6 +19,7 @@
     using Requests.WithOAuth.Users;
     using Requests.WithoutOAuth.Users;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -146,13 +147,13 @@
 
             for (int i = 0; i < ids.Length; i++)
             {
-                 var listRequest = ids[i];
+                var listRequest = ids[i];
 
-                 if (listRequest != null)
-                 {
-                     Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
-                     tasks.Add(task);
-                 }
+                if (listRequest != null)
+                {
+                    Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
+                    tasks.Add(task);
+                }
             }
 
             var lists = await Task.WhenAll(tasks);

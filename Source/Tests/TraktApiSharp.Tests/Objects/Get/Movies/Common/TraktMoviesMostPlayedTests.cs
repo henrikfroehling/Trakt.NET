@@ -16,9 +16,9 @@
         {
             var playedMovie = new TraktMostPlayedMovie();
 
-            playedMovie.WatcherCount.Should().Be(0);
-            playedMovie.PlayCount.Should().Be(0);
-            playedMovie.CollectedCount.Should().Be(0);
+            playedMovie.WatcherCount.Should().NotHaveValue();
+            playedMovie.PlayCount.Should().NotHaveValue();
+            playedMovie.CollectedCount.Should().NotHaveValue();
             playedMovie.Movie.Should().BeNull();
         }
 

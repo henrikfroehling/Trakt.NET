@@ -16,8 +16,8 @@
         {
             var userLike = new TraktUserLikeItem();
 
-            userLike.LikedAt.Should().Be(DateTime.MinValue);
-            userLike.Type.Should().Be(TraktUserLikeType.Unspecified);
+            userLike.LikedAt.Should().NotHaveValue();
+            userLike.Type.Should().BeNull();
             userLike.Comment.Should().BeNull();
             userLike.List.Should().BeNull();
         }

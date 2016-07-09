@@ -6,7 +6,7 @@
     public class TraktUserRatingsStatistics
     {
         [JsonProperty(PropertyName = "total")]
-        public int Total { get; set; }
+        public int? Total { get; set; }
 
         [JsonProperty(PropertyName = "distribution")]
         public Dictionary<string, int> Distribution { get; set; }

@@ -19,8 +19,8 @@
             var listItem = new TraktListItem();
 
             listItem.Rank.Should().BeNullOrEmpty();
-            listItem.ListedAt.Should().Be(DateTime.MinValue);
-            listItem.Type.Should().Be(TraktListItemType.Unspecified);
+            listItem.ListedAt.Should().NotHaveValue();
+            listItem.Type.Should().BeNull();
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
             listItem.Season.Should().BeNull();

@@ -18,7 +18,7 @@
         {
             var collectionMovie = new TraktCollectionMovie();
 
-            collectionMovie.CollectedAt.Should().Be(DateTime.MinValue);
+            collectionMovie.CollectedAt.Should().NotHaveValue();
             collectionMovie.Movie.Should().BeNull();
             collectionMovie.Metadata.Should().BeNull();
         }

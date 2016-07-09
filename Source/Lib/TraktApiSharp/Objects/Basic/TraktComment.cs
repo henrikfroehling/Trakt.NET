@@ -10,7 +10,7 @@
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "parent_id")]
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         [JsonProperty(PropertyName = "created_at")]
         public DateTime CreatedAt { get; set; }
@@ -28,10 +28,10 @@
         public bool Review { get; set; }
 
         [JsonProperty(PropertyName = "replies")]
-        public int Replies { get; set; }
+        public int? Replies { get; set; }
 
         [JsonProperty(PropertyName = "likes")]
-        public int Likes { get; set; }
+        public int? Likes { get; set; }
 
         [JsonProperty(PropertyName = "user_rating")]
         public float? UserRating { get; set; }

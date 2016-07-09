@@ -6,7 +6,7 @@
     public class TraktCollectionSeason
     {
         [JsonProperty(PropertyName = "number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
         public IEnumerable<TraktCollectionEpisode> Episodes { get; set; }

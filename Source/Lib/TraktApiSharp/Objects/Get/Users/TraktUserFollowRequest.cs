@@ -9,7 +9,7 @@
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "requested_at")]
-        public DateTime RequestedAt { get; set; }
+        public DateTime? RequestedAt { get; set; }
 
         [JsonProperty(PropertyName = "user")]
         public TraktUser User { get; set; }

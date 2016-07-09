@@ -16,7 +16,7 @@
             var followRequest = new TraktUserFollowRequest();
 
             followRequest.Id.Should().Be(0);
-            followRequest.RequestedAt.Should().Be(DateTime.MinValue);
+            followRequest.RequestedAt.Should().NotHaveValue();
             followRequest.User.Should().BeNull();
         }
 

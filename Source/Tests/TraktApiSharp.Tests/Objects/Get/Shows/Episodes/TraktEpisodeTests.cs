@@ -16,8 +16,8 @@
             var episode = new TraktEpisode();
 
             episode.Title.Should().BeNullOrEmpty();
-            episode.SeasonNumber.Should().Be(0);
-            episode.Number.Should().Be(0);
+            episode.SeasonNumber.Should().NotHaveValue();
+            episode.Number.Should().NotHaveValue();
             episode.NumberAbsolute.Should().NotHaveValue();
             episode.Overview.Should().BeNullOrEmpty();
             episode.FirstAired.Should().NotHaveValue();
