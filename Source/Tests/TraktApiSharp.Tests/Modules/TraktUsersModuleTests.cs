@@ -6763,6 +6763,29 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserFriendsWithExtendedOption()
+        {
+            var userFriends = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFriends.json");
+            userFriends.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/friends?extended={extendedOption.ToString()}",
+                                                      userFriends);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserFriendsWithOAuthEnforced()
         {
             var userFriends = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFriends.json");

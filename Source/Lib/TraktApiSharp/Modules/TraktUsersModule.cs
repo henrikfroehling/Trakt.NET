@@ -340,12 +340,11 @@
             return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
-        // TODO add extended option
-        public async Task<TraktListResult<TraktUserFriend>> GetFriendsAsync(string username)
+        public async Task<TraktListResult<TraktUserFriend>> GetFriendsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
         public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string username)
