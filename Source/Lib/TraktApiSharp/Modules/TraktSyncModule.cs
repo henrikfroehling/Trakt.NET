@@ -96,9 +96,9 @@
             });
         }
 
-        // TODO add extended option
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
                                                                                               DateTime? startAt = null, DateTime? endAt = null,
+                                                                                              TraktExtendedOption extended = null,
                                                                                               int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
@@ -107,6 +107,7 @@
                 ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

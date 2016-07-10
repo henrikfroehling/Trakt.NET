@@ -49,7 +49,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,page,limit}";
+        protected override string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 
         protected override bool SupportsPagination => true;
 
