@@ -16,13 +16,13 @@
         internal TraktScrobbleModule(TraktClient client) : base(client) { }
 
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
-                                                                          string appVersion = null, DateTime? appDate = null,
-                                                                          TraktExtendedOption extended = null)
+                                                                          string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
+        // TODO remove extended option
         public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = null, DateTime? appDate = null,
                                                                           TraktExtendedOption extended = null)
@@ -31,6 +31,7 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
                                                                          string appVersion = null, DateTime? appDate = null,
                                                                          TraktExtendedOption extended = null)
@@ -39,6 +40,7 @@
             return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress,
                                                                              string appVersion = null, DateTime? appDate = null,
                                                                              TraktExtendedOption extended = null)
@@ -47,6 +49,7 @@
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress,
                                                                               string appVersion = null, DateTime? appDate = null,
                                                                               TraktExtendedOption extended = null)
@@ -55,6 +58,7 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress,
                                                                              string appVersion = null, DateTime? appDate = null,
                                                                              TraktExtendedOption extended = null)
@@ -63,6 +67,7 @@
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                       string appVersion = null, DateTime? appDate = null,
                                                                                       TraktExtendedOption extended = null)
@@ -71,6 +76,7 @@
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                       string appVersion = null, DateTime? appDate = null,
                                                                                       TraktExtendedOption extended = null)
@@ -79,6 +85,7 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                      string appVersion = null, DateTime? appDate = null,
                                                                                      TraktExtendedOption extended = null)

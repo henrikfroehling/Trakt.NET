@@ -207,63 +207,6 @@
         }
 
         [TestMethod]
-        public void TestTraktScrobbleModuleStartMovieWithExtendedOption()
-        {
-            var movieStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json");
-            movieStartScrobbleResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var progress = 1.25f;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress
-            };
-
-            var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, movieStartScrobbleResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, null, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktScrobbleModuleStartMovieWithAppVersionAndAppDate()
         {
             var movieStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json");
@@ -319,124 +262,6 @@
         }
 
         [TestMethod]
-        public void TestTraktScrobbleModuleStartMovieWithAppVersionAndExtendedOption()
-        {
-            var movieStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json");
-            movieStartScrobbleResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var progress = 1.25f;
-            var appVersion = "app_version";
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppVersion = appVersion
-            };
-
-            var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, movieStartScrobbleResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
-        public void TestTraktScrobbleModuleStartMovieWithAppDateAndExtendedOption()
-        {
-            var movieStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json");
-            movieStartScrobbleResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var progress = 1.25f;
-            var appBuildDate = DateTime.UtcNow;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, movieStartScrobbleResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, null, appBuildDate, extendedOption).Result;
-
-            response.Should().NotBeNull();
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktScrobbleModuleStartMovieComplete()
         {
             var movieStartScrobbleResponse = TestUtility.ReadFileContents(@"Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json");
@@ -470,15 +295,9 @@
             var postJson = TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
+            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, movieStartScrobbleResponse);
 
-            TestUtility.SetupMockResponseWithOAuth($"scrobble/start?extended={extendedOption.ToString()}", postJson, movieStartScrobbleResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
             response.Action.Should().Be(TraktScrobbleActionType.Start);
