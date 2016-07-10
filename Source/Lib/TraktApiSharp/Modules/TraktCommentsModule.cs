@@ -28,7 +28,7 @@
             return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktComment>> GetCommentsAsync(string[] ids)
+        public async Task<TraktListResult<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;

@@ -178,16 +178,16 @@
         public void TestTraktCommentsModuleGetCommentsArgumentExceptions()
         {
             Func<Task<TraktListResult<TraktComment>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentsAsync(new string[] { null });
+                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new string[] { null });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentsAsync(new string[] { string.Empty });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new string[] { string.Empty });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentsAsync(new string[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new string[] { });
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentsAsync(null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(null);
             act.ShouldNotThrow();
         }
 
