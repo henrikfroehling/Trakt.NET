@@ -318,6 +318,7 @@
     <Compile Include="Requests\Base\TraktCommonMovieAndShowFilter.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieFilter.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchFilter.cs" />
+    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchIdLookupRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowFilter.cs" />
     <Compile Include="Requests\Base\UriTemplates\OperatorInfo.cs" />

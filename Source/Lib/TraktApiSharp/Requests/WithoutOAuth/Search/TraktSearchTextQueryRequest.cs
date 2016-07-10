@@ -6,9 +6,9 @@
 
     internal class TraktSearchTextQueryRequest : TraktSearchRequest<TraktSearchResult>
     {
-        public TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
+        internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 
-        internal TraktSearchResultType Type { get; set; }
+        internal TraktSearchResultType ResultType { get; set; }
 
         internal string Query { get; set; }
 
@@ -16,7 +16,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("type", Type.AsString());
+            uriParams.Add("type", ResultType.AsString());
             uriParams.Add("query", Query);
 
             return uriParams;

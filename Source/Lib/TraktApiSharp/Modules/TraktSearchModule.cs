@@ -12,19 +12,36 @@
     {
         internal TraktSearchModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType type, string query,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType resultType, string query,
                                                                                                  TraktSearchFilter filter = null,
                                                                                                  TraktExtendedOption extended = null,
                                                                                                  int? page = null, int? limit = null)
         {
-            Validate(type);
+            Validate(resultType);
             Validate(query);
 
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
             {
-                Type = type,
+                ResultType = resultType,
                 Query = query,
                 Filter = filter,
+                ExtendedOption = extended,
+                PaginationOptions = new TraktPaginationOptions(page, limit)
+            });
+        }
+
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType idType, string lookupId,
+                                                                                                TraktSearchResultType? resultType = null,
+                                                                                                TraktExtendedOption extended = null,
+                                                                                                int? page = null, int? limit = null)
+        {
+            Validate(idType, lookupId);
+
+            return await QueryAsync(new TraktSearchIdLookupRequest(Client)
+            {
+                IdType = idType,
+                LookupId = lookupId,
+                ResultType = resultType,
                 ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -45,7 +62,6 @@
             });
         }
 
-        // TODO add extended option
         [Obsolete("This search method still works, but might be removed in a future release.")]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
                                                                                                 int? page = null, int? limit = null)
@@ -70,6 +86,15 @@
         {
             if (type == TraktSearchResultType.Unspecified)
                 throw new ArgumentException("search result type not valid", nameof(type));
+        }
+
+        private void Validate(TraktSearchIdType idType, string lookupId)
+        {
+            if (idType == TraktSearchIdType.Unspecified)
+                throw new ArgumentException("search id lookup type not valid", nameof(idType));
+
+            if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())
+                throw new ArgumentException("search lookup id not valid", nameof(lookupId));
         }
 
         private void Validate(TraktSearchIdLookupType type, string lookupId)
