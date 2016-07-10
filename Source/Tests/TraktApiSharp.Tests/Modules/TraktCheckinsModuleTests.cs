@@ -422,64 +422,6 @@
         }
 
         [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithAppVersionAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var appVersion = "app_version";
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                AppVersion = appVersion
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, null,
-                                                                                   null, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithAppDate()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -751,64 +693,6 @@
         }
 
         [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithAppDateAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var appBuildDate = DateTime.UtcNow;
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, null,
-                                                                                   null, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithMessage()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -1027,64 +911,6 @@
         }
 
         [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithMessageAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var message = "checkin message";
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                Message = message
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, null,
-                                                                                   null, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithSharing()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -1261,69 +1087,6 @@
         }
 
         [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithSharingAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var sharing = new TraktSharing
-            {
-                Facebook = true,
-                Google = false,
-                Twitter = true
-            };
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                Sharing = sharing
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing,
-                                                                                   null, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueId()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -1430,64 +1193,6 @@
         }
 
         [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueIdAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var foursquareVenueId = "venue id";
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                FoursquareVenueId = foursquareVenueId
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
-                                                                                   foursquareVenueId, null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
         public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueName()
         {
             var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
@@ -1520,120 +1225,7 @@
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
-                                                                                   null, foursquareVenueName).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithFoursquareVenueNameAndExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var foursquareVenueName = "venue name";
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                FoursquareVenueName = foursquareVenueName
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
-                                                                                   null, foursquareVenueName, extendedOption).Result;
-
-            response.Should().NotBeNull();
-
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340);
-        }
-
-        [TestMethod]
-        public void TestTraktCheckinsModuleCheckinMovieWithExtendedOption()
-        {
-            var checkinMovieResponse = TestUtility.ReadFileContents(@"Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json");
-            checkinMovieResponse.Should().NotBeNullOrEmpty();
-
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            var movieCheckinPost = new TraktMovieCheckinPost
-            {
-                Movie = movie
-            };
-
-            var postJson = TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, null,
-                                                                                   null, null, extendedOption).Result;
+                                                                                     null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
 
@@ -1699,16 +1291,10 @@
             var postJson = TestUtility.SerializeObject(movieCheckinPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"checkin?extended={extendedOption.ToString()}", postJson, checkinMovieResponse);
+            TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, appBuildDate, message, sharing,
-                                                                                   foursquareVenueId, foursquareVenueName, extendedOption).Result;
+                                                                                     foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
 

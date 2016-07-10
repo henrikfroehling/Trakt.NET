@@ -18,8 +18,7 @@
 
         public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                              string message = null, TraktSharing sharing = null,
-                                                                             string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                             TraktExtendedOption extended = null)
+                                                                             string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(movie);
 
@@ -45,11 +44,11 @@
 
             return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
             {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                RequestBody = requestBody
             });
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                  string message = null, TraktSharing sharing = null,
                                                                                  string foursquareVenueID = null, string foursquareVenueName = null,
@@ -85,6 +84,7 @@
             });
         }
 
+        // TODO remove extended option
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
                                                                                          string appVersion = null, DateTime? appBuildDate = null,
                                                                                          string message = null, TraktSharing sharing = null,
