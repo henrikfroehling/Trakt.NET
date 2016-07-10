@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.1.0</version>
+        <version>$version$</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>Henrik Fröhling</owners>
@@ -10,7 +10,7 @@
         <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Features
-- Full Trakt.tv API Version 2 Coverage
+- Full Trakt.tv API Coverage
 - OAuth Authentication Support
 - Device Authentication Support
 - Completely asynchronous</description>
