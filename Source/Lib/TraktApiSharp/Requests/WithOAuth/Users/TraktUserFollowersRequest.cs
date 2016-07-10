@@ -20,7 +20,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/followers";
+        protected override string UriTemplate => "users/{username}/followers{?extended}";
 
         protected override bool IsListResult => true;
     }

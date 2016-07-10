@@ -326,12 +326,11 @@
             });
         }
 
-        // TODO add extended option
-        public async Task<TraktListResult<TraktUserFollower>> GetFollowersAsync(string username)
+        public async Task<TraktListResult<TraktUserFollower>> GetFollowersAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
         // TODO add extended option
