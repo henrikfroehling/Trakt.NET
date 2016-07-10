@@ -8,20 +8,25 @@
     {
         internal TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
 
-        internal TraktSearchIdLookupType Type { get; set; }
+        internal TraktSearchIdType IdType { get; set; }
 
         internal string LookupId { get; set; }
+
+        internal TraktSearchResultType? ResultType { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("id_type", Type.AsString());
+            uriParams.Add("id_type", IdType.AsString());
             uriParams.Add("id", LookupId);
+
+            if (ResultType.HasValue && ResultType.Value != TraktSearchResultType.Unspecified)
+                uriParams.Add("type", ResultType.Value.AsString());
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "search{?id_type,id,page,limit}";
+        protected override string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
     }
 }

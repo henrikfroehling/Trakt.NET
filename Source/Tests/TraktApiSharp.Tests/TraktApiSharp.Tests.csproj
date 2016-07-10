@@ -90,6 +90,7 @@
     <Compile Include="Enums\TraktAccessScopeTests.cs" />
     <Compile Include="Enums\TraktAccessTokenTypeTests.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantTypeTests.cs" />
+    <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Enums\TraktMediaAudioTests.cs" />
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
     <Compile Include="Enums\TraktMediaTypeTests.cs" />
-    <Compile Include="Requests\Base\TraktFilterTests.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieFilterTests.cs" />
     <Compile Include="Requests\Base\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
@@ -291,6 +291,7 @@
     <Compile Include="Requests\Base\ITraktRequestTests.cs" />
     <Compile Include="Requests\Base\TraktPaginationOptionsTests.cs" />
     <Compile Include="Requests\Base\TraktRequestTests.cs" />
+    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchFilterTests.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowFilterTests.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequestTests.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequestTests.cs" />

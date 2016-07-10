@@ -44,30 +44,26 @@ namespace TraktApiSharp.Requests.Base
 
             SetDefaultRequestHeaders(httpClient);
 
-            using (var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent })
-            {
-                SetRequestHeadersForAuthorization(request);
+            var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
+            SetRequestHeadersForAuthorization(request);
 
-                using (var response = await httpClient.SendAsync(request))
-                {
-                    // Error handling
-                    if (!response.IsSuccessStatusCode)
-                        ErrorHandling(response);
+            var response = await httpClient.SendAsync(request);
 
-                    var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+            if (!response.IsSuccessStatusCode)
+                ErrorHandling(response);
 
-                    // No content
-                    if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
-                        return default(TResult);
+            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
-                    // Handle list result
-                    if (IsListResult)
-                        return await HandleListResult(response, responseContent);
+            // No content
+            if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
+                return default(TResult);
 
-                    // Single object item
-                    return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
-                }
-            }
+            // Handle list result
+            if (IsListResult)
+                return await HandleListResult(response, responseContent);
+
+            // Single object item
+            return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
         }
 
         internal TraktClient Client { get; private set; }
@@ -80,7 +76,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktExtendedOption ExtendedOption { get; set; }
 
-        internal TraktFilter Filter { get; set; }
+        internal TraktCommonFilter Filter { get; set; }
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 

@@ -5,23 +5,18 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktShowFilter : TraktFilter
+    public class TraktShowFilter : TraktCommonMovieAndShowFilter
     {
-        public TraktShowFilter() { }
+        public TraktShowFilter() : base() { }
 
         public TraktShowFilter(string query, int years, string[] genres = null, string[] languages = null,
                                string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
                                string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
-            : base(query, years, genres, languages, countries, runtimes, ratings)
+            : base(query, years, genres, languages, countries, runtimes, ratings, certifications)
         {
-            WithCertifications(null, certifications);
             WithNetworks(null, networks);
             WithStates(TraktShowStatus.Unspecified, states);
         }
-
-        public string[] Certifications { get; private set; }
-
-        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
 
         public string[] Networks { get; private set; }
 
@@ -31,7 +26,7 @@
 
         public bool HasStatesSet => States != null && States.Length > 0;
 
-        public override bool HasValues => base.HasValues || HasCertificationsSet || HasNetworksSet || HasStatesSet;
+        public override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet;
 
         public new TraktShowFilter WithQuery(string query)
         {
@@ -93,14 +88,16 @@
             return this;
         }
 
-        public TraktShowFilter AddCertifications(string certification, params string[] certifications)
+        public new TraktShowFilter AddCertifications(string certification, params string[] certifications)
         {
-            return AddCertifications(true, certification, certifications);
+            base.AddCertifications(certification, certifications);
+            return this;
         }
 
-        public TraktShowFilter WithCertifications(string certification, params string[] certifications)
+        public new TraktShowFilter WithCertifications(string certification, params string[] certifications)
         {
-            return AddCertifications(false, certification, certifications);
+            base.WithCertifications(certification, certifications);
+            return this;
         }
 
         public TraktShowFilter AddNetworks(string network, params string[] networks)
@@ -126,7 +123,6 @@
         public override void Clear()
         {
             base.Clear();
-            Certifications = null;
             Networks = null;
             States = null;
         }
@@ -134,9 +130,6 @@
         public override IDictionary<string, object> GetParameters()
         {
             var parameters = base.GetParameters();
-
-            if (HasCertificationsSet)
-                parameters.Add("certifications", string.Join(",", Certifications));
 
             if (HasNetworksSet)
                 parameters.Add("networks", string.Join(",", Networks));
@@ -152,24 +145,6 @@
             }
 
             return parameters;
-        }
-
-        private TraktShowFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
-        {
-            var certificationsList = new List<string>();
-
-            if (keepExisting && this.Certifications != null && this.Certifications.Length > 0)
-                certificationsList.AddRange(this.Certifications);
-
-            if (!string.IsNullOrEmpty(certification))
-                certificationsList.Add(certification);
-
-            if (certifications != null && certifications.Length > 0)
-                certificationsList.AddRange(certifications);
-
-            this.Certifications = certificationsList.ToArray();
-
-            return this;
         }
 
         private TraktShowFilter AddNetworks(bool keepExisting, string network, params string[] networks)
