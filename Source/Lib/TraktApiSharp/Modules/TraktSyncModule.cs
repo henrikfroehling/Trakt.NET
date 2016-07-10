@@ -33,14 +33,11 @@
             return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? type = null,
-                                                                                                   TraktExtendedOption extended = null,
-                                                                                                   int? limit = null)
+        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? type = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
                 PaginationOptions = new TraktPaginationOptions(null, limit)
             });
         }
@@ -99,6 +96,7 @@
             });
         }
 
+        // TODO add extended option
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
                                                                                               DateTime? startAt = null, DateTime? endAt = null,
                                                                                               int? page = null, int? limit = null)

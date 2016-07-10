@@ -207,49 +207,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetPlaybackProgressWithExtendedOption()
-        {
-            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
-            playbackProgress.Should().NotBeNullOrEmpty();
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback?extended={extendedOption.ToString()}", playbackProgress);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, extendedOption).Result;
-
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
-        }
-
-        [TestMethod]
-        public void TestTraktSyncModuleGetPlaybackProgressWithExtendedOptionAndLimit()
-        {
-            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
-            playbackProgress.Should().NotBeNullOrEmpty();
-
-            var limit = 4;
-
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback?extended={extendedOption.ToString()}&limit={limit}",
-                                                   playbackProgress);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, extendedOption, limit).Result;
-
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
-        }
-
-        [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressWithType()
         {
             var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
@@ -266,24 +223,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetPlaybackProgressWithTypeAndLimit()
-        {
-            var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
-            playbackProgress.Should().NotBeNullOrEmpty();
-
-            var type = TraktSyncType.Episode;
-            var limit = 4;
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}?limit={limit}",
-                                                   playbackProgress);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, null, limit).Result;
-
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
-        }
-
-        [TestMethod]
         public void TestTraktSyncModuleGetPlaybackProgressWithLimit()
         {
             var playbackProgress = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Playback\SyncPlaybackProgress.json");
@@ -293,7 +232,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"sync/playback?limit={limit}", playbackProgress);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
@@ -308,17 +247,10 @@
             var type = TraktSyncType.Episode;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}?limit={limit}",
+                                                   playbackProgress);
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"sync/playback/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&limit={limit}",
-                playbackProgress);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, extendedOption, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(2);
