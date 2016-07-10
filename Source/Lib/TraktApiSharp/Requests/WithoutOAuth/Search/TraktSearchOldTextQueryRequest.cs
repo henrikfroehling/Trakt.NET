@@ -4,9 +4,9 @@
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal class TraktSearchTextQueryRequest : TraktSearchRequest<TraktSearchResult>
+    internal class TraktSearchOldTextQueryRequest : TraktSearchRequest<TraktSearchResult>
     {
-        internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
+        internal TraktSearchOldTextQueryRequest(TraktClient client) : base(client) { }
 
         internal string Query { get; set; }
 
