@@ -32,9 +32,9 @@
             return await QueryAsync(new TraktUserSettingsRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktUserFollowRequest>> GetFollowRequestsAsync()
+        public async Task<TraktListResult<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktUserFollowRequestsRequest(Client));
+            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection section,
@@ -64,6 +64,7 @@
             });
         }
 
+        // TODO add extended option
         public async Task<TraktUser> GetUserProfileAsync(string username)
         {
             ValidateUsername(username);
@@ -325,6 +326,7 @@
             });
         }
 
+        // TODO add extended option
         public async Task<TraktListResult<TraktUserFollower>> GetFollowersAsync(string username)
         {
             ValidateUsername(username);
@@ -332,6 +334,7 @@
             return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username });
         }
 
+        // TODO add extended option
         public async Task<TraktListResult<TraktUserFollower>> GetFollowingAsync(string username)
         {
             ValidateUsername(username);
@@ -339,6 +342,7 @@
             return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username });
         }
 
+        // TODO add extended option
         public async Task<TraktListResult<TraktUserFriend>> GetFriendsAsync(string username)
         {
             ValidateUsername(username);
@@ -374,6 +378,7 @@
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
+        // TODO add extended option
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
                                                                                               string itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, int? page = null, int? limit = null)

@@ -197,6 +197,26 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserFollowRequestsWithExtendedOption()
+        {
+            var followRequests = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowRequests.json");
+            followRequests.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithOAuth($"users/requests?extended={extendedOption.ToString()}", followRequests);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync(extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserFollowRequestsExceptions()
         {
             var uri = "users/requests";

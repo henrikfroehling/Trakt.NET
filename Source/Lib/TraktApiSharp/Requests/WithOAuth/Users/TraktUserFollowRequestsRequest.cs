@@ -10,7 +10,7 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        protected override string UriTemplate => "users/requests";
+        protected override string UriTemplate => "users/requests{?extended}";
 
         protected override bool IsListResult => true;
     }
