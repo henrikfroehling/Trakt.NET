@@ -6,7 +6,6 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
-    using Requests;
     using Requests.WithOAuth.Scrobbles;
     using System;
     using System.Threading.Tasks;
@@ -50,13 +49,11 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress,
-                                                                             string appVersion = null, DateTime? appDate = null,
-                                                                             TraktExtendedOption extended = null)
+                                                                             string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
@@ -73,43 +70,26 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                     string appVersion = null, DateTime? appDate = null,
-                                                                                     TraktExtendedOption extended = null)
+                                                                                     string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
-        private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
+        private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
         {
-            return new TraktScrobbleStartRequest<T, U>(Client)
-            {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            };
+            return new TraktScrobbleStartRequest<T, U>(Client) { RequestBody = requestBody };
         }
 
-        private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
+        private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
         {
-            return new TraktScrobblePauseRequest<T, U>(Client)
-            {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            };
+            return new TraktScrobblePauseRequest<T, U>(Client) { RequestBody = requestBody };
         }
 
-        private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody,
-                                                                                 TraktExtendedOption extended = null) where U : TraktScrobblePost
+        private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
         {
-            return new TraktScrobbleStopRequest<T, U>(Client)
-            {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            };
+            return new TraktScrobbleStopRequest<T, U>(Client) { RequestBody = requestBody };
         }
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
