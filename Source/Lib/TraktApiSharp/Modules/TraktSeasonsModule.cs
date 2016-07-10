@@ -41,7 +41,7 @@
             });
         }
 
-        public async Task<List<TraktListResult<TraktEpisode>>> GetSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
+        public async Task<List<TraktListResult<TraktEpisode>>> GetMultipleSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -64,7 +64,6 @@
             var seasons = await Task.WhenAll(tasks);
             return seasons.ToList();
         }
-
 
         public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync(string showId, int season,
                                                                                           TraktCommentSortOrder? sorting = null,
