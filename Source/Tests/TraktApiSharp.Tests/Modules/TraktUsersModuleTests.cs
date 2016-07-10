@@ -1043,6 +1043,38 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserProfileWithExtendedOption()
+        {
+            var userProfile = TestUtility.ReadFileContents(@"Objects\Get\Users\UserProfile.json");
+            userProfile.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}?extended={extendedOption.ToString()}", userProfile);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Username.Should().Be("sean");
+            response.Private.Should().BeFalse();
+            response.Name.Should().Be("Sean Rudford");
+            response.VIP.Should().BeTrue();
+            response.VIP_EP.Should().BeTrue();
+            response.JoinedAt.Should().NotHaveValue();
+            response.Location.Should().BeNullOrEmpty();
+            response.About.Should().BeNullOrEmpty();
+            response.Gender.Should().BeNullOrEmpty();
+            response.Age.Should().NotHaveValue();
+            response.Images.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserProfileWithOAuthEnforced()
         {
             var userProfile = TestUtility.ReadFileContents(@"Objects\Get\Users\UserProfile.json");

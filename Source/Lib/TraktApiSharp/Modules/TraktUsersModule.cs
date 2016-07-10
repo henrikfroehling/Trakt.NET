@@ -64,14 +64,14 @@
             });
         }
 
-        // TODO add extended option
-        public async Task<TraktUser> GetUserProfileAsync(string username)
+        public async Task<TraktUser> GetUserProfileAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
             return await QueryAsync(new TraktUserProfileRequest(Client)
             {
-                Username = username
+                Username = username,
+                ExtendedOption = extended
             });
         }
 
