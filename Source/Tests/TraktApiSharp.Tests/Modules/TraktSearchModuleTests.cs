@@ -44,7 +44,122 @@
         #region SearchTextQuery
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQuery()
+        public void TestTraktSearchModuleGetTextQueryResults()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilter()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsComplete()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region SearchOldTextQuery
+
+        [TestMethod]
+        public void TestTraktSearchModuleSearchOldTextQuery()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -66,7 +181,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithType()
+        public void TestTraktSearchModuleSearchOldTextQueryWithType()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -90,7 +205,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYear()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYear()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -114,7 +229,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndYear()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndYear()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -139,7 +254,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -163,7 +278,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -188,7 +303,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -213,7 +328,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -237,7 +352,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -262,7 +377,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -287,7 +402,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -312,7 +427,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -339,7 +454,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -366,7 +481,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryComplete()
+        public void TestTraktSearchModuleSearchOldTextQueryComplete()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -394,7 +509,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryExceptions()
+        public void TestTraktSearchModuleSearchOldTextQueryExceptions()
         {
             var query = "batman";
             var uri = $"search?query={query}";
@@ -467,7 +582,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryArgumentExceptions()
+        public void TestTraktSearchModuleSearchOldTextQueryArgumentExceptions()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
