@@ -688,6 +688,121 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
+        #region SearchIdLookup
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResults()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultType()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOptionAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOptionAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOption()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithPage()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithPageAndLimit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsComplete()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
         #region Old
 
         #region SearchOldTextQuery
@@ -1138,10 +1253,10 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
-        #region SearchIdLookup
+        #region SearchOldIdLookup
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookup()
+        public void TestTraktSearchModuleSearchOldIdLookup()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -1165,7 +1280,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupWithPage()
+        public void TestTraktSearchModuleSearchOldIdLookupWithPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -1191,7 +1306,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupWithLimit()
+        public void TestTraktSearchModuleSearchOldIdLookupWithLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -1217,7 +1332,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupComplete()
+        public void TestTraktSearchModuleSearchOldIdLookupComplete()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -1244,7 +1359,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupExceptions()
+        public void TestTraktSearchModuleSearchOldIdLookupExceptions()
         {
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
@@ -1318,7 +1433,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupArgumentExceptions()
+        public void TestTraktSearchModuleSearchOldIdLookupArgumentExceptions()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
