@@ -12,6 +12,9 @@
     {
         internal TraktSearchModule(TraktClient client) : base(client) { }
 
+        // TODO add filters
+        // TODO add extended option
+        [Obsolete]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string query, TraktSearchResultType? type = null,
                                                                                                  int? year = null, int? page = null, int? limit = null)
         {
@@ -26,8 +29,10 @@
             });
         }
 
+        // TODO add extended option
+        [Obsolete]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
-                                                                                                        int? page = null, int? limit = null)
+                                                                                                int? page = null, int? limit = null)
         {
             Validate(type, lookupId);
 
