@@ -7,7 +7,6 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
-    using Requests;
     using Requests.WithOAuth.Checkins;
     using System;
     using System.Threading.Tasks;
@@ -48,11 +47,9 @@
             });
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                  string message = null, TraktSharing sharing = null,
-                                                                                 string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                 TraktExtendedOption extended = null)
+                                                                                 string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode);
 
@@ -79,17 +76,14 @@
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                RequestBody = requestBody
             });
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
                                                                                          string appVersion = null, DateTime? appBuildDate = null,
                                                                                          string message = null, TraktSharing sharing = null,
-                                                                                         string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                         TraktExtendedOption extended = null)
+                                                                                         string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode, show);
 
@@ -116,8 +110,7 @@
 
             return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
             {
-                RequestBody = requestBody,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                RequestBody = requestBody
             });
         }
 
