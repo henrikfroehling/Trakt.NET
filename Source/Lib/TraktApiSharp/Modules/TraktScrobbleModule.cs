@@ -36,13 +36,11 @@
             return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress,
-                                                                             string appVersion = null, DateTime? appDate = null,
-                                                                             TraktExtendedOption extended = null)
+                                                                             string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         // TODO remove extended option
@@ -63,13 +61,11 @@
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
         }
 
-        // TODO remove extended option
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                      string appVersion = null, DateTime? appDate = null,
-                                                                                      TraktExtendedOption extended = null)
+                                                                                      string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         // TODO remove extended option
