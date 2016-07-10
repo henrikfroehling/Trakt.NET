@@ -6612,6 +6612,29 @@
         }
 
         [TestMethod]
+        public void TestTraktUsersModuleGetUserFollowingWithExtendedOption()
+        {
+            var userFollowing = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");
+            userFollowing.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/following?extended={extendedOption.ToString()}",
+                                                      userFollowing);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingWithOAuthEnforced()
         {
             var userFollowing = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollowers.json");

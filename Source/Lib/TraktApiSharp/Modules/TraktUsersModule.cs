@@ -333,12 +333,11 @@
             return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
-        // TODO add extended option
-        public async Task<TraktListResult<TraktUserFollower>> GetFollowingAsync(string username)
+        public async Task<TraktListResult<TraktUserFollower>> GetFollowingAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
         // TODO add extended option
