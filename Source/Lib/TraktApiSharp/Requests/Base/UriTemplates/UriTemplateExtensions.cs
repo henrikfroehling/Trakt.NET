@@ -11,7 +11,7 @@
     /// </summary>
     internal static class UriTemplateExtensions
     {
-        internal static UriTemplate AddParameter(this UriTemplate template, string name, object value)
+        internal static UriTemplate AddParameterFromKeyValuePair(this UriTemplate template, string name, object value)
         {
             template.SetParameter(name, value);
             return template;
@@ -33,7 +33,7 @@
             return template;
         }
 
-        internal static UriTemplate AddParameters(this UriTemplate uriTemplate, IDictionary<string, object> linkParameters)
+        internal static UriTemplate AddParametersFromDictionary(this UriTemplate uriTemplate, IDictionary<string, object> linkParameters)
         {
             if (linkParameters != null)
             {
@@ -60,7 +60,7 @@
                                                      & ~UriComponents.Fragment, UriFormat.Unescaped);
 
             var template = new UriTemplate(target + "{?" + string.Join(",", parameters.Keys.ToArray()) + "}");
-            template.AddParameters(parameters);
+            template.AddParametersFromDictionary(parameters);
 
             return template;
         }

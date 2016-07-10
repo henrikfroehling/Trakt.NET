@@ -32,7 +32,7 @@
         }
 
         [TestMethod]
-        public void TestTrakPersonNotFoundExceptionConstructor()
+        public void TestTraktPersonNotFoundExceptionConstructor()
         {
             var message = "exception message";
             var personId = "person id";

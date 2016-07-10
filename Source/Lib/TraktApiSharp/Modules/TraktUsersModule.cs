@@ -138,9 +138,9 @@
             });
         }
 
-        public async Task<TraktListResult<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId ids[])
+        public async Task<TraktListResult<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId[] ids)
         {
-            if (ids == null && ids.Length <= 0)
+            if (ids == null || ids.Length <= 0)
                 return null;
 
             var tasks = new List<Task<TraktList>>();

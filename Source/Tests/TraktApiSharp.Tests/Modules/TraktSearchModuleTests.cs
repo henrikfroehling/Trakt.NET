@@ -9,6 +9,8 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.WithoutOAuth.Search;
     using Utils;
 
     [TestClass]
@@ -44,7 +46,1272 @@
         #region SearchTextQuery
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQuery()
+        public void TestTraktSearchModuleGetTextQueryResults()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}",
+                                                                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilter()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+
+            var type = TraktSearchResultType.Show;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOption()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+
+            var type = TraktSearchResultType.Episode;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+
+            var type = TraktSearchResultType.Person;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
+                $"&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var limit = 4;
+
+            var type = TraktSearchResultType.List;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
+                $"&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOption()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}&page={page}",
+                                                                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}&limit={limit}",
+                                                                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
+                                                                                        null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsComplete()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 5;
+            var page = 2;
+            var limit = 4;
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            var filter = new TraktSearchFilter()
+                .WithYears(2011)
+                .WithGenres("action", "thriller")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(70, 140)
+                .WithRatings(70, 95);
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
+                $"&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
+                                                                                        extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsExceptions()
+        {
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+            var uri = $"search/{type.AsString()}?query={query}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsArgumentExceptions()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var type = TraktSearchResultType.Movie;
+            var query = "batman";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}", searchResults);
+
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(TraktSearchResultType.Unspecified, query);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region SearchIdLookup
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResults()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}",
+                                                                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultType()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOption()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOptionAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndExtendedOptionAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeAndPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOption()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}",
+                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}&page={page}",
+                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}&limit={limit}",
+                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}" +
+                $"&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithPage()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}?page={page}",
+                                                                searchResults, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}?limit={limit}",
+                                                                searchResults, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithPageAndLimit()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
+                                                                                       null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsComplete()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+            var page = 2;
+            var limit = 4;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var resultType = TraktSearchResultType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"&page={page}&limit={limit}",
+                searchResults, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
+                                                                                       extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsWithResultTypeUnspecified()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var itemCount = 1;
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}",
+                                                                searchResults, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId,
+                                                                                       TraktSearchResultType.Unspecified).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsExceptions()
+        {
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+            var uri = $"search/{idType.AsString()}/{lookupId}";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetIdLookupResultsArgumentExceptions()
+        {
+            var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
+            searchResults.Should().NotBeNullOrEmpty();
+
+            var idType = TraktSearchIdType.ImDB;
+            var lookupId = "tt0848228";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}", searchResults);
+
+            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdType.Unspecified, lookupId);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, "lookup id");
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region Old
+
+        #region SearchOldTextQuery
+
+        [TestMethod]
+        public void TestTraktSearchModuleSearchOldTextQuery()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -66,7 +1333,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithType()
+        public void TestTraktSearchModuleSearchOldTextQueryWithType()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -90,7 +1357,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYear()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYear()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -114,7 +1381,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndYear()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndYear()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -139,7 +1406,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -163,7 +1430,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -188,7 +1455,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndPage()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -213,7 +1480,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -237,7 +1504,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -262,7 +1529,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -287,7 +1554,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -312,7 +1579,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithTypeAndPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithTypeAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -339,7 +1606,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryWithYearAndPageAndLimit()
+        public void TestTraktSearchModuleSearchOldTextQueryWithYearAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -366,7 +1633,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryComplete()
+        public void TestTraktSearchModuleSearchOldTextQueryComplete()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -394,7 +1661,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryExceptions()
+        public void TestTraktSearchModuleSearchOldTextQueryExceptions()
         {
             var query = "batman";
             var uri = $"search?query={query}";
@@ -467,7 +1734,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchTextQueryArgumentExceptions()
+        public void TestTraktSearchModuleSearchOldTextQueryArgumentExceptions()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -489,10 +1756,10 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
-        #region SearchIdLookup
+        #region SearchOldIdLookup
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookup()
+        public void TestTraktSearchModuleSearchOldIdLookup()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -516,7 +1783,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupWithPage()
+        public void TestTraktSearchModuleSearchOldIdLookupWithPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -542,7 +1809,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupWithLimit()
+        public void TestTraktSearchModuleSearchOldIdLookupWithLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -568,7 +1835,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupComplete()
+        public void TestTraktSearchModuleSearchOldIdLookupComplete()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -595,7 +1862,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupExceptions()
+        public void TestTraktSearchModuleSearchOldIdLookupExceptions()
         {
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
@@ -669,7 +1936,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleSearchIdLookupArgumentExceptions()
+        public void TestTraktSearchModuleSearchOldIdLookupArgumentExceptions()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -693,6 +1960,8 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, "lookup id");
             act.ShouldThrow<ArgumentException>();
         }
+
+        #endregion
 
         #endregion
     }
