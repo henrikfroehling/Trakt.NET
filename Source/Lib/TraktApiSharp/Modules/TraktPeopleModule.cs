@@ -26,7 +26,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetPersonsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<TraktListResult<TraktPerson>> GetMultiplePersonsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
