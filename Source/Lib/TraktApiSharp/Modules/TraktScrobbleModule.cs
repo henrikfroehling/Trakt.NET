@@ -29,13 +29,11 @@
             return await QueryAsync(CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
-        // TODO remove extended option
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
-                                                                         string appVersion = null, DateTime? appDate = null,
-                                                                         TraktExtendedOption extended = null)
+                                                                         string appVersion = null, DateTime? appDate = null)
         {
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody, extended));
+            return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         // TODO remove extended option
