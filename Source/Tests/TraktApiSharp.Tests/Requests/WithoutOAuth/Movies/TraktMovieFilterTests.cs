@@ -302,34 +302,34 @@
             var year = 2016;
 
             filter.WithYears(year);
-            filter.ToString().Should().Be($"query=query&years={year}");
+            filter.ToString().Should().Be($"years={year}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&query=query");
 
             filter.WithLanguages("de", "en", "es");
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy&languages=de,en,es");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&query=query");
 
             filter.WithCountries("gb", "us", "fr");
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr&query=query");
 
             var runtimeBegin = 50;
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&query=query");
 
             var ratingBegin = 70;
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query");
 
             filter.WithCertifications("cert1", "cert2", "cert3");
-            filter.ToString().Should().Be($"query=query&years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}" +
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query" +
                                           $"&certifications=cert1,cert2,cert3");
         }
     }

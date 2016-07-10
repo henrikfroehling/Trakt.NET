@@ -80,7 +80,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal TraktExtendedOption ExtendedOption { get; set; }
 
-        internal TraktFilter Filter { get; set; }
+        internal TraktCommonFilter Filter { get; set; }
 
         internal TraktPaginationOptions PaginationOptions { get; set; }
 

@@ -3,14 +3,13 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktFilter
+    public abstract class TraktCommonFilter
     {
-        public TraktFilter() { }
+        protected TraktCommonFilter() { }
 
-        public TraktFilter(string query, int years, string[] genres = null, string[] languages = null,
-                           string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
+        protected TraktCommonFilter(int years, string[] genres = null, string[] languages = null,
+                                    string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
         {
-            WithQuery(query);
             WithYears(years);
             WithGenres(null, genres);
             WithLanguages(null, languages);
@@ -18,10 +17,6 @@
             WithRuntimes(runtimes.Begin, runtimes.End);
             WithRatings(ratings.Begin, ratings.End);
         }
-
-        public string Query { get; protected set; }
-
-        public bool HasQuerySet => !string.IsNullOrEmpty(Query);
 
         public int Years { get; protected set; }
 
@@ -47,18 +42,9 @@
 
         public bool HasRatingsSet => Ratings != null && Ratings.Begin > 0 && Ratings.End > 0 && Ratings.End > Ratings.Begin && Ratings.End <= 100;
 
-        public virtual bool HasValues => HasQuerySet || HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
+        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
 
-        public TraktFilter WithQuery(string query)
-        {
-            if (string.IsNullOrEmpty(query))
-                throw new ArgumentException("query not valid", nameof(query));
-
-            Query = query;
-            return this;
-        }
-
-        public TraktFilter WithYears(int years)
+        public TraktCommonFilter WithYears(int years)
         {
             var length = years.ToString().Length;
 
@@ -69,37 +55,37 @@
             return this;
         }
 
-        public TraktFilter AddGenres(string genre, params string[] genres)
+        public TraktCommonFilter AddGenres(string genre, params string[] genres)
         {
             return AddGenres(true, genre, genres);
         }
 
-        public TraktFilter WithGenres(string genre, params string[] genres)
+        public TraktCommonFilter WithGenres(string genre, params string[] genres)
         {
             return AddGenres(false, genre, genres);
         }
 
-        public TraktFilter AddLanguages(string language, params string[] languages)
+        public TraktCommonFilter AddLanguages(string language, params string[] languages)
         {
             return AddLanguages(true, language, languages);
         }
 
-        public TraktFilter WithLanguages(string language, params string[] languages)
+        public TraktCommonFilter WithLanguages(string language, params string[] languages)
         {
             return AddLanguages(false, language, languages);
         }
 
-        public TraktFilter AddCountries(string country, params string[] countries)
+        public TraktCommonFilter AddCountries(string country, params string[] countries)
         {
             return AddCountries(true, country, countries);
         }
 
-        public TraktFilter WithCountries(string country, params string[] countries)
+        public TraktCommonFilter WithCountries(string country, params string[] countries)
         {
             return AddCountries(false, country, countries);
         }
 
-        public TraktFilter WithRuntimes(int begin, int end)
+        public TraktCommonFilter WithRuntimes(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin)
                 throw new ArgumentException("runtimes not valid");
@@ -108,7 +94,7 @@
             return this;
         }
 
-        public TraktFilter WithRatings(int begin, int end)
+        public TraktCommonFilter WithRatings(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin || end > 100)
                 throw new ArgumentException("ratings not valid");
@@ -119,7 +105,6 @@
 
         public virtual void Clear()
         {
-            Query = null;
             Years = 0;
             Genres = null;
             Languages = null;
@@ -131,9 +116,6 @@
         public virtual IDictionary<string, object> GetParameters()
         {
             var parameters = new Dictionary<string, object>();
-
-            if (HasQuerySet)
-                parameters.Add("query", Query);
 
             if (HasYearsSet)
                 parameters.Add("years", Years.ToString());
@@ -171,7 +153,7 @@
             return string.Join("&", keyValues);
         }
 
-        private TraktFilter AddGenres(bool keepExisting, string genre, params string[] genres)
+        private TraktCommonFilter AddGenres(bool keepExisting, string genre, params string[] genres)
         {
             var genresList = new List<string>();
 
@@ -189,7 +171,7 @@
             return this;
         }
 
-        private TraktFilter AddLanguages(bool keepExisting, string language, params string[] languages)
+        private TraktCommonFilter AddLanguages(bool keepExisting, string language, params string[] languages)
         {
             var languagesList = new List<string>();
 
@@ -220,7 +202,7 @@
             return this;
         }
 
-        private TraktFilter AddCountries(bool keepExisting, string country, params string[] countries)
+        private TraktCommonFilter AddCountries(bool keepExisting, string country, params string[] countries)
         {
             var countriesList = new List<string>();
 

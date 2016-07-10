@@ -128,7 +128,6 @@
     <Compile Include="Enums\TraktMediaAudioTests.cs" />
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
     <Compile Include="Enums\TraktMediaTypeTests.cs" />
-    <Compile Include="Requests\Base\TraktFilterTests.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieFilterTests.cs" />
     <Compile Include="Requests\Base\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktPeriodTests.cs" />
