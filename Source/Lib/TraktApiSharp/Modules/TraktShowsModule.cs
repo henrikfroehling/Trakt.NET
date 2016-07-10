@@ -555,13 +555,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        // TODO add filters
         public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = null,
+                                                                                                            TraktShowFilter filter = null,
                                                                                                             int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
