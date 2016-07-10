@@ -12,15 +12,31 @@
     {
         internal TraktSearchModule(TraktClient client) : base(client) { }
 
-        // TODO add filters
-        // TODO add extended option
-        [Obsolete]
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType type, string query,
+                                                                                                 TraktSearchFilter filter = null,
+                                                                                                 TraktExtendedOption extended = null,
+                                                                                                 int? page = null, int? limit = null)
+        {
+            Validate(type);
+            Validate(query);
+
+            return await QueryAsync(new TraktSearchTextQueryRequest(Client)
+            {
+                Type = type,
+                Query = query,
+                Filter = filter,
+                ExtendedOption = extended,
+                PaginationOptions = new TraktPaginationOptions(page, limit)
+            });
+        }
+
+        [Obsolete("This search method still works, but might be removed in a future release.")]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string query, TraktSearchResultType? type = null,
                                                                                                  int? year = null, int? page = null, int? limit = null)
         {
             Validate(query);
 
-            return await QueryAsync(new TraktSearchTextQueryRequest(Client)
+            return await QueryAsync(new TraktSearchOldTextQueryRequest(Client)
             {
                 Query = query,
                 Type = type,
@@ -30,13 +46,13 @@
         }
 
         // TODO add extended option
-        [Obsolete]
+        [Obsolete("This search method still works, but might be removed in a future release.")]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
                                                                                                 int? page = null, int? limit = null)
         {
             Validate(type, lookupId);
 
-            return await QueryAsync(new TraktSearchIdLookupRequest(Client)
+            return await QueryAsync(new TraktSearchOldIdLookupRequest(Client)
             {
                 Type = type,
                 LookupId = lookupId,
@@ -48,6 +64,12 @@
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("search query not valid", nameof(query));
+        }
+
+        private void Validate(TraktSearchResultType type)
+        {
+            if (type == TraktSearchResultType.Unspecified)
+                throw new ArgumentException("search result type not valid", nameof(type));
         }
 
         private void Validate(TraktSearchIdLookupType type, string lookupId)
