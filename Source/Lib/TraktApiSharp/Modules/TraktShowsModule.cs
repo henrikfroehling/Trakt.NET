@@ -68,6 +68,7 @@
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
+        // TODO rename -> multiple
         public async Task<TraktListResult<TraktShow>> GetShowsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
@@ -381,11 +382,13 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extended = null,
+                                                                                              TraktShowFilter filter = null,
                                                                                               int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -412,11 +415,13 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedOption extended = null,
+                                                                                     TraktShowFilter filter = null,
                                                                                      int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -445,12 +450,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod? period = null,
                                                                                                   TraktExtendedOption extended = null,
+                                                                                                  TraktShowFilter filter = null,
                                                                                                   int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -479,12 +486,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod? period = null,
                                                                                                     TraktExtendedOption extended = null,
+                                                                                                    TraktShowFilter filter = null,
                                                                                                     int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -513,12 +522,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod? period = null,
                                                                                                         TraktExtendedOption extended = null,
+                                                                                                        TraktShowFilter filter = null,
                                                                                                         int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -545,11 +556,13 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extended = null,
+                                                                                                            TraktShowFilter filter = null,
                                                                                                             int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
