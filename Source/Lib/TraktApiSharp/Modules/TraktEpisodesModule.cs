@@ -30,7 +30,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktEpisode>> GetEpisodesAsync(TraktEpisodeIdAndExtendedOption[] ids)
+        public async Task<TraktListResult<TraktEpisode>> GetMultipleEpisodesAsync(TraktEpisodeIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
