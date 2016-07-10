@@ -448,15 +448,16 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        // TODO add filters
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod? period = null,
                                                                                                   TraktExtendedOption extended = null,
+                                                                                                  TraktShowFilter filter = null,
                                                                                                   int? page = null, int? limit = null)
         {
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
                 ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

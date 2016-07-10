@@ -3753,6 +3753,39 @@
         }
 
         [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?{filter.ToString()}",
+                                                                mostPlayedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktShowsModuleGetMostPlayedShowsWithPeriod()
         {
             var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
@@ -3765,6 +3798,40 @@
                                                                 mostPlayedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?{filter.ToString()}",
+                                                                mostPlayedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3802,6 +3869,46 @@
         }
 
         [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithExtendedOptionFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostPlayedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktShowsModuleGetMostPlayedShowsWithPage()
         {
             var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
@@ -3812,7 +3919,41 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}", mostPlayedShows, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPageFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&{filter.ToString()}",
+                                                                mostPlayedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3833,7 +3974,41 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?limit={limit}", mostPlayedShows, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?limit={limit}&{filter.ToString()}",
+                                                                mostPlayedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3872,6 +4047,47 @@
         }
 
         [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodAndExtendedOptionFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                mostPlayedShows, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, filter).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodAndPage()
         {
             var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
@@ -3884,7 +4100,43 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?page={page}",
                                                                 mostPlayedShows, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodAndPageFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played/{period.AsString()}?{filter.ToString()}&page={page}",
+                mostPlayedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3907,7 +4159,43 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?limit={limit}",
                                                                 mostPlayedShows, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodAndLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played/{period.AsString()}?limit={limit}&{filter.ToString()}",
+                mostPlayedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3935,7 +4223,48 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedOption.ToString()}&page={page}",
                                                                 mostPlayedShows, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithExtendedOptionAndPageFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                mostPlayedShows, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3963,7 +4292,48 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedOption.ToString()}&limit={limit}",
                                                                 mostPlayedShows, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithExtendedOptionAndLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                mostPlayedShows, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3986,7 +4356,42 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&limit={limit}",
                                                                 mostPlayedShows, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPageAndLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&limit={limit}&{filter.ToString()}",
+                                                                mostPlayedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4015,7 +4420,49 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                                                                 mostPlayedShows, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithExtendedOptionAndPageAndLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                mostPlayedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4039,7 +4486,44 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?page={page}&limit={limit}",
                                                                 mostPlayedShows, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsWithPeriodAndPageAndLimitFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played/{period.AsString()}?page={page}&{filter.ToString()}&limit={limit}",
+                mostPlayedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4070,7 +4554,50 @@
                 $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostPlayedShows, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetMostPlayedShowsCompleteFiltered()
+        {
+            var mostPlayedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\Common\ShowsMostPlayed.json");
+            mostPlayedShows.Should().NotBeNullOrEmpty();
+
+            var itemCount = 2;
+            var page = 2;
+            var limit = 4;
+            var period = TraktPeriod.Monthly;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            var filter = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most played show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                mostPlayedShows, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
