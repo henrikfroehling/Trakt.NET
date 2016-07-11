@@ -69,7 +69,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
         // TODO rename -> multiple
-        public async Task<TraktListResult<TraktShow>> GetShowsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktShow>> GetShowsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -88,7 +88,7 @@
             }
 
             var shows = await Task.WhenAll(tasks);
-            return new TraktListResult<TraktShow> { Items = shows.ToList() };
+            return shows.ToList();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@
         /// <returns>A list of <see cref="TraktShowAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given id is null, empty or contains spaces.</exception>
-        public async Task<TraktListResult<TraktShowAlias>> GetShowAliasesAsync(string id)
+        public async Task<IEnumerable<TraktShowAlias>> GetShowAliasesAsync(string id)
         {
             Validate(id);
 
@@ -120,7 +120,7 @@
         /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and country code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given id is null, empty or contains spaces.</exception>
-        public async Task<TraktListResult<TraktShowTranslation>> GetShowTranslationsAsync(string id)
+        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync(string id)
         {
             Validate(id);
 
@@ -303,7 +303,7 @@
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given id is null, empty or contains spaces.</exception>
-        public async Task<TraktListResult<TraktUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
