@@ -192,8 +192,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -212,8 +211,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync(extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -223,7 +221,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktUserFollowRequest>>> act =
+            Func<Task<IEnumerable<TraktUserFollowRequest>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1205,8 +1203,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1222,8 +1219,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1245,8 +1241,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1257,7 +1252,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
+            Func<Task<IEnumerable<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -1325,7 +1320,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktCollectionMovie>>> act =
+            Func<Task<IEnumerable<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1355,8 +1350,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1372,8 +1366,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1395,8 +1388,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1407,7 +1399,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktCollectionShow>>> act =
+            Func<Task<IEnumerable<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -1475,7 +1467,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShowsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktCollectionShow>>> act =
+            Func<Task<IEnumerable<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2454,8 +2446,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2471,8 +2462,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2483,7 +2473,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktList>>> act =
+            Func<Task<IEnumerable<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -2551,7 +2541,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktList>>> act =
+            Func<Task<IEnumerable<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2747,7 +2737,7 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<TraktListResult<TraktList>>> act =
+            Func<Task<IEnumerable<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
             act.ShouldNotThrow();
 
@@ -2796,8 +2786,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2814,8 +2803,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2833,8 +2821,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2857,8 +2844,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2883,8 +2869,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2896,7 +2881,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktListItem>>> act =
+            Func<Task<IEnumerable<TraktListItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId);
             act.ShouldThrow<TraktListNotFoundException>();
 
@@ -2967,7 +2952,7 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<TraktListResult<TraktListItem>>> act =
+            Func<Task<IEnumerable<TraktListItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(null, listId);
             act.ShouldThrow<ArgumentException>();
 
@@ -6456,8 +6441,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6479,8 +6463,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6496,8 +6479,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6509,7 +6491,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktUserFollower>>> act =
+            Func<Task<IEnumerable<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6577,7 +6559,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowersArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserFollower>>> act =
+            Func<Task<IEnumerable<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -6607,8 +6589,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6630,8 +6611,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6647,8 +6627,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6660,7 +6639,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktUserFollower>>> act =
+            Func<Task<IEnumerable<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6728,7 +6707,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserFollower>>> act =
+            Func<Task<IEnumerable<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -6758,8 +6737,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6781,8 +6759,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6798,8 +6775,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6811,7 +6787,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktUserFriend>>> act =
+            Func<Task<IEnumerable<TraktUserFriend>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6879,7 +6855,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFriendsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktUserFriend>>> act =
+            Func<Task<IEnumerable<TraktUserFriend>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -10062,8 +10038,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10079,8 +10054,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10096,8 +10070,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10118,8 +10091,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10140,8 +10112,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10162,8 +10133,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10184,8 +10154,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10206,8 +10175,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10228,8 +10196,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10250,8 +10217,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10272,8 +10238,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10294,8 +10259,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10316,8 +10280,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10334,8 +10297,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10352,8 +10314,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10370,8 +10331,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10388,8 +10348,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10405,8 +10364,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, ratingsFilter).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10430,8 +10388,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10453,8 +10410,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10482,8 +10438,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10494,7 +10449,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktRatingsItem>>> act =
+            Func<Task<IEnumerable<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -10562,7 +10517,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktRatingsItem>>> act =
+            Func<Task<IEnumerable<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -10592,8 +10547,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10609,8 +10563,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10626,8 +10579,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10648,8 +10600,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10673,8 +10624,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10685,7 +10635,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
+            Func<Task<IEnumerable<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -10753,7 +10703,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktWatchlistItem>>> act =
+            Func<Task<IEnumerable<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -10971,8 +10921,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -10988,8 +10937,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11010,8 +10958,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11022,7 +10969,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
+            Func<Task<IEnumerable<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11090,7 +11037,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktWatchedMovie>>> act =
+            Func<Task<IEnumerable<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -11120,8 +11067,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11137,8 +11083,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11159,8 +11104,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11171,7 +11115,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktWatchedShow>>> act =
+            Func<Task<IEnumerable<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11239,7 +11183,7 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktWatchedShow>>> act =
+            Func<Task<IEnumerable<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
