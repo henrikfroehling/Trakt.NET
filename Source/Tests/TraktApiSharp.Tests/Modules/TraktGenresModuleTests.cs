@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -52,10 +53,9 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(32);
+            response.Should().NotBeNull().And.HaveCount(32);
 
-            var results = response.Items.ToArray();
+            var results = response.ToArray();
             results[0].Type.Should().Be(TraktGenreType.Movies);
         }
 
@@ -66,7 +66,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktGenre>>> act =
+            Func<Task<IEnumerable<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -141,10 +141,9 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(28);
+            response.Should().NotBeNull().And.HaveCount(28);
 
-            var results = response.Items.ToArray();
+            var results = response.ToArray();
             results[0].Type.Should().Be(TraktGenreType.Shows);
         }
 
@@ -155,7 +154,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktGenre>>> act =
+            Func<Task<IEnumerable<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

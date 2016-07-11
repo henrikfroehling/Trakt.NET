@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Users
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Users;
+    using System.Collections.Generic;
 
-    internal class TraktUserFollowRequestsRequest : TraktGetRequest<TraktListResult<TraktUserFollowRequest>, TraktUserFollowRequest>
+    internal class TraktUserFollowRequestsRequest : TraktGetRequest<IEnumerable<TraktUserFollowRequest>, TraktUserFollowRequest>
     {
         internal TraktUserFollowRequestsRequest(TraktClient client) : base(client) { }
 

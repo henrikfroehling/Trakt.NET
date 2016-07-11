@@ -248,7 +248,7 @@
             var seasonNr = 1;
             var episodeNr = 1;
 
-            Func<Task<TraktListResult<TraktEpisode>>> act =
+            Func<Task<IEnumerable<TraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(null);
             act.ShouldNotThrow();
 
@@ -885,8 +885,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -910,8 +909,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -924,7 +922,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktUser>>> act =
+            Func<Task<IEnumerable<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1001,7 +999,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching", episodeWatchingUsers);
 
-            Func<Task<TraktListResult<TraktUser>>> act =
+            Func<Task<IEnumerable<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 

@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
@@ -177,7 +178,7 @@
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktComment>>> act =
+            Func<Task<IEnumerable<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new string[] { null });
             act.ShouldThrow<ArgumentException>();
 

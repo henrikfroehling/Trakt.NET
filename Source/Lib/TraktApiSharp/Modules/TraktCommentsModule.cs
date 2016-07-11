@@ -28,7 +28,7 @@
             return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
+        public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -42,7 +42,7 @@
             }
 
             var comments = await Task.WhenAll(tasks);
-            return new TraktListResult<TraktComment> { Items = comments.ToList() };
+            return comments.ToList();
         }
 
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,

@@ -30,7 +30,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktEpisode>> GetMultipleEpisodesAsync(TraktEpisodeIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktEpisode>> GetMultipleEpisodesAsync(TraktEpisodeIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -51,7 +51,7 @@
             }
 
             var episodes = await Task.WhenAll(tasks);
-            return new TraktListResult<TraktEpisode> { Items = episodes.ToList() };
+            return episodes.ToList();
         }
 
         public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showId, int season, int episode,
@@ -94,8 +94,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
-                                                                                   TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
+                                                                               TraktExtendedOption extended = null)
         {
             Validate(showId, season, episode);
 

@@ -2,11 +2,10 @@
 {
     using Base.Get;
     using Extensions;
-    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 
-    internal abstract class TraktCalendarAllRequest<T> : TraktGetRequest<TraktListResult<T>, T>
+    internal abstract class TraktCalendarAllRequest<T> : TraktGetRequest<IEnumerable<T>, T>
     {
         internal TraktCalendarAllRequest(TraktClient client) : base(client) { }
 

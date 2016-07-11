@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Movies;
+    using System.Collections.Generic;
 
-    internal class TraktMovieTranslationsRequest : TraktGetByIdRequest<TraktListResult<TraktMovieTranslation>, TraktMovieTranslation>
+    internal class TraktMovieTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktMovieTranslation>, TraktMovieTranslation>
     {
         internal TraktMovieTranslationsRequest(TraktClient client) : base(client) { }
 

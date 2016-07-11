@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Episodes
 {
-    using Objects.Basic;
     using Objects.Get.Users;
+    using System.Collections.Generic;
 
-    internal class TraktEpisodeWatchingUsersRequest : TraktGetByIdEpisodeRequest<TraktListResult<TraktUser>, TraktUser>
+    internal class TraktEpisodeWatchingUsersRequest : TraktGetByIdEpisodeRequest<IEnumerable<TraktUser>, TraktUser>
     {
         internal TraktEpisodeWatchingUsersRequest(TraktClient client) : base(client) { }
 

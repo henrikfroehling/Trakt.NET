@@ -2,11 +2,10 @@
 {
     using Base.Get;
     using Enums;
-    using Objects.Basic;
     using Objects.Get.Users.Lists;
     using System.Collections.Generic;
 
-    internal class TraktUserCustomListItemsRequest : TraktGetByIdRequest<TraktListResult<TraktListItem>, TraktListItem>
+    internal class TraktUserCustomListItemsRequest : TraktGetByIdRequest<IEnumerable<TraktListItem>, TraktListItem>
     {
         internal TraktUserCustomListItemsRequest(TraktClient client) : base(client) { }
 
