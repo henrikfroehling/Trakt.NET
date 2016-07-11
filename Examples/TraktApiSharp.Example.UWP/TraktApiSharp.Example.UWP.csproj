@@ -97,8 +97,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnticipatedMovie.cs" />
+    <Compile Include="Models\BoxOfficeMovie.cs" />
+    <Compile Include="Models\MostPWCMovie.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\PaginationList.cs" />
+    <Compile Include="Models\RecentlyUpdatedMovie.cs" />
+    <Compile Include="Models\TrendingMovie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
+    <Compile Include="Services\TraktService\TraktMoviesService.cs" />
     <Compile Include="Services\TraktService\TraktServiceProvider.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
@@ -175,9 +183,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Source\Lib\TraktApiSharp\TraktApiSharp.csproj">
       <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
