@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Extensions;
-    using Objects.Basic;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests;
@@ -26,7 +25,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktPerson>> GetMultiplePersonsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktPerson>> GetMultiplePersonsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -45,7 +44,7 @@
             }
 
             var people = await Task.WhenAll(tasks);
-            return new TraktListResult<TraktPerson> { Items = people.ToList() };
+            return people.ToList();
         }
 
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string id, TraktExtendedOption extended = null)

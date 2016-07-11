@@ -3,12 +3,12 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Requests;
@@ -215,7 +215,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonsArgumentExceptions()
         {
-            Func<Task<TraktListResult<TraktPerson>>> act =
+            Func<Task<IEnumerable<TraktPerson>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(null);
             act.ShouldNotThrow();
 
