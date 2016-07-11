@@ -29,8 +29,7 @@
             });
         }
 
-        // TODO rename -> multiple
-        public async Task<IEnumerable<TraktMovie>> GetMoviesAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktMovie>> GetMultipleMoviesAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
