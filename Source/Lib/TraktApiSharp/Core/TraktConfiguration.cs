@@ -2,6 +2,7 @@
 {
     using System.Net.Http;
 
+    /// <summary>Provides global client settings.</summary>
     public class TraktConfiguration
     {
         internal TraktConfiguration()
@@ -13,6 +14,12 @@
 
         internal static HttpClient HTTP_CLIENT = null;
 
+        /// <summary>
+        /// Gets or sets the Trakt API version.
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#introduction/required-headers">"Trakt API Doc - Required Headers"</a> for more information.
+        /// </para>
+        /// </summary>
         public int ApiVersion { get; set; }
 
         /// <summary>

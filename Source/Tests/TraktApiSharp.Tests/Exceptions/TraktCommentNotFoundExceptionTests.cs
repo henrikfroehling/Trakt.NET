@@ -32,7 +32,7 @@
         }
 
         [TestMethod]
-        public void TestTrakCommentNotFoundExceptionConstructor()
+        public void TestTraktCommentNotFoundExceptionConstructor()
         {
             var message = "exception message";
             var commentId = "person id";

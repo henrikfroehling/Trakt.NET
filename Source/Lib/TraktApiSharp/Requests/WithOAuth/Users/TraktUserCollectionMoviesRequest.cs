@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Users
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Collection;
     using System.Collections.Generic;
 
-    internal class TraktUserCollectionMoviesRequest : TraktGetRequest<TraktListResult<TraktCollectionMovie>, TraktCollectionMovie>
+    internal class TraktUserCollectionMoviesRequest : TraktGetRequest<IEnumerable<TraktCollectionMovie>, TraktCollectionMovie>
     {
         internal TraktUserCollectionMoviesRequest(TraktClient client) : base(client) { }
 

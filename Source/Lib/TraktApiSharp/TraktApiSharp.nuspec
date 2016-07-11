@@ -2,20 +2,21 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>[version]</version>
+        <version>$version$</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>Henrik Fröhling</owners>
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>This is a C# wrapper library for the Trakt.tv API.
+        <description>C# wrapper library for the Trakt.tv API.
 
 Features
-- Full Trakt.tv API Version 2 Coverage
+- Full Trakt.tv API Coverage
 - OAuth Authentication Support
 - Device Authentication Support
-- Completely asynchronous</description>
+- Completely asynchronous
+        </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes />
         <copyright>Henrik Fröhling © 2016</copyright>

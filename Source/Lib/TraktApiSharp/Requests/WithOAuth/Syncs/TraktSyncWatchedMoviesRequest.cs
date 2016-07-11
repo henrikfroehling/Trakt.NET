@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Syncs
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Watched;
+    using System.Collections.Generic;
 
-    internal class TraktSyncWatchedMoviesRequest : TraktGetRequest<TraktListResult<TraktWatchedMovie>, TraktWatchedMovie>
+    internal class TraktSyncWatchedMoviesRequest : TraktGetRequest<IEnumerable<TraktWatchedMovie>, TraktWatchedMovie>
     {
         internal TraktSyncWatchedMoviesRequest(TraktClient client) : base(client) { }
 

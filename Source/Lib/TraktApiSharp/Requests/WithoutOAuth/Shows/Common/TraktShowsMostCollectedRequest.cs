@@ -22,7 +22,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/collected{/period}{?extended,page,limit}";
+        protected override string UriTemplate => "shows/collected{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

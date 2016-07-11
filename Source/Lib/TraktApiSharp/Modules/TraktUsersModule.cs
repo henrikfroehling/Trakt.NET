@@ -19,21 +19,22 @@
     using Requests.WithOAuth.Users;
     using Requests.WithoutOAuth.Users;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktUsersModule : TraktBaseModule
     {
-        public TraktUsersModule(TraktClient client) : base(client) { }
+        internal TraktUsersModule(TraktClient client) : base(client) { }
 
         public async Task<TraktUserSettings> GetSettingsAsync()
         {
             return await QueryAsync(new TraktUserSettingsRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktUserFollowRequest>> GetFollowRequestsAsync()
+        public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktUserFollowRequestsRequest(Client));
+            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection section,
@@ -63,18 +64,18 @@
             });
         }
 
-        public async Task<TraktUser> GetUserProfileAsync(string username)
+        public async Task<TraktUser> GetUserProfileAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
             return await QueryAsync(new TraktUserProfileRequest(Client)
             {
-                Username = username
+                Username = username,
+                ExtendedOption = extended
             });
         }
 
-        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(string username,
-                                                                                          TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -85,8 +86,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(string username,
-                                                                                        TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -115,7 +115,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktList>> GetCustomListsAsync(string username)
+        public async Task<IEnumerable<TraktList>> GetCustomListsAsync(string username)
         {
             ValidateUsername(username);
 
@@ -137,9 +137,31 @@
             });
         }
 
-        public async Task<TraktListResult<TraktListItem>> GetCustomListItemsAsync(string username, string listId,
-                                                                                  TraktListItemType? type = null,
-                                                                                  TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId[] ids)
+        {
+            if (ids == null || ids.Length <= 0)
+                return null;
+
+            var tasks = new List<Task<TraktList>>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                var listRequest = ids[i];
+
+                if (listRequest != null)
+                {
+                    Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
+                    tasks.Add(task);
+                }
+            }
+
+            var lists = await Task.WhenAll(tasks);
+            return lists.ToList();
+        }
+
+        public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync(string username, string listId,
+                                                                              TraktListItemType? type = null,
+                                                                              TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
             ValidateListId(listId);
@@ -302,25 +324,25 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUserFollower>> GetFollowersAsync(string username)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowersAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
-        public async Task<TraktListResult<TraktUserFollower>> GetFollowingAsync(string username)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowingAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
-        public async Task<TraktListResult<TraktUserFriend>> GetFriendsAsync(string username)
+        public async Task<IEnumerable<TraktUserFriend>> GetFriendsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = username });
+            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = username, ExtendedOption = extended });
         }
 
         public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string username)
@@ -353,7 +375,8 @@
 
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
                                                                                               string itemId = null, DateTime? startAt = null,
-                                                                                              DateTime? endAt = null, int? page = null, int? limit = null)
+                                                                                              DateTime? endAt = null, TraktExtendedOption extended = null,
+                                                                                              int? page = null, int? limit = null)
         {
             ValidateUsername(username);
 
@@ -364,12 +387,13 @@
                 ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
 
-        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
-                                                                             int[] rating = null, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(string username, TraktSyncRatingsItemType? type = null,
+                                                                         int[] rating = null, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -382,8 +406,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
-                                                                                 TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(string username, TraktSyncItemType? type = null,
+                                                                             TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -406,7 +430,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktWatchedMovie>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 
@@ -417,7 +441,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktWatchedShow>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(string username, TraktExtendedOption extended = null)
         {
             ValidateUsername(username);
 

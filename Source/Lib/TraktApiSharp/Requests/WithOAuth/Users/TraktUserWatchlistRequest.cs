@@ -2,11 +2,10 @@
 {
     using Base.Get;
     using Enums;
-    using Objects.Basic;
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal class TraktUserWatchlistRequest : TraktGetRequest<TraktListResult<TraktWatchlistItem>, TraktWatchlistItem>
+    internal class TraktUserWatchlistRequest : TraktGetRequest<IEnumerable<TraktWatchlistItem>, TraktWatchlistItem>
     {
         internal TraktUserWatchlistRequest(TraktClient client) : base(client) { }
 

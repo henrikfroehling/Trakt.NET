@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithOAuth.Users
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Watched;
     using System.Collections.Generic;
 
-    internal class TraktUserWatchedShowsRequest : TraktGetRequest<TraktListResult<TraktWatchedShow>, TraktWatchedShow>
+    internal class TraktUserWatchedShowsRequest : TraktGetRequest<IEnumerable<TraktWatchedShow>, TraktWatchedShow>
     {
         internal TraktUserWatchedShowsRequest(TraktClient client) : base(client) { }
 

@@ -8,11 +8,13 @@
     using Requests;
     using Requests.WithoutOAuth.Shows.Episodes;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class TraktEpisodesModule : TraktBaseModule
     {
-        public TraktEpisodesModule(TraktClient client) : base(client) { }
+        internal TraktEpisodesModule(TraktClient client) : base(client) { }
 
         public async Task<TraktEpisode> GetEpisodeAsync(string showId, int season, int episode,
                                                         TraktExtendedOption extended = null)
@@ -26,6 +28,30 @@
                 Episode = episode,
                 ExtendedOption = extended ?? new TraktExtendedOption()
             });
+        }
+
+        public async Task<IEnumerable<TraktEpisode>> GetMultipleEpisodesAsync(TraktEpisodeIdAndExtendedOption[] ids)
+        {
+            if (ids == null || ids.Length <= 0)
+                return null;
+
+            var tasks = new List<Task<TraktEpisode>>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                var episodeRequest = ids[i];
+
+                if (episodeRequest != null)
+                {
+                    Task<TraktEpisode> task = GetEpisodeAsync(episodeRequest.ShowId, episodeRequest.Season,
+                                                              episodeRequest.Episode, episodeRequest.ExtendedOption);
+
+                    tasks.Add(task);
+                }
+            }
+
+            var episodes = await Task.WhenAll(tasks);
+            return episodes.ToList();
         }
 
         public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showId, int season, int episode,
@@ -68,8 +94,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
-                                                                                   TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int season, int episode,
+                                                                               TraktExtendedOption extended = null)
         {
             Validate(showId, season, episode);
 

@@ -2,8 +2,9 @@
 {
     using Base.Get;
     using Objects.Basic;
+    using System.Collections.Generic;
 
-    internal class TraktGenresShowsRequest : TraktGetRequest<TraktListResult<TraktGenre>, TraktGenre>
+    internal class TraktGenresShowsRequest : TraktGetRequest<IEnumerable<TraktGenre>, TraktGenre>
     {
         internal TraktGenresShowsRequest(TraktClient client) : base(client) { }
 

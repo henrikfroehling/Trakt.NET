@@ -8,27 +8,20 @@
     {
         internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 
+        internal TraktSearchResultType ResultType { get; set; }
+
         internal string Query { get; set; }
-
-        internal TraktSearchResultType? Type { get; set; }
-
-        internal int? Year { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
+            uriParams.Add("type", ResultType.AsString());
             uriParams.Add("query", Query);
-
-            if (Type.HasValue)
-                uriParams.Add("type", Type.Value.AsString());
-
-            if (Year.HasValue)
-                uriParams.Add("year", Year.Value.ToString());
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "search{?query,type,year,page,limit}";
+        protected override string UriTemplate => "search/{type}{?query,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
     }
 }

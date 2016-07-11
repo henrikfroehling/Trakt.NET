@@ -3,12 +3,12 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests;
     using Utils;
@@ -55,8 +55,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -71,8 +70,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -87,8 +85,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -104,8 +101,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -123,8 +119,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -145,8 +140,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -166,8 +160,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -188,8 +181,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -199,7 +191,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -281,8 +273,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -297,8 +288,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -313,8 +303,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -330,8 +319,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -349,8 +337,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -370,8 +357,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -391,8 +377,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -413,8 +398,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -424,7 +408,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -506,8 +490,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -522,8 +505,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -538,8 +520,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -555,8 +536,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -574,8 +554,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -595,8 +574,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -616,8 +594,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -638,8 +615,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -649,7 +625,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -731,8 +707,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -747,8 +722,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -763,8 +737,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -780,8 +753,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -799,8 +771,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -820,8 +791,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -841,8 +811,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -863,8 +832,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -874,7 +842,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResult<TraktCalendarMovie>>> act =
+            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -956,8 +924,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -972,8 +939,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -988,8 +954,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1005,8 +970,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1024,8 +988,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1045,8 +1008,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1066,8 +1028,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1088,8 +1049,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1099,7 +1059,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1181,8 +1141,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1197,8 +1156,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1213,8 +1171,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1230,8 +1187,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1249,8 +1205,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1270,8 +1225,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1291,8 +1245,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1313,8 +1266,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1324,7 +1276,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1406,8 +1358,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1422,8 +1373,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1438,8 +1388,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1455,8 +1404,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1474,8 +1422,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1495,8 +1442,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1516,8 +1462,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1538,8 +1483,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1549,7 +1493,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktCalendarShow>>> act =
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1631,8 +1575,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync().Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1647,8 +1590,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1663,8 +1605,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1680,8 +1621,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1699,8 +1639,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1720,8 +1659,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1741,8 +1679,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1763,8 +1700,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1774,7 +1710,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResult<TraktCalendarMovie>>> act =
+            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

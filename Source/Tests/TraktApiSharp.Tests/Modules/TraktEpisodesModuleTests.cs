@@ -239,6 +239,48 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
+        #region MultipleEpisodes
+
+        [TestMethod]
+        public void TestTraktEpisodesModuleGetEpisodesArgumentExceptions()
+        {
+            var showId = "1390";
+            var seasonNr = 1;
+            var episodeNr = 1;
+
+            Func<Task<IEnumerable<TraktEpisode>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(null);
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[] { });
+            act.ShouldNotThrow();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
+            {new TraktEpisodeIdAndExtendedOption { ShowId = null, Season = seasonNr, Episode = episodeNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
+            { new TraktEpisodeIdAndExtendedOption { ShowId = string.Empty, Season = seasonNr, Episode = episodeNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
+            { new TraktEpisodeIdAndExtendedOption { ShowId = "show id", Season = seasonNr, Episode = episodeNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
+            { new TraktEpisodeIdAndExtendedOption { ShowId = showId, Season = -1, Episode = episodeNr } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
+            { new TraktEpisodeIdAndExtendedOption { ShowId = showId, Season = seasonNr, Episode = -1 } });
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
         #region EpisodeComments
 
         [TestMethod]
@@ -843,8 +885,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -868,8 +909,7 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedOption).Result;
 
-            response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -882,7 +922,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResult<TraktUser>>> act =
+            Func<Task<IEnumerable<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -959,7 +999,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching", episodeWatchingUsers);
 
-            Func<Task<TraktListResult<TraktUser>>> act =
+            Func<Task<IEnumerable<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 

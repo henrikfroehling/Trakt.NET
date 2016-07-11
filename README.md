@@ -4,7 +4,7 @@ TraktApiSharp
 ---
 
 ### Features
-- Full Trakt.tv API Version 2 Coverage
+- Full Trakt.tv API Coverage
 - OAuth Authentication Support
 - Device Authentication Support
 - Completely asynchronous
@@ -52,8 +52,12 @@ client.AccessToken = "Trakt Access Token";
 client.Configuration.ApiVersion = 2; // Set by default
 
 // Set this to true, to use Trakt API staging environment
-// Set to false by default
+// This is disabled by default
 client.Configuration.UseStagingUrl = true;
+
+// Force authorization for requests, where authorization is optional
+// This is disabled by default
+client.Configuration.ForceAuthorization = true;
 ```
 
 **Get the top 10 trending shows including full information and images.**

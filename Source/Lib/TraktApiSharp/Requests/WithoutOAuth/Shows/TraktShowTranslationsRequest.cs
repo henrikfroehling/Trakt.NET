@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows
 {
     using Base.Get;
-    using Objects.Basic;
     using Objects.Get.Shows;
+    using System.Collections.Generic;
 
-    internal class TraktShowTranslationsRequest : TraktGetByIdRequest<TraktListResult<TraktShowTranslation>, TraktShowTranslation>
+    internal class TraktShowTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktShowTranslation>, TraktShowTranslation>
     {
         internal TraktShowTranslationsRequest(TraktClient client) : base(client) { }
 

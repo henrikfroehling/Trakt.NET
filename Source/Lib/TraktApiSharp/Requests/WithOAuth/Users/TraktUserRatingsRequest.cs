@@ -2,12 +2,11 @@
 {
     using Base.Get;
     using Enums;
-    using Objects.Basic;
     using Objects.Get.Ratings;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class TraktUserRatingsRequest : TraktGetRequest<TraktListResult<TraktRatingsItem>, TraktRatingsItem>
+    internal class TraktUserRatingsRequest : TraktGetRequest<IEnumerable<TraktRatingsItem>, TraktRatingsItem>
     {
         internal TraktUserRatingsRequest(TraktClient client) : base(client) { }
 
