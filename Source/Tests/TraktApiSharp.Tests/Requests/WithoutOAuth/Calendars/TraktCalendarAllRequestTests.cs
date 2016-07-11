@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TraktApiSharp.Objects.Basic;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests.Base.Get;
     using TraktApiSharp.Requests.WithoutOAuth.Calendars;
 
@@ -18,7 +18,7 @@
         [TestMethod]
         public void TestTraktCalendarAllRequestIsTraktGetRequest()
         {
-            typeof(TraktGetRequest<TraktListResult<object>, object>).IsAssignableFrom(typeof(TraktCalendarAllRequest<object>)).Should().BeTrue();
+            typeof(TraktGetRequest<IEnumerable<object>, object>).IsAssignableFrom(typeof(TraktCalendarAllRequest<object>)).Should().BeTrue();
         }
     }
 }

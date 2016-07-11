@@ -207,17 +207,8 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            //if (typeof(TResult) != typeof(TraktListResult<TItem>))
-            //    throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted as TraktListResult<{typeof(TItem).ToString()}>");
-
-            //var typeElement = typeof(TResult).GenericTypeArguments[0];
-            //var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);
-            //var listResult = Activator.CreateInstance(typeList);
-
-            /*(listResult as TraktListResult<TItem>).Items*/
             var results = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
-
-            return (TResult)results; /*(TResult)listResult;*/
+            return (TResult)results;
         }
 
         private void ParseHeaderValues(TraktPaginationListResult<TItem> paginationListResult, HttpResponseHeaders headers)

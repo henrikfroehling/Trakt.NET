@@ -228,7 +228,6 @@
     <Compile Include="Objects\Basic\TraktIds.cs" />
     <Compile Include="Objects\Basic\TraktImage.cs" />
     <Compile Include="Objects\Basic\TraktImageSet.cs" />
-    <Compile Include="Objects\Basic\TraktListResult.cs" />
     <Compile Include="Objects\Basic\TraktPaginationListResult.cs" />
     <Compile Include="Objects\Basic\TraktRating.cs" />
     <Compile Include="Objects\Basic\TraktSearchResult.cs" />

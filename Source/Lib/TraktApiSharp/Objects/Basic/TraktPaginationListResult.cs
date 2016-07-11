@@ -1,7 +1,11 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
-    public class TraktPaginationListResult<ListItem> : TraktListResult<ListItem>
+    using System.Collections.Generic;
+
+    public class TraktPaginationListResult<ListItem>
     {
+        public IEnumerable<ListItem> Items { get; set; }
+
         public int? Page { get; set; }
 
         public int? Limit { get; set; }
