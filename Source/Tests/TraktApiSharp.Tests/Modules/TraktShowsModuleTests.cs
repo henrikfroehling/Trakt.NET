@@ -242,19 +242,19 @@
         public void TestTraktShowsModuleGetShowsArgumentExceptions()
         {
             Func<Task<IEnumerable<TraktShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new TraktIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { });
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "show id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "show id" } });
             act.ShouldThrow<ArgumentException>();
         }
 

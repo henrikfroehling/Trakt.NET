@@ -68,8 +68,7 @@
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
-        // TODO rename -> multiple
-        public async Task<IEnumerable<TraktShow>> GetShowsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktShow>> GetMultipleShowsAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
