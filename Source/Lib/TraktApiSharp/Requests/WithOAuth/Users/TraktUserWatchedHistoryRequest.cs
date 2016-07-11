@@ -53,7 +53,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,page,limit}";
+        protected override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Unspecified;
 

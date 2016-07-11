@@ -375,10 +375,10 @@
             await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
         }
 
-        // TODO add extended option
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string username, TraktSyncItemType? type = null,
                                                                                               string itemId = null, DateTime? startAt = null,
-                                                                                              DateTime? endAt = null, int? page = null, int? limit = null)
+                                                                                              DateTime? endAt = null, TraktExtendedOption extended = null,
+                                                                                              int? page = null, int? limit = null)
         {
             ValidateUsername(username);
 
@@ -389,6 +389,7 @@
                 ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
