@@ -207,16 +207,17 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            if (typeof(TResult) != typeof(TraktListResult<TItem>))
-                throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted as TraktListResult<{typeof(TItem).ToString()}>");
+            //if (typeof(TResult) != typeof(TraktListResult<TItem>))
+            //    throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted as TraktListResult<{typeof(TItem).ToString()}>");
 
-            var typeElement = typeof(TResult).GenericTypeArguments[0];
-            var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);
-            var listResult = Activator.CreateInstance(typeList);
+            //var typeElement = typeof(TResult).GenericTypeArguments[0];
+            //var typeList = typeof(TraktListResult<>).MakeGenericType(typeElement);
+            //var listResult = Activator.CreateInstance(typeList);
 
-            (listResult as TraktListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
+            /*(listResult as TraktListResult<TItem>).Items*/
+            var results = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
 
-            return (TResult)listResult;
+            return (TResult)results; /*(TResult)listResult;*/
         }
 
         private void ParseHeaderValues(TraktPaginationListResult<TItem> paginationListResult, HttpResponseHeaders headers)
