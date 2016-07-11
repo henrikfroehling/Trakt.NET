@@ -9,11 +9,14 @@
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>Features
+        <description>C# wrapper library for the Trakt.tv API.
+
+Features
 - Full Trakt.tv API Coverage
 - OAuth Authentication Support
 - Device Authentication Support
-- Completely asynchronous</description>
+- Completely asynchronous
+        </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes />
         <copyright>Henrik Fröhling © 2016</copyright>
