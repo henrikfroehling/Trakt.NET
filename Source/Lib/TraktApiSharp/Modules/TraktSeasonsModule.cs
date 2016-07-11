@@ -17,7 +17,7 @@
     {
         internal TraktSeasonsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktListResult<TraktSeason>> GetAllSeasonsAsync(string showId, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync(string showId, TraktExtendedOption extended = null)
         {
             Validate(showId);
 
@@ -28,8 +28,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktEpisode>> GetSeasonAsync(string showId, int season,
-                                                                        TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync(string showId, int season,
+                                                                    TraktExtendedOption extended = null)
         {
             Validate(showId, season);
 
@@ -41,12 +41,12 @@
             });
         }
 
-        public async Task<List<TraktListResult<TraktEpisode>>> GetMultipleSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
 
-            var tasks = new List<Task<TraktListResult<TraktEpisode>>>();
+            var tasks = new List<Task<IEnumerable<TraktEpisode>>>();
 
             for (int i = 0; i < ids.Length; i++)
             {
@@ -54,8 +54,8 @@
 
                 if (seasonsRequest != null)
                 {
-                    Task<TraktListResult<TraktEpisode>> task = GetSeasonAsync(seasonsRequest.ShowId, seasonsRequest.Season,
-                                                                              seasonsRequest.ExtendedOption);
+                    Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(seasonsRequest.ShowId, seasonsRequest.Season,
+                                                                          seasonsRequest.ExtendedOption);
 
                     tasks.Add(task);
                 }
@@ -102,8 +102,8 @@
             });
         }
 
-        public async Task<TraktListResult<TraktUser>> GetSeasonWatchingUsersAsync(string showId, int season,
-                                                                                  TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync(string showId, int season,
+                                                                              TraktExtendedOption extended = null)
         {
             Validate(showId, season);
 

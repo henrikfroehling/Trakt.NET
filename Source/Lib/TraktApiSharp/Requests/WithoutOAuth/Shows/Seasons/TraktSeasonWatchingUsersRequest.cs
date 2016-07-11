@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Shows.Seasons
 {
-    using Objects.Basic;
     using Objects.Get.Users;
+    using System.Collections.Generic;
 
-    internal class TraktSeasonWatchingUsersRequest : TraktGetByIdSeasonRequest<TraktListResult<TraktUser>, TraktUser>
+    internal class TraktSeasonWatchingUsersRequest : TraktGetByIdSeasonRequest<IEnumerable<TraktUser>, TraktUser>
     {
         internal TraktSeasonWatchingUsersRequest(TraktClient client) : base(client) { }
 
