@@ -30,7 +30,7 @@
         }
 
         // TODO rename -> multiple
-        public async Task<TraktListResult<TraktMovie>> GetMoviesAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktMovie>> GetMoviesAsync(TraktIdAndExtendedOption[] ids)
         {
             if (ids == null || ids.Length <= 0)
                 return null;
@@ -49,17 +49,17 @@
             }
 
             var movies = await Task.WhenAll(tasks);
-            return new TraktListResult<TraktMovie> { Items = movies.ToList() };
+            return movies.ToList();
         }
 
-        public async Task<TraktListResult<TraktMovieAlias>> GetMovieAliasesAsync(string id)
+        public async Task<IEnumerable<TraktMovieAlias>> GetMovieAliasesAsync(string id)
         {
             Validate(id);
 
             return await QueryAsync(new TraktMovieAliasesRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktMovieRelease>> GetMovieReleasesAsync(string id)
+        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync(string id)
         {
             Validate(id);
 
@@ -77,7 +77,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktMovieTranslation>> GetMovieTranslationsAsync(string id)
+        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync(string id)
         {
             Validate(id);
 
@@ -143,7 +143,7 @@
             return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = id });
         }
 
-        public async Task<TraktListResult<TraktUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync(string id, TraktExtendedOption extended = null)
         {
             Validate(id);
 
@@ -228,7 +228,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client)
             {
