@@ -21,6 +21,7 @@
     using Requests;
     using Requests.WithOAuth.Syncs;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@
             return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
         }
 
-        public async Task<TraktListResult<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? type = null, int? limit = null)
+        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? type = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
@@ -50,7 +51,7 @@
             await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
         }
 
-        public async Task<TraktListResult<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
             {
@@ -58,7 +59,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
             {
@@ -80,7 +81,7 @@
             return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
         }
 
-        public async Task<TraktListResult<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
             {
@@ -88,7 +89,7 @@
             });
         }
 
-        public async Task<TraktListResult<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
             {
@@ -126,9 +127,9 @@
             return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
         }
 
-        public async Task<TraktListResult<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
-                                                                             int[] rating = null,
-                                                                             TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? type = null,
+                                                                         int[] rating = null,
+                                                                         TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncRatingsRequest(Client)
             {
@@ -152,8 +153,8 @@
             return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
         }
 
-        public async Task<TraktListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
-                                                                                 TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? type = null,
+                                                                             TraktExtendedOption extended = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
