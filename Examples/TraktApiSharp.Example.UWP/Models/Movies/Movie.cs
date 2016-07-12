@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Example.UWP.Models
+﻿namespace TraktApiSharp.Example.UWP.Models.Movies
 {
     using Objects.Basic;
     using Objects.Get.Movies;

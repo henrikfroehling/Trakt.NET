@@ -2,6 +2,7 @@
 {
     using Enums;
     using Models;
+    using Models.Movies;
     using Requests;
     using Requests.WithoutOAuth.Movies;
     using System;
@@ -239,9 +240,9 @@
         }
 
         // -------------------------------------------------------------
-        // Most Anticipated Movies
+        // Recently Updated Movies
 
-        public async Task<PaginationList<RecentlyUpdatedMovie>> GetMostAnticipatedMoviesAsync(DateTime? startDate = null,
+        public async Task<PaginationList<RecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
                                                                                               TraktExtendedOption extendedInfo = null,
                                                                                               int? whichPage = null, int? limitPerPage = null)
         {

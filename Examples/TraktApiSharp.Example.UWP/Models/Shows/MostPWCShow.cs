@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Example.UWP.Models
+﻿namespace TraktApiSharp.Example.UWP.Models.Shows
 {
-    using Objects.Get.Movies;
+    using Objects.Get.Shows;
 
-    public class MostPWCMovie : TraktMovie
+    public class MostPWCShow : TraktShow
     {
         public int? WatcherCount { get; set; }
 
