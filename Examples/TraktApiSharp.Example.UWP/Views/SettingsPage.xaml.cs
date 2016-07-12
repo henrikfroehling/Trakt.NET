@@ -1,9 +1,8 @@
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
 namespace TraktApiSharp.Example.UWP.Views
 {
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     public sealed partial class SettingsPage : Page
     {
         Template10.Services.SerializationService.ISerializationService _SerializationService;

@@ -1,13 +1,10 @@
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Template10.Common;
-using Template10.Controls;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
 namespace TraktApiSharp.Example.UWP.Views
 {
+    using Template10.Common;
+    using Template10.Controls;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class Busy : UserControl
     {
         public Busy()
@@ -46,4 +43,3 @@ namespace TraktApiSharp.Example.UWP.Views
         }
     }
 }
-

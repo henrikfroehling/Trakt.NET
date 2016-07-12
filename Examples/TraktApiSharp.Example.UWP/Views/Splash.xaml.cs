@@ -1,10 +1,9 @@
-using System;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
 namespace TraktApiSharp.Example.UWP.Views
 {
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class Splash : UserControl
     {
         public Splash(SplashScreen splashScreen)
@@ -34,4 +33,3 @@ namespace TraktApiSharp.Example.UWP.Views
         }
     }
 }
-

@@ -1,12 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Template10.Mvvm;
-using Template10.Services.SettingsService;
-using Windows.UI.Xaml;
-
 namespace TraktApiSharp.Example.UWP.ViewModels
 {
+    using System;
+    using System.Threading.Tasks;
+    using Template10.Mvvm;
+    using Windows.UI.Xaml;
+
     public class SettingsPageViewModel : ViewModelBase
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
@@ -82,4 +80,3 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         public Uri RateMe => new Uri("http://aka.ms/template10");
     }
 }
-

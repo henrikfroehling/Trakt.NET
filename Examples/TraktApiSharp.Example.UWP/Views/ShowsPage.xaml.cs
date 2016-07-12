@@ -1,12 +1,12 @@
-namespace TraktApiSharp.Example.UWP.Views
+﻿namespace TraktApiSharp.Example.UWP.Views
 {
     using Windows.UI.Xaml.Controls;
 
-    public sealed partial class MainPage : Page
+    public sealed partial class ShowsPage : Page
     {
-        public MainPage()
+        public ShowsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
     }

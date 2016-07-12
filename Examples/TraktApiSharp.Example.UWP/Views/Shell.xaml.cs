@@ -1,14 +1,9 @@
-using System.ComponentModel;
-using System.Linq;
-using Template10.Common;
-using Template10.Controls;
-using Template10.Services.NavigationService;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
 namespace TraktApiSharp.Example.UWP.Views
 {
+    using Template10.Controls;
+    using Template10.Services.NavigationService;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class Shell : Page
     {
         public static Shell Instance { get; set; }
@@ -31,4 +26,3 @@ namespace TraktApiSharp.Example.UWP.Views
         }
     }
 }
-
