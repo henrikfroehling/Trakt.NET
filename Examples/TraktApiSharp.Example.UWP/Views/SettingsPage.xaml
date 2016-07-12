@@ -27,7 +27,6 @@
 
         <!--  content  -->
         <Pivot x:Name="MyPivot"
-               Grid.Row="1"
                RelativePanel.AlignBottomWithPanel="True"
                RelativePanel.AlignLeftWithPanel="True"
                RelativePanel.AlignRightWithPanel="True"

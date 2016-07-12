@@ -27,5 +27,26 @@
             </controls:PageHeader.SecondaryCommands>
 
         </controls:PageHeader>
+
+        <Pivot RelativePanel.AlignBottomWithPanel="True"
+               RelativePanel.AlignLeftWithPanel="True"
+               RelativePanel.AlignRightWithPanel="True"
+               RelativePanel.Below="pageHeader">
+
+            <PivotItem DataContext="{x:Bind ViewModel.TrendingShowsViewModel}" Header="Trending" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.PopularShowsViewModel}" Header="Popular" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.MostPlayedShowsViewModel}" Header="Most Played" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.MostWatchedShowsViewModel}" Header="Most Watched" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.MostCollectedShowsViewModel}" Header="Most Collected" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.MostAnticipatedShowsViewModel}" Header="Most Anticipated" />
+
+            <PivotItem DataContext="{x:Bind ViewModel.RecentlyUpdatedShowsViewModel}" Header="Recently Updated" />
+
+        </Pivot>
     </RelativePanel>
 </Page>
