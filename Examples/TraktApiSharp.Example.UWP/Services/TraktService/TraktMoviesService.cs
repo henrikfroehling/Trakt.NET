@@ -11,20 +11,24 @@
 
     public class TraktMoviesService
     {
-        private TraktClient _client = TraktServiceProvider.Client;
+        private TraktClient Client { get; } = TraktServiceProvider.Client;
+
+        private TraktMoviesService() { }
+
+        public static TraktMoviesService Instance { get; } = new TraktMoviesService();
 
         // -------------------------------------------------------------
         // Single Movie
 
         public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedOption extendedInfo = null)
         {
-            var movie = await _client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
+            var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
 
-            movie.Aliases = await _client.Movies.GetMovieAliasesAsync(movieId);
-            movie.Releases = await _client.Movies.GetMovieReleasesAsync(movieId);
-            movie.Translations = await _client.Movies.GetMovieTranslationsAsync(movieId);
-            movie.MovieRating = await _client.Movies.GetMovieRatingsAsync(movieId);
-            movie.Statistics = await _client.Movies.GetMovieStatisticsAsync(movieId);
+            movie.Aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
+            movie.Releases = await Client.Movies.GetMovieReleasesAsync(movieId);
+            movie.Translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
+            movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
+            movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
 
             return movie;
         }
@@ -36,7 +40,7 @@
                                                                                 TraktMovieFilter movieFilter = null,
                                                                                 int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetTrendingMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetTrendingMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<TrendingMovie>
             {
@@ -66,7 +70,7 @@
                                                                        TraktMovieFilter movieFilter = null,
                                                                        int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetPopularMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetPopularMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<Movie>
             {
@@ -93,7 +97,7 @@
                                                                                  TraktPeriod? period = null,
                                                                                  int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCMovie>
             {
@@ -128,7 +132,7 @@
                                                                                   TraktPeriod? period = null,
                                                                                   int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCMovie>
             {
@@ -163,7 +167,7 @@
                                                                                     TraktPeriod? period = null,
                                                                                     int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCMovie>
             {
@@ -197,7 +201,7 @@
                                                                                           TraktMovieFilter movieFilter = null,
                                                                                           int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, movieFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<AnticipatedMovie>
             {
@@ -225,7 +229,7 @@
 
         public async Task<IEnumerable<BoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedInfo = null)
         {
-            var traktResults = await _client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);
+            var traktResults = await Client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);
 
             var results = new List<BoxOfficeMovie>();
 
@@ -246,7 +250,7 @@
                                                                                               TraktExtendedOption extendedInfo = null,
                                                                                               int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Movies.GetRecentlyUpdatedMoviesAsync(startDate, extendedInfo, whichPage, limitPerPage);
+            var traktResults = await Client.Movies.GetRecentlyUpdatedMoviesAsync(startDate, extendedInfo, whichPage, limitPerPage);
 
             var results = new PaginationList<RecentlyUpdatedMovie>
             {

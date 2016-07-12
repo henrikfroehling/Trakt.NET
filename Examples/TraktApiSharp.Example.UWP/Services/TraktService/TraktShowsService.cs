@@ -11,19 +11,23 @@
 
     public class TraktShowsService
     {
-        private TraktClient _client = TraktServiceProvider.Client;
+        private TraktClient Client { get; } = TraktServiceProvider.Client;
+
+        private TraktShowsService() { }
+
+        public static TraktShowsService Instance { get; } = new TraktShowsService();
 
         // -------------------------------------------------------------
         // Single Show
 
         public async Task<Show> GetShowAsync(string showId, TraktExtendedOption extendedInfo = null)
         {
-            var show = await _client.Shows.GetShowAsync(showId, extendedInfo) as Show;
+            var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
 
-            show.Aliases = await _client.Shows.GetShowAliasesAsync(showId);
-            show.Translations = await _client.Shows.GetShowTranslationsAsync(showId);
-            show.ShowRating = await _client.Shows.GetShowRatingsAsync(showId);
-            show.Statistics = await _client.Shows.GetShowStatisticsAsync(showId);
+            show.Aliases = await Client.Shows.GetShowAliasesAsync(showId);
+            show.Translations = await Client.Shows.GetShowTranslationsAsync(showId);
+            show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
+            show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
 
             return show;
         }
@@ -35,7 +39,7 @@
                                                                               TraktShowFilter showFilter = null,
                                                                               int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetTrendingShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetTrendingShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<TrendingShow>
             {
@@ -65,7 +69,7 @@
                                                                      TraktShowFilter showFilter = null,
                                                                      int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetPopularShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetPopularShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<Show>
             {
@@ -92,7 +96,7 @@
                                                                                TraktPeriod? period = null,
                                                                                int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetMostPlayedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetMostPlayedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCShow>
             {
@@ -127,7 +131,7 @@
                                                                                 TraktPeriod? period = null,
                                                                                 int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetMostWatchedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetMostWatchedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCShow>
             {
@@ -162,7 +166,7 @@
                                                                                   TraktPeriod? period = null,
                                                                                   int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetMostCollectedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetMostCollectedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<MostPWCShow>
             {
@@ -196,7 +200,7 @@
                                                                                         TraktShowFilter showFilter = null,
                                                                                         int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetMostAnticipatedShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetMostAnticipatedShowsAsync(extendedInfo, showFilter, whichPage, limitPerPage);
 
             var results = new PaginationList<AnticipatedShow>
             {
@@ -226,7 +230,7 @@
                                                                                             TraktExtendedOption extendedInfo = null,
                                                                                             int? whichPage = null, int? limitPerPage = null)
         {
-            var traktResults = await _client.Shows.GetRecentlyUpdatedShowsAsync(startDate, extendedInfo, whichPage, limitPerPage);
+            var traktResults = await Client.Shows.GetRecentlyUpdatedShowsAsync(startDate, extendedInfo, whichPage, limitPerPage);
 
             var results = new PaginationList<RecentlyUpdatedShow>
             {
