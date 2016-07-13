@@ -2247,6 +2247,28 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies?{filter.ToString()}", calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithStartDate()
         {
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
@@ -2262,6 +2284,31 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithStartDateFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}?{filter.ToString()}",
+                                                   calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithDays()
         {
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
@@ -2272,6 +2319,31 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{days}", calendarMoviesJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithDaysFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{days}?{filter.ToString()}",
+                                                   calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, null, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(3);
         }
@@ -2293,6 +2365,33 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithStartDateAndDaysFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithExtendedOption()
         {
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
@@ -2306,6 +2405,35 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies?extended={extendedOption.ToString()}", calendarMoviesJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithExtendedOptionFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/movies?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(3);
         }
@@ -2331,6 +2459,38 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithExtendedOptionAndStartDateFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/movies/{today.ToTraktDateString()}" +
+                $"?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesWithExtendedOptionAndDays()
         {
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
@@ -2346,6 +2506,37 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{days}?extended={extendedOption.ToString()}", calendarMoviesJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithExtendedOptionAndDaysFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/movies/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(3);
         }
@@ -2367,6 +2558,39 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}", calendarMoviesJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesWithExtendedOptionAndStartDateAndDaysFiltered()
+        {
+            var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
+            calendarMoviesJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user movie")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}" +
+                $"?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarMoviesJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(3);
         }
