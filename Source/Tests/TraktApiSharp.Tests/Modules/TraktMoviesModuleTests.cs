@@ -14,7 +14,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Requests.WithoutOAuth.Movies;
     using Utils;
 

@@ -30,7 +30,7 @@
     using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using Utils;
 
     [TestClass]

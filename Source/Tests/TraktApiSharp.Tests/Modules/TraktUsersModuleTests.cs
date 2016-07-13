@@ -27,7 +27,7 @@
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Objects.Post.Users.Responses;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using Utils;
 
     [TestClass]

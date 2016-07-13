@@ -15,7 +15,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Requests.WithoutOAuth.Shows;
     using Utils;
 

@@ -6,6 +6,7 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.Shows.Episodes;
     using System;
     using System.Collections.Generic;

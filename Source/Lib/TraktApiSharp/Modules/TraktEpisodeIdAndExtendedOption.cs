@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Requests;
+    using Requests.Params;
 
     public class TraktEpisodeIdAndExtendedOption
     {

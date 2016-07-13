@@ -4,6 +4,7 @@
     using Extensions;
     using Objects.Basic;
     using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.Search;
     using System;
     using System.Threading.Tasks;

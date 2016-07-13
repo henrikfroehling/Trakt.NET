@@ -7,6 +7,7 @@
     using Objects.Get.Shows.Seasons;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.Shows.Seasons;
     using System;
     using System.Collections.Generic;

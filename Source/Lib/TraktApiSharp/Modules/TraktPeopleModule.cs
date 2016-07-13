@@ -3,7 +3,7 @@
     using Extensions;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
-    using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.People;
     using System;
     using System.Collections.Generic;

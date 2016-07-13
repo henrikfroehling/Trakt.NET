@@ -12,7 +12,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using Utils;
 
     [TestClass]

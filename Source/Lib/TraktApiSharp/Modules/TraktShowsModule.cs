@@ -7,6 +7,7 @@
     using Objects.Get.Shows.Common;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Shows;
     using Requests.WithoutOAuth.Shows;
     using Requests.WithoutOAuth.Shows.Common;

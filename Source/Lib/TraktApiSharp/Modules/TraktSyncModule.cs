@@ -19,6 +19,7 @@
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Syncs;
     using System;
     using System.Collections.Generic;

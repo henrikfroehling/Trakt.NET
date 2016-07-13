@@ -10,7 +10,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using Utils;
 
     [TestClass]

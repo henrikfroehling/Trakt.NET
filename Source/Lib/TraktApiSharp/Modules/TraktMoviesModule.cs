@@ -7,6 +7,7 @@
     using Objects.Get.Movies.Common;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.Movies;
     using Requests.WithoutOAuth.Movies.Common;
     using System;

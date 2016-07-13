@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Objects.Get.Calendars;
-    using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Calendars;
     using Requests.WithoutOAuth.Calendars;
     using System;

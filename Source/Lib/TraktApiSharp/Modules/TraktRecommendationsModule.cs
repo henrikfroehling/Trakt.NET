@@ -5,6 +5,7 @@
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Recommendations;
     using System;
     using System.Threading.Tasks;

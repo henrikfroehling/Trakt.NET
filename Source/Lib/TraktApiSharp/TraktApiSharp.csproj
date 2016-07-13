@@ -469,7 +469,7 @@
     <Compile Include="Requests\Base\Post\TraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequest.cs" />
     <Compile Include="Requests\Base\Delete\TraktDeleteRequest.cs" />
-    <Compile Include="Requests\Base\TraktExtendedOption.cs" />
+    <Compile Include="Requests\Params\TraktExtendedOption.cs" />
     <Compile Include="Requests\Base\Get\TraktGetByIdRequest.cs" />
     <Compile Include="Requests\Base\Get\TraktGetRequest.cs" />
     <Compile Include="Requests\Base\TraktPaginationOptions.cs" />

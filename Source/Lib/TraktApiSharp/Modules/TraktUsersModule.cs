@@ -16,6 +16,7 @@
     using Objects.Post.Users.CustomListItems.Responses;
     using Objects.Post.Users.Responses;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Users;
     using Requests.WithoutOAuth.Users;
     using System;
