@@ -9,8 +9,6 @@
 
         public TraktException(string message, Exception innerException) : base(message, innerException) { }
 
-        public override string Message => base.Message;
-
         public HttpStatusCode StatusCode { get; internal set; }
 
         public string RequestUrl { get; set; }

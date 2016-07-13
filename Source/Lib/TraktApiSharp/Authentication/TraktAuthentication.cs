@@ -25,12 +25,7 @@
         private TraktAuthorization _authorization;
         private TraktDevice _device;
 
-        internal TraktAuthentication(TraktClient client)
-        {
-            Client = client;
-            AntiForgeryToken = Guid.NewGuid().ToString();
-            RedirectUri = DEFAULT_REDIRECT_URI;
-        }
+        internal TraktAuthentication(TraktClient client) { Client = client; }
 
         /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
         public TraktClient Client { get; private set; }
@@ -90,7 +85,7 @@
         /// <seealso cref="TraktOAuth.CreateAuthorizationUrlWithDefaultState(string, string)" />.
         /// </para>
         /// </summary>
-        public string AntiForgeryToken { get; private set; }
+        public string AntiForgeryToken { get; } = Guid.NewGuid().ToString();
 
         /// <summary>Gets or sets the Trakt Client Id. See also <seealso cref="ClientSecret" />.</summary>
         public string ClientId { get; set; }
@@ -99,7 +94,7 @@
         public string ClientSecret { get; set; }
 
         /// <summary>Gets or sets the Trakt redirect URI for OAuth authentication.</summary>
-        public string RedirectUri { get; set; }
+        public string RedirectUri { get; set; } = DEFAULT_REDIRECT_URI;
 
         /// <summary>
         /// Returns whether the client is authorized with a valid access token.
