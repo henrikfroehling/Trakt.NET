@@ -31,7 +31,7 @@
         public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
         {
             if (ids == null || ids.Length <= 0)
-                return null;
+                return new List<TraktComment>();
 
             var tasks = new List<Task<TraktComment>>();
 
