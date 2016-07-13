@@ -306,7 +306,7 @@
     <Compile Include="Requests\Base\ITraktRequestTests.cs" />
     <Compile Include="Requests\Base\TraktPaginationOptionsTests.cs" />
     <Compile Include="Requests\Base\TraktRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchFilterTests.cs" />
+    <Compile Include="Requests\Params\TraktSearchFilterTests.cs" />
     <Compile Include="Requests\Params\TraktShowFilterTests.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequestTests.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequestTests.cs" />

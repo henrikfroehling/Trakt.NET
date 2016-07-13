@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.WithoutOAuth.Search
+﻿namespace TraktApiSharp.Tests.Requests.Params
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests.WithoutOAuth.Search;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Utils;
 
     [TestClass]
