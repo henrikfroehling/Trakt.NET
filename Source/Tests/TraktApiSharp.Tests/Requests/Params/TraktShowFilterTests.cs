@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests.WithoutOAuth.Shows
+﻿namespace TraktApiSharp.Tests.Requests.Params
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.WithoutOAuth.Shows;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Utils;
 
     [TestClass]
