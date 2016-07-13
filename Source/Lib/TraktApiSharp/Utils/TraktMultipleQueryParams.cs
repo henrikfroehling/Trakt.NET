@@ -17,6 +17,8 @@
             _items.Add(item);
         }
 
+        public int Count => _items.Count;
+
         public IEnumerator<T> GetEnumerator()
         {
             return _items.GetEnumerator();
