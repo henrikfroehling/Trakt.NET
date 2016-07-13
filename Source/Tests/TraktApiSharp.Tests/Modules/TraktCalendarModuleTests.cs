@@ -1805,6 +1805,29 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres?{filter.ToString()}",
+                                                   calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithStartDate()
         {
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -1820,6 +1843,31 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithStartDateFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}?{filter.ToString()}",
+                                                   calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithDays()
         {
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -1830,6 +1878,31 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}", calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithDaysFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}?{filter.ToString()}",
+                                                   calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1851,6 +1924,33 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithStartDateAndDaysFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOption()
         {
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -1864,6 +1964,35 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres?extended={extendedOption.ToString()}", calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOptionFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1889,6 +2018,38 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOptionAndStartDateFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}" +
+                $"?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOptionAndDays()
         {
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -1904,6 +2065,37 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}?extended={extendedOption.ToString()}", calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOptionAndDaysFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1925,6 +2117,39 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}", calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresWithExtendedOptionAndStartDateAndDaysFiltered()
+        {
+            var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user season premiere")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}" +
+                $"?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarSeasonPremieresJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
