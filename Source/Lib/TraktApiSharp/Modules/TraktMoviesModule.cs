@@ -30,22 +30,17 @@
             });
         }
 
-        public async Task<IEnumerable<TraktMovie>> GetMultipleMoviesAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktMovie>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (moviesQueryParams == null || moviesQueryParams.Count <= 0)
+                return new List<TraktMovie>();
 
             var tasks = new List<Task<TraktMovie>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in moviesQueryParams)
             {
-                var movieRequest = ids[i];
-
-                if (movieRequest != null)
-                {
-                    Task<TraktMovie> task = GetMovieAsync(movieRequest.Id, movieRequest.ExtendedOption);
-                    tasks.Add(task);
-                }
+                Task<TraktMovie> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedOption);
+                tasks.Add(task);
             }
 
             var movies = await Task.WhenAll(tasks);

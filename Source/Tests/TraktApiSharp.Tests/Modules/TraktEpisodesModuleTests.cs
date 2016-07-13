@@ -252,27 +252,28 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams());
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
-            {new TraktEpisodeIdAndExtendedOption { ShowId = null, Season = seasonNr, Episode = episodeNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams { { null, seasonNr, episodeNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
-            { new TraktEpisodeIdAndExtendedOption { ShowId = string.Empty, Season = seasonNr, Episode = episodeNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams { { string.Empty, seasonNr, episodeNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
-            { new TraktEpisodeIdAndExtendedOption { ShowId = "show id", Season = seasonNr, Episode = episodeNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams { { "show id", seasonNr, episodeNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
-            { new TraktEpisodeIdAndExtendedOption { ShowId = showId, Season = -1, Episode = episodeNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams { { showId, -1, episodeNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(new TraktEpisodeIdAndExtendedOption[]
-            { new TraktEpisodeIdAndExtendedOption { ShowId = showId, Season = seasonNr, Episode = -1 } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
+                new TraktMultipleEpisodesQueryParams { { showId, seasonNr, -1 } });
             act.ShouldThrow<ArgumentException>();
         }
 

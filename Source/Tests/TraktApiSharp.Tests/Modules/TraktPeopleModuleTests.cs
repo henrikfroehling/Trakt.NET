@@ -219,16 +219,20 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(new TraktIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(
+                new TraktMultipleObjectsQueryParams());
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(
+                new TraktMultipleObjectsQueryParams { { null } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(
+                new TraktMultipleObjectsQueryParams { { string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "person id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(
+                new TraktMultipleObjectsQueryParams { { "person id" } });
             act.ShouldThrow<ArgumentException>();
         }
 
