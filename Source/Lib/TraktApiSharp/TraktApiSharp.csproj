@@ -117,6 +117,7 @@
     <Compile Include="Modules\TraktIdAndExtendedOption.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktMultipleSeasonsQueryParams.cs" />
+    <Compile Include="Modules\TraktMultipleUserListsQueryParams.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
     <Compile Include="Modules\TraktRecommendationsModule.cs" />
     <Compile Include="Modules\TraktScrobbleModule.cs" />
@@ -124,7 +125,6 @@
     <Compile Include="Modules\TraktSeasonsModule.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
-    <Compile Include="Modules\TraktUsersListId.cs" />
     <Compile Include="Modules\TraktUsersModule.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />

@@ -138,22 +138,17 @@
             });
         }
 
-        public async Task<IEnumerable<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId[] ids)
+        public async Task<IEnumerable<TraktList>> GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (userListsQueryParams == null || userListsQueryParams.Count <= 0)
+                return new List<TraktList>();
 
             var tasks = new List<Task<TraktList>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in userListsQueryParams)
             {
-                var listRequest = ids[i];
-
-                if (listRequest != null)
-                {
-                    Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
-                    tasks.Add(task);
-                }
+                Task<TraktList> task = GetCustomSingleListAsync(queryParam.Username, queryParam.ListId);
+                tasks.Add(task);
             }
 
             var lists = await Task.WhenAll(tasks);
