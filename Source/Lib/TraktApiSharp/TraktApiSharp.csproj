@@ -114,7 +114,6 @@
     <Compile Include="Modules\TraktCommentsModule.cs" />
     <Compile Include="Modules\TraktEpisodesModule.cs" />
     <Compile Include="Modules\TraktGenresModule.cs" />
-    <Compile Include="Modules\TraktIdAndExtendedOption.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktMultipleObjectsQueryParams.cs" />
     <Compile Include="Modules\TraktMultipleSeasonsQueryParams.cs" />

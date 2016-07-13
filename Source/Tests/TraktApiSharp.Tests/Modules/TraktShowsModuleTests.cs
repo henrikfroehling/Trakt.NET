@@ -16,7 +16,6 @@
     using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Requests.WithoutOAuth.Shows;
     using Utils;
 
     [TestClass]
@@ -245,16 +244,20 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(
+                new TraktMultipleObjectsQueryParams());
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(
+                new TraktMultipleObjectsQueryParams { { null } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(
+                new TraktMultipleObjectsQueryParams { { string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "show id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(
+                new TraktMultipleObjectsQueryParams { { "show id" } });
             act.ShouldThrow<ArgumentException>();
         }
 
