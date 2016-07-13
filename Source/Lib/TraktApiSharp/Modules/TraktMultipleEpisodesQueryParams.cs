@@ -5,12 +5,7 @@
 
     public class TraktMultipleEpisodesQueryParams : TraktMultipleQueryParams<TraktEpisodeQueryParams>
     {
-        public void Add(string showId, int season, int episode)
-        {
-            Add(new TraktEpisodeQueryParams(showId, season, episode, null));
-        }
-
-        public void Add(string showId, int season, int episode, TraktExtendedOption extended)
+        public void Add(string showId, int season, int episode, TraktExtendedOption extended = null)
         {
             Add(new TraktEpisodeQueryParams(showId, season, episode, extended));
         }

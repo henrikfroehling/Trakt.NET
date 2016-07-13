@@ -339,23 +339,24 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(new TraktSeasonIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
+                new TraktMultipleSeasonsQueryParams());
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
-            {new TraktSeasonIdAndExtendedOption { ShowId = null, Season = seasonNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
+                new TraktMultipleSeasonsQueryParams { { null, seasonNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
-            { new TraktSeasonIdAndExtendedOption { ShowId = string.Empty, Season = seasonNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
+                new TraktMultipleSeasonsQueryParams { { string.Empty, seasonNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
-            { new TraktSeasonIdAndExtendedOption { ShowId = "show id", Season = seasonNr } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
+                new TraktMultipleSeasonsQueryParams { { "show id", seasonNr } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(new TraktSeasonIdAndExtendedOption[]
-            { new TraktSeasonIdAndExtendedOption { ShowId = showId, Season = -1 } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
+                new TraktMultipleSeasonsQueryParams { { showId, -1 } });
             act.ShouldThrow<ArgumentException>();
         }
 

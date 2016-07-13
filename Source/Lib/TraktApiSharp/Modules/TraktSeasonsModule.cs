@@ -42,24 +42,19 @@
             });
         }
 
-        public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (seasonsQueryParams == null || seasonsQueryParams.Count <= 0)
+                return new List<List<TraktEpisode>>();
 
             var tasks = new List<Task<IEnumerable<TraktEpisode>>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in seasonsQueryParams)
             {
-                var seasonsRequest = ids[i];
+                Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
+                                                                      queryParam.ExtendedOption);
 
-                if (seasonsRequest != null)
-                {
-                    Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(seasonsRequest.ShowId, seasonsRequest.Season,
-                                                                          seasonsRequest.ExtendedOption);
-
-                    tasks.Add(task);
-                }
+                tasks.Add(task);
             }
 
             var seasons = await Task.WhenAll(tasks);
