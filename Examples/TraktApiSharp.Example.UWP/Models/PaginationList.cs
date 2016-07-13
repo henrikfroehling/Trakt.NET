@@ -2,10 +2,11 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class PaginationList<T> : IEnumerable<T>
     {
-        public List<T> Items { get; set; }
+        public ObservableCollection<T> Items { get; set; }
 
         public int? CurrentPage { get; set; }
 
@@ -19,12 +20,12 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            return Items?.GetEnumerator();
+            return Items.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return Items?.GetEnumerator();
+            return Items.GetEnumerator();
         }
     }
 }

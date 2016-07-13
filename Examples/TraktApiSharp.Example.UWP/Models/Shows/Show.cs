@@ -2,13 +2,13 @@
 {
     using Objects.Basic;
     using Objects.Get.Shows;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class Show : TraktShow
     {
-        public IEnumerable<TraktShowAlias> Aliases { get; set; }
+        public ObservableCollection<TraktShowAlias> Aliases { get; set; }
 
-        public IEnumerable<TraktShowTranslation> Translations { get; set; }
+        public ObservableCollection<TraktShowTranslation> Translations { get; set; }
 
         public TraktRating ShowRating { get; set; }
 

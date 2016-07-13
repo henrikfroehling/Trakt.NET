@@ -3,10 +3,11 @@
     using Enums;
     using Models;
     using Models.Shows;
+    using Objects.Get.Shows;
     using Requests;
     using Requests.WithoutOAuth.Shows;
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
     public class TraktShowsService
@@ -20,14 +21,22 @@
         // -------------------------------------------------------------
         // Single Show
 
-        public async Task<Show> GetShowAsync(string showId, TraktExtendedOption extendedInfo = null)
+        public async Task<Show> GetShowAsync(string showId, TraktExtendedOption extendedInfo = null,
+                                             bool withAdditionalContent = false)
         {
             var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
 
-            show.Aliases = await Client.Shows.GetShowAliasesAsync(showId);
-            show.Translations = await Client.Shows.GetShowTranslationsAsync(showId);
-            show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
-            show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
+            if (withAdditionalContent)
+            {
+                var aliases = await Client.Shows.GetShowAliasesAsync(showId);
+                show.Aliases = new ObservableCollection<TraktShowAlias>(aliases);
+
+                var translations = await Client.Shows.GetShowTranslationsAsync(showId);
+                show.Translations = new ObservableCollection<TraktShowTranslation>(translations);
+
+                show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
+                show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
+            }
 
             return show;
         }
@@ -50,7 +59,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<TrendingShow>();
+            results.Items = new ObservableCollection<TrendingShow>();
 
             foreach (var traktTrendingShow in traktResults.Items)
             {
@@ -80,7 +89,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<Show>();
+            results.Items = new ObservableCollection<Show>();
 
             foreach (var traktPopularShow in traktResults.Items)
                 results.Items.Add(traktPopularShow as Show);
@@ -107,7 +116,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCShow>();
+            results.Items = new ObservableCollection<MostPWCShow>();
 
             foreach (var traktMostPlayedShow in traktResults.Items)
             {
@@ -142,7 +151,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCShow>();
+            results.Items = new ObservableCollection<MostPWCShow>();
 
             foreach (var traktMostWatchedShow in traktResults.Items)
             {
@@ -177,7 +186,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCShow>();
+            results.Items = new ObservableCollection<MostPWCShow>();
 
             foreach (var traktMostCollectedShow in traktResults.Items)
             {
@@ -211,7 +220,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<AnticipatedShow>();
+            results.Items = new ObservableCollection<AnticipatedShow>();
 
             foreach (var traktAnticipatedShow in traktResults.Items)
             {
@@ -241,7 +250,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<RecentlyUpdatedShow>();
+            results.Items = new ObservableCollection<RecentlyUpdatedShow>();
 
             foreach (var traktRecentlyUpdatedShow in traktResults.Items)
             {

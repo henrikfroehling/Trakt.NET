@@ -3,10 +3,11 @@
     using Enums;
     using Models;
     using Models.Movies;
+    using Objects.Get.Movies;
     using Requests;
     using Requests.WithoutOAuth.Movies;
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
     public class TraktMoviesService
@@ -20,15 +21,25 @@
         // -------------------------------------------------------------
         // Single Movie
 
-        public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedOption extendedInfo = null)
+        public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedOption extendedInfo = null,
+                                               bool withAdditionalContent = false)
         {
             var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
 
-            movie.Aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
-            movie.Releases = await Client.Movies.GetMovieReleasesAsync(movieId);
-            movie.Translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
-            movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
-            movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
+            if (withAdditionalContent)
+            {
+                var aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
+                movie.Aliases = new ObservableCollection<TraktMovieAlias>(aliases);
+
+                var releases = await Client.Movies.GetMovieReleasesAsync(movieId);
+                movie.Releases = new ObservableCollection<TraktMovieRelease>(releases);
+
+                var translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
+                movie.Translations = new ObservableCollection<TraktMovieTranslation>(translations);
+
+                movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
+                movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
+            }
 
             return movie;
         }
@@ -51,7 +62,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<TrendingMovie>();
+            results.Items = new ObservableCollection<TrendingMovie>();
 
             foreach (var traktTrendingMovie in traktResults.Items)
             {
@@ -81,7 +92,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<Movie>();
+            results.Items = new ObservableCollection<Movie>();
 
             foreach (var traktPopularMovie in traktResults.Items)
                 results.Items.Add(traktPopularMovie as Movie);
@@ -108,7 +119,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCMovie>();
+            results.Items = new ObservableCollection<MostPWCMovie>();
 
             foreach (var traktMostPlayedMovie in traktResults.Items)
             {
@@ -143,7 +154,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCMovie>();
+            results.Items = new ObservableCollection<MostPWCMovie>();
 
             foreach (var traktMostWatchedMovie in traktResults.Items)
             {
@@ -178,7 +189,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<MostPWCMovie>();
+            results.Items = new ObservableCollection<MostPWCMovie>();
 
             foreach (var traktMostCollectedMovie in traktResults.Items)
             {
@@ -212,7 +223,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<AnticipatedMovie>();
+            results.Items = new ObservableCollection<AnticipatedMovie>();
 
             foreach (var traktAnticipatedMovie in traktResults.Items)
             {
@@ -227,11 +238,11 @@
         // -------------------------------------------------------------
         // Box Office Movies
 
-        public async Task<IEnumerable<BoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedInfo = null)
+        public async Task<ObservableCollection<BoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedInfo = null)
         {
             var traktResults = await Client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);
 
-            var results = new List<BoxOfficeMovie>();
+            var results = new ObservableCollection<BoxOfficeMovie>();
 
             foreach (var traktBoxOfficeMovie in traktResults)
             {
@@ -261,7 +272,7 @@
                 TotalUserCount = traktResults.UserCount
             };
 
-            results.Items = new List<RecentlyUpdatedMovie>();
+            results.Items = new ObservableCollection<RecentlyUpdatedMovie>();
 
             foreach (var traktRecentlyUpdatedMovie in traktResults.Items)
             {
