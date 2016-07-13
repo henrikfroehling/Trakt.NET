@@ -1,6 +1,5 @@
-﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies
+﻿namespace TraktApiSharp.Requests.Params
 {
-    using Params;
     using Utils;
 
     public class TraktMovieFilter : TraktCommonMovieAndShowFilter

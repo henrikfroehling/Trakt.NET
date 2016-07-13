@@ -315,7 +315,7 @@
     <Compile Include="Utils\Range.cs" />
     <Compile Include="Requests\Params\TraktCommonFilter.cs" />
     <Compile Include="Requests\Params\TraktCommonMovieAndShowFilter.cs" />
-    <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieFilter.cs" />
+    <Compile Include="Requests\Params\TraktMovieFilter.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchFilter.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchIdLookupRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchTextQueryRequest.cs" />

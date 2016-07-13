@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.WithoutOAuth.Movies
+﻿namespace TraktApiSharp.Tests.Requests.Params
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests.WithoutOAuth.Movies;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Utils;
 
     [TestClass]
