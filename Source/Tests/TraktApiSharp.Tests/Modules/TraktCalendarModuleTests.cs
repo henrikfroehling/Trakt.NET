@@ -928,6 +928,28 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows?{filter.ToString()}", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithStartDate()
         {
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -943,6 +965,31 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithStartDateFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}?{filter.ToString()}",
+                                                   calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithDays()
         {
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -953,6 +1000,30 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{days}", calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithDaysFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{days}?{filter.ToString()}", calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, null, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -974,6 +1045,33 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithStartDateAndDaysFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, null, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithExtendedOption()
         {
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -987,6 +1085,35 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows?extended={extendedOption.ToString()}", calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithExtendedOptionFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1012,6 +1139,37 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithExtendedOptionAndStartDateFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedOption, filter).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsWithExtendedOptionAndDays()
         {
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
@@ -1027,6 +1185,37 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{days}?extended={extendedOption.ToString()}", calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithExtendedOptionAndDaysFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1048,6 +1237,38 @@
             TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}", calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedOption).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsWithExtendedOptionAndStartDateAndDaysFiltered()
+        {
+            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarShowsJson.Should().NotBeNullOrEmpty();
+
+            var today = DateTime.UtcNow;
+            var days = 14;
+
+            var extendedOption = new TraktExtendedOption();
+
+            extendedOption.Full = true;
+            extendedOption.Images = true;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar user show")
+                .WithYears(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                calendarShowsJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedOption, filter).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
