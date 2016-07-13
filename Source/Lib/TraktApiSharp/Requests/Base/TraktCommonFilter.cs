@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Utils;
 
     public abstract class TraktCommonFilter
     {

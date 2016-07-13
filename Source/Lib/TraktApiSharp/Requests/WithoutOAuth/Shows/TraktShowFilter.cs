@@ -4,6 +4,7 @@
     using Enums;
     using System;
     using System.Collections.Generic;
+    using Utils;
 
     public class TraktShowFilter : TraktCommonMovieAndShowFilter
     {

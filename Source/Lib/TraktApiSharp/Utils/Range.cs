@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktApiSharp.Utils
 {
     public sealed class Range<T>
     {

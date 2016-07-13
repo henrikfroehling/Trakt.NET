@@ -5,8 +5,8 @@
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.WithoutOAuth.Shows;
+    using TraktApiSharp.Utils;
 
     [TestClass]
     public class TraktShowFilterTests

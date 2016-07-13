@@ -3,8 +3,8 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.WithoutOAuth.Search;
+    using TraktApiSharp.Utils;
 
     [TestClass]
     public class TraktSearchFilterTests
