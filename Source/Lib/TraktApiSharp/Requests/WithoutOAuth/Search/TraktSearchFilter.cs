@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.WithoutOAuth.Search
 {
-    using Base;
+    using Params;
     using Utils;
 
     public class TraktSearchFilter : TraktCommonFilter

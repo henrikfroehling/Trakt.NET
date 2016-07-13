@@ -9,6 +9,7 @@ namespace TraktApiSharp.Requests.Base
     using Newtonsoft.Json;
     using Objects.Basic;
     using Objects.Post.Checkins.Responses;
+    using Params;
     using System;
     using System.Collections.Generic;
     using System.Linq;
