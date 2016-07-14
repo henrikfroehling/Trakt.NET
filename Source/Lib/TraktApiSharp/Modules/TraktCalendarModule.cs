@@ -91,13 +91,15 @@
         }
 
         public async Task<IEnumerable<TraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
-                                                                                     TraktExtendedOption extended = null)
+                                                                                     TraktExtendedOption extended = null,
+                                                                                     TraktCalendarFilter filter = null)
         {
             return await QueryAsync(new TraktCalendarAllSeasonPremieresRequest(Client)
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended ?? new TraktExtendedOption(),
+                Filter = filter
             });
         }
 
