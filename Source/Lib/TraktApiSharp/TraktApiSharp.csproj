@@ -279,7 +279,7 @@
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPost.cs" />
-    <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostEpisodeI.cs" />
+    <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostEpisode.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostShowEpisode.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostMovie.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostShow.cs" />

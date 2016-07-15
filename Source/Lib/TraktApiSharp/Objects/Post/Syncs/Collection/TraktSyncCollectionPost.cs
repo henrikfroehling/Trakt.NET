@@ -12,6 +12,6 @@
         public IEnumerable<TraktSyncCollectionPostShow> Shows { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktSyncCollectionPostEpisodeI> Episodes { get; set; }
+        public IEnumerable<TraktSyncCollectionPostEpisode> Episodes { get; set; }
     }
 }

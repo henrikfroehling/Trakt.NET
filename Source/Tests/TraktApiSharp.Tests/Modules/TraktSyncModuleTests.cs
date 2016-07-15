@@ -763,9 +763,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -860,9 +860,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -959,7 +959,7 @@
             {
                 Movies = new List<TraktSyncCollectionPostMovie>(),
                 Shows = new List<TraktSyncCollectionPostShow>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
@@ -1075,9 +1075,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1160,9 +1160,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -1259,7 +1259,7 @@
             {
                 Movies = new List<TraktSyncCollectionPostMovie>(),
                 Shows = new List<TraktSyncCollectionPostShow>(),
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost);

@@ -125,9 +125,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
@@ -395,9 +395,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncCollectionPostEpisodeI>()
+                Episodes = new List<TraktSyncCollectionPostEpisode>()
                 {
-                    new TraktSyncCollectionPostEpisodeI
+                    new TraktSyncCollectionPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {
