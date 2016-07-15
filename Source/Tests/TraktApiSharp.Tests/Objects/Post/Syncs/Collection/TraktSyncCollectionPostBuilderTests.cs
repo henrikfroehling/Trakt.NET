@@ -488,22 +488,10 @@
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = null });
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = string.Empty });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie" });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 0 });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 123 });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 12345 });
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -523,22 +511,10 @@
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = null }, metadata);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = string.Empty }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie" }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 0 }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 123 }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 12345 }, metadata);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -558,22 +534,10 @@
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = null }, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = string.Empty }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie" }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 0 }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 123 }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 12345 }, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -594,22 +558,10 @@
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = null }, metadata, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = string.Empty }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie" }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 0 }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 123 }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Title = "movie", Year = 12345 }, metadata, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1652,19 +1604,10 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null });
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 });
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 });
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1684,19 +1627,10 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1716,19 +1650,10 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1749,19 +1674,10 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata, collectedAt);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2772,25 +2688,16 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, -1);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, -1);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, 1, 2, -1);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2810,25 +2717,16 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, -1);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, -1);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, 1, 2, -1);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2848,25 +2746,16 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, -1);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, collectedAt, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, collectedAt, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, collectedAt, -1);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, collectedAt, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, 1, 2, -1);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2887,25 +2776,16 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, -1);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata, collectedAt, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata, collectedAt, 1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, collectedAt, -1);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, collectedAt, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, 1, 2, -1);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -5196,24 +5076,15 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
             var sae = default(SAE);
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, sae);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, sae);
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -5233,24 +5104,15 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
             var sae = default(SAE);
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, sae);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, sae);
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -5270,24 +5132,15 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
             var sae = default(SAE);
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, collectedAt, sae);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, sae);
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -5308,25 +5161,143 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = null }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = string.Empty }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 0 }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 123 }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 12345 }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
 
             var sae = default(SAE);
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Title = "show", Year = 1234 }, metadata, collectedAt, sae);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, sae);
             act.ShouldThrow<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderAddAll()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Title = "movie2",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Slug = "episode1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var episode2 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 3,
+                    Slug = "episode2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show2 = new TraktShow
+            {
+                Title = "show2",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 2,
+                    Slug = "show2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var show3 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 3,
+                    Slug = "show3",
+                    Imdb = "imdb3",
+                    Tmdb = 123456,
+                    Tvdb = 1234567,
+                    TvRage = 12345678
+                }
+            };
+
+            var metadata = new TraktMetadata
+            {
+                Audio = TraktMediaAudio.AAC,
+                AudioChannels = TraktMediaAudioChannel.Channels_5_1,
+                MediaResolution = TraktMediaResolution.HD_720p,
+                MediaType = TraktMediaType.DVD,
+                ThreeDimensional = false
+            };
+
+            var collectedAt = DateTime.UtcNow;
+
+            var builder = TraktSyncCollectionPost.Builder();
+
+            var collectionPost = builder.AddMovie(movie1, metadata)
+                                    .AddMovie(movie2, metadata, collectedAt)
+                                    .AddEpisode(episode1)
+                                    .AddEpisode(episode2, collectedAt)
+                                    .AddShow(show1)
+                                    .AddShow(show2, 1, 2)
+                                    .AddShow(show3, metadata, collectedAt, new SAE(1, new[] { 1, 2, 3 }),
+                                                                           new SAE(2, new[] { 1, 2 }))
+                                    .Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            collectionPost.Shows.Should().NotBeNull().And.HaveCount(3);
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(2);
         }
     }
 }
