@@ -594,6 +594,12 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, -1);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, 1, 2, -1);
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
@@ -972,6 +978,134 @@
             show2Season2Episodes[0].Number.Should().Be(4);
             show2Season2Episodes[1].Number.Should().Be(5);
             show2Season2Episodes[2].Number.Should().Be(6);
+
+            // ---------------------------------------------------------
+
+            builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddShow(show2, new SAE(1, null));  // season 1
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            shows = listItemsPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Slug.Should().Be("show2");
+            shows[0].Ids.Imdb.Should().Be("imdb2");
+            shows[0].Ids.Tmdb.Should().Be(12345);
+            shows[0].Ids.Tvdb.Should().Be(123456);
+            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+
+            // ---------------------------------------------------------
+
+            builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddShow(show2, new SAE(1, new int[] { }));  // season 1
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            shows = listItemsPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Slug.Should().Be("show2");
+            shows[0].Ids.Imdb.Should().Be("imdb2");
+            shows[0].Ids.Tmdb.Should().Be(12345);
+            shows[0].Ids.Tvdb.Should().Be(123456);
+            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+
+            // ---------------------------------------------------------
+
+            builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddShow(show2, new SAE(1, new int[] { 1, 2 }),  // season 1 - episodes 1, 2
+                                   new SAE(2, null));               // season 2
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            shows = listItemsPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Slug.Should().Be("show2");
+            shows[0].Ids.Imdb.Should().Be("imdb2");
+            shows[0].Ids.Tmdb.Should().Be(12345);
+            shows[0].Ids.Tvdb.Should().Be(123456);
+            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+
+            // ---------------------------------------------------------
+
+            builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddShow(show2, new SAE(1, new int[] { 1, 2 }),  // season 1 - episodes 1, 2
+                                   new SAE(2, new int[] { }));      // season 2
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            shows = listItemsPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Slug.Should().Be("show2");
+            shows[0].Ids.Imdb.Should().Be("imdb2");
+            shows[0].Ids.Tmdb.Should().Be(12345);
+            shows[0].Ids.Tvdb.Should().Be(123456);
+            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
         }
 
         [TestMethod]
@@ -987,6 +1121,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new SAE(1, new int[] { 1, 2, 3 }));
             act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, null);
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         [TestMethod]
