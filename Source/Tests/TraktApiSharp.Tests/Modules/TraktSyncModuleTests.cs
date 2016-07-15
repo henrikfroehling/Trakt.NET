@@ -751,7 +751,6 @@
                                 {
                                     new TraktSyncCollectionPostShowEpisode
                                     {
-                                        CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
                                     new TraktSyncCollectionPostShowEpisode
@@ -1063,7 +1062,6 @@
                                 {
                                     new TraktSyncCollectionPostShowEpisode
                                     {
-                                        CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
                                     new TraktSyncCollectionPostShowEpisode

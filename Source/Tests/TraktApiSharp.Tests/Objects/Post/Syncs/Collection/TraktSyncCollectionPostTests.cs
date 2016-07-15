@@ -113,7 +113,6 @@
                                 {
                                     new TraktSyncCollectionPostShowEpisode
                                     {
-                                        CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
                                         Number = 1
                                     },
                                     new TraktSyncCollectionPostShowEpisode
@@ -203,7 +202,6 @@
 
             var show2Seasons = shows[1].Seasons.ToArray();
 
-            show2Seasons[0].CollectedAt.Should().NotHaveValue();
             show2Seasons[0].Number.Should().Be(3);
             show2Seasons[0].Episodes.Should().BeNull();
 
@@ -221,19 +219,13 @@
 
             var show3Seasons = shows[2].Seasons.ToArray();
 
-            show3Seasons[0].CollectedAt.Should().NotHaveValue();
             show3Seasons[0].Number.Should().Be(1);
             show3Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
             var show3Season1Episodes = show3Seasons[0].Episodes.ToArray();
 
-            show3Season1Episodes[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime());
             show3Season1Episodes[0].Number.Should().Be(1);
-            show3Season1Episodes[0].Metadata.Should().BeNull();
-
-            show3Season1Episodes[1].CollectedAt.Should().NotHaveValue();
             show3Season1Episodes[1].Number.Should().Be(2);
-            show3Season1Episodes[1].Metadata.Should().BeNull();
 
             var episodes = collectionPostFromJson.Episodes.ToArray();
 
@@ -325,15 +317,7 @@
                         {
                             new TraktSyncCollectionPostShowSeason
                             {
-                                Number = 3,
-                                Metadata = new TraktMetadata
-                                {
-                                    Audio = TraktMediaAudio.AAC,
-                                    AudioChannels = TraktMediaAudioChannel.Channels_5_1,
-                                    MediaResolution = TraktMediaResolution.HD_720p,
-                                    MediaType = TraktMediaType.Digital,
-                                    ThreeDimensional = false
-                                }
+                                Number = 3
                             }
                         },
                         Metadata = new TraktMetadata
@@ -367,28 +351,11 @@
                                 {
                                     new TraktSyncCollectionPostShowEpisode
                                     {
-                                        CollectedAt = DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime(),
-                                        Number = 1,
-                                        Metadata = new TraktMetadata
-                                        {
-                                            Audio = TraktMediaAudio.DTS,
-                                            AudioChannels = TraktMediaAudioChannel.Channels_7_1,
-                                            MediaResolution = TraktMediaResolution.HD_1080p,
-                                            MediaType = TraktMediaType.Bluray,
-                                            ThreeDimensional = false
-                                        }
+                                        Number = 1
                                     },
                                     new TraktSyncCollectionPostShowEpisode
                                     {
-                                        Number = 2,
-                                        Metadata = new TraktMetadata
-                                        {
-                                            Audio = TraktMediaAudio.DTS,
-                                            AudioChannels = TraktMediaAudioChannel.Channels_7_1,
-                                            MediaResolution = TraktMediaResolution.HD_1080p,
-                                            MediaType = TraktMediaType.Bluray,
-                                            ThreeDimensional = false
-                                        }
+                                        Number = 2
                                     }
                                 }
                             }
@@ -497,14 +464,7 @@
 
             var show2Seasons = shows[1].Seasons.ToArray();
 
-            show2Seasons[0].CollectedAt.Should().NotHaveValue();
             show2Seasons[0].Number.Should().Be(3);
-            show2Seasons[0].Metadata.Should().NotBeNull();
-            show2Seasons[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
-            show2Seasons[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-            show2Seasons[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-            show2Seasons[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
-            show2Seasons[0].Metadata.ThreeDimensional.Should().BeFalse();
             show2Seasons[0].Episodes.Should().BeNull();
 
             shows[2].CollectedAt.Should().NotHaveValue();
@@ -521,29 +481,13 @@
 
             var show3Seasons = shows[2].Seasons.ToArray();
 
-            show3Seasons[0].CollectedAt.Should().NotHaveValue();
             show3Seasons[0].Number.Should().Be(1);
             show3Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
             var show3Season1Episodes = show3Seasons[0].Episodes.ToArray();
 
-            show3Season1Episodes[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime());
             show3Season1Episodes[0].Number.Should().Be(1);
-            show3Season1Episodes[0].Metadata.Should().NotBeNull();
-            show3Season1Episodes[0].Metadata.Audio.Should().Be(TraktMediaAudio.DTS);
-            show3Season1Episodes[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_7_1);
-            show3Season1Episodes[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_1080p);
-            show3Season1Episodes[0].Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
-            show3Season1Episodes[0].Metadata.ThreeDimensional.Should().BeFalse();
-
-            show3Season1Episodes[1].CollectedAt.Should().NotHaveValue();
             show3Season1Episodes[1].Number.Should().Be(2);
-            show3Season1Episodes[1].Metadata.Should().NotBeNull();
-            show3Season1Episodes[1].Metadata.Audio.Should().Be(TraktMediaAudio.DTS);
-            show3Season1Episodes[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_7_1);
-            show3Season1Episodes[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_1080p);
-            show3Season1Episodes[1].Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
-            show3Season1Episodes[1].Metadata.ThreeDimensional.Should().BeFalse();
 
             var episodes = collectionPostFromJson.Episodes.ToArray();
 
