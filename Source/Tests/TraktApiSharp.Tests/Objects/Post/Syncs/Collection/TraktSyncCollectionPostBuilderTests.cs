@@ -5084,8 +5084,22 @@
 
             var sae = default(SAE);
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, sae);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, sae);
             act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
@@ -5114,6 +5128,20 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, sae);
             act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                          new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                          new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
@@ -5142,6 +5170,20 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, sae);
             act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                             new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                             new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
@@ -5171,6 +5213,20 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, sae);
             act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                                       new SAE(-1, new int[] { 1, 2, 3 }));
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new SAE(1, new int[] { 1, 2, 3 }),
+                                                                                                                       new SAE(1, new int[] { 1, -1, 3 }));
+            act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]

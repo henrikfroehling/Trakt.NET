@@ -43,6 +43,9 @@
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("no movie ids set or valid", nameof(movie.Ids));
 
+            if (movie.Year.HasValue && movie.Year.Value.ToString().Length != 4)
+                throw new ArgumentException("movie year not valid", nameof(movie.Year));
+
             if (_listItemsPost.Movies == null)
                 _listItemsPost.Movies = new List<TraktUserCustomListItemsPostMovie>();
 
@@ -61,14 +64,7 @@
 
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
-
-            if (show.Ids == null)
-                throw new ArgumentNullException(nameof(show.Ids));
-
-            if (!show.Ids.HasAnyId)
-                throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
+            ValidateShow(show);
 
             if (_listItemsPost.Shows == null)
                 _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
@@ -88,26 +84,8 @@
 
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
-
-            if (show.Ids == null)
-                throw new ArgumentNullException(nameof(show.Ids));
-
-            if (!show.Ids.HasAnyId)
-                throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
-
-            if (season < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i] < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
+            ValidateShow(show);
+            ValidateSeasons(season, seasons);
 
             if (_listItemsPost.Shows == null)
                 _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
@@ -141,20 +119,12 @@
 
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, SAE season, params SAE[] seasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
-
-            if (show.Ids == null)
-                throw new ArgumentNullException(nameof(show.Ids));
-
-            if (!show.Ids.HasAnyId)
-                throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
+            ValidateShow(show);
 
             if (season == null)
                 throw new ArgumentNullException(nameof(season));
 
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, season.Season);
+            ValidateSeasons(season, seasons);
 
             if (_listItemsPost.Shows == null)
                 _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
@@ -248,6 +218,69 @@
                 throw new ArgumentException("no items set");
 
             return _listItemsPost;
+        }
+
+        private void ValidateShow(TraktShow show)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (show.Ids == null)
+                throw new ArgumentNullException(nameof(show.Ids));
+
+            if (!show.Ids.HasAnyId)
+                throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
+
+            if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
+                throw new ArgumentException("show year not valid", nameof(show.Year));
+        }
+
+        private void ValidateSeasons(int season, params int[] seasons)
+        {
+            if (season < 0)
+                throw new ArgumentException("season number not valid", nameof(season));
+
+            if (seasons != null)
+            {
+                for (int i = 0; i < seasons.Length; i++)
+                {
+                    if (seasons[i] < 0)
+                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
+                }
+            }
+        }
+
+        private void ValidateSeasons(SAE season, params SAE[] seasons)
+        {
+            if (season.Season < 0)
+                throw new ArgumentException("season number not valid", nameof(season.Season));
+
+            if (season.Episodes != null)
+            {
+                for (int i = 0; i < season.Episodes.Length; i++)
+                {
+                    if (season.Episodes[i] < 0)
+                        throw new ArgumentException("at least one episode number not valid", nameof(season));
+                }
+            }
+
+            if (seasons != null)
+            {
+                for (int i = 0; i < seasons.Length; i++)
+                {
+                    if (seasons[i].Season < 0)
+                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
+
+                    if (seasons[i].Episodes != null)
+                    {
+                        for (int j = 0; j < seasons[i].Episodes.Length; j++)
+                        {
+                            if (seasons[i].Episodes[j] < 0)
+                                throw new ArgumentException("at least one episode number not valid", nameof(seasons));
+                        }
+                    }
+                }
+            }
         }
     }
 }
