@@ -8,7 +8,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Utils;
 
     public class TraktSyncCollectionPost
     {
@@ -156,7 +155,7 @@
             EnsureShowsListExists();
 
             if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, season.Season);
+                return AddShow(show, season.Number);
 
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons);
@@ -175,7 +174,7 @@
             EnsureShowsListExists();
 
             if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, collectedAt, season.Season);
+                return AddShow(show, collectedAt, season.Number);
 
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
@@ -194,7 +193,7 @@
             EnsureShowsListExists();
 
             if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, metadata, season.Season);
+                return AddShow(show, metadata, season.Number);
 
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, metadata);
@@ -213,7 +212,7 @@
             EnsureShowsListExists();
 
             if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, metadata, collectedAt, season.Season);
+                return AddShow(show, metadata, collectedAt, season.Number);
 
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
@@ -316,8 +315,8 @@
 
         private void ValidateSeasons(SAE season, params SAE[] seasons)
         {
-            if (season.Season < 0)
-                throw new ArgumentException("season number not valid", nameof(season.Season));
+            if (season.Number < 0)
+                throw new ArgumentException("season number not valid", nameof(season.Number));
 
             if (season.Episodes != null)
             {
@@ -332,7 +331,7 @@
             {
                 for (int i = 0; i < seasons.Length; i++)
                 {
-                    if (seasons[i].Season < 0)
+                    if (seasons[i].Number < 0)
                         throw new ArgumentException("at least one season number not valid", nameof(seasons));
 
                     if (seasons[i].Episodes != null)
@@ -398,18 +397,18 @@
             if (ContainsMovie(movie))
                 return this;
 
-            var collectionItemsMovie = new TraktSyncCollectionPostMovie();
-            collectionItemsMovie.Ids = movie.Ids;
-            collectionItemsMovie.Title = movie.Title;
-            collectionItemsMovie.Year = movie.Year;
+            var collectionMovie = new TraktSyncCollectionPostMovie();
+            collectionMovie.Ids = movie.Ids;
+            collectionMovie.Title = movie.Title;
+            collectionMovie.Year = movie.Year;
 
             if (metadata != null)
-                collectionItemsMovie.Metadata = metadata;
+                collectionMovie.Metadata = metadata;
 
             if (collectedAt.HasValue)
-                collectionItemsMovie.CollectedAt = collectedAt.Value.ToUniversalTime();
+                collectionMovie.CollectedAt = collectedAt.Value.ToUniversalTime();
 
-            (_collectionPost.Movies as List<TraktSyncCollectionPostMovie>).Add(collectionItemsMovie);
+            (_collectionPost.Movies as List<TraktSyncCollectionPostMovie>).Add(collectionMovie);
 
             return this;
         }
@@ -420,18 +419,18 @@
             if (ContainsShow(show))
                 return this;
 
-            var collectionItemsShow = new TraktSyncCollectionPostShow();
-            collectionItemsShow.Ids = show.Ids;
-            collectionItemsShow.Title = show.Title;
-            collectionItemsShow.Year = show.Year;
+            var collectionShow = new TraktSyncCollectionPostShow();
+            collectionShow.Ids = show.Ids;
+            collectionShow.Title = show.Title;
+            collectionShow.Year = show.Year;
 
             if (metadata != null)
-                collectionItemsShow.Metadata = metadata;
+                collectionShow.Metadata = metadata;
 
             if (collectedAt.HasValue)
-                collectionItemsShow.CollectedAt = collectedAt.Value.ToUniversalTime();
+                collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();
 
-            (_collectionPost.Shows as List<TraktSyncCollectionPostShow>).Add(collectionItemsShow);
+            (_collectionPost.Shows as List<TraktSyncCollectionPostShow>).Add(collectionShow);
 
             return this;
         }
@@ -442,16 +441,16 @@
             if (ContainsEpisode(episode))
                 return this;
 
-            var collectionItemsEpisode = new TraktSyncCollectionPostEpisode();
-            collectionItemsEpisode.Ids = episode.Ids;
+            var collectionEpisode = new TraktSyncCollectionPostEpisode();
+            collectionEpisode.Ids = episode.Ids;
 
             if (metadata != null)
-                collectionItemsEpisode.Metadata = metadata;
+                collectionEpisode.Metadata = metadata;
 
             if (collectedAt.HasValue)
-                collectionItemsEpisode.CollectedAt = collectedAt.Value.ToUniversalTime();
+                collectionEpisode.CollectedAt = collectedAt.Value.ToUniversalTime();
 
-            (_collectionPost.Episodes as List<TraktSyncCollectionPostEpisode>).Add(collectionItemsEpisode);
+            (_collectionPost.Episodes as List<TraktSyncCollectionPostEpisode>).Add(collectionEpisode);
 
             return this;
         }
@@ -462,24 +461,22 @@
             var existingShow = _collectionPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
             if (existingShow != null)
-            {
                 existingShow.Seasons = showSeasons;
-            }
             else
             {
-                var collectionItems = new TraktSyncCollectionPostShow();
-                collectionItems.Ids = show.Ids;
-                collectionItems.Title = show.Title;
-                collectionItems.Year = show.Year;
+                var collectionShow = new TraktSyncCollectionPostShow();
+                collectionShow.Ids = show.Ids;
+                collectionShow.Title = show.Title;
+                collectionShow.Year = show.Year;
 
                 if (metadata != null)
-                    collectionItems.Metadata = metadata;
+                    collectionShow.Metadata = metadata;
 
                 if (collectedAt.HasValue)
-                    collectionItems.CollectedAt = collectedAt.Value.ToUniversalTime();
+                    collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();
 
-                collectionItems.Seasons = showSeasons;
-                (_collectionPost.Shows as List<TraktSyncCollectionPostShow>).Add(collectionItems);
+                collectionShow.Seasons = showSeasons;
+                (_collectionPost.Shows as List<TraktSyncCollectionPostShow>).Add(collectionShow);
             }
         }
 
@@ -489,12 +486,12 @@
             seasonsToAdd[0] = season;
             seasons.CopyTo(seasonsToAdd, 1);
 
-            var collectionItemsShowSeason = new List<TraktSyncCollectionPostShowSeason>();
+            var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
-                collectionItemsShowSeason.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
+                showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
 
-            return collectionItemsShowSeason;
+            return showSeasons;
         }
 
         private IEnumerable<TraktSyncCollectionPostShowSeason> CreateShowSeasons(SAE season, params SAE[] seasons)
@@ -503,36 +500,27 @@
             seasonsAndEpisodesToAdd[0] = season;
             seasons.CopyTo(seasonsAndEpisodesToAdd, 1);
 
-            var collectionItemsShowSeasons = new List<TraktSyncCollectionPostShowSeason>();
+            var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
 
             for (int i = 0; i < seasonsAndEpisodesToAdd.Length; i++)
             {
-                var collectionItemsShowSingleSeason = new TraktSyncCollectionPostShowSeason
-                {
-                    Number = seasonsAndEpisodesToAdd[i].Season
-                };
-
+                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = seasonsAndEpisodesToAdd[i].Number };
                 var episodesToAdd = seasonsAndEpisodesToAdd[i].Episodes;
 
                 if (episodesToAdd != null && episodesToAdd.Length > 0)
                 {
-                    var collectionItemsShowSingleSeasonEpisodes = new List<TraktSyncCollectionPostShowEpisode>();
+                    var showEpisodes = new List<TraktSyncCollectionPostShowEpisode>();
 
                     for (int j = 0; j < episodesToAdd.Length; j++)
-                    {
-                        collectionItemsShowSingleSeasonEpisodes.Add(new TraktSyncCollectionPostShowEpisode
-                        {
-                            Number = episodesToAdd[j]
-                        });
-                    }
+                        showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episodesToAdd[j] });
 
-                    collectionItemsShowSingleSeason.Episodes = collectionItemsShowSingleSeasonEpisodes;
+                    showSingleSeason.Episodes = showEpisodes;
                 }
 
-                collectionItemsShowSeasons.Add(collectionItemsShowSingleSeason);
+                showSeasons.Add(showSingleSeason);
             }
 
-            return collectionItemsShowSeasons;
+            return showSeasons;
         }
     }
 }

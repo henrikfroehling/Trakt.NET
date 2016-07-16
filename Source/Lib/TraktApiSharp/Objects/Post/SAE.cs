@@ -1,14 +1,16 @@
-﻿namespace TraktApiSharp.Utils
+﻿namespace TraktApiSharp.Objects.Post
 {
+    using Utils;
+
     public sealed class SAE : Pair<int, int[]>
     {
-        public SAE(int season, int[] episodes)
+        public SAE(int number, int[] episodes)
         {
-            First = season;
+            First = number;
             Second = episodes;
         }
 
-        public int Season
+        public int Number
         {
             get { return First; }
             set { First = value; }

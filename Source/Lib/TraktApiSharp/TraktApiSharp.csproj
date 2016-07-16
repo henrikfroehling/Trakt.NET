@@ -284,11 +284,11 @@
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostMovie.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostShow.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostShowSeason.cs" />
-    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostMovieItem.cs" />
-    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowEpisodeItem.cs" />
-    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowItem.cs" />
-    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowSeasonItem.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostMovie.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowEpisode.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShow.cs" />
+    <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostShowSeason.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\TraktSyncPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\TraktSyncWatchlistRemovePostResponse.cs" />
@@ -313,8 +313,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
+    <Compile Include="Objects\Post\HistorySAE.cs" />
     <Compile Include="Utils\Pair.cs" />
-    <Compile Include="Utils\SAE.cs" />
+    <Compile Include="Objects\Post\SAE.cs" />
     <Compile Include="Utils\TraktMultipleQueryParams.cs" />
     <Compile Include="Utils\Range.cs" />
     <Compile Include="Requests\Params\TraktCommonFilter.cs" />

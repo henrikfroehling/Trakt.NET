@@ -9,8 +9,8 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
+    using TraktApiSharp.Objects.Post;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
-    using TraktApiSharp.Utils;
 
     [TestClass]
     public class TraktSyncCollectionPostBuilderTests

@@ -7,8 +7,8 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Post;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Utils;
 
     [TestClass]
     public class TraktUserCustomListItemsPostBuilderTests

@@ -7,7 +7,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Utils;
 
     public class TraktUserCustomListItemsPost
     {
@@ -54,10 +53,11 @@
             if (existingMovie != null)
                 return this;
 
-            (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Add(new TraktUserCustomListItemsPostMovie
-            {
-                Ids = movie.Ids
-            });
+            (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Add(
+                new TraktUserCustomListItemsPostMovie
+                {
+                    Ids = movie.Ids
+                });
 
             return this;
         }
@@ -74,10 +74,11 @@
             if (existingShow != null)
                 return this;
 
-            (_listItemsPost.Shows as List<TraktUserCustomListItemsShow>).Add(new TraktUserCustomListItemsShow
-            {
-                Ids = show.Ids
-            });
+            (_listItemsPost.Shows as List<TraktUserCustomListItemsShow>).Add(
+                new TraktUserCustomListItemsShow
+                {
+                    Ids = show.Ids
+                });
 
             return this;
         }
@@ -94,23 +95,21 @@
             seasonsToAdd[0] = season;
             seasons.CopyTo(seasonsToAdd, 1);
 
-            var listItemsShowSeasons = new List<TraktUserCustomListItemsShowSeason>();
+            var showSeasons = new List<TraktUserCustomListItemsShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
-                listItemsShowSeasons.Add(new TraktUserCustomListItemsShowSeason { Number = seasonsToAdd[i] });
+                showSeasons.Add(new TraktUserCustomListItemsShowSeason { Number = seasonsToAdd[i] });
 
             var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
             if (existingShow != null)
-            {
-                existingShow.Seasons = listItemsShowSeasons;
-            }
+                existingShow.Seasons = showSeasons;
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsShow();
                 listItemsShow.Ids = show.Ids;
 
-                listItemsShow.Seasons = listItemsShowSeasons;
+                listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsShow>).Add(listItemsShow);
             }
 
@@ -133,44 +132,36 @@
             seasonsAndEpisodesToAdd[0] = season;
             seasons.CopyTo(seasonsAndEpisodesToAdd, 1);
 
-            var listItemsShowSeasons = new List<TraktUserCustomListItemsShowSeason>();
+            var showSeasons = new List<TraktUserCustomListItemsShowSeason>();
 
             for (int i = 0; i < seasonsAndEpisodesToAdd.Length; i++)
             {
-                var listItemsShowSingleSeason = new TraktUserCustomListItemsShowSeason { Number = seasonsAndEpisodesToAdd[i].Season };
-
+                var showSingleSeason = new TraktUserCustomListItemsShowSeason { Number = seasonsAndEpisodesToAdd[i].Number };
                 var episodesToAdd = seasonsAndEpisodesToAdd[i].Episodes;
 
                 if (episodesToAdd != null && episodesToAdd.Length > 0)
                 {
-                    var listItemsShowSingleSeasonEpisodes = new List<TraktUserCustomListItemsShowEpisode>();
+                    var showEpisodes = new List<TraktUserCustomListItemsShowEpisode>();
 
                     for (int j = 0; j < episodesToAdd.Length; j++)
-                    {
-                        listItemsShowSingleSeasonEpisodes.Add(new TraktUserCustomListItemsShowEpisode
-                        {
-                            Number = episodesToAdd[j]
-                        });
-                    }
+                        showEpisodes.Add(new TraktUserCustomListItemsShowEpisode { Number = episodesToAdd[j] });
 
-                    listItemsShowSingleSeason.Episodes = listItemsShowSingleSeasonEpisodes;
+                    showSingleSeason.Episodes = showEpisodes;
                 }
 
-                listItemsShowSeasons.Add(listItemsShowSingleSeason);
+                showSeasons.Add(showSingleSeason);
             }
 
             var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
             if (existingShow != null)
-            {
-                existingShow.Seasons = listItemsShowSeasons;
-            }
+                existingShow.Seasons = showSeasons;
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsShow();
                 listItemsShow.Ids = show.Ids;
 
-                listItemsShow.Seasons = listItemsShowSeasons;
+                listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsShow>).Add(listItemsShow);
             }
 
@@ -252,8 +243,8 @@
 
         private void ValidateSeasons(SAE season, params SAE[] seasons)
         {
-            if (season.Season < 0)
-                throw new ArgumentException("season number not valid", nameof(season.Season));
+            if (season.Number < 0)
+                throw new ArgumentException("season number not valid", nameof(season.Number));
 
             if (season.Episodes != null)
             {
@@ -268,7 +259,7 @@
             {
                 for (int i = 0; i < seasons.Length; i++)
                 {
-                    if (seasons[i].Season < 0)
+                    if (seasons[i].Number < 0)
                         throw new ArgumentException("at least one season number not valid", nameof(seasons));
 
                     if (seasons[i].Episodes != null)
