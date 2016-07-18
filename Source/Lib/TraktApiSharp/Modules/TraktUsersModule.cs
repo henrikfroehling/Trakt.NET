@@ -50,7 +50,7 @@
             {
                 Section = section,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -83,7 +83,7 @@
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -94,7 +94,7 @@
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -111,7 +111,7 @@
                 Username = username,
                 CommentType = commentType,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -120,10 +120,7 @@
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserCustomListsRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserCustomListsRequest(Client) { Username = username });
         }
 
         public async Task<TraktList> GetCustomSingleListAsync(string username, string listId)
@@ -167,7 +164,7 @@
                 Username = username,
                 Id = listId,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -398,7 +395,7 @@
                 Username = username,
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -411,7 +408,7 @@
             {
                 Username = username,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -422,7 +419,7 @@
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -433,7 +430,7 @@
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -444,7 +441,7 @@
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
