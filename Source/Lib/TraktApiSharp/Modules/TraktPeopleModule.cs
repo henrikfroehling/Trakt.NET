@@ -21,7 +21,7 @@
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -49,7 +49,7 @@
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -60,7 +60,7 @@
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
