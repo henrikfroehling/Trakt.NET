@@ -27,7 +27,7 @@
                 Id = showId,
                 Season = season,
                 Episode = episode,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -99,7 +99,7 @@
                 Id = showId,
                 Season = season,
                 Episode = episode,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
