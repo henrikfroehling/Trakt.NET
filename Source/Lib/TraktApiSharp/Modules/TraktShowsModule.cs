@@ -49,7 +49,7 @@
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -207,7 +207,7 @@
             return await QueryAsync(new TraktShowPeopleRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -260,7 +260,7 @@
             return await QueryAsync(new TraktShowRelatedShowsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -302,7 +302,7 @@
         {
             Validate(id);
 
-            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
+            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended });
         }
 
         /// <summary>
@@ -382,7 +382,7 @@
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -415,7 +415,7 @@
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -451,7 +451,7 @@
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -487,7 +487,7 @@
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -523,7 +523,7 @@
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -556,7 +556,7 @@
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -591,7 +591,7 @@
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
