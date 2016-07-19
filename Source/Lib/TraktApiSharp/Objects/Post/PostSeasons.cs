@@ -2,53 +2,57 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using Utils;
 
-    public sealed class PostSeasons : IDictionary<int, PostEpisodes>
+    public sealed class PostSeasons : IEnumerable<PostSeason>
     {
-        private readonly Dictionary<int, PostEpisodes> _seasons;
+        private readonly List<PostSeason> _seasons;
 
         public PostSeasons()
         {
-            _seasons = new Dictionary<int, PostEpisodes>();
+            _seasons = new List<PostSeason>();
         }
 
-        public PostEpisodes this[int key]
+        public void Add(int season)
         {
-            get { return _seasons[key]; }
-            set { _seasons[key] = value; }
+            _seasons.Add(new PostSeason(season));
         }
 
-        public int Count => _seasons.Count;
+        public void Add(int season, PostEpisodes episodes)
+        {
+            _seasons.Add(new PostSeason(season, episodes));
+        }
 
-        public bool IsReadOnly => false;
+        public IEnumerator<PostSeason> GetEnumerator()
+        {
+            return _seasons.GetEnumerator();
+        }
 
-        public ICollection<int> Keys => _seasons.Keys;
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
 
-        public ICollection<PostEpisodes> Values => _seasons.Values;
+    public sealed class PostSeason : Pair<int, PostEpisodes>
+    {
+        public PostSeason() : base() { }
 
-        public void Add(KeyValuePair<int, PostEpisodes> item) => Add(item.Key, item.Value);
+        public PostSeason(int season) : this(season, new PostEpisodes()) { }
 
-        public void Add(int season, PostEpisodes episodes) => _seasons.Add(season, episodes);
+        public PostSeason(int season, PostEpisodes episodes) : base(season, episodes) { }
 
-        public void Add(int season) => _seasons.Add(season, new PostEpisodes());
+        public int Season
+        {
+            get { return First; }
+            set { First = value; }
+        }
 
-        public void Clear() => _seasons.Clear();
-
-        public bool Contains(KeyValuePair<int, PostEpisodes> item) => ContainsKey(item.Key);
-
-        public bool ContainsKey(int season) => _seasons.ContainsKey(season);
-
-        public void CopyTo(KeyValuePair<int, PostEpisodes>[] array, int arrayIndex) => (_seasons as IDictionary).CopyTo(array, arrayIndex);
-
-        public IEnumerator<KeyValuePair<int, PostEpisodes>> GetEnumerator() => _seasons.GetEnumerator();
-
-        public bool Remove(KeyValuePair<int, PostEpisodes> item) => _seasons.Remove(item.Key);
-
-        public bool Remove(int season) => _seasons.Remove(season);
-
-        public bool TryGetValue(int season, out PostEpisodes episodes) => _seasons.TryGetValue(season, out episodes);
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public PostEpisodes Episodes
+        {
+            get { return Second; }
+            set { Second = value; }
+        }
     }
 
     public sealed class PostEpisodes : IEnumerable<int>

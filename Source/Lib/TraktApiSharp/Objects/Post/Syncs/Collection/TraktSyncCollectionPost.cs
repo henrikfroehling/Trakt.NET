@@ -305,12 +305,12 @@
         {
             foreach (var season in seasons)
             {
-                if (season.Key < 0)
+                if (season.Season < 0)
                     throw new ArgumentException("season number not valid", nameof(season));
 
-                if (season.Value != null)
+                if (season.Episodes != null)
                 {
-                    foreach (var episode in season.Value)
+                    foreach (var episode in season.Episodes)
                     {
                         if (episode < 0)
                             throw new ArgumentException("at least one season number not valid", nameof(seasons));
@@ -473,13 +473,13 @@
 
             foreach (var season in seasons)
             {
-                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Key };
+                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Season };
 
-                if (season.Value != null && season.Value.Count() > 0)
+                if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
                     var showEpisodes = new List<TraktSyncCollectionPostShowEpisode>();
 
-                    foreach (var episode in season.Value)
+                    foreach (var episode in season.Episodes)
                         showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episode });
 
                     showSingleSeason.Episodes = showEpisodes;
