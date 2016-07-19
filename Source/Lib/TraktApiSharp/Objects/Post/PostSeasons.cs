@@ -45,7 +45,7 @@
 
         public PostSeason(int season, PostEpisodes episodes) : base(season, episodes) { }
 
-        public int Season
+        public int Number
         {
             get { return First; }
             set { First = value; }

@@ -142,7 +142,7 @@
 
                 foreach (var season in seasons)
                 {
-                    var showSingleSeason = new TraktSyncWatchlistPostShowSeason { Number = season.Season };
+                    var showSingleSeason = new TraktSyncWatchlistPostShowSeason { Number = season.Number };
 
                     if (season.Episodes != null && season.Episodes.Count() > 0)
                     {
@@ -254,7 +254,7 @@
         {
             foreach (var season in seasons)
             {
-                if (season.Season < 0)
+                if (season.Number < 0)
                     throw new ArgumentException("at least one season number not valid", nameof(seasons));
 
                 if (season.Episodes != null)

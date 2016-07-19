@@ -305,7 +305,7 @@
         {
             foreach (var season in seasons)
             {
-                if (season.Season < 0)
+                if (season.Number < 0)
                     throw new ArgumentException("season number not valid", nameof(season));
 
                 if (season.Episodes != null)
@@ -473,7 +473,7 @@
 
             foreach (var season in seasons)
             {
-                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Season };
+                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Number };
 
                 if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
