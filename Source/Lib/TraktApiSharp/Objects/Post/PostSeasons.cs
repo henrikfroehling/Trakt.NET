@@ -36,7 +36,10 @@
 
     public sealed class PostSeason : Pair<int, PostEpisodes>
     {
-        public PostSeason() : base() { }
+        public PostSeason() : base()
+        {
+            Episodes = new PostEpisodes();
+        }
 
         public PostSeason(int season) : this(season, new PostEpisodes()) { }
 
