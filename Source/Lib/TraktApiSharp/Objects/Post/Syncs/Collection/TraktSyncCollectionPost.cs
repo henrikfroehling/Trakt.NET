@@ -144,77 +144,65 @@
             return this;
         }
 
-        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, SAE season, params SAE[] seasons)
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, PostSeasons seasons)
         {
             ValidateShow(show);
 
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
 
             return this;
         }
 
-        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, SAE season, params SAE[] seasons)
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, PostSeasons seasons)
         {
             ValidateShow(show);
 
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, collectedAt, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
 
             return this;
         }
 
-        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, SAE season, params SAE[] seasons)
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, PostSeasons seasons)
         {
             ValidateShow(show);
 
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, metadata, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata);
 
             return this;
         }
 
-        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, SAE season, params SAE[] seasons)
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, PostSeasons seasons)
         {
             ValidateShow(show);
 
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, metadata, collectedAt, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
 
             return this;
@@ -313,34 +301,19 @@
             }
         }
 
-        private void ValidateSeasons(SAE season, params SAE[] seasons)
+        private void ValidateSeasons(PostSeasons seasons)
         {
-            if (season.Number < 0)
-                throw new ArgumentException("season number not valid", nameof(season.Number));
-
-            if (season.Episodes != null)
+            foreach (var season in seasons)
             {
-                for (int i = 0; i < season.Episodes.Length; i++)
-                {
-                    if (season.Episodes[i] < 0)
-                        throw new ArgumentException("at least one episode number not valid", nameof(season));
-                }
-            }
+                if (season.Key < 0)
+                    throw new ArgumentException("season number not valid", nameof(season));
 
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
+                if (season.Value != null)
                 {
-                    if (seasons[i].Number < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-
-                    if (seasons[i].Episodes != null)
+                    foreach (var episode in season.Value)
                     {
-                        for (int j = 0; j < seasons[i].Episodes.Length; j++)
-                        {
-                            if (seasons[i].Episodes[j] < 0)
-                                throw new ArgumentException("at least one episode number not valid", nameof(seasons));
-                        }
+                        if (episode < 0)
+                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
                     }
                 }
             }
@@ -494,25 +467,20 @@
             return showSeasons;
         }
 
-        private IEnumerable<TraktSyncCollectionPostShowSeason> CreateShowSeasons(SAE season, params SAE[] seasons)
+        private IEnumerable<TraktSyncCollectionPostShowSeason> CreateShowSeasons(PostSeasons seasons)
         {
-            var seasonsAndEpisodesToAdd = new SAE[seasons.Length + 1];
-            seasonsAndEpisodesToAdd[0] = season;
-            seasons.CopyTo(seasonsAndEpisodesToAdd, 1);
-
             var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
 
-            for (int i = 0; i < seasonsAndEpisodesToAdd.Length; i++)
+            foreach (var season in seasons)
             {
-                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = seasonsAndEpisodesToAdd[i].Number };
-                var episodesToAdd = seasonsAndEpisodesToAdd[i].Episodes;
+                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Key };
 
-                if (episodesToAdd != null && episodesToAdd.Length > 0)
+                if (season.Value != null && season.Value.Count() > 0)
                 {
                     var showEpisodes = new List<TraktSyncCollectionPostShowEpisode>();
 
-                    for (int j = 0; j < episodesToAdd.Length; j++)
-                        showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episodesToAdd[j] });
+                    foreach (var episode in season.Value)
+                        showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episode });
 
                     showSingleSeason.Episodes = showEpisodes;
                 }

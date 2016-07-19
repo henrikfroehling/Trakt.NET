@@ -12,11 +12,6 @@
             _seasons = new Dictionary<int, PostEpisodes>();
         }
 
-        public PostSeasons(int season) : base()
-        {
-            Add(season);
-        }
-
         public PostEpisodes this[int key]
         {
             get { return _seasons[key]; }
