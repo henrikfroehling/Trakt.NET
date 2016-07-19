@@ -681,7 +681,7 @@
 
             var builder = TraktSyncWatchlistPost.Builder();
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1 })); // season 1 - episode 1
+            builder.AddShow(show1, new PostSeasons { { 1, new PostEpisodes { 1 } } }); // season 1 - episode 1
 
             var watchlistPost = builder.Build();
 
@@ -715,7 +715,7 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2 })); // season 1 - episode 1, 2
+            builder.AddShow(show1, new PostSeasons { { 1, new PostEpisodes { 1, 2 } } }); // season 1 - episode 1, 2
 
             watchlistPost = builder.Build();
 
@@ -750,7 +750,7 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2, 3 })); // season 1 - episode 1, 2, 3
+            builder.AddShow(show1, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } }); // season 1 - episode 1, 2, 3
 
             watchlistPost = builder.Build();
 
@@ -786,8 +786,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2, 3 }), // season 1 - episode 1, 2, 3
-                                   new SAE(2, new int[] { 4 }));      // season 2 - episode 4
+            builder.AddShow(show1, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostEpisodes { 4 } }        // season 2 - episode 4
+            });
 
             watchlistPost = builder.Build();
 
@@ -830,8 +832,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2, 3 }), // season 1 - episode 1, 2, 3
-                                   new SAE(2, new int[] { 4, 5 }));   // season 2 - episode 4, 5
+            builder.AddShow(show1, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostEpisodes { 4, 5 } }     // season 2 - episode 4, 5
+            });
 
             watchlistPost = builder.Build();
 
@@ -875,8 +879,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2, 3 }),  // season 1 - episode 1, 2, 3
-                                   new SAE(2, new int[] { 4, 5, 6 })); // season 2 - episode 4, 5, 6
+            builder.AddShow(show1, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             watchlistPost = builder.Build();
 
@@ -923,8 +929,10 @@
 
             show1.Ids.Trakt = 2;
 
-            builder.AddShow(show1, new SAE(1, new int[] { 1, 2, 3 }),  // season 1 - episode 1, 2, 3
-                                   new SAE(2, new int[] { 4, 5, 6 })); // season 2 - episode 4, 5, 6
+            builder.AddShow(show1, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             watchlistPost = builder.Build();
 
@@ -984,8 +992,10 @@
                 }
             };
 
-            builder.AddShow(show2, new SAE(1, new int[] { 1, 2, 3 }),  // season 1 - episode 1, 2, 3
-                                   new SAE(2, new int[] { 4, 5, 6 })); // season 2 - episode 4, 5, 6
+            builder.AddShow(show2, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             watchlistPost = builder.Build();
 
@@ -1064,7 +1074,7 @@
 
             builder = TraktSyncWatchlistPost.Builder();
 
-            builder.AddShow(show2, new SAE(1, null));  // season 1
+            builder.AddShow(show2, new PostSeasons { 1 });  // season 1
 
             watchlistPost = builder.Build();
 
@@ -1096,76 +1106,10 @@
 
             builder = TraktSyncWatchlistPost.Builder();
 
-            builder.AddShow(show2, new SAE(1, new int[] { }));  // season 1
-
-            watchlistPost = builder.Build();
-
-            watchlistPost.Should().NotBeNull();
-            watchlistPost.Episodes.Should().BeNull();
-            watchlistPost.Shows.Should().NotBeNull().And.HaveCount(1);
-            watchlistPost.Movies.Should().BeNull();
-
-            shows = watchlistPost.Shows.ToArray();
-
-            shows[0].Should().NotBeNull();
-            shows[0].Title.Should().Be("show2");
-            shows[0].Year.Should().Be(2016);
-            shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
-            shows[0].Ids.Slug.Should().Be("show2");
-            shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
-            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
-
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().BeNull();
-
-            // ---------------------------------------------------------
-
-            builder = TraktSyncWatchlistPost.Builder();
-
-            builder.AddShow(show2, new SAE(1, new int[] { 1, 2 }),  // season 1 - episodes 1, 2
-                                   new SAE(2, null));               // season 2
-
-            watchlistPost = builder.Build();
-
-            watchlistPost.Should().NotBeNull();
-            watchlistPost.Episodes.Should().BeNull();
-            watchlistPost.Shows.Should().NotBeNull().And.HaveCount(1);
-            watchlistPost.Movies.Should().BeNull();
-
-            shows = watchlistPost.Shows.ToArray();
-
-            shows[0].Should().NotBeNull();
-            shows[0].Title.Should().Be("show2");
-            shows[0].Year.Should().Be(2016);
-            shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
-            shows[0].Ids.Slug.Should().Be("show2");
-            shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
-            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
-
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
-
-            show1Seasons[1].Number.Should().Be(2);
-            show1Seasons[1].Episodes.Should().BeNull();
-
-            // ---------------------------------------------------------
-
-            builder = TraktSyncWatchlistPost.Builder();
-
-            builder.AddShow(show2, new SAE(1, new int[] { 1, 2 }),  // season 1 - episodes 1, 2
-                                   new SAE(2, new int[] { }));      // season 2
+            builder.AddShow(show2, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2 } }, // season 1 - episode 1, 2
+                2                                 // season 2
+            });
 
             watchlistPost = builder.Build();
 
@@ -1202,36 +1146,40 @@
         {
             var builder = TraktSyncWatchlistPost.Builder();
 
-            Action act = () => builder.AddShow(null, new SAE(1, new int[] { 1, 2, 3 }));
+            Action act = () => builder.AddShow(null, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow(), new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow(), new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new SAE(1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, null);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(-1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, -1, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, 2, 3 }),
-                                                                                                new SAE(-1, new int[] { 1, 2, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } },
+                { -1, new PostEpisodes { 1, 2, 3 }}
+            });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new SAE(1, new int[] { 1, 2, 3 }),
-                                                                                                new SAE(1, new int[] { 1, -1, 3 }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons {
+                { 1, new PostEpisodes { 1, 2, 3 } },
+                { 1, new PostEpisodes { 1, -1, 3 }}
+            });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1336,8 +1284,11 @@
                                     .AddEpisode(episode2)
                                     .AddShow(show1)
                                     .AddShow(show2, 1, 2, 3)
-                                    .AddShow(show3, new SAE(1, new int[] { 1, 2 }),
-                                                    new SAE(2, new int[] { 1, 2 }))
+                                    .AddShow(show3, new PostSeasons {
+                                        { 1, new PostEpisodes { 1, 2 } },
+                                        { 2, new PostEpisodes { 1, 2 } },
+                                        3, 4, 5
+                                    })
                                     .Build();
 
             watchlistPost.Should().NotBeNull();
