@@ -19,6 +19,11 @@
             _seasons.Add(new PostHistorySeason(season));
         }
 
+        public void Add(int season, DateTime watchedAt)
+        {
+            _seasons.Add(new PostHistorySeason(season, watchedAt));
+        }
+
         public void Add(int season, DateTime watchedAt, PostHistoryEpisodes episodes)
         {
             _seasons.Add(new PostHistorySeason(season, watchedAt, episodes));

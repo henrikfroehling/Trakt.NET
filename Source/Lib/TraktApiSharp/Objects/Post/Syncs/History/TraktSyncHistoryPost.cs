@@ -72,50 +72,19 @@
             return this;
         }
 
-        public new TraktSyncHistoryPostBuilder AddShow(TraktShow show, HistorySeasonOrEpisode season,
-                                                       params HistorySeasonOrEpisode[] seasons)
+        public new TraktSyncHistoryPostBuilder AddShow(TraktShow show, PostHistorySeasons seasons)
         {
-            base.AddShow(show, season, seasons);
+            base.AddShow(show, seasons);
             return this;
         }
 
-        public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, HistorySeasonOrEpisode season,
-                                                   params HistorySeasonOrEpisode[] seasons)
+        public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, PostHistorySeasons seasons)
         {
             ValidateShow(show);
-
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
-
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && season != null)
-                return AddShow(show, watchedAt, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
-            CreateOrSetShow(show, showSeasons, watchedAt);
-
-            return this;
-        }
-
-        public new TraktSyncHistoryPostBuilder AddShow(TraktShow show, HistorySAE season, params HistorySAE[] seasons)
-        {
-            base.AddShow(show, season, seasons);
-            return this;
-        }
-
-        public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, HistorySAE season,
-                                                   params HistorySAE[] seasons)
-        {
-            ValidateShow(show);
-            ValidateSeasons(season, seasons);
-            EnsureShowsListExists();
-
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, watchedAt, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, watchedAt);
 
             return this;

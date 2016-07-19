@@ -708,10 +708,10 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, 1, 2, -1);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySeasonOrEpisode(-1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { -1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySeasonOrEpisode(1), new HistorySeasonOrEpisode(-1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { 1, -1 });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -738,7 +738,7 @@
 
             var builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1) })); // season 1 - episode 1
+            builder.AddShow(show1, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1 } } }); // season 1 - episode 1
 
             var historyPost = builder.Build();
 
@@ -776,8 +776,7 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                    new HistorySeasonOrEpisode(2) })); // season 1 - episode 1, 2
+            builder.AddShow(show1, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2 } } }); // season 1 - episode 1, 2
 
             historyPost = builder.Build();
 
@@ -818,9 +817,7 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) })); // season 1 - episode 1, 2, 3
+            builder.AddShow(show1, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } } }); // season 1 - episode 1, 2, 3
 
             historyPost = builder.Build();
 
@@ -864,10 +861,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4) }));  // season 2 - episode 4
+            builder.AddShow(show1, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostHistoryEpisodes { 4 } }        // season 2 - episode 4
+            });
 
             historyPost = builder.Build();
 
@@ -920,11 +917,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5
-                                                                                    new HistorySeasonOrEpisode(5) }));
+            builder.AddShow(show1, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostHistoryEpisodes { 4, 5 } }     // season 2 - episode 4, 5
+            });
 
             historyPost = builder.Build();
 
@@ -980,12 +976,10 @@
 
             // ---------------------------------------------------------
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5, 6
-                                                                                    new HistorySeasonOrEpisode(5),
-                                                                                    new HistorySeasonOrEpisode(6)}));
+            builder.AddShow(show1, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostHistoryEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             historyPost = builder.Build();
 
@@ -1046,12 +1040,10 @@
 
             show1.Ids.Trakt = 2;
 
-            builder.AddShow(show1, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5, 6
-                                                                                    new HistorySeasonOrEpisode(5),
-                                                                                    new HistorySeasonOrEpisode(6)}));
+            builder.AddShow(show1, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostHistoryEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             historyPost = builder.Build();
 
@@ -1125,12 +1117,10 @@
                 }
             };
 
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5, 6
-                                                                                    new HistorySeasonOrEpisode(5),
-                                                                                    new HistorySeasonOrEpisode(6)}));
+            builder.AddShow(show2, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2, 3 } }, // season 1 - episode 1, 2, 3
+                { 2, new PostHistoryEpisodes { 4, 5, 6 } }  // season 2 - episode 4, 5, 6
+            });
 
             historyPost = builder.Build();
 
@@ -1236,7 +1226,7 @@
 
             builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show2, new HistorySAE(1, null));  // season 1
+            builder.AddShow(show2, new PostHistorySeasons { 1 });  // season 1
 
             historyPost = builder.Build();
 
@@ -1271,85 +1261,10 @@
 
             builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { }));  // season 1
-
-            historyPost = builder.Build();
-
-            historyPost.Should().NotBeNull();
-            historyPost.Episodes.Should().BeNull();
-            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
-            historyPost.Movies.Should().BeNull();
-            historyPost.HistoryIds.Should().BeNull();
-
-            shows = historyPost.Shows.ToArray();
-
-            shows[0].Should().NotBeNull();
-            shows[0].Title.Should().Be("show2");
-            shows[0].Year.Should().Be(2016);
-            shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
-            shows[0].Ids.Slug.Should().Be("show2");
-            shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
-            shows[0].WatchedAt.Should().NotHaveValue();
-            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
-
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().BeNull();
-            show1Seasons[0].WatchedAt.Should().NotHaveValue();
-
-            // ---------------------------------------------------------
-
-            builder = TraktSyncHistoryRemovePost.Builder();
-
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),    // season 1 - episodes 1, 2
-                                                                                    new HistorySeasonOrEpisode(2) }),
-                                   new HistorySAE(2, null));    // season 2
-
-            historyPost = builder.Build();
-
-            historyPost.Should().NotBeNull();
-            historyPost.Episodes.Should().BeNull();
-            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
-            historyPost.Movies.Should().BeNull();
-            historyPost.HistoryIds.Should().BeNull();
-
-            shows = historyPost.Shows.ToArray();
-
-            shows[0].Should().NotBeNull();
-            shows[0].Title.Should().Be("show2");
-            shows[0].Year.Should().Be(2016);
-            shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
-            shows[0].Ids.Slug.Should().Be("show2");
-            shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
-            shows[0].WatchedAt.Should().NotHaveValue();
-            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
-
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
-            show1Seasons[0].WatchedAt.Should().NotHaveValue();
-
-            show1Seasons[1].Number.Should().Be(2);
-            show1Seasons[1].Episodes.Should().BeNull();
-            show1Seasons[1].WatchedAt.Should().NotHaveValue();
-
-            // ---------------------------------------------------------
-
-            builder = TraktSyncHistoryRemovePost.Builder();
-
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),    // season 1 - episodes 1, 2
-                                                                                    new HistorySeasonOrEpisode(2) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { }));    // season 2
+            builder.AddShow(show2, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes { 1, 2 } },    // season 1 - episode 1, 2
+                2                                           // season 2
+            });
 
             historyPost = builder.Build();
 
@@ -1390,8 +1305,10 @@
 
             builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show2, new HistorySeasonOrEpisode(1, DateTime.Now),     // season 1
-                                   new HistorySeasonOrEpisode(2, DateTime.Now));    // season 2
+            builder.AddShow(show2, new PostHistorySeasons {
+                { 1, DateTime.Now },    // season 1
+                { 2, DateTime.Now }     // season 2
+            });
 
             historyPost = builder.Build();
 
@@ -1430,12 +1347,20 @@
 
             builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1, DateTime.Now),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3, DateTime.Now) }),
-                                   new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5, 6
-                                                                                    new HistorySeasonOrEpisode(5, DateTime.Now),
-                                                                                    new HistorySeasonOrEpisode(6)}));
+            builder.AddShow(show2, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes {  // season 1 - episode 1, 2, 3
+                        { 1, DateTime.Now },
+                        2,
+                        { 3, DateTime.Now }
+                    }
+                },
+                { 2, new PostHistoryEpisodes {  // season 2 - episode 4, 5, 6
+                        4,
+                        { 5, DateTime.Now },
+                        6
+                    }
+                }
+            });
 
             historyPost = builder.Build();
 
@@ -1528,12 +1453,20 @@
 
             builder = TraktSyncHistoryRemovePost.Builder();
 
-            builder.AddShow(show2, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1, DateTime.Now),      // season 1 - episode 1, 2, 3
-                                                                                    new HistorySeasonOrEpisode(2),
-                                                                                    new HistorySeasonOrEpisode(3, DateTime.Now) }),
-                                   new HistorySAE(2, DateTime.Now, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(4),      // season 2 - episode 4, 5, 6
-                                                                                                  new HistorySeasonOrEpisode(5, DateTime.Now),
-                                                                                                  new HistorySeasonOrEpisode(6)}));
+            builder.AddShow(show2, new PostHistorySeasons {
+                { 1, new PostHistoryEpisodes {  // season 1 - episode 1, 2, 3
+                        { 1, DateTime.Now },
+                        2,
+                        { 3, DateTime.Now }
+                    }
+                },
+                { 2, DateTime.Now, new PostHistoryEpisodes {  // season 2 - episode 4, 5, 6
+                        4,
+                        { 5, DateTime.Now },
+                        6
+                    }
+                }
+            });
 
             historyPost = builder.Build();
 
@@ -1596,41 +1529,39 @@
         {
             var builder = TraktSyncHistoryRemovePost.Builder();
 
-            Action act = () => builder.AddShow(null, new HistorySAE(1, new HistorySeasonOrEpisode[] { }));
+            Action act = () => builder.AddShow(null, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow(), new HistorySAE(1, new HistorySeasonOrEpisode[] { }));
+            act = () => builder.AddShow(new TraktShow(), new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new HistorySAE(1, new HistorySeasonOrEpisode[] { }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new HistorySeasonOrEpisode(1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new HistorySeasonOrEpisode(1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySeasonOrEpisode(-1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { -1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySeasonOrEpisode(1), new HistorySeasonOrEpisode(-1));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { 1, -1 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                                                                 new HistorySeasonOrEpisode(-1) }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { { -1, new PostHistoryEpisodes { 1, 2 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                                                                 new HistorySeasonOrEpisode(2) }),
-                                                                                                new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                                                                 new HistorySeasonOrEpisode(-1) }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, -1 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                                                                 new HistorySeasonOrEpisode(2) }),
-                                                                                                new HistorySAE(-1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                                                                  new HistorySeasonOrEpisode(2) }));
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2 } },
+                                                                                                                         { 1, new PostHistoryEpisodes { 1, -1} } });
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2 } },
+                                                                                                                         { -1, new PostHistoryEpisodes { 1, 2} } });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1792,10 +1723,8 @@
                                     .AddEpisode(episode2)
                                     .AddShow(show1)
                                     .AddShow(show2, 1, 2)
-                                    .AddShow(show3, new HistorySAE(1, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1),
-                                                                                                     new HistorySeasonOrEpisode(2),
-                                                                                                     new HistorySeasonOrEpisode(3) }),
-                                                    new HistorySAE(2, new HistorySeasonOrEpisode[] { new HistorySeasonOrEpisode(1) }))
+                                    .AddShow(show3, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                                                             { 2, new PostHistoryEpisodes { 2} } })
                                     .AddHistoryIds(1, 2, 3, 4)
                                     .Build();
 

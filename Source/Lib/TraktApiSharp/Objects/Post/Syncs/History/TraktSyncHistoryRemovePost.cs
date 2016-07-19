@@ -53,36 +53,17 @@
             return this;
         }
 
-        public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, HistorySeasonOrEpisode season,
-                                                         params HistorySeasonOrEpisode[] seasons)
+        public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, PostHistorySeasons seasons)
         {
             ValidateShow(show);
 
-            if (season == null)
-                throw new ArgumentNullException(nameof(season));
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(season, seasons);
+            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
-            if ((seasons == null || seasons.Length <= 0) && season != null)
-                return AddShow(show, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
-            CreateOrSetShow(show, showSeasons);
-
-            return this;
-        }
-
-        public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, HistorySAE season, params HistorySAE[] seasons)
-        {
-            ValidateShow(show);
-            ValidateSeasons(season, seasons);
-            EnsureShowsListExists();
-
-            if ((seasons == null || seasons.Length <= 0) && (season.Episodes == null || season.Episodes.Length <= 0))
-                return AddShow(show, season.Number);
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
 
             return this;
@@ -94,6 +75,26 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode);
+        }
+
+        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(int id, params int[] ids)
+        {
+            var idsToAdd = new int[ids.Length + 1];
+            idsToAdd[0] = id;
+            ids.CopyTo(idsToAdd, 1);
+
+            if (_historyPost.HistoryIds == null)
+                _historyPost.HistoryIds = new List<int>();
+
+            for (int i = 0; i < idsToAdd.Length; i++)
+            {
+                if (idsToAdd[i] <= 0)
+                    throw new ArgumentException("at least one id is not valid", "id and / or ids");
+
+                (_historyPost.HistoryIds as List<int>).Add(idsToAdd[i]);
+            }
+
+            return this;
         }
 
         public TraktSyncHistoryRemovePost Build()
@@ -159,49 +160,19 @@
             }
         }
 
-        protected void ValidateSeasons(HistorySeasonOrEpisode season, params HistorySeasonOrEpisode[] seasons)
+        protected void ValidateSeasons(PostHistorySeasons seasons)
         {
-            if (season.Number < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
+            foreach (var season in seasons)
             {
-                for (int i = 0; i < seasons.Length; i++)
+                if (season.Number < 0)
+                    throw new ArgumentException("at least one season number not valid", nameof(seasons));
+
+                if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
-                    if (seasons[i].Number < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
-        }
-
-        protected void ValidateSeasons(HistorySAE season, params HistorySAE[] seasons)
-        {
-            if (season.Number < 0)
-                throw new ArgumentException("season number not valid", nameof(season.Number));
-
-            if (season.Episodes != null)
-            {
-                for (int i = 0; i < season.Episodes.Length; i++)
-                {
-                    if (season.Episodes[i].Number < 0)
-                        throw new ArgumentException("at least one episode number not valid", nameof(season));
-                }
-            }
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i].Number < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-
-                    if (seasons[i].Episodes != null)
+                    foreach (var episode in season.Episodes)
                     {
-                        for (int j = 0; j < seasons[i].Episodes.Length; j++)
-                        {
-                            if (seasons[i].Episodes[j].Number < 0)
-                                throw new ArgumentException("at least one episode number not valid", nameof(seasons));
-                        }
+                        if (episode.Number < 0)
+                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
                     }
                 }
             }
@@ -340,58 +311,27 @@
             return showSeasons;
         }
 
-        protected IEnumerable<TraktSyncHistoryPostShowSeason> CreateShowSeasons(HistorySeasonOrEpisode season,
-                                                                                params HistorySeasonOrEpisode[] seasons)
+        protected IEnumerable<TraktSyncHistoryPostShowSeason> CreateShowSeasons(PostHistorySeasons seasons)
         {
-            var seasonsAndEpisodesToAdd = new HistorySeasonOrEpisode[seasons.Length + 1];
-            seasonsAndEpisodesToAdd[0] = season;
-            seasons.CopyTo(seasonsAndEpisodesToAdd, 1);
-
             var showSeasons = new List<TraktSyncHistoryPostShowSeason>();
 
-            for (int i = 0; i < seasonsAndEpisodesToAdd.Length; i++)
+            foreach (var season in seasons)
             {
-                var seasonToAdd = seasonsAndEpisodesToAdd[i];
-                var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = seasonToAdd.Number };
+                var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = season.Number };
 
-                if (seasonToAdd.WatchedAt.HasValue)
-                    showSingleSeason.WatchedAt = seasonToAdd.WatchedAt.Value.ToUniversalTime();
+                if (season.WatchedAt.HasValue)
+                    showSingleSeason.WatchedAt = season.WatchedAt.Value.ToUniversalTime();
 
-                showSeasons.Add(showSingleSeason);
-            }
-
-            return showSeasons;
-        }
-
-        protected IEnumerable<TraktSyncHistoryPostShowSeason> CreateShowSeasons(HistorySAE season, params HistorySAE[] seasons)
-        {
-            var seasonsAndEpisodesToAdd = new HistorySAE[seasons.Length + 1];
-            seasonsAndEpisodesToAdd[0] = season;
-            seasons.CopyTo(seasonsAndEpisodesToAdd, 1);
-
-            var showSeasons = new List<TraktSyncHistoryPostShowSeason>();
-
-            for (int i = 0; i < seasonsAndEpisodesToAdd.Length; i++)
-            {
-                var seasonToAdd = seasonsAndEpisodesToAdd[i];
-                var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = seasonToAdd.Number };
-
-                if (seasonToAdd.WatchedAt.HasValue)
-                    showSingleSeason.WatchedAt = seasonToAdd.WatchedAt.Value.ToUniversalTime();
-
-                var episodesToAdd = seasonToAdd.Episodes;
-
-                if (episodesToAdd != null && episodesToAdd.Length > 0)
+                if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
                     var showEpisodes = new List<TraktSyncHistoryPostShowEpisode>();
 
-                    for (int j = 0; j < episodesToAdd.Length; j++)
+                    foreach (var episode in season.Episodes)
                     {
-                        var episodeToAdd = episodesToAdd[j];
-                        var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episodeToAdd.Number };
+                        var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
 
-                        if (episodeToAdd.WatchedAt.HasValue)
-                            showEpisode.WatchedAt = episodeToAdd.WatchedAt.Value.ToUniversalTime();
+                        if (episode.WatchedAt.HasValue)
+                            showEpisode.WatchedAt = episode.WatchedAt.Value.ToUniversalTime();
 
                         showEpisodes.Add(showEpisode);
                     }
@@ -403,26 +343,6 @@
             }
 
             return showSeasons;
-        }
-
-        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(int id, params int[] ids)
-        {
-            var idsToAdd = new int[ids.Length + 1];
-            idsToAdd[0] = id;
-            ids.CopyTo(idsToAdd, 1);
-
-            if (_historyPost.HistoryIds == null)
-                _historyPost.HistoryIds = new List<int>();
-
-            for (int i = 0; i < idsToAdd.Length; i++)
-            {
-                if (idsToAdd[i] <= 0)
-                    throw new ArgumentException("at least one id is not valid", "id and / or ids");
-
-                (_historyPost.HistoryIds as List<int>).Add(idsToAdd[i]);
-            }
-
-            return this;
         }
     }
 }
