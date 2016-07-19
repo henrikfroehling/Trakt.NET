@@ -259,6 +259,7 @@
     <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />
+    <Compile Include="Objects\Post\PostSeasons.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponse.cs" />
