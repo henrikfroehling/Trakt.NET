@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Utils;
 
     public sealed class PostHistorySeasons : IEnumerable<PostHistorySeason>
     {
@@ -27,36 +26,26 @@
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
-    public sealed class PostHistorySeason : Triple<int, DateTime?, PostHistoryEpisodes>
+    public sealed class PostHistorySeason
     {
-        public PostHistorySeason() : base()
-        {
-            Episodes = new PostHistoryEpisodes();
-        }
+        public PostHistorySeason() : this(-1) { }
 
         public PostHistorySeason(int number) : this(number, null) { }
 
         public PostHistorySeason(int number, DateTime? watchedAt) : this(number, watchedAt, new PostHistoryEpisodes()) { }
 
-        public PostHistorySeason(int number, DateTime? watchedAt, PostHistoryEpisodes episodes) : base(number, watchedAt, episodes) { }
-
-        public int Number
+        public PostHistorySeason(int number, DateTime? watchedAt, PostHistoryEpisodes episodes)
         {
-            get { return First; }
-            set { First = value; }
+            Number = number;
+            WatchedAt = watchedAt;
+            Episodes = episodes;
         }
 
-        public DateTime? WatchedAt
-        {
-            get { return Second; }
-            set { Second = value; }
-        }
+        public int Number { get; set; }
 
-        public PostHistoryEpisodes Episodes
-        {
-            get { return Third; }
-            set { Third = value; }
-        }
+        public DateTime? WatchedAt { get; set; }
+
+        public PostHistoryEpisodes Episodes { get; set; }
     }
 
     public sealed class PostHistoryEpisodes : IEnumerable<PostHistoryEpisode>
@@ -83,22 +72,18 @@
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
-    public sealed class PostHistoryEpisode : Pair<int, DateTime?>
+    public sealed class PostHistoryEpisode
     {
-        public PostHistoryEpisode() : base() { }
+        public PostHistoryEpisode() : this(-1) { }
 
-        public PostHistoryEpisode(int number, DateTime? watchedAt = null) : base(number, watchedAt) { }
-
-        public int Number
+        public PostHistoryEpisode(int number, DateTime? watchedAt = null)
         {
-            get { return First; }
-            set { First = value; }
+            Number = number;
+            WatchedAt = watchedAt;
         }
 
-        public DateTime? WatchedAt
-        {
-            get { return Second; }
-            set { Second = value; }
-        }
+        public int Number { get; set; }
+
+        public DateTime? WatchedAt { get; set; }
     }
 }

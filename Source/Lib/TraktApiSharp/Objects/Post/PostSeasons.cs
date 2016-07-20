@@ -2,7 +2,6 @@
 {
     using System.Collections;
     using System.Collections.Generic;
-    using Utils;
 
     public sealed class PostSeasons : IEnumerable<PostSeason>
     {
@@ -22,28 +21,21 @@
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
-    public sealed class PostSeason : Pair<int, PostEpisodes>
+    public sealed class PostSeason
     {
-        public PostSeason() : base()
+        public PostSeason() : this(-1) { }
+
+        public PostSeason(int number) : this(number, new PostEpisodes()) { }
+
+        public PostSeason(int number, PostEpisodes episodes)
         {
-            Episodes = new PostEpisodes();
+            Number = number;
+            Episodes = episodes;
         }
 
-        public PostSeason(int season) : this(season, new PostEpisodes()) { }
+        public int Number { get; set; }
 
-        public PostSeason(int season, PostEpisodes episodes) : base(season, episodes) { }
-
-        public int Number
-        {
-            get { return First; }
-            set { First = value; }
-        }
-
-        public PostEpisodes Episodes
-        {
-            get { return Second; }
-            set { Second = value; }
-        }
+        public PostEpisodes Episodes { get; set; }
     }
 
     public sealed class PostEpisodes : IEnumerable<int>
