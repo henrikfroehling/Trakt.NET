@@ -14,35 +14,17 @@
             _seasons = new List<PostHistorySeason>();
         }
 
-        public void Add(int season)
-        {
-            _seasons.Add(new PostHistorySeason(season));
-        }
+        public void Add(int season) => _seasons.Add(new PostHistorySeason(season));
 
-        public void Add(int season, DateTime watchedAt)
-        {
-            _seasons.Add(new PostHistorySeason(season, watchedAt));
-        }
+        public void Add(int season, DateTime watchedAt) => _seasons.Add(new PostHistorySeason(season, watchedAt));
 
-        public void Add(int season, DateTime watchedAt, PostHistoryEpisodes episodes)
-        {
-            _seasons.Add(new PostHistorySeason(season, watchedAt, episodes));
-        }
+        public void Add(int season, DateTime watchedAt, PostHistoryEpisodes episodes) => _seasons.Add(new PostHistorySeason(season, watchedAt, episodes));
 
-        public void Add(int season, PostHistoryEpisodes episodes)
-        {
-            _seasons.Add(new PostHistorySeason(season, null, episodes));
-        }
+        public void Add(int season, PostHistoryEpisodes episodes) => _seasons.Add(new PostHistorySeason(season, null, episodes));
 
-        public IEnumerator<PostHistorySeason> GetEnumerator()
-        {
-            return _seasons.GetEnumerator();
-        }
+        public IEnumerator<PostHistorySeason> GetEnumerator() => _seasons.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     public sealed class PostHistorySeason : Triple<int, DateTime?, PostHistoryEpisodes>
@@ -52,11 +34,11 @@
             Episodes = new PostHistoryEpisodes();
         }
 
-        public PostHistorySeason(int season) : this(season, null) { }
+        public PostHistorySeason(int number) : this(number, null) { }
 
-        public PostHistorySeason(int season, DateTime? watchedAt) : this(season, watchedAt, new PostHistoryEpisodes()) { }
+        public PostHistorySeason(int number, DateTime? watchedAt) : this(number, watchedAt, new PostHistoryEpisodes()) { }
 
-        public PostHistorySeason(int season, DateTime? watchedAt, PostHistoryEpisodes episodes) : base(season, watchedAt, episodes) { }
+        public PostHistorySeason(int number, DateTime? watchedAt, PostHistoryEpisodes episodes) : base(number, watchedAt, episodes) { }
 
         public int Number
         {
@@ -81,15 +63,12 @@
     {
         private readonly List<PostHistoryEpisode> _episodes;
 
-        public PostHistoryEpisodes() : base()
+        public PostHistoryEpisodes()
         {
             _episodes = new List<PostHistoryEpisode>();
         }
 
-        public void Add(int episode, DateTime? watchedAt = null)
-        {
-            Add(new PostHistoryEpisode(episode, watchedAt));
-        }
+        public void Add(int episode, DateTime? watchedAt = null) => Add(new PostHistoryEpisode(episode, watchedAt));
 
         public void Add(PostHistoryEpisode episode, params PostHistoryEpisode[] episodes)
         {

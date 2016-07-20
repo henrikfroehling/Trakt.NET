@@ -13,25 +13,13 @@
             _seasons = new List<PostSeason>();
         }
 
-        public void Add(int season)
-        {
-            _seasons.Add(new PostSeason(season));
-        }
+        public void Add(int season) => _seasons.Add(new PostSeason(season));
 
-        public void Add(int season, PostEpisodes episodes)
-        {
-            _seasons.Add(new PostSeason(season, episodes));
-        }
+        public void Add(int season, PostEpisodes episodes) => _seasons.Add(new PostSeason(season, episodes));
 
-        public IEnumerator<PostSeason> GetEnumerator()
-        {
-            return _seasons.GetEnumerator();
-        }
+        public IEnumerator<PostSeason> GetEnumerator() => _seasons.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     public sealed class PostSeason : Pair<int, PostEpisodes>
