@@ -202,7 +202,7 @@
         /// </summary>
         /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried movie comments and which also
@@ -279,7 +279,7 @@
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the related movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried related movies and which also
@@ -355,7 +355,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the trending movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of trending movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
@@ -389,7 +389,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the popular movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of popular movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried popular movies and which also
@@ -424,7 +424,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most played movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most played movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
@@ -461,7 +461,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most watched movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
@@ -498,7 +498,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most collected movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
@@ -534,7 +534,7 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most anticipated movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most anticipated movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
@@ -586,7 +586,7 @@
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the updated movies list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
