@@ -25,12 +25,12 @@ PM> Install-Package TraktApiSharp
 ```
 
 ---
+#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
+
+---
 ### Build Requirements
 - Visual Studio with C# 6 compliant compiler
 - .Net Framework 4.5
-
----
-#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
 
 ---
 ### Basic Usage
