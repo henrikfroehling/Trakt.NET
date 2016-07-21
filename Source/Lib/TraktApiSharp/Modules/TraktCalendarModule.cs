@@ -16,6 +16,8 @@
                                                                             TraktExtendedOption extended = null,
                                                                             TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarUserShowsRequest(Client)
             {
                 StartDate = startDate,
@@ -29,6 +31,8 @@
                                                                                TraktExtendedOption extended = null,
                                                                                TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarUserNewShowsRequest(Client)
             {
                 StartDate = startDate,
@@ -42,6 +46,8 @@
                                                                                       TraktExtendedOption extended = null,
                                                                                       TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarUserSeasonPremieresRequest(Client)
             {
                 StartDate = startDate,
@@ -55,6 +61,8 @@
                                                                               TraktExtendedOption extended = null,
                                                                               TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarUserMoviesRequest(Client)
             {
                 StartDate = startDate,
@@ -68,6 +76,8 @@
                                                                            TraktExtendedOption extended = null,
                                                                            TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarAllShowsRequest(Client)
             {
                 StartDate = startDate,
@@ -81,6 +91,8 @@
                                                                               TraktExtendedOption extended = null,
                                                                               TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarAllNewShowsRequest(Client)
             {
                 StartDate = startDate,
@@ -94,6 +106,8 @@
                                                                                      TraktExtendedOption extended = null,
                                                                                      TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarAllSeasonPremieresRequest(Client)
             {
                 StartDate = startDate,
@@ -107,6 +121,8 @@
                                                                              TraktExtendedOption extended = null,
                                                                              TraktCalendarFilter filter = null)
         {
+            ValidateDays(days);
+
             return await QueryAsync(new TraktCalendarAllMoviesRequest(Client)
             {
                 StartDate = startDate,
@@ -114,6 +130,12 @@
                 ExtendedOption = extended,
                 Filter = filter
             });
+        }
+
+        private void ValidateDays(int? days)
+        {
+            if (days.HasValue && (days.Value < 1 || days.Value > 31))
+                throw new ArgumentOutOfRangeException(nameof(days), "days must have a value between 1 and 31");
         }
     }
 }
