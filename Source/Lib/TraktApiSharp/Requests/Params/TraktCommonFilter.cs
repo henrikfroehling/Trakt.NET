@@ -9,14 +9,14 @@
         protected TraktCommonFilter() { }
 
         protected TraktCommonFilter(int years, string[] genres = null, string[] languages = null,
-                                    string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
+                                    string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
             WithYears(years);
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
-            WithRuntimes(runtimes.Begin, runtimes.End);
-            WithRatings(ratings.Begin, ratings.End);
+            Runtimes = runtimes;
+            Ratings = ratings;
         }
 
         public int Years { get; protected set; }
@@ -35,15 +35,33 @@
 
         public bool HasCountriesSet => Countries != null && Countries.Length > 0;
 
-        public Range<int> Runtimes { get; protected set; }
+        public Range<int>? Runtimes { get; protected set; }
 
-        public bool HasRuntimesSet => Runtimes != null && Runtimes.Begin > 0 && Runtimes.End > 0 && Runtimes.End > Runtimes.Begin;
+        public bool HasRuntimesSet()
+        {
+            if (Runtimes.HasValue)
+            {
+                var runtimes = Runtimes.Value;
+                return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin; ;
+            }
 
-        public Range<int> Ratings { get; protected set; }
+            return false;
+        }
 
-        public bool HasRatingsSet => Ratings != null && Ratings.Begin > 0 && Ratings.End > 0 && Ratings.End > Ratings.Begin && Ratings.End <= 100;
+        public Range<int>? Ratings { get; protected set; }
 
-        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
+        public bool HasRatingsSet()
+        {
+            if (Ratings.HasValue)
+            {
+                var ratings = Ratings.Value;
+                return ratings.Begin > 0 && ratings.End > 0 && ratings.End > ratings.Begin && ratings.End <= 100;
+            }
+
+            return false;
+        }
+
+        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
 
         public TraktCommonFilter WithYears(int years)
         {
@@ -130,11 +148,17 @@
             if (HasCountriesSet)
                 parameters.Add("countries", string.Join(",", Countries));
 
-            if (HasRuntimesSet)
-                parameters.Add("runtimes", $"{Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
+            if (HasRuntimesSet())
+            {
+                var runtimes = Runtimes.Value;
+                parameters.Add("runtimes", $"{runtimes.Begin.ToString()}-{runtimes.End.ToString()}");
+            }
 
-            if (HasRatingsSet)
-                parameters.Add("ratings", $"{Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
+            if (HasRatingsSet())
+            {
+                var ratings = Ratings.Value;
+                parameters.Add("ratings", $"{ratings.Begin.ToString()}-{ratings.End.ToString()}");
+            }
 
             return parameters;
         }

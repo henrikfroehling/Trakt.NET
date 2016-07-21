@@ -40,12 +40,12 @@
             filter.Countries.Should().NotBeNull().And.HaveCount(2);
 
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(40);
-            filter.Runtimes.End.Should().Be(100);
+            filter.Runtimes.Value.Begin.Should().Be(40);
+            filter.Runtimes.Value.End.Should().Be(100);
 
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(70);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(70);
+            filter.Ratings.Value.End.Should().Be(90);
         }
 
         [TestMethod]
@@ -92,8 +92,8 @@
 
             filter.WithRuntimes(30, 180);
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(30);
-            filter.Runtimes.End.Should().Be(180);
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -101,8 +101,8 @@
 
             filter.WithRatings(60, 90);
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(60);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -131,13 +131,13 @@
 
             filter.WithRuntimes(30, 180);
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(30);
-            filter.Runtimes.End.Should().Be(180);
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
 
             filter.WithRatings(60, 90);
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(60);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
 
             filter.Clear();
 

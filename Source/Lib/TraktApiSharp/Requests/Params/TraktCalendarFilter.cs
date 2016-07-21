@@ -9,7 +9,7 @@
         public TraktCalendarFilter() : base() { }
 
         public TraktCalendarFilter(string query, int years, string[] genres = null, string[] languages = null,
-                                   string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
+                                   string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
             : base(years, genres, languages, countries, runtimes, ratings)
         {
             WithQuery(query);

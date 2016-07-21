@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Utils
 {
-    public sealed class Range<T>
+    public struct Range<T>
     {
         public Range(T begin, T end)
         {
@@ -8,8 +8,8 @@
             End = end;
         }
 
-        public T Begin { get; set; }
+        public T Begin { get; }
 
-        public T End { get; set; }
+        public T End { get; }
     }
 }

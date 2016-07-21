@@ -10,7 +10,7 @@
         public TraktShowFilter() : base() { }
 
         public TraktShowFilter(string query, int years, string[] genres = null, string[] languages = null,
-                               string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
+                               string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
             : base(query, years, genres, languages, countries, runtimes, ratings, certifications)
         {
