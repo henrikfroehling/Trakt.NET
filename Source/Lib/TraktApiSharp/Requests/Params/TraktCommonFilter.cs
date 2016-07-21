@@ -65,10 +65,8 @@
 
         public TraktCommonFilter WithYears(int years)
         {
-            var length = years.ToString().Length;
-
-            if (years < 0 || length > 4 || length < 4)
-                throw new ArgumentException("years not valid", nameof(years));
+            if (years < 0 || years.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(years), "years not valid");
 
             Years = years;
             return this;
@@ -107,7 +105,7 @@
         public TraktCommonFilter WithRuntimes(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin)
-                throw new ArgumentException("runtimes not valid");
+                throw new ArgumentOutOfRangeException("runtimes not valid");
 
             Runtimes = new Range<int>(begin, end);
             return this;
@@ -116,7 +114,7 @@
         public TraktCommonFilter WithRatings(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin || end > 100)
-                throw new ArgumentException("ratings not valid");
+                throw new ArgumentOutOfRangeException("ratings not valid");
 
             Ratings = new Range<int>(begin, end);
             return this;
@@ -206,7 +204,7 @@
             if (!string.IsNullOrEmpty(language))
             {
                 if (language.Length > 2 || language.Length < 2)
-                    throw new ArgumentException("language not valid", nameof(language));
+                    throw new ArgumentOutOfRangeException("language not valid", nameof(language));
 
                 languagesList.Add(language);
             }
@@ -216,7 +214,7 @@
                 for (int i = 0; i < languages.Length; i++)
                 {
                     if (languages[i].Length > 2 || languages[i].Length < 2)
-                        throw new ArgumentException("language not valid", nameof(languages));
+                        throw new ArgumentOutOfRangeException("language not valid", nameof(languages));
                 }
 
                 languagesList.AddRange(languages);
@@ -237,7 +235,7 @@
             if (!string.IsNullOrEmpty(country))
             {
                 if (country.Length > 2 || country.Length < 2)
-                    throw new ArgumentException("country not valid", nameof(country));
+                    throw new ArgumentOutOfRangeException("country not valid", nameof(country));
 
                 countriesList.Add(country);
             }
@@ -247,7 +245,7 @@
                 for (int i = 0; i < countries.Length; i++)
                 {
                     if (countries[i].Length > 2 || countries[i].Length < 2)
-                        throw new ArgumentException("country not valid", nameof(countries));
+                        throw new ArgumentOutOfRangeException("country not valid", nameof(countries));
                 }
 
                 countriesList.AddRange(countries);
