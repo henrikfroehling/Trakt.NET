@@ -437,7 +437,7 @@
             Func<Task<TraktMovieScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
@@ -448,13 +448,23 @@
             movie.Year = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 123;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 12345;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -470,10 +480,10 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -872,7 +882,7 @@
             Func<Task<TraktMovieScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
@@ -883,13 +893,23 @@
             movie.Year = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 123;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 12345;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -905,10 +925,10 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -1307,7 +1327,7 @@
             Func<Task<TraktMovieScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
@@ -1318,13 +1338,23 @@
             movie.Year = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 123;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 12345;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -1340,10 +1370,10 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -2220,17 +2250,17 @@
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds
             {
@@ -2242,16 +2272,16 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
@@ -2263,13 +2293,13 @@
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.Number = 1;
@@ -2287,18 +2317,18 @@
             show.Title = "Breaking Bad";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -3170,17 +3200,17 @@
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds
             {
@@ -3192,34 +3222,34 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.Number = 1;
@@ -3237,18 +3267,18 @@
             show.Title = "Breaking Bad";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -4120,17 +4150,17 @@
             Func<Task<TraktEpisodeScrobblePostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(null, progress);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds
             {
@@ -4142,34 +4172,34 @@
             };
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.Number = 1;
@@ -4187,18 +4217,18 @@
             show.Title = "Breaking Bad";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion

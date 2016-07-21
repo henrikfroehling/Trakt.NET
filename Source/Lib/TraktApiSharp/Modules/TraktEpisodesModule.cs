@@ -109,10 +109,10 @@
                 throw new ArgumentException("show id not valid", nameof(showId));
 
             if (season < 0)
-                throw new ArgumentException("season nr not valid", nameof(season));
+                throw new ArgumentOutOfRangeException(nameof(season), "season nr not valid");
 
             if (episode < 0)
-                throw new ArgumentException("episode nr not valid", nameof(episode));
+                throw new ArgumentOutOfRangeException(nameof(episode), "episode nr not valid");
         }
     }
 }

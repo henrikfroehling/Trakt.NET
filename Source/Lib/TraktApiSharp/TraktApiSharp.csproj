@@ -252,7 +252,6 @@
     <Compile Include="Objects\Post\Comments\TraktSeasonCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktShowCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentUpdatePost.cs" />
-    <Compile Include="Objects\Post\IValidatable.cs" />
     <Compile Include="Objects\Post\PostHistorySeasons.cs" />
     <Compile Include="Objects\Post\PostRatingsSeasons.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponse.cs" />

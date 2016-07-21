@@ -1429,18 +1429,28 @@
             Func<Task<TraktMovieCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(null);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Year = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 123;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 12345;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -2912,10 +2922,10 @@
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(null);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(new TraktEpisode());
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode = new TraktEpisode
             {
@@ -4696,21 +4706,21 @@
             Func<Task<TraktEpisodeCheckinPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Number = -1;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             episode.SeasonNumber = 1;
 

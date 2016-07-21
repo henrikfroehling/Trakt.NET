@@ -169,7 +169,7 @@
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
-                throw new ArgumentNullException("collection post must not be null", nameof(collectionPost));
+                throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
 
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
@@ -186,7 +186,7 @@
         private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
-                throw new ArgumentNullException("history post must not be null", nameof(historyPost));
+                throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
 
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
@@ -203,7 +203,7 @@
         private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
         {
             if (ratingsPost == null)
-                throw new ArgumentNullException("ratings post must not be null", nameof(ratingsPost));
+                throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
 
             var movies = ratingsPost.Movies;
             var shows = ratingsPost.Shows;
@@ -220,7 +220,7 @@
         private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
         {
             if (watchlistPost == null)
-                throw new ArgumentNullException("watchlist post must not be null", nameof(watchlistPost));
+                throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
 
             var movies = watchlistPost.Movies;
             var shows = watchlistPost.Shows;

@@ -467,7 +467,7 @@
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
         {
             if (customListItemsPost == null)
-                throw new ArgumentNullException("list items post must not be null", nameof(customListItemsPost));
+                throw new ArgumentNullException(nameof(customListItemsPost), "list items post must not be null");
 
             var movies = customListItemsPost.Movies;
             var shows = customListItemsPost.Shows;
