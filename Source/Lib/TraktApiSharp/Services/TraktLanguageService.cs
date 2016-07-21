@@ -9,7 +9,7 @@
         public static string GetLanguage(string languageCode)
         {
             if (string.IsNullOrEmpty(languageCode))
-                return null;
+                return string.Empty;
 
             try
             {
@@ -24,7 +24,7 @@
         public static IEnumerable<string> GetAvailableTranslationLanguages(IEnumerable<string> availableTranslationLanguageCodes)
         {
             if (availableTranslationLanguageCodes == null || availableTranslationLanguageCodes.Count() <= 0)
-                return null;
+                return new List<string>();
 
             var languages = new List<string>(availableTranslationLanguageCodes.Count());
 
@@ -46,7 +46,7 @@
         public static string GetCountry(string countryCode)
         {
             if (string.IsNullOrEmpty(countryCode))
-                return null;
+                return string.Empty;
 
             try
             {
