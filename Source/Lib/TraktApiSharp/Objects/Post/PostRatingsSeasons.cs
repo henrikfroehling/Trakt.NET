@@ -17,7 +17,7 @@
 
         public void Add(int number, int rating, DateTime? ratedAt = null) => _seasons.Add(new PostRatingsSeason(number, rating, ratedAt));
 
-        public void Add(int number, int rating, DateTime? ratedAt, PostRatingsEpisodes episodes) => _seasons.Add(new PostRatingsSeason(number, rating, ratedAt, episodes));
+        public void Add(int number, int rating, DateTime ratedAt, PostRatingsEpisodes episodes) => _seasons.Add(new PostRatingsSeason(number, rating, ratedAt, episodes));
 
         public void Add(int number, PostRatingsEpisodes episodes) => _seasons.Add(new PostRatingsSeason(number, null, null, episodes));
 
