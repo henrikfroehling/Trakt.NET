@@ -2695,10 +2695,10 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, 1, 2, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -2724,10 +2724,10 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, 1, 2, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -2753,10 +2753,10 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, 1, 2, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -2783,10 +2783,10 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, 1, 2, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         // ----------------------------------------------------------------------------------------
@@ -4872,24 +4872,24 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -4920,24 +4920,24 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -4968,24 +4968,24 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -5017,24 +5017,24 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
             });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]

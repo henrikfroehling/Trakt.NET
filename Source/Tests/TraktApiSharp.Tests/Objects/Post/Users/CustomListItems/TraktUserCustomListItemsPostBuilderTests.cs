@@ -614,10 +614,10 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, 1, 2, -1);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]
@@ -1098,18 +1098,18 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } },
                                                                                                                   { -1, new PostEpisodes { 1, 2, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } },
                                                                                                                   { 2, new PostEpisodes { 1, -1, 3 } } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [TestMethod]

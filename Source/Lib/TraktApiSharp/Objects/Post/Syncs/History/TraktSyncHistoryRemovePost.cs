@@ -87,7 +87,7 @@
             for (int i = 0; i < idsToAdd.Length; i++)
             {
                 if (idsToAdd[i] <= 0)
-                    throw new ArgumentException("at least one id is not valid", "id and / or ids");
+                    throw new ArgumentOutOfRangeException("at least one id is not valid");
 
                 (_historyPost.HistoryIds as List<int>).Add(idsToAdd[i]);
             }
@@ -273,7 +273,7 @@
             for (int i = 0; i < seasonsToAdd.Length; i++)
             {
                 if (seasonsToAdd[i] < 0)
-                    throw new ArgumentException("at least one season number not valid");
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncHistoryPostShowSeason { Number = seasonsToAdd[i] });
             }
@@ -288,7 +288,7 @@
             foreach (var season in seasons)
             {
                 if (season.Number < 0)
-                    throw new ArgumentException("at least one season number not valid", nameof(season));
+                    throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(season));
 
                 var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = season.Number };
 
@@ -302,7 +302,7 @@
                     foreach (var episode in season.Episodes)
                     {
                         if (episode.Number < 0)
-                            throw new ArgumentException("at least one episode number not valid", nameof(seasons));
+                            throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
                         var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
 

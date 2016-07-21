@@ -423,7 +423,7 @@
             for (int i = 0; i < seasonsToAdd.Length; i++)
             {
                 if (seasonsToAdd[i] < 0)
-                    throw new ArgumentException("at least one season number not valid");
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
             }
@@ -438,7 +438,7 @@
             foreach (var season in seasons)
             {
                 if (season.Number < 0)
-                    throw new ArgumentException("at least one season number not valid", nameof(season));
+                    throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(season));
 
                 var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Number };
 
@@ -449,7 +449,7 @@
                     foreach (var episode in season.Episodes)
                     {
                         if (episode < 0)
-                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
+                            throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(seasons));
 
                         showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episode });
                     }
