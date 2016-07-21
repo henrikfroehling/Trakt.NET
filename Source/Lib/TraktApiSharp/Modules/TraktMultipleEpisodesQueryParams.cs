@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Requests.Params;
-    using Utils;
 
     public class TraktMultipleEpisodesQueryParams : TraktMultipleQueryParams<TraktEpisodeQueryParams>
     {

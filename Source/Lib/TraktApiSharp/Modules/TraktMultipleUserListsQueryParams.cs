@@ -1,7 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Utils;
-
     public class TraktMultipleUserListsQueryParams : TraktMultipleQueryParams<TraktUserListsQueryParams>
     {
         public void Add(string username, string listId)

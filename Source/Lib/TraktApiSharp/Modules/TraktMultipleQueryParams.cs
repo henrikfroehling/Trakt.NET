@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Utils
+﻿namespace TraktApiSharp.Modules
 {
     using System.Collections;
     using System.Collections.Generic;
