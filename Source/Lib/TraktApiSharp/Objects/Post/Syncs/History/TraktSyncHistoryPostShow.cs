@@ -1,10 +1,11 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
-    using Get.Movies;
+    using Get.Shows;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
-    public class TraktSyncHistoryPostMovieItem
+    public class TraktSyncHistoryPostShow
     {
         [JsonProperty(PropertyName = "watched_at")]
         public DateTime? WatchedAt { get; set; }
@@ -16,6 +17,9 @@
         public int? Year { get; set; }
 
         [JsonProperty(PropertyName = "ids")]
-        public TraktMovieIds Ids { get; set; }
+        public TraktShowIds Ids { get; set; }
+
+        [JsonProperty(PropertyName = "seasons")]
+        public IEnumerable<TraktSyncHistoryPostShowSeason> Seasons { get; set; }
     }
 }

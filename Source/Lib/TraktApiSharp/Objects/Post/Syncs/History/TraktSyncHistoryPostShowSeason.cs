@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncHistoryPostShowSeasonItem
+    public class TraktSyncHistoryPostShowSeason
     {
         [JsonProperty(PropertyName = "watched_at")]
         public DateTime? WatchedAt { get; set; }
@@ -13,6 +13,6 @@
         public int Number { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktSyncHistoryPostShowEpisodeItem> Episodes { get; set; }
+        public IEnumerable<TraktSyncHistoryPostShowEpisode> Episodes { get; set; }
     }
 }

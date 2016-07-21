@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktSyncCollectionPostEpisodeI
+    public class TraktSyncCollectionPostEpisode
     {
         [JsonProperty(PropertyName = "collected_at")]
         public DateTime? CollectedAt { get; set; }
