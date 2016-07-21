@@ -11,10 +11,7 @@ namespace TraktApiSharp
 
     /// <summary>
     /// Provides access to all functionality of this library.
-    /// <para>
-    /// Provides the only access to all of the library's modules.
-    /// You can instantiate multiple clients.
-    /// </para>
+    /// <para>Provides the only access to all of the library's modules.</para>
     /// </summary>
     public class TraktClient
     {
