@@ -221,7 +221,7 @@ namespace TraktApiSharp.Requests.Base
                 var strPage = values.First();
                 int page;
 
-                if (Int32.TryParse(strPage, out page))
+                if (int.TryParse(strPage, out page))
                     paginationListResult.Page = page;
             }
 
@@ -230,7 +230,7 @@ namespace TraktApiSharp.Requests.Base
                 var strLimit = values.First();
                 int limit;
 
-                if (Int32.TryParse(strLimit, out limit))
+                if (int.TryParse(strLimit, out limit))
                     paginationListResult.Limit = limit;
             }
 
@@ -239,7 +239,7 @@ namespace TraktApiSharp.Requests.Base
                 var strPageCount = values.First();
                 int pageCount;
 
-                if (Int32.TryParse(strPageCount, out pageCount))
+                if (int.TryParse(strPageCount, out pageCount))
                     paginationListResult.PageCount = pageCount;
             }
 
@@ -248,7 +248,7 @@ namespace TraktApiSharp.Requests.Base
                 var strItemCount = values.First();
                 int itemCount;
 
-                if (Int32.TryParse(strItemCount, out itemCount))
+                if (int.TryParse(strItemCount, out itemCount))
                     paginationListResult.ItemCount = itemCount;
             }
 
@@ -257,7 +257,7 @@ namespace TraktApiSharp.Requests.Base
                 var strUserCount = values.First();
                 int userCount;
 
-                if (Int32.TryParse(strUserCount, out userCount))
+                if (int.TryParse(strUserCount, out userCount))
                     paginationListResult.UserCount = userCount;
             }
         }
