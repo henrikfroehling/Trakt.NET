@@ -64,7 +64,7 @@
         /// <param name="showsQueryParams">A list of show ids and optional extended options. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
         public async Task<IEnumerable<TraktShow>> GetMultipleShowsAsync(TraktMultipleObjectsQueryParams showsQueryParams)
         {
             if (showsQueryParams == null || showsQueryParams.Count <= 0)
@@ -108,7 +108,7 @@
         /// </para>
         /// </summary>
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and country code.</returns>
+        /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync(string showId)
@@ -128,7 +128,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
         /// <returns>
-        /// A <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and country code
+        /// A <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and language code
         /// for the show with the given showId.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -148,14 +148,14 @@
         }
 
         /// <summary>
-        /// Gets all comments for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
+        /// Gets comments for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-comments">"Trakt API Doc - Shows: Comments"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <param name="sortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
@@ -168,7 +168,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync(string showId,
-                                                                                        TraktCommentSortOrder? sortOrder = null,
+                                                                                        TraktCommentSortOrder? commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             Validate(showId);
@@ -176,7 +176,7 @@
             return await QueryAsync(new TraktShowCommentsRequest(Client)
             {
                 Id = showId,
-                Sorting = sortOrder,
+                Sorting = commentSortOrder,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -226,7 +226,7 @@
         }
 
         /// <summary>
-        /// Gets all related shows for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
+        /// Gets related shows for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/related/get-related-shows">"Trakt API Doc - Shows: Related"</a> for more information.
@@ -354,7 +354,7 @@
         }
 
         /// <summary>
-        /// Gets all trending shows.
+        /// Gets trending shows.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/trending/get-trending-shows">"Trakt API Doc - Shows: Trending"</a> for more information.
@@ -388,7 +388,7 @@
         }
 
         /// <summary>
-        /// Gets all popular shows.
+        /// Gets popular shows.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/popular/get-popular-shows">"Trakt API Doc - Shows: Popular"</a> for more information.
@@ -428,7 +428,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/played/get-the-most-played-shows">"Trakt API Doc - Shows: Played"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time peried, for which the most played shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most played shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -465,7 +465,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched/get-the-most-watched-shows">"Trakt API Doc - Shows: Watched"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time peried, for which the most watched shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most watched shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -502,7 +502,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collected/get-the-most-collected-shows">"Trakt API Doc - Shows: Collected"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time peried, for which the most collected shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most collected shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -567,7 +567,7 @@
         }
 
         /// <summary>
-        /// Gets the updated shows since the given <paramref name="startDate" />.
+        /// Gets updated shows since the given <paramref name="startDate" />.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/anticipated/get-recently-updated-shows">"Trakt API Doc - Shows: Updates"</a> for more information.
@@ -600,15 +600,15 @@
             });
         }
 
-        private void Validate(string id)
+        private void Validate(string showId)
         {
-            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(id));
+            if (string.IsNullOrEmpty(showId) || showId.ContainsSpace())
+                throw new ArgumentException("show id not valid", nameof(showId));
         }
 
-        private void Validate(string id, string languageCode)
+        private void Validate(string showId, string languageCode)
         {
-            Validate(id);
+            Validate(showId);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
                 throw new ArgumentException("show language code not valid", nameof(languageCode));
