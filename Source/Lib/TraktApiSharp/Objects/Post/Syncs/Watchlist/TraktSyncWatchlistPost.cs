@@ -90,7 +90,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
 
             if (_watchlistPost.Shows == null)
                 _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
@@ -102,7 +101,12 @@
             var showSeasons = new List<TraktSyncWatchlistPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
+            {
+                if (seasonsToAdd[i] < 0)
+                    throw new ArgumentException("at least one season number not valid");
+
                 showSeasons.Add(new TraktSyncWatchlistPostShowSeason { Number = seasonsToAdd[i] });
+            }
 
             var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
@@ -129,8 +133,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
-
             if (_watchlistPost.Shows == null)
                 _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
 
@@ -142,6 +144,9 @@
 
                 foreach (var season in seasons)
                 {
+                    if (season.Number < 0)
+                        throw new ArgumentException("at least one season number not valid", nameof(season));
+
                     var showSingleSeason = new TraktSyncWatchlistPostShowSeason { Number = season.Number };
 
                     if (season.Episodes != null && season.Episodes.Count() > 0)
@@ -149,7 +154,12 @@
                         var showEpisodes = new List<TraktSyncWatchlistPostShowEpisode>();
 
                         foreach (var episode in season.Episodes)
+                        {
+                            if (episode < 0)
+                                throw new ArgumentException("at least one episode number not valid", nameof(seasons));
+
                             showEpisodes.Add(new TraktSyncWatchlistPostShowEpisode { Number = episode });
+                        }
 
                         showSingleSeason.Episodes = showEpisodes;
                     }
@@ -233,39 +243,6 @@
 
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
-        }
-
-        private void ValidateSeasons(int season, params int[] seasons)
-        {
-            if (season < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i] < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
-        }
-
-        private void ValidateSeasons(PostSeasons seasons)
-        {
-            foreach (var season in seasons)
-            {
-                if (season.Number < 0)
-                    throw new ArgumentException("at least one season number not valid", nameof(seasons));
-
-                if (season.Episodes != null)
-                {
-                    foreach (var episode in season.Episodes)
-                    {
-                        if (episode < 0)
-                            throw new ArgumentException("at least one episode number not valid", nameof(seasons));
-                    }
-                }
-            }
         }
     }
 }

@@ -44,7 +44,6 @@
         public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -60,7 +59,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -143,39 +141,6 @@
 
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
-        }
-
-        protected void ValidateSeasons(int season, params int[] seasons)
-        {
-            if (season < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i] < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
-        }
-
-        protected void ValidateSeasons(PostHistorySeasons seasons)
-        {
-            foreach (var season in seasons)
-            {
-                if (season.Number < 0)
-                    throw new ArgumentException("at least one season number not valid", nameof(seasons));
-
-                if (season.Episodes != null && season.Episodes.Count() > 0)
-                {
-                    foreach (var episode in season.Episodes)
-                    {
-                        if (episode.Number < 0)
-                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                    }
-                }
-            }
         }
 
         protected void ValidateEpisode(TraktEpisode episode)
@@ -306,7 +271,12 @@
             var showSeasons = new List<TraktSyncHistoryPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
+            {
+                if (seasonsToAdd[i] < 0)
+                    throw new ArgumentException("at least one season number not valid");
+
                 showSeasons.Add(new TraktSyncHistoryPostShowSeason { Number = seasonsToAdd[i] });
+            }
 
             return showSeasons;
         }
@@ -317,6 +287,9 @@
 
             foreach (var season in seasons)
             {
+                if (season.Number < 0)
+                    throw new ArgumentException("at least one season number not valid", nameof(season));
+
                 var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = season.Number };
 
                 if (season.WatchedAt.HasValue)
@@ -328,6 +301,9 @@
 
                     foreach (var episode in season.Episodes)
                     {
+                        if (episode.Number < 0)
+                            throw new ArgumentException("at least one episode number not valid", nameof(seasons));
+
                         var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
 
                         if (episode.WatchedAt.HasValue)

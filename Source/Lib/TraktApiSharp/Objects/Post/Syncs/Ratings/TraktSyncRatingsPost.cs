@@ -68,7 +68,6 @@
         public TraktSyncRatingsPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -84,7 +83,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -106,7 +104,6 @@
         {
             ValidateShow(show);
             ValidateRating(rating);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -123,7 +120,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -146,7 +142,6 @@
         {
             ValidateShow(show);
             ValidateRating(rating);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -164,7 +159,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -243,39 +237,6 @@
 
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
-        }
-
-        private void ValidateSeasons(int season, params int[] seasons)
-        {
-            if (season < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i] < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
-        }
-
-        private void ValidateSeasons(PostRatingsSeasons seasons)
-        {
-            foreach (var season in seasons)
-            {
-                if (season.Number < 0)
-                    throw new ArgumentException("season number not valid", nameof(season));
-
-                if (season.Episodes != null)
-                {
-                    foreach (var episode in season.Episodes)
-                    {
-                        if (episode.Number < 0)
-                            throw new ArgumentException("at least one episode number not valid", nameof(seasons));
-                    }
-                }
-            }
         }
 
         private void ValidateEpisode(TraktEpisode episode)
@@ -424,7 +385,12 @@
             var showSeasons = new List<TraktSyncRatingsPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
+            {
+                if (seasonsToAdd[i] < 0)
+                    throw new ArgumentException("at least one season number not valid");
+
                 showSeasons.Add(new TraktSyncRatingsPostShowSeason { Number = seasonsToAdd[i] });
+            }
 
             return showSeasons;
         }
@@ -435,6 +401,9 @@
 
             foreach (var season in seasons)
             {
+                if (season.Number < 0)
+                    throw new ArgumentException("at least one season number not valid", nameof(season));
+
                 var showSingleSeason = new TraktSyncRatingsPostShowSeason { Number = season.Number };
 
                 if (season.Rating.HasValue)
@@ -449,6 +418,9 @@
 
                     foreach (var episode in season.Episodes)
                     {
+                        if (episode.Number < 0)
+                            throw new ArgumentException("at least one episode number not valid", nameof(seasons));
+
                         var showEpisode = new TraktSyncRatingsPostShowEpisode { Number = episode.Number };
 
                         if (episode.Rating.HasValue)

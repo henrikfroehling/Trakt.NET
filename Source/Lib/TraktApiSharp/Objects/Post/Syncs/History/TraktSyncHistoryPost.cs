@@ -63,7 +63,6 @@
         public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -81,7 +80,6 @@
         public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, PostHistorySeasons seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);

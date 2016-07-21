@@ -99,7 +99,6 @@
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -111,7 +110,6 @@
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -123,7 +121,6 @@
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -135,7 +132,6 @@
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, int season, params int[] seasons)
         {
             ValidateShow(show);
-            ValidateSeasons(season, seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
@@ -151,7 +147,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -167,7 +162,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -183,7 +177,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -199,7 +192,6 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            ValidateSeasons(seasons);
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);
@@ -284,39 +276,6 @@
 
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
-        }
-
-        private void ValidateSeasons(int season, params int[] seasons)
-        {
-            if (season < 0)
-                throw new ArgumentException("season number not valid", nameof(season));
-
-            if (seasons != null)
-            {
-                for (int i = 0; i < seasons.Length; i++)
-                {
-                    if (seasons[i] < 0)
-                        throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                }
-            }
-        }
-
-        private void ValidateSeasons(PostSeasons seasons)
-        {
-            foreach (var season in seasons)
-            {
-                if (season.Number < 0)
-                    throw new ArgumentException("season number not valid", nameof(season));
-
-                if (season.Episodes != null)
-                {
-                    foreach (var episode in season.Episodes)
-                    {
-                        if (episode < 0)
-                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
-                    }
-                }
-            }
         }
 
         private void ValidateEpisode(TraktEpisode episode)
@@ -462,7 +421,12 @@
             var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
+            {
+                if (seasonsToAdd[i] < 0)
+                    throw new ArgumentException("at least one season number not valid");
+
                 showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
+            }
 
             return showSeasons;
         }
@@ -473,6 +437,9 @@
 
             foreach (var season in seasons)
             {
+                if (season.Number < 0)
+                    throw new ArgumentException("at least one season number not valid", nameof(season));
+
                 var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Number };
 
                 if (season.Episodes != null && season.Episodes.Count() > 0)
@@ -480,7 +447,12 @@
                     var showEpisodes = new List<TraktSyncCollectionPostShowEpisode>();
 
                     foreach (var episode in season.Episodes)
+                    {
+                        if (episode < 0)
+                            throw new ArgumentException("at least one season number not valid", nameof(seasons));
+
                         showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episode });
+                    }
 
                     showSingleSeason.Episodes = showEpisodes;
                 }
