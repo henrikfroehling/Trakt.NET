@@ -31,7 +31,7 @@
         public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
         {
             if (ids == null || ids.Length <= 0)
-                return null;
+                return new List<TraktComment>();
 
             var tasks = new List<Task<TraktComment>>();
 
@@ -220,22 +220,22 @@
                 throw new ArgumentException("comment is empty", nameof(comment));
 
             if (comment.WordCount() < 5)
-                throw new ArgumentException("comment has too few words - at least five words are required", nameof(comment));
+                throw new ArgumentOutOfRangeException(nameof(comment), "comment has too few words - at least five words are required");
         }
 
         private void ValidateMovie(TraktMovie movie)
         {
             if (movie == null)
-                throw new ArgumentException("movie must not be null", nameof(movie));
+                throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (string.IsNullOrEmpty(movie.Title))
                 throw new ArgumentException("movie title not valid", nameof(movie.Title));
 
-            if (movie.Year <= 0)
-                throw new ArgumentException("movie year not valid", nameof(movie.Year));
+            if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(movie.Year), "movie year not valid");
 
             if (movie.Ids == null)
-                throw new ArgumentException("movie ids must not be null", nameof(movie.Ids));
+                throw new ArgumentNullException(nameof(movie.Ids), "movie ids must not be null");
 
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
@@ -244,13 +244,13 @@
         private void ValidateShow(TraktShow show)
         {
             if (show == null)
-                throw new ArgumentException("show must not be null", nameof(show));
+                throw new ArgumentNullException(nameof(show), "show must not be null");
 
             if (string.IsNullOrEmpty(show.Title))
                 throw new ArgumentException("show title not valid", nameof(show.Title));
 
             if (show.Ids == null)
-                throw new ArgumentException("show ids must not be null", nameof(show.Ids));
+                throw new ArgumentNullException(nameof(show.Ids), "show ids must not be null");
 
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
@@ -259,10 +259,10 @@
         private void ValidateSeason(TraktSeason season)
         {
             if (season == null)
-                throw new ArgumentException("season must not be null", nameof(season));
+                throw new ArgumentNullException(nameof(season), "season must not be null");
 
             if (season.Ids == null)
-                throw new ArgumentException("season ids must not be null", nameof(season.Ids));
+                throw new ArgumentNullException(nameof(season.Ids), "season ids must not be null");
 
             if (!season.Ids.HasAnyId)
                 throw new ArgumentException("season ids have no valid id", nameof(season.Ids));
@@ -271,10 +271,10 @@
         private void ValidateEpisode(TraktEpisode episode)
         {
             if (episode == null)
-                throw new ArgumentException("episode must not be null", nameof(episode));
+                throw new ArgumentNullException(nameof(episode), "episode must not be null");
 
             if (episode.Ids == null)
-                throw new ArgumentException("episode ids must not be null", nameof(episode.Ids));
+                throw new ArgumentNullException(nameof(episode.Ids), "episode ids must not be null");
 
             if (!episode.Ids.HasAnyId)
                 throw new ArgumentException("episode ids have no valid id", nameof(episode.Ids));
@@ -283,10 +283,10 @@
         private void ValidateList(TraktList list)
         {
             if (list == null)
-                throw new ArgumentException("list must not be null", nameof(list));
+                throw new ArgumentNullException(nameof(list), "list must not be null");
 
             if (list.Ids == null)
-                throw new ArgumentException("list ids must not be null", nameof(list.Ids));
+                throw new ArgumentNullException(nameof(list.Ids), "list ids must not be null");
 
             if (!list.Ids.HasAnyId)
                 throw new ArgumentException("list ids have no valid id", nameof(list.Ids));

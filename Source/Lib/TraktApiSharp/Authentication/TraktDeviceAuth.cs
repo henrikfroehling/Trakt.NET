@@ -57,7 +57,7 @@
         public async Task<TraktDevice> GenerateDeviceAsync(string clientId)
         {
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+                throw new ArgumentException("client id not valid", nameof(clientId));
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
@@ -577,22 +577,22 @@
         private void ValidateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)
         {
             if (device == null)
-                throw new ArgumentNullException("device must not be null", "device");
+                throw new ArgumentNullException(nameof(device), "device must not be null");
 
             if (device.IsExpiredUnused)
-                throw new ArgumentException("device code expired unused", "device");
+                throw new ArgumentException("device code expired unused", nameof(device));
 
             if (!device.IsValid)
-                throw new ArgumentException("device not valid", "device");
+                throw new ArgumentException("device not valid", nameof(device));
 
             if (device.DeviceCode.ContainsSpace())
-                throw new ArgumentException("device code not valid", "device");
+                throw new ArgumentException("device code not valid", nameof(device.DeviceCode));
 
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+                throw new ArgumentException("client id not valid", nameof(clientId));
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
-                throw new ArgumentException("client secret not valid", "clientSecret");
+                throw new ArgumentException("client secret not valid", nameof(clientSecret));
         }
 
         private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent, bool handleAdditionalCodes)

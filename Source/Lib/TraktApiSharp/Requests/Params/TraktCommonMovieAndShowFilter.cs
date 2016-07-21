@@ -1,14 +1,15 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktApiSharp.Requests.Params
 {
     using System;
     using System.Collections.Generic;
+    using Utils;
 
     public abstract class TraktCommonMovieAndShowFilter : TraktCommonFilter
     {
         protected TraktCommonMovieAndShowFilter() : base() { }
 
         protected TraktCommonMovieAndShowFilter(string query, int years, string[] genres = null, string[] languages = null,
-                                                string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
+                                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                                 string[] certifications = null)
             : base(years, genres, languages, countries, runtimes, ratings)
         {

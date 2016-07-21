@@ -122,16 +122,16 @@
         private void Validate(TraktMovie movie)
         {
             if (movie == null)
-                throw new ArgumentException("movie must not be null", nameof(movie));
+                throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (string.IsNullOrEmpty(movie.Title))
                 throw new ArgumentException("movie title not valid", nameof(movie.Title));
 
-            if (movie.Year <= 0)
-                throw new ArgumentException("movie year not valid", nameof(movie));
+            if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(movie), "movie year not valid");
 
             if (movie.Ids == null)
-                throw new ArgumentException("movie.Ids must not be null", nameof(movie.Ids));
+                throw new ArgumentNullException(nameof(movie.Ids), "movie.Ids must not be null");
 
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
@@ -140,10 +140,10 @@
         private void Validate(TraktEpisode episode)
         {
             if (episode == null)
-                throw new ArgumentException("episode must not be null", nameof(episode));
+                throw new ArgumentNullException(nameof(episode), "episode must not be null");
 
             if (episode.Ids == null)
-                throw new ArgumentException("episode.Ids must not be null", nameof(episode.Ids));
+                throw new ArgumentNullException(nameof(episode.Ids), "episode.Ids must not be null");
 
             if (!episode.Ids.HasAnyId)
                 throw new ArgumentException("episode.Ids have no valid id", nameof(episode.Ids));
@@ -152,16 +152,16 @@
         private void Validate(TraktEpisode episode, TraktShow show)
         {
             if (episode == null)
-                throw new ArgumentException("episode must not be null", nameof(episode));
+                throw new ArgumentNullException(nameof(episode), "episode must not be null");
 
             if (episode.SeasonNumber < 0)
-                throw new ArgumentException("episode season number not valid", nameof(episode.SeasonNumber));
+                throw new ArgumentOutOfRangeException(nameof(episode.SeasonNumber), "episode season number not valid");
 
             if (episode.Number < 0)
-                throw new ArgumentException("episode number not valid", nameof(episode.Number));
+                throw new ArgumentOutOfRangeException(nameof(episode.Number), "episode number not valid");
 
             if (show == null)
-                throw new ArgumentException("show must not be null", nameof(show));
+                throw new ArgumentNullException(nameof(show), "show must not be null");
 
             if (string.IsNullOrEmpty(show.Title))
                 throw new ArgumentException("show title not valid", nameof(show.Title));

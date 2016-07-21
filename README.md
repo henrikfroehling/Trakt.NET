@@ -30,6 +30,9 @@ PM> Install-Package TraktApiSharp
 - .Net Framework 4.5
 
 ---
+#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
+
+---
 ### Basic Usage
 **Create a new TraktApiSharp Client.**
 ```csharp
@@ -107,7 +110,6 @@ Console.WriteLine(theMartian.Overview);
 var imagePath = theMartian.Images.Poster.Full;
 ```
 
-#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
 ---
 ### License
 ```

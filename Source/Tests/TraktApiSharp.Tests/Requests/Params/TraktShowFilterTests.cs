@@ -1,18 +1,20 @@
-﻿namespace TraktApiSharp.Tests.Requests.WithoutOAuth.Movies
+﻿namespace TraktApiSharp.Tests.Requests.Params
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.WithoutOAuth.Movies;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Utils;
 
     [TestClass]
-    public class TraktMovieFilterTests
+    public class TraktShowFilterTests
     {
         [TestMethod]
-        public void TestTraktMovieFilterDefaultConstructor()
+        public void TestTraktShowFilterDefaultConstructor()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.Query.Should().BeNull();
             filter.Years.Should().Be(0);
@@ -22,17 +24,21 @@
             filter.Runtimes.Should().BeNull();
             filter.Ratings.Should().BeNull();
             filter.Certifications.Should().BeNull();
+            filter.Networks.Should().BeNull();
+            filter.States.Should().BeNull();
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterConstructor()
+        public void TestTraktShowFilterConstructor()
         {
-            var filter = new TraktMovieFilter("query", 2016, new string[] { "action", "drama" },
-                                              new string[] { "de", "en" },
-                                              new string[] { "gb", "us" },
-                                              new Range<int>(40, 100), new Range<int>(70, 90),
-                                              new string[] { "cert1", "cert2" });
+            var filter = new TraktShowFilter("query", 2016, new string[] { "action", "drama" },
+                                             new string[] { "de", "en" },
+                                             new string[] { "gb", "us" },
+                                             new Range<int>(40, 100), new Range<int>(70, 90),
+                                             new string[] { "cert1", "cert2" },
+                                             new string[] { "network1", "network2" },
+                                             new TraktShowStatus[] { TraktShowStatus.Ended, TraktShowStatus.InProduction });
 
             filter.Query.Should().Be("query");
             filter.Years.Should().Be(2016);
@@ -42,20 +48,22 @@
             filter.Countries.Should().NotBeNull().And.HaveCount(2);
 
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(40);
-            filter.Runtimes.End.Should().Be(100);
+            filter.Runtimes.Value.Begin.Should().Be(40);
+            filter.Runtimes.Value.End.Should().Be(100);
 
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(70);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(70);
+            filter.Ratings.Value.End.Should().Be(90);
 
             filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+            filter.Networks.Should().NotBeNull().And.HaveCount(2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterAddCertifications()
+        public void TestTraktShowFilterAddCertifications()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.AddCertifications(null);
             filter.Certifications.Should().NotBeNull().And.BeEmpty();
@@ -77,9 +85,9 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterWithCertifications()
+        public void TestTraktShowFilterWithCertifications()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.WithCertifications(null);
             filter.Certifications.Should().NotBeNull().And.BeEmpty();
@@ -107,9 +115,139 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterHasValues()
+        public void TestTraktShowFilterAddNetworks()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
+
+            filter.AddNetworks(null);
+            filter.Networks.Should().NotBeNull().And.BeEmpty();
+
+            filter.AddNetworks(null, "network1");
+            filter.Networks.Should().NotBeNull().And.HaveCount(1);
+
+            filter.AddNetworks("network1", "network2", "network3");
+            filter.Networks.Should().NotBeNull().And.HaveCount(4);
+
+            filter.AddNetworks("network4");
+            filter.Networks.Should().NotBeNull().And.HaveCount(5);
+
+            filter.AddNetworks(null);
+            filter.Networks.Should().NotBeNull().And.HaveCount(5);
+
+            filter.AddNetworks("network5", "network6");
+            filter.Networks.Should().NotBeNull().And.HaveCount(7);
+        }
+
+        [TestMethod]
+        public void TestTraktShowFilterWithNetworks()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.WithNetworks(null);
+            filter.Networks.Should().NotBeNull().And.BeEmpty();
+
+            filter.WithNetworks(null, "network1");
+            filter.Networks.Should().NotBeNull().And.HaveCount(1);
+
+            filter.AddNetworks("network1", "network2");
+            filter.Networks.Should().NotBeNull().And.HaveCount(3);
+
+            filter.WithNetworks(null);
+            filter.Networks.Should().NotBeNull().And.BeEmpty();
+
+            filter.WithNetworks(null, "network1");
+            filter.Networks.Should().NotBeNull().And.HaveCount(1);
+
+            filter.WithNetworks("network1", "network2");
+            filter.Networks.Should().NotBeNull().And.HaveCount(2);
+
+            filter.WithNetworks("network1", "network2", "network3", "network4");
+            filter.Networks.Should().NotBeNull().And.HaveCount(4);
+
+            filter.WithNetworks("network5");
+            filter.Networks.Should().NotBeNull().And.HaveCount(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowFilterAddStates()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.AddStates(TraktShowStatus.Unspecified);
+            filter.States.Should().NotBeNull().And.BeEmpty();
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+            var state3 = TraktShowStatus.Ended;
+            var state4 = TraktShowStatus.Canceled;
+
+            Action act = () => filter.AddStates(state1, TraktShowStatus.Unspecified);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => filter.AddStates(state1, state2, TraktShowStatus.Unspecified, state3);
+            act.ShouldThrow<ArgumentException>();
+
+            filter.AddStates(TraktShowStatus.Unspecified, state1);
+            filter.States.Should().NotBeNull().And.HaveCount(1);
+
+            filter.AddStates(state1, state2, state3);
+            filter.States.Should().NotBeNull().And.HaveCount(4);
+
+            filter.AddStates(state4);
+            filter.States.Should().NotBeNull().And.HaveCount(5);
+
+            filter.AddStates(TraktShowStatus.Unspecified);
+            filter.States.Should().NotBeNull().And.HaveCount(5);
+
+            filter.AddStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(7);
+        }
+
+        [TestMethod]
+        public void TestTraktShowFilterWithStates()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.WithStates(TraktShowStatus.Unspecified);
+            filter.States.Should().NotBeNull().And.BeEmpty();
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+            var state3 = TraktShowStatus.Ended;
+            var state4 = TraktShowStatus.Canceled;
+
+            Action act = () => filter.WithStates(state1, TraktShowStatus.Unspecified);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => filter.WithStates(state1, state2, TraktShowStatus.Unspecified, state3);
+            act.ShouldThrow<ArgumentException>();
+
+            filter.WithStates(TraktShowStatus.Unspecified, state1);
+            filter.States.Should().NotBeNull().And.HaveCount(1);
+
+            filter.AddStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(3);
+
+            filter.WithStates(TraktShowStatus.Unspecified);
+            filter.States.Should().NotBeNull().And.BeEmpty();
+
+            filter.WithStates(TraktShowStatus.Unspecified, state3);
+            filter.States.Should().NotBeNull().And.HaveCount(1);
+
+            filter.WithStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
+
+            filter.WithStates(state1, state2, state3, state4);
+            filter.States.Should().NotBeNull().And.HaveCount(4);
+
+            filter.WithStates(state1);
+            filter.States.Should().NotBeNull().And.HaveCount(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowFilterHasValues()
+        {
+            var filter = new TraktShowFilter();
 
             filter.HasValues.Should().BeFalse();
 
@@ -150,8 +288,8 @@
 
             filter.WithRuntimes(30, 180);
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(30);
-            filter.Runtimes.End.Should().Be(180);
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -159,8 +297,8 @@
 
             filter.WithRatings(60, 90);
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(60);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -168,6 +306,23 @@
 
             filter.WithCertifications("cert1", "cert2");
             filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+            filter.HasValues.Should().BeTrue();
+
+            filter.Clear();
+            filter.HasValues.Should().BeFalse();
+
+            filter.WithNetworks("network1", "network2");
+            filter.Networks.Should().NotBeNull().And.HaveCount(2);
+            filter.HasValues.Should().BeTrue();
+
+            filter.Clear();
+            filter.HasValues.Should().BeFalse();
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+
+            filter.WithStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -175,9 +330,9 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterClear()
+        public void TestTraktShowFilterClear()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.WithQuery("query");
             filter.Query.Should().Be("query");
@@ -196,16 +351,25 @@
 
             filter.WithRuntimes(30, 180);
             filter.Runtimes.Should().NotBeNull();
-            filter.Runtimes.Begin.Should().Be(30);
-            filter.Runtimes.End.Should().Be(180);
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
 
             filter.WithRatings(60, 90);
             filter.Ratings.Should().NotBeNull();
-            filter.Ratings.Begin.Should().Be(60);
-            filter.Ratings.End.Should().Be(90);
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
 
             filter.WithCertifications("cert1", "cert2");
             filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+
+            filter.WithNetworks("network1", "network2");
+            filter.Networks.Should().NotBeNull().And.HaveCount(2);
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+
+            filter.WithStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
 
             filter.Clear();
 
@@ -217,13 +381,15 @@
             filter.Runtimes.Should().BeNull();
             filter.Ratings.Should().BeNull();
             filter.Certifications.Should().BeNull();
+            filter.Networks.Should().BeNull();
+            filter.States.Should().BeNull();
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterGetParameters()
+        public void TestTraktShowFilterGetParameters()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.GetParameters().Should().NotBeNull().And.BeEmpty();
 
@@ -287,12 +453,38 @@
                                                                                        { "runtimes", $"{runtimeBegin}-{runtimeEnd}" },
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"},
                                                                                        { "certifications", "cert1,cert2,cert3" } });
+
+            filter.WithNetworks("network1", "network2");
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(9);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
+                                                                                       { "genres", "action,drama,fantasy" },
+                                                                                       { "languages", "de,en,es" },
+                                                                                       { "countries", "gb,us,fr" },
+                                                                                       { "runtimes", $"{runtimeBegin}-{runtimeEnd}" },
+                                                                                       { "ratings", $"{ratingBegin}-{ratingEnd}"},
+                                                                                       { "certifications", "cert1,cert2,cert3" },
+                                                                                       { "networks", "network1,network2" } });
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+
+            filter.WithStates(state1, state2);
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(10);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" },
+                                                                                       { "genres", "action,drama,fantasy" },
+                                                                                       { "languages", "de,en,es" },
+                                                                                       { "countries", "gb,us,fr" },
+                                                                                       { "runtimes", $"{runtimeBegin}-{runtimeEnd}" },
+                                                                                       { "ratings", $"{ratingBegin}-{ratingEnd}"},
+                                                                                       { "certifications", "cert1,cert2,cert3" },
+                                                                                       { "networks", "network1,network2" },
+                                                                                       { "status", $"{state1.AsString()},{state2.AsString()}" } });
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterToString()
+        public void TestTraktShowFilterToString()
         {
-            var filter = new TraktMovieFilter();
+            var filter = new TraktShowFilter();
 
             filter.ToString().Should().NotBeNull().And.BeEmpty();
 
@@ -331,6 +523,22 @@
             filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
                                           $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query" +
                                           $"&certifications=cert1,cert2,cert3");
+
+            filter.WithNetworks("network1", "network2");
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query" +
+                                          $"&certifications=cert1,cert2,cert3" +
+                                          $"&networks=network1,network2");
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+
+            filter.WithStates(state1, state2);
+            filter.ToString().Should().Be($"years={year}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query" +
+                                          $"&certifications=cert1,cert2,cert3" +
+                                          $"&networks=network1,network2" +
+                                          $"&status={state1.AsString()},{state2.AsString()}");
         }
     }
 }

@@ -7,6 +7,7 @@
     using Objects.Get.Shows.Common;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Shows;
     using Requests.WithoutOAuth.Shows;
     using Requests.WithoutOAuth.Shows.Common;
@@ -48,7 +49,7 @@
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -60,7 +61,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedOption)" />.</para>
         /// </summary>
-        /// <param name="ids">An array of <see cref="TraktIdAndExtendedOption" />.</param>
+        /// <param name="showsQueryParams">A list of <see cref="TraktObjectsQueryParams" />.</param>
         /// <param name="extended">
         /// The extended option, which determines how much data about the show should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -68,22 +69,17 @@
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given ids is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktShow>> GetMultipleShowsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktShow>> GetMultipleShowsAsync(TraktMultipleObjectsQueryParams showsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (showsQueryParams == null || showsQueryParams.Count <= 0)
+                return new List<TraktShow>();
 
             var tasks = new List<Task<TraktShow>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in showsQueryParams)
             {
-                var showRequest = ids[i];
-
-                if (showRequest != null)
-                {
-                    Task<TraktShow> task = GetShowAsync(showRequest.Id, showRequest.ExtendedOption);
-                    tasks.Add(task);
-                }
+                Task<TraktShow> task = GetShowAsync(queryParam.Id, queryParam.ExtendedOption);
+                tasks.Add(task);
             }
 
             var shows = await Task.WhenAll(tasks);
@@ -211,7 +207,7 @@
             return await QueryAsync(new TraktShowPeopleRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -264,7 +260,7 @@
             return await QueryAsync(new TraktShowRelatedShowsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -306,7 +302,7 @@
         {
             Validate(id);
 
-            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended ?? new TraktExtendedOption() });
+            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = id, ExtendedOption = extended });
         }
 
         /// <summary>
@@ -386,7 +382,7 @@
         {
             return await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -419,7 +415,7 @@
         {
             return await QueryAsync(new TraktShowsPopularRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -455,7 +451,7 @@
             return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -491,7 +487,7 @@
             return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -527,7 +523,7 @@
             return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -560,7 +556,7 @@
         {
             return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
@@ -595,7 +591,7 @@
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }

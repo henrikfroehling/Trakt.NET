@@ -12,10 +12,10 @@
         public void TestTraktLanguageServiceGetLanguage()
         {
             var language = TraktLanguageService.GetLanguage(null);
-            language.Should().BeNull();
+            language.Should().NotBeNull().And.BeEmpty();
 
             language = TraktLanguageService.GetLanguage(string.Empty);
-            language.Should().BeNull();
+            language.Should().NotBeNull().And.BeEmpty();
 
             language = TraktLanguageService.GetLanguage("definitive not a language code");
             language.Should().NotBeNull().And.BeEmpty();
@@ -25,14 +25,14 @@
         public void TestTraktLanguageServiceGetAvailableTranslationLanguages()
         {
             var languages = TraktLanguageService.GetAvailableTranslationLanguages(null);
-            languages.Should().BeNull();
+            languages.Should().NotBeNull().And.BeEmpty();
 
             languages = TraktLanguageService.GetAvailableTranslationLanguages(new List<string>());
-            languages.Should().BeNull();
+            languages.Should().NotBeNull().And.BeEmpty();
 
             languages = TraktLanguageService.GetAvailableTranslationLanguages(new List<string>()
             {
-                "definitive not a language code 1", "definitive not a language code 2"
+                "definitive not a language code 1", "definitive not a language code"
             });
             languages.Should().NotBeNull().And.BeEmpty();
         }
@@ -41,10 +41,10 @@
         public void TestTraktLanguageServiceGetCountry()
         {
             var country = TraktLanguageService.GetCountry(null);
-            country.Should().BeNull();
+            country.Should().NotBeNull().And.BeEmpty();
 
             country = TraktLanguageService.GetCountry(string.Empty);
-            country.Should().BeNull();
+            country.Should().NotBeNull().And.BeEmpty();
 
             country = TraktLanguageService.GetCountry("definitive not a country code");
             country.Should().NotBeNull().And.BeEmpty();

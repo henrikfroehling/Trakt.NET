@@ -1,21 +1,22 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktApiSharp.Requests.Params
 {
     using System;
     using System.Collections.Generic;
+    using Utils;
 
     public abstract class TraktCommonFilter
     {
         protected TraktCommonFilter() { }
 
         protected TraktCommonFilter(int years, string[] genres = null, string[] languages = null,
-                                    string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null)
+                                    string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
             WithYears(years);
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
-            WithRuntimes(runtimes.Begin, runtimes.End);
-            WithRatings(ratings.Begin, ratings.End);
+            Runtimes = runtimes;
+            Ratings = ratings;
         }
 
         public int Years { get; protected set; }
@@ -34,22 +35,38 @@
 
         public bool HasCountriesSet => Countries != null && Countries.Length > 0;
 
-        public Range<int> Runtimes { get; protected set; }
+        public Range<int>? Runtimes { get; protected set; }
 
-        public bool HasRuntimesSet => Runtimes != null && Runtimes.Begin > 0 && Runtimes.End > 0 && Runtimes.End > Runtimes.Begin;
+        public bool HasRuntimesSet()
+        {
+            if (Runtimes.HasValue)
+            {
+                var runtimes = Runtimes.Value;
+                return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin; ;
+            }
 
-        public Range<int> Ratings { get; protected set; }
+            return false;
+        }
 
-        public bool HasRatingsSet => Ratings != null && Ratings.Begin > 0 && Ratings.End > 0 && Ratings.End > Ratings.Begin && Ratings.End <= 100;
+        public Range<int>? Ratings { get; protected set; }
 
-        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet || HasRatingsSet;
+        public bool HasRatingsSet()
+        {
+            if (Ratings.HasValue)
+            {
+                var ratings = Ratings.Value;
+                return ratings.Begin > 0 && ratings.End > 0 && ratings.End > ratings.Begin && ratings.End <= 100;
+            }
+
+            return false;
+        }
+
+        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
 
         public TraktCommonFilter WithYears(int years)
         {
-            var length = years.ToString().Length;
-
-            if (years < 0 || length > 4 || length < 4)
-                throw new ArgumentException("years not valid", nameof(years));
+            if (years < 0 || years.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(years), "years not valid");
 
             Years = years;
             return this;
@@ -88,7 +105,7 @@
         public TraktCommonFilter WithRuntimes(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin)
-                throw new ArgumentException("runtimes not valid");
+                throw new ArgumentOutOfRangeException("runtimes not valid");
 
             Runtimes = new Range<int>(begin, end);
             return this;
@@ -97,7 +114,7 @@
         public TraktCommonFilter WithRatings(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin || end > 100)
-                throw new ArgumentException("ratings not valid");
+                throw new ArgumentOutOfRangeException("ratings not valid");
 
             Ratings = new Range<int>(begin, end);
             return this;
@@ -129,11 +146,17 @@
             if (HasCountriesSet)
                 parameters.Add("countries", string.Join(",", Countries));
 
-            if (HasRuntimesSet)
-                parameters.Add("runtimes", $"{Runtimes.Begin.ToString()}-{Runtimes.End.ToString()}");
+            if (HasRuntimesSet())
+            {
+                var runtimes = Runtimes.Value;
+                parameters.Add("runtimes", $"{runtimes.Begin.ToString()}-{runtimes.End.ToString()}");
+            }
 
-            if (HasRatingsSet)
-                parameters.Add("ratings", $"{Ratings.Begin.ToString()}-{Ratings.End.ToString()}");
+            if (HasRatingsSet())
+            {
+                var ratings = Ratings.Value;
+                parameters.Add("ratings", $"{ratings.Begin.ToString()}-{ratings.End.ToString()}");
+            }
 
             return parameters;
         }
@@ -181,7 +204,7 @@
             if (!string.IsNullOrEmpty(language))
             {
                 if (language.Length > 2 || language.Length < 2)
-                    throw new ArgumentException("language not valid", nameof(language));
+                    throw new ArgumentOutOfRangeException("language not valid", nameof(language));
 
                 languagesList.Add(language);
             }
@@ -191,7 +214,7 @@
                 for (int i = 0; i < languages.Length; i++)
                 {
                     if (languages[i].Length > 2 || languages[i].Length < 2)
-                        throw new ArgumentException("language not valid", nameof(languages));
+                        throw new ArgumentOutOfRangeException("language not valid", nameof(languages));
                 }
 
                 languagesList.AddRange(languages);
@@ -212,7 +235,7 @@
             if (!string.IsNullOrEmpty(country))
             {
                 if (country.Length > 2 || country.Length < 2)
-                    throw new ArgumentException("country not valid", nameof(country));
+                    throw new ArgumentOutOfRangeException("country not valid", nameof(country));
 
                 countriesList.Add(country);
             }
@@ -222,7 +245,7 @@
                 for (int i = 0; i < countries.Length; i++)
                 {
                     if (countries[i].Length > 2 || countries[i].Length < 2)
-                        throw new ArgumentException("country not valid", nameof(countries));
+                        throw new ArgumentOutOfRangeException("country not valid", nameof(countries));
                 }
 
                 countriesList.AddRange(countries);

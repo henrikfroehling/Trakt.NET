@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Requests.WithoutOAuth.Movies
+﻿namespace TraktApiSharp.Requests.Params
 {
-    using Base;
+    using Utils;
 
     public class TraktMovieFilter : TraktCommonMovieAndShowFilter
     {
         public TraktMovieFilter() : base() { }
 
         public TraktMovieFilter(string query, int years, string[] genres = null, string[] languages = null,
-                                string[] countries = null, Range<int> runtimes = null, Range<int> ratings = null,
+                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                 string[] certifications = null)
             : base(query, years, genres, languages, countries, runtimes, ratings, certifications) { }
 

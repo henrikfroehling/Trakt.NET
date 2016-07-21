@@ -19,6 +19,7 @@
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Syncs;
     using System;
     using System.Collections.Generic;
@@ -53,18 +54,12 @@
 
         public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client)
-            {
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            });
+            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client)
-            {
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            });
+            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
@@ -83,18 +78,12 @@
 
         public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client)
-            {
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            });
+            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedOption extended = null)
         {
-            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client)
-            {
-                ExtendedOption = extended ?? new TraktExtendedOption()
-            });
+            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedOption = extended });
         }
 
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? type = null, string itemId = null,
@@ -135,7 +124,7 @@
             {
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -159,7 +148,7 @@
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -180,7 +169,7 @@
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
-                throw new ArgumentNullException("collection post must not be null", nameof(collectionPost));
+                throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
 
             var movies = collectionPost.Movies;
             var shows = collectionPost.Shows;
@@ -197,7 +186,7 @@
         private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
-                throw new ArgumentNullException("history post must not be null", nameof(historyPost));
+                throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
 
             var movies = historyPost.Movies;
             var shows = historyPost.Shows;
@@ -214,7 +203,7 @@
         private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
         {
             if (ratingsPost == null)
-                throw new ArgumentNullException("ratings post must not be null", nameof(ratingsPost));
+                throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
 
             var movies = ratingsPost.Movies;
             var shows = ratingsPost.Shows;
@@ -231,7 +220,7 @@
         private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
         {
             if (watchlistPost == null)
-                throw new ArgumentNullException("watchlist post must not be null", nameof(watchlistPost));
+                throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
 
             var movies = watchlistPost.Movies;
             var shows = watchlistPost.Shows;

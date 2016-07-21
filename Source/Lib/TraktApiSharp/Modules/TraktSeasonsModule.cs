@@ -7,6 +7,7 @@
     using Objects.Get.Shows.Seasons;
     using Objects.Get.Users;
     using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.Shows.Seasons;
     using System;
     using System.Collections.Generic;
@@ -24,7 +25,7 @@
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showId,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -37,28 +38,23 @@
             {
                 Id = showId,
                 Season = season,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
-        public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktSeasonIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (seasonsQueryParams == null || seasonsQueryParams.Count <= 0)
+                return new List<List<TraktEpisode>>();
 
             var tasks = new List<Task<IEnumerable<TraktEpisode>>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in seasonsQueryParams)
             {
-                var seasonsRequest = ids[i];
+                Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
+                                                                      queryParam.ExtendedOption);
 
-                if (seasonsRequest != null)
-                {
-                    Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(seasonsRequest.ShowId, seasonsRequest.Season,
-                                                                          seasonsRequest.ExtendedOption);
-
-                    tasks.Add(task);
-                }
+                tasks.Add(task);
             }
 
             var seasons = await Task.WhenAll(tasks);
@@ -111,7 +107,7 @@
             {
                 Id = showId,
                 Season = season,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -121,7 +117,7 @@
                 throw new ArgumentException("show id not valid", nameof(showId));
 
             if (season < 0)
-                throw new ArgumentException("season nr not valid", nameof(season));
+                throw new ArgumentOutOfRangeException(nameof(season), "season nr not valid");
         }
     }
 }

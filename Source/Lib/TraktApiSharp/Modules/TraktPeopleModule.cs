@@ -3,7 +3,7 @@
     using Extensions;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
-    using Requests;
+    using Requests.Params;
     using Requests.WithoutOAuth.People;
     using System;
     using System.Collections.Generic;
@@ -21,26 +21,21 @@
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
-        public async Task<IEnumerable<TraktPerson>> GetMultiplePersonsAsync(TraktIdAndExtendedOption[] ids)
+        public async Task<IEnumerable<TraktPerson>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (personsQueryParams == null || personsQueryParams.Count <= 0)
+                return new List<TraktPerson>();
 
             var tasks = new List<Task<TraktPerson>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in personsQueryParams)
             {
-                var personRequest = ids[i];
-
-                if (personRequest != null)
-                {
-                    Task<TraktPerson> task = GetPersonAsync(personRequest.Id, personRequest.ExtendedOption);
-                    tasks.Add(task);
-                }
+                Task<TraktPerson> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedOption);
+                tasks.Add(task);
             }
 
             var people = await Task.WhenAll(tasks);
@@ -54,7 +49,7 @@
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -65,7 +60,7 @@
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = id,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 

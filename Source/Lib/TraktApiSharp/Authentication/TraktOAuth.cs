@@ -635,10 +635,10 @@
         private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri)
         {
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+                throw new ArgumentException("client id not valid", nameof(clientId));
 
             if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
-                throw new ArgumentException("redirect uri not valid", "redirectUri");
+                throw new ArgumentException("redirect uri not valid", nameof(redirectUri));
         }
 
         private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri, string state)
@@ -646,21 +646,21 @@
             ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
             if (string.IsNullOrEmpty(state) || state.ContainsSpace())
-                throw new ArgumentException("state not valid", "state");
+                throw new ArgumentException("state not valid", nameof(state));
         }
 
         private void ValidateAccessTokenInput(string code, string clientId, string clientSecret, string redirectUri, string grantType)
         {
             if (string.IsNullOrEmpty(code) || code.ContainsSpace())
-                throw new ArgumentException("code not valid", "code");
+                throw new ArgumentException("code not valid", nameof(code));
 
             ValidateAuthorizationUrlParameters(clientId, redirectUri);
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
-                throw new ArgumentException("client secret not valid", "clientSecret");
+                throw new ArgumentException("client secret not valid", nameof(clientSecret));
 
             if (string.IsNullOrEmpty(grantType))
-                throw new ArgumentException("grant type not valid", "grantType");
+                throw new ArgumentException("grant type not valid", nameof(grantType));
         }
 
         private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)

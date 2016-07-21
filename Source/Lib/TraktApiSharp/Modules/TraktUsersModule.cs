@@ -16,6 +16,7 @@
     using Objects.Post.Users.CustomListItems.Responses;
     using Objects.Post.Users.Responses;
     using Requests;
+    using Requests.Params;
     using Requests.WithOAuth.Users;
     using Requests.WithoutOAuth.Users;
     using System;
@@ -49,7 +50,7 @@
             {
                 Section = section,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -82,7 +83,7 @@
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -93,7 +94,7 @@
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -110,7 +111,7 @@
                 Username = username,
                 CommentType = commentType,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption(),
+                ExtendedOption = extended,
                 PaginationOptions = new TraktPaginationOptions(page, limit)
             });
         }
@@ -119,10 +120,7 @@
         {
             ValidateUsername(username);
 
-            return await QueryAsync(new TraktUserCustomListsRequest(Client)
-            {
-                Username = username
-            });
+            return await QueryAsync(new TraktUserCustomListsRequest(Client) { Username = username });
         }
 
         public async Task<TraktList> GetCustomSingleListAsync(string username, string listId)
@@ -137,22 +135,17 @@
             });
         }
 
-        public async Task<IEnumerable<TraktList>> GetMultipleCustomListsAsync(TraktUsersListId[] ids)
+        public async Task<IEnumerable<TraktList>> GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (userListsQueryParams == null || userListsQueryParams.Count <= 0)
+                return new List<TraktList>();
 
             var tasks = new List<Task<TraktList>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            foreach (var queryParam in userListsQueryParams)
             {
-                var listRequest = ids[i];
-
-                if (listRequest != null)
-                {
-                    Task<TraktList> task = GetCustomSingleListAsync(listRequest.Username, listRequest.ListId);
-                    tasks.Add(task);
-                }
+                Task<TraktList> task = GetCustomSingleListAsync(queryParam.Username, queryParam.ListId);
+                tasks.Add(task);
             }
 
             var lists = await Task.WhenAll(tasks);
@@ -171,7 +164,7 @@
                 Username = username,
                 Id = listId,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -402,7 +395,7 @@
                 Username = username,
                 Type = type,
                 Rating = rating,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -415,7 +408,7 @@
             {
                 Username = username,
                 Type = type,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -426,7 +419,7 @@
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -437,7 +430,7 @@
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -448,7 +441,7 @@
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = username,
-                ExtendedOption = extended ?? new TraktExtendedOption()
+                ExtendedOption = extended
             });
         }
 
@@ -474,7 +467,7 @@
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
         {
             if (customListItemsPost == null)
-                throw new ArgumentNullException("list items post must not be null", nameof(customListItemsPost));
+                throw new ArgumentNullException(nameof(customListItemsPost), "list items post must not be null");
 
             var movies = customListItemsPost.Movies;
             var shows = customListItemsPost.Shows;

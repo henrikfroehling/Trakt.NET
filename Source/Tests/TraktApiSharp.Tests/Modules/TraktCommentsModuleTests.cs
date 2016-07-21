@@ -569,7 +569,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
@@ -580,13 +580,23 @@
             movie.Year = 0;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 123;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            movie.Year = 12345;
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
@@ -610,7 +620,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -996,7 +1006,7 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             show.Title = string.Empty;
 
@@ -1007,7 +1017,7 @@
             show.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             show.Ids = new TraktShowIds();
 
@@ -1033,7 +1043,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -1395,12 +1405,12 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             season.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             season.Ids = new TraktSeasonIds();
 
@@ -1423,7 +1433,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -1797,12 +1807,12 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
@@ -1827,7 +1837,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -2183,12 +2193,12 @@
             Func<Task<TraktCommentPostResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, comment);
 
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             list.Ids = null;
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             list.Ids = new TraktListIds();
 
@@ -2210,7 +2220,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -2429,7 +2439,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -2648,7 +2658,7 @@
             comment = "one two three four";
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
