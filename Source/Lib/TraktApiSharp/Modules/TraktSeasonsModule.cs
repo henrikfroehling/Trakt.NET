@@ -25,7 +25,7 @@
         internal TraktSeasonsModule(TraktClient client) : base(client) { }
 
         /// <summary>
-        /// Gets the <see cref="TraktSeason" />s for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets the <see cref="TraktSeason" />s in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/summary/get-all-seasons-for-a-show">"Trakt API Doc - Seasons: Summary"</a> for more information.
@@ -51,7 +51,7 @@
         }
 
         /// <summary>
-        /// Gets all <see cref="TraktEpisode" />s in a single season for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets all <see cref="TraktEpisode" />s in a single season in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/season/get-single-season-for-a-show">"Trakt API Doc - Seasons: Season"</a> for more information.
@@ -82,7 +82,7 @@
         }
 
         /// <summary>
-        /// Gets multiple seasons at once for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets multiple seasons at once in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/season/get-single-season-for-a-show">"Trakt API Doc - Seasons: Season"</a> for more information.
@@ -114,7 +114,7 @@
         }
 
         /// <summary>
-        /// Gets comments for a <see cref="TraktSeason" /> for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets comments for a <see cref="TraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/comments/get-all-season-comments">"Trakt API Doc - Seasons: Comments"</a> for more information.
@@ -126,7 +126,7 @@
         /// <param name="page">The page of the comments list, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried show comments and which also
+        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried season comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
@@ -151,7 +151,7 @@
         }
 
         /// <summary>
-        /// Gets the ratings for a <see cref="TraktSeason" /> for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets the ratings for a <see cref="TraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/ratings/get-season-ratings">"Trakt API Doc - Seasons: Ratings"</a> for more information.
@@ -175,7 +175,7 @@
         }
 
         /// <summary>
-        /// Gets the statistics for a <see cref="TraktSeason" /> for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets the statistics for a <see cref="TraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/stats/get-season-stats">"Trakt API Doc - Seasons: Stats"</a> for more information.
@@ -199,7 +199,7 @@
         }
 
         /// <summary>
-        /// Gets all watching users of a <see cref="TraktSeason" /> for a show with the given Trakt-Show-Id or -Slug.
+        /// Gets all watching users of a <see cref="TraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/watching/get-users-watching-right-now">"Trakt API Doc - Seasons: Watching"</a> for more information.
