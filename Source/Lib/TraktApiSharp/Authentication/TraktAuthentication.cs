@@ -278,7 +278,7 @@
                 throw new TraktAuthorizationException("not authorized");
 
             if (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace())
-                throw new ArgumentException("refresh token not valid", "refreshToken");
+                throw new ArgumentException("refresh token not valid", nameof(refreshToken));
 
             var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
 
@@ -422,10 +422,10 @@
                 throw new TraktAuthorizationException("not authorized");
 
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
-                throw new ArgumentException("access token not valid", "accessToken");
+                throw new ArgumentException("access token not valid", nameof(accessToken));
 
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+                throw new ArgumentException("client id not valid", nameof(clientId));
 
             var postContent = $"{{ \"access_token\": \"{accessToken}\" }}";
 
@@ -483,16 +483,16 @@
         private void ValidateRefreshTokenInput(string clientId, string clientSecret, string redirectUri, string grantType)
         {
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", "clientId");
+                throw new ArgumentException("client id not valid", nameof(clientId));
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
-                throw new ArgumentException("client secret not valid", "clientSecret");
+                throw new ArgumentException("client secret not valid", nameof(clientSecret));
 
             if (string.IsNullOrEmpty(redirectUri) || redirectUri.ContainsSpace())
-                throw new ArgumentException("redirect uri not valid", "redirectUri");
+                throw new ArgumentException("redirect uri not valid", nameof(redirectUri));
 
             if (string.IsNullOrEmpty(grantType))
-                throw new ArgumentException("grant type not valid", "grantType");
+                throw new ArgumentException("grant type not valid", nameof(grantType));
         }
 
         private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)

@@ -10,7 +10,7 @@
         public static string FirstToUpper(this string value)
         {
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentException("value not valid");
+                throw new ArgumentException("value not valid", nameof(value));
 
             var trimmedValue = value.Trim();
 
