@@ -1126,17 +1126,6 @@
                 }
             };
 
-            var movie2 = new TraktMovie
-            {
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 2,
-                    Slug = "movie2",
-                    Imdb = "imdb2",
-                    Tmdb = 12345
-                }
-            };
-
             var person1 = new TraktPerson
             {
                 Name = "Person 1 Name",
@@ -1147,19 +1136,6 @@
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     TvRage = 123456
-                }
-            };
-
-            var person2 = new TraktPerson
-            {
-                Name = "Person 2 Name",
-                Ids = new TraktPersonIds
-                {
-                    Trakt = 2,
-                    Slug = "person2",
-                    Imdb = "imdb2",
-                    Tmdb = 12345,
-                    TvRage = 1234567
                 }
             };
 
@@ -1205,9 +1181,7 @@
             var builder = TraktUserCustomListItemsPost.Builder();
 
             var listItemsPost = builder.AddMovie(movie1)
-                                    .AddMovie(movie2)
                                     .AddPerson(person1)
-                                    .AddPerson(person2)
                                     .AddShow(show1)
                                     .AddShow(show2, 1, 2, 3)
                                     .AddShow(show3, new PostSeasons { { 1, new PostEpisodes { 1, 2 } },
@@ -1215,9 +1189,9 @@
                                     .Build();
 
             listItemsPost.Should().NotBeNull();
-            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
             listItemsPost.Shows.Should().NotBeNull().And.HaveCount(3);
-            listItemsPost.People.Should().NotBeNull().And.HaveCount(2);
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(1);
         }
     }
 }

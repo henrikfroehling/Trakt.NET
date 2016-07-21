@@ -1200,17 +1200,6 @@
                 }
             };
 
-            var movie2 = new TraktMovie
-            {
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 2,
-                    Slug = "movie2",
-                    Imdb = "imdb2",
-                    Tmdb = 12345
-                }
-            };
-
             var episode1 = new TraktEpisode
             {
                 Ids = new TraktEpisodeIds
@@ -1221,19 +1210,6 @@
                     Tmdb = 1234,
                     Tvdb = 12345,
                     TvRage = 123456
-                }
-            };
-
-            var episode2 = new TraktEpisode
-            {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 2,
-                    Slug = "episode2",
-                    Imdb = "imdb2",
-                    Tmdb = 12345,
-                    Tvdb = 123456,
-                    TvRage = 1234567
                 }
             };
 
@@ -1279,9 +1255,7 @@
             var builder = TraktSyncWatchlistPost.Builder();
 
             var watchlistPost = builder.AddMovie(movie1)
-                                    .AddMovie(movie2)
                                     .AddEpisode(episode1)
-                                    .AddEpisode(episode2)
                                     .AddShow(show1)
                                     .AddShow(show2, 1, 2, 3)
                                     .AddShow(show3, new PostSeasons {
@@ -1292,9 +1266,9 @@
                                     .Build();
 
             watchlistPost.Should().NotBeNull();
-            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(1);
             watchlistPost.Shows.Should().NotBeNull().And.HaveCount(3);
-            watchlistPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            watchlistPost.Episodes.Should().NotBeNull().And.HaveCount(1);
         }
     }
 }

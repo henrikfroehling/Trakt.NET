@@ -5079,6 +5079,19 @@
                 }
             };
 
+            var movie4 = new TraktMovie
+            {
+                Title = "movie4",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 4,
+                    Slug = "movie4",
+                    Imdb = "imdb4",
+                    Tmdb = 1234567
+                }
+            };
+
             var episode1 = new TraktEpisode
             {
                 Ids = new TraktEpisodeIds
@@ -5115,6 +5128,19 @@
                     Tmdb = 123456,
                     Tvdb = 1234567,
                     TvRage = 12345678
+                }
+            };
+
+            var episode4 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 4,
+                    Slug = "episode4",
+                    Imdb = "imdb4",
+                    Tmdb = 1234567,
+                    Tvdb = 12345678,
+                    TvRage = 123456789
                 }
             };
 
@@ -5161,6 +5187,123 @@
                 }
             };
 
+            var show4 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 4,
+                    Slug = "show4",
+                    Imdb = "imdb4",
+                    Tmdb = 1234567,
+                    Tvdb = 12345678,
+                    TvRage = 123456789
+                }
+            };
+
+            var show5 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 5,
+                    Slug = "show5",
+                    Imdb = "imdb5",
+                    Tmdb = 2234567,
+                    Tvdb = 22345678,
+                    TvRage = 223456789
+                }
+            };
+
+            var show6 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 6,
+                    Slug = "show6",
+                    Imdb = "imdb6",
+                    Tmdb = 2334567,
+                    Tvdb = 23345678,
+                    TvRage = 233456789
+                }
+            };
+
+            var show7 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 7,
+                    Slug = "show7",
+                    Imdb = "imdb7",
+                    Tmdb = 2344567,
+                    Tvdb = 23445678,
+                    TvRage = 234456789
+                }
+            };
+
+            var show8 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 8,
+                    Slug = "show8",
+                    Imdb = "imdb8",
+                    Tmdb = 2345567,
+                    Tvdb = 22455678,
+                    TvRage = 224556789
+                }
+            };
+
+            var show9 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 9,
+                    Slug = "show9",
+                    Imdb = "imdb9",
+                    Tmdb = 2345667,
+                    Tvdb = 22456678,
+                    TvRage = 224566789
+                }
+            };
+
+            var show10 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 10,
+                    Slug = "show10",
+                    Imdb = "imdb10",
+                    Tmdb = 2345677,
+                    Tvdb = 22456778,
+                    TvRage = 224567789
+                }
+            };
+
+            var show11 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 11,
+                    Slug = "show11",
+                    Imdb = "imdb11",
+                    Tmdb = 2345678,
+                    Tvdb = 22456788,
+                    TvRage = 224567889
+                }
+            };
+
+            var show12 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 12,
+                    Slug = "show12",
+                    Imdb = "imdb12",
+                    Tmdb = 3345678,
+                    Tvdb = 22456789,
+                    TvRage = 224567899
+                }
+            };
+
             var metadata = new TraktMetadata
             {
                 Audio = TraktMediaAudio.AAC,
@@ -5176,13 +5319,39 @@
 
             var collectionPost = builder.AddMovie(movie1)
                                     .AddMovie(movie2, metadata)
-                                    .AddMovie(movie3, metadata, collectedAt)
+                                    .AddMovie(movie3, collectedAt)
+                                    .AddMovie(movie4, metadata, collectedAt)
                                     .AddEpisode(episode1)
-                                    .AddEpisode(episode2, collectedAt)
-                                    .AddEpisode(episode3, metadata, collectedAt)
+                                    .AddEpisode(episode2, metadata)
+                                    .AddEpisode(episode3, collectedAt)
+                                    .AddEpisode(episode4, metadata, collectedAt)
                                     .AddShow(show1)
-                                    .AddShow(show2, 1, 2)
-                                    .AddShow(show3, metadata, collectedAt, new PostSeasons
+                                    .AddShow(show2, metadata)
+                                    .AddShow(show3, collectedAt)
+                                    .AddShow(show4, metadata, collectedAt)
+                                    .AddShow(show5, 1, 2, 3)
+                                    .AddShow(show6, metadata, 1, 2, 3)
+                                    .AddShow(show7, collectedAt, 1, 2, 3)
+                                    .AddShow(show8, metadata, collectedAt, 1, 2, 3)
+                                    .AddShow(show9, new PostSeasons
+                                    {
+                                        { 1, new PostEpisodes { 1, 2, 3 } },
+                                        { 2, new PostEpisodes { 1, 2 } },
+                                        3, 4, 5
+                                    })
+                                    .AddShow(show10, metadata, new PostSeasons
+                                    {
+                                        { 1, new PostEpisodes { 1, 2, 3 } },
+                                        { 2, new PostEpisodes { 1, 2 } },
+                                        3, 4, 5
+                                    })
+                                    .AddShow(show11, collectedAt, new PostSeasons
+                                    {
+                                        { 1, new PostEpisodes { 1, 2, 3 } },
+                                        { 2, new PostEpisodes { 1, 2 } },
+                                        3, 4, 5
+                                    })
+                                    .AddShow(show12, metadata, collectedAt, new PostSeasons
                                     {
                                         { 1, new PostEpisodes { 1, 2, 3 } },
                                         { 2, new PostEpisodes { 1, 2 } },
@@ -5191,9 +5360,9 @@
                                     .Build();
 
             collectionPost.Should().NotBeNull();
-            collectionPost.Movies.Should().NotBeNull().And.HaveCount(3);
-            collectionPost.Shows.Should().NotBeNull().And.HaveCount(3);
-            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(3);
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(4);
+            collectionPost.Shows.Should().NotBeNull().And.HaveCount(12);
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(4);
         }
     }
 }

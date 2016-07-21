@@ -2069,38 +2069,6 @@
             show1Season2Episodes[2].Number.Should().Be(6);
             show1Season2Episodes[2].WatchedAt.Should().NotHaveValue();
 
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(3);
-            show1Seasons[0].WatchedAt.Should().NotHaveValue();
-
-            show1Seasons[1].Number.Should().Be(2);
-            show1Seasons[1].Episodes.Should().NotBeNull().And.HaveCount(3);
-            show1Seasons[1].WatchedAt.Should().NotHaveValue();
-
-            show2Season1Episodes = show1Seasons[0].Episodes.ToArray();
-
-            show2Season1Episodes[0].Number.Should().Be(1);
-            show2Season1Episodes[0].WatchedAt.Should().HaveValue();
-
-            show2Season1Episodes[1].Number.Should().Be(2);
-            show2Season1Episodes[1].WatchedAt.Should().NotHaveValue();
-
-            show2Season1Episodes[2].Number.Should().Be(3);
-            show2Season1Episodes[2].WatchedAt.Should().HaveValue();
-
-            show2Season2Episodes = show1Seasons[1].Episodes.ToArray();
-
-            show2Season2Episodes[0].Number.Should().Be(4);
-            show2Season2Episodes[0].WatchedAt.Should().NotHaveValue();
-
-            show2Season2Episodes[1].Number.Should().Be(5);
-            show2Season2Episodes[1].WatchedAt.Should().HaveValue();
-
-            show2Season2Episodes[2].Number.Should().Be(6);
-            show2Season2Episodes[2].WatchedAt.Should().NotHaveValue();
-
             // ---------------------------------------------------------
 
             builder = TraktSyncHistoryPost.Builder();
@@ -2864,38 +2832,6 @@
             show1Season2Episodes[2].Number.Should().Be(6);
             show1Season2Episodes[2].WatchedAt.Should().NotHaveValue();
 
-            show1Seasons = shows[0].Seasons.ToArray();
-
-            show1Seasons[0].Number.Should().Be(1);
-            show1Seasons[0].Episodes.Should().NotBeNull().And.HaveCount(3);
-            show1Seasons[0].WatchedAt.Should().NotHaveValue();
-
-            show1Seasons[1].Number.Should().Be(2);
-            show1Seasons[1].Episodes.Should().NotBeNull().And.HaveCount(3);
-            show1Seasons[1].WatchedAt.Should().NotHaveValue();
-
-            show2Season1Episodes = show1Seasons[0].Episodes.ToArray();
-
-            show2Season1Episodes[0].Number.Should().Be(1);
-            show2Season1Episodes[0].WatchedAt.Should().HaveValue();
-
-            show2Season1Episodes[1].Number.Should().Be(2);
-            show2Season1Episodes[1].WatchedAt.Should().NotHaveValue();
-
-            show2Season1Episodes[2].Number.Should().Be(3);
-            show2Season1Episodes[2].WatchedAt.Should().HaveValue();
-
-            show2Season2Episodes = show1Seasons[1].Episodes.ToArray();
-
-            show2Season2Episodes[0].Number.Should().Be(4);
-            show2Season2Episodes[0].WatchedAt.Should().NotHaveValue();
-
-            show2Season2Episodes[1].Number.Should().Be(5);
-            show2Season2Episodes[1].WatchedAt.Should().HaveValue();
-
-            show2Season2Episodes[2].Number.Should().Be(6);
-            show2Season2Episodes[2].WatchedAt.Should().NotHaveValue();
-
             // ---------------------------------------------------------
 
             builder = TraktSyncHistoryPost.Builder();
@@ -3155,6 +3091,45 @@
                 }
             };
 
+            var show4 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 4,
+                    Slug = "show4",
+                    Imdb = "imdb4",
+                    Tmdb = 1234567,
+                    Tvdb = 12345678,
+                    TvRage = 123456789
+                }
+            };
+
+            var show5 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 5,
+                    Slug = "show5",
+                    Imdb = "imdb5",
+                    Tmdb = 2234567,
+                    Tvdb = 22345678,
+                    TvRage = 223456789
+                }
+            };
+
+            var show6 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 6,
+                    Slug = "show6",
+                    Imdb = "imdb6",
+                    Tmdb = 2334567,
+                    Tvdb = 23345678,
+                    TvRage = 233456789
+                }
+            };
+
             var watchedAt = DateTime.UtcNow;
 
             var builder = TraktSyncHistoryPost.Builder();
@@ -3164,14 +3139,18 @@
                                     .AddEpisode(episode1)
                                     .AddEpisode(episode2, watchedAt)
                                     .AddShow(show1)
-                                    .AddShow(show2, 1, 2)
-                                    .AddShow(show3, watchedAt, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                    .AddShow(show2, watchedAt)
+                                    .AddShow(show3, 1, 2, 3)
+                                    .AddShow(show4, watchedAt, 1, 2, 3)
+                                    .AddShow(show5, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                                                             { 2, new PostHistoryEpisodes { 2} } })
+                                    .AddShow(show6, watchedAt, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
                                                                                         { 2, new PostHistoryEpisodes { 2} } })
                                     .Build();
 
             historyPost.Should().NotBeNull();
             historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
-            historyPost.Shows.Should().NotBeNull().And.HaveCount(3);
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(6);
             historyPost.Episodes.Should().NotBeNull().And.HaveCount(2);
         }
     }
