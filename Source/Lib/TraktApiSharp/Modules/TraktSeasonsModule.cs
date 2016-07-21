@@ -82,7 +82,7 @@
         }
 
         /// <summary>
-        /// Gets multiple seasons at once in a show with the given Trakt-Show-Id or -Slug.
+        /// Gets multiple different seasons at once in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/season/get-single-season-for-a-show">"Trakt API Doc - Seasons: Season"</a> for more information.

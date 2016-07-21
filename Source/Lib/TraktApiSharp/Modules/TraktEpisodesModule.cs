@@ -57,7 +57,7 @@
         }
 
         /// <summary>
-        /// Gets multiple <see cref="TraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
+        /// Gets multiple different <see cref="TraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.

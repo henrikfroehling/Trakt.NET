@@ -54,7 +54,7 @@
         }
 
         /// <summary>
-        /// Gets multiple <see cref="TraktShow" />s at once with the given Trakt-Ids or -Slugs.
+        /// Gets multiple different <see cref="TraktShow" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.

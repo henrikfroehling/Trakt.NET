@@ -53,7 +53,7 @@
         }
 
         /// <summary>
-        /// Gets multiple <see cref="TraktMovie" />s at once with the given Trakt-Ids or -Slugs.
+        /// Gets multiple different <see cref="TraktMovie" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization NOT required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
