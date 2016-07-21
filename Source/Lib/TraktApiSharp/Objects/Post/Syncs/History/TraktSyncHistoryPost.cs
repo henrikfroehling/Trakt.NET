@@ -80,6 +80,10 @@
         public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, PostHistorySeasons seasons)
         {
             ValidateShow(show);
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(seasons);

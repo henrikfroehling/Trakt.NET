@@ -2926,6 +2926,9 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentException>();
 
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, default(PostHistorySeasons));
+            act.ShouldThrow<ArgumentNullException>();
+
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { -1 });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -2968,6 +2971,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, watchedAt, new PostHistorySeasons { 1 });
             act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, default(PostHistorySeasons));
+            act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, new PostHistorySeasons { -1 });
             act.ShouldThrow<ArgumentOutOfRangeException>();
