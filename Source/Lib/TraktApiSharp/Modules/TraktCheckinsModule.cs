@@ -11,10 +11,38 @@
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Provides access to data retrieving methods specific to checkins.
+    /// <para>
+    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/checkin">"Trakt API Doc - Checkin"</a> section.
+    /// </para>
+    /// </summary>
     public class TraktCheckinsModule : TraktBaseModule
     {
         internal TraktCheckinsModule(TraktClient client) : base(client) { }
 
+        /// <summary>
+        /// Checks into the given <see cref="TraktMovie" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The <see cref="TraktMovie" />, which will be checked in.</param>
+        /// <param name="appVersion">Optional application version for the checkin.</param>
+        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
+        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
+        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
+        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
+        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <returns>A <see cref="TraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given movie's title is null or empty.
+        /// Thrown, if the given movie has no valid ids set.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
         public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                              string message = null, TraktSharing sharing = null,
                                                                              string foursquareVenueID = null, string foursquareVenueName = null)
@@ -47,6 +75,24 @@
             });
         }
 
+        /// <summary>
+        /// Checks into the given <see cref="TraktEpisode" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be checked in.</param>
+        /// <param name="appVersion">Optional application version for the checkin.</param>
+        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
+        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
+        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
+        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
+        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <returns>A <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                  string message = null, TraktSharing sharing = null,
                                                                                  string foursquareVenueID = null, string foursquareVenueName = null)
@@ -80,6 +126,26 @@
             });
         }
 
+        /// <summary>
+        /// Checks into the given <see cref="TraktEpisode" />. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be checked in.</param>
+        /// <param name="show">The <see cref="TraktShow" />, which will be used to check into the given episode.</param>
+        /// <param name="appVersion">Optional application version for the checkin.</param>
+        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
+        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
+        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
+        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
+        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <returns>A <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
                                                                                          string appVersion = null, DateTime? appBuildDate = null,
                                                                                          string message = null, TraktSharing sharing = null,
@@ -114,6 +180,14 @@
             });
         }
 
+        /// <summary>
+        /// Deletes any active checkins.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/checkin/delete-any-active-checkins">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task DeleteAnyActiveCheckinsAsync()
         {
             await QueryAsync(new TraktCheckinsDeleteRequest(Client));
