@@ -30,6 +30,21 @@
             TraktSearchResultType.Person.AsString().Should().Be("person");
             TraktSearchResultType.List.AsString().Should().Be("list");
             TraktSearchResultType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+
+            var searchResultType = TraktSearchResultType.Movie;
+            searchResultType.AsString().Should().Be("movie");
+
+            searchResultType |= TraktSearchResultType.Show;
+            searchResultType.AsString().Should().Be("movie,show");
+
+            searchResultType |= TraktSearchResultType.Episode;
+            searchResultType.AsString().Should().Be("movie,show,episode");
+
+            searchResultType |= TraktSearchResultType.Person;
+            searchResultType.AsString().Should().Be("movie,show,episode,person");
+
+            searchResultType |= TraktSearchResultType.List;
+            searchResultType.AsString().Should().Be("movie,show,episode,person,list");
         }
 
         [TestMethod]
