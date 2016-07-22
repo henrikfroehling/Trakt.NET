@@ -10,70 +10,244 @@
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Provides access to data retrieving methods specific to scrobbles.
+    /// <para>
+    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/scrobble">"Trakt API Doc - Scrobble"</a> section.
+    /// </para>
+    /// </summary>
     public class TraktScrobbleModule : TraktBaseModule
     {
         internal TraktScrobbleModule(TraktClient client) : base(client) { }
 
+        /// <summary>
+        /// Starts watching a <see cref="TraktMovie" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The <see cref="TraktMovie" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
-                                                                          string appVersion = null, DateTime? appDate = null)
+                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
+            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Pauses watching a <see cref="TraktMovie" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The <see cref="TraktMovie" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync(TraktMovie movie, float progress,
-                                                                          string appVersion = null, DateTime? appDate = null)
+                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
+            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Stops watching a <see cref="TraktMovie" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The <see cref="TraktMovie" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
-                                                                         string appVersion = null, DateTime? appDate = null)
+                                                                         string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appDate);
+            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Starts watching a <see cref="TraktEpisode" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null or if the given episode's ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress,
-                                                                             string appVersion = null, DateTime? appDate = null)
+                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Pauses watching a <see cref="TraktEpisode" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null or if the given episode's ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress,
-                                                                              string appVersion = null, DateTime? appDate = null)
+                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Stops watching a <see cref="TraktEpisode" /> in a media center.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null or if the given episode's ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress,
-                                                                             string appVersion = null, DateTime? appDate = null)
+                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Starts watching a <see cref="TraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="TraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                      string appVersion = null, DateTime? appDate = null)
+                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Pauses watching a <see cref="TraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="TraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                      string appVersion = null, DateTime? appDate = null)
+                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
+        /// <summary>
+        /// Stops watching a <see cref="TraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="TraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                     string appVersion = null, DateTime? appDate = null)
+                                                                                     string appVersion = null, DateTime? appBuildDate = null)
         {
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appDate);
+            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
             return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
