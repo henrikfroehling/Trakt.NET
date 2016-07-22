@@ -31,7 +31,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams)" />.</para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, which should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, which should be queried.</param>
         /// <param name="extendedOption">
@@ -94,7 +94,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the comments should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
@@ -133,7 +133,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
         /// <returns>A <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showId.</returns>
@@ -159,7 +159,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the statistics should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the statistics should be queried.</param>
         /// <returns>A <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showId.</returns>
@@ -185,7 +185,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the watching users should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the watching users should be queried.</param>
         /// <param name="extendedOption">

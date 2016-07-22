@@ -285,7 +285,7 @@
         /// A <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried related movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="Objects.Get.Shows.TraktShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
