@@ -9,99 +9,210 @@
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Provides access to data retrieving methods specific to search.
+    /// <para>
+    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/search">"Trakt API Doc - Search"</a> section.
+    /// </para>
+    /// </summary>
     public class TraktSearchModule : TraktBaseModule
     {
         internal TraktSearchModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType resultType, string query,
+        /// <summary>
+        /// Searches for movies, shows, episodes, people and / or lists with the given search query.
+        /// <para>OAuth authorization NOT required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="searchResultType">The object type(s), for which will be searched. See also <seealso cref="TraktSearchResultType" />.</param>
+        /// <param name="searchQuery">The query, for which will be searched.</param>
+        /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
+        /// <param name="extendedOption">
+        /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
+        /// See also <seealso cref="TraktExtendedOption" />.
+        /// </param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <returns>
+        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given searchQuery is null, empty or contains spaces.
+        /// Thrown, if the given searchResultType is unspecified.
+        /// </exception>
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, string searchQuery,
                                                                                                  TraktSearchFilter filter = null,
-                                                                                                 TraktExtendedOption extended = null,
-                                                                                                 int? page = null, int? limit = null)
+                                                                                                 TraktExtendedOption extendedOption = null,
+                                                                                                 int? page = null, int? limitPerPage = null)
         {
-            Validate(resultType);
-            Validate(query);
+            Validate(searchResultType);
+            Validate(searchQuery);
 
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
             {
-                ResultType = resultType,
-                Query = query,
+                ResultType = searchResultType,
+                Query = searchQuery,
                 Filter = filter,
-                ExtendedOption = extended,
-                PaginationOptions = new TraktPaginationOptions(page, limit)
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType idType, string lookupId,
-                                                                                                TraktSearchResultType? resultType = null,
-                                                                                                TraktExtendedOption extended = null,
-                                                                                                int? page = null, int? limit = null)
+        /// <summary>
+        /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
+        /// <para>OAuth authorization NOT required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="searchIdType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdType" />.</param>
+        /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
+        /// <param name="searchResultType">The object type(s), which will be looked up. See also <seealso cref="TraktSearchResultType" />.</param>
+        /// <param name="extendedOption">
+        /// The extended option, which determines how much data about the lookup object(s) should be queried.
+        /// See also <seealso cref="TraktExtendedOption" />.
+        /// </param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <returns>
+        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given lookupId is null, empty or contains spaces.
+        /// Thrown, if the given searchIdType is unspecified.
+        /// </exception>
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
+                                                                                                TraktSearchResultType? searchResultType = null,
+                                                                                                TraktExtendedOption extendedOption = null,
+                                                                                                int? page = null, int? limitPerPage = null)
         {
-            Validate(idType, lookupId);
+            Validate(searchIdType, lookupId);
 
             return await QueryAsync(new TraktSearchIdLookupRequest(Client)
             {
-                IdType = idType,
+                IdType = searchIdType,
                 LookupId = lookupId,
-                ResultType = resultType,
-                ExtendedOption = extended,
-                PaginationOptions = new TraktPaginationOptions(page, limit)
+                ResultType = searchResultType,
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
+        /// <summary>
+        /// Searches for movies, shows, episodes, people and / or lists with the given search query.
+        /// <para>OAuth authorization NOT required.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="searchQuery">The query, for which will be searched.</param>
+        /// <param name="searchResultType">The object type, for which will be searched. See also <seealso cref="TraktSearchResultType" />.</param>
+        /// <param name="year">The year, for which will be searched.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <returns>
+        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given searchQuery is null, empty or contains spaces.
+        /// Thrown, if the given searchResultType has an unspecified value.
+        /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string query, TraktSearchResultType? type = null,
-                                                                                                 int? year = null, int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string searchQuery, TraktSearchResultType? searchResultType = null,
+                                                                                                 int? year = null, int? page = null, int? limitPerPage = null)
         {
-            Validate(query);
+            Validate(searchQuery);
 
             return await QueryAsync(new TraktSearchOldTextQueryRequest(Client)
             {
-                Query = query,
-                Type = type,
+                Query = searchQuery,
+                Type = searchResultType,
                 Year = year,
-                PaginationOptions = new TraktPaginationOptions(page, limit)
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
+        /// <summary>
+        /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
+        /// <para>OAuth authorization NOT required.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType?, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="searchIdLookupType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdLookupType" />.</param>
+        /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <returns>
+        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given lookupId is null, empty or contains spaces.
+        /// Thrown, if the given searchIdLookupType is unspecified.
+        /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType type, string lookupId,
-                                                                                                int? page = null, int? limit = null)
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, string lookupId,
+                                                                                                int? page = null, int? limitPerPage = null)
         {
-            Validate(type, lookupId);
+            Validate(searchIdLookupType, lookupId);
 
             return await QueryAsync(new TraktSearchOldIdLookupRequest(Client)
             {
-                Type = type,
+                Type = searchIdLookupType,
                 LookupId = lookupId,
-                PaginationOptions = new TraktPaginationOptions(page, limit)
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
-        private void Validate(string query)
+        private void Validate(string searchQuery)
         {
-            if (string.IsNullOrEmpty(query))
-                throw new ArgumentException("search query not valid", nameof(query));
+            if (string.IsNullOrEmpty(searchQuery))
+                throw new ArgumentException("search query not valid", nameof(searchQuery));
         }
 
-        private void Validate(TraktSearchResultType type)
+        private void Validate(TraktSearchResultType searchResultType)
         {
-            if (type == TraktSearchResultType.Unspecified)
-                throw new ArgumentException("search result type not valid", nameof(type));
+            if (searchResultType == TraktSearchResultType.Unspecified)
+                throw new ArgumentException("search result type not valid", nameof(searchResultType));
         }
 
-        private void Validate(TraktSearchIdType idType, string lookupId)
+        private void Validate(TraktSearchIdType searchIdType, string lookupId)
         {
-            if (idType == TraktSearchIdType.Unspecified)
-                throw new ArgumentException("search id lookup type not valid", nameof(idType));
+            if (searchIdType == TraktSearchIdType.Unspecified)
+                throw new ArgumentException("search id lookup type not valid", nameof(searchIdType));
 
             if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())
                 throw new ArgumentException("search lookup id not valid", nameof(lookupId));
         }
 
-        private void Validate(TraktSearchIdLookupType type, string lookupId)
+        private void Validate(TraktSearchIdLookupType searchIdLookupType, string lookupId)
         {
-            if (type == TraktSearchIdLookupType.Unspecified)
-                throw new ArgumentException("search id lookup type not valid", nameof(type));
+            if (searchIdLookupType == TraktSearchIdLookupType.Unspecified)
+                throw new ArgumentException("search id lookup type not valid", nameof(searchIdLookupType));
 
             if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())
                 throw new ArgumentException("search lookup id not valid", nameof(lookupId));
