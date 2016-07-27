@@ -96,7 +96,7 @@
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the movies should be queried.
+        /// The extended option, which determines how much data about the collected movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionMovie" /> instances.</returns>
@@ -114,7 +114,7 @@
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended option, which determines how much data about the collected shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionShow" /> instances.</returns>
