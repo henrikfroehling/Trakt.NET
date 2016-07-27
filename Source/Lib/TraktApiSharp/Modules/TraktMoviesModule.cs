@@ -27,7 +27,7 @@
 
         /// <summary>
         /// Gets a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
@@ -38,7 +38,7 @@
         /// The extended option, which determines how much data about the movie should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
+        /// <returns>An <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
         public async Task<TraktMovie> GetMovieAsync(string movieId, TraktExtendedOption extendedOption = null)
@@ -54,7 +54,7 @@
 
         /// <summary>
         /// Gets multiple different <see cref="TraktMovie" />s at once with the given Trakt-Ids or -Slugs.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
@@ -83,7 +83,7 @@
 
         /// <summary>
         /// Gets all title aliases for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/aliases/get-all-movie-aliases">"Trakt API Doc - Movies: Aliases"</a> for more information.
         /// </para>
@@ -101,7 +101,7 @@
 
         /// <summary>
         /// Gets all releases for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
         /// </para>
@@ -119,7 +119,7 @@
 
         /// <summary>
         /// Gets a single release for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug and the given country code.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
         /// </para>
@@ -127,7 +127,7 @@
         /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="countryCode">The 2 letter country code, for which a translation should be queried.</param>
         /// <returns>
-        /// A <see cref="TraktMovieTranslation" /> instance, containing a country code, certification, release date and a note
+        /// An <see cref="TraktMovieTranslation" /> instance, containing a country code, certification, release date and a note
         /// for the movie with the given movieId.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -148,7 +148,7 @@
 
         /// <summary>
         /// Gets all translations for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
         /// </para>
@@ -166,7 +166,7 @@
 
         /// <summary>
         /// Gets a single translation for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug and the given language code.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
         /// </para>
@@ -174,7 +174,7 @@
         /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
         /// <returns>
-        /// A <see cref="TraktMovieTranslation" /> instance, containing a translated title, tagline, overview and language code
+        /// An <see cref="TraktMovieTranslation" /> instance, containing a translated title, tagline, overview and language code
         /// for the movie with the given movieId.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -194,8 +194,8 @@
         }
 
         /// <summary>
-        /// Gets comments for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// Gets top level comments for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-comments">"Trakt API Doc - Movies: Comments"</a> for more information.
         /// </para>
@@ -205,7 +205,7 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried movie comments and which also
+        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried movie comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
@@ -229,7 +229,7 @@
 
         /// <summary>
         /// Gets all people for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/people/get-all-people-for-a-movie">"Trakt API Doc - Movies: People"</a> for more information.
         /// </para>
@@ -239,7 +239,7 @@
         /// The extended option, which determines how much data about the people should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieId.</returns>
+        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
         public async Task<TraktCastAndCrew> GetMoviePeopleAsync(string movieId, TraktExtendedOption extendedOption = null)
@@ -251,13 +251,13 @@
 
         /// <summary>
         /// Gets the ratings for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/ratings/get-movie-ratings">"Trakt API Doc - Movies: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>A <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieId.</returns>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
         public async Task<TraktRating> GetMovieRatingsAsync(string movieId)
@@ -269,7 +269,7 @@
 
         /// <summary>
         /// Gets related movies for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/related/get-related-movies">"Trakt API Doc - Movies: Related"</a> for more information.
         /// </para>
@@ -282,7 +282,7 @@
         /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried related movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried related movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="Objects.Get.Shows.TraktShow" />.
@@ -305,13 +305,13 @@
 
         /// <summary>
         /// Gets the statistics for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/stats/get-movie-stats">"Trakt API Doc - Movies: Stats"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>A <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieId.</returns>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
         public async Task<TraktStatistics> GetMovieStatisticsAsync(string movieId)
@@ -323,7 +323,7 @@
 
         /// <summary>
         /// Gets all watching users of a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watching/get-users-watching-right-now">"Trakt API Doc - Movies: Watching"</a> for more information.
         /// </para>
@@ -345,7 +345,7 @@
 
         /// <summary>
         /// Gets trending movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/trending/get-trending-movies">"Trakt API Doc - Movies: Trending"</a> for more information.
         /// </para>
@@ -358,7 +358,7 @@
         /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of trending movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktTrendingMovie" />.
@@ -379,7 +379,7 @@
 
         /// <summary>
         /// Gets popular movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/popular/get-popular-movies">"Trakt API Doc - Movies: Popular"</a> for more information.
         /// </para>
@@ -392,7 +392,7 @@
         /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of popular movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried popular movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried popular movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMovie" />.
@@ -413,7 +413,7 @@
 
         /// <summary>
         /// Gets the most played movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/played/get-the-most-played-movies">"Trakt API Doc - Movies: Played"</a> for more information.
         /// </para>
@@ -427,7 +427,7 @@
         /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most played movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostPlayedMovie" />.
@@ -450,7 +450,7 @@
 
         /// <summary>
         /// Gets the most watched movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-watched-movies">"Trakt API Doc - Movies: Watched"</a> for more information.
         /// </para>
@@ -464,7 +464,7 @@
         /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostWatchedMovie" />.
@@ -487,7 +487,7 @@
 
         /// <summary>
         /// Gets the most collected movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-collected-movies">"Trakt API Doc - Movies: Collected"</a> for more information.
         /// </para>
@@ -501,7 +501,7 @@
         /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostCollectedMovie" />.
@@ -524,7 +524,7 @@
 
         /// <summary>
         /// Gets the most anticipated movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/anticipated/get-the-most-anticipated-movies">"Trakt API Doc - Movies: Anticipated"</a> for more information.
         /// </para>
@@ -537,7 +537,7 @@
         /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most anticipated movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostAnticipatedMovie" />.
@@ -558,7 +558,7 @@
 
         /// <summary>
         /// Gets the top 10 box office movies.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/box-office/get-the-weekend-box-office">"Trakt API Doc - Movies: Box Office"</a> for more information.
         /// </para>
@@ -576,7 +576,7 @@
 
         /// <summary>
         /// Gets updated movies since the given <paramref name="startDate" />.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/updates/get-recently-updated-movies">"Trakt API Doc - Movies: Updates"</a> for more information.
         /// </para>
@@ -589,7 +589,7 @@
         /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
+        /// An <see cref="TraktPaginationListResult{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktRecentlyUpdatedMovie" />.

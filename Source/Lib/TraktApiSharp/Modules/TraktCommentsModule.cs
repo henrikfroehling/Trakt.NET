@@ -29,14 +29,14 @@
 
         /// <summary>
         /// Gets a <see cref="TraktComment" /> or reply with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMutlipleCommentsAsync(string[])" />.</para>
         /// </summary>
         /// <param name="commentId">The comment's Trakt-Id or -Slug.</param>
-        /// <returns>A <see cref="TraktComment" /> instance with the queried comment's data.</returns>
+        /// <returns>An <see cref="TraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
         public async Task<TraktComment> GetCommentAsync(string commentId)
@@ -48,7 +48,7 @@
 
         /// <summary>
         /// Gets multiple different <see cref="TraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
@@ -86,7 +86,7 @@
         /// <param name="comment">The comment's content for the given movie. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given movie's title is null, empty or contains spaces.
@@ -132,7 +132,7 @@
         /// <param name="comment">The comment's content for the given show. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given show's title is null, empty or contains spaces.
@@ -174,7 +174,7 @@
         /// <param name="comment">The comment's content for the given season. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given season has no valid ids. See also <seealso cref="TraktSeasonIds" />.
@@ -211,7 +211,7 @@
         /// <param name="comment">The comment's content for the given episode. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given episode has no valid ids. See also <seealso cref="TraktEpisodeIds" />.
@@ -248,7 +248,7 @@
         /// <param name="comment">The comment's content for the given list. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given list has no valid ids. See also <seealso cref="TraktListIds" />.
@@ -284,7 +284,7 @@
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be updated.</param>
         /// <param name="comment">The new comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given comment id is null, empty or contains spaces.
@@ -317,7 +317,7 @@
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the reply should be posted.</param>
         /// <param name="comment">The comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <returns>A <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given comment id is null, empty or contains spaces.
@@ -402,7 +402,7 @@
         /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried replies and which also
+        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried replies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.

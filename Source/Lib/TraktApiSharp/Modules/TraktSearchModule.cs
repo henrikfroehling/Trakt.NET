@@ -21,7 +21,7 @@
 
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
@@ -36,7 +36,7 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
@@ -67,7 +67,7 @@
 
         /// <summary>
         /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
         /// </para>
@@ -82,7 +82,7 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
@@ -112,7 +112,7 @@
 
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
@@ -124,7 +124,7 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
@@ -152,7 +152,7 @@
 
         /// <summary>
         /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType?, TraktExtendedOption, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
@@ -163,7 +163,7 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.

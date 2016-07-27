@@ -35,7 +35,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>A <see cref="TraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
+        /// <returns>An <see cref="TraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given movie's title is null or empty.
@@ -89,7 +89,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>A <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <returns>An <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
@@ -141,7 +141,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>A <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <returns>An <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>

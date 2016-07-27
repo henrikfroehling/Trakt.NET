@@ -22,7 +22,7 @@
 
         /// <summary>
         /// Gets a <see cref="TraktPerson" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
@@ -33,7 +33,7 @@
         /// The extended option, which determines how much data about the person should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktPerson" /> instance with the queried person's data.</returns>
+        /// <returns>An <see cref="TraktPerson" /> instance with the queried person's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personId is null, empty or contains spaces.</exception>
         public async Task<TraktPerson> GetPersonAsync(string personId, TraktExtendedOption extendedOption = null)
@@ -49,7 +49,7 @@
 
         /// <summary>
         /// Gets multiple different <see cref="TraktPerson" />s at once with the given Trakt-Ids or -Slugs.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
@@ -78,7 +78,7 @@
 
         /// <summary>
         /// Gets all movies where a person with the given Trakt-Id or -Slug is in the cast or crew.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-movie-credits">"Trakt API Doc - People: Movies"</a> for more information.
         /// </para>
@@ -88,7 +88,7 @@
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
+        /// <returns>An <see cref="TraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personId is null, empty or contains spaces.</exception>
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string personId, TraktExtendedOption extendedOption = null)
@@ -104,7 +104,7 @@
 
         /// <summary>
         /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
         /// </para>
@@ -114,7 +114,7 @@
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
+        /// <returns>An <see cref="TraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personId is null, empty or contains spaces.</exception>
         public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string personId, TraktExtendedOption extendedOption = null)

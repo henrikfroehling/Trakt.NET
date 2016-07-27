@@ -43,7 +43,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/last-activities/get-last-activity">"Trakt API Doc - Sync: Last Activities"</a> for more information.
         /// </para>
         /// </summary>
-        /// <returns>A <see cref="TraktSyncLastActivities" /> instance with the queried last activities.</returns>
+        /// <returns>An <see cref="TraktSyncLastActivities" /> instance with the queried last activities.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktSyncLastActivities> GetLastActivitiesAsync()
         {
@@ -136,8 +136,8 @@
         /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionPost">A <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
-        /// <returns>A <see cref="TraktSyncCollectionPostResponse" /> instance, which contains information about which items were added, updated, existing and not found.</returns>
+        /// <param name="collectionPost">An <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <returns>An <see cref="TraktSyncCollectionPostResponse" /> instance, which contains information about which items were added, updated, existing and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
@@ -160,8 +160,8 @@
         /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionRemovePost">A <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
-        /// <returns>A <see cref="TraktSyncCollectionRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <param name="collectionRemovePost">An <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <returns>An <see cref="TraktSyncCollectionRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
@@ -226,7 +226,7 @@
         /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktHistoryItem}"/> instance containing the queried history items and which also
+        /// An <see cref="TraktPaginationListResult{TraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktHistoryItem" />.
@@ -261,8 +261,8 @@
         /// See also <seealso cref="TraktSyncHistoryPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="historyPost">A <see cref="TraktSyncHistoryPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
-        /// <returns>A <see cref="TraktSyncHistoryPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <param name="historyPost">An <see cref="TraktSyncHistoryPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <returns>An <see cref="TraktSyncHistoryPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
@@ -285,8 +285,8 @@
         /// See also <seealso cref="TraktSyncHistoryRemovePost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="historyRemovePost">A <see cref="TraktSyncHistoryRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
-        /// <returns>A <see cref="TraktSyncHistoryRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <param name="historyRemovePost">An <see cref="TraktSyncHistoryRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <returns>An <see cref="TraktSyncHistoryRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
@@ -340,8 +340,8 @@
         /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsPost">A <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
-        /// <returns>A <see cref="TraktSyncRatingsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <param name="ratingsPost">An <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <returns>An <see cref="TraktSyncRatingsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
@@ -364,8 +364,8 @@
         /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsRemovePost">A <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
-        /// <returns>A <see cref="TraktSyncRatingsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <param name="ratingsRemovePost">An <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <returns>An <see cref="TraktSyncRatingsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
@@ -412,8 +412,8 @@
         /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="watchlistPost">A <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
-        /// <returns>A <see cref="TraktSyncWatchlistPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
+        /// <param name="watchlistPost">An <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <returns>An <see cref="TraktSyncWatchlistPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
@@ -436,8 +436,8 @@
         /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="watchlistRemovePost">A <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
-        /// <returns>A <see cref="TraktSyncWatchlistRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <param name="watchlistRemovePost">An <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <returns>An <see cref="TraktSyncWatchlistRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>

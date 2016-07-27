@@ -28,7 +28,7 @@
 
         /// <summary>
         /// Gets a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
@@ -39,7 +39,7 @@
         /// The extended option, which determines how much data about the show should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktShow" /> instance with the queried show's data.</returns>
+        /// <returns>An <see cref="TraktShow" /> instance with the queried show's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktShow> GetShowAsync(string showId, TraktExtendedOption extendedOption = null)
@@ -55,7 +55,7 @@
 
         /// <summary>
         /// Gets multiple different <see cref="TraktShow" />s at once with the given Trakt-Ids or -Slugs.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
@@ -84,7 +84,7 @@
 
         /// <summary>
         /// Gets all title aliases for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/aliases/get-all-show-aliases">"Trakt API Doc - Shows: Aliases"</a> for more information.
         /// </para>
@@ -102,7 +102,7 @@
 
         /// <summary>
         /// Gets all translations for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-translations">"Trakt API Doc - Shows: Translations"</a> for more information.
         /// </para>
@@ -120,7 +120,7 @@
 
         /// <summary>
         /// Gets a single translation for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug and the given language code.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-translations">"Trakt API Doc - Shows: Translations"</a> for more information.
         /// </para>
@@ -128,7 +128,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
         /// <returns>
-        /// A <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and language code
+        /// An <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and language code
         /// for the show with the given showId.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -148,8 +148,8 @@
         }
 
         /// <summary>
-        /// Gets comments for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// Gets top level comments for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-comments">"Trakt API Doc - Shows: Comments"</a> for more information.
         /// </para>
@@ -159,7 +159,7 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried show comments and which also
+        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried show comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
@@ -183,7 +183,7 @@
 
         /// <summary>
         /// Gets all people for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/people/get-all-people-for-a-show">"Trakt API Doc - Shows: People"</a> for more information.
         /// </para>
@@ -193,7 +193,7 @@
         /// The extended option, which determines how much data about the people should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktCastAndCrew> GetShowPeopleAsync(string showId, TraktExtendedOption extendedOption = null)
@@ -209,13 +209,13 @@
 
         /// <summary>
         /// Gets the ratings for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/ratings/get-show-ratings">"Trakt API Doc - Shows: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <returns>A <see cref="TraktRating" /> instance, containing the ratings for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a show with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktRating> GetShowRatingsAsync(string showId)
@@ -227,7 +227,7 @@
 
         /// <summary>
         /// Gets related shows for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/related/get-related-shows">"Trakt API Doc - Shows: Related"</a> for more information.
         /// </para>
@@ -240,7 +240,7 @@
         /// <param name="page">The page of the related shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of related shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried related shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried related shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
@@ -263,13 +263,13 @@
 
         /// <summary>
         /// Gets the statistics for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/stats/get-show-stats">"Trakt API Doc - Shows: Stats"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <returns>A <see cref="TraktStatistics" /> instance, containing the statistics for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a show with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktStatistics> GetShowStatisticsAsync(string showId)
@@ -281,7 +281,7 @@
 
         /// <summary>
         /// Gets all watching users of a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watching/get-users-watching-right-now">"Trakt API Doc - Shows: Watching"</a> for more information.
         /// </para>
@@ -311,7 +311,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="includingHiddenSeasons">Determines, if the returned collection progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned collection progress should contain special seasons.</param>
-        /// <returns>A <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string showId, bool? includingHiddenSeasons = null,
@@ -337,7 +337,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="includingHiddenSeasons">Determines, if the returned watched progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned watched progress should contain special seasons.</param>
-        /// <returns>A <see cref="TraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string showId, bool? includingHiddenSeasons = null,
@@ -355,7 +355,7 @@
 
         /// <summary>
         /// Gets trending shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/trending/get-trending-shows">"Trakt API Doc - Shows: Trending"</a> for more information.
         /// </para>
@@ -368,7 +368,7 @@
         /// <param name="page">The page of the trending shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of trending shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktTrendingShow}"/> instance containing the queried trending shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktTrendingShow}"/> instance containing the queried trending shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktTrendingShow" />.
@@ -389,7 +389,7 @@
 
         /// <summary>
         /// Gets popular shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/popular/get-popular-shows">"Trakt API Doc - Shows: Popular"</a> for more information.
         /// </para>
@@ -402,7 +402,7 @@
         /// <param name="page">The page of the popular shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of popular shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried popular shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried popular shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
@@ -423,7 +423,7 @@
 
         /// <summary>
         /// Gets the most played shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/played/get-the-most-played-shows">"Trakt API Doc - Shows: Played"</a> for more information.
         /// </para>
@@ -437,7 +437,7 @@
         /// <param name="page">The page of the most played shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most played shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostPlayedShow}"/> instance containing the queried most played shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostPlayedShow}"/> instance containing the queried most played shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostPlayedShow" />.
@@ -460,7 +460,7 @@
 
         /// <summary>
         /// Gets the most watched shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched/get-the-most-watched-shows">"Trakt API Doc - Shows: Watched"</a> for more information.
         /// </para>
@@ -474,7 +474,7 @@
         /// <param name="page">The page of the most watched shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most watched shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostWatchedShow}"/> instance containing the queried most watched shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostWatchedShow}"/> instance containing the queried most watched shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostWatchedShow" />.
@@ -497,7 +497,7 @@
 
         /// <summary>
         /// Gets the most collected shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collected/get-the-most-collected-shows">"Trakt API Doc - Shows: Collected"</a> for more information.
         /// </para>
@@ -511,7 +511,7 @@
         /// <param name="page">The page of the most collected shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most collected shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostCollectedShow}"/> instance containing the queried most collected shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostCollectedShow}"/> instance containing the queried most collected shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostCollectedShow" />.
@@ -534,7 +534,7 @@
 
         /// <summary>
         /// Gets the most anticipated shows.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/anticipated/get-the-most-anticipated-shows">"Trakt API Doc - Shows: Anticipated"</a> for more information.
         /// </para>
@@ -547,7 +547,7 @@
         /// <param name="page">The page of the most anticipated shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of most anticipated shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktMostAnticipatedShow}"/> instance containing the queried most anticipated shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktMostAnticipatedShow}"/> instance containing the queried most anticipated shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostAnticipatedShow" />.
@@ -568,7 +568,7 @@
 
         /// <summary>
         /// Gets updated shows since the given <paramref name="startDate" />.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/anticipated/get-recently-updated-shows">"Trakt API Doc - Shows: Updates"</a> for more information.
         /// </para>
@@ -581,7 +581,7 @@
         /// <param name="page">The page of the updated shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum item count of updated shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktRecentlyUpdatedShow}"/> instance containing the queried updated shows and which also
+        /// An <see cref="TraktPaginationListResult{TraktRecentlyUpdatedShow}"/> instance containing the queried updated shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktRecentlyUpdatedShow" />.

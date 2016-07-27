@@ -31,7 +31,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
@@ -54,7 +54,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
@@ -77,7 +77,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
@@ -100,7 +100,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -127,7 +127,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -154,7 +154,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -182,7 +182,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
@@ -209,7 +209,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
@@ -236,7 +236,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>A <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>

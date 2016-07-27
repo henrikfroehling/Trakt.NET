@@ -148,7 +148,7 @@
 
         /// <summary>
         /// Gets all <see cref="TraktCalendarShow" />s airing during the given time period.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-shows/get-shows">"Trakt API Doc - Calendars: All Shows"</a> for more information.
         /// </para>
@@ -180,7 +180,7 @@
 
         /// <summary>
         /// Gets all new <see cref="TraktCalendarShow" />s airing during the given time period.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-new-shows/get-new-shows">"Trakt API Doc - Calendars: All New Shows"</a> for more information.
         /// </para>
@@ -212,7 +212,7 @@
 
         /// <summary>
         /// Gets all season premieres airing during the given time period.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: All Season Premieres"</a> for more information.
         /// </para>
@@ -244,7 +244,7 @@
 
         /// <summary>
         /// Gets all <see cref="TraktCalendarMovie" />s airing during the given time period.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-movies/get-movies">"Trakt API Doc - Calendars: My Movies"</a> for more information.
         /// </para>

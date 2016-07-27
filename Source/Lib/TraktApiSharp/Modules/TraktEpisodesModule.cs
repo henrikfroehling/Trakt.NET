@@ -25,7 +25,7 @@
 
         /// <summary>
         /// Gets a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
@@ -38,7 +38,7 @@
         /// The extended option, which determines how much data about the episode should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
+        /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
@@ -58,7 +58,7 @@
 
         /// <summary>
         /// Gets multiple different <see cref="TraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
@@ -88,8 +88,8 @@
         }
 
         /// <summary>
-        /// Gets comments for a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// Gets top level comments for a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
         /// </para>
@@ -101,7 +101,7 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried episode comments and which also
+        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried episode comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
@@ -128,7 +128,7 @@
 
         /// <summary>
         /// Gets the ratings for a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
         /// </para>
@@ -136,7 +136,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
-        /// <returns>A <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showId.</returns>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
@@ -154,7 +154,7 @@
 
         /// <summary>
         /// Gets the statistics for a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
         /// </para>
@@ -162,7 +162,7 @@
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the statistics should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the statistics should be queried.</param>
-        /// <returns>A <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showId.</returns>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showId.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
@@ -180,7 +180,7 @@
 
         /// <summary>
         /// Gets all watching users of a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
-        /// <para>OAuth authorization NOT required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
         /// </para>
