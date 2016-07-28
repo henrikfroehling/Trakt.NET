@@ -45,8 +45,7 @@
             if (movie.Year.HasValue && movie.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("movie year not valid", nameof(movie.Year));
 
-            if (_listItemsPost.Movies == null)
-                _listItemsPost.Movies = new List<TraktUserCustomListItemsPostMovie>();
+            EnsureMoviesListExists();
 
             var existingMovie = _listItemsPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault();
 
@@ -66,8 +65,7 @@
         {
             ValidateShow(show);
 
-            if (_listItemsPost.Shows == null)
-                _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
+            EnsureShowsListExists();
 
             var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
@@ -87,8 +85,7 @@
         {
             ValidateShow(show);
 
-            if (_listItemsPost.Shows == null)
-                _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
+            EnsureShowsListExists();
 
             var seasonsToAdd = new int[seasons.Length + 1];
             seasonsToAdd[0] = season;
@@ -127,8 +124,7 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            if (_listItemsPost.Shows == null)
-                _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
+            EnsureShowsListExists();
 
             var showSeasons = new List<TraktUserCustomListItemsShowSeason>();
 
@@ -187,8 +183,7 @@
             if (string.IsNullOrEmpty(person.Name))
                 throw new ArgumentException("person name not valid", nameof(person.Name));
 
-            if (_listItemsPost.People == null)
-                _listItemsPost.People = new List<TraktPerson>();
+            EnsurePeopleListExists();
 
             var existingPerson = _listItemsPost.People.Where(p => p == person).FirstOrDefault();
 
@@ -202,17 +197,6 @@
 
         public TraktUserCustomListItemsPost Build()
         {
-            var movies = _listItemsPost.Movies;
-            var shows = _listItemsPost.Shows;
-            var people = _listItemsPost.People;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoPeople = people == null || !people.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
-                throw new ArgumentException("no items set");
-
             return _listItemsPost;
         }
 
@@ -230,5 +214,24 @@
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
         }
+
+        private void EnsureMoviesListExists()
+        {
+            if (_listItemsPost.Movies == null)
+                _listItemsPost.Movies = new List<TraktUserCustomListItemsPostMovie>();
+        }
+
+        private void EnsureShowsListExists()
+        {
+            if (_listItemsPost.Shows == null)
+                _listItemsPost.Shows = new List<TraktUserCustomListItemsShow>();
+        }
+
+        private void EnsurePeopleListExists()
+        {
+            if (_listItemsPost.People == null)
+                _listItemsPost.People = new List<TraktPerson>();
+        }
+
     }
 }

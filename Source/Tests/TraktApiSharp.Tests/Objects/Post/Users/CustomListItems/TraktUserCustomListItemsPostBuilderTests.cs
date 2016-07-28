@@ -14,15 +14,6 @@
     public class TraktUserCustomListItemsPostBuilderTests
     {
         [TestMethod]
-        public void TestTraktUserCustomListsItemsPostBuilderBuildExceptions()
-        {
-            var builder = TraktUserCustomListItemsPost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -1180,13 +1171,22 @@
 
             var builder = TraktUserCustomListItemsPost.Builder();
 
-            var listItemsPost = builder.AddMovie(movie1)
-                                    .AddPerson(person1)
-                                    .AddShow(show1)
-                                    .AddShow(show2, 1, 2, 3)
-                                    .AddShow(show3, new PostSeasons { { 1, new PostEpisodes { 1, 2 } },
-                                                                      { 2, new PostEpisodes { 1, 2 } } })
-                                    .Build();
+            var listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.People.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            listItemsPost = builder.AddMovie(movie1)
+                                .AddPerson(person1)
+                                .AddShow(show1)
+                                .AddShow(show2, 1, 2, 3)
+                                .AddShow(show3, new PostSeasons { { 1, new PostEpisodes { 1, 2 } },
+                                                                    { 2, new PostEpisodes { 1, 2 } } })
+                                .Build();
 
             listItemsPost.Should().NotBeNull();
             listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
