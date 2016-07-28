@@ -209,6 +209,27 @@
             return this;
         }
 
+        public void Reset()
+        {
+            if (_watchlistPost.Movies != null)
+            {
+                (_watchlistPost.Movies as List<TraktSyncWatchlistPostMovie>).Clear();
+                _watchlistPost.Movies = null;
+            }
+
+            if (_watchlistPost.Shows != null)
+            {
+                (_watchlistPost.Shows as List<TraktSyncWatchlistPostShow>).Clear();
+                _watchlistPost.Shows = null;
+            }
+
+            if (_watchlistPost.Episodes != null)
+            {
+                (_watchlistPost.Episodes as List<TraktSyncWatchlistPostEpisode>).Clear();
+                _watchlistPost.Episodes = null;
+            }
+        }
+
         public TraktSyncWatchlistPost Build()
         {
             return _watchlistPost;

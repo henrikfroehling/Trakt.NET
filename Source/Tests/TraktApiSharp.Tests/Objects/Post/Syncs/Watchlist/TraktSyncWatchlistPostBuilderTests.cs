@@ -1178,6 +1178,68 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncWatchlistPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Slug = "episode1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktSyncWatchlistPost.Builder();
+
+            var watchlistPost = builder.AddMovie(movie1)
+                                    .AddEpisode(episode1)
+                                    .AddShow(show1)
+                                    .Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            watchlistPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            watchlistPost.Episodes.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            watchlistPost = builder.Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Movies.Should().BeNull();
+            watchlistPost.Shows.Should().BeNull();
+            watchlistPost.Episodes.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktSyncWatchlistPostBuilderAddAll()
         {
             var movie1 = new TraktMovie

@@ -5070,9 +5070,9 @@
             var builder = TraktSyncCollectionPost.Builder();
 
             var collectionPost = builder.AddMovie(movie1)
-                                .AddEpisode(episode1)
-                                .AddShow(show1)
-                                .Build();
+                                    .AddEpisode(episode1)
+                                    .AddShow(show1)
+                                    .Build();
 
             collectionPost.Should().NotBeNull();
             collectionPost.Movies.Should().NotBeNull().And.HaveCount(1);
