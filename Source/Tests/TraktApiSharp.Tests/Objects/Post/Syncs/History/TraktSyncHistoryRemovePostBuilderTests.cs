@@ -15,15 +15,6 @@
     public class TraktSyncHistoryRemovePostBuilderTests
     {
         [TestMethod]
-        public void TestTraktSyncHistoryRemovePostBuilderBuildExceptions()
-        {
-            var builder = TraktSyncHistoryRemovePost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktSyncHistoryRemovePostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -1720,16 +1711,26 @@
 
             var builder = TraktSyncHistoryRemovePost.Builder();
 
-            var historyPost = builder.AddMovie(movie1)
-                                    .AddMovie(movie2)
-                                    .AddEpisode(episode1)
-                                    .AddEpisode(episode2)
-                                    .AddShow(show1)
-                                    .AddShow(show2, 1, 2)
-                                    .AddShow(show3, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
-                                                                             { 2, new PostHistoryEpisodes { 2} } })
-                                    .AddHistoryIds(1, 2, 3, 4)
-                                    .Build();
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Movies.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.HistoryIds.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            historyPost = builder.AddMovie(movie1)
+                                .AddMovie(movie2)
+                                .AddEpisode(episode1)
+                                .AddEpisode(episode2)
+                                .AddShow(show1)
+                                .AddShow(show2, 1, 2)
+                                .AddShow(show3, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                                                            { 2, new PostHistoryEpisodes { 2} } })
+                                .AddHistoryIds(1, 2, 3, 4)
+                                .Build();
 
             historyPost.Should().NotBeNull();
             historyPost.Movies.Should().NotBeNull().And.HaveCount(2);

@@ -14,15 +14,6 @@
     public class TraktSyncHistoryPostBuilderTests
     {
         [TestMethod]
-        public void TestTraktSyncHistoryPostBuilderBuildExceptions()
-        {
-            var builder = TraktSyncHistoryPost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktSyncHistoryPostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -3140,19 +3131,28 @@
 
             var builder = TraktSyncHistoryPost.Builder();
 
-            var historyPost = builder.AddMovie(movie1)
-                                    .AddMovie(movie2, watchedAt)
-                                    .AddEpisode(episode1)
-                                    .AddEpisode(episode2, watchedAt)
-                                    .AddShow(show1)
-                                    .AddShow(show2, watchedAt)
-                                    .AddShow(show3, 1, 2, 3)
-                                    .AddShow(show4, watchedAt, 1, 2, 3)
-                                    .AddShow(show5, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
-                                                                             { 2, new PostHistoryEpisodes { 2} } })
-                                    .AddShow(show6, watchedAt, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
-                                                                                        { 2, new PostHistoryEpisodes { 2} } })
-                                    .Build();
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Movies.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Episodes.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            historyPost = builder.AddMovie(movie1)
+                                .AddMovie(movie2, watchedAt)
+                                .AddEpisode(episode1)
+                                .AddEpisode(episode2, watchedAt)
+                                .AddShow(show1)
+                                .AddShow(show2, watchedAt)
+                                .AddShow(show3, 1, 2, 3)
+                                .AddShow(show4, watchedAt, 1, 2, 3)
+                                .AddShow(show5, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                                                            { 2, new PostHistoryEpisodes { 2} } })
+                                .AddShow(show6, watchedAt, new PostHistorySeasons { { 1, new PostHistoryEpisodes { 1, 2, 3 } },
+                                                                                    { 2, new PostHistoryEpisodes { 2} } })
+                                .Build();
 
             historyPost.Should().NotBeNull();
             historyPost.Movies.Should().NotBeNull().And.HaveCount(2);

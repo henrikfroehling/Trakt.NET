@@ -97,19 +97,6 @@
 
         public TraktSyncHistoryRemovePost Build()
         {
-            var movies = _historyPost.Movies;
-            var shows = _historyPost.Shows;
-            var episodes = _historyPost.Episodes;
-            var historyIds = _historyPost.HistoryIds;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-            var bHasNoHistoryIds = historyIds == null || !historyIds.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes && bHasNoHistoryIds)
-                throw new ArgumentException("no collection items set");
-
             return _historyPost;
         }
 
