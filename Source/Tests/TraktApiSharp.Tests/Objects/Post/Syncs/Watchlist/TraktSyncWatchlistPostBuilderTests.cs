@@ -14,15 +14,6 @@
     public class TraktSyncWatchlistPostBuilderTests
     {
         [TestMethod]
-        public void TestTraktSyncWatchlistPostBuilderBuildExceptions()
-        {
-            var builder = TraktSyncWatchlistPost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktSyncWatchlistPostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -1254,16 +1245,25 @@
 
             var builder = TraktSyncWatchlistPost.Builder();
 
-            var watchlistPost = builder.AddMovie(movie1)
-                                    .AddEpisode(episode1)
-                                    .AddShow(show1)
-                                    .AddShow(show2, 1, 2, 3)
-                                    .AddShow(show3, new PostSeasons {
-                                        { 1, new PostEpisodes { 1, 2 } },
-                                        { 2, new PostEpisodes { 1, 2 } },
-                                        3, 4, 5
-                                    })
-                                    .Build();
+            var watchlistPost = builder.Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Movies.Should().BeNull();
+            watchlistPost.Shows.Should().BeNull();
+            watchlistPost.Episodes.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            watchlistPost = builder.AddMovie(movie1)
+                                .AddEpisode(episode1)
+                                .AddShow(show1)
+                                .AddShow(show2, 1, 2, 3)
+                                .AddShow(show3, new PostSeasons {
+                                    { 1, new PostEpisodes { 1, 2 } },
+                                    { 2, new PostEpisodes { 1, 2 } },
+                                    3, 4, 5
+                                })
+                                .Build();
 
             watchlistPost.Should().NotBeNull();
             watchlistPost.Movies.Should().NotBeNull().And.HaveCount(1);

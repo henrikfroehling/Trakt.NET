@@ -45,8 +45,7 @@
             if (movie.Year.HasValue && movie.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("movie year not valid", nameof(movie.Year));
 
-            if (_watchlistPost.Movies == null)
-                _watchlistPost.Movies = new List<TraktSyncWatchlistPostMovie>();
+            EnsureMoviesListExists();
 
             var existingMovie = _watchlistPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault();
 
@@ -68,8 +67,7 @@
         {
             ValidateShow(show);
 
-            if (_watchlistPost.Shows == null)
-                _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
+            EnsureShowsListExists();
 
             var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
@@ -91,8 +89,7 @@
         {
             ValidateShow(show);
 
-            if (_watchlistPost.Shows == null)
-                _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
+            EnsureShowsListExists();
 
             var seasonsToAdd = new int[seasons.Length + 1];
             seasonsToAdd[0] = season;
@@ -130,8 +127,7 @@
         {
             ValidateShow(show);
 
-            if (seasons == null)
-                throw new ArgumentNullException(nameof(seasons));
+            EnsureShowsListExists();
 
             if (_watchlistPost.Shows == null)
                 _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
@@ -197,8 +193,7 @@
             if (!episode.Ids.HasAnyId)
                 throw new ArgumentException("no episode ids set or valid", nameof(episode.Ids));
 
-            if (_watchlistPost.Episodes == null)
-                _watchlistPost.Episodes = new List<TraktSyncWatchlistPostEpisode>();
+            EnsureEpisodesListExists();
 
             var existingEpisode = _watchlistPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault();
 
@@ -216,17 +211,6 @@
 
         public TraktSyncWatchlistPost Build()
         {
-            var movies = _watchlistPost.Movies;
-            var shows = _watchlistPost.Shows;
-            var episodes = _watchlistPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no items set");
-
             return _watchlistPost;
         }
 
@@ -243,6 +227,24 @@
 
             if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
+        }
+
+        private void EnsureMoviesListExists()
+        {
+            if (_watchlistPost.Movies == null)
+                _watchlistPost.Movies = new List<TraktSyncWatchlistPostMovie>();
+        }
+
+        private void EnsureShowsListExists()
+        {
+            if (_watchlistPost.Shows == null)
+                _watchlistPost.Shows = new List<TraktSyncWatchlistPostShow>();
+        }
+
+        private void EnsureEpisodesListExists()
+        {
+            if (_watchlistPost.Episodes == null)
+                _watchlistPost.Episodes = new List<TraktSyncWatchlistPostEpisode>();
         }
     }
 }
