@@ -11,9 +11,9 @@
     /// new TraktMultipleObjectsQueryParams
     /// {
     ///     // { id[, extended option] }
-    ///     { "id-1" },
+    ///     "id-1",
     ///     { "id-2", new TraktExtendedOption { Full = true } },
-    ///     { "id-3" }
+    ///     "id-3"
     /// };
     /// </code>
     /// </example>
