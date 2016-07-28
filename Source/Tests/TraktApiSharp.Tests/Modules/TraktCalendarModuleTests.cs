@@ -479,6 +479,17 @@
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
+        [TestMethod]
+        public void TestTraktCalendarModuleGetAllShowsArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -918,6 +929,17 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetAllNewShowsArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -1369,6 +1391,17 @@
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
+        [TestMethod]
+        public void TestTraktCalendarModuleGetAllSeasonPremieresArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -1815,6 +1848,17 @@
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
+        [TestMethod]
+        public void TestTraktCalendarModuleGetAllMoviesArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -2251,6 +2295,17 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserShowsArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -2690,6 +2745,17 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserNewShowsArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -3134,6 +3200,17 @@
             act.ShouldThrow<TraktServerUnavailableException>();
         }
 
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserSeasonPremieresArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
         #endregion
 
         // -----------------------------------------------------------------------------------------------
@@ -3573,6 +3650,17 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
             act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarModuleGetUserMoviesArgumentExceptions()
+        {
+            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, 32);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
