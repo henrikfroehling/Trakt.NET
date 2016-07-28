@@ -5020,6 +5020,9 @@
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
         [TestMethod]
         public void TestTraktSyncCollectionPostBuilderReset()
         {
@@ -5085,6 +5088,9 @@
             collectionPost.Shows.Should().BeNull();
             collectionPost.Episodes.Should().BeNull();
         }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
 
         [TestMethod]
         public void TestTraktSyncCollectionPostBuilderAddAll()

@@ -193,6 +193,27 @@
             return AddEpisodeOrIgnore(episode, rating, ratedAt);
         }
 
+        public void Reset()
+        {
+            if (_ratingsPost.Movies != null)
+            {
+                (_ratingsPost.Movies as List<TraktSyncRatingsPostMovie>).Clear();
+                _ratingsPost.Movies = null;
+            }
+
+            if (_ratingsPost.Shows != null)
+            {
+                (_ratingsPost.Shows as List<TraktSyncRatingsPostShow>).Clear();
+                _ratingsPost.Shows = null;
+            }
+
+            if (_ratingsPost.Episodes != null)
+            {
+                (_ratingsPost.Episodes as List<TraktSyncRatingsPostEpisode>).Clear();
+                _ratingsPost.Episodes = null;
+            }
+        }
+
         public TraktSyncRatingsPost Build()
         {
             return _ratingsPost;

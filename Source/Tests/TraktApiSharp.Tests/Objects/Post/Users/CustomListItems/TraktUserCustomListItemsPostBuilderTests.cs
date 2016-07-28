@@ -1103,6 +1103,9 @@
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
         [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderReset()
         {
@@ -1157,11 +1160,16 @@
 
             builder.Reset();
 
+            listItemsPost = builder.Build();
+
             listItemsPost.Should().NotBeNull();
             listItemsPost.Movies.Should().BeNull();
             listItemsPost.Shows.Should().BeNull();
             listItemsPost.People.Should().BeNull();
         }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
 
         [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddAll()

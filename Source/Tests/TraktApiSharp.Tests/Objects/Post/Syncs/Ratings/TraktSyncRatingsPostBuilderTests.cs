@@ -6163,6 +6163,75 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncRatingsPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Slug = "episode1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktSyncRatingsPost.Builder();
+
+            var ratingsPost = builder.AddMovie(movie1)
+                                    .AddEpisode(episode1)
+                                    .AddShow(show1)
+                                    .Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Episodes.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Movies.Should().BeNull();
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Episodes.Should().BeNull();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncRatingsPostBuilderAddAll()
         {
             var movie1 = new TraktMovie
