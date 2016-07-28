@@ -1104,6 +1104,66 @@
         }
 
         [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var person1 = new TraktPerson
+            {
+                Name = "Person 1 Name",
+                Ids = new TraktPersonIds
+                {
+                    Trakt = 1,
+                    Slug = "person1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            var listItemsPost = builder.AddMovie(movie1)
+                                    .AddPerson(person1)
+                                    .AddShow(show1)
+                                    .Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.People.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddAll()
         {
             var movie1 = new TraktMovie

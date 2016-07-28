@@ -195,6 +195,27 @@
             return this;
         }
 
+        public void Reset()
+        {
+            if (_listItemsPost.Movies != null)
+            {
+                (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Clear();
+                _listItemsPost.Movies = null;
+            }
+
+            if (_listItemsPost.Shows != null)
+            {
+                (_listItemsPost.Shows as List<TraktUserCustomListItemsShow>).Clear();
+                _listItemsPost.Shows = null;
+            }
+
+            if (_listItemsPost.People != null)
+            {
+                (_listItemsPost.People as List<TraktPerson>).Clear();
+                _listItemsPost.People = null;
+            }
+        }
+
         public TraktUserCustomListItemsPost Build()
         {
             return _listItemsPost;
