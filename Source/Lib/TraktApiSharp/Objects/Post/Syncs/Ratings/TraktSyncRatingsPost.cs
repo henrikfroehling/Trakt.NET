@@ -195,17 +195,6 @@
 
         public TraktSyncRatingsPost Build()
         {
-            var movies = _ratingsPost.Movies;
-            var shows = _ratingsPost.Shows;
-            var episodes = _ratingsPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
-
             return _ratingsPost;
         }
 
