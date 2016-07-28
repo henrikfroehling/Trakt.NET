@@ -308,6 +308,7 @@
         /// <param name="ratingsFilter">
         /// An array of numbers. Numbers should be between 1 and 10.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+        /// Will be ignored, if the given <paramref name="ratingsItemType" /> is null or unspecified.
         /// </param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the rating items should be queried.
@@ -315,7 +316,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        // TODO FIXME ratingsFilter will be ignored, when ratingsItemType is null
         public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? ratingsItemType = null,
                                                                          int[] ratingsFilter = null,
                                                                          TraktExtendedOption extendedOption = null)
