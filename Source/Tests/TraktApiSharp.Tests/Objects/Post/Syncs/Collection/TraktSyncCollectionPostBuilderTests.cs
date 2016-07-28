@@ -5021,6 +5021,72 @@
         }
 
         [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Slug = "episode1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktSyncCollectionPost.Builder();
+
+            var collectionPost = builder.AddMovie(movie1)
+                                .AddEpisode(episode1)
+                                .AddShow(show1)
+                                .Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            collectionPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Movies.Should().BeNull();
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Episodes.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktSyncCollectionPostBuilderAddAll()
         {
             var movie1 = new TraktMovie
