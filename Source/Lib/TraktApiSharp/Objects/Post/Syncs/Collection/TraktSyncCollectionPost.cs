@@ -234,17 +234,6 @@
 
         public TraktSyncCollectionPost Build()
         {
-            var movies = _collectionPost.Movies;
-            var shows = _collectionPost.Shows;
-            var episodes = _collectionPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
-
             return _collectionPost;
         }
 
