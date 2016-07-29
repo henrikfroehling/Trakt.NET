@@ -19,24 +19,37 @@
             Ratings = ratings;
         }
 
+        /// <summary>Returns the years parameter value.</summary>
         public int Years { get; protected set; }
 
+        /// <summary>Returns, whether the years parameter is set.</summary>
         public bool HasYearsSet => Years > 0 && Years.ToString().Length == 4;
 
+        /// <summary>Returns the Trakt genre slugs parameter value.</summary>
         public string[] Genres { get; protected set; }
 
+        /// <summary>Returns, whether the Trakt genre slugs parameter is set.</summary>
         public bool HasGenresSet => Genres != null && Genres.Length > 0;
 
+        /// <summary>Returns the language codes parameter value.</summary>
         public string[] Languages { get; protected set; }
 
+        /// <summary>Returns, whether the language codes parameter is set.</summary>
         public bool HasLanguagesSet => Languages != null && Languages.Length > 0;
 
+        /// <summary>Returns the country codes parameter value.</summary>
         public string[] Countries { get; protected set; }
 
+        /// <summary>Returns, whether the country codes parameter is set.</summary>
         public bool HasCountriesSet => Countries != null && Countries.Length > 0;
 
+        /// <summary>
+        /// Returns the runtimes range parameter value.
+        /// <para>See also <seealso cref="Utils.Range{int}" />.</para>
+        /// </summary>
         public Range<int>? Runtimes { get; protected set; }
 
+        /// <summary>Returns, whether the runtimes range parameter is set.</summary>
         public bool HasRuntimesSet()
         {
             if (Runtimes.HasValue)
@@ -48,8 +61,13 @@
             return false;
         }
 
+        /// <summary>
+        /// Returns the ratings range parameter value.
+        /// <para>See also <seealso cref="Utils.Range{int}" />.</para>
+        /// </summary>
         public Range<int>? Ratings { get; protected set; }
 
+        /// <summary>Returns, whether the ratings range parameter is set.</summary>
         public bool HasRatingsSet()
         {
             if (Ratings.HasValue)
@@ -161,6 +179,10 @@
             return parameters;
         }
 
+        /// <summary>
+        /// Creates a string containing all set parameters in form of "parameter-name=its-value" separated by an ampersand.
+        /// </summary>
+        /// <returns>A string containing all set parameters in form of "parameter-name=its-value" separated by an ampersand.</returns>
         public override string ToString()
         {
             var parameters = GetParameters();
