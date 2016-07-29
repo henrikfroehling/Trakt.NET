@@ -14,6 +14,7 @@
 
         public TraktException(string message, Exception innerException) : base(message, innerException) { }
 
+        /// <summary>Returns the response's status code.</summary>
         public HttpStatusCode StatusCode { get; internal set; }
 
         /// <summary>Gets or sets the request's url.</summary>
