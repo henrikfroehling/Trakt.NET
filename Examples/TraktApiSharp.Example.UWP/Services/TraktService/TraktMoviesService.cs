@@ -4,8 +4,7 @@
     using Models;
     using Models.Movies;
     using Objects.Get.Movies;
-    using Requests;
-    using Requests.WithoutOAuth.Movies;
+    using Requests.Params;
     using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;

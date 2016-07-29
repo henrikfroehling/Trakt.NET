@@ -4,8 +4,7 @@
     using Models;
     using Models.Shows;
     using Objects.Get.Shows;
-    using Requests;
-    using Requests.WithoutOAuth.Shows;
+    using Requests.Params;
     using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
