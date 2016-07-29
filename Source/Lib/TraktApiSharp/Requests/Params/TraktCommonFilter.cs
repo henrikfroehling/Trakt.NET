@@ -45,7 +45,7 @@
 
         /// <summary>
         /// Returns the runtimes range parameter value.
-        /// <para>See also <seealso cref="Utils.Range{int}" />.</para>
+        /// <para>See also <seealso cref="Range{int}" />.</para>
         /// </summary>
         public Range<int>? Runtimes { get; protected set; }
 
@@ -63,7 +63,7 @@
 
         /// <summary>
         /// Returns the ratings range parameter value.
-        /// <para>See also <seealso cref="Utils.Range{int}" />.</para>
+        /// <para>See also <seealso cref="Range{int}" />.</para>
         /// </summary>
         public Range<int>? Ratings { get; protected set; }
 
@@ -138,6 +138,7 @@
             return this;
         }
 
+        /// <summary>Deletes all filter parameter values.</summary>
         public virtual void Clear()
         {
             Years = 0;
@@ -148,6 +149,11 @@
             Ratings = null;
         }
 
+        /// <summary>
+        /// Creates a key-value-pair list of all set parameter-values.
+        /// Each key-value-pair consists of the parameter name as key and its value.
+        /// </summary>
+        /// <returns>A key-value-pair list of all set parameter-values.</returns>
         public virtual IDictionary<string, object> GetParameters()
         {
             var parameters = new Dictionary<string, object>();
