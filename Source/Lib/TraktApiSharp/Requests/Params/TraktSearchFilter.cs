@@ -65,7 +65,7 @@
 
         /// <summary>Adds multiple language codes to the already existing language codes.</summary>
         /// <param name="language">A two letter language code.</param>
-        /// <param name="languages">An optional array of two letter language codes</param>
+        /// <param name="languages">An optional array of two letter language codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if one the given language codes has more or less than two letters.
@@ -78,7 +78,7 @@
 
         /// <summary>Sets the language codes parameter and overwrites already existing ones with given language codes.</summary>
         /// <param name="language">A two letter language code.</param>
-        /// <param name="languages">An optional array of two letter language codes</param>
+        /// <param name="languages">An optional array of two letter language codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if one the given language codes has more or less than two letters.
@@ -91,7 +91,7 @@
 
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
-        /// <param name="countries">An optional array of two letter country codes</param>
+        /// <param name="countries">An optional array of two letter country codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if one the given country codes has more or less than two letters.
@@ -104,7 +104,7 @@
 
         /// <summary>Sets the country codes parameter and overwrites already existing ones with given country codes.</summary>
         /// <param name="country">A two letter country code.</param>
-        /// <param name="countries">An optional array of two letter country codes</param>
+        /// <param name="countries">An optional array of two letter country codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if one the given country codes has more or less than two letters.
