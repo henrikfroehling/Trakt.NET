@@ -14,8 +14,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.WithoutOAuth.Movies;
+    using TraktApiSharp.Requests.Params;
     using Utils;
 
     [TestClass]
@@ -232,16 +231,20 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktIdAndExtendedOption[] { });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(
+                new TraktMultipleObjectsQueryParams());
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = null } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(
+                new TraktMultipleObjectsQueryParams { { null } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = string.Empty } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(
+                new TraktMultipleObjectsQueryParams { { string.Empty } });
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktIdAndExtendedOption[] { new TraktIdAndExtendedOption { Id = "movie id" } });
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(
+                new TraktMultipleObjectsQueryParams { { "movie id" } });
             act.ShouldThrow<ArgumentException>();
         }
 

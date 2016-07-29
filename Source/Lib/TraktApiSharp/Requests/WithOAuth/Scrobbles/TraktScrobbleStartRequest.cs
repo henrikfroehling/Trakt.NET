@@ -8,11 +8,5 @@
         internal TraktScrobbleStartRequest(TraktClient client) : base(client) { }
 
         protected override string UriTemplate => "scrobble/start{?extended}";
-
-        protected override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }

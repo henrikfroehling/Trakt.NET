@@ -28,9 +28,9 @@
         {
             var historyRemovePost = new TraktSyncHistoryRemovePost
             {
-                Movies = new List<TraktSyncHistoryPostMovieItem>()
+                Movies = new List<TraktSyncHistoryPostMovie>()
                 {
-                    new TraktSyncHistoryPostMovieItem
+                    new TraktSyncHistoryPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -42,7 +42,7 @@
                             Tmdb = 272
                         }
                     },
-                    new TraktSyncHistoryPostMovieItem
+                    new TraktSyncHistoryPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -50,9 +50,9 @@
                         }
                     }
                 },
-                Shows = new List<TraktSyncHistoryPostShowItem>()
+                Shows = new List<TraktSyncHistoryPostShow>()
                 {
-                    new TraktSyncHistoryPostShowItem
+                    new TraktSyncHistoryPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -66,7 +66,7 @@
                             TvRage = 18164
                         }
                     },
-                    new TraktSyncHistoryPostShowItem
+                    new TraktSyncHistoryPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -79,15 +79,15 @@
                             Tmdb = 1402,
                             TvRage = 25056
                         },
-                        Seasons = new List<TraktSyncHistoryPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncHistoryPostShowSeason>()
                         {
-                            new TraktSyncHistoryPostShowSeasonItem
+                            new TraktSyncHistoryPostShowSeason
                             {
                                 Number = 3
                             }
                         }
                     },
-                    new TraktSyncHistoryPostShowItem
+                    new TraktSyncHistoryPostShow
                     {
                         Title = "Mad Men",
                         Year = 2007,
@@ -100,18 +100,18 @@
                             Tmdb = 1104,
                             TvRage = 16356
                         },
-                        Seasons = new List<TraktSyncHistoryPostShowSeasonItem>()
+                        Seasons = new List<TraktSyncHistoryPostShowSeason>()
                         {
-                            new TraktSyncHistoryPostShowSeasonItem
+                            new TraktSyncHistoryPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktSyncHistoryPostShowEpisodeItem>()
+                                Episodes = new List<TraktSyncHistoryPostShowEpisode>()
                                 {
-                                    new TraktSyncHistoryPostShowEpisodeItem
+                                    new TraktSyncHistoryPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktSyncHistoryPostShowEpisodeItem
+                                    new TraktSyncHistoryPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -120,9 +120,9 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncHistoryPostEpisodeItem>()
+                Episodes = new List<TraktSyncHistoryPostEpisode>()
                 {
-                    new TraktSyncHistoryPostEpisodeItem
+                    new TraktSyncHistoryPostEpisode
                     {
                         Ids = new TraktEpisodeIds
                         {

@@ -23,7 +23,7 @@
             token.TokenType.Should().Be(TraktAccessTokenType.Unspecified);
             token.ExpiresInSeconds.Should().Be(0);
             token.RefreshToken.Should().BeNullOrEmpty();
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
             token.Created.Should().BeCloseTo(dtNowUtc);
             token.IgnoreExpiration.Should().BeFalse();
         }
@@ -43,7 +43,7 @@
             token.ExpiresInSeconds.Should().Be(7200);
             token.RefreshToken.Should().Be("76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c");
             token.AccessScope.Should().Be(TraktAccessScope.Public);
-            token.IsValid.Should().BeTrue();
+            token.IsExpired.Should().BeTrue();
             token.IgnoreExpiration.Should().BeFalse();
         }
 
@@ -51,26 +51,26 @@
         public void TestTraktAuthorizationIsValid()
         {
             var token = new TraktAuthorization();
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
 
             token.ExpiresInSeconds = 3600;
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
 
             token.AccessToken = "acces token";
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
 
             token.AccessToken = "accessToken";
-            token.IsValid.Should().BeTrue();
+            token.IsExpired.Should().BeTrue();
 
             token = new TraktAuthorization();
             token.IgnoreExpiration = true;
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
 
             token.AccessToken = "access token";
-            token.IsValid.Should().BeFalse();
+            token.IsExpired.Should().BeFalse();
 
             token.AccessToken = "accessToken";
-            token.IsValid.Should().BeTrue();
+            token.IsExpired.Should().BeTrue();
         }
     }
 }

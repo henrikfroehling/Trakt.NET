@@ -17,27 +17,57 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Provides access to data retrieving methods specific to comments.
+    /// <para>
+    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
+    /// </para>
+    /// </summary>
     public class TraktCommentsModule : TraktBaseModule
     {
         internal TraktCommentsModule(TraktClient client) : base(client) { }
 
-        public async Task<TraktComment> GetCommentAsync(string id)
+        /// <summary>
+        /// Gets a <see cref="TraktComment" /> or reply with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(string[])" />.</para>
+        /// </summary>
+        /// <param name="commentId">The comment's Trakt-Id or -Slug.</param>
+        /// <returns>An <see cref="TraktComment" /> instance with the queried comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
+        public async Task<TraktComment> GetCommentAsync(string commentId)
         {
-            ValidateId(id);
+            ValidateId(commentId);
 
-            return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = id });
+            return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = commentId });
         }
 
-        public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] ids)
+        /// <summary>
+        /// Gets multiple different <see cref="TraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetCommentAsync(string)" />.</para>
+        /// </summary>
+        /// <param name="commentIds">An array of comment Trakt-Ids or -Slugs.</param>
+        /// <returns>A list of <see cref="TraktComment" /> instances with the data of each queried comment.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
+        public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] commentIds)
         {
-            if (ids == null || ids.Length <= 0)
-                return null;
+            if (commentIds == null || commentIds.Length <= 0)
+                return new List<TraktComment>();
 
             var tasks = new List<Task<TraktComment>>();
 
-            for (int i = 0; i < ids.Length; i++)
+            for (int i = 0; i < commentIds.Length; i++)
             {
-                Task<TraktComment> task = GetCommentAsync(ids[i]);
+                Task<TraktComment> task = GetCommentAsync(commentIds[i]);
                 tasks.Add(task);
             }
 
@@ -45,8 +75,31 @@
             return comments.ToList();
         }
 
+        /// <summary>
+        /// Posts a comment for the given <see cref="TraktMovie" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The <see cref="TraktMovie" />, for which the comment should be posted.</param>
+        /// <param name="comment">The comment's content for the given movie. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given movie's title is null, empty or contains spaces.
+        /// Thrown, if the given movie has no valid ids. See also <seealso cref="TraktMovieIds" />.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given movie's year is not valid.
+        /// Thrown, if the given comment's word count is below five.
+        /// </exception>
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,
-                                                                          bool? spoiler = null, TraktSharing sharing = null)
+                                                                          bool? containsSpoiler = null, TraktSharing sharing = null)
         {
             ValidateMovie(movie);
             ValidateComment(comment);
@@ -62,14 +115,34 @@
                         Ids = movie.Ids
                     },
                     Comment = comment,
-                    Spoiler = spoiler,
+                    Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
             });
         }
 
+        /// <summary>
+        /// Posts a comment for the given <see cref="TraktShow" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The <see cref="TraktShow" />, for which the comment should be posted.</param>
+        /// <param name="comment">The comment's content for the given show. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show's title is null, empty or contains spaces.
+        /// Thrown, if the given show has no valid ids. See also <seealso cref="TraktShowIds" />.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public async Task<TraktCommentPostResponse> PostShowCommentAsync(TraktShow show, string comment,
-                                                                         bool? spoiler = null, TraktSharing sharing = null)
+                                                                         bool? containsSpoiler = null, TraktSharing sharing = null)
         {
             ValidateShow(show);
             ValidateComment(comment);
@@ -84,14 +157,33 @@
                         Ids = show.Ids
                     },
                     Comment = comment,
-                    Spoiler = spoiler,
+                    Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
             });
         }
 
+        /// <summary>
+        /// Posts a comment for the given <see cref="TraktSeason" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="season">The <see cref="TraktSeason" />, for which the comment should be posted.</param>
+        /// <param name="comment">The comment's content for the given season. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given season has no valid ids. See also <seealso cref="TraktSeasonIds" />.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public async Task<TraktCommentPostResponse> PostSeasonCommentAsync(TraktSeason season, string comment,
-                                                                           bool? spoiler = null, TraktSharing sharing = null)
+                                                                           bool? containsSpoiler = null, TraktSharing sharing = null)
         {
             ValidateSeason(season);
             ValidateComment(comment);
@@ -102,14 +194,33 @@
                 {
                     Season = new TraktSeason { Ids = season.Ids },
                     Comment = comment,
-                    Spoiler = spoiler,
+                    Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
             });
         }
 
+        /// <summary>
+        /// Posts a comment for the given <see cref="TraktEpisode" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="episode">The <see cref="TraktEpisode" />, for which the comment should be posted.</param>
+        /// <param name="comment">The comment's content for the given episode. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given episode has no valid ids. See also <seealso cref="TraktEpisodeIds" />.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public async Task<TraktCommentPostResponse> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
-                                                                            bool? spoiler = null, TraktSharing sharing = null)
+                                                                            bool? containsSpoiler = null, TraktSharing sharing = null)
         {
             ValidateEpisode(episode);
             ValidateComment(comment);
@@ -120,14 +231,33 @@
                 {
                     Episode = new TraktEpisode { Ids = episode.Ids },
                     Comment = comment,
-                    Spoiler = spoiler,
+                    Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
             });
         }
 
+        /// <summary>
+        /// Posts a comment for the given <see cref="TraktList" />.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="list">The <see cref="TraktList" />, for which the comment should be posted.</param>
+        /// <param name="comment">The comment's content for the given list. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given list has no valid ids. See also <seealso cref="TraktListIds" />.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public async Task<TraktCommentPostResponse> PostListCommentAsync(TraktList list, string comment,
-                                                                         bool? spoiler = null, TraktSharing sharing = null)
+                                                                         bool? containsSpoiler = null, TraktSharing sharing = null)
         {
             ValidateList(list);
             ValidateComment(comment);
@@ -138,13 +268,30 @@
                 {
                     List = new TraktList { Ids = list.Ids },
                     Comment = comment,
-                    Spoiler = spoiler,
+                    Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
             });
         }
 
-        public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool? spoiler = null)
+        /// <summary>
+        /// Updates a comment or reply with the given comment Trakt-Id or -Slug, which was posted within the last hour.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be updated.</param>
+        /// <param name="comment">The new comment's content. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given comment id is null, empty or contains spaces.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
@@ -155,12 +302,29 @@
                 RequestBody = new TraktCommentUpdatePost
                 {
                     Comment = comment,
-                    Spoiler = spoiler
+                    Spoiler = containsSpoiler
                 }
             });
         }
 
-        public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool? spoiler = null)
+        /// <summary>
+        /// Posts a reply to a comment with the given comment Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the reply should be posted.</param>
+        /// <param name="comment">The comment's content. Should be at least five words long.</param>
+        /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
+        /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given comment id is null, empty or contains spaces.
+        /// Thrown, if the given comment is null or empty.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
@@ -171,11 +335,21 @@
                 RequestBody = new TraktCommentReplyPost
                 {
                     Comment = comment,
-                    Spoiler = spoiler
+                    Spoiler = containsSpoiler
                 }
             });
         }
 
+        /// <summary>
+        /// Deletes a comment with the given comment Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be deleted.</param>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public async Task DeleteCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -183,6 +357,16 @@
             await QueryAsync(new TraktCommentDeleteRequest(Client) { Id = commentId });
         }
 
+        /// <summary>
+        /// Likes a comment with the given comment Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be liked.</param>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public async Task LikeCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -190,6 +374,16 @@
             await QueryAsync(new TraktCommentLikeRequest(Client) { Id = commentId });
         }
 
+        /// <summary>
+        /// Unlikes a comment with the given comment Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be unliked.</param>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public async Task UnlikeCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -197,21 +391,40 @@
             await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId });
         }
 
-        public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(string id, int? page = null, int? limit = null)
+        /// <summary>
+        /// Gets replies for comment with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the replies should be queried.</param>
+        /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried.</param>
+        /// <returns>
+        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried replies and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(string commentId, int? page = null, int? limitPerPage = null)
         {
-            ValidateId(id);
+            ValidateId(commentId);
 
             return await QueryAsync(new TraktCommentRepliesRequest(Client)
             {
-                Id = id,
-                PaginationOptions = new TraktPaginationOptions(page, limit)
+                Id = commentId,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
-        private void ValidateId(string id)
+        private void ValidateId(string commentId)
         {
-            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
-                throw new ArgumentException("comment id not valid", nameof(id));
+            if (string.IsNullOrEmpty(commentId) || commentId.ContainsSpace())
+                throw new ArgumentException("comment id not valid", nameof(commentId));
         }
 
         private void ValidateComment(string comment)
@@ -220,22 +433,22 @@
                 throw new ArgumentException("comment is empty", nameof(comment));
 
             if (comment.WordCount() < 5)
-                throw new ArgumentException("comment has too few words - at least five words are required", nameof(comment));
+                throw new ArgumentOutOfRangeException(nameof(comment), "comment has too few words - at least five words are required");
         }
 
         private void ValidateMovie(TraktMovie movie)
         {
             if (movie == null)
-                throw new ArgumentException("movie must not be null", nameof(movie));
+                throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (string.IsNullOrEmpty(movie.Title))
                 throw new ArgumentException("movie title not valid", nameof(movie.Title));
 
-            if (movie.Year <= 0)
-                throw new ArgumentException("movie year not valid", nameof(movie.Year));
+            if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(movie.Year), "movie year not valid");
 
             if (movie.Ids == null)
-                throw new ArgumentException("movie ids must not be null", nameof(movie.Ids));
+                throw new ArgumentNullException(nameof(movie.Ids), "movie ids must not be null");
 
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
@@ -244,13 +457,13 @@
         private void ValidateShow(TraktShow show)
         {
             if (show == null)
-                throw new ArgumentException("show must not be null", nameof(show));
+                throw new ArgumentNullException(nameof(show), "show must not be null");
 
             if (string.IsNullOrEmpty(show.Title))
                 throw new ArgumentException("show title not valid", nameof(show.Title));
 
             if (show.Ids == null)
-                throw new ArgumentException("show ids must not be null", nameof(show.Ids));
+                throw new ArgumentNullException(nameof(show.Ids), "show ids must not be null");
 
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
@@ -259,10 +472,10 @@
         private void ValidateSeason(TraktSeason season)
         {
             if (season == null)
-                throw new ArgumentException("season must not be null", nameof(season));
+                throw new ArgumentNullException(nameof(season), "season must not be null");
 
             if (season.Ids == null)
-                throw new ArgumentException("season ids must not be null", nameof(season.Ids));
+                throw new ArgumentNullException(nameof(season.Ids), "season ids must not be null");
 
             if (!season.Ids.HasAnyId)
                 throw new ArgumentException("season ids have no valid id", nameof(season.Ids));
@@ -271,10 +484,10 @@
         private void ValidateEpisode(TraktEpisode episode)
         {
             if (episode == null)
-                throw new ArgumentException("episode must not be null", nameof(episode));
+                throw new ArgumentNullException(nameof(episode), "episode must not be null");
 
             if (episode.Ids == null)
-                throw new ArgumentException("episode ids must not be null", nameof(episode.Ids));
+                throw new ArgumentNullException(nameof(episode.Ids), "episode ids must not be null");
 
             if (!episode.Ids.HasAnyId)
                 throw new ArgumentException("episode ids have no valid id", nameof(episode.Ids));
@@ -283,10 +496,10 @@
         private void ValidateList(TraktList list)
         {
             if (list == null)
-                throw new ArgumentException("list must not be null", nameof(list));
+                throw new ArgumentNullException(nameof(list), "list must not be null");
 
             if (list.Ids == null)
-                throw new ArgumentException("list ids must not be null", nameof(list.Ids));
+                throw new ArgumentNullException(nameof(list.Ids), "list ids must not be null");
 
             if (!list.Ids.HasAnyId)
                 throw new ArgumentException("list ids have no valid id", nameof(list.Ids));

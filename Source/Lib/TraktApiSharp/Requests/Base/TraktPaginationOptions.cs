@@ -8,8 +8,8 @@
             Limit = limit;
         }
 
-        internal int? Page { get; set; }
+        internal int? Page { get; }
 
-        internal int? Limit { get; set; }
+        internal int? Limit { get; }
     }
 }

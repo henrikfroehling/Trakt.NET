@@ -67,7 +67,7 @@
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace()
+        public bool IsExpired => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace()
                                     && (IgnoreExpiration || DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow);
 
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>

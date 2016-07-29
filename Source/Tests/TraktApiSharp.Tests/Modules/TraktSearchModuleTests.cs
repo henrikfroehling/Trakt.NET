@@ -9,7 +9,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Requests.WithoutOAuth.Search;
     using Utils;
 
