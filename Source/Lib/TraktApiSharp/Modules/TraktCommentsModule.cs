@@ -399,8 +399,8 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the replies should be queried.</param>
-        /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried replies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

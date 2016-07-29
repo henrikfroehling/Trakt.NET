@@ -1,69 +1,59 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
     using Newtonsoft.Json;
-    using System.Globalization;
 
-    /// <summary>
-    /// A collection of ids for various web services, including the Trakt id.
-    /// </summary>
+    /// <summary>A collection of ids for various web services, including the Trakt id.</summary>
     public class TraktIds
     {
-        /// <summary>
-        /// The Trakt numeric id for an item.
-        /// </summary>
+        /// <summary>Gets or sets the Trakt numeric id.</summary>
         [JsonProperty(PropertyName = "trakt")]
         public int Trakt { get; set; }
 
-        /// <summary>
-        /// The Trakt slug for an item.
-        /// </summary>
+        /// <summary>Gets or sets the Trakt slug.</summary>
         [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
 
-        /// <summary>
-        /// The numeric id for an item from thetvdb.com
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from thetvdb.com</summary>
         [JsonProperty(PropertyName = "tvdb")]
         public int? Tvdb { get; set; }
 
-        /// <summary>
-        /// The id for an item from imdb.com
-        /// </summary>
+        /// <summary>Gets or sets the id from imdb.com</summary>
         [JsonProperty(PropertyName = "imdb")]
         public string Imdb { get; set; }
 
-        /// <summary>
-        /// The numeric id for an item from themoviedb.org
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from themoviedb.org</summary>
         [JsonProperty(PropertyName = "tmdb")]
         public int? Tmdb { get; set; }
 
-        /// <summary>
-        /// The numeric id for an item from tvrage.com
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from tvrage.com</summary>
         [JsonProperty(PropertyName = "tvrage")]
         public int? TvRage { get; set; }
 
-        /// <summary>
-        /// Tests, if at least one id has been set.
-        /// </summary>
+        /// <summary>Returns, whether any id has been set.</summary>
         [JsonIgnore]
         public bool HasAnyId => Trakt > 0 || !string.IsNullOrEmpty(Slug) || Tvdb > 0 || !string.IsNullOrEmpty(Imdb) || Tmdb > 0 || TvRage > 0;
 
-        /// <summary>
-        /// Get the most reliable id from those that have been set for an item.
-        /// </summary>
-        /// <returns>The id as a string.</returns>
+        /// <summary>Gets the most reliable id from those that have been set.</summary>
+        /// <returns>The id as a string or an empty string, if no id is set.</returns>
         public string GetBestId()
         {
             if (Trakt > 0)
-                return Trakt.ToString(CultureInfo.InvariantCulture);
+                return Trakt.ToString();
 
             if (!string.IsNullOrEmpty(Slug))
                 return Slug;
 
+            if (Tvdb.HasValue && Tvdb.Value > 0)
+                return Tvdb.Value.ToString();
+
             if (!string.IsNullOrEmpty(Imdb))
                 return Imdb;
+
+            if (Tmdb.HasValue && Tmdb.Value > 0)
+                return Tmdb.Value.ToString();
+
+            if (TvRage.HasValue && TvRage.Value > 0)
+                return TvRage.Value.ToString();
 
             return string.Empty;
         }

@@ -26,15 +26,18 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="searchResultType">The object type(s), for which will be searched. See also <seealso cref="TraktSearchResultType" />.</param>
+        /// <param name="searchResultType">
+        /// The object type(s), for which will be searched. See also <seealso cref="TraktSearchResultType" />.
+        /// Multiple <see cref="TraktSearchResultType" /> values can be combined with a binary operator, like this: TraktSearchResultType.Movie | TraktSearchResultType.Show.
+        /// </param>
         /// <param name="searchQuery">The query, for which will be searched.</param>
         /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -79,8 +82,8 @@
         /// The extended option, which determines how much data about the lookup object(s) should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -121,8 +124,8 @@
         /// <param name="searchQuery">The query, for which will be searched.</param>
         /// <param name="searchResultType">The object type, for which will be searched. See also <seealso cref="TraktSearchResultType" />.</param>
         /// <param name="year">The year, for which will be searched.</param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -160,8 +163,8 @@
         /// </summary>
         /// <param name="searchIdLookupType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdLookupType" />.</param>
         /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
