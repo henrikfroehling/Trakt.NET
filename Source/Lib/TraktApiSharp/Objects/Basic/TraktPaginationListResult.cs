@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -8,7 +9,7 @@
     /// and can also contain the total user count (e.g. in trending shows and movies requests).
     /// </summary>
     /// <typeparam name="ListItem">The underlying item type of the list results.</typeparam>
-    public class TraktPaginationListResult<ListItem>
+    public class TraktPaginationListResult<ListItem> : IEnumerable<ListItem>
     {
         /// <summary>Gets or sets the actual list results.</summary>
         public IEnumerable<ListItem> Items { get; set; }
@@ -32,5 +33,15 @@
         /// </para>
         /// </summary>
         public int? UserCount { get; set; }
+
+        public IEnumerator<ListItem> GetEnumerator()
+        {
+            return Items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
