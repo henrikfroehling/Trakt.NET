@@ -63,7 +63,7 @@
 
             results.Items = new ObservableCollection<TrendingMovie>();
 
-            foreach (var traktTrendingMovie in traktResults.Items)
+            foreach (var traktTrendingMovie in traktResults)
             {
                 var trendingMovie = traktTrendingMovie.Movie as TrendingMovie;
                 trendingMovie.Watchers = traktTrendingMovie.Watchers;
@@ -93,7 +93,7 @@
 
             results.Items = new ObservableCollection<Movie>();
 
-            foreach (var traktPopularMovie in traktResults.Items)
+            foreach (var traktPopularMovie in traktResults)
                 results.Items.Add(traktPopularMovie as Movie);
 
             return results;
@@ -120,7 +120,7 @@
 
             results.Items = new ObservableCollection<MostPWCMovie>();
 
-            foreach (var traktMostPlayedMovie in traktResults.Items)
+            foreach (var traktMostPlayedMovie in traktResults)
             {
                 var mostPlayedMovie = traktMostPlayedMovie.Movie as MostPWCMovie;
 
@@ -155,7 +155,7 @@
 
             results.Items = new ObservableCollection<MostPWCMovie>();
 
-            foreach (var traktMostWatchedMovie in traktResults.Items)
+            foreach (var traktMostWatchedMovie in traktResults)
             {
                 var mostWatchedMovie = traktMostWatchedMovie.Movie as MostPWCMovie;
 
@@ -190,7 +190,7 @@
 
             results.Items = new ObservableCollection<MostPWCMovie>();
 
-            foreach (var traktMostCollectedMovie in traktResults.Items)
+            foreach (var traktMostCollectedMovie in traktResults)
             {
                 var mostCollectedMovie = traktMostCollectedMovie.Movie as MostPWCMovie;
 
@@ -224,7 +224,7 @@
 
             results.Items = new ObservableCollection<AnticipatedMovie>();
 
-            foreach (var traktAnticipatedMovie in traktResults.Items)
+            foreach (var traktAnticipatedMovie in traktResults)
             {
                 var anticipatedMovie = traktAnticipatedMovie.Movie as AnticipatedMovie;
                 anticipatedMovie.ListCount = traktAnticipatedMovie.ListCount;
@@ -273,7 +273,7 @@
 
             results.Items = new ObservableCollection<RecentlyUpdatedMovie>();
 
-            foreach (var traktRecentlyUpdatedMovie in traktResults.Items)
+            foreach (var traktRecentlyUpdatedMovie in traktResults)
             {
                 var recentlyUpdatedMovie = traktRecentlyUpdatedMovie.Movie as RecentlyUpdatedMovie;
                 recentlyUpdatedMovie.MovieUpdatedAt = traktRecentlyUpdatedMovie.UpdatedAt;

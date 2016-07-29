@@ -60,7 +60,7 @@
 
             results.Items = new ObservableCollection<TrendingShow>();
 
-            foreach (var traktTrendingShow in traktResults.Items)
+            foreach (var traktTrendingShow in traktResults)
             {
                 var trendingShow = traktTrendingShow.Show as TrendingShow;
                 trendingShow.Watchers = traktTrendingShow.Watchers;
@@ -90,7 +90,7 @@
 
             results.Items = new ObservableCollection<Show>();
 
-            foreach (var traktPopularShow in traktResults.Items)
+            foreach (var traktPopularShow in traktResults)
                 results.Items.Add(traktPopularShow as Show);
 
             return results;
@@ -117,7 +117,7 @@
 
             results.Items = new ObservableCollection<MostPWCShow>();
 
-            foreach (var traktMostPlayedShow in traktResults.Items)
+            foreach (var traktMostPlayedShow in traktResults)
             {
                 var mostPlayedShow = traktMostPlayedShow.Show as MostPWCShow;
 
@@ -152,7 +152,7 @@
 
             results.Items = new ObservableCollection<MostPWCShow>();
 
-            foreach (var traktMostWatchedShow in traktResults.Items)
+            foreach (var traktMostWatchedShow in traktResults)
             {
                 var mostWatchedShow = traktMostWatchedShow.Show as MostPWCShow;
 
@@ -187,7 +187,7 @@
 
             results.Items = new ObservableCollection<MostPWCShow>();
 
-            foreach (var traktMostCollectedShow in traktResults.Items)
+            foreach (var traktMostCollectedShow in traktResults)
             {
                 var mostCollectedShow = traktMostCollectedShow.Show as MostPWCShow;
 
@@ -221,7 +221,7 @@
 
             results.Items = new ObservableCollection<AnticipatedShow>();
 
-            foreach (var traktAnticipatedShow in traktResults.Items)
+            foreach (var traktAnticipatedShow in traktResults)
             {
                 var anticipatedShow = traktAnticipatedShow.Show as AnticipatedShow;
                 anticipatedShow.ListCount = traktAnticipatedShow.ListCount;
@@ -251,7 +251,7 @@
 
             results.Items = new ObservableCollection<RecentlyUpdatedShow>();
 
-            foreach (var traktRecentlyUpdatedShow in traktResults.Items)
+            foreach (var traktRecentlyUpdatedShow in traktResults)
             {
                 var recentlyUpdatedShow = traktRecentlyUpdatedShow.Show as RecentlyUpdatedShow;
                 recentlyUpdatedShow.ShowUpdatedAt = traktRecentlyUpdatedShow.UpdatedAt;
