@@ -6,7 +6,6 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public class TraktSyncHistoryPost
     {
@@ -108,17 +107,6 @@
 
         public new TraktSyncHistoryPost Build()
         {
-            var movies = _historyPost.Movies;
-            var shows = _historyPost.Shows;
-            var episodes = _historyPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
-
             return _historyPost;
         }
     }

@@ -14,15 +14,6 @@
     public class TraktSyncRatingsPostBuilderTests
     {
         [TestMethod]
-        public void TestTraktSyncRatingsPostBuilderBuildExceptions()
-        {
-            var builder = TraktSyncRatingsPost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktSyncRatingsPostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -6172,6 +6163,75 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncRatingsPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Slug = "episode1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktSyncRatingsPost.Builder();
+
+            var ratingsPost = builder.AddMovie(movie1)
+                                    .AddEpisode(episode1)
+                                    .AddShow(show1)
+                                    .Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Episodes.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Movies.Should().BeNull();
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Episodes.Should().BeNull();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncRatingsPostBuilderAddAll()
         {
             var movie1 = new TraktMovie
@@ -6378,25 +6438,34 @@
 
             var builder = TraktSyncRatingsPost.Builder();
 
-            var ratingsPost = builder.AddMovie(movie1)
-                                    .AddMovie(movie2, rating)
-                                    .AddMovie(movie3, rating, ratedAt)
-                                    .AddEpisode(episode1)
-                                    .AddEpisode(episode2, rating)
-                                    .AddEpisode(episode3, rating, ratedAt)
-                                    .AddShow(show1)
-                                    .AddShowWithRating(show2, rating)
-                                    .AddShowWithRating(show3, rating, ratedAt)
-                                    .AddShow(show4, 1, 2, 3)
-                                    .AddShowWithRating(show5, rating, 1, 2, 3)
-                                    .AddShowWithRating(show6, rating, ratedAt, 1, 2, 3)
-                                    .AddShow(show7, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
-                                                                             { 2, new PostRatingsEpisodes { 2} } })
-                                    .AddShowWithRating(show8, rating, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
-                                                                                               { 2, new PostRatingsEpisodes { 2} } })
-                                    .AddShowWithRating(show9, rating, ratedAt, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
-                                                                                                        { 2, new PostRatingsEpisodes { 2} } })
-                                    .Build();
+            var ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Movies.Should().BeNull();
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Episodes.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            ratingsPost = builder.AddMovie(movie1)
+                                .AddMovie(movie2, rating)
+                                .AddMovie(movie3, rating, ratedAt)
+                                .AddEpisode(episode1)
+                                .AddEpisode(episode2, rating)
+                                .AddEpisode(episode3, rating, ratedAt)
+                                .AddShow(show1)
+                                .AddShowWithRating(show2, rating)
+                                .AddShowWithRating(show3, rating, ratedAt)
+                                .AddShow(show4, 1, 2, 3)
+                                .AddShowWithRating(show5, rating, 1, 2, 3)
+                                .AddShowWithRating(show6, rating, ratedAt, 1, 2, 3)
+                                .AddShow(show7, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
+                                                                            { 2, new PostRatingsEpisodes { 2} } })
+                                .AddShowWithRating(show8, rating, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
+                                                                                            { 2, new PostRatingsEpisodes { 2} } })
+                                .AddShowWithRating(show9, rating, ratedAt, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2, 3 } },
+                                                                                                    { 2, new PostRatingsEpisodes { 2} } })
+                                .Build();
 
             ratingsPost.Should().NotBeNull();
             ratingsPost.Movies.Should().NotBeNull().And.HaveCount(3);

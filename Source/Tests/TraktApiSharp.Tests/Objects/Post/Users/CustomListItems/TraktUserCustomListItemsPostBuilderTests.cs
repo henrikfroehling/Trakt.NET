@@ -14,15 +14,6 @@
     public class TraktUserCustomListItemsPostBuilderTests
     {
         [TestMethod]
-        public void TestTraktUserCustomListsItemsPostBuilderBuildExceptions()
-        {
-            var builder = TraktUserCustomListItemsPost.Builder();
-
-            Action act = () => builder.Build();
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddMovie()
         {
             var movie1 = new TraktMovie
@@ -1112,6 +1103,74 @@
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderReset()
+        {
+            var movie1 = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var person1 = new TraktPerson
+            {
+                Name = "Person 1 Name",
+                Ids = new TraktPersonIds
+                {
+                    Trakt = 1,
+                    Slug = "person1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    TvRage = 123456
+                }
+            };
+
+            var show1 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            var listItemsPost = builder.AddMovie(movie1)
+                                    .AddPerson(person1)
+                                    .AddShow(show1)
+                                    .Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(1);
+
+            builder.Reset();
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.People.Should().BeNull();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
         [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddAll()
         {
@@ -1180,13 +1239,22 @@
 
             var builder = TraktUserCustomListItemsPost.Builder();
 
-            var listItemsPost = builder.AddMovie(movie1)
-                                    .AddPerson(person1)
-                                    .AddShow(show1)
-                                    .AddShow(show2, 1, 2, 3)
-                                    .AddShow(show3, new PostSeasons { { 1, new PostEpisodes { 1, 2 } },
-                                                                      { 2, new PostEpisodes { 1, 2 } } })
-                                    .Build();
+            var listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.Movies.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.People.Should().BeNull();
+
+            // ------------------------------------------------------
+
+            listItemsPost = builder.AddMovie(movie1)
+                                .AddPerson(person1)
+                                .AddShow(show1)
+                                .AddShow(show2, 1, 2, 3)
+                                .AddShow(show3, new PostSeasons { { 1, new PostEpisodes { 1, 2 } },
+                                                                    { 2, new PostEpisodes { 1, 2 } } })
+                                .Build();
 
             listItemsPost.Should().NotBeNull();
             listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);

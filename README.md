@@ -68,7 +68,7 @@ client.Configuration.ForceAuthorization = true;
 var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedOption().SetFull().SetImages(), null, 10);
 var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedOption() { Full = true, Images = true }, 1, 10);
 
-foreach (var trendingShow in trendingShowsTop10.Items)
+foreach (var trendingShow in trendingShowsTop10)
 {
     var show = trendingShow.Show;
     Console.WriteLine($"Show: {show.Title} / Watchers: {trendingShow.Watchers}");
@@ -81,7 +81,7 @@ var extendedOption = new TraktExtendedOption() { Full = true, Images = true };
 var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedOption, null, 10);
 var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedOption, 1, 10);
 
-foreach (var trendingMovie in trendingMoviesTop10.Items)
+foreach (var trendingMovie in trendingMoviesTop10)
 {
     var movie = trendingMovie.Show;
     Console.WriteLine($"Movie: {movie.Title} / Watchers: {trendingMovie.Watchers}");

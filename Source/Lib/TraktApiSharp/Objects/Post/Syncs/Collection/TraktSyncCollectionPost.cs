@@ -232,19 +232,29 @@
             return AddEpisodeOrIgnore(episode, metadata, collectedAt);
         }
 
+        public void Reset()
+        {
+            if (_collectionPost.Movies != null)
+            {
+                (_collectionPost.Movies as List<TraktSyncCollectionPostMovie>).Clear();
+                _collectionPost.Movies = null;
+            }
+
+            if (_collectionPost.Shows != null)
+            {
+                (_collectionPost.Shows as List<TraktSyncCollectionPostShow>).Clear();
+                _collectionPost.Shows = null;
+            }
+
+            if (_collectionPost.Episodes != null)
+            {
+                (_collectionPost.Episodes as List<TraktSyncCollectionPostEpisode>).Clear();
+                _collectionPost.Episodes = null;
+            }
+        }
+
         public TraktSyncCollectionPost Build()
         {
-            var movies = _collectionPost.Movies;
-            var shows = _collectionPost.Shows;
-            var episodes = _collectionPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
-
             return _collectionPost;
         }
 

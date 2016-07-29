@@ -2,6 +2,21 @@
 {
     using Requests.Params;
 
+    /// <summary>
+    /// Collection containing multiple different combinations of ids and extended options.
+    /// </summary>
+    /// <example>
+    /// This example shows an instantiation of this class.
+    /// <code>
+    /// new TraktMultipleObjectsQueryParams
+    /// {
+    ///     // { id[, extended option] }
+    ///     "id-1",
+    ///     { "id-2", new TraktExtendedOption { Full = true } },
+    ///     "id-3"
+    /// };
+    /// </code>
+    /// </example>
     public class TraktMultipleObjectsQueryParams : TraktMultipleQueryParams<TraktObjectsQueryParams>
     {
         public void Add(string id, TraktExtendedOption extended = null)

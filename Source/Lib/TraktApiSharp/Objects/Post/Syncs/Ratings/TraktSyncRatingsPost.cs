@@ -193,19 +193,29 @@
             return AddEpisodeOrIgnore(episode, rating, ratedAt);
         }
 
+        public void Reset()
+        {
+            if (_ratingsPost.Movies != null)
+            {
+                (_ratingsPost.Movies as List<TraktSyncRatingsPostMovie>).Clear();
+                _ratingsPost.Movies = null;
+            }
+
+            if (_ratingsPost.Shows != null)
+            {
+                (_ratingsPost.Shows as List<TraktSyncRatingsPostShow>).Clear();
+                _ratingsPost.Shows = null;
+            }
+
+            if (_ratingsPost.Episodes != null)
+            {
+                (_ratingsPost.Episodes as List<TraktSyncRatingsPostEpisode>).Clear();
+                _ratingsPost.Episodes = null;
+            }
+        }
+
         public TraktSyncRatingsPost Build()
         {
-            var movies = _ratingsPost.Movies;
-            var shows = _ratingsPost.Shows;
-            var episodes = _ratingsPost.Episodes;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
-
             return _ratingsPost;
         }
 

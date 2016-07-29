@@ -95,21 +95,35 @@
             return this;
         }
 
+        public void Reset()
+        {
+            if (_historyPost.Movies != null)
+            {
+                (_historyPost.Movies as List<TraktSyncHistoryPostMovie>).Clear();
+                _historyPost.Movies = null;
+            }
+
+            if (_historyPost.Shows != null)
+            {
+                (_historyPost.Shows as List<TraktSyncHistoryPostShow>).Clear();
+                _historyPost.Shows = null;
+            }
+
+            if (_historyPost.Episodes != null)
+            {
+                (_historyPost.Episodes as List<TraktSyncHistoryPostEpisode>).Clear();
+                _historyPost.Episodes = null;
+            }
+
+            if (_historyPost.HistoryIds != null)
+            {
+                (_historyPost.HistoryIds as List<int>).Clear();
+                _historyPost.HistoryIds = null;
+            }
+        }
+
         public TraktSyncHistoryRemovePost Build()
         {
-            var movies = _historyPost.Movies;
-            var shows = _historyPost.Shows;
-            var episodes = _historyPost.Episodes;
-            var historyIds = _historyPost.HistoryIds;
-
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
-            var bHasNoHistoryIds = historyIds == null || !historyIds.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes && bHasNoHistoryIds)
-                throw new ArgumentException("no collection items set");
-
             return _historyPost;
         }
 
