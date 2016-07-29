@@ -2,38 +2,26 @@
 {
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// A collection of ids for various web services for a Trakt season.
-    /// </summary>
+    /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt season.</summary>
     public class TraktSeasonIds
     {
-        /// <summary>
-        /// The Trakt numeric id for the season.
-        /// </summary>
+        /// <summary>Gets or sets the Trakt numeric id.</summary>
         [JsonProperty(PropertyName = "trakt")]
         public int Trakt { get; set; }
 
-        /// <summary>
-        /// The numeric id for the season from thetvdb.com
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from thetvdb.com</summary>
         [JsonProperty(PropertyName = "tvdb")]
         public int? Tvdb { get; set; }
 
-        /// <summary>
-        /// The numeric id for the season from themoviedb.org
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from themoviedb.org</summary>
         [JsonProperty(PropertyName = "tmdb")]
         public int? Tmdb { get; set; }
 
-        /// <summary>
-        /// The numeric id for the season from tvrage.com
-        /// </summary>
+        /// <summary>Gets or sets the numeric id from tvrage.com</summary>
         [JsonProperty(PropertyName = "tvrage")]
         public int? TvRage { get; set; }
 
-        /// <summary>
-        /// Tests, if at least one id has been set.
-        /// </summary>
+        /// <summary>Returns, whether any id has been set.</summary>
         [JsonIgnore]
         public bool HasAnyId => Trakt > 0 || Tvdb > 0 || Tvdb > 0 || TvRage > 0;
     }
