@@ -156,8 +156,8 @@
         /// </summary>
         /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried show comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -237,8 +237,8 @@
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the related shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of related shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the related shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of related shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried related shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -365,8 +365,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the trending shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of trending shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the trending shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of trending shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktTrendingShow}"/> instance containing the queried trending shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -399,8 +399,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the popular shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of popular shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the popular shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of popular shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried popular shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -434,8 +434,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the most played shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of most played shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most played shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of most played shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktMostPlayedShow}"/> instance containing the queried most played shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -471,8 +471,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the most watched shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of most watched shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most watched shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of most watched shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktMostWatchedShow}"/> instance containing the queried most watched shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -508,8 +508,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the most collected shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of most collected shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most collected shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of most collected shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktMostCollectedShow}"/> instance containing the queried most collected shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -544,8 +544,8 @@
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
-        /// <param name="page">The page of the most anticipated shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of most anticipated shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the most anticipated shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of most anticipated shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktMostAnticipatedShow}"/> instance containing the queried most anticipated shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -578,8 +578,8 @@
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the updated shows list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum item count of updated shows for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the updated shows list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum item count of updated shows for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktRecentlyUpdatedShow}"/> instance containing the queried updated shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

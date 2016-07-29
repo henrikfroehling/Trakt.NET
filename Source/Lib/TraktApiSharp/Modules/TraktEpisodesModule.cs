@@ -98,8 +98,8 @@
         /// <param name="seasonNumber">The number of the season containing the episode, for which the comments should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried episode comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

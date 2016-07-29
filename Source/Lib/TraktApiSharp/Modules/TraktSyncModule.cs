@@ -223,8 +223,8 @@
         /// The extended option, which determines how much data about the history items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

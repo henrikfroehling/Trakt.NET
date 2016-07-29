@@ -79,8 +79,8 @@
         /// The extended option, which determines how much data about the hidden items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktUserHiddenItem}"/> instance containing the queried hidden items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -115,8 +115,8 @@
         /// </para>
         /// </summary>
         /// <param name="likeType">Determines, which type of objects liked should be queried. See also <seealso cref="TraktUserLikeType" />.</param>
-        /// <param name="page">The page of the like items list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of like items for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the like items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of like items for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktUserLikeItem}"/> instance containing the queried like items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -227,8 +227,8 @@
         /// The extended option, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktUserComment}"/> instance containing the queried comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -591,8 +591,8 @@
         /// <param name="username">The username of the user, for which the custom list comments should be queried.</param>
         /// <param name="listId">The id of the custom list, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried custom list comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -828,8 +828,8 @@
         /// The extended option, which determines how much data about the history items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page. See also <see cref="TraktPaginationOptions" />.</param>
-        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried. See also <see cref="TraktPaginationOptions" />.</param>
+        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
         /// <returns>
         /// A <see cref="TraktPaginationListResult{TraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
