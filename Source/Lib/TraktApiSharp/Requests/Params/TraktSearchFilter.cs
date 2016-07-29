@@ -120,8 +120,8 @@
         /// <param name="end">The end value of the runtimes range.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Thrown, if the begin value is below zero or if the end value is below zero or
-        /// if the end value is below the begin value.
+        /// Thrown, if the given begin value is below zero or if the given end value is below zero or
+        /// if the given end value is below the given begin value.
         /// </exception>
         public new TraktSearchFilter WithRuntimes(int begin, int end)
         {
@@ -134,8 +134,8 @@
         /// <param name="end">The end value of the ratings range.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Thrown, if the begin value is below zero or if the end value is below zero or
-        /// if the end value is below the begin value or if the end value is above 100.
+        /// Thrown, if the given begin value is below zero or if the given end value is below zero or
+        /// if the given end value is below the given begin value or if the given end value is above 100.
         /// </exception>
         public new TraktSearchFilter WithRatings(int begin, int end)
         {
