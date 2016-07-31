@@ -69,7 +69,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync(string showId, int seasonNumber,
-                                                                    TraktExtendedOption extended = null)
+                                                                    TraktExtendedOption extendedOption = null)
         {
             Validate(showId, seasonNumber);
 
@@ -77,7 +77,7 @@
             {
                 Id = showId,
                 Season = seasonNumber,
-                ExtendedOption = extended
+                ExtendedOption = extendedOption
             });
         }
 
@@ -215,16 +215,16 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync(string showId, int season,
-                                                                              TraktExtendedOption extended = null)
+        public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync(string showId, int seasonNumber,
+                                                                              TraktExtendedOption extendedOption = null)
         {
-            Validate(showId, season);
+            Validate(showId, seasonNumber);
 
             return await QueryAsync(new TraktSeasonWatchingUsersRequest(Client)
             {
                 Id = showId,
-                Season = season,
-                ExtendedOption = extended
+                Season = seasonNumber,
+                ExtendedOption = extendedOption
             });
         }
 
