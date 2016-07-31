@@ -2,11 +2,14 @@
 {
     using Newtonsoft.Json;
 
+    /// <summary>A anticipated Trakt movie.</summary>
     public class TraktMostAnticipatedMovie
     {
+        /// <summary>Gets or sets the list count for the <see cref="Movie" />.</summary>
         [JsonProperty(PropertyName = "list_count")]
         public int? ListCount { get; set; }
 
+        /// <summary>Gets or sets the Trakt movie.</summary>
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }
     }
