@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     using Newtonsoft.Json;
-    using System.Globalization;
 
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt movie.</summary>
     public class TraktMovieIds
@@ -31,7 +30,7 @@
         public string GetBestId()
         {
             if (Trakt > 0)
-                return Trakt.ToString(CultureInfo.InvariantCulture);
+                return Trakt.ToString();
 
             if (!string.IsNullOrEmpty(Slug))
                 return Slug;
