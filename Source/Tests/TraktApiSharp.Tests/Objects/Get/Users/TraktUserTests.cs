@@ -17,6 +17,7 @@
 
             user.Username.Should().BeNullOrEmpty();
             user.Private.Should().NotHaveValue();
+            user.Ids.Should().BeNull();
             user.Name.Should().BeNullOrEmpty();
             user.VIP.Should().NotHaveValue();
             user.VIP_EP.Should().NotHaveValue();
@@ -39,6 +40,8 @@
 
             user.Should().NotBeNull();
             user.Username.Should().Be("WalterBishopj");
+            user.Ids.Should().NotBeNull();
+            user.Ids.Slug.Should().Be("sean");
             user.Private.Should().BeFalse();
             user.Name.Should().Be("Walter");
             user.VIP.Should().BeFalse();
@@ -62,6 +65,8 @@
 
             user.Should().NotBeNull();
             user.Username.Should().Be("randomness");
+            user.Ids.Should().NotBeNull();
+            user.Ids.Slug.Should().Be("sean");
             user.Private.Should().BeFalse();
             user.Name.Should().Be("RandomNess");
             user.VIP.Should().BeFalse();
@@ -87,6 +92,8 @@
 
             user.Should().NotBeNull();
             user.Username.Should().Be("randomness");
+            user.Ids.Should().NotBeNull();
+            user.Ids.Slug.Should().Be("sean");
             user.Private.Should().BeFalse();
             user.Name.Should().Be("RandomNess");
             user.VIP.Should().BeFalse();
@@ -110,6 +117,8 @@
 
             user.Should().NotBeNull();
             user.Username.Should().Be("randomness");
+            user.Ids.Should().NotBeNull();
+            user.Ids.Slug.Should().Be("sean");
             user.Private.Should().BeFalse();
             user.Name.Should().Be("RandomNess");
             user.VIP.Should().BeFalse();

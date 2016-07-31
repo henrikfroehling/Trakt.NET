@@ -14,6 +14,10 @@
         [JsonProperty(PropertyName = "private")]
         public bool? Private { get; set; }
 
+        /// <summary>Gets or sets the collection of ids for the user.</summary>
+        [JsonProperty(PropertyName = "ids")]
+        public TraktUserIds Ids { get; set; }
+
         /// <summary>Gets or sets the user's name.</summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
