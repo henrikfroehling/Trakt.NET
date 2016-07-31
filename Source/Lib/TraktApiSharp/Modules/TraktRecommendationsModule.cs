@@ -51,20 +51,20 @@
         }
 
         /// <summary>
-        /// Hides a movie with the given Trakt-Id or -Slug from getting recommended anymore.
+        /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The Trakt-Id or -Slug of the movie, which should be hidden from recommendations.</param>
+        /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task HideMovieRecommendationAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        public async Task HideMovieRecommendationAsync(string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieId });
+            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -98,20 +98,20 @@
         }
 
         /// <summary>
-        /// Hides a show with the given Trakt-Id or -Slug from getting recommended anymore.
+        /// Hides a show with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-show/hide-a-show-recommendation">"Trakt API Doc - Recommendations: Shows"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The Trakt-Id or -Slug of the show, which should be hidden from recommendations.</param>
+        /// <param name="showIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the show, which should be hidden from recommendations.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task HideShowRecommendationAsync(string showId)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        public async Task HideShowRecommendationAsync(string showIdOrSlug)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client) { Id = showId });
+            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client) { Id = showIdOrSlug });
         }
 
         private void Validate(string id)
