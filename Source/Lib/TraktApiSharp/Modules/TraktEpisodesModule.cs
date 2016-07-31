@@ -31,7 +31,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams)" />.</para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, which should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, which should be queried.</param>
         /// <param name="extendedOption">
@@ -40,16 +40,16 @@
         /// </param>
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
-        public async Task<TraktEpisode> GetEpisodeAsync(string showId, int seasonNumber, int episodeNumber,
+        public async Task<TraktEpisode> GetEpisodeAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                         TraktExtendedOption extendedOption = null)
         {
-            Validate(showId, seasonNumber, episodeNumber);
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
             return await QueryAsync(new TraktEpisodeSummaryRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber,
                 ExtendedOption = extendedOption
@@ -94,7 +94,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the comments should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
@@ -108,17 +108,17 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
-        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showId, int seasonNumber, int episodeNumber,
+        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                            TraktCommentSortOrder? commentSortOrder = null,
                                                                                            int? page = null, int? limitPerPage = null)
         {
-            Validate(showId, seasonNumber, episodeNumber);
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
             return await QueryAsync(new TraktEpisodeCommentsRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber,
                 Sorting = commentSortOrder,
@@ -133,20 +133,20 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
-        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showId.</returns>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
-        public async Task<TraktRating> GetEpisodeRatingsAsync(string showId, int seasonNumber, int episodeNumber)
+        public async Task<TraktRating> GetEpisodeRatingsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
-            Validate(showId, seasonNumber, episodeNumber);
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
             return await QueryAsync(new TraktEpisodeRatingsRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber
             });
@@ -159,20 +159,20 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-stats">"Trakt API Doc - Episodes: Stats"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the statistics should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the statistics should be queried.</param>
-        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showId.</returns>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
-        public async Task<TraktStatistics> GetEpisodeStatisticsAsync(string showId, int seasonNumber, int episodeNumber)
+        public async Task<TraktStatistics> GetEpisodeStatisticsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
-            Validate(showId, seasonNumber, episodeNumber);
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
             return await QueryAsync(new TraktEpisodeStatisticsRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber
             });
@@ -185,7 +185,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the watching users should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the watching users should be queried.</param>
         /// <param name="extendedOption">
@@ -194,32 +194,32 @@
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
-        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync(string showId, int seasonNumber, int episodeNumber,
+        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                TraktExtendedOption extendedOption = null)
         {
-            Validate(showId, seasonNumber, episodeNumber);
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
             return await QueryAsync(new TraktEpisodeWatchingUsersRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber,
                 ExtendedOption = extendedOption
             });
         }
 
-        private void Validate(string showId, int seasonNumber, int episodeNumber)
+        private void Validate(string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
-            if (string.IsNullOrEmpty(showId) || showId.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(showId));
+            if (string.IsNullOrEmpty(showIdOrSlug) || showIdOrSlug.ContainsSpace())
+                throw new ArgumentException("show id or slug not valid", nameof(showIdOrSlug));
 
             if (seasonNumber < 0)
-                throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season nr not valid");
+                throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season number not valid");
 
             if (episodeNumber < 0)
-                throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode nr not valid");
+                throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode number not valid");
         }
     }
 }
