@@ -15,15 +15,15 @@
         [JsonProperty(PropertyName = "number")]
         public int? Number { get; set; }
 
-        /// <summary>Gets or sets the episode title.</summary>
+        /// <summary>Gets or sets the episode title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the episode for various web services.</summary>
+        /// <summary>Gets or sets the collection of ids for the episode for various web services.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktEpisodeIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images for the episode.</summary>
+        /// <summary>Gets or sets the collection of images for the episode.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
         public TraktEpisodeImages Images { get; set; }
 
@@ -31,7 +31,7 @@
         [JsonProperty(PropertyName = "number_abs")]
         public int? NumberAbsolute { get; set; }
 
-        /// <summary>Gets or sets the synopsis of the episode.</summary>
+        /// <summary>Gets or sets the synopsis of the episode.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
         public string Overview { get; set; }
 
@@ -51,7 +51,7 @@
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.</summary>
+        /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
     }
