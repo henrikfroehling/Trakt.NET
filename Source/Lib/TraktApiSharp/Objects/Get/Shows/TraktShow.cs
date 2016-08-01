@@ -9,7 +9,7 @@
     /// <summary>A Trakt show.</summary>
     public class TraktShow
     {
-        /// <summary>Gets or sets the show title.</summary>
+        /// <summary>Gets or sets the show title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
@@ -17,15 +17,15 @@
         [JsonProperty(PropertyName = "year")]
         public int? Year { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the show for various web services.</summary>
+        /// <summary>Gets or sets the collection of ids for the show for various web services.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images and image sets for the show.</summary>
+        /// <summary>Gets or sets the collection of images and image sets for the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
         public TraktShowImages Images { get; set; }
 
-        /// <summary>Gets or sets the synopsis of the show.</summary>
+        /// <summary>Gets or sets the synopsis of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
         public string Overview { get; set; }
 
@@ -33,7 +33,7 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
-        /// <summary>Gets or sets the air time of the show.</summary>
+        /// <summary>Gets or sets the air time of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "airs")]
         public TraktShowAirs Airs { get; set; }
 
@@ -41,23 +41,23 @@
         [JsonProperty(PropertyName = "runtime")]
         public int? Runtime { get; set; }
 
-        /// <summary>Gets or sets the content certification of the show.</summary>
+        /// <summary>Gets or sets the content certification of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "certification")]
         public string Certification { get; set; }
 
-        /// <summary>Gets or sets the producing network name of the show.</summary>
+        /// <summary>Gets or sets the producing network name of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "network")]
         public string Network { get; set; }
 
-        /// <summary>Gets or sets the two letter language code for the country in which the show is produced.</summary>
+        /// <summary>Gets or sets the two letter language code for the country in which the show is produced.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "country")]
         public string CountryCode { get; set; }
 
-        /// <summary>Gets or sets the web address of a trailer for the show.</summary>
+        /// <summary>Gets or sets the web address of a trailer for the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "trailer")]
         public string Trailer { get; set; }
 
-        /// <summary>Gets or sets the web address of the homepage of the show.</summary>
+        /// <summary>Gets or sets the web address of the homepage of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "homepage")]
         public string Homepage { get; set; }
 
@@ -78,15 +78,15 @@
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        /// <summary>Gets or sets the two letter language code of the show.</summary>
+        /// <summary>Gets or sets the two letter language code of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "language")]
         public string LanguageCode { get; set; }
 
-        /// <summary>Gets or sets the list of translation language codes (two letters) for the show.</summary>
+        /// <summary>Gets or sets the list of translation language codes (two letters) for the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt genre slugs for the show.</summary>
+        /// <summary>Gets or sets the collection of Trakt genre slugs for the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "genres")]
         public IEnumerable<string> Genres { get; set; }
 
@@ -94,7 +94,7 @@
         [JsonProperty(PropertyName = "aired_episodes")]
         public int? AiredEpisodes { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt seasons for the show.</summary>
+        /// <summary>Gets or sets the collection of Trakt seasons for the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "seasons")]
         public IEnumerable<TraktSeason> Seasons { get; set; }
     }
