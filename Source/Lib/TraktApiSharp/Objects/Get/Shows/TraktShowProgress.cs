@@ -12,7 +12,7 @@
         [JsonProperty(PropertyName = "aired")]
         public int? Aired { get; set; }
 
-        /// <summary>Gets or sets the number of episodes already watched.</summary>
+        /// <summary>Gets or sets the number of episodes already collected or watched.</summary>
         [JsonProperty(PropertyName = "completed")]
         public int? Completed { get; set; }
 

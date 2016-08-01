@@ -12,11 +12,11 @@
         [JsonProperty(PropertyName = "number")]
         public int? Number { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the season for various web services.</summary>
+        /// <summary>Gets or sets the collection of ids for the season for various web services.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktSeasonIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images for the season.</summary>
+        /// <summary>Gets or sets the collection of images for the season.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
         public TraktSeasonImages Images { get; set; }
 
@@ -36,7 +36,7 @@
         [JsonProperty(PropertyName = "aired_episodes")]
         public int? AiredEpisodesCount { get; set; }
 
-        /// <summary>Gets or sets the synopsis of the season.</summary>
+        /// <summary>Gets or sets the synopsis of the season.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
         public string Overview { get; set; }
 
@@ -44,7 +44,7 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt episodes in the season.</summary>
+        /// <summary>Gets or sets the collection of Trakt episodes in the season.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "episodes")]
         public IEnumerable<TraktEpisode> Episodes { get; set; }
     }
