@@ -9,11 +9,11 @@
         [JsonProperty(PropertyName = "trakt")]
         public int Trakt { get; set; }
 
-        /// <summary>Gets or sets the Trakt slug.</summary>
+        /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
 
-        /// <summary>Gets or sets the id from imdb.com</summary>
+        /// <summary>Gets or sets the id from imdb.com<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "imdb")]
         public string Imdb { get; set; }
 

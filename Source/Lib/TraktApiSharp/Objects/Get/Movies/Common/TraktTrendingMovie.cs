@@ -9,7 +9,7 @@
         [JsonProperty(PropertyName = "watchers")]
         public int? Watchers { get; set; }
 
-        /// <summary>Gets or sets the Trakt movie.</summary>
+        /// <summary>Gets or sets the Trakt movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "movie")]
         public TraktMovie Movie { get; set; }
     }

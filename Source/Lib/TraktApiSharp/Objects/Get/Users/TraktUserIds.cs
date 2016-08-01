@@ -5,7 +5,7 @@
     /// <summary>A collection of ids a Trakt user.</summary>
     public class TraktUserIds
     {
-        /// <summary>Gets or sets the Trakt slug.</summary>
+        /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
 

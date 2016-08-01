@@ -7,7 +7,7 @@
     /// <summary>A Trakt movie.</summary>
     public class TraktMovie
     {
-        /// <summary>Gets or sets the movie title.</summary>
+        /// <summary>Gets or sets the movie title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
@@ -15,19 +15,19 @@
         [JsonProperty(PropertyName = "year")]
         public int? Year { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the movie for various web services.</summary>
+        /// <summary>Gets or sets the collection of ids for the movie for various web services.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktMovieIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images and image sets for the movie.</summary>
+        /// <summary>Gets or sets the collection of images and image sets for the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
         public TraktMovieImages Images { get; set; }
 
-        /// <summary>Gets or sets the movie tagline.</summary>
+        /// <summary>Gets or sets the movie tagline.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "tagline")]
         public string Tagline { get; set; }
 
-        /// <summary>Gets or sets the synopsis of the movie.</summary>
+        /// <summary>Gets or sets the synopsis of the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
         public string Overview { get; set; }
 
@@ -39,11 +39,11 @@
         [JsonProperty(PropertyName = "runtime")]
         public int? Runtime { get; set; }
 
-        /// <summary>Gets or sets the web address of a trailer for the movie.</summary>
+        /// <summary>Gets or sets the web address of a trailer for the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "trailer")]
         public string Trailer { get; set; }
 
-        /// <summary>Gets or sets the web address of the homepage of the movie.</summary>
+        /// <summary>Gets or sets the web address of the homepage of the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "homepage")]
         public string Homepage { get; set; }
 
@@ -59,19 +59,19 @@
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        /// <summary>Gets or sets the two letter language code of the movie.</summary>
+        /// <summary>Gets or sets the two letter language code of the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "language")]
         public string LanguageCode { get; set; }
 
-        /// <summary>Gets or sets the list of translation language codes (two letters) for the movie.</summary>
+        /// <summary>Gets or sets the list of translation language codes (two letters) for the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt genre slugs for the movie.</summary>
+        /// <summary>Gets or sets the collection of Trakt genre slugs for the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "genres")]
         public IEnumerable<string> Genres { get; set; }
 
-        /// <summary>Gets or sets the content certification of the movie.</summary>
+        /// <summary>Gets or sets the content certification of the movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "certification")]
         public string Certification { get; set; }
     }
