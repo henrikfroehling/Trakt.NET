@@ -34,6 +34,8 @@
         /// </summary>
         public int? UserCount { get; set; }
 
+        /// <summary>Returns an enumerator for the containing items list.</summary>
+        /// <returns>An enumerator for the containing items list.</returns>
         public IEnumerator<ListItem> GetEnumerator()
         {
             return Items.GetEnumerator();
