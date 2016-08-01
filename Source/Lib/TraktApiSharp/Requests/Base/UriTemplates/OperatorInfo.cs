@@ -1,7 +1,7 @@
 namespace UriTemplates
 {
     /// <summary>
-    /// <see cref="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/OperatorInfo.cs" />
+    /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/OperatorInfo.cs" />
     /// </summary>
     internal class OperatorInfo
     {

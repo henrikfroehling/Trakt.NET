@@ -6,7 +6,7 @@ namespace UriTemplates
     using System.Text;
 
     /// <summary>
-    /// <see cref="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/Result.cs" />
+    /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/Result.cs" />
     /// </summary>
     internal class Result
     {
