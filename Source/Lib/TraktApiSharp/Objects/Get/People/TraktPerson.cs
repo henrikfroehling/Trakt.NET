@@ -11,11 +11,19 @@
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the person for various web services.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of ids for the person for various web services.
+        /// See also <seealso cref="TraktPersonIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktPersonIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images and image sets for the person.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of images and image sets for the person.
+        /// See also <seealso cref="TraktPersonImages" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "images")]
         public TraktPersonImages Images { get; set; }
 

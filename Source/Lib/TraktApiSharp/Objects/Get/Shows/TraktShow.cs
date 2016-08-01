@@ -17,11 +17,19 @@
         [JsonProperty(PropertyName = "year")]
         public int? Year { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the show for various web services.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of ids for the show for various web services.
+        /// See also <seealso cref="TraktShowIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images and image sets for the show.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of images and image sets for the show.
+        /// See also <seealso cref="TraktShowImages" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "images")]
         public TraktShowImages Images { get; set; }
 
@@ -33,7 +41,7 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
-        /// <summary>Gets or sets the air time of the show.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the air time of the show. See also <seealso cref="TraktShowAirs" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "airs")]
         public TraktShowAirs Airs { get; set; }
 
@@ -94,7 +102,7 @@
         [JsonProperty(PropertyName = "aired_episodes")]
         public int? AiredEpisodes { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt seasons for the show.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="TraktSeason" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "seasons")]
         public IEnumerable<TraktSeason> Seasons { get; set; }
     }

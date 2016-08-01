@@ -25,6 +25,7 @@
 
         /// <summary>
         /// Gets or sets the episode, which the user should collect or watch.
+        /// See also <seealso cref="TraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "next_episode")]

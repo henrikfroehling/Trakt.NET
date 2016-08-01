@@ -15,11 +15,19 @@
         [JsonProperty(PropertyName = "year")]
         public int? Year { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the movie for various web services.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of ids for the movie for various web services.
+        /// See also <seealso cref="TraktMovieIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktMovieIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images and image sets for the movie.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of images and image sets for the movie.
+        /// See also <seealso cref="TraktMovieImages" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "images")]
         public TraktMovieImages Images { get; set; }
 

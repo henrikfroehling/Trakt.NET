@@ -9,7 +9,7 @@
         [JsonProperty(PropertyName = "watchers")]
         public int? Watchers { get; set; }
 
-        /// <summary>Gets or sets the Trakt show.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
         public TraktShow Show { get; set; }
     }

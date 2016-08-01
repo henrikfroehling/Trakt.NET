@@ -7,11 +7,11 @@
     /// <summary>A Trakt list.</summary>
     public class TraktList
     {
-        /// <summary>Gets or sets the list title.</summary>
+        /// <summary>Gets or sets the list title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        /// <summary>Gets or sets the list description.</summary>
+        /// <summary>Gets or sets the list description.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
 
@@ -28,11 +28,11 @@
         [JsonProperty(PropertyName = "allow_comments")]
         public bool? AllowComments { get; set; }
 
-        /// <summary>Gets or sets the property, by which the list is sorted.</summary>
+        /// <summary>Gets or sets the property, by which the list is sorted.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "sort_by")]
         public string SortBy { get; set; }
 
-        /// <summary>Gets or sets the sort order of the list.</summary>
+        /// <summary>Gets or sets the sort order of the list.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "sort_how")]
         public string SortHow { get; set; }
 
@@ -56,11 +56,19 @@
         [JsonProperty(PropertyName = "likes")]
         public int? Likes { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the list for various web services.</summary>
+        /// <summary>
+        /// Gets or sets the collection of ids for the list for various web services.
+        /// See also <seealso cref="TraktListIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktListIds Ids { get; set; }
 
-        /// <summary>Gets or sets the list's username of the user, which created this list.</summary>
+        /// <summary>
+        /// Gets or sets the list's username of the user, which created this list.
+        /// See also <seealso cref="TraktUser" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "user")]
         public TraktUser User { get; set; }
     }

@@ -19,11 +19,19 @@
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the episode for various web services.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of ids for the episode for various web services.
+        /// See also <seealso cref="TraktEpisodeIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public TraktEpisodeIds Ids { get; set; }
 
-        /// <summary>Gets or sets the collection of images for the episode.<para>Nullable</para></summary>
+        /// <summary>
+        /// Gets or sets the collection of images for the episode.
+        /// See also <seealso cref="TraktEpisodeImages" />.
+        /// <para>Nullable</para>
+        /// </summary>
         [JsonProperty(PropertyName = "images")]
         public TraktEpisodeImages Images { get; set; }
 

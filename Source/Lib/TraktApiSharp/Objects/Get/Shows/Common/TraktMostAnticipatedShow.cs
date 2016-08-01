@@ -9,7 +9,7 @@
         [JsonProperty(PropertyName = "list_count")]
         public int? ListCount { get; set; }
 
-        /// <summary>Gets or sets the Trakt show.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
         public TraktShow Show { get; set; }
     }
