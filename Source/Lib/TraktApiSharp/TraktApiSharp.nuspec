@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
         <version>0.2.0</version>
@@ -18,7 +18,24 @@ Features
 - Completely asynchronous
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes />
+        <releaseNotes>Added:
+- source documentation
+- fillter support for movies, shows, calendars and search
+- new search methods
+- query methods for multiple seasons, episodes and user lists
+- extended option for sync-watched-history-request
+- extended option for users-follow-requests-, users-profile-, users-followers-, users-following-, users-friends- and users-watched-history-request
+- builder for user-list-items-post, sync-collection-post, sync-history-post, sync-history-remove-post, sync-ratings-post, sync-watchlist-post
+
+Improved:
+- query methods for multiple movies, shows, persons and comments
+
+Removed:
+- extended option from checkin-, scrobble-requests and sync-playback-progress-request
+
+Simplified:
+- usage of list results
+        </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
@@ -27,8 +44,8 @@ Features
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\" />
-        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\" />
-        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.XML" />
     </files>
 </package>

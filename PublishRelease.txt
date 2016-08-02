@@ -1,0 +1,8 @@
+Steps needed to do for a new release
+
+1. Update version number in Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
+2. Update version numbers in assemblies
+3. Update release notes in Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
+4. Update changelog
+5. Build release
+6. Test release
