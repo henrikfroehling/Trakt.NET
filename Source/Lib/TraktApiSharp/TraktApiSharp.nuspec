@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>$version$</version>
+        <version>0.2.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
-        <owners>Henrik Fröhling</owners>
+        <owners>henrikfroehling</owners>
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -27,6 +27,8 @@ Features
         </dependencies>
     </metadata>
     <files>
-        <file src="lib\portable-net45+netcore45+wpa81\_._" target="lib\portable-net45+netcore45+wpa81\_._" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\" />
+        <file src="..\..\..\Build\Lib\Release\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\" />
     </files>
 </package>
