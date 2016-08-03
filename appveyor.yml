@@ -60,7 +60,7 @@
 
   after_build:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME%
-    - cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\TraktApiSharp*.nupkg
+    - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
     verbosity: minimal
