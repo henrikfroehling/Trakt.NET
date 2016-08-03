@@ -60,6 +60,7 @@
 
   after_build:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME%
+    - cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\TraktApiSharp*.nupkg
 
   build:
     verbosity: minimal
@@ -78,8 +79,6 @@
       name: DebugAssemblyPDB
     - path: Build\Lib\Debug\TraktApiSharp.XML
       name: DebugDocumentationXML
-    - path: Build\Lib\%CONFIGURATION%\TraktApiSharp*.nupkg
-      name: NugetPackage
 
 # "fall back" configuration for all other branches
 # no "branches" section defined
