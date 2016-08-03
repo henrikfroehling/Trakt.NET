@@ -18,24 +18,7 @@ Features
 - Completely asynchronous
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes>Added:
-- source documentation
-- fillter support for movies, shows, calendars and search
-- new search methods
-- query methods for multiple seasons, episodes and user lists
-- extended option for sync-watched-history-request
-- extended option for users-follow-requests-, users-profile-, users-followers-, users-following-, users-friends- and users-watched-history-request
-- builder for user-list-items-post, sync-collection-post, sync-history-post, sync-history-remove-post, sync-ratings-post, sync-watchlist-post
-
-Improved:
-- query methods for multiple movies, shows, persons and comments
-
-Removed:
-- extended option from checkin-, scrobble-requests and sync-playback-progress-request
-
-Simplified:
-- usage of list results
-        </releaseNotes>
+        <releaseNotes>Enter release notes here</releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
