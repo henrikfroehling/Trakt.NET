@@ -21,8 +21,6 @@
   build:
     verbosity: minimal
 
-  platform: Any CPU
-
   branches:
     only:
       - master
@@ -59,8 +57,6 @@
 
   build:
     verbosity: minimal
-
-  platform: Any CPU
 
   branches:
     only:
@@ -100,7 +96,5 @@
 
   build:
     verbosity: minimal
-
-  platform: Any CPU
 
   configuration: Debug
