@@ -45,7 +45,7 @@
 
         /// <summary>
         /// Returns the runtimes range parameter value.
-        /// <para>See also <seealso cref="Range{int}" />.</para>
+        /// <para>See also <seealso cref="Range{T}" />.</para>
         /// </summary>
         public Range<int>? Runtimes { get; protected set; }
 
@@ -63,7 +63,7 @@
 
         /// <summary>
         /// Returns the ratings range parameter value.
-        /// <para>See also <seealso cref="Range{int}" />.</para>
+        /// <para>See also <seealso cref="Range{T}" />.</para>
         /// </summary>
         public Range<int>? Ratings { get; protected set; }
 
