@@ -72,7 +72,7 @@
       name: DebugAssemblyPDB
     - path: Build\Lib\Debug\TraktApiSharp.XML
       name: DebugDocumentationXML
-    - path: Build\Lib\Debug\TraktApiSharp*.nupkg
+    - path: Build\Lib\$(configuration)\TraktApiSharp*.nupkg
       name: NugetPackage
 
 # "fall back" configuration for all other branches
