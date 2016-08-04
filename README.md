@@ -7,6 +7,8 @@ TraktApiSharp
 [![Build status](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp)
 [![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
 
+![Platforms](https://img.shields.io/badge/Platforms-%20.Net%20%3E=%204.5%20%7C%20ASP.Net%20Core%201.0%20%7C%20Win%208%20%7C%20Win%208.1%20%7C%20Win%2010%20%7C%20Win%2010%20UWP%20%7C%20Win%20Phone%208.1%20%7C%20Xamarin%20Android%20%7C%20Xamarin%20iOS%20-orange.svg)
+
 ### Features
 - Full Trakt.tv API Coverage
 - OAuth Authentication Support
