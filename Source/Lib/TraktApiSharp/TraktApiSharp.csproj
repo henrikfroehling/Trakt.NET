@@ -52,6 +52,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\NotNullAttribute.cs" />
     <Compile Include="Attributes\NullableAttribute.cs" />
     <Compile Include="Authentication\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
