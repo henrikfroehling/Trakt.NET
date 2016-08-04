@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Extensions;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
@@ -36,6 +37,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktMovieScrobblePostResponse> StartMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -59,6 +61,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync(TraktMovie movie, float progress,
                                                                           string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -82,6 +85,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktMovieScrobblePostResponse> StopMovieAsync(TraktMovie movie, float progress,
                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -109,6 +113,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync(TraktEpisode episode, float progress,
                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -136,6 +141,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync(TraktEpisode episode, float progress,
                                                                               string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -163,6 +169,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync(TraktEpisode episode, float progress,
                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -190,6 +197,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                       string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -217,6 +225,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                       string appVersion = null, DateTime? appBuildDate = null)
         {
@@ -244,6 +253,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
