@@ -4,8 +4,8 @@ TraktApiSharp
 ---
 [![NuGet Package](https://img.shields.io/badge/NuGet-v0.2.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
-[![Build status](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n?svg=true&passingText=dev%20-%20passing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp)
-![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)
+[![Build status](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp)
+[![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
 
 ### Features
 - Full Trakt.tv API Coverage
