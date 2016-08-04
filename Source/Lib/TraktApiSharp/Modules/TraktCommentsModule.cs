@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -39,6 +40,7 @@
         /// <returns>An <see cref="TraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktComment> GetCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -58,6 +60,7 @@
         /// <returns>A list of <see cref="TraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] commentIds)
         {
             if (commentIds == null || commentIds.Length <= 0)
@@ -98,6 +101,7 @@
         /// Thrown, if the given movie's year is not valid.
         /// Thrown, if the given comment's word count is below five.
         /// </exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostMovieCommentAsync(TraktMovie movie, string comment,
                                                                           bool? containsSpoiler = null, TraktSharing sharing = null)
         {
@@ -141,6 +145,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostShowCommentAsync(TraktShow show, string comment,
                                                                          bool? containsSpoiler = null, TraktSharing sharing = null)
         {
@@ -182,6 +187,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostSeasonCommentAsync(TraktSeason season, string comment,
                                                                            bool? containsSpoiler = null, TraktSharing sharing = null)
         {
@@ -219,6 +225,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
                                                                             bool? containsSpoiler = null, TraktSharing sharing = null)
         {
@@ -256,6 +263,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostListCommentAsync(TraktList list, string comment,
                                                                          bool? containsSpoiler = null, TraktSharing sharing = null)
         {
@@ -291,6 +299,7 @@
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> UpdateCommentAsync(string commentId, string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
@@ -324,6 +333,7 @@
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktCommentPostResponse> PostCommentReplyAsync(string commentId, string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
@@ -350,6 +360,7 @@
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be deleted.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired]
         public async Task DeleteCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -367,6 +378,7 @@
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be liked.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired]
         public async Task LikeCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -384,6 +396,7 @@
         /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be unliked.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired]
         public async Task UnlikeCommentAsync(string commentId)
         {
             ValidateId(commentId);
@@ -393,7 +406,7 @@
 
         /// <summary>
         /// Gets replies for comment with the given Trakt-Id or -Slug.
-        /// <para>OAuth authorization required.</para>
+        /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
@@ -410,6 +423,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(string commentId, int? page = null, int? limitPerPage = null)
         {
             ValidateId(commentId);
