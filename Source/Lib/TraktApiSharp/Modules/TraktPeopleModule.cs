@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Extensions;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
@@ -36,6 +37,7 @@
         /// <returns>An <see cref="TraktPerson" /> instance with the queried person's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPerson> GetPersonAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
@@ -59,6 +61,7 @@
         /// <returns>A list of <see cref="TraktPerson" /> instances with the data of each queried person.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktPerson>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams)
         {
             if (personsQueryParams == null || personsQueryParams.Count <= 0)
@@ -91,6 +94,7 @@
         /// <returns>An <see cref="TraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
@@ -117,6 +121,7 @@
         /// <returns>An <see cref="TraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
