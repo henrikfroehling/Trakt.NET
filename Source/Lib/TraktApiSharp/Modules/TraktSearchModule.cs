@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Enums;
     using Extensions;
     using Objects.Basic;
@@ -50,6 +51,7 @@
         /// Thrown, if the given searchQuery is null, empty or contains spaces.
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, string searchQuery,
                                                                                                  TraktSearchFilter filter = null,
                                                                                                  TraktExtendedOption extendedOption = null,
@@ -96,6 +98,7 @@
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                                 TraktSearchResultType? searchResultType = null,
                                                                                                 TraktExtendedOption extendedOption = null,
@@ -139,6 +142,7 @@
         /// Thrown, if the given searchResultType has an unspecified value.
         /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string searchQuery, TraktSearchResultType? searchResultType = null,
                                                                                                  int? year = null, int? page = null, int? limitPerPage = null)
         {
@@ -178,6 +182,7 @@
         /// Thrown, if the given searchIdLookupType is unspecified.
         /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, string lookupId,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
