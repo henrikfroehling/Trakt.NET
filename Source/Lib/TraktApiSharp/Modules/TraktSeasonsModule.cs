@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Enums;
     using Extensions;
     using Objects.Basic;
@@ -39,6 +40,7 @@
         /// <returns>A list of <see cref="TraktSeason" /> instances with the data of each queried season.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug);
@@ -68,6 +70,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync(string showIdOrSlug, int seasonNumber,
                                                                     TraktExtendedOption extendedOption = null)
         {
@@ -94,6 +97,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if one of the given season numbers is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<IEnumerable<TraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams)
         {
             if (seasonsQueryParams == null || seasonsQueryParams.Count <= 0)
@@ -135,6 +139,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, int seasonNumber,
                                                                                           TraktCommentSortOrder? commentSortOrder = null,
                                                                                           int? page = null, int? limitPerPage = null)
@@ -163,6 +168,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktRating> GetSeasonRatingsAsync(string showIdOrSlug, int seasonNumber)
         {
             Validate(showIdOrSlug, seasonNumber);
@@ -187,6 +193,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktStatistics> GetSeasonStatisticsAsync(string showIdOrSlug, int seasonNumber)
         {
             Validate(showIdOrSlug, seasonNumber);
@@ -215,6 +222,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, int seasonNumber,
                                                                               TraktExtendedOption extendedOption = null)
         {
