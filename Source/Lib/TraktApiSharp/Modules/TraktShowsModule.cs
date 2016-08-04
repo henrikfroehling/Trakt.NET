@@ -311,11 +311,13 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="includingHiddenSeasons">Determines, if the returned collection progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned collection progress should contain special seasons.</param>
+        /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned collection progress.</param>
         /// <returns>An <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
-                                                                                      bool? includingSpecialSeasons = null)
+                                                                                      bool? includingSpecialSeasons = null,
+                                                                                      bool? countSpecialSeasons = null)
         {
             Validate(showIdOrSlug);
 
@@ -323,7 +325,8 @@
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
-                Specials = includingSpecialSeasons
+                Specials = includingSpecialSeasons,
+                CountSpecials = countSpecialSeasons
             });
         }
 
