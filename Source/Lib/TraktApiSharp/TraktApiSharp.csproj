@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Attributes\NotNullAttribute.cs" />
     <Compile Include="Attributes\NullableAttribute.cs" />
+    <Compile Include="Attributes\OAuthAuthorizationOptionalAttribute.cs" />
     <Compile Include="Attributes\OAuthAuthorizationRequiredAttribute.cs" />
     <Compile Include="Authentication\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
