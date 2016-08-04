@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
+    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -24,12 +25,15 @@
         public TraktSyncType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
 
         [JsonProperty(PropertyName = "show")]
+        [Nullable]
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "episode")]
+        [Nullable]
         public TraktEpisode Episode { get; set; }
     }
 }

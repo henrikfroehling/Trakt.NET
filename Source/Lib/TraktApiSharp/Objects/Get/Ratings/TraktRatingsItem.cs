@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Ratings
 {
+    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -21,15 +22,19 @@
         public TraktSyncRatingsItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
 
         [JsonProperty(PropertyName = "show")]
+        [Nullable]
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "season")]
+        [Nullable]
         public TraktSeason Season { get; set; }
 
         [JsonProperty(PropertyName = "episode")]
+        [Nullable]
         public TraktEpisode Episode { get; set; }
     }
 }

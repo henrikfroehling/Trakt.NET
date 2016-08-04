@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
+    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>A collection of ids a Trakt user.</summary>
@@ -7,6 +8,7 @@
     {
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "slug")]
+        [Nullable]
         public string Slug { get; set; }
 
         /// <summary>Returns, whether any id has been set.</summary>

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
+    using Attributes;
     using Basic;
     using Enums;
     using Lists;
@@ -16,9 +17,11 @@
         public TraktUserLikeType? Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
+        [Nullable]
         public TraktComment Comment { get; set; }
 
         [JsonProperty(PropertyName = "list")]
+        [Nullable]
         public TraktList List { get; set; }
     }
 }
