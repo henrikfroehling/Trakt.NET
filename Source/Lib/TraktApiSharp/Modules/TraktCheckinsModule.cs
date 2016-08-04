@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -43,6 +44,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                              string message = null, TraktSharing sharing = null,
                                                                              string foursquareVenueID = null, string foursquareVenueName = null)
@@ -93,6 +95,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                  string message = null, TraktSharing sharing = null,
                                                                                  string foursquareVenueID = null, string foursquareVenueName = null)
@@ -146,6 +149,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
                                                                                          string appVersion = null, DateTime? appBuildDate = null,
                                                                                          string message = null, TraktSharing sharing = null,
@@ -188,6 +192,7 @@
         /// </para>
         /// </summary>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired]
         public async Task DeleteAnyActiveCheckinsAsync()
         {
             await QueryAsync(new TraktCheckinsDeleteRequest(Client));
