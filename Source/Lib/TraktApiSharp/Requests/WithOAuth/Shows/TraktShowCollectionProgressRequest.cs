@@ -6,7 +6,7 @@
     {
         internal TraktShowCollectionProgressRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/{id}/progress/collection{?hidden,specials}";
+        protected override string UriTemplate => "shows/{id}/progress/collection{?hidden,specials,count_specials}";
 
         protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
     }
