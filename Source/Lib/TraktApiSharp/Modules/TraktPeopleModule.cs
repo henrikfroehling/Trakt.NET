@@ -38,7 +38,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPerson> GetPersonAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktPerson> GetPersonAsync([NotNull] string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
 
@@ -95,7 +95,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
 
@@ -122,7 +122,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(personIdOrSlug);
 
