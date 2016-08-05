@@ -44,7 +44,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktShow> GetShowAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktShow> GetShowAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -97,7 +97,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug)
+        public async Task<IEnumerable<TraktShowAlias>> GetShowAliasesAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 
@@ -116,7 +116,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync(string showIdOrSlug)
+        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 
@@ -142,7 +142,7 @@
         /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktShowTranslation> GetShowSingleTranslationAsync(string showIdOrSlug, string languageCode)
+        public async Task<TraktShowTranslation> GetShowSingleTranslationAsync([NotNull] string showIdOrSlug, [NotNull] string languageCode)
         {
             Validate(showIdOrSlug, languageCode);
 
@@ -174,7 +174,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync(string showIdOrSlug,
+        public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync([NotNull] string showIdOrSlug,
                                                                                         TraktCommentSortOrder? commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
@@ -204,7 +204,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktCastAndCrew> GetShowPeopleAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktCastAndCrew> GetShowPeopleAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -227,7 +227,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktRating> GetShowRatingsAsync(string showIdOrSlug)
+        public async Task<TraktRating> GetShowRatingsAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 
@@ -258,7 +258,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
             Validate(showIdOrSlug);
@@ -283,7 +283,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktStatistics> GetShowStatisticsAsync(string showIdOrSlug)
+        public async Task<TraktStatistics> GetShowStatisticsAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 
@@ -306,7 +306,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -328,7 +328,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
+        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                       bool? includingSpecialSeasons = null,
                                                                                       bool? countSpecialSeasons = null)
         {
@@ -358,7 +358,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
+        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                 bool? includingSpecialSeasons = null,
                                                                                 bool? countSpecialSeasons = null)
         {
