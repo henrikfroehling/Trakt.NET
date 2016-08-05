@@ -44,7 +44,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktEpisode> GetEpisodeAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
+        public async Task<TraktEpisode> GetEpisodeAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                         TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
@@ -114,7 +114,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
+        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                            TraktCommentSortOrder? commentSortOrder = null,
                                                                                            int? page = null, int? limitPerPage = null)
         {
@@ -145,7 +145,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktRating> GetEpisodeRatingsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber)
+        public async Task<TraktRating> GetEpisodeRatingsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
@@ -172,7 +172,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktStatistics> GetEpisodeStatisticsAsync(string showIdOrSlug, int seasonNumber, int episodeNumber)
+        public async Task<TraktStatistics> GetEpisodeStatisticsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
@@ -203,7 +203,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, int seasonNumber, int episodeNumber,
+        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
