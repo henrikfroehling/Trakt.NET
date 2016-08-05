@@ -18,7 +18,7 @@
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader"
-                             Content="Settings Page"
+                             Content="Settings"
                              Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
@@ -32,7 +32,7 @@
                RelativePanel.Below="pageHeader">
 
             <!--  trakt settings  -->
-            <PivotItem Header="TraktClient">
+            <PivotItem Header="Trakt Client Settings">
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
                               VerticalScrollBarVisibility="Auto">
@@ -88,7 +88,7 @@
             </PivotItem>
 
             <!--  settings  -->
-            <PivotItem Header="Settings">
+            <PivotItem Header="Application Settings">
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
                               VerticalScrollBarVisibility="Auto">
@@ -145,13 +145,15 @@
 
                     <TextBlock x:Name="PublisherTextBlock"
                                RelativePanel.AlignLeftWithPanel="True"
-                               RelativePanel.Below="DisplayNameTextBlock"
-                               Text="{x:Bind ViewModel.AboutPartViewModel.Publisher}" />
+                               RelativePanel.Below="DisplayNameTextBlock">
+                        <Run FontWeight="SemiBold" Text="Author" />
+                        <Run Text="{x:Bind ViewModel.AboutPartViewModel.Publisher}" />
+                    </TextBlock>
 
                     <TextBlock x:Name="VersionTextBlock"
                                RelativePanel.AlignLeftWithPanel="True"
                                RelativePanel.Below="PublisherTextBlock">
-                        <Run>Version</Run>
+                        <Run FontWeight="SemiBold" Text="Version" />
                         <Run Text="{x:Bind ViewModel.AboutPartViewModel.Version}" />
                     </TextBlock>
 

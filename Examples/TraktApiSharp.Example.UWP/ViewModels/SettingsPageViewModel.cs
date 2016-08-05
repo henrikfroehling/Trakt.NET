@@ -1,6 +1,5 @@
 namespace TraktApiSharp.Example.UWP.ViewModels
 {
-    using System;
     using Template10.Mvvm;
     using Windows.UI.Xaml;
 
@@ -124,7 +123,5 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 return $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
             }
         }
-
-        public Uri RateMe => new Uri("http://aka.ms/template10");
     }
 }
