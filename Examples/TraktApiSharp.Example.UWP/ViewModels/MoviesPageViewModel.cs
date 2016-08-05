@@ -20,10 +20,10 @@
 
         public RecentlyUpdatedMoviesPartViewModel RecentlyUpdatedMoviesViewModel { get; } = new RecentlyUpdatedMoviesPartViewModel();
 
-        public void GotoSettings() =>
+        public void GotoTraktSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
 
-        public void GotoPrivacy() =>
+        public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 1);
 
         public void GotoAbout() =>
