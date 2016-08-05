@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
+    using Attributes;
     using Newtonsoft.Json;
     using System;
 
@@ -12,6 +13,7 @@
         public DateTime? RequestedAt { get; set; }
 
         [JsonProperty(PropertyName = "user")]
+        [Nullable]
         public TraktUser User { get; set; }
     }
 }

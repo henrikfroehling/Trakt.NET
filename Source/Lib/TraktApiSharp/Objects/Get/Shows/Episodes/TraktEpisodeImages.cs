@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Episodes
 {
+    using Attributes;
     using Basic;
     using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@
     {
         /// <summary>Gets or sets the screenshot image set. See also <seealso cref="TraktImageSet" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "screenshot")]
+        [Nullable]
         public TraktImageSet Screenshot { get; set; }
     }
 }

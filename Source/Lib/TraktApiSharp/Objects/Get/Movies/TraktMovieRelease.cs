@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies
 {
+    using Attributes;
     using Enums;
     using Newtonsoft.Json;
     using System;
@@ -9,10 +10,12 @@
     {
         /// <summary>Gets or sets the two letter country code for the movie release.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "country")]
+        [Nullable]
         public string CountryCode { get; set; }
 
         /// <summary>Gets or sets the content certification for the movie release.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "certification")]
+        [Nullable]
         public string Certification { get; set; }
 
         /// <summary>Gets or sets the release date of the movie release.</summary>
@@ -29,6 +32,7 @@
 
         /// <summary>Gets or sets a note for the movie release.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "note")]
+        [Nullable]
         public string Note { get; set; }
     }
 }

@@ -39,17 +39,17 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
@@ -59,20 +59,20 @@
                             Trakt = 1
                         }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }

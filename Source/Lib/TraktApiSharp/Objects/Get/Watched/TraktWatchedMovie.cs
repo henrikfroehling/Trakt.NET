@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Watched
 {
+    using Attributes;
     using Movies;
     using Newtonsoft.Json;
     using System;
@@ -13,6 +14,7 @@
         public DateTime? LastWatchedAt { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
     }
 }

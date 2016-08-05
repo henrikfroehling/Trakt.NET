@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
+    using Attributes;
     using Enums;
     using Get.Movies;
     using Get.People;
@@ -26,6 +27,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -34,6 +36,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
+        [Nullable]
         public TraktShow Show { get; set; }
 
         /// <summary>
@@ -42,6 +45,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
+        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -50,6 +54,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "person")]
+        [Nullable]
         public TraktPerson Person { get; set; }
 
         /// <summary>
@@ -58,6 +63,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "list")]
+        [Nullable]
         public TraktList List { get; set; }
     }
 }

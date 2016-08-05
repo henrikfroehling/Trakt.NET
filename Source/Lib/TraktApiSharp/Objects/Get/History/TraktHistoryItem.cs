@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.History
 {
+    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -25,15 +26,19 @@
         public TraktSyncItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
 
         [JsonProperty(PropertyName = "show")]
+        [Nullable]
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "season")]
+        [Nullable]
         public TraktSeason Season { get; set; }
 
         [JsonProperty(PropertyName = "episode")]
+        [Nullable]
         public TraktEpisode Episode { get; set; }
     }
 }

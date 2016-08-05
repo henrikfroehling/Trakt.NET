@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -40,6 +41,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
                                                                                               TraktExtendedOption extendedOption = null)
         {
@@ -60,7 +62,8 @@
         /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task HideMovieRecommendationAsync(string movieIdOrSlug)
+        [OAuthAuthorizationRequired]
+        public async Task HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -87,6 +90,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
                                                                                             TraktExtendedOption extendedOption = null)
         {
@@ -107,7 +111,8 @@
         /// <param name="showIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the show, which should be hidden from recommendations.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task HideShowRecommendationAsync(string showIdOrSlug)
+        [OAuthAuthorizationRequired]
+        public async Task HideShowRecommendationAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
+    using Attributes;
     using Basic;
     using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@
         public bool? Spoiler { get; set; }
 
         [JsonProperty(PropertyName = "sharing")]
+        [Nullable]
         public TraktSharing Sharing { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
+    using Attributes;
     using Get.Movies;
     using Newtonsoft.Json;
     using System;
@@ -10,6 +11,7 @@
         public DateTime? WatchedAt { get; set; }
 
         [JsonProperty(PropertyName = "title")]
+        [Nullable]
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "year")]

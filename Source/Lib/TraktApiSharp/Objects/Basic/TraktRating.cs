@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
+    using Attributes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
@@ -16,6 +17,7 @@
 
         /// <summary>Gets or sets the rating distribution.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "distribution")]
+        [Nullable]
         public Dictionary<string, int> Distribution { get; set; }
     }
 }
