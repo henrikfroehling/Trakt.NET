@@ -32,6 +32,7 @@
                RelativePanel.AlignRightWithPanel="True"
                RelativePanel.Below="pageHeader">
 
+            <!--  trakt settings  -->
             <PivotItem Header="TraktClient">
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
@@ -67,7 +68,7 @@
 
                         <ToggleSwitch x:Name="tglUseStagingUrl"
                                       Margin="12"
-                                      Header="Trakt API Url"
+                                      Header="Trakt API Staging / Production Url"
                                       IsOn="{x:Bind ViewModel.TraktClientPartViewModel.UseStagingUrl, Mode=TwoWay}"
                                       OffContent="Use Production Url"
                                       OnContent="Use Staging Url"
