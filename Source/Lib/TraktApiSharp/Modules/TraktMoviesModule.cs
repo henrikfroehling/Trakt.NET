@@ -43,7 +43,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovie> GetMovieAsync(string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktMovie> GetMovieAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
@@ -96,7 +96,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug)
+        public async Task<IEnumerable<TraktMovieAlias>> GetMovieAliasesAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -115,7 +115,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug)
+        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -141,7 +141,7 @@
         /// Thronw, if the given country code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string movieIdOrSlug, string countryCode)
+        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync([NotNull] string movieIdOrSlug, [NotNull] string countryCode)
         {
             Validate(movieIdOrSlug, countryCode);
 
@@ -164,7 +164,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug)
+        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -190,7 +190,7 @@
         /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync(string movieIdOrSlug, string languageCode)
+        public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync([NotNull] string movieIdOrSlug, [NotNull] string languageCode)
         {
             Validate(movieIdOrSlug, languageCode);
 
@@ -222,7 +222,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
+        public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync([NotNull] string movieIdOrSlug,
                                                                                          TraktCommentSortOrder? commentSortOrder = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
@@ -252,7 +252,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktCastAndCrew> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktCastAndCrew> GetMoviePeopleAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
@@ -271,7 +271,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktRating> GetMovieRatingsAsync(string movieIdOrSlug)
+        public async Task<TraktRating> GetMovieRatingsAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -302,7 +302,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null,
                                                                                             int? page = null, int? limitPerPage = null)
         {
             Validate(movieIdOrSlug);
@@ -327,7 +327,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktStatistics> GetMovieStatisticsAsync(string movieIdOrSlug)
+        public async Task<TraktStatistics> GetMovieStatisticsAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -350,7 +350,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
