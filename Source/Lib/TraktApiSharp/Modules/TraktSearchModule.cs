@@ -52,7 +52,7 @@
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, string searchQuery,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, [NotNull] string searchQuery,
                                                                                                  TraktSearchFilter filter = null,
                                                                                                  TraktExtendedOption extendedOption = null,
                                                                                                  int? page = null, int? limitPerPage = null)
@@ -99,7 +99,7 @@
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
                                                                                                 TraktSearchResultType? searchResultType = null,
                                                                                                 TraktExtendedOption extendedOption = null,
                                                                                                 int? page = null, int? limitPerPage = null)
@@ -143,7 +143,7 @@
         /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(string searchQuery, TraktSearchResultType? searchResultType = null,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync([NotNull] string searchQuery, TraktSearchResultType? searchResultType = null,
                                                                                                  int? year = null, int? page = null, int? limitPerPage = null)
         {
             Validate(searchQuery);
@@ -183,7 +183,7 @@
         /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, string lookupId,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, [NotNull] string lookupId,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
             Validate(searchIdLookupType, lookupId);
