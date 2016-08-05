@@ -156,7 +156,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktUser> GetUserProfileAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktUser> GetUserProfileAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -183,7 +183,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -210,7 +210,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -247,7 +247,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync(string usernameOrSlug,
+        public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
                                                                                         TraktCommentType? commentType = null,
                                                                                         TraktObjectType? objectType = null,
                                                                                         TraktExtendedOption extendedOption = null,
@@ -277,7 +277,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktList>> GetCustomListsAsync(string usernameOrSlug)
+        public async Task<IEnumerable<TraktList>> GetCustomListsAsync([NotNull] string usernameOrSlug)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -301,7 +301,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktList> GetCustomSingleListAsync(string usernameOrSlug, string listId)
+        public async Task<TraktList> GetCustomSingleListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -367,7 +367,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync(string usernameOrSlug, string listId,
+        public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                                               TraktListItemType? listItemType = null,
                                                                               TraktExtendedOption extendedOption = null)
         {
@@ -403,7 +403,7 @@
         /// Thrown, if the given list name is null or empty.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktList> CreateCustomListAsync(string usernameOrSlug, string listName, string listDescription = null,
+        public async Task<TraktList> CreateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listName, string listDescription = null,
                                                            TraktAccessScope? privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
@@ -453,7 +453,7 @@
         /// display numbers is not set and comments allowed is not set).
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktList> UpdateCustomListAsync(string usernameOrSlug, string listId,
+        public async Task<TraktList> UpdateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                            string listName = null, string listDescription = null,
                                                            TraktAccessScope? privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
@@ -506,7 +506,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task DeleteCustomListAsync(string usernameOrSlug, string listId)
+        public async Task DeleteCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -543,8 +543,8 @@
         /// Thrown, if the given list items post is empty.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync(string usernameOrSlug, string listId,
-                                                                                        TraktUserCustomListItemsPost listItemsPost,
+        public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
+                                                                                        [NotNull] TraktUserCustomListItemsPost listItemsPost,
                                                                                         TraktListItemType? listItemType = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -584,8 +584,8 @@
         /// Thrown, if the given list items remove post is empty.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync(string usernameOrSlug, string listId,
-                                                                                                 TraktUserCustomListItemsPost listItemsRemovePost)
+        public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
+                                                                                                 [NotNull] TraktUserCustomListItemsPost listItemsRemovePost)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -624,7 +624,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync(string usernameOrSlug, string listId,
+        public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                                                         TraktCommentSortOrder? commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
@@ -655,7 +655,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task LikeListAsync(string usernameOrSlug, string listId)
+        public async Task LikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -682,7 +682,7 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task UnlikeListAsync(string usernameOrSlug, string listId)
+        public async Task UnlikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -710,7 +710,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFollower>> GetFollowersAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowersAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -733,7 +733,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFollower>> GetFollowingAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowingAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -756,7 +756,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFriend>> GetFriendsAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFriend>> GetFriendsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -778,7 +778,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserFollowUserPostResponse> FollowUserAsync(string usernameOrSlug)
+        public async Task<TraktUserFollowUserPostResponse> FollowUserAsync([NotNull] string usernameOrSlug)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -796,7 +796,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task UnfollowUserAsync(string usernameOrSlug)
+        public async Task UnfollowUserAsync([NotNull] string usernameOrSlug)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -815,7 +815,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserFollower> ApproveFollowRequestAsync(string followerRequestId)
+        public async Task<TraktUserFollower> ApproveFollowRequestAsync([NotNull] string followerRequestId)
         {
             ValidateFollowerRequestId(followerRequestId);
 
@@ -833,7 +833,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task DenyFollowRequestAsync(string followerRequestId)
+        public async Task DenyFollowRequestAsync([NotNull] string followerRequestId)
         {
             ValidateFollowerRequestId(followerRequestId);
 
@@ -868,7 +868,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(string usernameOrSlug, TraktSyncItemType? historyItemType = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType? historyItemType = null,
                                                                                               string itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
@@ -909,7 +909,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktSyncRatingsItemType? ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktSyncRatingsItemType? ratingsItemType = null,
                                                                          int[] ratingsFilter = null, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -940,7 +940,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType? watchlistItemType = null,
+        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType? watchlistItemType = null,
                                                                              TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -969,7 +969,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktUserWatchingItem> GetWatchingAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktUserWatchingItem> GetWatchingAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -996,7 +996,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -1023,7 +1023,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -1046,7 +1046,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktUserStatistics> GetStatisticsAsync(string usernameOrSlug)
+        public async Task<TraktUserStatistics> GetStatisticsAsync([NotNull] string usernameOrSlug)
         {
             ValidateUsername(usernameOrSlug);
 
