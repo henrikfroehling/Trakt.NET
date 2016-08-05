@@ -11,7 +11,7 @@
 
             var accessToken = settings.TraktClientAccessToken;
 
-            if (!string.IsNullOrEmpty(accessToken))
+            if (!string.IsNullOrEmpty(accessToken) && accessToken != SettingsServices.SettingsService.DEFAULT_CLIENT_ACCESS_TOKEN_VALUE)
                 Client.AccessToken = accessToken;
         }
 

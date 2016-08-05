@@ -34,9 +34,15 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             }
         }
 
+        public static string DEFAULT_CLIENT_ID_VALUE { get; } = "Enter your Trakt Client Id here";
+
+        public static string DEFAULT_CLIENT_SECRET_VALUE { get; } = "Enter your Trakt Client Secret here";
+
+        public static string DEFAULT_CLIENT_ACCESS_TOKEN_VALUE { get; } = "Enter your Trakt Client Access Token here";
+
         public string TraktClientId
         {
-            get { return _helper.Read<string>(nameof(TraktClientId), string.Empty); }
+            get { return _helper.Read<string>(nameof(TraktClientId), DEFAULT_CLIENT_ID_VALUE); }
 
             set
             {
@@ -47,7 +53,7 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
 
         public string TraktClientSecret
         {
-            get { return _helper.Read<string>(nameof(TraktClientSecret), string.Empty); }
+            get { return _helper.Read<string>(nameof(TraktClientSecret), DEFAULT_CLIENT_ID_VALUE); }
 
             set
             {
@@ -58,7 +64,7 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
 
         public string TraktClientAccessToken
         {
-            get { return _helper.Read<string>(nameof(TraktClientAccessToken), string.Empty); }
+            get { return _helper.Read<string>(nameof(TraktClientAccessToken), DEFAULT_CLIENT_ID_VALUE); }
 
             set
             {
