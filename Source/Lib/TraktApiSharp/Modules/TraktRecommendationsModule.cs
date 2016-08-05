@@ -63,7 +63,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task HideMovieRecommendationAsync(string movieIdOrSlug)
+        public async Task HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
         {
             Validate(movieIdOrSlug);
 
@@ -112,7 +112,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task HideShowRecommendationAsync(string showIdOrSlug)
+        public async Task HideShowRecommendationAsync([NotNull] string showIdOrSlug)
         {
             Validate(showIdOrSlug);
 
