@@ -1,0 +1,107 @@
+# configuration for "master" branch
+# build in Release mode
+-
+  version: '{branch}-v0.2.0-{build}'
+  image: Visual Studio 2015
+  
+  install:
+    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+  cache:
+    - packages -> **\packages.config
+
+  pull_requests:
+    do_not_increment_build_number: true
+
+  skip_branch_with_pr: true
+
+  before_build:
+    - cmd: nuget restore
+    
+  after_build:
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME%
+
+  build:
+    verbosity: minimal
+
+  branches:
+    only:
+      - master
+
+  configuration: Release
+
+  artifacts:
+    - path: Build\Lib\Release\TraktApiSharp.dll
+      name: Assembly
+    - path: Build\Lib\Release\TraktApiSharp.pdb
+      name: AssemblyPDB
+    - path: Build\Lib\Release\TraktApiSharp.XML
+      name: DocumentationXML
+
+# configuration for all branches starting from "dev-"
+# build in Debug mode
+-
+  version: '{branch}-{build}'
+  image: Visual Studio 2015
+
+  install:
+    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+  cache:
+    - packages -> **\packages.config
+
+  pull_requests:
+    do_not_increment_build_number: true
+
+  skip_branch_with_pr: true
+
+  before_build:
+    - cmd: nuget restore
+
+  after_build:
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME%
+    - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
+  build:
+    verbosity: minimal
+
+  branches:
+    only:
+      - dev
+      - /dev-.*/
+
+  configuration: Debug
+
+  artifacts:
+    - path: Build\Lib\Debug\TraktApiSharp.dll
+      name: DebugAssembly
+    - path: Build\Lib\Debug\TraktApiSharp.pdb
+      name: DebugAssemblyPDB
+    - path: Build\Lib\Debug\TraktApiSharp.XML
+      name: DebugDocumentationXML
+
+# "fall back" configuration for all other branches
+# no "branches" section defined
+# do not deploy at all
+-
+  version: '{branch}-{build}'
+  image: Visual Studio 2015
+  
+  install:
+    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+  cache:
+    - packages -> **\packages.config
+
+  pull_requests:
+    do_not_increment_build_number: true
+
+  skip_branch_with_pr: true
+
+  before_build:
+    - cmd: nuget restore
+
+  build:
+    verbosity: minimal
+
+  configuration: Debug

@@ -28,8 +28,8 @@
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
-        /// <param name="runtimes">An <see cref="Range{int}" /> instance for minutes.</param>
-        /// <param name="ratings">An <see cref="Range{int}" /> instance for ratings.</param>
+        /// <param name="runtimes">An <see cref="Range{T}" /> instance for minutes.</param>
+        /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
         /// <param name="certifications">An array of content certificiations.</param>
         /// <param name="networks">An array of network names.</param>
         /// <param name="states">An array of show states. See also <seealso cref="TraktShowStatus" />.</param>

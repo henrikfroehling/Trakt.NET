@@ -18,8 +18,8 @@
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
-        /// <param name="runtimes">An <see cref="Range{int}" /> instance for minutes.</param>
-        /// <param name="ratings">An <see cref="Range{int}" /> instance for ratings.</param>
+        /// <param name="runtimes">An <see cref="Range{T}" /> instance for minutes.</param>
+        /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if the given <paramref name="years" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or

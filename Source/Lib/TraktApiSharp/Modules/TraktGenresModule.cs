@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Enums;
     using Objects.Basic;
     using Requests.WithoutOAuth.Genres;
@@ -25,6 +26,7 @@
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktGenre>> GetMovieGenresAsync()
         {
             var movieGenres = await QueryAsync(new TraktGenresMoviesRequest(Client));
@@ -44,6 +46,7 @@
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktGenre>> GetShowGenresAsync()
         {
             var showGenres = await QueryAsync(new TraktGenresShowsRequest(Client));

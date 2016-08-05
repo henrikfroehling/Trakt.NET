@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Collection
 {
+    using Attributes;
     using Basic;
     using Newtonsoft.Json;
     using System;
@@ -13,6 +14,7 @@
         public DateTime? CollectedAt { get; set; }
 
         [JsonProperty(PropertyName = "metadata")]
+        [Nullable]
         public TraktMetadata Metadata { get; set; }
     }
 }

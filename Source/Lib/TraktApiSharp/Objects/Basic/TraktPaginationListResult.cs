@@ -12,7 +12,7 @@
     public class TraktPaginationListResult<ListItem> : IEnumerable<ListItem>
     {
         /// <summary>Gets or sets the actual list results.</summary>
-        public IEnumerable<ListItem> Items { get; set; }
+        public IEnumerable<ListItem> Items { get; set; } = new List<ListItem>();
 
         /// <summary>Gets or sets the current page number.</summary>
         public int? Page { get; set; }
@@ -34,6 +34,8 @@
         /// </summary>
         public int? UserCount { get; set; }
 
+        /// <summary>Returns an enumerator for the containing items list.</summary>
+        /// <returns>An enumerator for the containing items list.</returns>
         public IEnumerator<ListItem> GetEnumerator()
         {
             return Items.GetEnumerator();

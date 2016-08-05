@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Enums;
     using Extensions;
     using Objects.Basic;
@@ -34,21 +35,22 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultipleShowsAsync(TraktMultipleObjectsQueryParams)" />.</para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the show should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>An <see cref="TraktShow" /> instance with the queried show's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktShow> GetShowAsync(string showId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktShow> GetShowAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowSummaryRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 ExtendedOption = extendedOption
             });
         }
@@ -65,6 +67,7 @@
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktShow>> GetMultipleShowsAsync(TraktMultipleObjectsQueryParams showsQueryParams)
         {
             if (showsQueryParams == null || showsQueryParams.Count <= 0)
@@ -89,15 +92,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/aliases/get-all-show-aliases">"Trakt API Doc - Shows: Aliases"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <returns>A list of <see cref="TraktShowAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktShowAlias>> GetShowAliasesAsync(string showId)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktShowAlias>> GetShowAliasesAsync([NotNull] string showIdOrSlug)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowAliasesRequest(Client) { Id = showId });
+            return await QueryAsync(new TraktShowAliasesRequest(Client) { Id = showIdOrSlug });
         }
 
         /// <summary>
@@ -107,15 +111,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-translations">"Trakt API Doc - Shows: Translations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync(string showId)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync([NotNull] string showIdOrSlug)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = showId });
+            return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = showIdOrSlug });
         }
 
         /// <summary>
@@ -125,24 +130,25 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-translations">"Trakt API Doc - Shows: Translations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
         /// <returns>
         /// An <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and language code
-        /// for the show with the given showId.
+        /// for the show with the given showIdOrSlug.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given showId is null, empty or contains spaces.
+        /// Thrown, if the given showIdOrSlug is null, empty or contains spaces.
         /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
-        public async Task<TraktShowTranslation> GetShowSingleTranslationAsync(string showId, string languageCode)
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktShowTranslation> GetShowSingleTranslationAsync([NotNull] string showIdOrSlug, [NotNull] string languageCode)
         {
-            Validate(showId, languageCode);
+            Validate(showIdOrSlug, languageCode);
 
             return await QueryAsync(new TraktShowSingleTranslationRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 LanguageCode = languageCode
             });
         }
@@ -154,7 +160,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-comments">"Trakt API Doc - Shows: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
@@ -166,16 +172,17 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync(string showId,
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync([NotNull] string showIdOrSlug,
                                                                                         TraktCommentSortOrder? commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowCommentsRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Sorting = commentSortOrder,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -188,21 +195,22 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/people/get-all-people-for-a-show">"Trakt API Doc - Shows: People"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the people should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showId.</returns>
+        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktCastAndCrew> GetShowPeopleAsync(string showId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktCastAndCrew> GetShowPeopleAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowPeopleRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 ExtendedOption = extendedOption
             });
         }
@@ -214,15 +222,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/ratings/get-show-ratings">"Trakt API Doc - Shows: Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a show with the given showId.</returns>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktRating> GetShowRatingsAsync(string showId)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktRating> GetShowRatingsAsync([NotNull] string showIdOrSlug)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowRatingsRequest(Client) { Id = showId });
+            return await QueryAsync(new TraktShowRatingsRequest(Client) { Id = showIdOrSlug });
         }
 
         /// <summary>
@@ -232,7 +241,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/related/get-related-shows">"Trakt API Doc - Shows: Related"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -247,15 +256,16 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync(string showId, TraktExtendedOption extendedOption = null,
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowRelatedShowsRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 ExtendedOption = extendedOption,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -268,15 +278,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/stats/get-show-stats">"Trakt API Doc - Shows: Stats"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a show with the given showId.</returns>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktStatistics> GetShowStatisticsAsync(string showId)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktStatistics> GetShowStatisticsAsync([NotNull] string showIdOrSlug)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = showId });
+            return await QueryAsync(new TraktShowStatisticsRequest(Client) { Id = showIdOrSlug });
         }
 
         /// <summary>
@@ -286,19 +297,20 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watching/get-users-watching-right-now">"Trakt API Doc - Shows: Watching"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the users should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync(string showId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = showId, ExtendedOption = extendedOption });
+            return await QueryAsync(new TraktShowWatchingUsersRequest(Client) { Id = showIdOrSlug, ExtendedOption = extendedOption });
         }
 
         /// <summary>
@@ -308,22 +320,26 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collection-progress/get-show-collection-progress">"Trakt API Doc - Shows: Collection Progress"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="includingHiddenSeasons">Determines, if the returned collection progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned collection progress should contain special seasons.</param>
-        /// <returns>An <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showId.</returns>
+        /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned collection progress.</param>
+        /// <returns>An <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync(string showId, bool? includingHiddenSeasons = null,
-                                                                                      bool? includingSpecialSeasons = null)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired]
+        public async Task<TraktShowCollectionProgress> GetShowCollectionProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
+                                                                                      bool? includingSpecialSeasons = null,
+                                                                                      bool? countSpecialSeasons = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowCollectionProgressRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
-                Specials = includingSpecialSeasons
+                Specials = includingSpecialSeasons,
+                CountSpecials = countSpecialSeasons
             });
         }
 
@@ -334,22 +350,26 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="showId">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="includingHiddenSeasons">Determines, if the returned watched progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned watched progress should contain special seasons.</param>
-        /// <returns>An <see cref="TraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showId.</returns>
+        /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned watched progress.</param>
+        /// <returns>An <see cref="TraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showId is null, empty or contains spaces.</exception>
-        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync(string showId, bool? includingHiddenSeasons = null,
-                                                                                bool? includingSpecialSeasons = null)
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired]
+        public async Task<TraktShowWatchedProgress> GetShowWatchedProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
+                                                                                bool? includingSpecialSeasons = null,
+                                                                                bool? countSpecialSeasons = null)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             return await QueryAsync(new TraktShowWatchedProgressRequest(Client)
             {
-                Id = showId,
+                Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
-                Specials = includingSpecialSeasons
+                Specials = includingSpecialSeasons,
+                CountSpecials = countSpecialSeasons
             });
         }
 
@@ -375,6 +395,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extendedOption = null,
                                                                                               TraktShowFilter filter = null,
                                                                                               int? page = null, int? limitPerPage = null)
@@ -409,6 +430,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedOption extendedOption = null,
                                                                                      TraktShowFilter filter = null,
                                                                                      int? page = null, int? limitPerPage = null)
@@ -444,6 +466,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod? period = null,
                                                                                                   TraktExtendedOption extendedOption = null,
                                                                                                   TraktShowFilter filter = null,
@@ -481,6 +504,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod? period = null,
                                                                                                     TraktExtendedOption extendedOption = null,
                                                                                                     TraktShowFilter filter = null,
@@ -518,6 +542,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod? period = null,
                                                                                                         TraktExtendedOption extendedOption = null,
                                                                                                         TraktShowFilter filter = null,
@@ -554,6 +579,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extendedOption = null,
                                                                                                             TraktShowFilter filter = null,
                                                                                                             int? page = null, int? limitPerPage = null)
@@ -588,6 +614,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
                                                                                                             TraktExtendedOption extendedOption = null,
                                                                                                             int? page = null, int? limitPerPage = null)
@@ -600,15 +627,15 @@
             });
         }
 
-        private void Validate(string showId)
+        private void Validate(string showIdOrSlug)
         {
-            if (string.IsNullOrEmpty(showId) || showId.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(showId));
+            if (string.IsNullOrEmpty(showIdOrSlug) || showIdOrSlug.ContainsSpace())
+                throw new ArgumentException("show id or slug not valid", nameof(showIdOrSlug));
         }
 
-        private void Validate(string showId, string languageCode)
+        private void Validate(string showIdOrSlug, string languageCode)
         {
-            Validate(showId);
+            Validate(showIdOrSlug);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
                 throw new ArgumentException("show language code not valid", nameof(languageCode));

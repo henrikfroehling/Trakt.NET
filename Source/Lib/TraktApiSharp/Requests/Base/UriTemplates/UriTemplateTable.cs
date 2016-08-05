@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// <see cref="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/UriTemplateTable.cs" />
+    /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/UriTemplateTable.cs" />
     /// </summary>
     internal class UriTemplateTable
     {

@@ -1,15 +1,17 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
+    using Attributes;
     using Get.Shows;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class TraktUserCustomListItemsShow
+    public class TraktUserCustomListItemsPostShow
     {
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
 
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktUserCustomListItemsShowSeason> Seasons { get; set; }
+        [Nullable]
+        public IEnumerable<TraktUserCustomListItemsPostShowSeason> Seasons { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
+    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -17,12 +18,15 @@
         public TraktHiddenItemType? Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
+        [Nullable]
         public TraktMovie Movie { get; set; }
 
         [JsonProperty(PropertyName = "show")]
+        [Nullable]
         public TraktShow Show { get; set; }
 
         [JsonProperty(PropertyName = "season")]
+        [Nullable]
         public TraktSeason Season { get; set; }
     }
 }

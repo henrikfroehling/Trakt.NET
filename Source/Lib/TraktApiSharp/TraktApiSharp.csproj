@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Build\Lib\Debug\TraktApiSharp.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Build\Lib\Release\TraktApiSharp.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -42,11 +44,18 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="project.json" />
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\NotNullAttribute.cs" />
+    <Compile Include="Attributes\NullableAttribute.cs" />
+    <Compile Include="Attributes\OAuthAuthorizationOptionalAttribute.cs" />
+    <Compile Include="Attributes\OAuthAuthorizationRequiredAttribute.cs" />
     <Compile Include="Authentication\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
     <Compile Include="Authentication\TraktDevice.cs" />
@@ -162,6 +171,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />
     <Compile Include="Objects\Get\Ratings\TraktRatingsItem.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserIds.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedMovie.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedShowEpisode.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedShow.cs" />
@@ -308,9 +318,9 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovie.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowEpisode.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShow.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsShowSeason.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowEpisode.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShow.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowSeason.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPost.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPost.cs" />

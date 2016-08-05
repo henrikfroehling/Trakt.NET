@@ -7,7 +7,7 @@
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// <see cref="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/UriTemplateExtensions.cs" />
+    /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/UriTemplateExtensions.cs" />
     /// </summary>
     internal static class UriTemplateExtensions
     {

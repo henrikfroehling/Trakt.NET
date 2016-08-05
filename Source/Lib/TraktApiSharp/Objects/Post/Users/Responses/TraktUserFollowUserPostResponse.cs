@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.Responses
 {
+    using Attributes;
     using Get.Users;
     using Newtonsoft.Json;
     using System;
@@ -10,6 +11,7 @@
         public DateTime? ApprovedAt { get; set; }
 
         [JsonProperty(PropertyName = "user")]
+        [Nullable]
         public TraktUser User { get; set; }
     }
 }

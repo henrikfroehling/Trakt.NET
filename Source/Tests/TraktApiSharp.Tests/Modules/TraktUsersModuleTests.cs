@@ -5106,37 +5106,37 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -5226,37 +5226,37 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -5343,37 +5343,37 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -5484,9 +5484,9 @@
                         Ids = new TraktMovieIds { Trakt = 1 },
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     }
@@ -5536,7 +5536,7 @@
             customListItems = new TraktUserCustomListItemsPost
             {
                 Movies = new List<TraktUserCustomListItemsPostMovie>(),
-                Shows = new List<TraktUserCustomListItemsShow>(),
+                Shows = new List<TraktUserCustomListItemsPostShow>(),
                 People = new List<TraktPerson>()
             };
 
@@ -5573,37 +5573,37 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -5682,37 +5682,37 @@
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
-                        Seasons = new List<TraktUserCustomListItemsShowSeason>()
+                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsShowSeason
+                            new TraktUserCustomListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsShowEpisode>()
+                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsShowEpisode
+                                    new TraktUserCustomListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -5823,9 +5823,9 @@
                         Ids = new TraktMovieIds { Trakt = 1 },
                     }
                 },
-                Shows = new List<TraktUserCustomListItemsShow>()
+                Shows = new List<TraktUserCustomListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsShow
+                    new TraktUserCustomListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     }
@@ -5875,7 +5875,7 @@
             customListItems = new TraktUserCustomListItemsPost
             {
                 Movies = new List<TraktUserCustomListItemsPostMovie>(),
-                Shows = new List<TraktUserCustomListItemsShow>(),
+                Shows = new List<TraktUserCustomListItemsPostShow>(),
                 People = new List<TraktPerson>()
             };
 
