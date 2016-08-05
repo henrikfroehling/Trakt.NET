@@ -41,7 +41,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync(string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -71,7 +71,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync(string showIdOrSlug, int seasonNumber,
+        public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync([NotNull] string showIdOrSlug, int seasonNumber,
                                                                     TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber);
@@ -140,7 +140,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, int seasonNumber,
+        public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync([NotNull] string showIdOrSlug, int seasonNumber,
                                                                                           TraktCommentSortOrder? commentSortOrder = null,
                                                                                           int? page = null, int? limitPerPage = null)
         {
@@ -169,7 +169,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktRating> GetSeasonRatingsAsync(string showIdOrSlug, int seasonNumber)
+        public async Task<TraktRating> GetSeasonRatingsAsync([NotNull] string showIdOrSlug, int seasonNumber)
         {
             Validate(showIdOrSlug, seasonNumber);
 
@@ -194,7 +194,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktStatistics> GetSeasonStatisticsAsync(string showIdOrSlug, int seasonNumber)
+        public async Task<TraktStatistics> GetSeasonStatisticsAsync([NotNull] string showIdOrSlug, int seasonNumber)
         {
             Validate(showIdOrSlug, seasonNumber);
 
@@ -223,7 +223,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, int seasonNumber,
+        public async Task<IEnumerable<TraktUser>> GetSeasonWatchingUsersAsync([NotNull] string showIdOrSlug, int seasonNumber,
                                                                               TraktExtendedOption extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber);
