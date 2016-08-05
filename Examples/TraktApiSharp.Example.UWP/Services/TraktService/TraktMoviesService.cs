@@ -11,9 +11,12 @@
 
     public class TraktMoviesService
     {
-        private TraktClient Client { get; } = TraktServiceProvider.Client;
+        private TraktClient Client { get; }
 
-        private TraktMoviesService() { }
+        private TraktMoviesService()
+        {
+            Client = TraktServiceProvider.Instance.Client;
+        }
 
         public static TraktMoviesService Instance { get; } = new TraktMoviesService();
 

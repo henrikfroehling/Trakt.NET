@@ -2,8 +2,19 @@
 {
     public class TraktServiceProvider
     {
-        private static readonly string CLIENT_ID = "ENTER YOUR TRAKT CLIENT ID HERE!!!";
+        public static TraktServiceProvider Instance { get; } = new TraktServiceProvider();
 
-        public static TraktClient Client { get; } = new TraktClient(CLIENT_ID);
+        private TraktServiceProvider()
+        {
+            var settings = SettingsServices.SettingsService.Instance;
+            Client = new TraktClient(settings.TraktClientId, settings.TraktClientSecret);
+
+            var accessToken = settings.TraktClientAccessToken;
+
+            if (!string.IsNullOrEmpty(accessToken))
+                Client.AccessToken = accessToken;
+        }
+
+        public TraktClient Client { get; }
     }
 }

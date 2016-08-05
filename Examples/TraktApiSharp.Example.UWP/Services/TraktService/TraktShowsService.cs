@@ -11,9 +11,12 @@
 
     public class TraktShowsService
     {
-        private TraktClient Client { get; } = TraktServiceProvider.Client;
+        private TraktClient Client { get; }
 
-        private TraktShowsService() { }
+        private TraktShowsService()
+        {
+            Client = TraktServiceProvider.Instance.Client;
+        }
 
         public static TraktShowsService Instance { get; } = new TraktShowsService();
 

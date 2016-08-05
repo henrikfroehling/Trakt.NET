@@ -1,6 +1,7 @@
 using System;
 using Template10.Common;
 using Template10.Utils;
+using TraktApiSharp.Example.UWP.Services.TraktService;
 using Windows.UI.Xaml;
 
 namespace TraktApiSharp.Example.UWP.Services.SettingsServices
@@ -36,31 +37,56 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
         public string TraktClientId
         {
             get { return _helper.Read<string>(nameof(TraktClientId), string.Empty); }
-            set { _helper.Write(nameof(TraktClientId), value); }
+
+            set
+            {
+                _helper.Write(nameof(TraktClientId), value);
+                TraktServiceProvider.Instance.Client.ClientId = value;
+            }
         }
 
         public string TraktClientSecret
         {
             get { return _helper.Read<string>(nameof(TraktClientSecret), string.Empty); }
-            set { _helper.Write(nameof(TraktClientSecret), value); }
+
+            set
+            {
+                _helper.Write(nameof(TraktClientSecret), value);
+                TraktServiceProvider.Instance.Client.ClientSecret = value;
+            }
         }
 
         public string TraktClientAccessToken
         {
             get { return _helper.Read<string>(nameof(TraktClientAccessToken), string.Empty); }
-            set { _helper.Write(nameof(TraktClientAccessToken), value); }
+
+            set
+            {
+                _helper.Write(nameof(TraktClientAccessToken), value);
+                TraktServiceProvider.Instance.Client.AccessToken = value;
+            }
         }
 
         public bool TraktUseStagingUrl
         {
             get { return _helper.Read<bool>(nameof(TraktUseStagingUrl), false); }
-            set { _helper.Write(nameof(TraktUseStagingUrl), value); }
+
+            set
+            {
+                _helper.Write(nameof(TraktUseStagingUrl), value);
+                TraktServiceProvider.Instance.Client.Configuration.UseStagingUrl = value;
+            }
         }
 
         public bool TraktForceAuthorization
         {
             get { return _helper.Read<bool>(nameof(TraktForceAuthorization), false); }
-            set { _helper.Write(nameof(TraktForceAuthorization), value); }
+
+            set
+            {
+                _helper.Write(nameof(TraktForceAuthorization), value);
+                TraktServiceProvider.Instance.Client.Configuration.ForceAuthorization = value;
+            }
         }
 
         public ApplicationTheme AppTheme
