@@ -3,7 +3,7 @@ namespace UriTemplates
     using System.Text;
 
     /// <summary>
-    /// <see cref="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/VarSpec.cs" />
+    /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/VarSpec.cs" />
     /// </summary>
     internal class VarSpec
     {

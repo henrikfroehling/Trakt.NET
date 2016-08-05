@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
+    using Attributes;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -13,6 +14,7 @@
         public int Number { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
+        [Nullable]
         public IEnumerable<TraktSyncHistoryPostShowEpisode> Episodes { get; set; }
     }
 }

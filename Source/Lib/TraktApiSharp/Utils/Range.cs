@@ -15,8 +15,10 @@
             End = end;
         }
 
+        /// <summary>Returns the begin of the range.</summary>
         public T Begin { get; }
 
+        /// <summary>Returns the end of the range.</summary>
         public T End { get; }
     }
 }

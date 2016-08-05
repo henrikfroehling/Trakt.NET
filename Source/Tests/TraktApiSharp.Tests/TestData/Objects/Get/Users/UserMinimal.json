@@ -1,6 +1,9 @@
 ﻿{
   "username": "WalterBishopj",
   "private": false,
+  "ids": {
+    "slug": "sean"
+  },
   "name": "Walter",
   "vip": false,
   "vip_ep": false

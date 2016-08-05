@@ -1,6 +1,9 @@
 ﻿{
   "username": "randomness",
   "private": false,
+  "ids": {
+    "slug": "sean"
+  },
   "name": "RandomNess",
   "vip": false,
   "vip_ep": false,

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Objects.Get.Calendars;
     using Requests.Params;
     using Requests.WithOAuth.Calendars;
@@ -35,6 +36,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                             TraktExtendedOption extendedOption = null,
                                                                             TraktCalendarFilter filter = null)
@@ -67,6 +69,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                TraktExtendedOption extendedOption = null,
                                                                                TraktCalendarFilter filter = null)
@@ -99,6 +102,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedOption extendedOption = null,
                                                                                       TraktCalendarFilter filter = null)
@@ -131,6 +135,7 @@
         /// <returns>A list of <see cref="TraktCalendarMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                               TraktExtendedOption extendedOption = null,
                                                                               TraktCalendarFilter filter = null)
@@ -163,6 +168,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
                                                                            TraktExtendedOption extendedOption = null,
                                                                            TraktCalendarFilter filter = null)
@@ -195,6 +201,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                               TraktExtendedOption extendedOption = null,
                                                                               TraktCalendarFilter filter = null)
@@ -227,6 +234,7 @@
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                      TraktExtendedOption extendedOption = null,
                                                                                      TraktCalendarFilter filter = null)
@@ -259,6 +267,7 @@
         /// <returns>A list of <see cref="TraktCalendarMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                              TraktExtendedOption extendedOption = null,
                                                                              TraktCalendarFilter filter = null)

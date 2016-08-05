@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
+    using Attributes;
     using Get.Movies;
     using Newtonsoft.Json;
     using System;
@@ -13,6 +14,7 @@
         public int? Rating { get; set; }
 
         [JsonProperty(PropertyName = "title")]
+        [Nullable]
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "year")]

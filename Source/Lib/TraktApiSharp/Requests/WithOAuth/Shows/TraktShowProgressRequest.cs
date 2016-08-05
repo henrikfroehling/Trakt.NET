@@ -13,6 +13,8 @@
 
         internal bool? Specials { get; set; }
 
+        internal bool? CountSpecials { get; set; }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
@@ -22,6 +24,9 @@
 
             if (Specials.HasValue)
                 uriParams.Add("specials", Specials.Value.ToString().ToLower());
+
+            if (CountSpecials.HasValue)
+                uriParams.Add("count_specials", CountSpecials.Value.ToString().ToLower());
 
             return uriParams;
         }

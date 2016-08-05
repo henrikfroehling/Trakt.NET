@@ -1,11 +1,13 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
+    using Attributes;
     using Get.Movies;
     using Newtonsoft.Json;
 
     public class TraktSyncWatchlistPostMovie
     {
         [JsonProperty(PropertyName = "title")]
+        [Nullable]
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "year")]

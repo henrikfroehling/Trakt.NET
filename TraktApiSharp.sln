@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{80FD2672-3557-48BD-BA73-3952E2D57B22}"
 EndProject
@@ -13,7 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.Tests", "Sour
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{10581989-9112-4BA6-8C4F-F2A2F1B8B1B5}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		Changelog.md = Changelog.md
 		LICENSE = LICENSE
+		PublishRelease.txt = PublishRelease.txt
 		README.md = README.md
 		Source\Lib\TraktApiSharp\TraktApiSharp.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
 	EndProjectSection

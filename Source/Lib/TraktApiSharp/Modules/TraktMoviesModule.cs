@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Attributes;
     using Enums;
     using Extensions;
     using Objects.Basic;
@@ -33,21 +34,22 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams)" />.</para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movie should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>An <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktMovie> GetMovieAsync(string movieId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktMovie> GetMovieAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
             return await QueryAsync(new TraktMovieSummaryRequest(Client)
             {
-                Id = movieId,
+                Id = movieIdOrSlug,
                 ExtendedOption = extendedOption
             });
         }
@@ -64,6 +66,7 @@
         /// <returns>A list of <see cref="TraktMovie" /> instances with the data of each queried movie.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given movie ids is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktMovie>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams)
         {
             if (moviesQueryParams == null || moviesQueryParams.Count <= 0)
@@ -88,15 +91,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/aliases/get-all-movie-aliases">"Trakt API Doc - Movies: Aliases"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <returns>A list of <see cref="TraktMovieAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktMovieAlias>> GetMovieAliasesAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktMovieAlias>> GetMovieAliasesAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieAliasesRequest(Client) { Id = movieId });
+            return await QueryAsync(new TraktMovieAliasesRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -106,15 +110,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <returns>A list of <see cref="TraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = movieId });
+            return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -124,24 +129,25 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="countryCode">The 2 letter country code, for which a translation should be queried.</param>
         /// <returns>
         /// An <see cref="TraktMovieTranslation" /> instance, containing a country code, certification, release date and a note
-        /// for the movie with the given movieId.
+        /// for the movie with the given movieIdOrSlug.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given movieId is null, empty or contains spaces.
+        /// Thrown, if the given movieIdOrSlug is null, empty or contains spaces.
         /// Thronw, if the given country code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
-        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync(string movieId, string countryCode)
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync([NotNull] string movieIdOrSlug, [NotNull] string countryCode)
         {
-            Validate(movieId, countryCode);
+            Validate(movieIdOrSlug, countryCode);
 
             return await QueryAsync(new TraktMovieSingleReleaseRequest(Client)
             {
-                Id = movieId,
+                Id = movieIdOrSlug,
                 LanguageCode = countryCode
             });
         }
@@ -153,15 +159,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <returns>A list of <see cref="TraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = movieId });
+            return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -171,24 +178,25 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
         /// <returns>
         /// An <see cref="TraktMovieTranslation" /> instance, containing a translated title, tagline, overview and language code
-        /// for the movie with the given movieId.
+        /// for the movie with the given movieIdOrSlug.
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given movieId is null, empty or contains spaces.
+        /// Thrown, if the given movieIdOrSlug is null, empty or contains spaces.
         /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
         /// </exception>
-        public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync(string movieId, string languageCode)
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync([NotNull] string movieIdOrSlug, [NotNull] string languageCode)
         {
-            Validate(movieId, languageCode);
+            Validate(movieIdOrSlug, languageCode);
 
             return await QueryAsync(new TraktMovieSingleTranslationRequest(Client)
             {
-                Id = movieId,
+                Id = movieIdOrSlug,
                 LanguageCode = languageCode
             });
         }
@@ -200,7 +208,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-comments">"Trakt API Doc - Movies: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
@@ -212,16 +220,17 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync(string movieId,
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync([NotNull] string movieIdOrSlug,
                                                                                          TraktCommentSortOrder? commentSortOrder = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
             return await QueryAsync(new TraktMovieCommentsRequest(Client)
             {
-                Id = movieId,
+                Id = movieIdOrSlug,
                 Sorting = commentSortOrder,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -234,19 +243,20 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/people/get-all-people-for-a-movie">"Trakt API Doc - Movies: People"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the people should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieId.</returns>
+        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktCastAndCrew> GetMoviePeopleAsync(string movieId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktCastAndCrew> GetMoviePeopleAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = movieId, ExtendedOption = extendedOption });
+            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = movieIdOrSlug, ExtendedOption = extendedOption });
         }
 
         /// <summary>
@@ -256,15 +266,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/ratings/get-movie-ratings">"Trakt API Doc - Movies: Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieId.</returns>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktRating> GetMovieRatingsAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktRating> GetMovieRatingsAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieRatingsRequest(Client) { Id = movieId });
+            return await QueryAsync(new TraktMovieRatingsRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -274,7 +285,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/related/get-related-movies">"Trakt API Doc - Movies: Related"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -289,15 +300,16 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync(string movieId, TraktExtendedOption extendedOption = null,
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null,
                                                                                             int? page = null, int? limitPerPage = null)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
             return await QueryAsync(new TraktMovieRelatedMoviesRequest(Client)
             {
-                Id = movieId,
+                Id = movieIdOrSlug,
                 ExtendedOption = extendedOption,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -310,15 +322,16 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/stats/get-movie-stats">"Trakt API Doc - Movies: Stats"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieId.</returns>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<TraktStatistics> GetMovieStatisticsAsync(string movieId)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktStatistics> GetMovieStatisticsAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = movieId });
+            return await QueryAsync(new TraktMovieStatisticsRequest(Client) { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -328,19 +341,20 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watching/get-users-watching-right-now">"Trakt API Doc - Movies: Watching"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movieId">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the users should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieId is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync(string movieId, TraktExtendedOption extendedOption = null)
+        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = movieId, ExtendedOption = extendedOption });
+            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = movieIdOrSlug, ExtendedOption = extendedOption });
         }
 
         /// <summary>
@@ -365,6 +379,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extendedOption = null,
                                                                                                 TraktMovieFilter filter = null,
                                                                                                 int? page = null, int? limitPerPage = null)
@@ -399,6 +414,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMovie>> GetPopularMoviesAsync(TraktExtendedOption extendedOption = null,
                                                                                        TraktMovieFilter filter = null,
                                                                                        int? page = null, int? limitPerPage = null)
@@ -434,6 +450,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktPeriod? period = null,
                                                                                                     TraktExtendedOption extendedOption = null,
                                                                                                     TraktMovieFilter filter = null,
@@ -471,6 +488,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod? period = null,
                                                                                                       TraktExtendedOption extendedOption = null,
                                                                                                       TraktMovieFilter filter = null,
@@ -508,6 +526,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktPeriod? period = null,
                                                                                                           TraktExtendedOption extendedOption = null,
                                                                                                           TraktMovieFilter filter = null,
@@ -544,6 +563,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extendedOption = null,
                                                                                                               TraktMovieFilter filter = null,
                                                                                                               int? page = null, int? limitPerPage = null)
@@ -569,6 +589,7 @@
         /// </param>
         /// <returns>A list of <see cref="TraktBoxOfficeMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedOption = null)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client) { ExtendedOption = extendedOption });
@@ -596,6 +617,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
                                                                                                               TraktExtendedOption extendedOption = null,
                                                                                                               int? page = null, int? limitPerPage = null)
@@ -608,15 +630,15 @@
             });
         }
 
-        private void Validate(string movieId)
+        private void Validate(string movieIdOrSlug)
         {
-            if (string.IsNullOrEmpty(movieId) || movieId.ContainsSpace())
-                throw new ArgumentException("movie id not valid", nameof(movieId));
+            if (string.IsNullOrEmpty(movieIdOrSlug) || movieIdOrSlug.ContainsSpace())
+                throw new ArgumentException("movie id or slug not valid", nameof(movieIdOrSlug));
         }
 
-        private void Validate(string movieId, string languageCode)
+        private void Validate(string movieIdOrSlug, string languageCode)
         {
-            Validate(movieId);
+            Validate(movieIdOrSlug);
 
             if (string.IsNullOrEmpty(languageCode) || languageCode.Length != 2)
                 throw new ArgumentException("movie language code not valid", nameof(languageCode));
