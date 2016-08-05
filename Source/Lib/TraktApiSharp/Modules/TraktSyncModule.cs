@@ -84,7 +84,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task RemovePlaybackItemAsync(string playbackId)
+        public async Task RemovePlaybackItemAsync([NotNull] string playbackId)
         {
             if (string.IsNullOrEmpty(playbackId) || playbackId.ContainsSpace())
                 throw new ArgumentException("playback id not valid", nameof(playbackId));
@@ -148,7 +148,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
+        public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionPost)
         {
             ValidateCollectionPost(collectionPost);
 
@@ -173,7 +173,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost)
+        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionRemovePost)
         {
             ValidateCollectionPost(collectionRemovePost);
 
@@ -278,7 +278,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncHistoryPostResponse> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost)
+        public async Task<TraktSyncHistoryPostResponse> AddWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryPost historyPost)
         {
             ValidateHistoryPost(historyPost);
 
@@ -303,7 +303,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncHistoryRemovePostResponse> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost)
+        public async Task<TraktSyncHistoryRemovePostResponse> RemoveWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryRemovePost historyRemovePost)
         {
             ValidateHistoryPost(historyRemovePost);
 
@@ -360,7 +360,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync(TraktSyncRatingsPost ratingsPost)
+        public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync([NotNull] TraktSyncRatingsPost ratingsPost)
         {
             ValidateRatingsPost(ratingsPost);
 
@@ -385,7 +385,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost)
+        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync([NotNull] TraktSyncRatingsPost ratingsRemovePost)
         {
             ValidateRatingsPost(ratingsRemovePost);
 
@@ -435,7 +435,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncWatchlistPostResponse> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost)
+        public async Task<TraktSyncWatchlistPostResponse> AddWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistPost)
         {
             ValidateWatchlistPost(watchlistPost);
 
@@ -460,7 +460,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost)
+        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistRemovePost)
         {
             ValidateWatchlistPost(watchlistRemovePost);
 
