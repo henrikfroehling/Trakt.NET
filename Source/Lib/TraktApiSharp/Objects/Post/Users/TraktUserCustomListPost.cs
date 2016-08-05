@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users
 {
+    using Attributes;
     using Enums;
     using Newtonsoft.Json;
 
@@ -9,6 +10,7 @@
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "description")]
+        [Nullable]
         public string Description { get; set; }
 
         [JsonProperty(PropertyName = "privacy")]

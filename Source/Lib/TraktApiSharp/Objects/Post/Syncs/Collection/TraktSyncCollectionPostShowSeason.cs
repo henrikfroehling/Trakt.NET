@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
+    using Attributes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
@@ -9,6 +10,7 @@
         public int Number { get; set; }
 
         [JsonProperty(PropertyName = "episodes")]
+        [Nullable]
         public IEnumerable<TraktSyncCollectionPostShowEpisode> Episodes { get; set; }
     }
 }

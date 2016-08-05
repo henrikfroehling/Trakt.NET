@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
+    using Attributes;
     using Basic;
     using Enums;
     using Newtonsoft.Json;
@@ -14,6 +15,7 @@
         public float? Progress { get; set; }
 
         [JsonProperty(PropertyName = "sharing")]
+        [Nullable]
         public TraktSharing Sharing { get; set; }
     }
 }
