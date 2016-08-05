@@ -14,67 +14,64 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
     public class TraktClientPartViewModel : ViewModelBase
     {
-        private string _clientId = string.Empty;
+        Services.SettingsServices.SettingsService _settings;
+
+        public TraktClientPartViewModel()
+        {
+            _settings = Services.SettingsServices.SettingsService.Instance;
+        }
 
         public string ClientId
         {
-            get { return _clientId; }
+            get { return _settings.TraktClientId; }
 
             set
             {
-                _clientId = value;
+                _settings.TraktClientId = value;
                 base.RaisePropertyChanged();
             }
         }
-
-        private string _clientSecret = string.Empty;
 
         public string ClientSecret
         {
-            get { return _clientSecret; }
+            get { return _settings.TraktClientSecret; }
 
             set
             {
-                _clientSecret = value;
+                _settings.TraktClientSecret = value;
                 base.RaisePropertyChanged();
             }
         }
-
-        private string _clientAccessToken;
 
         public string ClientAccessToken
         {
-            get { return _clientAccessToken; }
+            get { return _settings.TraktClientAccessToken; }
 
             set
             {
-                _clientAccessToken = value;
+                _settings.TraktClientAccessToken = value;
                 base.RaisePropertyChanged();
             }
         }
-
-        private bool _useStagingUrl = false;
 
         public bool UseStagingUrl
         {
-            get { return _useStagingUrl; }
+            get { return _settings.TraktUseStagingUrl; }
 
             set
             {
-                _useStagingUrl = value;
+                _settings.TraktUseStagingUrl = value;
                 base.RaisePropertyChanged();
             }
         }
 
-        private bool _forceAuthorization = false;
-
         public bool ForceAuthorization
         {
-            get { return _forceAuthorization; }
+            get { return _settings.TraktForceAuthorization; }
 
             set
             {
-                _forceAuthorization = value;
+                _settings.TraktForceAuthorization = value;
                 base.RaisePropertyChanged();
             }
         }
@@ -86,14 +83,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
         public SettingsPartViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                // designtime
-            }
-            else
-            {
-                _settings = Services.SettingsServices.SettingsService.Instance;
-            }
+            _settings = Services.SettingsServices.SettingsService.Instance;
         }
 
         public bool UseShellBackButton
