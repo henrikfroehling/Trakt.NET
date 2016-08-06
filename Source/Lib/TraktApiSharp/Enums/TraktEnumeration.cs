@@ -54,54 +54,31 @@
 
         public static T FromValue<T>(int value) where T : TraktEnumeration, new()
         {
-            var enumType = typeof(T);
-            var derivedEnum = (T)Activator.CreateInstance(enumType);
-
-            var matchingItem = derivedEnum.AllEnumerations.FirstOrDefault(e => e.Value == value);
-
-            if (matchingItem == null)
-                return null;
-
-            return matchingItem as T;
+            return Search<T>(e => e.Value == value);
         }
 
         public static T FromObjectName<T>(string objectName) where T : TraktEnumeration, new()
         {
-            var enumType = typeof(T);
-            var derivedEnum = (T)Activator.CreateInstance(enumType);
-
-            var matchingItem = derivedEnum.AllEnumerations.FirstOrDefault(e => e.ObjectName == objectName);
-
-            if (matchingItem == null)
-                return null;
-
-            return matchingItem as T;
+            return Search<T>(e => e.ObjectName == objectName);
         }
 
         public static T FromUriName<T>(string uriName) where T : TraktEnumeration, new()
         {
-            var enumType = typeof(T);
-            var derivedEnum = (T)Activator.CreateInstance(enumType);
-
-            var matchingItem = derivedEnum.AllEnumerations.FirstOrDefault(e => e.UriName == uriName);
-
-            if (matchingItem == null)
-                return null;
-
-            return matchingItem as T;
+            return Search<T>(e => e.UriName == uriName);
         }
 
         public static T FromDisplayName<T>(string displayName) where T : TraktEnumeration, new()
         {
-            var enumType = typeof(TraktEnumeration);
-            var derivedEnum = (T)Activator.CreateInstance(enumType);
+            return Search<T>(e => e.DisplayName == displayName);
+        }
 
-            var matchingItem = derivedEnum.AllEnumerations.FirstOrDefault(e => e.DisplayName == displayName);
+        private static T Search<T>(Func<TraktEnumeration, bool> predicate) where T : TraktEnumeration, new()
+        {
+            var enumType = typeof(T);
+            var derivedEnum = Activator.CreateInstance(enumType);
 
-            if (matchingItem == null)
-                return null;
-
-            return matchingItem as T;
+            var matchingItem = ((T)derivedEnum).AllEnumerations.FirstOrDefault(predicate);
+            return matchingItem != null ? matchingItem as T : derivedEnum as T;
         }
     }
 }
