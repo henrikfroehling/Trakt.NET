@@ -65,6 +65,7 @@
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
     <Compile Include="Enums\TraktCommentType.cs" />
+    <Compile Include="Enums\TraktEnumeration.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
     <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
