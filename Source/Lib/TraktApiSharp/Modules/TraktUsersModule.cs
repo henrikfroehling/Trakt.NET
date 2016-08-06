@@ -404,7 +404,7 @@
         /// </exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktList> CreateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listName, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -420,8 +420,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (privacy != null && privacy != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListAddRequest(Client)
             {
@@ -455,7 +455,7 @@
         [OAuthAuthorizationRequired]
         public async Task<TraktList> UpdateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                            string listName = null, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -463,7 +463,7 @@
 
             var isListNameNotValid = string.IsNullOrEmpty(listName);
             var isDescriptionNotSet = listDescription == null;
-            var isPrivacyNotSetOrValid = !privacy.HasValue || privacy.Value == TraktAccessScope.Unspecified;
+            var isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
             var isDisplayNumbersNotSet = !displayNumbers.HasValue;
             var isAllowCommentsNotSet = !allowComments.HasValue;
 
@@ -480,8 +480,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (!isPrivacyNotSetOrValid)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
             {

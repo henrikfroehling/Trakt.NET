@@ -19,7 +19,7 @@
             var token = new TraktAuthorization();
 
             token.AccessToken.Should().BeNullOrEmpty();
-            token.AccessScope.Should().Be(TraktAccessScope.Unspecified);
+            token.AccessScope.Should().BeNull();
             token.TokenType.Should().Be(TraktAccessTokenType.Unspecified);
             token.ExpiresInSeconds.Should().Be(0);
             token.RefreshToken.Should().BeNullOrEmpty();

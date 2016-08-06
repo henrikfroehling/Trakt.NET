@@ -15,19 +15,10 @@
         }
 
         [TestMethod]
-        public void TestTraktAccessScopeHasMembers()
+        public void TestTraktAccessScopeIsTraktEnumeration()
         {
-            typeof(TraktAccessScope).GetEnumNames().Should().HaveCount(4)
-                                                   .And.Contain("Public", "Private", "Friends", "Unspecified");
-        }
-
-        [TestMethod]
-        public void TestTraktAccessScopeGetAsString()
-        {
-            TraktAccessScope.Friends.AsString().Should().Be("friends");
-            TraktAccessScope.Private.AsString().Should().Be("private");
-            TraktAccessScope.Public.AsString().Should().Be("public");
-            TraktAccessScope.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var exception = new TraktAccessScope();
+            exception.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]

@@ -6,7 +6,9 @@
 
     public abstract class TraktEnumeration : IComparable
     {
-        protected TraktEnumeration() { }
+        protected const string DISPLAY_NAME_UNSPECIFIED = "Unspecified";
+
+        protected TraktEnumeration() : this(0, string.Empty, string.Empty, DISPLAY_NAME_UNSPECIFIED) { }
 
         protected TraktEnumeration(int value, string objectName, string uriName, string displayName)
         {
