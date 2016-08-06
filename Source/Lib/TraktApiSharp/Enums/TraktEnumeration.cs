@@ -74,8 +74,8 @@
 
         private static T Search<T>(Func<TraktEnumeration, bool> predicate) where T : TraktEnumeration, new()
         {
-            var enumType = typeof(T);
-            var derivedEnum = Activator.CreateInstance(enumType);
+            var derivedEnumType = typeof(T);
+            var derivedEnum = Activator.CreateInstance(derivedEnumType);
 
             var matchingItem = ((T)derivedEnum).AllEnumerations.FirstOrDefault(predicate);
             return matchingItem != null ? matchingItem as T : derivedEnum as T;
