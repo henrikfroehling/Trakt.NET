@@ -434,7 +434,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/played/get-the-most-played-movies">"Trakt API Doc - Movies: Played"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most played movies should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most played movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -451,7 +451,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod? period = null,
                                                                                                     TraktExtendedOption extendedOption = null,
                                                                                                     TraktMovieFilter filter = null,
                                                                                                     int? page = null, int? limitPerPage = null)
@@ -472,7 +472,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-watched-movies">"Trakt API Doc - Movies: Watched"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most watched movies should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most watched movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -489,7 +489,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod? period = null,
                                                                                                       TraktExtendedOption extendedOption = null,
                                                                                                       TraktMovieFilter filter = null,
                                                                                                       int? page = null, int? limitPerPage = null)
@@ -510,7 +510,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-collected-movies">"Trakt API Doc - Movies: Collected"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most collected movies should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most collected movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -527,7 +527,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod? period = null,
                                                                                                           TraktExtendedOption extendedOption = null,
                                                                                                           TraktMovieFilter filter = null,
                                                                                                           int? page = null, int? limitPerPage = null)

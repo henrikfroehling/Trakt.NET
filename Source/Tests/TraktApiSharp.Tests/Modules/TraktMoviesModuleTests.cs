@@ -3226,7 +3226,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.AsString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
@@ -3248,7 +3248,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3450,7 +3450,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -3478,7 +3478,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -3517,7 +3517,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.AsString()}?page={page}",
@@ -3540,7 +3540,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             var filter = new TraktMovieFilter()
@@ -3573,7 +3573,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.AsString()}?limit={limit}",
@@ -3596,7 +3596,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             var filter = new TraktMovieFilter()
@@ -3888,7 +3888,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -3912,7 +3912,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -3947,7 +3947,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -3978,7 +3978,7 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -4148,7 +4148,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}",
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
@@ -4170,7 +4170,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4373,7 +4373,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4401,7 +4401,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4440,7 +4440,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?page={page}",
@@ -4463,7 +4463,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             var filter = new TraktMovieFilter()
@@ -4497,7 +4497,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.AsString()}?limit={limit}",
@@ -4520,7 +4520,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             var filter = new TraktMovieFilter()
@@ -4814,7 +4814,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -4838,7 +4838,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -4873,7 +4873,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -4904,7 +4904,7 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -5075,7 +5075,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}",
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
@@ -5097,7 +5097,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5300,7 +5300,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5328,7 +5328,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5367,7 +5367,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?page={page}",
@@ -5390,7 +5390,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
 
             var filter = new TraktMovieFilter()
@@ -5424,7 +5424,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.AsString()}?limit={limit}",
@@ -5447,7 +5447,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var limit = 4;
 
             var filter = new TraktMovieFilter()
@@ -5741,7 +5741,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -5765,7 +5765,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -5800,7 +5800,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 
@@ -5831,7 +5831,7 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
             var page = 2;
             var limit = 4;
 

@@ -80,7 +80,7 @@
     <Compile Include="Enums\TraktAccessTokenType.cs" />
     <Compile Include="Enums\TraktGenreType.cs" />
     <Compile Include="Enums\TraktHiddenItemType.cs" />
-    <Compile Include="Enums\TraktPeriod.cs" />
+    <Compile Include="Enums\TraktTimePeriod.cs" />
     <Compile Include="Enums\TraktReleaseType.cs" />
     <Compile Include="Enums\TraktSearchIdType.cs" />
     <Compile Include="Enums\TraktSearchResultType.cs" />
