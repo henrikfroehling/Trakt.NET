@@ -52,25 +52,10 @@
 
         public static int AbsoluteDifference(TraktEnumeration first, TraktEnumeration second) => Math.Abs(first.Value - second.Value);
 
-        public static T FromValue<T>(int value) where T : TraktEnumeration, new()
-        {
-            return Search<T>(e => e.Value == value);
-        }
-
-        public static T FromObjectName<T>(string objectName) where T : TraktEnumeration, new()
-        {
-            return Search<T>(e => e.ObjectName == objectName);
-        }
-
-        public static T FromUriName<T>(string uriName) where T : TraktEnumeration, new()
-        {
-            return Search<T>(e => e.UriName == uriName);
-        }
-
-        public static T FromDisplayName<T>(string displayName) where T : TraktEnumeration, new()
-        {
-            return Search<T>(e => e.DisplayName == displayName);
-        }
+        public static T FromValue<T>(int value) where T : TraktEnumeration, new() => Search<T>(e => e.Value == value);
+        public static T FromObjectName<T>(string objectName) where T : TraktEnumeration, new() => Search<T>(e => e.ObjectName == objectName);
+        public static T FromUriName<T>(string uriName) where T : TraktEnumeration, new() => Search<T>(e => e.UriName == uriName);
+        public static T FromDisplayName<T>(string displayName) where T : TraktEnumeration, new() => Search<T>(e => e.DisplayName == displayName);
 
         private static T Search<T>(Func<TraktEnumeration, bool> predicate) where T : TraktEnumeration, new()
         {
