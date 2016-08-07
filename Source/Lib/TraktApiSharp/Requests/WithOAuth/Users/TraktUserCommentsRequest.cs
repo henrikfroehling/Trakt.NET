@@ -16,7 +16,7 @@
 
         internal TraktCommentType CommentType { get; set; }
 
-        internal TraktObjectType? Type { get; set; }
+        internal TraktObjectType Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
@@ -27,8 +27,8 @@
             if (CommentType != null && CommentType != TraktCommentType.Unspecified)
                 uriParams.Add("comment_type", CommentType.UriName);
 
-            if (Type.HasValue && Type.Value != TraktObjectType.Unspecified)
-                uriParams.Add("type", Type.Value.AsStringUriParameter());
+            if (Type != null && Type != TraktObjectType.Unspecified)
+                uriParams.Add("type", Type.UriName);
 
             return uriParams;
         }

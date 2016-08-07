@@ -13,7 +13,9 @@
     public class TraktUserComment
     {
         [JsonProperty(PropertyName = "type")]
-        public TraktObjectType? Type { get; set; }
+        [JsonConverter(typeof(TraktObjectTypeConverter))]
+        [Nullable]
+        public TraktObjectType Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         [Nullable]

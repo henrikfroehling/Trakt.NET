@@ -249,7 +249,7 @@
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
                                                                                         TraktCommentType commentType = null,
-                                                                                        TraktObjectType? objectType = null,
+                                                                                        TraktObjectType objectType = null,
                                                                                         TraktExtendedOption extendedOption = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
