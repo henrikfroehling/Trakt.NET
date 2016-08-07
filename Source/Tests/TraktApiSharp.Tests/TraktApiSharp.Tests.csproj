@@ -157,7 +157,7 @@
     <Compile Include="Enums\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktTimePeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
-    <Compile Include="Enums\TraktRequestObjectTypeTests.cs" />
+    <Compile Include="Requests\Base\TraktRequestObjectTypeTests.cs" />
     <Compile Include="Enums\TraktScrobbleActionTypeTests.cs" />
     <Compile Include="Enums\TraktSearchIdLookupTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
