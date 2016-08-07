@@ -28,10 +28,8 @@
             var allValues = TraktEnumeration.GetAll<TraktHistoryActionType>();
 
             allValues.Should().NotBeNull().And.HaveCount(4);
-            allValues.Should().Contain(new List<TraktHistoryActionType>() { TraktHistoryActionType.Unspecified,
-                                                                            TraktHistoryActionType.Scrobble,
-                                                                            TraktHistoryActionType.Checkin,
-                                                                            TraktHistoryActionType.Watch });
+            allValues.Should().Contain(new List<TraktHistoryActionType>() { TraktHistoryActionType.Unspecified, TraktHistoryActionType.Scrobble,
+                                                                            TraktHistoryActionType.Checkin, TraktHistoryActionType.Watch });
         }
 
         [TestMethod]

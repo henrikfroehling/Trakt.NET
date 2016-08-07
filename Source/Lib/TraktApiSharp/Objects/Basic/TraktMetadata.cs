@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
+    using Attributes;
     using Enums;
     using Newtonsoft.Json;
 
@@ -16,10 +17,11 @@
         [JsonConverter(typeof(TraktMediaResolutionConverter))]
         public TraktMediaResolution? MediaResolution { get; set; }
 
-        /// <summary>Gets or sets the media audio type. See also <seealso cref="TraktMediaAudio" />.</summary>
+        /// <summary>Gets or sets the media audio type. See also <seealso cref="TraktMediaAudio" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "audio")]
         [JsonConverter(typeof(TraktMediaAudioConverter))]
-        public TraktMediaAudio? Audio { get; set; }
+        [Nullable]
+        public TraktMediaAudio Audio { get; set; }
 
         /// <summary>Gets or sets the media audio channels. See also <seealso cref="TraktMediaAudioChannel" />.</summary>
         [JsonProperty(PropertyName = "audio_channels")]

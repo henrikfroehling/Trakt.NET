@@ -28,10 +28,8 @@
             var allValues = TraktEnumeration.GetAll<TraktHiddenItemType>();
 
             allValues.Should().NotBeNull().And.HaveCount(4);
-            allValues.Should().Contain(new List<TraktHiddenItemType>() { TraktHiddenItemType.Unspecified,
-                                                                         TraktHiddenItemType.Movie,
-                                                                         TraktHiddenItemType.Show,
-                                                                         TraktHiddenItemType.Season });
+            allValues.Should().Contain(new List<TraktHiddenItemType>() { TraktHiddenItemType.Unspecified, TraktHiddenItemType.Movie,
+                                                                         TraktHiddenItemType.Show, TraktHiddenItemType.Season });
         }
 
         [TestMethod]

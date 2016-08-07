@@ -28,12 +28,9 @@
             var allValues = TraktEnumeration.GetAll<TraktListItemType>();
 
             allValues.Should().NotBeNull().And.HaveCount(6);
-            allValues.Should().Contain(new List<TraktListItemType>() { TraktListItemType.Unspecified,
-                                                                       TraktListItemType.Movie,
-                                                                       TraktListItemType.Show,
-                                                                       TraktListItemType.Season,
-                                                                       TraktListItemType.Episode,
-                                                                       TraktListItemType.Person });
+            allValues.Should().Contain(new List<TraktListItemType>() { TraktListItemType.Unspecified, TraktListItemType.Movie,
+                                                                       TraktListItemType.Show, TraktListItemType.Season,
+                                                                       TraktListItemType.Episode, TraktListItemType.Person });
         }
 
         [TestMethod]

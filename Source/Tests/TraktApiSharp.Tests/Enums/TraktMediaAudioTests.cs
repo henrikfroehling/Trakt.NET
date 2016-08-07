@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,28 +16,24 @@
         }
 
         [TestMethod]
-        public void TestTraktMediaAudioHasMembers()
+        public void TestTraktMediaAudioIsTraktEnumeration()
         {
-            typeof(TraktMediaAudio).GetEnumNames().Should().HaveCount(12)
-                                                  .And.Contain("Unspecified", "LPCM", "MP3", "AAC", "OGG", "WMA",
-                                                               "DTS", "DTS_MA", "DolbyPrologic", "DolbyDigital", "DolbyDigitalPlus", "DolbyTrueHD");
+            var enumeration = new TraktMediaAudio();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktMediaAudioGetAsString()
+        public void TestTraktMediaAudioGetAll()
         {
-            TraktMediaAudio.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktMediaAudio.LPCM.AsString().Should().Be("lpcm");
-            TraktMediaAudio.MP3.AsString().Should().Be("mp3");
-            TraktMediaAudio.AAC.AsString().Should().Be("aac");
-            TraktMediaAudio.OGG.AsString().Should().Be("ogg");
-            TraktMediaAudio.WMA.AsString().Should().Be("wma");
-            TraktMediaAudio.DTS.AsString().Should().Be("dts");
-            TraktMediaAudio.DTS_MA.AsString().Should().Be("dts_ma");
-            TraktMediaAudio.DolbyPrologic.AsString().Should().Be("dolby_prologic");
-            TraktMediaAudio.DolbyDigital.AsString().Should().Be("dolby_digital");
-            TraktMediaAudio.DolbyDigitalPlus.AsString().Should().Be("dolby_digital_plus");
-            TraktMediaAudio.DolbyTrueHD.AsString().Should().Be("dolby_truehd");
+            var allValues = TraktEnumeration.GetAll<TraktMediaAudio>();
+
+            allValues.Should().NotBeNull().And.HaveCount(12);
+            allValues.Should().Contain(new List<TraktMediaAudio>() { TraktMediaAudio.Unspecified, TraktMediaAudio.LPCM,
+                                                                     TraktMediaAudio.MP3, TraktMediaAudio.AAC,
+                                                                     TraktMediaAudio.OGG, TraktMediaAudio.WMA,
+                                                                     TraktMediaAudio.DTS, TraktMediaAudio.DTS_MA,
+                                                                     TraktMediaAudio.DolbyPrologic, TraktMediaAudio.DolbyDigital,
+                                                                     TraktMediaAudio.DolbyDigitalPlus, TraktMediaAudio.DolbyTrueHD });
         }
 
         [TestMethod]
