@@ -19,7 +19,8 @@
 
         [JsonProperty(PropertyName = "action")]
         [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
-        public TraktHistoryActionType? Action { get; set; }
+        [Nullable]
+        public TraktHistoryActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncItemTypeConverter))]

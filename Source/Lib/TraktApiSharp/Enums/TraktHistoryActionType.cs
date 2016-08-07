@@ -1,31 +1,19 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktHistoryActionType
+    public sealed class TraktHistoryActionType : TraktEnumeration
     {
-        Unspecified,
-        Scrobble,
-        Checkin,
-        Watch
-    }
+        public static TraktHistoryActionType Unspecified { get; } = new TraktHistoryActionType();
+        public static TraktHistoryActionType Scrobble { get; } = new TraktHistoryActionType(1, "scrobble", "scrobble", "Scrobble");
+        public static TraktHistoryActionType Checkin { get; } = new TraktHistoryActionType(2, "checkin", "checkin", "Checkin");
+        public static TraktHistoryActionType Watch { get; } = new TraktHistoryActionType(4, "watch", "watch", "Watch");
 
-    public static class TraktHistoryActionTypeExtensions
-    {
-        public static string AsString(this TraktHistoryActionType historyActionType)
-        {
-            switch (historyActionType)
-            {
-                case TraktHistoryActionType.Unspecified: return string.Empty;
-                case TraktHistoryActionType.Scrobble: return "scrobble";
-                case TraktHistoryActionType.Checkin: return "checkin";
-                case TraktHistoryActionType.Watch: return "watch";
-                default:
-                    throw new NotSupportedException(historyActionType.ToString());
-            }
-        }
+        public TraktHistoryActionType() : base() { }
+
+        private TraktHistoryActionType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktHistoryActionTypeConverter : JsonConverter
@@ -42,17 +30,16 @@
 
             var enumString = reader.Value as string;
 
-            if (enumString.Equals(TraktHistoryActionType.Unspecified.AsString()))
+            if (string.IsNullOrEmpty(enumString))
                 return TraktHistoryActionType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktHistoryActionType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktHistoryActionType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var historyActionType = (TraktHistoryActionType)value;
-            writer.WriteValue(historyActionType.AsString());
+            writer.WriteValue(historyActionType.ObjectName);
         }
     }
 }
