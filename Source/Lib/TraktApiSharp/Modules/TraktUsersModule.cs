@@ -248,7 +248,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
-                                                                                        TraktCommentType? commentType = null,
+                                                                                        TraktCommentType commentType = null,
                                                                                         TraktObjectType? objectType = null,
                                                                                         TraktExtendedOption extendedOption = null,
                                                                                         int? page = null, int? limitPerPage = null)

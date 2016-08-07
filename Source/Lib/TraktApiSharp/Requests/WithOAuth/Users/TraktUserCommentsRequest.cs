@@ -14,7 +14,7 @@
 
         internal string Username { get; set; }
 
-        internal TraktCommentType? CommentType { get; set; }
+        internal TraktCommentType CommentType { get; set; }
 
         internal TraktObjectType? Type { get; set; }
 
@@ -24,8 +24,8 @@
 
             uriParams.Add("username", Username);
 
-            if (CommentType.HasValue && CommentType.Value != TraktCommentType.Unspecified)
-                uriParams.Add("comment_type", CommentType.Value.AsStringUriParameter());
+            if (CommentType != null && CommentType != TraktCommentType.Unspecified)
+                uriParams.Add("comment_type", CommentType.UriName);
 
             if (Type.HasValue && Type.Value != TraktObjectType.Unspecified)
                 uriParams.Add("type", Type.Value.AsStringUriParameter());

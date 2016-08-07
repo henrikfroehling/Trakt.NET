@@ -8,18 +8,10 @@
     public class TraktCommentTypeTests
     {
         [TestMethod]
-        public void TestTraktCommentTypeHasMembers()
+        public void TestTraktCommentTypeIsTraktEnumeration()
         {
-            typeof(TraktCommentType).GetEnumNames().Should().HaveCount(4)
-                                                   .And.Contain("Unspecified", "Review", "Shout", "All");
-        }
-
-        [TestMethod]
-        public void TestTraktCommentTypeGetAsStringUriParameter()
-        {
-            TraktCommentType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktCommentType.Review.AsStringUriParameter().Should().Be("reviews");
-            TraktCommentType.Shout.AsStringUriParameter().Should().Be("shouts");
+            var enumeration = new TraktCommentType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
     }
 }
