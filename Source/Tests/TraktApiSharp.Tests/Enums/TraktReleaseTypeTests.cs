@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,22 +16,22 @@
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeHasMembers()
+        public void TestTraktReleaseTypeIsTraktEnumeration()
         {
-            typeof(TraktReleaseType).GetEnumNames().Should().HaveCount(7)
-                                                   .And.Contain("Unknown", "Premiere", "Limited", "Theatrical", "Digital", "Physical", "Tv");
+            var enumeration = new TraktReleaseType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeGetAsString()
+        public void TestTraktReleaseTypeGetAll()
         {
-            TraktReleaseType.Unknown.AsString().Should().Be("unknown");
-            TraktReleaseType.Premiere.AsString().Should().Be("premiere");
-            TraktReleaseType.Limited.AsString().Should().Be("limited");
-            TraktReleaseType.Theatrical.AsString().Should().Be("theatrical");
-            TraktReleaseType.Digital.AsString().Should().Be("digital");
-            TraktReleaseType.Physical.AsString().Should().Be("physical");
-            TraktReleaseType.Tv.AsString().Should().Be("tv");
+            var allValues = TraktEnumeration.GetAll<TraktReleaseType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(8);
+            allValues.Should().Contain(new List<TraktReleaseType>() { TraktReleaseType.Unspecified, TraktReleaseType.Unknown,
+                                                                      TraktReleaseType.Premiere, TraktReleaseType.Limited,
+                                                                      TraktReleaseType.Theatrical, TraktReleaseType.Digital,
+                                                                      TraktReleaseType.Physical, TraktReleaseType.TV });
         }
 
         [TestMethod]
@@ -101,14 +102,14 @@
         [TestMethod]
         public void TestTraktReleaseTypeWriteAndReadJson_Tv()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Tv };
+            var obj = new TestObject { Value = TraktReleaseType.TV };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Tv);
+            objRead.Value.Should().Be(TraktReleaseType.TV);
         }
 
         [TestMethod]
