@@ -1,7 +1,5 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System.Collections.Generic;
-
     public sealed class TraktHiddenItemsSection : TraktEnumeration
     {
         public static TraktHiddenItemsSection Unspecified { get; } = new TraktHiddenItemsSection();
@@ -14,7 +12,5 @@
 
         private TraktHiddenItemsSection(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
-
-        public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Calendar, ProgressWatched, ProgressCollected, Recommendations };
     }
 }

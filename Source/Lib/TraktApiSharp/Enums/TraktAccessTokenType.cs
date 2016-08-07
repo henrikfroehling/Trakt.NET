@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using System;
-    using System.Collections.Generic;
 
     public sealed class TraktAccessTokenType : TraktEnumeration
     {
@@ -13,8 +12,6 @@
 
         private TraktAccessTokenType(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
-
-        public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Bearer };
     }
 
     public class TraktAccessTokenTypeConverter : JsonConverter

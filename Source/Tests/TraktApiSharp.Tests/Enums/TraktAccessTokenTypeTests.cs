@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -19,6 +20,15 @@
         {
             var enumeration = new TraktAccessTokenType();
             enumeration.Should().BeAssignableTo<TraktEnumeration>();
+        }
+
+        [TestMethod]
+        public void TestTraktAccessTokenTypeGetAll()
+        {
+            var allValues = TraktEnumeration.GetAll<TraktAccessTokenType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(2);
+            allValues.Should().Contain(new List<TraktAccessTokenType>() { TraktAccessTokenType.Unspecified, TraktAccessTokenType.Bearer });
         }
 
         [TestMethod]

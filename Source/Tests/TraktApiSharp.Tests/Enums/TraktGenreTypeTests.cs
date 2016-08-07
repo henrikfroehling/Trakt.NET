@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -19,6 +20,16 @@
         {
             var enumeration = new TraktGenreType();
             enumeration.Should().BeAssignableTo<TraktEnumeration>();
+        }
+
+        [TestMethod]
+        public void TestTraktGenreTypeGetAll()
+        {
+            var allValues = TraktEnumeration.GetAll<TraktGenreType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(3);
+            allValues.Should().Contain(new List<TraktGenreType>() { TraktGenreType.Unspecified, TraktGenreType.Shows,
+                                                                    TraktGenreType.Movies });
         }
 
         [TestMethod]

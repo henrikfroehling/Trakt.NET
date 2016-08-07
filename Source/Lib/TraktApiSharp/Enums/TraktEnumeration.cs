@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     public abstract class TraktEnumeration : IComparable
     {
@@ -48,7 +49,20 @@
             return Value.GetHashCode();
         }
 
-        public abstract IEnumerable<TraktEnumeration> AllEnumerations { get; }
+        public static IEnumerable<T> GetAll<T>() where T : TraktEnumeration, new()
+        {
+            var derivedEnumType = typeof(T);
+            var derivedEnum = Activator.CreateInstance(derivedEnumType);
+            var fields = derivedEnumType.GetRuntimeFields().Where(f => f.FieldType == derivedEnumType && f.IsStatic && f.IsInitOnly);
+
+            foreach (var field in fields)
+            {
+                var value = field.GetValue(derivedEnum) as T;
+
+                if (value != null)
+                    yield return value;
+            }
+        }
 
         public static int AbsoluteDifference(TraktEnumeration first, TraktEnumeration second) => Math.Abs(first.Value - second.Value);
 
@@ -59,11 +73,8 @@
 
         private static T Search<T>(Func<TraktEnumeration, bool> predicate) where T : TraktEnumeration, new()
         {
-            var derivedEnumType = typeof(T);
-            var derivedEnum = Activator.CreateInstance(derivedEnumType);
-
-            var matchingItem = ((T)derivedEnum).AllEnumerations.FirstOrDefault(predicate);
-            return matchingItem != null ? matchingItem as T : derivedEnum as T;
+            var matchingItem = GetAll<T>().FirstOrDefault(predicate);
+            return matchingItem != null ? matchingItem as T : null;
         }
     }
 }

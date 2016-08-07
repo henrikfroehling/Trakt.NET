@@ -1,7 +1,5 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System.Collections.Generic;
-
     public sealed class TraktCommentType : TraktEnumeration
     {
         public static TraktCommentType Unspecified { get; } = new TraktCommentType();
@@ -13,7 +11,5 @@
 
         private TraktCommentType(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
-
-        public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Review, Shout, All };
     }
 }
