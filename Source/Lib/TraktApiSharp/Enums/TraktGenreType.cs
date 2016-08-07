@@ -1,29 +1,21 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
-    public enum TraktGenreType
+    public sealed class TraktGenreType : TraktEnumeration
     {
-        Unspecified,
-        Shows,
-        Movies
-    }
+        public static TraktGenreType Unspecified { get; } = new TraktGenreType();
+        public static TraktGenreType Shows { get; } = new TraktGenreType(1, "shows", "shows", "Shows");
+        public static TraktGenreType Movies { get; } = new TraktGenreType(2, "movies", "movies", "Movies");
 
-    public static class TraktGenreTypeExtensions
-    {
-        public static string AsString(this TraktGenreType genreType)
-        {
-            switch (genreType)
-            {
-                case TraktGenreType.Shows: return "shows";
-                case TraktGenreType.Movies: return "movies";
-                case TraktGenreType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(genreType.ToString());
-            }
-        }
+        public TraktGenreType() : base() { }
+
+        private TraktGenreType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
+
+        public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Shows, Movies };
     }
 
     public class TraktGenreTypeConverter : JsonConverter
@@ -43,14 +35,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktGenreType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktGenreType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktGenreType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var genreType = (TraktGenreType)value;
-            writer.WriteValue(genreType.AsString());
+            writer.WriteValue(genreType.ObjectName);
         }
     }
 }
