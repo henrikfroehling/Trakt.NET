@@ -17,8 +17,8 @@
         [TestMethod]
         public void TestTraktAccessScopeIsTraktEnumeration()
         {
-            var exception = new TraktAccessScope();
-            exception.Should().BeAssignableTo<TraktEnumeration>();
+            var enumeration = new TraktAccessScope();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]

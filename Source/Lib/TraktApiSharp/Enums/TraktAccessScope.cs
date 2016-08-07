@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktAccessScope : TraktEnumeration
+    public sealed class TraktAccessScope : TraktEnumeration
     {
         public static TraktAccessScope Unspecified { get; } = new TraktAccessScope();
         public static TraktAccessScope Public { get; } = new TraktAccessScope(1, "public", "public", "Public");
@@ -13,7 +13,7 @@
 
         public TraktAccessScope() : base() { }
 
-        protected TraktAccessScope(int value, string objectName, string uriName, string displayName)
+        private TraktAccessScope(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
 
         public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Public, Private, Friends };
