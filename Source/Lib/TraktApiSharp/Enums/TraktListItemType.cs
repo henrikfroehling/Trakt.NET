@@ -1,50 +1,21 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktListItemType
+    public sealed class TraktListItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode,
-        Person
-    }
+        public static TraktListItemType Unspecified { get; } = new TraktListItemType();
+        public static TraktListItemType Movie { get; } = new TraktListItemType(1, "movie", "movies", "Movie");
+        public static TraktListItemType Show { get; } = new TraktListItemType(2, "show", "shows", "Show");
+        public static TraktListItemType Season { get; } = new TraktListItemType(4, "season", "seasons", "Season");
+        public static TraktListItemType Episode { get; } = new TraktListItemType(8, "episode", "episodes", "Episode");
+        public static TraktListItemType Person { get; } = new TraktListItemType(16, "person", "people", "Person");
 
-    public static class TraktListItemTypeExtensions
-    {
-        public static string AsString(this TraktListItemType listItemType)
-        {
-            switch (listItemType)
-            {
-                case TraktListItemType.Movie: return "movie";
-                case TraktListItemType.Show: return "show";
-                case TraktListItemType.Season: return "season";
-                case TraktListItemType.Episode: return "episode";
-                case TraktListItemType.Person: return "person";
-                case TraktListItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(listItemType.ToString());
-            }
-        }
+        public TraktListItemType() : base() { }
 
-        public static string AsStringUriParameter(this TraktListItemType listItemType)
-        {
-            switch (listItemType)
-            {
-                case TraktListItemType.Movie: return "movies";
-                case TraktListItemType.Show: return "shows";
-                case TraktListItemType.Season: return "seasons";
-                case TraktListItemType.Episode: return "episodes";
-                case TraktListItemType.Person: return "people";
-                case TraktListItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(listItemType.ToString());
-            }
-        }
+        private TraktListItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktListItemTypeConverter : JsonConverter
@@ -64,14 +35,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktListItemType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktListItemType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktListItemType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var listItemType = (TraktListItemType)value;
-            writer.WriteValue(listItemType.AsString());
+            writer.WriteValue(listItemType.ObjectName);
         }
     }
 }

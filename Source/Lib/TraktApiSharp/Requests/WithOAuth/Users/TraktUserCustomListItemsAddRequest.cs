@@ -12,7 +12,7 @@
 
         internal string Username { get; set; }
 
-        internal TraktListItemType? Type { get; set; }
+        internal TraktListItemType Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
@@ -20,8 +20,8 @@
 
             uriParams.Add("username", Username);
 
-            if (Type.HasValue && Type.Value != TraktListItemType.Unspecified)
-                uriParams.Add("type", Type.Value.AsStringUriParameter());
+            if (Type != null && Type != TraktListItemType.Unspecified)
+                uriParams.Add("type", Type.UriName);
 
             return uriParams;
         }

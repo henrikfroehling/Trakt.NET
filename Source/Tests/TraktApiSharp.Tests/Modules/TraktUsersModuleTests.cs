@@ -2814,7 +2814,7 @@
             var listId = "55";
             var type = TraktListItemType.Episode;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items/{type.AsStringUriParameter()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items/{type.UriName}",
                                                       customListItems);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type).Result;
@@ -2862,7 +2862,7 @@
             };
 
             TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/lists/{listId}/items/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                $"users/{username}/lists/{listId}/items/{type.UriName}?extended={extendedOption.ToString()}",
                 customListItems);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type, extendedOption).Result;
@@ -5280,7 +5280,7 @@
             var postJson = TestUtility.SerializeObject(customListItems);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items/{type.AsStringUriParameter()}",
+            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items/{type.UriName}",
                                                    postJson, addedCustomListItems);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems, type).Result;

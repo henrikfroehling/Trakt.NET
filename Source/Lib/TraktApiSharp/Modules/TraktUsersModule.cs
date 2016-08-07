@@ -368,7 +368,7 @@
         /// </exception>
         [OAuthAuthorizationOptional]
         public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                              TraktListItemType? listItemType = null,
+                                                                              TraktListItemType listItemType = null,
                                                                               TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -545,7 +545,7 @@
         [OAuthAuthorizationRequired]
         public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                                                         [NotNull] TraktUserCustomListItemsPost listItemsPost,
-                                                                                        TraktListItemType? listItemType = null)
+                                                                                        TraktListItemType listItemType = null)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
