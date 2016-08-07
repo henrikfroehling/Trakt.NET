@@ -700,7 +700,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId).Result;
@@ -725,9 +725,8 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}",
-                searchResults, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}",
+                                                                searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType).Result;
 
@@ -758,7 +757,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -792,7 +791,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
@@ -827,7 +826,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
                 $"&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
@@ -856,7 +855,7 @@
             var resultType = TraktSearchResultType.Movie;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&page={page}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -884,7 +883,7 @@
             var resultType = TraktSearchResultType.Movie;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -913,7 +912,7 @@
             var resultType = TraktSearchResultType.Movie;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&page={page}&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -944,9 +943,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}",
-                searchResults, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}",
+                                                                searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
                                                                                        extendedOption).Result;
@@ -978,7 +976,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}&page={page}",
+                $"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
@@ -1011,7 +1009,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
@@ -1044,10 +1042,9 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?extended={extendedOption.ToString()}" +
-                $"&page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}" +
+                                                                $"&page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
                                                                                        extendedOption, page, limit).Result;
@@ -1072,7 +1069,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
@@ -1098,7 +1095,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
@@ -1125,9 +1122,8 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
                                                                                        null, page, limit).Result;
@@ -1161,7 +1157,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.AsString()}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
@@ -1187,7 +1183,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId,
@@ -1206,7 +1202,7 @@
         {
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
-            var uri = $"search/{idType.AsString()}/{lookupId}";
+            var uri = $"search/{idType.UriName}/{lookupId}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
@@ -1284,10 +1280,15 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.AsString()}/{lookupId}", searchResults);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}", searchResults);
+
+            var searchIdType = default(TraktSearchIdType);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdType.Unspecified, lookupId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(searchIdType, lookupId);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdType.Unspecified, lookupId);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, null);
@@ -1942,8 +1943,10 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}", searchResults);
 
+            var searchIdLookupType = default(TraktSearchIdLookupType);
+
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(null, lookupId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(searchIdLookupType, lookupId);
             act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdLookupType.Unspecified, lookupId);

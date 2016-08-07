@@ -18,7 +18,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("id_type", IdType.AsString());
+            uriParams.Add("id_type", IdType.UriName);
             uriParams.Add("id", LookupId);
 
             if (ResultType.HasValue && ResultType.Value != TraktSearchResultType.Unspecified)
