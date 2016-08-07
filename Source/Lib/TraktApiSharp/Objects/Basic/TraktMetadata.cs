@@ -23,10 +23,11 @@
         [Nullable]
         public TraktMediaAudio Audio { get; set; }
 
-        /// <summary>Gets or sets the media audio channels. See also <seealso cref="TraktMediaAudioChannel" />.</summary>
+        /// <summary>Gets or sets the media audio channels. See also <seealso cref="TraktMediaAudioChannel" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "audio_channels")]
         [JsonConverter(typeof(TraktMediaAudioChannelConverter))]
-        public TraktMediaAudioChannel? AudioChannels { get; set; }
+        [Nullable]
+        public TraktMediaAudioChannel AudioChannels { get; set; }
 
         /// <summary>Gets or sets, whether the media is in 3D.</summary>
         [JsonProperty(PropertyName = "3d")]

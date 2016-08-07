@@ -3,44 +3,25 @@
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktMediaAudioChannel
+    public sealed class TraktMediaAudioChannel : TraktEnumeration
     {
-        Unspecified,
-        Channels_1_0,
-        Channels_2_0,
-        Channels_2_1,
-        Channels_3_0,
-        Channels_3_1,
-        Channels_4_0,
-        Channels_4_1,
-        Channels_5_0,
-        Channels_5_1,
-        Channels_6_1,
-        Channels_7_1
-    }
+        public static TraktMediaAudioChannel Unspecified { get; } = new TraktMediaAudioChannel();
+        public static TraktMediaAudioChannel Channels_1_0 { get; } = new TraktMediaAudioChannel(1, "1.0", "1.0", "Channels 1.0");
+        public static TraktMediaAudioChannel Channels_2_0 { get; } = new TraktMediaAudioChannel(2, "2.0", "2.0", "Channels 2.0");
+        public static TraktMediaAudioChannel Channels_2_1 { get; } = new TraktMediaAudioChannel(4, "2.1", "2.1", "Channels 2.1");
+        public static TraktMediaAudioChannel Channels_3_0 { get; } = new TraktMediaAudioChannel(8, "3.0", "3.0", "Channels 3.0");
+        public static TraktMediaAudioChannel Channels_3_1 { get; } = new TraktMediaAudioChannel(16, "3.1", "3.1", "Channels 3.1");
+        public static TraktMediaAudioChannel Channels_4_0 { get; } = new TraktMediaAudioChannel(32, "4.0", "4.0", "Channels 4.0");
+        public static TraktMediaAudioChannel Channels_4_1 { get; } = new TraktMediaAudioChannel(64, "4.1", "4.1", "Channels 4.1");
+        public static TraktMediaAudioChannel Channels_5_0 { get; } = new TraktMediaAudioChannel(128, "5.0", "5.0", "Channels 5.0");
+        public static TraktMediaAudioChannel Channels_5_1 { get; } = new TraktMediaAudioChannel(256, "5.1", "5.1", "Channels 5.1");
+        public static TraktMediaAudioChannel Channels_6_1 { get; } = new TraktMediaAudioChannel(512, "6.1", "6.1", "Channels 6.1");
+        public static TraktMediaAudioChannel Channels_7_1 { get; } = new TraktMediaAudioChannel(1024, "7.1", "7.1", "Channels 7.1");
 
-    public static class TraktMediaAudioChannelExtensions
-    {
-        public static string AsString(this TraktMediaAudioChannel mediaAudioChannel)
-        {
-            switch (mediaAudioChannel)
-            {
-                case TraktMediaAudioChannel.Channels_1_0: return "1.0";
-                case TraktMediaAudioChannel.Channels_2_0: return "2.0";
-                case TraktMediaAudioChannel.Channels_2_1: return "2.1";
-                case TraktMediaAudioChannel.Channels_3_0: return "3.0";
-                case TraktMediaAudioChannel.Channels_3_1: return "3.1";
-                case TraktMediaAudioChannel.Channels_4_0: return "4.0";
-                case TraktMediaAudioChannel.Channels_4_1: return "4.1";
-                case TraktMediaAudioChannel.Channels_5_0: return "5.0";
-                case TraktMediaAudioChannel.Channels_5_1: return "5.1";
-                case TraktMediaAudioChannel.Channels_6_1: return "6.1";
-                case TraktMediaAudioChannel.Channels_7_1: return "7.1";
-                case TraktMediaAudioChannel.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(mediaAudioChannel.ToString());
-            }
-        }
+        public TraktMediaAudioChannel() : base() { }
+
+        private TraktMediaAudioChannel(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktMediaAudioChannelConverter : JsonConverter
@@ -59,36 +40,14 @@
 
             if (string.IsNullOrEmpty(enumString))
                 return TraktMediaAudioChannel.Unspecified;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_1_0.AsString()))
-                return TraktMediaAudioChannel.Channels_1_0;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_2_0.AsString()))
-                return TraktMediaAudioChannel.Channels_2_0;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_2_1.AsString()))
-                return TraktMediaAudioChannel.Channels_2_1;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_3_0.AsString()))
-                return TraktMediaAudioChannel.Channels_3_0;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_3_1.AsString()))
-                return TraktMediaAudioChannel.Channels_3_1;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_4_0.AsString()))
-                return TraktMediaAudioChannel.Channels_4_0;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_4_1.AsString()))
-                return TraktMediaAudioChannel.Channels_4_1;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_5_0.AsString()))
-                return TraktMediaAudioChannel.Channels_5_0;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_5_1.AsString()))
-                return TraktMediaAudioChannel.Channels_5_1;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_6_1.AsString()))
-                return TraktMediaAudioChannel.Channels_6_1;
-            else if (enumString.Equals(TraktMediaAudioChannel.Channels_7_1.AsString()))
-                return TraktMediaAudioChannel.Channels_7_1;
 
-            return TraktMediaAudioChannel.Unspecified;
+            return TraktEnumeration.FromObjectName<TraktMediaAudioChannel>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var mediaAudioChannel = (TraktMediaAudioChannel)value;
-            writer.WriteValue(mediaAudioChannel.AsString());
+            writer.WriteValue(mediaAudioChannel.ObjectName);
         }
     }
 }
