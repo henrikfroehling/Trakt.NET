@@ -12,10 +12,11 @@
         [JsonConverter(typeof(TraktMediaTypeConverter))]
         public TraktMediaType? MediaType { get; set; }
 
-        /// <summary>Gets or sets the media resolution. See also <seealso cref="TraktMediaResolution" />.</summary>
+        /// <summary>Gets or sets the media resolution. See also <seealso cref="TraktMediaResolution" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "resolution")]
         [JsonConverter(typeof(TraktMediaResolutionConverter))]
-        public TraktMediaResolution? MediaResolution { get; set; }
+        [Nullable]
+        public TraktMediaResolution MediaResolution { get; set; }
 
         /// <summary>Gets or sets the media audio type. See also <seealso cref="TraktMediaAudio" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "audio")]
