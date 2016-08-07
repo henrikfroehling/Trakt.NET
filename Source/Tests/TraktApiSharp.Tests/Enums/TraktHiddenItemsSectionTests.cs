@@ -7,20 +7,10 @@
     public class TraktHiddenItemsSectionTests
     {
         [TestMethod]
-        public void TestTraktHiddenItemsSectionHasMembers()
+        public void TestTraktHiddenItemsSectionIsTraktEnumeration()
         {
-            typeof(TraktHiddenItemsSection).GetEnumNames().Should().HaveCount(5)
-                                                          .And.Contain("Unspecified", "Calendar", "ProgressWatched", "ProgressCollected", "Recommendations");
-        }
-
-        [TestMethod]
-        public void TestTraktHiddenItemsSectionGetAsString()
-        {
-            TraktHiddenItemsSection.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktHiddenItemsSection.Calendar.AsString().Should().Be("calendar");
-            TraktHiddenItemsSection.ProgressWatched.AsString().Should().Be("progress_watched");
-            TraktHiddenItemsSection.ProgressCollected.AsString().Should().Be("progress_collected");
-            TraktHiddenItemsSection.Recommendations.AsString().Should().Be("recommendations");
+            var enumeration = new TraktHiddenItemsSection();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
     }
 }

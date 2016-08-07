@@ -20,7 +20,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("section", Section.AsString());
+            uriParams.Add("section", Section.UriName);
 
             if (Type.HasValue && Type.Value != TraktHiddenItemType.Unspecified)
                 uriParams.Add("type", Type.Value.ToString().ToLower());

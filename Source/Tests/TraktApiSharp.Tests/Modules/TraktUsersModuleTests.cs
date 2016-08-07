@@ -302,7 +302,7 @@
             var section = TraktHiddenItemsSection.Calendar;
             var itemCount = 3;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}",
                                                              hiddenItems, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section).Result;
@@ -325,7 +325,7 @@
             var type = TraktHiddenItemType.Movie;
             var itemCount = 3;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?type={type.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.AsString()}",
                                                              hiddenItems, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type).Result;
@@ -355,7 +355,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.AsString()}?type={type.AsString()}&extended={extendedOption.ToString()}",
+                $"users/hidden/{section.UriName}?type={type.AsString()}&extended={extendedOption.ToString()}",
                 hiddenItems, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedOption).Result;
@@ -379,7 +379,7 @@
             var itemCount = 3;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?type={type.AsString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.AsString()}&page={page}",
                                                              hiddenItems, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page).Result;
@@ -403,7 +403,7 @@
             var itemCount = 3;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?type={type.AsString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.AsString()}&limit={limit}",
                                                              hiddenItems, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, null, limit).Result;
@@ -428,7 +428,7 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?type={type.AsString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.AsString()}&page={page}&limit={limit}",
                                                              hiddenItems, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page, limit).Result;
@@ -456,7 +456,7 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?extended={extendedOption.ToString()}",
                                                              hiddenItems, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedOption).Result;
@@ -486,7 +486,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.AsString()}?extended={extendedOption.ToString()}&page={page}",
+                $"users/hidden/{section.UriName}?extended={extendedOption.ToString()}&page={page}",
                 hiddenItems, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedOption, page).Result;
@@ -516,7 +516,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.AsString()}?extended={extendedOption.ToString()}&limit={limit}",
+                $"users/hidden/{section.UriName}?extended={extendedOption.ToString()}&limit={limit}",
                 hiddenItems, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedOption, null, limit).Result;
@@ -547,7 +547,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"users/hidden/{section.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 hiddenItems, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedOption, page, limit).Result;
@@ -570,7 +570,7 @@
             var itemCount = 3;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}",
                                                              hiddenItems, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page).Result;
@@ -593,7 +593,7 @@
             var itemCount = 3;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?limit={limit}",
                                                              hiddenItems, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, null, limit).Result;
@@ -617,7 +617,7 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}&limit={limit}",
                                                              hiddenItems, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page, limit).Result;
@@ -649,7 +649,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.AsString()}?type={type.AsString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"users/hidden/{section.UriName}?type={type.AsString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 hiddenItems, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedOption, page, limit).Result;
@@ -666,7 +666,7 @@
         public void TestTraktUsersModuleGetUserHiddenItemsWithTypeAndPageExceptions()
         {
             var section = TraktHiddenItemsSection.Calendar;
-            var uri = $"users/hidden/{section.AsString()}";
+            var uri = $"users/hidden/{section.UriName}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
@@ -744,7 +744,7 @@
             var section = TraktHiddenItemsSection.Unspecified;
             var itemCount = 3;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}",
                                                              hiddenItems, 1, 10, 1, itemCount);
 
             Func<Task<TraktPaginationListResult<TraktUserHiddenItem>>> act =

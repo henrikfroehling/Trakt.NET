@@ -99,7 +99,7 @@
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
-            if (hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
+            if (hiddenItemsSection == null || hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
                 throw new ArgumentException("section not valid", nameof(hiddenItemsSection));
 
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
