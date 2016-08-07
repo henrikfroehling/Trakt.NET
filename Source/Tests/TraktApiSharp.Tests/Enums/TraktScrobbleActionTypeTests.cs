@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,19 +16,20 @@
         }
 
         [TestMethod]
-        public void TestTraktScrobbleActionTypeHasMembers()
+        public void TestTraktScrobbleActionTypeIsTraktEnumeration()
         {
-            typeof(TraktScrobbleActionType).GetEnumNames().Should().HaveCount(4)
-                                                          .And.Contain("Unspecified", "Start", "Pause", "Stop");
+            var enumeration = new TraktScrobbleActionType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktScrobbleActionTypeGetAsString()
+        public void TestTraktScrobbleActionTypeGetAll()
         {
-            TraktScrobbleActionType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktScrobbleActionType.Start.AsString().Should().Be("start");
-            TraktScrobbleActionType.Pause.AsString().Should().Be("pause");
-            TraktScrobbleActionType.Stop.AsString().Should().Be("scrobble");
+            var allValues = TraktEnumeration.GetAll<TraktScrobbleActionType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktScrobbleActionType>() { TraktScrobbleActionType.Unspecified, TraktScrobbleActionType.Start,
+                                                                             TraktScrobbleActionType.Pause, TraktScrobbleActionType.Stop });
         }
 
         [TestMethod]

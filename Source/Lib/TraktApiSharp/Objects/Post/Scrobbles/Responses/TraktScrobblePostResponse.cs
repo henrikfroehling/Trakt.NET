@@ -9,7 +9,8 @@
     {
         [JsonProperty(PropertyName = "action")]
         [JsonConverter(typeof(TraktScrobbleActionTypeConverter))]
-        public TraktScrobbleActionType? Action { get; set; }
+        [Nullable]
+        public TraktScrobbleActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "progress")]
         public float? Progress { get; set; }
