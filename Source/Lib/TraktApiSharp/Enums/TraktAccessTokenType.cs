@@ -1,27 +1,20 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
-    public enum TraktAccessTokenType
+    public sealed class TraktAccessTokenType : TraktEnumeration
     {
-        Unspecified,
-        Bearer
-    }
+        public static TraktAccessTokenType Unspecified { get; } = new TraktAccessTokenType();
+        public static TraktAccessTokenType Bearer { get; } = new TraktAccessTokenType(1, "bearer", "bearer", "Bearer");
 
-    public static class TraktAccessTokenTypeExtensions
-    {
-        public static string AsString(this TraktAccessTokenType accessTokenType)
-        {
-            switch (accessTokenType)
-            {
-                case TraktAccessTokenType.Bearer: return "bearer";
-                case TraktAccessTokenType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessTokenType.ToString());
-            }
-        }
+        public TraktAccessTokenType() : base() { }
+
+        private TraktAccessTokenType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
+
+        public override IEnumerable<TraktEnumeration> AllEnumerations { get; } = new[] { Unspecified, Bearer };
     }
 
     public class TraktAccessTokenTypeConverter : JsonConverter
@@ -41,14 +34,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktAccessTokenType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessTokenType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktAccessTokenType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var accessTokenType = (TraktAccessTokenType)value;
-            writer.WriteValue(accessTokenType.AsString());
+            writer.WriteValue(accessTokenType.ObjectName);
         }
     }
 }

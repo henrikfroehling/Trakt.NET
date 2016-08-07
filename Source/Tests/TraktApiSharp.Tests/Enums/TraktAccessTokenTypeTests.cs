@@ -15,17 +15,10 @@
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenTypeHasMembers()
+        public void TestTraktAccessTokenTypeIsTraktEnumeration()
         {
-            typeof(TraktAccessTokenType).GetEnumNames().Should().HaveCount(2)
-                                                       .And.Contain("Bearer", "Unspecified");
-        }
-
-        [TestMethod]
-        public void TestTraktAccessTokenTypeGetAsString()
-        {
-            TraktAccessTokenType.Bearer.AsString().Should().Be("bearer");
-            TraktAccessTokenType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var enumeration = new TraktAccessTokenType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]

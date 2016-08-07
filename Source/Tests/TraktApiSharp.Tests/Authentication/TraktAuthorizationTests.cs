@@ -20,7 +20,7 @@
 
             token.AccessToken.Should().BeNullOrEmpty();
             token.AccessScope.Should().BeNull();
-            token.TokenType.Should().Be(TraktAccessTokenType.Unspecified);
+            token.TokenType.Should().BeNull();
             token.ExpiresInSeconds.Should().Be(0);
             token.RefreshToken.Should().BeNullOrEmpty();
             token.IsExpired.Should().BeFalse();
