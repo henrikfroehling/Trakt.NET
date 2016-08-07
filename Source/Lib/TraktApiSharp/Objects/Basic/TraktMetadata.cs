@@ -7,10 +7,11 @@
     /// <summary>Contains metadata information for collection items.</summary>
     public class TraktMetadata
     {
-        /// <summary>Gets or sets the media type. See also <seealso cref="TraktMediaType" />.</summary>
+        /// <summary>Gets or sets the media type. See also <seealso cref="TraktMediaType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "media_type")]
         [JsonConverter(typeof(TraktMediaTypeConverter))]
-        public TraktMediaType? MediaType { get; set; }
+        [Nullable]
+        public TraktMediaType MediaType { get; set; }
 
         /// <summary>Gets or sets the media resolution. See also <seealso cref="TraktMediaResolution" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "resolution")]

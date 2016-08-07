@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,24 +16,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMediaTypeHasMembers()
+        public void TestTraktMediaTypeIsTraktEnumeration()
         {
-            typeof(TraktMediaType).GetEnumNames().Should().HaveCount(9)
-                                                 .And.Contain("Unspecified", "Digital", "Bluray", "HD_DVD", "DVD", "VCD", "VHS", "BetaMax", "LaserDisc");
+            var enumeration = new TraktMediaType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktMediaTypeGetAsString()
+        public void TestTraktMediaTypeGetAll()
         {
-            TraktMediaType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktMediaType.Digital.AsString().Should().Be("digital");
-            TraktMediaType.Bluray.AsString().Should().Be("bluray");
-            TraktMediaType.HD_DVD.AsString().Should().Be("hddvd");
-            TraktMediaType.DVD.AsString().Should().Be("dvd");
-            TraktMediaType.VCD.AsString().Should().Be("vcd");
-            TraktMediaType.VHS.AsString().Should().Be("vhs");
-            TraktMediaType.BetaMax.AsString().Should().Be("betamax");
-            TraktMediaType.LaserDisc.AsString().Should().Be("laserdisc");
+            var allValues = TraktEnumeration.GetAll<TraktMediaType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(9);
+            allValues.Should().Contain(new List<TraktMediaType>() { TraktMediaType.Unspecified, TraktMediaType.Digital,
+                                                                    TraktMediaType.Bluray, TraktMediaType.HD_DVD,
+                                                                    TraktMediaType.DVD, TraktMediaType.VCD,
+                                                                    TraktMediaType.VHS, TraktMediaType.BetaMax,
+                                                                    TraktMediaType.LaserDisc });
         }
 
         [TestMethod]
