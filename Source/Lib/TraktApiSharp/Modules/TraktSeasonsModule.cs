@@ -141,7 +141,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetSeasonCommentsAsync([NotNull] string showIdOrSlug, int seasonNumber,
-                                                                                          TraktCommentSortOrder? commentSortOrder = null,
+                                                                                          TraktCommentSortOrder commentSortOrder = null,
                                                                                           int? page = null, int? limitPerPage = null)
         {
             Validate(showIdOrSlug, seasonNumber);

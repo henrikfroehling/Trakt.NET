@@ -5924,7 +5924,7 @@
             var sortOrder = TraktCommentSortOrder.Likes;
             var itemCount = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments/{sortOrder.UriName}",
                                                                 listComments, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder).Result;
@@ -5974,7 +5974,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}",
+                $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?page={page}",
                 listComments, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page).Result;
@@ -6024,7 +6024,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?limit={limit}",
+                $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?limit={limit}",
                 listComments, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, null, limit).Result;
@@ -6077,7 +6077,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/lists/{listId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+                $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                 listComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page, limit).Result;

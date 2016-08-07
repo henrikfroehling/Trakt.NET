@@ -906,7 +906,7 @@
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}",
                                                                 movieComments, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder).Result;
@@ -953,7 +953,7 @@
             var sortOrder = TraktCommentSortOrder.Likes;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?page={page}",
                                                                 movieComments, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, page).Result;
@@ -1000,7 +1000,7 @@
             var sortOrder = TraktCommentSortOrder.Likes;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 movieComments, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, null, limit).Result;
@@ -1049,7 +1049,7 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 movieComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, page, limit).Result;

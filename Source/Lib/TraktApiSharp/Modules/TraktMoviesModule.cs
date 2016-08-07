@@ -223,7 +223,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetMovieCommentsAsync([NotNull] string movieIdOrSlug,
-                                                                                         TraktCommentSortOrder? commentSortOrder = null,
+                                                                                         TraktCommentSortOrder commentSortOrder = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
             Validate(movieIdOrSlug);

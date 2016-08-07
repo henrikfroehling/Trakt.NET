@@ -175,7 +175,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync([NotNull] string showIdOrSlug,
-                                                                                        TraktCommentSortOrder? commentSortOrder = null,
+                                                                                        TraktCommentSortOrder commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             Validate(showIdOrSlug);

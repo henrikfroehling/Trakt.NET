@@ -625,7 +625,7 @@
         /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                                        TraktCommentSortOrder? commentSortOrder = null,
+                                                                                        TraktCommentSortOrder commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);

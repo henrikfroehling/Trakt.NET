@@ -666,7 +666,7 @@
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}",
                                                                 showComments, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder).Result;
@@ -713,7 +713,7 @@
             var page = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?page={page}",
                                                                 showComments, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, page).Result;
@@ -760,7 +760,7 @@
             var limit = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 showComments, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, null, limit).Result;
@@ -809,7 +809,7 @@
             var limit = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 showComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, page, limit).Result;

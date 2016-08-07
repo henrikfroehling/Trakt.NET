@@ -401,7 +401,7 @@
             var itemCount = 3;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}",
                                                                 seasonComments, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder).Result;
@@ -450,7 +450,7 @@
             var sortOrder = TraktCommentSortOrder.Likes;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?page={page}",
                                                                 seasonComments, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, page).Result;
@@ -499,7 +499,7 @@
             var sortOrder = TraktCommentSortOrder.Likes;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 seasonComments, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, null, limit).Result;
@@ -550,7 +550,7 @@
             var page = 2;
             var limit = 20;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 seasonComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, page, limit).Result;
