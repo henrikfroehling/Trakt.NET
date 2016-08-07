@@ -181,6 +181,7 @@
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdLookupType is unspecified.
         /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given searchIdLookupType is null.</exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, [NotNull] string lookupId,
@@ -219,6 +220,9 @@
 
         private void Validate(TraktSearchIdLookupType searchIdLookupType, string lookupId)
         {
+            if (searchIdLookupType == null)
+                throw new ArgumentNullException(nameof(searchIdLookupType), "search id lookup type must not be null");
+
             if (searchIdLookupType == TraktSearchIdLookupType.Unspecified)
                 throw new ArgumentException("search id lookup type not valid", nameof(searchIdLookupType));
 

@@ -10,7 +10,6 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Requests.WithoutOAuth.Search;
     using Utils;
 
     [TestClass]
@@ -1769,7 +1768,7 @@
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId).Result;
@@ -1794,9 +1793,8 @@
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search?id_type={type.AsString()}&id={lookupId}&page={page}",
-                searchResults, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}&page={page}",
+                                                                searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, page).Result;
 
@@ -1820,9 +1818,8 @@
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search?id_type={type.AsString()}&id={lookupId}&limit={limit}",
-                searchResults, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}&limit={limit}",
+                                                                searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, null, limit).Result;
 
@@ -1847,9 +1844,8 @@
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search?id_type={type.AsString()}&id={lookupId}&page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}&page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, lookupId, page, limit).Result;
 
@@ -1866,7 +1862,7 @@
         {
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
-            var uri = $"search?id_type={type.AsString()}&id={lookupId}";
+            var uri = $"search?id_type={type.UriName}&id={lookupId}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
@@ -1944,11 +1940,13 @@
             var lookupId = "tt0848228";
             var type = TraktSearchIdLookupType.ImDB;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.AsString()}&id={lookupId}",
-                                                                searchResults);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?id_type={type.UriName}&id={lookupId}", searchResults);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdLookupType.Unspecified, lookupId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(null, lookupId);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(TraktSearchIdLookupType.Unspecified, lookupId);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(type, null);
