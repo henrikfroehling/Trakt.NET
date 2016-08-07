@@ -14,7 +14,7 @@
 
         internal TraktHiddenItemsSection Section { get; set; }
 
-        internal TraktHiddenItemType? Type { get; set; }
+        internal TraktHiddenItemType Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
@@ -22,8 +22,8 @@
 
             uriParams.Add("section", Section.UriName);
 
-            if (Type.HasValue && Type.Value != TraktHiddenItemType.Unspecified)
-                uriParams.Add("type", Type.Value.ToString().ToLower());
+            if (Type != null && Type != TraktHiddenItemType.Unspecified)
+                uriParams.Add("type", Type.UriName);
 
             return uriParams;
         }

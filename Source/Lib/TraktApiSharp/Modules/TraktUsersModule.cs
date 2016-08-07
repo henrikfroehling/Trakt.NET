@@ -95,7 +95,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given hidden items section is unspecified.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
-                                                                                              TraktHiddenItemType? hiddenItemType = null,
+                                                                                              TraktHiddenItemType hiddenItemType = null,
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {

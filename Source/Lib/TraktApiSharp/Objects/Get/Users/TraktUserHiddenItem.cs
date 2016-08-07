@@ -15,7 +15,8 @@
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktHiddenItemTypeConverter))]
-        public TraktHiddenItemType? Type { get; set; }
+        [Nullable]
+        public TraktHiddenItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]
