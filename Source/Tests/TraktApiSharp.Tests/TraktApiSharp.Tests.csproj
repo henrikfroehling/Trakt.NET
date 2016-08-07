@@ -154,7 +154,7 @@
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
     <Compile Include="Enums\TraktMediaTypeTests.cs" />
     <Compile Include="Requests\Params\TraktMovieFilterTests.cs" />
-    <Compile Include="Requests\Base\TraktObjectTypeTests.cs" />
+    <Compile Include="Enums\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktTimePeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
     <Compile Include="Enums\TraktRequestObjectTypeTests.cs" />
