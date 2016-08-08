@@ -1,47 +1,20 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktSyncItemType
+    public sealed class TraktSyncItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode
-    }
+        public static TraktSyncItemType Unspecified { get; } = new TraktSyncItemType();
+        public static TraktSyncItemType Movie { get; } = new TraktSyncItemType(1, "movie", "movies", "Movie");
+        public static TraktSyncItemType Show { get; } = new TraktSyncItemType(2, "show", "shows", "Show");
+        public static TraktSyncItemType Season { get; } = new TraktSyncItemType(4, "season", "seasons", "Season");
+        public static TraktSyncItemType Episode { get; } = new TraktSyncItemType(8, "episode", "episodes", "Episode");
 
-    public static class TraktSyncItemTypeExtensions
-    {
-        public static string AsString(this TraktSyncItemType syncItemType)
-        {
-            switch (syncItemType)
-            {
-                case TraktSyncItemType.Movie: return "movie";
-                case TraktSyncItemType.Show: return "show";
-                case TraktSyncItemType.Season: return "season";
-                case TraktSyncItemType.Episode: return "episode";
-                case TraktSyncItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncItemType.ToString());
-            }
-        }
+        public TraktSyncItemType() : base() { }
 
-        public static string AsStringUriParameter(this TraktSyncItemType syncItemType)
-        {
-            switch (syncItemType)
-            {
-                case TraktSyncItemType.Movie: return "movies";
-                case TraktSyncItemType.Show: return "shows";
-                case TraktSyncItemType.Season: return "seasons";
-                case TraktSyncItemType.Episode: return "episodes";
-                case TraktSyncItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncItemType.ToString());
-            }
-        }
+        private TraktSyncItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktSyncItemTypeConverter : JsonConverter
@@ -61,14 +34,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktSyncItemType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktSyncItemType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktSyncItemType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var syncItemType = (TraktSyncItemType)value;
-            writer.WriteValue(syncItemType.AsString());
+            writer.WriteValue(syncItemType.ObjectName);
         }
     }
 }

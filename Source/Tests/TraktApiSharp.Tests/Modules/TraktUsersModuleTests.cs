@@ -7363,7 +7363,7 @@
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}",
                                                                 userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type).Result;
@@ -7387,7 +7387,7 @@
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.AsStringUriParameter()}/{itemId}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}/{itemId}",
                                                                 userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId).Result;
@@ -7413,7 +7413,7 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
+                $"users/{username}/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
                 userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt).Result;
@@ -7440,7 +7440,7 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -7474,7 +7474,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
@@ -7511,7 +7511,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
@@ -7548,7 +7548,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
@@ -7583,7 +7583,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -7618,7 +7618,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -7653,7 +7653,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -7689,7 +7689,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
@@ -7719,7 +7719,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -7747,7 +7747,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -7776,7 +7776,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
@@ -7809,7 +7809,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -7844,7 +7844,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -7879,7 +7879,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -7915,7 +7915,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
@@ -7944,7 +7944,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -7972,7 +7972,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -8001,7 +8001,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
@@ -8033,7 +8033,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -8067,7 +8067,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -8101,7 +8101,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -8136,7 +8136,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
@@ -8163,10 +8163,9 @@
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}",
-                userHistory, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}",
+                                                                userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt).Result;
 
@@ -8190,10 +8189,9 @@
             var itemCount = 4;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
-                userHistory, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                                                                userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
                                                                                      null, page).Result;
@@ -8218,10 +8216,9 @@
             var itemCount = 4;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
-                userHistory, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                                                                userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
                                                                                      null, null, limit).Result;
@@ -8247,10 +8244,9 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                userHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                                                                userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
                                                                                      null, page, limit).Result;
@@ -8282,7 +8278,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
@@ -8318,7 +8314,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
@@ -8354,7 +8350,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
@@ -8391,7 +8387,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
@@ -8420,7 +8416,7 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -8448,7 +8444,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -8476,7 +8472,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -8505,7 +8501,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
@@ -8537,7 +8533,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
 
@@ -8571,7 +8567,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
@@ -8605,7 +8601,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
@@ -8640,7 +8636,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
+                $"users/{username}/history/{type.UriName}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
@@ -8666,10 +8662,9 @@
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}",
-                userHistory, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}",
+                                                                userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt).Result;
 
@@ -8693,10 +8688,9 @@
             var itemCount = 4;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                userHistory, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                                                                userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page).Result;
 
@@ -8720,10 +8714,9 @@
             var itemCount = 4;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                userHistory, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                                                                userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, null, limit).Result;
 
@@ -8748,10 +8741,9 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                userHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                                                                userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page, limit).Result;
 
@@ -8780,7 +8772,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                $"users/{username}/history/{type.UriName}?extended={extendedOption.ToString()}",
                 userHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
@@ -8812,7 +8804,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&page={page}",
+                $"users/{username}/history/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
@@ -8844,7 +8836,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&limit={limit}",
+                $"users/{username}/history/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
@@ -8876,10 +8868,9 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?extended={extendedOption.ToString()}&page={page}&limit={limit}",
-                userHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
+                                                                $"?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                                userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
                                                                                      extendedOption, page, limit).Result;
@@ -8903,10 +8894,8 @@
             var itemCount = 4;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?page={page}",
-                userHistory, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}",
+                                                                userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page).Result;
 
@@ -8929,10 +8918,8 @@
             var itemCount = 4;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?limit={limit}",
-                userHistory, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?limit={limit}",
+                                                                userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, null, limit).Result;
 
@@ -8956,10 +8943,8 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}" +
-                $"?page={page}&limit={limit}",
-                userHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}&limit={limit}",
+                                                                userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page, limit).Result;
 
@@ -9908,7 +9893,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
@@ -10567,7 +10552,7 @@
             var username = "sean";
             var type = TraktSyncItemType.Movie;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.AsStringUriParameter()}", userWatchlist);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.UriName}", userWatchlist);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
 
@@ -10611,7 +10596,7 @@
             };
 
             TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
+                $"users/{username}/watchlist/{type.UriName}?extended={extendedOption.ToString()}",
                 userWatchlist);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption).Result;
