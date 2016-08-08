@@ -2,26 +2,28 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
     public class TraktCommentSortOrderTests
     {
         [TestMethod]
-        public void TestTraktCommentSortOrderHasMembers()
+        public void TestTraktCommentSortOrderIsTraktEnumeration()
         {
-            typeof(TraktCommentSortOrder).GetEnumNames().Should().HaveCount(5)
-                                                        .And.Contain("Unspecified", "Newest", "Oldest", "Likes", "Replies");
+            var enumeration = new TraktCommentSortOrder();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktCommentSortOrderGetAsString()
+        public void TestTraktCommentSortOrderGetAll()
         {
-            TraktCommentSortOrder.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktCommentSortOrder.Newest.AsString().Should().Be("newest");
-            TraktCommentSortOrder.Oldest.AsString().Should().Be("oldest");
-            TraktCommentSortOrder.Likes.AsString().Should().Be("likes");
-            TraktCommentSortOrder.Replies.AsString().Should().Be("replies");
+            var allValues = TraktEnumeration.GetAll<TraktCommentSortOrder>();
+
+            allValues.Should().NotBeNull().And.HaveCount(5);
+            allValues.Should().Contain(new List<TraktCommentSortOrder>() { TraktCommentSortOrder.Unspecified, TraktCommentSortOrder.Newest,
+                                                                           TraktCommentSortOrder.Oldest, TraktCommentSortOrder.Likes,
+                                                                           TraktCommentSortOrder.Replies });
         }
     }
 }

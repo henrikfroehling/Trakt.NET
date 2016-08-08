@@ -12,10 +12,11 @@
     /// <summary>A Trakt search result.</summary>
     public class TraktSearchResult
     {
-        /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.</summary>
+        /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSearchResultTypeConverter))]
-        public TraktSearchResultType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchResultType>))]
+        [Nullable]
+        public TraktSearchResultType Type { get; set; }
 
         /// <summary>Gets or sets the result score.</summary>
         [JsonProperty(PropertyName = "score")]

@@ -1,60 +1,15 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktScrobbleActionType
+    public sealed class TraktScrobbleActionType : TraktEnumeration
     {
-        Unspecified,
-        Start,
-        Pause,
-        Stop
-    }
+        public static TraktScrobbleActionType Unspecified { get; } = new TraktScrobbleActionType();
+        public static TraktScrobbleActionType Start { get; } = new TraktScrobbleActionType(1, "start", "start", "Start");
+        public static TraktScrobbleActionType Pause { get; } = new TraktScrobbleActionType(2, "pause", "pause", "Pause");
+        public static TraktScrobbleActionType Stop { get; } = new TraktScrobbleActionType(4, "scrobble", "scrobble", "Stop");
 
-    public static class TraktScrobbleActionTypeExtensions
-    {
-        public static string AsString(this TraktScrobbleActionType scrobbleActionType)
-        {
-            switch (scrobbleActionType)
-            {
-                case TraktScrobbleActionType.Unspecified: return string.Empty;
-                case TraktScrobbleActionType.Start: return "start";
-                case TraktScrobbleActionType.Pause: return "pause";
-                case TraktScrobbleActionType.Stop: return "scrobble";
-                default:
-                    throw new NotSupportedException(scrobbleActionType.ToString());
-            }
-        }
-    }
+        public TraktScrobbleActionType() : base() { }
 
-    public class TraktScrobbleActionTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (enumString.Equals(TraktScrobbleActionType.Unspecified.AsString()))
-                return TraktScrobbleActionType.Unspecified;
-            else if (enumString.Equals(TraktScrobbleActionType.Stop.AsString()))
-                return TraktScrobbleActionType.Stop;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktScrobbleActionType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var scrobbleActionType = (TraktScrobbleActionType)value;
-            writer.WriteValue(scrobbleActionType.AsString());
-        }
+        private TraktScrobbleActionType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

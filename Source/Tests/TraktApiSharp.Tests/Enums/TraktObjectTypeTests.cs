@@ -7,122 +7,122 @@
     using TraktApiSharp.Enums;
 
     [TestClass]
-    public class TraktReleaseTypeTests
+    public class TraktObjectTypeTests
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktEnumerationConverter<TraktReleaseType>))]
-            public TraktReleaseType Value { get; set; }
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktObjectType>))]
+            public TraktObjectType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeIsTraktEnumeration()
+        public void TestTraktObjectTypeIsTraktEnumeration()
         {
-            var enumeration = new TraktReleaseType();
+            var enumeration = new TraktObjectType();
             enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeGetAll()
+        public void TestTraktObjectTypeGetAll()
         {
-            var allValues = TraktEnumeration.GetAll<TraktReleaseType>();
+            var allValues = TraktEnumeration.GetAll<TraktObjectType>();
 
-            allValues.Should().NotBeNull().And.HaveCount(8);
-            allValues.Should().Contain(new List<TraktReleaseType>() { TraktReleaseType.Unspecified, TraktReleaseType.Unknown,
-                                                                      TraktReleaseType.Premiere, TraktReleaseType.Limited,
-                                                                      TraktReleaseType.Theatrical, TraktReleaseType.Digital,
-                                                                      TraktReleaseType.Physical, TraktReleaseType.TV });
+            allValues.Should().NotBeNull().And.HaveCount(7);
+            allValues.Should().Contain(new List<TraktObjectType>() { TraktObjectType.Unspecified, TraktObjectType.Movie,
+                                                                     TraktObjectType.Show, TraktObjectType.Season,
+                                                                     TraktObjectType.Episode, TraktObjectType.List,
+                                                                     TraktObjectType.All });
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Premiere()
+        public void TestTraktObjectTypeWriteAndReadJson_Movie()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Premiere };
+            var obj = new TestObject { Value = TraktObjectType.Movie };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Premiere);
+            objRead.Value.Should().Be(TraktObjectType.Movie);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Limited()
+        public void TestTraktObjectTypeWriteAndReadJson_Show()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Limited };
+            var obj = new TestObject { Value = TraktObjectType.Show };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Limited);
+            objRead.Value.Should().Be(TraktObjectType.Show);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Theatrical()
+        public void TestTraktObjectTypeWriteAndReadJson_Season()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Theatrical };
+            var obj = new TestObject { Value = TraktObjectType.Season };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Theatrical);
+            objRead.Value.Should().Be(TraktObjectType.Season);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Digital()
+        public void TestTraktObjectTypeWriteAndReadJson_Episode()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Digital };
+            var obj = new TestObject { Value = TraktObjectType.Episode };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Digital);
+            objRead.Value.Should().Be(TraktObjectType.Episode);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Physical()
+        public void TestTraktObjectTypeWriteAndReadJson_List()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Physical };
+            var obj = new TestObject { Value = TraktObjectType.List };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Physical);
+            objRead.Value.Should().Be(TraktObjectType.List);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Tv()
+        public void TestTraktObjectTypeWriteAndReadJson_All()
         {
-            var obj = new TestObject { Value = TraktReleaseType.TV };
+            var obj = new TestObject { Value = TraktObjectType.All };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.TV);
+            objRead.Value.Should().Be(TraktObjectType.All);
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Unknown()
+        public void TestTraktObjectTypeWriteAndReadJson_Unspecified()
         {
-            var obj = new TestObject { Value = TraktReleaseType.Unknown };
+            var obj = new TestObject { Value = TraktObjectType.Unspecified };
 
             var objWritten = JsonConvert.SerializeObject(obj);
             objWritten.Should().NotBeNullOrEmpty();
 
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktReleaseType.Unknown);
+            objRead.Value.Should().Be(TraktObjectType.Unspecified);
         }
     }
 }

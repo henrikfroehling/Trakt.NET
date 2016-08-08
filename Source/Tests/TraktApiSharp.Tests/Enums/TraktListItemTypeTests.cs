@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,37 +11,26 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktListItemTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktListItemType>))]
             public TraktListItemType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktListItemTypeHasMembers()
+        public void TestTraktListItemTypeIsTraktEnumeration()
         {
-            typeof(TraktListItemType).GetEnumNames().Should().HaveCount(6)
-                                                    .And.Contain("Unspecified", "Movie", "Show", "Season", "Episode", "Person");
+            var enumeration = new TraktListItemType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktListItemTypeGetAsString()
+        public void TestTraktListItemTypeGetAll()
         {
-            TraktListItemType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktListItemType.Movie.AsString().Should().Be("movie");
-            TraktListItemType.Show.AsString().Should().Be("show");
-            TraktListItemType.Season.AsString().Should().Be("season");
-            TraktListItemType.Episode.AsString().Should().Be("episode");
-            TraktListItemType.Person.AsString().Should().Be("person");
-        }
+            var allValues = TraktEnumeration.GetAll<TraktListItemType>();
 
-        [TestMethod]
-        public void TestTraktListItemTypeGetAsStringUriParameter()
-        {
-            TraktListItemType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktListItemType.Movie.AsStringUriParameter().Should().Be("movies");
-            TraktListItemType.Show.AsStringUriParameter().Should().Be("shows");
-            TraktListItemType.Season.AsStringUriParameter().Should().Be("seasons");
-            TraktListItemType.Episode.AsStringUriParameter().Should().Be("episodes");
-            TraktListItemType.Person.AsStringUriParameter().Should().Be("people");
+            allValues.Should().NotBeNull().And.HaveCount(6);
+            allValues.Should().Contain(new List<TraktListItemType>() { TraktListItemType.Unspecified, TraktListItemType.Movie,
+                                                                       TraktListItemType.Show, TraktListItemType.Season,
+                                                                       TraktListItemType.Episode, TraktListItemType.Person });
         }
 
         [TestMethod]

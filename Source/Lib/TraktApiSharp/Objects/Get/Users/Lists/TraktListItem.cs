@@ -22,9 +22,11 @@
         [JsonProperty(PropertyName = "listed_at")]
         public DateTime? ListedAt { get; set; }
 
-        /// <summary>Gets or sets the list item type. See also <seealso cref="TraktListItemType" />.</summary>
+        /// <summary>Gets or sets the list item type. See also <seealso cref="TraktListItemType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
-        public TraktListItemType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktListItemType>))]
+        [Nullable]
+        public TraktListItemType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the list item movie, if <see cref="Type" /> is <see cref="TraktListItemType.Movie" />.

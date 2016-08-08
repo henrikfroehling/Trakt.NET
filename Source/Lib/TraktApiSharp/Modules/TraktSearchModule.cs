@@ -51,6 +51,7 @@
         /// Thrown, if the given searchQuery is null, empty or contains spaces.
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, [NotNull] string searchQuery,
                                                                                                  TraktSearchFilter filter = null,
@@ -98,9 +99,10 @@
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
-                                                                                                TraktSearchResultType? searchResultType = null,
+                                                                                                TraktSearchResultType searchResultType = null,
                                                                                                 TraktExtendedOption extendedOption = null,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
@@ -143,7 +145,7 @@
         /// </exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync([NotNull] string searchQuery, TraktSearchResultType? searchResultType = null,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync([NotNull] string searchQuery, TraktSearchResultType searchResultType = null,
                                                                                                  int? year = null, int? page = null, int? limitPerPage = null)
         {
             Validate(searchQuery);
@@ -160,7 +162,7 @@
         /// <summary>
         /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
         /// <para>OAuth authorization not required.</para>
-        /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType?, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType, TraktExtendedOption, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
         /// </para>
@@ -181,6 +183,7 @@
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdLookupType is unspecified.
         /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given searchIdLookupType is null.</exception>
         [Obsolete("This search method still works, but might be removed in a future release.")]
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdLookupType searchIdLookupType, [NotNull] string lookupId,
@@ -204,12 +207,18 @@
 
         private void Validate(TraktSearchResultType searchResultType)
         {
+            if (searchResultType == null)
+                throw new ArgumentNullException(nameof(searchResultType), "search result type must not be null");
+
             if (searchResultType == TraktSearchResultType.Unspecified)
                 throw new ArgumentException("search result type not valid", nameof(searchResultType));
         }
 
         private void Validate(TraktSearchIdType searchIdType, string lookupId)
         {
+            if (searchIdType == null)
+                throw new ArgumentNullException(nameof(searchIdType), "search id type must not be null");
+
             if (searchIdType == TraktSearchIdType.Unspecified)
                 throw new ArgumentException("search id lookup type not valid", nameof(searchIdType));
 
@@ -219,6 +228,9 @@
 
         private void Validate(TraktSearchIdLookupType searchIdLookupType, string lookupId)
         {
+            if (searchIdLookupType == null)
+                throw new ArgumentNullException(nameof(searchIdLookupType), "search id lookup type must not be null");
+
             if (searchIdLookupType == TraktSearchIdLookupType.Unspecified)
                 throw new ArgumentException("search id lookup type not valid", nameof(searchIdLookupType));
 

@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,37 +11,29 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktSyncRatingsItemTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncRatingsItemType>))]
             public TraktSyncRatingsItemType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktSyncRatingsItemTypeHasMembers()
+        public void TestTraktSyncRatingsItemTypeIsTraktEnumeration()
         {
-            typeof(TraktSyncRatingsItemType).GetEnumNames().Should().HaveCount(6)
-                                                           .And.Contain("Unspecified", "Movie", "Show", "Season", "Episode", "All");
+            var enumeration = new TraktSyncRatingsItemType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktSyncRatingsItemTypeGetAsString()
+        public void TestTraktSyncRatingsItemTypeGetAll()
         {
-            TraktSyncRatingsItemType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktSyncRatingsItemType.All.AsString().Should().Be("all");
-            TraktSyncRatingsItemType.Movie.AsString().Should().Be("movie");
-            TraktSyncRatingsItemType.Show.AsString().Should().Be("show");
-            TraktSyncRatingsItemType.Season.AsString().Should().Be("season");
-            TraktSyncRatingsItemType.Episode.AsString().Should().Be("episode");
-        }
+            var allValues = TraktEnumeration.GetAll<TraktSyncRatingsItemType>();
 
-        [TestMethod]
-        public void TestTraktSyncRatingsItemTypeGetAsStringUriParameter()
-        {
-            TraktSyncRatingsItemType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktSyncRatingsItemType.All.AsStringUriParameter().Should().Be("all");
-            TraktSyncRatingsItemType.Movie.AsStringUriParameter().Should().Be("movies");
-            TraktSyncRatingsItemType.Show.AsStringUriParameter().Should().Be("shows");
-            TraktSyncRatingsItemType.Season.AsStringUriParameter().Should().Be("seasons");
-            TraktSyncRatingsItemType.Episode.AsStringUriParameter().Should().Be("episodes");
+            allValues.Should().NotBeNull().And.HaveCount(6);
+            allValues.Should().Contain(new List<TraktSyncRatingsItemType>() { TraktSyncRatingsItemType.Unspecified,
+                                                                              TraktSyncRatingsItemType.Movie,
+                                                                              TraktSyncRatingsItemType.Show,
+                                                                              TraktSyncRatingsItemType.Season,
+                                                                              TraktSyncRatingsItemType.Episode,
+                                                                              TraktSyncRatingsItemType.All });
         }
 
         [TestMethod]

@@ -18,8 +18,9 @@
         public int? Rating { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncRatingsItemTypeConverter))]
-        public TraktSyncRatingsItemType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncRatingsItemType>))]
+        [Nullable]
+        public TraktSyncRatingsItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]

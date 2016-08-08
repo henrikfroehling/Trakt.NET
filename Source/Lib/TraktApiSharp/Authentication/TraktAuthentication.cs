@@ -280,7 +280,7 @@
             if (string.IsNullOrEmpty(refreshToken) || refreshToken.ContainsSpace())
                 throw new ArgumentException("refresh token not valid", nameof(refreshToken));
 
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             ValidateRefreshTokenInput(clientId, clientSecret, redirectUri, grantType);
 

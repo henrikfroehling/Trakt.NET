@@ -8,16 +8,16 @@
 
     internal class TraktMoviesMostCollectedRequest : TraktGetRequest<TraktPaginationListResult<TraktMostCollectedMovie>, TraktMostCollectedMovie>
     {
-        internal TraktMoviesMostCollectedRequest(TraktClient client) : base(client) { Period = TraktPeriod.Weekly; }
+        internal TraktMoviesMostCollectedRequest(TraktClient client) : base(client) { Period = TraktTimePeriod.Weekly; }
 
-        internal TraktPeriod? Period { get; set; }
+        internal TraktTimePeriod Period { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Period.HasValue && Period.Value != TraktPeriod.Unspecified)
-                uriParams.Add("period", Period.Value.AsString());
+            if (Period != null && Period != TraktTimePeriod.Unspecified)
+                uriParams.Add("period", Period.UriName);
 
             return uriParams;
         }

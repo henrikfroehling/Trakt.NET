@@ -1,82 +1,20 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktMediaResolution
+    public sealed class TraktMediaResolution : TraktEnumeration
     {
-        Unspecified,
-        UHD_4k,
-        HD_1080p,
-        HD_1080i,
-        HD_720p,
-        SD_480p,
-        SD_480i,
-        SD_576p,
-        SD_576i
-    }
+        public static TraktMediaResolution Unspecified { get; } = new TraktMediaResolution();
+        public static TraktMediaResolution UHD_4k { get; } = new TraktMediaResolution(1, "uhd_4k", "uhd_4k", "UHD 4k");
+        public static TraktMediaResolution HD_1080p { get; } = new TraktMediaResolution(2, "hd_1080p", "hd_1080p", "HD 1080p");
+        public static TraktMediaResolution HD_1080i { get; } = new TraktMediaResolution(4, "hd_1080i", "hd_1080i", "HD 1080i");
+        public static TraktMediaResolution HD_720p { get; } = new TraktMediaResolution(8, "hd_720p", "hd_720p", "HD 720p");
+        public static TraktMediaResolution SD_480p { get; } = new TraktMediaResolution(16, "sd_480p", "sd_480p", "SD 480p");
+        public static TraktMediaResolution SD_480i { get; } = new TraktMediaResolution(32, "sd_480i", "sd_480i", "SD 480i");
+        public static TraktMediaResolution SD_576p { get; } = new TraktMediaResolution(64, "sd_576p", "sd_576p", "SD 576p");
+        public static TraktMediaResolution SD_576i { get; } = new TraktMediaResolution(128, "sd_576i", "sd_576i", "SD 576i");
 
-    public static class TraktMediaResolutionExtensions
-    {
-        public static string AsString(this TraktMediaResolution mediaResolution)
-        {
-            switch (mediaResolution)
-            {
-                case TraktMediaResolution.UHD_4k: return "uhd_4k";
-                case TraktMediaResolution.HD_1080p: return "hd_1080p";
-                case TraktMediaResolution.HD_1080i: return "hd_1080i";
-                case TraktMediaResolution.HD_720p: return "hd_720p";
-                case TraktMediaResolution.SD_480p: return "sd_480p";
-                case TraktMediaResolution.SD_480i: return "sd_480i";
-                case TraktMediaResolution.SD_576p: return "sd_576p";
-                case TraktMediaResolution.SD_576i: return "sd_576i";
-                case TraktMediaResolution.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(mediaResolution.ToString());
-            }
-        }
-    }
+        public TraktMediaResolution() : base() { }
 
-    public class TraktMediaResolutionConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktMediaResolution.Unspecified;
-            else if (enumString.Equals(TraktMediaResolution.UHD_4k.AsString()))
-                return TraktMediaResolution.UHD_4k;
-            else if (enumString.Equals(TraktMediaResolution.HD_1080p.AsString()))
-                return TraktMediaResolution.HD_1080p;
-            else if (enumString.Equals(TraktMediaResolution.HD_1080i.AsString()))
-                return TraktMediaResolution.HD_1080i;
-            else if (enumString.Equals(TraktMediaResolution.HD_720p.AsString()))
-                return TraktMediaResolution.HD_720p;
-            else if (enumString.Equals(TraktMediaResolution.SD_480p.AsString()))
-                return TraktMediaResolution.SD_480p;
-            else if (enumString.Equals(TraktMediaResolution.SD_480i.AsString()))
-                return TraktMediaResolution.SD_480i;
-            else if (enumString.Equals(TraktMediaResolution.SD_576p.AsString()))
-                return TraktMediaResolution.SD_576p;
-            else if (enumString.Equals(TraktMediaResolution.SD_576i.AsString()))
-                return TraktMediaResolution.SD_576i;
-
-            return TraktMediaResolution.Unspecified;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var mediaResolution = (TraktMediaResolution)value;
-            writer.WriteValue(mediaResolution.AsString());
-        }
+        private TraktMediaResolution(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

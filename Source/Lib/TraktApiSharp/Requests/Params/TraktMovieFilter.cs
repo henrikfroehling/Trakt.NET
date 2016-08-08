@@ -5,9 +5,9 @@
     /// <summary>
     /// Provides additional filter parameters for some <see cref="Modules.TraktMoviesModule" /> methods.<para />
     /// Supported by <see cref="Modules.TraktMoviesModule.GetMostAnticipatedMoviesAsync(TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktMoviesModule.GetMostCollectedMoviesAsync(Enums.TraktPeriod?, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktMoviesModule.GetMostPlayedMoviesAsync(Enums.TraktPeriod?, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktMoviesModule.GetMostWatchedMoviesAsync(Enums.TraktPeriod?, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktMoviesModule.GetMostCollectedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktMoviesModule.GetMostPlayedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktMoviesModule.GetMostWatchedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
     /// <see cref="Modules.TraktMoviesModule.GetPopularMoviesAsync(TraktExtendedOption, TraktMovieFilter, int?, int?)" />,
     /// <see cref="Modules.TraktMoviesModule.GetRecentlyUpdatedMoviesAsync(System.DateTime?, TraktExtendedOption, int?, int?)" /> and
     /// <see cref="Modules.TraktMoviesModule.GetTrendingMoviesAsync(TraktExtendedOption, TraktMovieFilter, int?, int?)" />.<para />

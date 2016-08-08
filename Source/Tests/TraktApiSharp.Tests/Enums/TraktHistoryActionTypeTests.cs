@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,24 +11,25 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
             public TraktHistoryActionType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktHistoryActionTypeHasMembers()
+        public void TestTraktHistoryActionTypeIsTraktEnumeration()
         {
-            typeof(TraktHistoryActionType).GetEnumNames().Should().HaveCount(4)
-                                                         .And.Contain("Unspecified", "Scrobble", "Checkin", "Watch");
+            var enumeration = new TraktHistoryActionType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktHistoryActionTypeGetAsString()
+        public void TestTraktHistoryActionTypeGetAll()
         {
-            TraktHistoryActionType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktHistoryActionType.Scrobble.AsString().Should().Be("scrobble");
-            TraktHistoryActionType.Checkin.AsString().Should().Be("checkin");
-            TraktHistoryActionType.Watch.AsString().Should().Be("watch");
+            var allValues = TraktEnumeration.GetAll<TraktHistoryActionType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktHistoryActionType>() { TraktHistoryActionType.Unspecified, TraktHistoryActionType.Scrobble,
+                                                                            TraktHistoryActionType.Checkin, TraktHistoryActionType.Watch });
         }
 
         [TestMethod]

@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Basic;
     using Utils;
 
@@ -17,7 +16,7 @@
 
             genre.Name.Should().BeNullOrEmpty();
             genre.Slug.Should().BeNullOrEmpty();
-            genre.Type.Should().Be(TraktGenreType.Unspecified);
+            genre.Type.Should().BeNull();
         }
 
         [TestMethod]

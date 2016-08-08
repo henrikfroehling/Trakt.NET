@@ -1,33 +1,17 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System;
-
-    public enum TraktSearchIdType
+    public sealed class TraktSearchIdType : TraktEnumeration
     {
-        Unspecified,
-        Trakt,
-        ImDB,
-        TmDB,
-        TvDB,
-        TVRage
-    }
+        public static TraktSearchIdType Unspecified { get; } = new TraktSearchIdType();
+        public static TraktSearchIdType Trakt { get; } = new TraktSearchIdType(1, "trakt", "trakt", "Trakt");
+        public static TraktSearchIdType ImDB { get; } = new TraktSearchIdType(2, "imdb", "imdb", "Internet Movie Database");
+        public static TraktSearchIdType TmDB { get; } = new TraktSearchIdType(4, "tmdb", "tmdb", "The Movie Database");
+        public static TraktSearchIdType TvDB { get; } = new TraktSearchIdType(8, "tvdb", "tvdb", "TheTVDB");
+        public static TraktSearchIdType TVRage { get; } = new TraktSearchIdType(16, "tvrage", "tvrage", "TVRage");
 
-    public static class TraktSearchIdTypeExtensions
-    {
-        public static string AsString(this TraktSearchIdType searchIdType)
-        {
-            switch (searchIdType)
-            {
-                case TraktSearchIdType.Trakt: return "trakt";
-                case TraktSearchIdType.ImDB: return "imdb";
-                case TraktSearchIdType.TmDB: return "tmdb";
-                case TraktSearchIdType.TvDB: return "tvdb";
-                case TraktSearchIdType.TVRage: return "tvrage";
-                case TraktSearchIdType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(searchIdType.ToString());
-            }
-        }
-    }
+        public TraktSearchIdType() : base() { }
 
+        private TraktSearchIdType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
+    }
 }

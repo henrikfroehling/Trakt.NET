@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,23 +11,25 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktGenreTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktGenreType>))]
             public TraktGenreType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktGenreTypeHasMembers()
+        public void TestTraktGenreTypeIsTraktEnumeration()
         {
-            typeof(TraktGenreType).GetEnumNames().Should().HaveCount(3)
-                                                 .And.Contain("Shows", "Movies", "Unspecified");
+            var enumeration = new TraktGenreType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktGenreTypeGetAsString()
+        public void TestTraktGenreTypeGetAll()
         {
-            TraktGenreType.Shows.AsString().Should().Be("shows");
-            TraktGenreType.Movies.AsString().Should().Be("movies");
-            TraktGenreType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktGenreType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(3);
+            allValues.Should().Contain(new List<TraktGenreType>() { TraktGenreType.Unspecified, TraktGenreType.Shows,
+                                                                    TraktGenreType.Movies });
         }
 
         [TestMethod]

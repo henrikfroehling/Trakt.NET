@@ -280,7 +280,7 @@
         /// </exception>
         public async Task<TraktAuthorization> GetAuthorizationAsync(string code, string clientId, string clientSecret, string redirectUri)
         {
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             ValidateAccessTokenInput(code, clientId, clientSecret, redirectUri, grantType);
 

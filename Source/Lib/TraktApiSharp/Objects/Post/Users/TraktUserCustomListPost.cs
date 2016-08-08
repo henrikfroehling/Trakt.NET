@@ -14,8 +14,9 @@
         public string Description { get; set; }
 
         [JsonProperty(PropertyName = "privacy")]
-        [JsonConverter(typeof(TraktAccessScopeConverter))]
-        public TraktAccessScope? Privacy { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
+        [Nullable]
+        public TraktAccessScope Privacy { get; set; }
 
         [JsonProperty(PropertyName = "display_numbers")]
         public bool? DisplayNumbers { get; set; }

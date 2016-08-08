@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,23 +11,26 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktAccessTokenGrantTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenGrantType>))]
             public TraktAccessTokenGrantType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenGrantTypeHasMembers()
+        public void TestTraktAccessTokenGrantTypeIsTraktEnumeration()
         {
-            typeof(TraktAccessTokenGrantType).GetEnumNames().Should().HaveCount(3)
-                                                            .And.Contain("AuthorizationCode", "RefreshToken", "Unspecified");
+            var enumeration = new TraktAccessTokenGrantType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenGrantTypeGetAsString()
+        public void TestTraktAccessTokenGrantTypeGetAll()
         {
-            TraktAccessTokenGrantType.AuthorizationCode.AsString().Should().Be("authorization_code");
-            TraktAccessTokenGrantType.RefreshToken.AsString().Should().Be("refresh_token");
-            TraktAccessTokenGrantType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktAccessTokenGrantType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(3);
+            allValues.Should().Contain(new List<TraktAccessTokenGrantType>() { TraktAccessTokenGrantType.Unspecified,
+                                                                               TraktAccessTokenGrantType.AuthorizationCode,
+                                                                               TraktAccessTokenGrantType.RefreshToken });
         }
 
         [TestMethod]

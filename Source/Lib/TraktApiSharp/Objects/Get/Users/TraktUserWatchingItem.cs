@@ -17,12 +17,14 @@
         public DateTime? StartedAt { get; set; }
 
         [JsonProperty(PropertyName = "action")]
-        [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
-        public TraktHistoryActionType? Action { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
+        [Nullable]
+        public TraktHistoryActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncTypeConverter))]
-        public TraktSyncType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncType>))]
+        [Nullable]
+        public TraktSyncType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]

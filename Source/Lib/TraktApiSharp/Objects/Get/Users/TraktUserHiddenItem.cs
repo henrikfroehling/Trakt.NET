@@ -14,8 +14,9 @@
         public DateTime? HiddenAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktHiddenItemTypeConverter))]
-        public TraktHiddenItemType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktHiddenItemType>))]
+        [Nullable]
+        public TraktHiddenItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]

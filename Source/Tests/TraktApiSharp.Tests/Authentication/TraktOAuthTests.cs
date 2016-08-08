@@ -420,7 +420,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -472,7 +472,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var error = new TraktError
             {
@@ -650,7 +650,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -701,7 +701,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var error = new TraktError
             {
@@ -875,7 +875,7 @@
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -926,7 +926,7 @@
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var error = new TraktError
             {
@@ -1098,7 +1098,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -1149,7 +1149,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var error = new TraktError
             {
@@ -1319,7 +1319,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -1370,7 +1370,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.AuthorizationCode.AsString();
+            var grantType = TraktAccessTokenGrantType.AuthorizationCode.ObjectName;
 
             var error = new TraktError
             {
@@ -1543,7 +1543,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -1593,7 +1593,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -1801,7 +1801,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -1850,7 +1850,7 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2101,7 +2101,7 @@
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2150,7 +2150,7 @@
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2396,7 +2396,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2446,7 +2446,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2686,7 +2686,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {
@@ -2737,7 +2737,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.RefreshToken.AsString();
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
             var accessToken = new TraktAuthorization
             {

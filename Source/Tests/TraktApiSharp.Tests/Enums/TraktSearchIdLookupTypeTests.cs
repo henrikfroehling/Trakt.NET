@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,28 +11,27 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktSearchIdLookupTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchIdLookupType>))]
             public TraktSearchIdLookupType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktSearchIdLookupTypeHasMembers()
+        public void TestTraktSearchIdLookupTypeIsTraktEnumeration()
         {
-            typeof(TraktSearchIdLookupType).GetEnumNames().Should().HaveCount(8)
-                                                          .And.Contain("TraktMovie", "TraktShow", "TraktEpisode", "ImDB", "TmDB", "TvDB", "TVRage", "Unspecified");
+            var enumeration = new TraktSearchIdLookupType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktSearchIdLookupTypeGetAsString()
+        public void TestTraktSearchIdLookupTypeGetAll()
         {
-            TraktSearchIdLookupType.TraktMovie.AsString().Should().Be("trakt-movie");
-            TraktSearchIdLookupType.TraktShow.AsString().Should().Be("trakt-show");
-            TraktSearchIdLookupType.TraktEpisode.AsString().Should().Be("trakt-episode");
-            TraktSearchIdLookupType.ImDB.AsString().Should().Be("imdb");
-            TraktSearchIdLookupType.TmDB.AsString().Should().Be("tmdb");
-            TraktSearchIdLookupType.TvDB.AsString().Should().Be("tvdb");
-            TraktSearchIdLookupType.TVRage.AsString().Should().Be("tvrage");
-            TraktSearchIdLookupType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktSearchIdLookupType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(8);
+            allValues.Should().Contain(new List<TraktSearchIdLookupType>() { TraktSearchIdLookupType.Unspecified, TraktSearchIdLookupType.TraktMovie,
+                                                                             TraktSearchIdLookupType.TraktShow, TraktSearchIdLookupType.TraktEpisode,
+                                                                             TraktSearchIdLookupType.ImDB, TraktSearchIdLookupType.TmDB,
+                                                                             TraktSearchIdLookupType.TvDB, TraktSearchIdLookupType.TVRage });
         }
 
         [TestMethod]

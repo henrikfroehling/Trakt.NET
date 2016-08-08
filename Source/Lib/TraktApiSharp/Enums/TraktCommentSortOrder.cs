@@ -1,30 +1,16 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System;
-
-    public enum TraktCommentSortOrder
+    public sealed class TraktCommentSortOrder : TraktEnumeration
     {
-        Unspecified,
-        Newest,
-        Oldest,
-        Likes,
-        Replies
-    }
+        public static TraktCommentSortOrder Unspecified { get; } = new TraktCommentSortOrder();
+        public static TraktCommentSortOrder Newest { get; } = new TraktCommentSortOrder(1, "newest", "newest", "Newest");
+        public static TraktCommentSortOrder Oldest { get; } = new TraktCommentSortOrder(2, "oldest", "oldest", "Oldest");
+        public static TraktCommentSortOrder Likes { get; } = new TraktCommentSortOrder(4, "likes", "likes", "Likes");
+        public static TraktCommentSortOrder Replies { get; } = new TraktCommentSortOrder(8, "replies", "replies", "Replies");
 
-    public static class TraktCommentSortOrderExtensions
-    {
-        public static string AsString(this TraktCommentSortOrder commentSortOrder)
-        {
-            switch (commentSortOrder)
-            {
-                case TraktCommentSortOrder.Newest: return "newest";
-                case TraktCommentSortOrder.Oldest: return "oldest";
-                case TraktCommentSortOrder.Likes: return "likes";
-                case TraktCommentSortOrder.Replies: return "replies";
-                case TraktCommentSortOrder.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(commentSortOrder.ToString());
-            }
-        }
+        public TraktCommentSortOrder() : base() { }
+
+        private TraktCommentSortOrder(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }
