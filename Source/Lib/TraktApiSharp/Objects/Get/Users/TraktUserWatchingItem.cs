@@ -17,12 +17,12 @@
         public DateTime? StartedAt { get; set; }
 
         [JsonProperty(PropertyName = "action")]
-        [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
         [Nullable]
         public TraktHistoryActionType Action { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncType>))]
         [Nullable]
         public TraktSyncType Type { get; set; }
 

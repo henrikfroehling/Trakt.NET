@@ -47,7 +47,7 @@
 
         /// <summary>Gets or sets the token scope. See also <seealso cref="TraktAccessScope" />.</summary>
         [JsonProperty(PropertyName = "scope")]
-        [JsonConverter(typeof(TraktAccessScopeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
         public TraktAccessScope AccessScope { get; set; }
 
         /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
@@ -56,7 +56,7 @@
 
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
         [JsonProperty(PropertyName = "token_type")]
-        [JsonConverter(typeof(TraktAccessTokenTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenType>))]
         public TraktAccessTokenType TokenType { get; set; }
 
         /// <summary>

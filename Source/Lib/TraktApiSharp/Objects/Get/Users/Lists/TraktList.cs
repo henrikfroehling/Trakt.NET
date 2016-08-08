@@ -20,7 +20,7 @@
 
         /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktAccessScope" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "privacy")]
-        [JsonConverter(typeof(TraktAccessScopeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
         [Nullable]
         public TraktAccessScope Privacy { get; set; }
 

@@ -1,8 +1,5 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
     public sealed class TraktMediaResolution : TraktEnumeration
     {
         public static TraktMediaResolution Unspecified { get; } = new TraktMediaResolution();
@@ -19,32 +16,5 @@
 
         private TraktMediaResolution(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
-    }
-
-    public class TraktMediaResolutionConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktMediaResolution.Unspecified;
-
-            return TraktEnumeration.FromObjectName<TraktMediaResolution>(enumString);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var mediaResolution = (TraktMediaResolution)value;
-            writer.WriteValue(mediaResolution.ObjectName);
-        }
     }
 }

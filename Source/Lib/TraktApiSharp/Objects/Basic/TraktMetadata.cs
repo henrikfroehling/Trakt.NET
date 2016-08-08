@@ -9,25 +9,25 @@
     {
         /// <summary>Gets or sets the media type. See also <seealso cref="TraktMediaType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "media_type")]
-        [JsonConverter(typeof(TraktMediaTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaType>))]
         [Nullable]
         public TraktMediaType MediaType { get; set; }
 
         /// <summary>Gets or sets the media resolution. See also <seealso cref="TraktMediaResolution" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "resolution")]
-        [JsonConverter(typeof(TraktMediaResolutionConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaResolution>))]
         [Nullable]
         public TraktMediaResolution MediaResolution { get; set; }
 
         /// <summary>Gets or sets the media audio type. See also <seealso cref="TraktMediaAudio" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "audio")]
-        [JsonConverter(typeof(TraktMediaAudioConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaAudio>))]
         [Nullable]
         public TraktMediaAudio Audio { get; set; }
 
         /// <summary>Gets or sets the media audio channels. See also <seealso cref="TraktMediaAudioChannel" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "audio_channels")]
-        [JsonConverter(typeof(TraktMediaAudioChannelConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaAudioChannel>))]
         [Nullable]
         public TraktMediaAudioChannel AudioChannels { get; set; }
 

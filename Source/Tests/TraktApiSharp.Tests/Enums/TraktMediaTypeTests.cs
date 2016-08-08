@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktMediaTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaType>))]
             public TraktMediaType Value { get; set; }
         }
 

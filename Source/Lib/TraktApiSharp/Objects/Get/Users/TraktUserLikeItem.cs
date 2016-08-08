@@ -13,7 +13,7 @@
         public DateTime? LikedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktUserLikeTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktUserLikeType>))]
         [Nullable]
         public TraktUserLikeType Type { get; set; }
 

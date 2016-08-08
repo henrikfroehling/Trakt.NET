@@ -15,7 +15,7 @@
         public DateTime? ListedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncItemTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncItemType>))]
         [Nullable]
         public TraktSyncItemType Type { get; set; }
 

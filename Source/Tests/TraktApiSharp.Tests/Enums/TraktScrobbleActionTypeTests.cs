@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktScrobbleActionTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktScrobbleActionType>))]
             public TraktScrobbleActionType Value { get; set; }
         }
 

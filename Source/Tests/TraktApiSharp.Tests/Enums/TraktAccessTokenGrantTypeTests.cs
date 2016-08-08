@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktAccessTokenGrantTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenGrantType>))]
             public TraktAccessTokenGrantType Value { get; set; }
         }
 

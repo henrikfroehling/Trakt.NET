@@ -14,7 +14,7 @@
     {
         /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSearchResultTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchResultType>))]
         [Nullable]
         public TraktSearchResultType Type { get; set; }
 

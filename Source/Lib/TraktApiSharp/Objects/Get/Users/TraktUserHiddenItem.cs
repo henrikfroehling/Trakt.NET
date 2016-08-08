@@ -14,7 +14,7 @@
         public DateTime? HiddenAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktHiddenItemTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktHiddenItemType>))]
         [Nullable]
         public TraktHiddenItemType Type { get; set; }
 

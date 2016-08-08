@@ -82,7 +82,7 @@
 
         /// <summary>Gets or sets the show's current status. See also <seealso cref="TraktShowStatus" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "status")]
-        [JsonConverter(typeof(TraktShowStatusConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktShowStatus>))]
         [Nullable]
         public TraktShowStatus Status { get; set; }
 

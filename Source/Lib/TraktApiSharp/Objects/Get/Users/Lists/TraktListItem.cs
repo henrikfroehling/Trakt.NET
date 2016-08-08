@@ -24,7 +24,7 @@
 
         /// <summary>Gets or sets the list item type. See also <seealso cref="TraktListItemType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktListItemTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktListItemType>))]
         [Nullable]
         public TraktListItemType Type { get; set; }
 

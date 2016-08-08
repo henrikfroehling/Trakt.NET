@@ -8,7 +8,7 @@
     public abstract class TraktScrobblePostResponse
     {
         [JsonProperty(PropertyName = "action")]
-        [JsonConverter(typeof(TraktScrobbleActionTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktScrobbleActionType>))]
         [Nullable]
         public TraktScrobbleActionType Action { get; set; }
 

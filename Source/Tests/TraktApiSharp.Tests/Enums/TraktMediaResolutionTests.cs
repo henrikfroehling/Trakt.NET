@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktMediaResolutionConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaResolution>))]
             public TraktMediaResolution Value { get; set; }
         }
 

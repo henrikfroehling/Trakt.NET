@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktHistoryActionTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
             public TraktHistoryActionType Value { get; set; }
         }
 

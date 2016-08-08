@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktMediaAudioChannelConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaAudioChannel>))]
             public TraktMediaAudioChannel Value { get; set; }
         }
 

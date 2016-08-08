@@ -13,7 +13,7 @@
     public class TraktUserComment
     {
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktObjectTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktObjectType>))]
         [Nullable]
         public TraktObjectType Type { get; set; }
 

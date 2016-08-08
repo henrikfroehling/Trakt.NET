@@ -20,7 +20,7 @@
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktSyncTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncType>))]
         [Nullable]
         public TraktSyncType Type { get; set; }
 

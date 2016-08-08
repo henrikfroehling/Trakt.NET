@@ -1,8 +1,5 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
     public sealed class TraktListItemType : TraktEnumeration
     {
         public static TraktListItemType Unspecified { get; } = new TraktListItemType();
@@ -16,32 +13,5 @@
 
         private TraktListItemType(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
-    }
-
-    public class TraktListItemTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktListItemType.Unspecified;
-
-            return TraktEnumeration.FromObjectName<TraktListItemType>(enumString);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var listItemType = (TraktListItemType)value;
-            writer.WriteValue(listItemType.ObjectName);
-        }
     }
 }

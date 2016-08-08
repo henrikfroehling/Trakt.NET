@@ -11,7 +11,7 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktListItemTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktListItemType>))]
             public TraktListItemType Value { get; set; }
         }
 

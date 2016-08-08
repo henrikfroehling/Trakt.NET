@@ -28,7 +28,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "release_type")]
-        [JsonConverter(typeof(TraktReleaseTypeConverter))]
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktReleaseType>))]
         [Nullable]
         public TraktReleaseType ReleaseType { get; set; }
 
