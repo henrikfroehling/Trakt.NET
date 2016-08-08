@@ -13,8 +13,9 @@
         public DateTime? LikedAt { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktUserLikeTypeConverter))]
-        public TraktUserLikeType? Type { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktUserLikeType>))]
+        [Nullable]
+        public TraktUserLikeType Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         [Nullable]

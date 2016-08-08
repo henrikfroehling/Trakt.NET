@@ -95,11 +95,11 @@
         /// <exception cref="ArgumentException">Thrown, if the given hidden items section is unspecified.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
-                                                                                              TraktHiddenItemType? hiddenItemType = null,
+                                                                                              TraktHiddenItemType hiddenItemType = null,
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
-            if (hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
+            if (hiddenItemsSection == null || hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
                 throw new ArgumentException("section not valid", nameof(hiddenItemsSection));
 
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
@@ -130,7 +130,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType? likeType = null,
+        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
                                                                                       int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktUserLikesRequest(Client)
@@ -248,8 +248,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
-                                                                                        TraktCommentType? commentType = null,
-                                                                                        TraktObjectType? objectType = null,
+                                                                                        TraktCommentType commentType = null,
+                                                                                        TraktObjectType objectType = null,
                                                                                         TraktExtendedOption extendedOption = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
@@ -368,7 +368,7 @@
         /// </exception>
         [OAuthAuthorizationOptional]
         public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                              TraktListItemType? listItemType = null,
+                                                                              TraktListItemType listItemType = null,
                                                                               TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -404,7 +404,7 @@
         /// </exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktList> CreateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listName, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -420,8 +420,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (privacy != null && privacy != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListAddRequest(Client)
             {
@@ -455,7 +455,7 @@
         [OAuthAuthorizationRequired]
         public async Task<TraktList> UpdateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                            string listName = null, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -463,7 +463,7 @@
 
             var isListNameNotValid = string.IsNullOrEmpty(listName);
             var isDescriptionNotSet = listDescription == null;
-            var isPrivacyNotSetOrValid = !privacy.HasValue || privacy.Value == TraktAccessScope.Unspecified;
+            var isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
             var isDisplayNumbersNotSet = !displayNumbers.HasValue;
             var isAllowCommentsNotSet = !allowComments.HasValue;
 
@@ -480,8 +480,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (!isPrivacyNotSetOrValid)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
             {
@@ -545,7 +545,7 @@
         [OAuthAuthorizationRequired]
         public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
                                                                                         [NotNull] TraktUserCustomListItemsPost listItemsPost,
-                                                                                        TraktListItemType? listItemType = null)
+                                                                                        TraktListItemType listItemType = null)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listId);
@@ -625,7 +625,7 @@
         /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                                        TraktCommentSortOrder? commentSortOrder = null,
+                                                                                        TraktCommentSortOrder commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -868,7 +868,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType? historyItemType = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
                                                                                               string itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
@@ -909,7 +909,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktSyncRatingsItemType? ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktSyncRatingsItemType ratingsItemType = null,
                                                                          int[] ratingsFilter = null, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -940,7 +940,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType? watchlistItemType = null,
+        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
                                                                              TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);

@@ -16,7 +16,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("id_type", Type.AsString());
+            uriParams.Add("id_type", Type.UriName);
             uriParams.Add("id", LookupId);
 
             return uriParams;

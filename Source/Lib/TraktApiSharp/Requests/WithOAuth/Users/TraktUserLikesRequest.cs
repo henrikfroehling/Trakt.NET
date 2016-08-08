@@ -12,14 +12,14 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktUserLikeType? Type { get; set; }
+        internal TraktUserLikeType Type { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Type.HasValue && Type.Value != TraktUserLikeType.Unspecified)
-                uriParams.Add("type", Type.Value.AsStringUriParameter());
+            if (Type != null && Type != TraktUserLikeType.Unspecified)
+                uriParams.Add("type", Type.UriName);
 
             return uriParams;
         }

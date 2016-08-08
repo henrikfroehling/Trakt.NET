@@ -10,7 +10,7 @@
 
         internal string Query { get; set; }
 
-        internal TraktSearchResultType? Type { get; set; }
+        internal TraktSearchResultType Type { get; set; }
 
         internal int? Year { get; set; }
 
@@ -20,8 +20,8 @@
 
             uriParams.Add("query", Query);
 
-            if (Type.HasValue)
-                uriParams.Add("type", Type.Value.AsString());
+            if (Type != null && Type != TraktSearchResultType.Unspecified)
+                uriParams.Add("type", Type.UriName);
 
             if (Year.HasValue)
                 uriParams.Add("year", Year.Value.ToString());

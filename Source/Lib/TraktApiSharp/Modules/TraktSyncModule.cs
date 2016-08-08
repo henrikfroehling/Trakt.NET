@@ -64,7 +64,7 @@
         /// <returns>A list of <see cref="TraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? objectType = null, int? limit = null)
+        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
@@ -244,7 +244,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType? historyItemType = null, string historyItemId = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, string historyItemId = null,
                                                                                               DateTime? startAt = null, DateTime? endAt = null,
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
@@ -330,7 +330,7 @@
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType? ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType ratingsItemType = null,
                                                                          int[] ratingsFilter = null,
                                                                          TraktExtendedOption extendedOption = null)
         {
@@ -407,7 +407,7 @@
         /// <returns>A list of <see cref="TraktWatchlistItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType? watchlistItemType = null,
+        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
                                                                              TraktExtendedOption extendedOption = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)

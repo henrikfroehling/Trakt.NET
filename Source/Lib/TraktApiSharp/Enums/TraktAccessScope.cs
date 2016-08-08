@@ -1,58 +1,15 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktAccessScope
+    public sealed class TraktAccessScope : TraktEnumeration
     {
-        Unspecified,
-        Public,
-        Private,
-        Friends
-    }
+        public static TraktAccessScope Unspecified { get; } = new TraktAccessScope();
+        public static TraktAccessScope Public { get; } = new TraktAccessScope(1, "public", "public", "Public");
+        public static TraktAccessScope Private { get; } = new TraktAccessScope(2, "private", "private", "Private");
+        public static TraktAccessScope Friends { get; } = new TraktAccessScope(4, "friends", "friends", "Friends");
 
-    public static class TraktAccessScopeExtensions
-    {
-        public static string AsString(this TraktAccessScope accessScope)
-        {
-            switch (accessScope)
-            {
-                case TraktAccessScope.Public: return "public";
-                case TraktAccessScope.Private: return "private";
-                case TraktAccessScope.Friends: return "friends";
-                case TraktAccessScope.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessScope.ToString());
-            }
-        }
-    }
+        public TraktAccessScope() : base() { }
 
-    public class TraktAccessScopeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktAccessScope.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessScope), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var accessScope = (TraktAccessScope)value;
-            writer.WriteValue(accessScope.AsString());
-        }
+        private TraktAccessScope(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

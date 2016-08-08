@@ -666,7 +666,7 @@
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}",
                                                                 showComments, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder).Result;
@@ -713,7 +713,7 @@
             var page = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?page={page}",
                                                                 showComments, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, page).Result;
@@ -760,7 +760,7 @@
             var limit = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 showComments, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, null, limit).Result;
@@ -809,7 +809,7 @@
             var limit = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 showComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId, sortOrder, page, limit).Result;
@@ -4375,9 +4375,9 @@
             mostPlayedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}",
                                                                 mostPlayedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period).Result;
@@ -4397,7 +4397,7 @@
             mostPlayedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -4411,7 +4411,7 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?{filter.ToString()}",
                                                                 mostPlayedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter).Result;
@@ -4608,7 +4608,7 @@
             mostPlayedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4616,7 +4616,7 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?extended={extendedOption.ToString()}",
                                                                 mostPlayedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption).Result;
@@ -4636,7 +4636,7 @@
             mostPlayedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4657,7 +4657,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"shows/played/{period.UriName}?extended={extendedOption.ToString()}&{filter.ToString()}",
                 mostPlayedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, filter).Result;
@@ -4678,9 +4678,9 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?page={page}",
                                                                 mostPlayedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, page).Result;
@@ -4701,7 +4701,7 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -4715,9 +4715,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?{filter.ToString()}&page={page}",
-                mostPlayedShows, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?{filter.ToString()}&page={page}",
+                                                                mostPlayedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, page).Result;
 
@@ -4737,9 +4736,9 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?limit={limit}",
                                                                 mostPlayedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, null, limit).Result;
@@ -4760,7 +4759,7 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -4774,9 +4773,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?limit={limit}&{filter.ToString()}",
-                mostPlayedShows, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?limit={limit}&{filter.ToString()}",
+                                                                mostPlayedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, null, limit).Result;
 
@@ -5064,9 +5062,9 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?page={page}&limit={limit}",
                                                                 mostPlayedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, page, limit).Result;
@@ -5088,7 +5086,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -5103,7 +5101,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?page={page}&{filter.ToString()}&limit={limit}",
+                $"shows/played/{period.UriName}?page={page}&{filter.ToString()}&limit={limit}",
                 mostPlayedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, page, limit).Result;
@@ -5125,7 +5123,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5134,7 +5132,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"shows/played/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostPlayedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, null, page, limit).Result;
@@ -5156,7 +5154,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5177,7 +5175,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"shows/played/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedOption, filter, page, limit).Result;
@@ -5329,9 +5327,9 @@
             mostWatchedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}",
                                                                 mostWatchedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period).Result;
@@ -5351,7 +5349,7 @@
             mostWatchedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -5365,7 +5363,7 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}?{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?{filter.ToString()}",
                                                                 mostWatchedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, filter).Result;
@@ -5562,7 +5560,7 @@
             mostWatchedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5570,7 +5568,7 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?extended={extendedOption.ToString()}",
                                                                 mostWatchedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, extendedOption).Result;
@@ -5590,7 +5588,7 @@
             mostWatchedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5611,7 +5609,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"shows/watched/{period.UriName}?extended={extendedOption.ToString()}&{filter.ToString()}",
                 mostWatchedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, extendedOption, filter).Result;
@@ -5632,9 +5630,9 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?page={page}",
                                                                 mostWatchedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, null, page).Result;
@@ -5655,7 +5653,7 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -5669,9 +5667,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?page={page}&{filter.ToString()}",
-                mostWatchedShows, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?page={page}&{filter.ToString()}",
+                                                                mostWatchedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, filter, page).Result;
 
@@ -5691,9 +5688,9 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?limit={limit}",
                                                                 mostWatchedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, null, null, limit).Result;
@@ -5714,7 +5711,7 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -5728,9 +5725,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?limit={limit}&{filter.ToString()}",
-                mostWatchedShows, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?limit={limit}&{filter.ToString()}",
+                                                                mostWatchedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, filter, null, limit).Result;
 
@@ -6019,9 +6015,9 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/watched/{period.UriName}?page={page}&limit={limit}",
                                                                 mostWatchedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, null, page, limit).Result;
@@ -6043,7 +6039,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -6058,7 +6054,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?page={page}&limit={limit}&{filter.ToString()}",
+                $"shows/watched/{period.UriName}?page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, null, filter, page, limit).Result;
@@ -6080,7 +6076,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -6089,7 +6085,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"shows/watched/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostWatchedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, extendedOption, null, page, limit).Result;
@@ -6111,7 +6107,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -6132,7 +6128,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/watched/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"shows/watched/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync(period, extendedOption, filter, page, limit).Result;
@@ -6284,9 +6280,9 @@
             mostCollectedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}",
                                                                 mostCollectedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period).Result;
@@ -6306,7 +6302,7 @@
             mostCollectedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -6320,7 +6316,7 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?{filter.ToString()}",
                                                                 mostCollectedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, filter).Result;
@@ -6517,7 +6513,7 @@
             mostCollectedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -6525,7 +6521,7 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?extended={extendedOption.ToString()}",
                                                                 mostCollectedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption).Result;
@@ -6545,7 +6541,7 @@
             mostCollectedShows.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -6566,7 +6562,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"shows/collected/{period.UriName}?extended={extendedOption.ToString()}&{filter.ToString()}",
                 mostCollectedShows, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption, filter).Result;
@@ -6587,9 +6583,9 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?page={page}",
                                                                 mostCollectedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, null, page).Result;
@@ -6610,7 +6606,7 @@
 
             var itemCount = 2;
             var page = 2;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -6624,9 +6620,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?page={page}&{filter.ToString()}",
-                mostCollectedShows, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?page={page}&{filter.ToString()}",
+                                                                mostCollectedShows, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, filter, page).Result;
 
@@ -6646,9 +6641,9 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?limit={limit}",
                                                                 mostCollectedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, null, null, limit).Result;
@@ -6669,7 +6664,7 @@
 
             var itemCount = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -6683,9 +6678,8 @@
                 .WithNetworks("HBO", "Showtime")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?{filter.ToString()}&limit={limit}",
-                mostCollectedShows, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?{filter.ToString()}&limit={limit}",
+                                                                mostCollectedShows, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, filter, null, limit).Result;
 
@@ -6974,9 +6968,9 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.AsString()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/collected/{period.UriName}?page={page}&limit={limit}",
                                                                 mostCollectedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, null, page, limit).Result;
@@ -6998,7 +6992,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var filter = new TraktShowFilter()
                 .WithCertifications("TV-MA")
@@ -7013,7 +7007,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?page={page}&limit={limit}&{filter.ToString()}",
+                $"shows/collected/{period.UriName}?page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, null, filter, page, limit).Result;
@@ -7035,7 +7029,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -7044,7 +7038,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"shows/collected/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 mostCollectedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption, null, page, limit).Result;
@@ -7066,7 +7060,7 @@
             var itemCount = 2;
             var page = 2;
             var limit = 4;
-            var period = TraktPeriod.Monthly;
+            var period = TraktTimePeriod.Monthly;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -7087,7 +7081,7 @@
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/collected/{period.AsString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"shows/collected/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedShows, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync(period, extendedOption, filter, page, limit).Result;

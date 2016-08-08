@@ -2,24 +2,27 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
     public class TraktCommentTypeTests
     {
         [TestMethod]
-        public void TestTraktCommentTypeHasMembers()
+        public void TestTraktCommentTypeIsTraktEnumeration()
         {
-            typeof(TraktCommentType).GetEnumNames().Should().HaveCount(4)
-                                                   .And.Contain("Unspecified", "Review", "Shout", "All");
+            var enumeration = new TraktCommentType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktCommentTypeGetAsStringUriParameter()
+        public void TestTraktCommentTypeGetAll()
         {
-            TraktCommentType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktCommentType.Review.AsStringUriParameter().Should().Be("reviews");
-            TraktCommentType.Shout.AsStringUriParameter().Should().Be("shouts");
+            var allValues = TraktEnumeration.GetAll<TraktCommentType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktCommentType>() { TraktCommentType.Unspecified, TraktCommentType.Review,
+                                                                      TraktCommentType.Shout, TraktCommentType.All });
         }
     }
 }

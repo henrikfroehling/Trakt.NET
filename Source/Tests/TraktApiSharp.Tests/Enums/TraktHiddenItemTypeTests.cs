@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,24 +11,25 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktHiddenItemTypeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktHiddenItemType>))]
             public TraktHiddenItemType Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktHiddenItemTypeHasMembers()
+        public void TestTraktHiddenItemTypeIsTraktEnumeration()
         {
-            typeof(TraktHiddenItemType).GetEnumNames().Should().HaveCount(4)
-                                                      .And.Contain("Movie", "Show", "Season", "Unspecified");
+            var enumeration = new TraktHiddenItemType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktHiddenItemTypeGetAsString()
+        public void TestTraktHiddenItemTypeGetAll()
         {
-            TraktHiddenItemType.Movie.AsString().Should().Be("movie");
-            TraktHiddenItemType.Show.AsString().Should().Be("show");
-            TraktHiddenItemType.Season.AsString().Should().Be("season");
-            TraktHiddenItemType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktHiddenItemType>();
+
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktHiddenItemType>() { TraktHiddenItemType.Unspecified, TraktHiddenItemType.Movie,
+                                                                         TraktHiddenItemType.Show, TraktHiddenItemType.Season });
         }
 
         [TestMethod]

@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -10,24 +11,25 @@
     {
         class TestObject
         {
-            [JsonConverter(typeof(TraktAccessScopeConverter))]
+            [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
             public TraktAccessScope Value { get; set; }
         }
 
         [TestMethod]
-        public void TestTraktAccessScopeHasMembers()
+        public void TestTraktAccessScopeIsTraktEnumeration()
         {
-            typeof(TraktAccessScope).GetEnumNames().Should().HaveCount(4)
-                                                   .And.Contain("Public", "Private", "Friends", "Unspecified");
+            var enumeration = new TraktAccessScope();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktAccessScopeGetAsString()
+        public void TestTraktAccessScopeGetAll()
         {
-            TraktAccessScope.Friends.AsString().Should().Be("friends");
-            TraktAccessScope.Private.AsString().Should().Be("private");
-            TraktAccessScope.Public.AsString().Should().Be("public");
-            TraktAccessScope.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktAccessScope>();
+
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktAccessScope>() { TraktAccessScope.Unspecified, TraktAccessScope.Private,
+                                                                      TraktAccessScope.Public, TraktAccessScope.Friends });
         }
 
         [TestMethod]

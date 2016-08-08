@@ -20,6 +20,7 @@
     
   after_build:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME%
+    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
     verbosity: minimal
@@ -40,6 +41,7 @@
 
 # configuration for all branches starting from "dev-"
 # build in Debug mode
+# do not deploy at all
 -
   version: '{branch}-{build}'
   image: Visual Studio 2015

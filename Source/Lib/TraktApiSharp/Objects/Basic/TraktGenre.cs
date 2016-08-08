@@ -17,8 +17,9 @@
         [Nullable]
         public string Slug { get; set; }
 
-        /// <summary>Gets or sets the genre type. See also <seealso cref="TraktGenreType" />.</summary>
+        /// <summary>Gets or sets the genre type. See also <seealso cref="TraktGenreType" />.<para>Nullable</para></summary>
         [JsonIgnore]
+        [Nullable]
         public TraktGenreType Type { get; set; }
     }
 }

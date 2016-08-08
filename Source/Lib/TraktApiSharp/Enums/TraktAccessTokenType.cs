@@ -1,54 +1,13 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktAccessTokenType
+    public sealed class TraktAccessTokenType : TraktEnumeration
     {
-        Unspecified,
-        Bearer
-    }
+        public static TraktAccessTokenType Unspecified { get; } = new TraktAccessTokenType();
+        public static TraktAccessTokenType Bearer { get; } = new TraktAccessTokenType(1, "bearer", "bearer", "Bearer");
 
-    public static class TraktAccessTokenTypeExtensions
-    {
-        public static string AsString(this TraktAccessTokenType accessTokenType)
-        {
-            switch (accessTokenType)
-            {
-                case TraktAccessTokenType.Bearer: return "bearer";
-                case TraktAccessTokenType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessTokenType.ToString());
-            }
-        }
-    }
+        public TraktAccessTokenType() : base() { }
 
-    public class TraktAccessTokenTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktAccessTokenType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessTokenType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var accessTokenType = (TraktAccessTokenType)value;
-            writer.WriteValue(accessTokenType.AsString());
-        }
+        private TraktAccessTokenType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }
