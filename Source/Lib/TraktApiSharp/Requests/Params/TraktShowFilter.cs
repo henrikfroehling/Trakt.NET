@@ -8,9 +8,9 @@
     /// <summary>
     /// Provides additional filter parameters for some <see cref="Modules.TraktShowsModule" /> methods.<para />
     /// Supported by <see cref="Modules.TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
     /// <see cref="Modules.TraktShowsModule.GetPopularShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
     /// <see cref="Modules.TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedOption, int?, int?)" /> and
     /// <see cref="Modules.TraktShowsModule.GetTrendingShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />.<para />

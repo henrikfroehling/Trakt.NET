@@ -467,7 +467,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                                   TraktExtendedOption extendedOption = null,
                                                                                                   TraktShowFilter filter = null,
                                                                                                   int? page = null, int? limitPerPage = null)
@@ -505,7 +505,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
                                                                                                     TraktExtendedOption extendedOption = null,
                                                                                                     TraktShowFilter filter = null,
                                                                                                     int? page = null, int? limitPerPage = null)
@@ -543,7 +543,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
                                                                                                         TraktExtendedOption extendedOption = null,
                                                                                                         TraktShowFilter filter = null,
                                                                                                         int? page = null, int? limitPerPage = null)

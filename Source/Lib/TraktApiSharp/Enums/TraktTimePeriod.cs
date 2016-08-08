@@ -1,30 +1,16 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System;
-
-    public enum TraktTimePeriod
+    public sealed class TraktTimePeriod : TraktEnumeration
     {
-        Unspecified,
-        Weekly,
-        Monthly,
-        Yearly,
-        All
-    }
+        public static TraktTimePeriod Unspecified { get; } = new TraktTimePeriod();
+        public static TraktTimePeriod Weekly { get; } = new TraktTimePeriod(1, "weekly", "weekly", "Weekly");
+        public static TraktTimePeriod Monthly { get; } = new TraktTimePeriod(2, "monthly", "monthly", "Monthly");
+        public static TraktTimePeriod Yearly { get; } = new TraktTimePeriod(4, "yearly", "yearly", "Yearly");
+        public static TraktTimePeriod All { get; } = new TraktTimePeriod(8, "all", "all", "All");
 
-    public static class TraktPeriodExtensions
-    {
-        public static string AsString(this TraktTimePeriod period)
-        {
-            switch (period)
-            {
-                case TraktTimePeriod.Weekly: return "weekly";
-                case TraktTimePeriod.Monthly: return "monthly";
-                case TraktTimePeriod.Yearly: return "yearly";
-                case TraktTimePeriod.All: return "all";
-                case TraktTimePeriod.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(period.ToString());
-            }
-        }
+        public TraktTimePeriod() : base() { }
+
+        private TraktTimePeriod(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }
