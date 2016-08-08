@@ -80,10 +80,11 @@
         [Nullable]
         public string Homepage { get; set; }
 
-        /// <summary>Gets or sets the show's current status. See also <seealso cref="TraktShowStatus" />.</summary>
+        /// <summary>Gets or sets the show's current status. See also <seealso cref="TraktShowStatus" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "status")]
         [JsonConverter(typeof(TraktShowStatusConverter))]
-        public TraktShowStatus? Status { get; set; }
+        [Nullable]
+        public TraktShowStatus Status { get; set; }
 
         /// <summary>Gets or sets the average user rating of the show.</summary>
         [JsonProperty(PropertyName = "rating")]

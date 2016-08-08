@@ -3,30 +3,18 @@
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktShowStatus
+    public sealed class TraktShowStatus : TraktEnumeration
     {
-        Unspecified,
-        ReturningSeries,
-        InProduction,
-        Canceled,
-        Ended
-    }
+        public static TraktShowStatus Unspecified { get; } = new TraktShowStatus();
+        public static TraktShowStatus ReturningSeries { get; } = new TraktShowStatus(1, "returning series", "returning series", "Returning Series");
+        public static TraktShowStatus InProduction { get; } = new TraktShowStatus(2, "in production", "in production", "In Production");
+        public static TraktShowStatus Canceled { get; } = new TraktShowStatus(4, "canceled", "canceled", "Canceled");
+        public static TraktShowStatus Ended { get; } = new TraktShowStatus(8, "ended", "ended", "Ended");
 
-    public static class TraktShowStatusExtensions
-    {
-        public static string AsString(this TraktShowStatus showStatus)
-        {
-            switch (showStatus)
-            {
-                case TraktShowStatus.ReturningSeries: return "returning series";
-                case TraktShowStatus.InProduction: return "in production";
-                case TraktShowStatus.Canceled: return "canceled";
-                case TraktShowStatus.Ended: return "ended";
-                case TraktShowStatus.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(showStatus.ToString());
-            }
-        }
+        public TraktShowStatus() : base() { }
+
+        private TraktShowStatus(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktShowStatusConverter : JsonConverter
@@ -42,24 +30,17 @@
                 return null;
 
             var enumString = reader.Value as string;
-            enumString = enumString.ToLower();
 
-            if (enumString.Equals(TraktShowStatus.ReturningSeries.AsString()))
-                return TraktShowStatus.ReturningSeries;
-            else if (enumString.Equals(TraktShowStatus.InProduction.AsString()))
-                return TraktShowStatus.InProduction;
-            else if (enumString.Equals(TraktShowStatus.Canceled.AsString()))
-                return TraktShowStatus.Canceled;
-            else if (enumString.Equals(TraktShowStatus.Ended.AsString()))
-                return TraktShowStatus.Ended;
+            if (string.IsNullOrEmpty(enumString))
+                return TraktShowStatus.Unspecified;
 
-            return TraktShowStatus.Unspecified;
+            return TraktEnumeration.FromObjectName<TraktShowStatus>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var showStatus = (TraktShowStatus)value;
-            writer.WriteValue(showStatus.AsString());
+            writer.WriteValue(showStatus.ObjectName);
         }
     }
 }

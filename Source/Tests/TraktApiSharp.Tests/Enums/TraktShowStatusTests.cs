@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,20 +16,21 @@
         }
 
         [TestMethod]
-        public void TestTraktShowStatusHasMembers()
+        public void TestTraktShowStatusIsTraktEnumeration()
         {
-            typeof(TraktShowStatus).GetEnumNames().Should().HaveCount(5)
-                                                  .And.Contain("Unspecified", "ReturningSeries", "InProduction", "Canceled", "Ended");
+            var enumeration = new TraktShowStatus();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktShowStatusGetAsString()
+        public void TestTraktShowStatusGetAll()
         {
-            TraktShowStatus.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktShowStatus.ReturningSeries.AsString().Should().Be("returning series");
-            TraktShowStatus.InProduction.AsString().Should().Be("in production");
-            TraktShowStatus.Canceled.AsString().Should().Be("canceled");
-            TraktShowStatus.Ended.AsString().Should().Be("ended");
+            var allValues = TraktEnumeration.GetAll<TraktShowStatus>();
+
+            allValues.Should().NotBeNull().And.HaveCount(5);
+            allValues.Should().Contain(new List<TraktShowStatus>() { TraktShowStatus.Unspecified, TraktShowStatus.ReturningSeries,
+                                                                     TraktShowStatus.InProduction, TraktShowStatus.Canceled,
+                                                                     TraktShowStatus.Ended });
         }
 
         [TestMethod]

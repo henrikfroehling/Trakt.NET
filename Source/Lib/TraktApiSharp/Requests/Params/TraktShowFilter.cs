@@ -273,7 +273,7 @@
                 var statesAsString = new string[States.Length];
 
                 for (int i = 0; i < States.Length; i++)
-                    statesAsString[i] = States[i].AsString();
+                    statesAsString[i] = States[i].UriName;
 
                 parameters.Add("status", string.Join(",", statesAsString));
             }
@@ -306,14 +306,14 @@
             if (keepExisting && this.States != null && this.States.Length > 0)
                 statesList.AddRange(this.States);
 
-            if (status != TraktShowStatus.Unspecified)
+            if (status != null && status != TraktShowStatus.Unspecified)
                 statesList.Add(status);
 
             if (states != null && states.Length > 0)
             {
                 for (int i = 0; i < states.Length; i++)
                 {
-                    if (states[i] == TraktShowStatus.Unspecified)
+                    if (states[i] == null || states[i] == TraktShowStatus.Unspecified)
                         throw new ArgumentException("status not valid", nameof(states));
                 }
 
