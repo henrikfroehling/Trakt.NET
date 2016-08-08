@@ -16,7 +16,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("type", ResultType.AsString());
+            uriParams.Add("type", ResultType.UriName);
             uriParams.Add("query", Query);
 
             return uriParams;

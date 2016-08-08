@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,36 +16,84 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchResultTypeHasMembers()
+        public void TestTraktSearchResultTypeIsTraktEnumeration()
         {
-            typeof(TraktSearchResultType).GetEnumNames().Should().HaveCount(6)
-                                                        .And.Contain("Movie", "Show", "Episode", "Person", "List", "Unspecified");
+            var enumeration = new TraktSearchResultType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktSearchResultTypeGetAsString()
+        public void TestTraktSearchResultTypeGetAll()
         {
-            TraktSearchResultType.Movie.AsString().Should().Be("movie");
-            TraktSearchResultType.Show.AsString().Should().Be("show");
-            TraktSearchResultType.Episode.AsString().Should().Be("episode");
-            TraktSearchResultType.Person.AsString().Should().Be("person");
-            TraktSearchResultType.List.AsString().Should().Be("list");
-            TraktSearchResultType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
+            var allValues = TraktEnumeration.GetAll<TraktSearchResultType>();
 
-            var searchResultType = TraktSearchResultType.Movie;
-            searchResultType.AsString().Should().Be("movie");
+            allValues.Should().NotBeNull().And.HaveCount(6);
+            allValues.Should().Contain(new List<TraktSearchResultType>() { TraktSearchResultType.Unspecified, TraktSearchResultType.Movie,
+                                                                           TraktSearchResultType.Show, TraktSearchResultType.Episode,
+                                                                           TraktSearchResultType.Person, TraktSearchResultType.List });
+        }
 
-            searchResultType |= TraktSearchResultType.Show;
-            searchResultType.AsString().Should().Be("movie,show");
+        [TestMethod]
+        public void TestTraktSearchResultTypeOrOperator()
+        {
+            var nullResult = default(TraktSearchResultType);
 
-            searchResultType |= TraktSearchResultType.Episode;
-            searchResultType.AsString().Should().Be("movie,show,episode");
+            var result = nullResult | TraktSearchResultType.Movie;
+            result.Should().BeNull();
 
-            searchResultType |= TraktSearchResultType.Person;
-            searchResultType.AsString().Should().Be("movie,show,episode,person");
+            result = TraktSearchResultType.Movie | nullResult;
+            result.Should().BeNull();
 
-            searchResultType |= TraktSearchResultType.List;
-            searchResultType.AsString().Should().Be("movie,show,episode,person,list");
+            result = nullResult | nullResult;
+            result.Should().BeNull();
+
+            // -----------------------------------------------------
+
+            result = TraktSearchResultType.Movie | TraktSearchResultType.Unspecified;
+            result.Should().Be(TraktSearchResultType.Unspecified);
+
+            result = TraktSearchResultType.Unspecified | TraktSearchResultType.Movie;
+            result.Should().Be(TraktSearchResultType.Unspecified);
+
+            result = TraktSearchResultType.Unspecified | TraktSearchResultType.Unspecified;
+            result.Should().Be(TraktSearchResultType.Unspecified);
+
+            // -----------------------------------------------------
+
+            var movieResult = TraktSearchResultType.Movie;
+
+            movieResult.Value.Should().Be(1);
+            movieResult.ObjectName.Should().Be("movie");
+            movieResult.UriName.Should().Be("movie");
+            movieResult.DisplayName.Should().Be("Movie");
+
+            var movieAndShowResult = TraktSearchResultType.Movie | TraktSearchResultType.Show;
+
+            movieAndShowResult.Value.Should().Be(movieResult.Value | TraktSearchResultType.Show.Value);
+            movieAndShowResult.ObjectName.Should().Be("movie,show");
+            movieAndShowResult.UriName.Should().Be("movie,show");
+            movieAndShowResult.DisplayName.Should().Be("Movie, Show");
+
+            var movieAndShowAndEpisodeResult = movieAndShowResult | TraktSearchResultType.Episode;
+
+            movieAndShowAndEpisodeResult.Value.Should().Be(movieAndShowResult.Value | TraktSearchResultType.Episode.Value);
+            movieAndShowAndEpisodeResult.ObjectName.Should().Be("movie,show,episode");
+            movieAndShowAndEpisodeResult.UriName.Should().Be("movie,show,episode");
+            movieAndShowAndEpisodeResult.DisplayName.Should().Be("Movie, Show, Episode");
+
+            var movieAndShowAndEpisodeAndPersonResult = movieAndShowAndEpisodeResult | TraktSearchResultType.Person;
+
+            movieAndShowAndEpisodeAndPersonResult.Value.Should().Be(movieAndShowAndEpisodeResult.Value | TraktSearchResultType.Person.Value);
+            movieAndShowAndEpisodeAndPersonResult.ObjectName.Should().Be("movie,show,episode,person");
+            movieAndShowAndEpisodeAndPersonResult.UriName.Should().Be("movie,show,episode,person");
+            movieAndShowAndEpisodeAndPersonResult.DisplayName.Should().Be("Movie, Show, Episode, Person");
+
+            var movieAndShowAndEpisodeAndPersonAndListResult = movieAndShowAndEpisodeAndPersonResult | TraktSearchResultType.List;
+
+            movieAndShowAndEpisodeAndPersonAndListResult.Value.Should().Be(movieAndShowAndEpisodeAndPersonResult.Value | TraktSearchResultType.List.Value);
+            movieAndShowAndEpisodeAndPersonAndListResult.ObjectName.Should().Be("movie,show,episode,person,list");
+            movieAndShowAndEpisodeAndPersonAndListResult.UriName.Should().Be("movie,show,episode,person,list");
+            movieAndShowAndEpisodeAndPersonAndListResult.DisplayName.Should().Be("Movie, Show, Episode, Person, List");
         }
 
         [TestMethod]

@@ -55,7 +55,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query).Result;
@@ -87,9 +87,8 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}",
-                searchResults, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}",
+                                                                searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter).Result;
 
@@ -127,7 +126,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
@@ -168,8 +167,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
-                $"&page={page}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
@@ -210,8 +208,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
-                $"&limit={limit}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
@@ -245,9 +242,8 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&page={page}",
-                searchResults, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}&page={page}",
+                                                                searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
                                                                                         null, page).Result;
@@ -280,9 +276,8 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&limit={limit}",
-                searchResults, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}&limit={limit}",
+                                                                searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
                                                                                         null, null, limit).Result;
@@ -317,7 +312,7 @@
                 .WithRatings(70, 95);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
@@ -348,9 +343,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}",
-                searchResults, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}",
+                                                                searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
                                                                                         extendedOption).Result;
@@ -382,7 +376,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
@@ -415,7 +409,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
@@ -449,7 +443,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
@@ -475,7 +469,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
@@ -501,7 +495,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
@@ -528,9 +522,8 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null,
                                                                                         null, page, limit).Result;
@@ -571,8 +564,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.AsString()}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}" +
-                $"&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, filter,
@@ -591,7 +583,7 @@
         {
             var type = TraktSearchResultType.Movie;
             var query = "batman";
-            var uri = $"search/{type.AsString()}?query={query}";
+            var uri = $"search/{type.UriName}?query={query}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
@@ -669,10 +661,15 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.AsString()}?query={query}", searchResults);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}", searchResults);
+
+            var searchResultType = default(TraktSearchResultType);
 
             Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, null);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(searchResultType, null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, null);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, string.Empty);
@@ -725,7 +722,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.UriName}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType).Result;
@@ -757,7 +754,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -791,8 +788,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
-                $"&page={page}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -826,8 +822,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
-                $"&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
@@ -854,9 +849,8 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&page={page}",
-                searchResults, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&page={page}",
+                                                                searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
                                                                                        null, page).Result;
@@ -882,9 +876,8 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&limit={limit}",
-                searchResults, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&limit={limit}",
+                                                                searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
                                                                                        null, null, limit).Result;
@@ -911,9 +904,8 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
                                                                                        null, page, limit).Result;
@@ -1157,7 +1149,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.AsString()}&extended={extendedOption.ToString()}" +
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
@@ -1343,7 +1335,7 @@
             var query = "batman";
             var type = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.UriName}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type).Result;
@@ -1392,7 +1384,7 @@
             var type = TraktSearchResultType.Movie;
             var year = 2016;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&year={year}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.UriName}&year={year}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, year).Result;
@@ -1441,7 +1433,7 @@
             var query = "batman";
             var type = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.UriName}&page={page}",
                                                                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, page).Result;
@@ -1515,7 +1507,7 @@
             var query = "batman";
             var type = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.AsString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.UriName}&limit={limit}",
                                                                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, null, limit).Result;
@@ -1591,9 +1583,8 @@
             var query = "batman";
             var type = TraktSearchResultType.Movie;
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search?query={query}&type={type.AsString()}&page={page}&limit={limit}",
-                searchResults, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search?query={query}&type={type.UriName}&page={page}&limit={limit}",
+                                                                searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, null, page, limit).Result;
 
@@ -1647,7 +1638,7 @@
             var year = 2016;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search?query={query}&type={type.AsString()}&year={year}&page={page}&limit={limit}",
+                $"search?query={query}&type={type.UriName}&year={year}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(query, type, year, page, limit).Result;
