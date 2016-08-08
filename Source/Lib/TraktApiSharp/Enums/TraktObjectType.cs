@@ -8,7 +8,7 @@
         public static TraktObjectType Season { get; } = new TraktObjectType(4, "season", "seasons", "Season");
         public static TraktObjectType Episode { get; } = new TraktObjectType(8, "episode", "episodes", "Episode");
         public static TraktObjectType List { get; } = new TraktObjectType(16, "list", "lists", "List");
-        public static TraktObjectType All { get; } = new TraktObjectType(32, string.Empty, "all", "All");
+        public static TraktObjectType All { get; } = new TraktObjectType(32, "all", "all", "All");
 
         public TraktObjectType() : base() { }
 
