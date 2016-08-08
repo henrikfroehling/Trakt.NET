@@ -104,7 +104,7 @@
 
         public async Task<PaginationList<MostPWCShow>> GetMostPlayedShowsAsync(TraktExtendedOption extendedInfo = null,
                                                                                TraktShowFilter showFilter = null,
-                                                                               TraktPeriod? period = null,
+                                                                               TraktTimePeriod period = null,
                                                                                int? whichPage = null, int? limitPerPage = null)
         {
             var traktResults = await Client.Shows.GetMostPlayedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
@@ -139,7 +139,7 @@
 
         public async Task<PaginationList<MostPWCShow>> GetMostWatchedShowsAsync(TraktExtendedOption extendedInfo = null,
                                                                                 TraktShowFilter showFilter = null,
-                                                                                TraktPeriod? period = null,
+                                                                                TraktTimePeriod period = null,
                                                                                 int? whichPage = null, int? limitPerPage = null)
         {
             var traktResults = await Client.Shows.GetMostWatchedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
@@ -174,7 +174,7 @@
 
         public async Task<PaginationList<MostPWCShow>> GetMostCollectedShowsAsync(TraktExtendedOption extendedInfo = null,
                                                                                   TraktShowFilter showFilter = null,
-                                                                                  TraktPeriod? period = null,
+                                                                                  TraktTimePeriod period = null,
                                                                                   int? whichPage = null, int? limitPerPage = null)
         {
             var traktResults = await Client.Shows.GetMostCollectedShowsAsync(period, extendedInfo, showFilter, whichPage, limitPerPage);
