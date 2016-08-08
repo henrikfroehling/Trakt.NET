@@ -1,41 +1,18 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktSyncType
+    public sealed class TraktSyncType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Episode
-    }
+        public static TraktSyncType Unspecified { get; } = new TraktSyncType();
+        public static TraktSyncType Movie { get; } = new TraktSyncType(1, "movie", "movies", "Movie");
+        public static TraktSyncType Episode { get; } = new TraktSyncType(2, "episode", "episodes", "Episode");
 
-    public static class TraktSyncTypeExtensions
-    {
-        public static string AsString(this TraktSyncType syncType)
-        {
-            switch (syncType)
-            {
-                case TraktSyncType.Movie: return "movie";
-                case TraktSyncType.Episode: return "episode";
-                case TraktSyncType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncType.ToString());
-            }
-        }
+        public TraktSyncType() : base() { }
 
-        public static string AsStringUriParameter(this TraktSyncType syncType)
-        {
-            switch (syncType)
-            {
-                case TraktSyncType.Movie: return "movies";
-                case TraktSyncType.Episode: return "episodes";
-                case TraktSyncType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncType.ToString());
-            }
-        }
+        private TraktSyncType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktSyncTypeConverter : JsonConverter
@@ -55,14 +32,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktSyncType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktSyncType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktSyncType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var syncType = (TraktSyncType)value;
-            writer.WriteValue(syncType.AsString());
+            writer.WriteValue(syncType.ObjectName);
         }
     }
 }

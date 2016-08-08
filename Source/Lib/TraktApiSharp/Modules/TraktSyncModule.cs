@@ -64,7 +64,7 @@
         /// <returns>A list of <see cref="TraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType? objectType = null, int? limit = null)
+        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
         {
             return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {

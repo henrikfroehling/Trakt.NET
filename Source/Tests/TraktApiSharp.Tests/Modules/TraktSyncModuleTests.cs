@@ -213,7 +213,7 @@
 
             var type = TraktSyncType.Episode;
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}", playbackProgress);
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.UriName}", playbackProgress);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type).Result;
 
@@ -244,8 +244,7 @@
             var type = TraktSyncType.Episode;
             var limit = 4;
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}?limit={limit}",
-                                                   playbackProgress);
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.UriName}?limit={limit}", playbackProgress);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, limit).Result;
 

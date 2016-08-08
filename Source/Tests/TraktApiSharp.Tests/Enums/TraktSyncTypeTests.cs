@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,26 +16,20 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncTypeHasMembers()
+        public void TestTraktSyncTypeIsTraktEnumeration()
         {
-            typeof(TraktSyncType).GetEnumNames().Should().HaveCount(3)
-                                                         .And.Contain("Unspecified", "Movie", "Episode");
+            var enumeration = new TraktSyncType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktSyncTypeGetAsString()
+        public void TestTraktSyncTypeGetAll()
         {
-            TraktSyncType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktSyncType.Movie.AsString().Should().Be("movie");
-            TraktSyncType.Episode.AsString().Should().Be("episode");
-        }
+            var allValues = TraktEnumeration.GetAll<TraktSyncType>();
 
-        [TestMethod]
-        public void TestTraktSyncTypeGetAsStringUriParameter()
-        {
-            TraktSyncType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktSyncType.Movie.AsStringUriParameter().Should().Be("movies");
-            TraktSyncType.Episode.AsStringUriParameter().Should().Be("episodes");
+            allValues.Should().NotBeNull().And.HaveCount(3);
+            allValues.Should().Contain(new List<TraktSyncType>() { TraktSyncType.Unspecified, TraktSyncType.Movie,
+                                                                   TraktSyncType.Episode });
         }
 
         [TestMethod]
