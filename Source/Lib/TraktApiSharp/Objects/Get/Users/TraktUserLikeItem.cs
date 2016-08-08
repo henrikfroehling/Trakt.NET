@@ -14,7 +14,8 @@
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktUserLikeTypeConverter))]
-        public TraktUserLikeType? Type { get; set; }
+        [Nullable]
+        public TraktUserLikeType Type { get; set; }
 
         [JsonProperty(PropertyName = "comment")]
         [Nullable]

@@ -1,41 +1,18 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktUserLikeType
+    public sealed class TraktUserLikeType : TraktEnumeration
     {
-        Unspecified,
-        Comment,
-        List
-    }
+        public static TraktUserLikeType Unspecified { get; } = new TraktUserLikeType();
+        public static TraktUserLikeType Comment { get; } = new TraktUserLikeType(1, "comment", "comments", "Comment");
+        public static TraktUserLikeType List { get; } = new TraktUserLikeType(2, "list", "lists", "List");
 
-    public static class TraktUserLikeTypeExtensions
-    {
-        public static string AsString(this TraktUserLikeType userLikeType)
-        {
-            switch (userLikeType)
-            {
-                case TraktUserLikeType.Comment: return "comment";
-                case TraktUserLikeType.List: return "list";
-                case TraktUserLikeType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(userLikeType.ToString());
-            }
-        }
+        public TraktUserLikeType() : base() { }
 
-        public static string AsStringUriParameter(this TraktUserLikeType userLikeType)
-        {
-            switch (userLikeType)
-            {
-                case TraktUserLikeType.Comment: return "comments";
-                case TraktUserLikeType.List: return "lists";
-                case TraktUserLikeType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(userLikeType.ToString());
-            }
-        }
+        private TraktUserLikeType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktUserLikeTypeConverter : JsonConverter
@@ -55,14 +32,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktUserLikeType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktUserLikeType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktUserLikeType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var userLikeType = (TraktUserLikeType)value;
-            writer.WriteValue(userLikeType.AsString());
+            writer.WriteValue(userLikeType.ObjectName);
         }
     }
 }

@@ -130,7 +130,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType? likeType = null,
+        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
                                                                                       int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktUserLikesRequest(Client)

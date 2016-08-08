@@ -788,7 +788,7 @@
             var type = TraktUserLikeType.Comment;
             var itemCount = 2;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}", userLikes, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}", userLikes, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type).Result;
 
@@ -810,7 +810,7 @@
             var itemCount = 2;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?page={page}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?page={page}",
                                                              userLikes, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page).Result;
@@ -833,7 +833,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?limit={limit}",
                                                              userLikes, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, null, limit).Result;
@@ -921,7 +921,7 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.AsStringUriParameter()}?page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?page={page}&limit={limit}",
                                                              userLikes, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page, limit).Result;
@@ -938,7 +938,7 @@
         public void TestTraktUsersModuleGetUserLikesExceptions()
         {
             var type = TraktUserLikeType.List;
-            var uri = $"users/likes/{type.AsStringUriParameter()}";
+            var uri = $"users/likes/{type.UriName}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 

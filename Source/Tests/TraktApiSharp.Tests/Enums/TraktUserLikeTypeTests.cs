@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TraktApiSharp.Enums;
 
     [TestClass]
@@ -15,26 +16,20 @@
         }
 
         [TestMethod]
-        public void TestTraktUserLikeTypeHasMembers()
+        public void TestTraktUserLikeTypeIsTraktEnumeration()
         {
-            typeof(TraktUserLikeType).GetEnumNames().Should().HaveCount(3)
-                                                         .And.Contain("Unspecified", "Comment", "List");
+            var enumeration = new TraktUserLikeType();
+            enumeration.Should().BeAssignableTo<TraktEnumeration>();
         }
 
         [TestMethod]
-        public void TestTraktUserLikeTypeGetAsString()
+        public void TestTraktUserLikeTypeGetAll()
         {
-            TraktUserLikeType.Unspecified.AsString().Should().NotBeNull().And.BeEmpty();
-            TraktUserLikeType.Comment.AsString().Should().Be("comment");
-            TraktUserLikeType.List.AsString().Should().Be("list");
-        }
+            var allValues = TraktEnumeration.GetAll<TraktUserLikeType>();
 
-        [TestMethod]
-        public void TestTraktUserLikeTypeGetAsStringUriParameter()
-        {
-            TraktUserLikeType.Unspecified.AsStringUriParameter().Should().NotBeNull().And.BeEmpty();
-            TraktUserLikeType.Comment.AsStringUriParameter().Should().Be("comments");
-            TraktUserLikeType.List.AsStringUriParameter().Should().Be("lists");
+            allValues.Should().NotBeNull().And.HaveCount(3);
+            allValues.Should().Contain(new List<TraktUserLikeType>() { TraktUserLikeType.Unspecified, TraktUserLikeType.Comment,
+                                                                       TraktUserLikeType.List });
         }
 
         [TestMethod]
