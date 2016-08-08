@@ -19,7 +19,8 @@
 
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktSyncRatingsItemTypeConverter))]
-        public TraktSyncRatingsItemType? Type { get; set; }
+        [Nullable]
+        public TraktSyncRatingsItemType Type { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]

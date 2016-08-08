@@ -10043,7 +10043,7 @@
             var username = "sean";
             var type = TraktSyncRatingsItemType.Movie;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type).Result;
 
@@ -10063,8 +10063,7 @@
             var ratingsFilter = new int[] { 1 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10084,8 +10083,7 @@
             var ratingsFilter = new int[] { 1, 2 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10105,8 +10103,7 @@
             var ratingsFilter = new int[] { 1, 2, 3 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10126,8 +10123,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10147,8 +10143,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10168,8 +10163,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10189,8 +10183,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10210,8 +10203,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10231,8 +10223,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10252,8 +10243,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}/{ratingsFilterString}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10270,7 +10260,7 @@
             var type = TraktSyncRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10287,7 +10277,7 @@
             var type = TraktSyncRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10304,7 +10294,7 @@
             var type = TraktSyncRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10321,7 +10311,7 @@
             var type = TraktSyncRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.AsStringUriParameter()}", userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
@@ -10359,9 +10349,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
-                userRatings);
+            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}?extended={extendedOption.ToString()}",
+                                                      userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, null, extendedOption).Result;
 
@@ -10410,7 +10399,7 @@
             };
 
             TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                $"users/{username}/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedOption.ToString()}",
                 userRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter, extendedOption).Result;

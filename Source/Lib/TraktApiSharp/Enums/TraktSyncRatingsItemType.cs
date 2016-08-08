@@ -1,51 +1,21 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
     using Newtonsoft.Json;
     using System;
 
-    public enum TraktSyncRatingsItemType
+    public sealed class TraktSyncRatingsItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode,
-        All
-    }
+        public static TraktSyncRatingsItemType Unspecified { get; } = new TraktSyncRatingsItemType();
+        public static TraktSyncRatingsItemType Movie { get; } = new TraktSyncRatingsItemType(1, "movie", "movies", "Movie");
+        public static TraktSyncRatingsItemType Show { get; } = new TraktSyncRatingsItemType(2, "show", "shows", "Show");
+        public static TraktSyncRatingsItemType Season { get; } = new TraktSyncRatingsItemType(4, "season", "seasons", "Season");
+        public static TraktSyncRatingsItemType Episode { get; } = new TraktSyncRatingsItemType(8, "episode", "episodes", "Episode");
+        public static TraktSyncRatingsItemType All { get; } = new TraktSyncRatingsItemType(16, "all", "all", "All");
 
-    public static class TraktSyncRatingsItemTypeExtensions
-    {
-        public static string AsString(this TraktSyncRatingsItemType syncRatingsItemType)
-        {
-            switch (syncRatingsItemType)
-            {
-                case TraktSyncRatingsItemType.Movie: return "movie";
-                case TraktSyncRatingsItemType.Show: return "show";
-                case TraktSyncRatingsItemType.Season: return "season";
-                case TraktSyncRatingsItemType.Episode: return "episode";
-                case TraktSyncRatingsItemType.All: return "all";
-                case TraktSyncRatingsItemType.Unspecified:
-                    return string.Empty;
-                default:
-                    throw new NotSupportedException(syncRatingsItemType.ToString());
-            }
-        }
+        public TraktSyncRatingsItemType() : base() { }
 
-        public static string AsStringUriParameter(this TraktSyncRatingsItemType syncRatingsItemType)
-        {
-            switch (syncRatingsItemType)
-            {
-                case TraktSyncRatingsItemType.Movie: return "movies";
-                case TraktSyncRatingsItemType.Show: return "shows";
-                case TraktSyncRatingsItemType.Season: return "seasons";
-                case TraktSyncRatingsItemType.Episode: return "episodes";
-                case TraktSyncRatingsItemType.All: return "all";
-                case TraktSyncRatingsItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncRatingsItemType.ToString());
-            }
-        }
+        private TraktSyncRatingsItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 
     public class TraktSyncRatingsItemTypeConverter : JsonConverter
@@ -65,14 +35,13 @@
             if (string.IsNullOrEmpty(enumString))
                 return TraktSyncRatingsItemType.Unspecified;
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktSyncRatingsItemType), enumString, true);
+            return TraktEnumeration.FromObjectName<TraktSyncRatingsItemType>(enumString);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var syncRatingsItemType = (TraktSyncRatingsItemType)value;
-            writer.WriteValue(syncRatingsItemType.AsString());
+            writer.WriteValue(syncRatingsItemType.ObjectName);
         }
     }
 }
