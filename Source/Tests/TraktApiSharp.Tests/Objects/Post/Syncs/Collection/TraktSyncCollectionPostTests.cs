@@ -233,7 +233,6 @@
             episodes[0].Metadata.Should().BeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(1061);
-            episodes[0].Ids.Slug.Should().BeNullOrEmpty();
             episodes[0].Ids.Tvdb.Should().Be(1555111);
             episodes[0].Ids.Imdb.Should().Be("tt007404");
             episodes[0].Ids.Tmdb.Should().Be(422183);
@@ -494,7 +493,6 @@
             episodes[0].CollectedAt.Should().NotHaveValue();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(1061);
-            episodes[0].Ids.Slug.Should().BeNullOrEmpty();
             episodes[0].Ids.Tvdb.Should().Be(1555111);
             episodes[0].Ids.Imdb.Should().Be("tt007404");
             episodes[0].Ids.Tmdb.Should().Be(422183);

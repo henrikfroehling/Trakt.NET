@@ -430,7 +430,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 1,
-                    Slug = "episode1",
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     Tvdb = 12345,
@@ -474,7 +473,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -487,7 +485,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 3,
-                    Slug = "episode2",
                     Imdb = "imdb2",
                     Tmdb = 12345,
                     Tvdb = 123456,
@@ -509,7 +506,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -519,7 +515,6 @@
             episodes[1].Should().NotBeNull();
             episodes[1].Ids.Should().NotBeNull();
             episodes[1].Ids.Trakt.Should().Be(3);
-            episodes[1].Ids.Slug.Should().Be("episode2");
             episodes[1].Ids.Imdb.Should().Be("imdb2");
             episodes[1].Ids.Tmdb.Should().Be(12345);
             episodes[1].Ids.Tvdb.Should().Be(123456);
@@ -535,7 +530,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 1,
-                    Slug = "episode1",
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     Tvdb = 12345,
@@ -581,7 +575,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -594,7 +587,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 3,
-                    Slug = "episode2",
                     Imdb = "imdb2",
                     Tmdb = 12345,
                     Tvdb = 123456,
@@ -616,7 +608,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -626,7 +617,6 @@
             episodes[1].Should().NotBeNull();
             episodes[1].Ids.Should().NotBeNull();
             episodes[1].Ids.Trakt.Should().Be(3);
-            episodes[1].Ids.Slug.Should().Be("episode2");
             episodes[1].Ids.Imdb.Should().Be("imdb2");
             episodes[1].Ids.Tmdb.Should().Be(12345);
             episodes[1].Ids.Tvdb.Should().Be(123456);
@@ -642,7 +632,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 1,
-                    Slug = "episode1",
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     Tvdb = 12345,
@@ -689,7 +678,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -702,7 +690,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 3,
-                    Slug = "episode2",
                     Imdb = "imdb2",
                     Tmdb = 12345,
                     Tvdb = 123456,
@@ -724,7 +711,6 @@
             episodes[0].Should().NotBeNull();
             episodes[0].Ids.Should().NotBeNull();
             episodes[0].Ids.Trakt.Should().Be(2);
-            episodes[0].Ids.Slug.Should().Be("episode1");
             episodes[0].Ids.Imdb.Should().Be("imdb1");
             episodes[0].Ids.Tmdb.Should().Be(1234);
             episodes[0].Ids.Tvdb.Should().Be(12345);
@@ -734,7 +720,6 @@
             episodes[1].Should().NotBeNull();
             episodes[1].Ids.Should().NotBeNull();
             episodes[1].Ids.Trakt.Should().Be(3);
-            episodes[1].Ids.Slug.Should().Be("episode2");
             episodes[1].Ids.Imdb.Should().Be("imdb2");
             episodes[1].Ids.Tmdb.Should().Be(12345);
             episodes[1].Ids.Tvdb.Should().Be(123456);
@@ -6183,7 +6168,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 1,
-                    Slug = "episode1",
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     Tvdb = 12345,
@@ -6278,7 +6262,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 1,
-                    Slug = "episode1",
                     Imdb = "imdb1",
                     Tmdb = 1234,
                     Tvdb = 12345,
@@ -6291,7 +6274,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 2,
-                    Slug = "episode2",
                     Imdb = "imdb2",
                     Tmdb = 12345,
                     Tvdb = 123456,
@@ -6304,7 +6286,6 @@
                 Ids = new TraktEpisodeIds
                 {
                     Trakt = 3,
-                    Slug = "episode3",
                     Imdb = "imdb3",
                     Tmdb = 123456,
                     Tvdb = 1234567,
