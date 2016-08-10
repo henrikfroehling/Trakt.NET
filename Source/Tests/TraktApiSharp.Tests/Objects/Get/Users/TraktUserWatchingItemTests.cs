@@ -84,7 +84,6 @@
             userWatchlistItemEpisode.Episode.Title.Should().Be("Wedding Day");
             userWatchlistItemEpisode.Episode.Ids.Should().NotBeNull();
             userWatchlistItemEpisode.Episode.Ids.Trakt.Should().Be(2);
-            userWatchlistItemEpisode.Episode.Ids.Slug.Should().BeNull();
             userWatchlistItemEpisode.Episode.Ids.Tvdb.Should().Be(3859791);
             userWatchlistItemEpisode.Episode.Ids.Imdb.Should().BeEmpty();
             userWatchlistItemEpisode.Episode.Ids.Tmdb.Should().Be(62133);
