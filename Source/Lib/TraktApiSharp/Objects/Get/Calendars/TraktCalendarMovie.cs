@@ -3,12 +3,12 @@
     using Attributes;
     using Movies;
     using Newtonsoft.Json;
+    using System;
 
     public class TraktCalendarMovie
     {
         [JsonProperty(PropertyName = "released")]
-        [Nullable]
-        public string Released { get; set; }
+        public DateTime? Released { get; set; }
 
         [JsonProperty(PropertyName = "movie")]
         [Nullable]
