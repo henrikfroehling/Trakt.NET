@@ -17,6 +17,6 @@
 
         [JsonProperty(PropertyName = "seasons")]
         [Nullable]
-        public IEnumerable<TraktCollectionSeason> Seasons { get; set; }
+        public IEnumerable<TraktCollectionShowSeason> Seasons { get; set; }
     }
 }

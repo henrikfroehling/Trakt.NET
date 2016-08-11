@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
     using System;
 
-    public class TraktCollectionEpisode
+    public class TraktCollectionShowEpisode
     {
         [JsonProperty(PropertyName = "number")]
         public int? Number { get; set; }
