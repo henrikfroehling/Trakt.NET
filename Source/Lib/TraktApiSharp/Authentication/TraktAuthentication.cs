@@ -4,7 +4,6 @@
     using Enums;
     using Exceptions;
     using Extensions;
-    using Newtonsoft.Json;
     using Objects.Basic;
     using System;
     using System.Net;
@@ -12,6 +11,7 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Utils;
 
     /// <summary>
     /// Provides access to authentication methods common to both OAuth and Device authentication,
@@ -309,8 +309,7 @@
                 var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent,
-                                                    TraktConstants.DEFAULT_JSON_SETTINGS));
+                    token = await Task.Run(() => Json.Deserialize<TraktAuthorization>(responseContent));
 
                 Client.Authentication.Authorization = token;
                 return token;
@@ -320,8 +319,7 @@
                 var error = default(TraktError);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(responseContent,
-                                                    TraktConstants.DEFAULT_JSON_SETTINGS));
+                    error = await Task.Run(() => Json.Deserialize<TraktError>(responseContent));
 
                 var errorMessage = error != null ? ($"error on refreshing oauth access token\nerror: {error.Error}\n" +
                                                     $"description: {error.Description}")

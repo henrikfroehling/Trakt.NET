@@ -3,13 +3,13 @@
     using Core;
     using Exceptions;
     using Extensions;
-    using Newtonsoft.Json;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Utils;
 
     /// <summary>Provides access to Device authentication methods, such as creating a new device and polling for an access token.</summary>
     public class TraktDeviceAuth
@@ -81,8 +81,7 @@
             var device = default(TraktDevice);
 
             if (!string.IsNullOrEmpty(responseContent))
-                device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(responseContent,
-                                                    TraktConstants.DEFAULT_JSON_SETTINGS));
+                device = await Task.Run(() => Json.Deserialize<TraktDevice>(responseContent));
 
             Client.Authentication.Device = device;
             return device;
@@ -246,8 +245,7 @@
                     var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent,
-                                                        TraktConstants.DEFAULT_JSON_SETTINGS));
+                        token = await Task.Run(() => Json.Deserialize<TraktAuthorization>(responseContent));
 
                     Client.Authentication.Authorization = token;
                     return token;

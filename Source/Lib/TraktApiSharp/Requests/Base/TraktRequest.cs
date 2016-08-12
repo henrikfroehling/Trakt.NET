@@ -6,7 +6,6 @@ namespace TraktApiSharp.Requests.Base
 {
     using Core;
     using Exceptions;
-    using Newtonsoft.Json;
     using Objects.Basic;
     using Objects.Post.Checkins.Responses;
     using Params;
@@ -19,6 +18,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Text;
     using System.Threading.Tasks;
     using UriTemplates;
+    using Utils;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -64,7 +64,7 @@ namespace TraktApiSharp.Requests.Base
                 return await HandleListResult(response, responseContent);
 
             // Single object item
-            return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent, TraktConstants.DEFAULT_JSON_SETTINGS));
+            return await Task.Run(() => Json.Deserialize<TResult>(responseContent));
         }
 
         internal TraktClient Client { get; private set; }
@@ -151,7 +151,7 @@ namespace TraktApiSharp.Requests.Base
                 if (RequestBody == null)
                     return null;
 
-                return JsonConvert.SerializeObject(RequestBody, TraktConstants.DEFAULT_JSON_SETTINGS);
+                return Json.Serialize(RequestBody);
             }
         }
 
@@ -197,8 +197,7 @@ namespace TraktApiSharp.Requests.Base
                 var paginationListResult = Activator.CreateInstance(typePaginationList);
 
                 (paginationListResult as TraktPaginationListResult<TItem>).Items =
-                    await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent,
-                                            TraktConstants.DEFAULT_JSON_SETTINGS));
+                    await Task.Run(() => Json.Deserialize<IEnumerable<TItem>>(responseContent));
 
                 if (response.Headers != null)
                     ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
@@ -206,7 +205,7 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            var results = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent, TraktConstants.DEFAULT_JSON_SETTINGS));
+            var results = await Task.Run(() => Json.Deserialize<IEnumerable<TItem>>(responseContent));
             return (TResult)results;
         }
 
@@ -385,8 +384,7 @@ namespace TraktApiSharp.Requests.Base
                         TraktCheckinPostErrorResponse errorResponse = null;
 
                         if (!string.IsNullOrEmpty(responseContent))
-                            errorResponse = JsonConvert.DeserializeObject<TraktCheckinPostErrorResponse>(responseContent,
-                                                TraktConstants.DEFAULT_JSON_SETTINGS);
+                            errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
 
                         throw new TraktCheckinException("checkin is already in progress")
                         {
@@ -472,7 +470,7 @@ namespace TraktApiSharp.Requests.Base
 
             try
             {
-                error = JsonConvert.DeserializeObject<TraktError>(responseContent, TraktConstants.DEFAULT_JSON_SETTINGS);
+                error = Json.Deserialize<TraktError>(responseContent);
             }
             catch (Exception ex)
             {
