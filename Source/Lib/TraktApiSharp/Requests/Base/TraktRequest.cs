@@ -48,12 +48,12 @@ namespace TraktApiSharp.Requests.Base
             var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
             SetRequestHeadersForAuthorization(request);
 
-            var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 ErrorHandling(response);
 
-            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync().ConfigureAwait(false) : string.Empty;
 
             // No content
             if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -61,10 +61,10 @@ namespace TraktApiSharp.Requests.Base
 
             // Handle list result
             if (IsListResult)
-                return await HandleListResult(response, responseContent);
+                return await HandleListResult(response, responseContent).ConfigureAwait(false);
 
             // Single object item
-            return await Json.DeserializeAsync<TResult>(responseContent);
+            return await Json.DeserializeAsync<TResult>(responseContent).ConfigureAwait(false);
         }
 
         internal TraktClient Client { get; private set; }
@@ -197,7 +197,7 @@ namespace TraktApiSharp.Requests.Base
                 var paginationListResult = Activator.CreateInstance(typePaginationList);
 
                 (paginationListResult as TraktPaginationListResult<TItem>).Items =
-                    await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent);
+                    await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent).ConfigureAwait(false);
 
                 if (response.Headers != null)
                     ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
@@ -205,7 +205,7 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            var results = await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent);
+            var results = await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent).ConfigureAwait(false);
             return (TResult)results;
         }
 
