@@ -217,7 +217,6 @@
             ratings[0].Episode.Title.Should().Be("Box Cutter");
             ratings[0].Episode.Ids.Should().NotBeNull();
             ratings[0].Episode.Ids.Trakt.Should().Be(49);
-            ratings[0].Episode.Ids.Slug.Should().BeNull();
             ratings[0].Episode.Ids.Tvdb.Should().Be(2639411);
             ratings[0].Episode.Ids.Imdb.Should().Be("tt1683084");
             ratings[0].Episode.Ids.Tmdb.Should().Be(62118);
@@ -244,7 +243,6 @@
             ratings[1].Episode.Title.Should().Be("Hermanos");
             ratings[1].Episode.Ids.Should().NotBeNull();
             ratings[1].Episode.Ids.Trakt.Should().Be(56);
-            ratings[1].Episode.Ids.Slug.Should().BeNull();
             ratings[1].Episode.Ids.Tvdb.Should().Be(4127161);
             ratings[1].Episode.Ids.Imdb.Should().Be("tt1683095");
             ratings[1].Episode.Ids.Tmdb.Should().Be(62127);

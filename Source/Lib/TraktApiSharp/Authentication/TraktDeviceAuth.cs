@@ -3,13 +3,13 @@
     using Core;
     using Exceptions;
     using Extensions;
-    using Newtonsoft.Json;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Utils;
 
     /// <summary>Provides access to Device authentication methods, such as creating a new device and polling for an access token.</summary>
     public class TraktDeviceAuth
@@ -71,7 +71,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content);
+            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 await ErrorHandling(response, tokenUrl, postContent, true);
@@ -81,7 +81,7 @@
             var device = default(TraktDevice);
 
             if (!string.IsNullOrEmpty(responseContent))
-                device = await Task.Run(() => JsonConvert.DeserializeObject<TraktDevice>(responseContent));
+                device = Json.Deserialize<TraktDevice>(responseContent);
 
             Client.Authentication.Device = device;
             return device;
@@ -234,7 +234,7 @@
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
                 var content = new StringContent(postContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(tokenUrl, content);
+                var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
                 responseCode = response.StatusCode;
                 reasonPhrase = response.ReasonPhrase;
@@ -245,7 +245,7 @@
                     var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent));
+                        token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                     Client.Authentication.Authorization = token;
                     return token;

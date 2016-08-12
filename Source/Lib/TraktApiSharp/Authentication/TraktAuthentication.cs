@@ -4,7 +4,6 @@
     using Enums;
     using Exceptions;
     using Extensions;
-    using Newtonsoft.Json;
     using Objects.Basic;
     using System;
     using System.Net;
@@ -12,6 +11,7 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Utils;
 
     /// <summary>
     /// Provides access to authentication methods common to both OAuth and Device authentication,
@@ -298,7 +298,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content);
+            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
             string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
@@ -309,7 +309,7 @@
                 var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Task.Run(() => JsonConvert.DeserializeObject<TraktAuthorization>(responseContent));
+                    token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                 Client.Authentication.Authorization = token;
                 return token;
@@ -319,7 +319,7 @@
                 var error = default(TraktError);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    error = await Task.Run(() => JsonConvert.DeserializeObject<TraktError>(responseContent));
+                    error = Json.Deserialize<TraktError>(responseContent);
 
                 var errorMessage = error != null ? ($"error on refreshing oauth access token\nerror: {error.Error}\n" +
                                                     $"description: {error.Description}")
@@ -440,7 +440,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthRevokeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content);
+            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {

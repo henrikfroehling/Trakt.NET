@@ -6,7 +6,6 @@ namespace TraktApiSharp.Requests.Base
 {
     using Core;
     using Exceptions;
-    using Newtonsoft.Json;
     using Objects.Basic;
     using Objects.Post.Checkins.Responses;
     using Params;
@@ -19,6 +18,7 @@ namespace TraktApiSharp.Requests.Base
     using System.Text;
     using System.Threading.Tasks;
     using UriTemplates;
+    using Utils;
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
@@ -48,10 +48,10 @@ namespace TraktApiSharp.Requests.Base
             var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
             SetRequestHeadersForAuthorization(request);
 
-            var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
-                ErrorHandling(response);
+                await ErrorHandling(response);
 
             var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
@@ -61,10 +61,10 @@ namespace TraktApiSharp.Requests.Base
 
             // Handle list result
             if (IsListResult)
-                return await HandleListResult(response, responseContent);
+                return HandleListResult(response, responseContent);
 
             // Single object item
-            return await Task.Run(() => JsonConvert.DeserializeObject<TResult>(responseContent));
+            return Json.Deserialize<TResult>(responseContent);
         }
 
         internal TraktClient Client { get; private set; }
@@ -151,11 +151,7 @@ namespace TraktApiSharp.Requests.Base
                 if (RequestBody == null)
                     return null;
 
-                return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.None,
-                    NullValueHandling = NullValueHandling.Ignore
-                });
+                return Json.Serialize(RequestBody);
             }
         }
 
@@ -189,7 +185,7 @@ namespace TraktApiSharp.Requests.Base
                 httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
-        private async Task<TResult> HandleListResult(HttpResponseMessage response, string responseContent)
+        private TResult HandleListResult(HttpResponseMessage response, string responseContent)
         {
             if (SupportsPagination)
             {
@@ -200,7 +196,7 @@ namespace TraktApiSharp.Requests.Base
                 var typePaginationList = typeof(TraktPaginationListResult<>).MakeGenericType(typePaginationElement);
                 var paginationListResult = Activator.CreateInstance(typePaginationList);
 
-                (paginationListResult as TraktPaginationListResult<TItem>).Items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
+                (paginationListResult as TraktPaginationListResult<TItem>).Items = Json.Deserialize<IEnumerable<TItem>>(responseContent);
 
                 if (response.Headers != null)
                     ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
@@ -208,7 +204,7 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            var results = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<TItem>>(responseContent));
+            var results = Json.Deserialize<IEnumerable<TItem>>(responseContent);
             return (TResult)results;
         }
 
@@ -262,12 +258,12 @@ namespace TraktApiSharp.Requests.Base
             }
         }
 
-        private void ErrorHandling(HttpResponseMessage response)
+        private async Task ErrorHandling(HttpResponseMessage response)
         {
             var responseContent = string.Empty;
 
             if (response.Content != null)
-                responseContent = response.Content.ReadAsStringAsync().Result;
+                responseContent = await response.Content.ReadAsStringAsync();
 
             var code = response.StatusCode;
 
@@ -387,7 +383,7 @@ namespace TraktApiSharp.Requests.Base
                         TraktCheckinPostErrorResponse errorResponse = null;
 
                         if (!string.IsNullOrEmpty(responseContent))
-                            errorResponse = JsonConvert.DeserializeObject<TraktCheckinPostErrorResponse>(responseContent);
+                            errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
 
                         throw new TraktCheckinException("checkin is already in progress")
                         {
@@ -473,7 +469,7 @@ namespace TraktApiSharp.Requests.Base
 
             try
             {
-                error = JsonConvert.DeserializeObject<TraktError>(responseContent);
+                error = Json.Deserialize<TraktError>(responseContent);
             }
             catch (Exception ex)
             {
