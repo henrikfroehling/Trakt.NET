@@ -81,7 +81,7 @@
             var device = default(TraktDevice);
 
             if (!string.IsNullOrEmpty(responseContent))
-                device = await Task.Run(() => Json.Deserialize<TraktDevice>(responseContent));
+                device = await Json.DeserializeAsync<TraktDevice>(responseContent);
 
             Client.Authentication.Device = device;
             return device;
@@ -245,7 +245,7 @@
                     var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Task.Run(() => Json.Deserialize<TraktAuthorization>(responseContent));
+                        token = await Json.DeserializeAsync<TraktAuthorization>(responseContent);
 
                     Client.Authentication.Authorization = token;
                     return token;

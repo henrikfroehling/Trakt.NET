@@ -309,7 +309,7 @@
                 var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Task.Run(() => Json.Deserialize<TraktAuthorization>(responseContent));
+                    token = await Json.DeserializeAsync<TraktAuthorization>(responseContent);
 
                 Client.Authentication.Authorization = token;
                 return token;
@@ -319,7 +319,7 @@
                 var error = default(TraktError);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    error = await Task.Run(() => Json.Deserialize<TraktError>(responseContent));
+                    error = await Json.DeserializeAsync<TraktError>(responseContent);
 
                 var errorMessage = error != null ? ($"error on refreshing oauth access token\nerror: {error.Error}\n" +
                                                     $"description: {error.Description}")

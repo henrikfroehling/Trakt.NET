@@ -64,7 +64,7 @@ namespace TraktApiSharp.Requests.Base
                 return await HandleListResult(response, responseContent);
 
             // Single object item
-            return await Task.Run(() => Json.Deserialize<TResult>(responseContent));
+            return await Json.DeserializeAsync<TResult>(responseContent);
         }
 
         internal TraktClient Client { get; private set; }
@@ -197,7 +197,7 @@ namespace TraktApiSharp.Requests.Base
                 var paginationListResult = Activator.CreateInstance(typePaginationList);
 
                 (paginationListResult as TraktPaginationListResult<TItem>).Items =
-                    await Task.Run(() => Json.Deserialize<IEnumerable<TItem>>(responseContent));
+                    await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent);
 
                 if (response.Headers != null)
                     ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
@@ -205,7 +205,7 @@ namespace TraktApiSharp.Requests.Base
                 return (TResult)paginationListResult;
             }
 
-            var results = await Task.Run(() => Json.Deserialize<IEnumerable<TItem>>(responseContent));
+            var results = await Json.DeserializeAsync<IEnumerable<TItem>>(responseContent);
             return (TResult)results;
         }
 
