@@ -298,7 +298,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content);
+            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
             string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
@@ -309,7 +309,7 @@
                 var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Json.DeserializeAsync<TraktAuthorization>(responseContent);
+                    token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                 Client.Authentication.Authorization = token;
                 return token;
@@ -319,7 +319,7 @@
                 var error = default(TraktError);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    error = await Json.DeserializeAsync<TraktError>(responseContent);
+                    error = Json.Deserialize<TraktError>(responseContent);
 
                 var errorMessage = error != null ? ($"error on retrieving oauth access token\nerror: {error.Error}\n" +
                                                     $"description: {error.Description}")

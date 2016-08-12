@@ -71,7 +71,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content);
+            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 await ErrorHandling(response, tokenUrl, postContent, true);
@@ -81,7 +81,7 @@
             var device = default(TraktDevice);
 
             if (!string.IsNullOrEmpty(responseContent))
-                device = await Json.DeserializeAsync<TraktDevice>(responseContent);
+                device = Json.Deserialize<TraktDevice>(responseContent);
 
             Client.Authentication.Device = device;
             return device;
@@ -234,7 +234,7 @@
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
                 var content = new StringContent(postContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(tokenUrl, content);
+                var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
                 responseCode = response.StatusCode;
                 reasonPhrase = response.ReasonPhrase;
@@ -245,7 +245,7 @@
                     var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Json.DeserializeAsync<TraktAuthorization>(responseContent);
+                        token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                     Client.Authentication.Authorization = token;
                     return token;
