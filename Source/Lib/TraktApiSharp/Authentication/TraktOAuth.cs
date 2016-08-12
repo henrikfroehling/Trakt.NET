@@ -301,7 +301,7 @@
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
-            string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync().ConfigureAwait(false) : string.Empty;
+            string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
             string reasonPhrase = response.ReasonPhrase;
 
             if (responseCode == HttpStatusCode.OK)
@@ -309,7 +309,7 @@
                 var token = default(TraktAuthorization);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    token = await Json.DeserializeAsync<TraktAuthorization>(responseContent).ConfigureAwait(false);
+                    token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                 Client.Authentication.Authorization = token;
                 return token;
@@ -319,7 +319,7 @@
                 var error = default(TraktError);
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    error = await Json.DeserializeAsync<TraktError>(responseContent).ConfigureAwait(false);
+                    error = Json.Deserialize<TraktError>(responseContent);
 
                 var errorMessage = error != null ? ($"error on retrieving oauth access token\nerror: {error.Error}\n" +
                                                     $"description: {error.Description}")
@@ -334,7 +334,7 @@
                 };
             }
 
-            await ErrorHandling(response, tokenUrl, postContent).ConfigureAwait(false);
+            await ErrorHandling(response, tokenUrl, postContent);
             return default(TraktAuthorization);
         }
 
@@ -668,7 +668,7 @@
             var responseContent = string.Empty;
 
             if (response.Content != null)
-                responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                responseContent = await response.Content.ReadAsStringAsync();
 
             var code = response.StatusCode;
             var reasonPhrase = response.ReasonPhrase;
