@@ -74,14 +74,14 @@
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
-                await ErrorHandling(response, tokenUrl, postContent, true).ConfigureAwait(false);
+                await ErrorHandling(response, tokenUrl, postContent, true);
 
-            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync().ConfigureAwait(false) : string.Empty;
+            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
             var device = default(TraktDevice);
 
             if (!string.IsNullOrEmpty(responseContent))
-                device = await Json.DeserializeAsync<TraktDevice>(responseContent).ConfigureAwait(false);
+                device = Json.Deserialize<TraktDevice>(responseContent);
 
             Client.Authentication.Device = device;
             return device;
@@ -238,21 +238,21 @@
 
                 responseCode = response.StatusCode;
                 reasonPhrase = response.ReasonPhrase;
-                responseContent = response.Content != null ? await response.Content.ReadAsStringAsync().ConfigureAwait(false) : string.Empty;
+                responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
                 if (responseCode == HttpStatusCode.OK) // Success
                 {
                     var token = default(TraktAuthorization);
 
                     if (!string.IsNullOrEmpty(responseContent))
-                        token = await Json.DeserializeAsync<TraktAuthorization>(responseContent).ConfigureAwait(false);
+                        token = Json.Deserialize<TraktAuthorization>(responseContent);
 
                     Client.Authentication.Authorization = token;
                     return token;
                 }
                 else if (responseCode == HttpStatusCode.BadRequest) // Pending
                 {
-                    await Task.Delay(device.IntervalInSeconds * 1000).ConfigureAwait(false);
+                    await Task.Delay(device.IntervalInSeconds * 1000);
                     totalExpiredSeconds += device.IntervalInSeconds;
                     continue;
                 }
@@ -301,7 +301,7 @@
                         };
                 }
 
-                await ErrorHandling(response, tokenUrl, postContent, true).ConfigureAwait(false);
+                await ErrorHandling(response, tokenUrl, postContent, true);
                 break;
             }
 
@@ -600,7 +600,7 @@
             var responseContent = string.Empty;
 
             if (response.Content != null)
-                responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                responseContent = await response.Content.ReadAsStringAsync();
 
             var code = response.StatusCode;
             var reasonPhrase = response.ReasonPhrase;
