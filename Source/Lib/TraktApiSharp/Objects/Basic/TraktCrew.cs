@@ -4,11 +4,11 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    /// <summary>A collection of crew members of different positions.</summary>
+    /// <summary>A collection of crew members in different categories.</summary>
     public class TraktCrew
     {
         /// <summary>
-        /// Gets or sets a list of crew members in a production position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the production category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "production")]
@@ -16,7 +16,7 @@
         public IEnumerable<TraktCrewMember> Production { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in an art position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the art category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "art")]
@@ -32,7 +32,7 @@
         public IEnumerable<TraktCrewMember> Crew { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a costume and make-up position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the costume and make-up category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "costume & make-up")]
@@ -40,7 +40,7 @@
         public IEnumerable<TraktCrewMember> CostumeAndMakeup { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a directing position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the directing category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "directing")]
@@ -48,7 +48,7 @@
         public IEnumerable<TraktCrewMember> Directing { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a writing position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the writing category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "writing")]
@@ -56,7 +56,7 @@
         public IEnumerable<TraktCrewMember> Writing { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a sound position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the sound category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sound")]
@@ -64,7 +64,7 @@
         public IEnumerable<TraktCrewMember> Sound { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a camera position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the camera category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "camera")]
@@ -72,7 +72,7 @@
         public IEnumerable<TraktCrewMember> Camera { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a lighting position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the lighting category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "lighting")]
@@ -80,7 +80,7 @@
         public IEnumerable<TraktCrewMember> Lighting { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in a visual effects position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the visual effects category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "visual effects")]
@@ -88,7 +88,7 @@
         public IEnumerable<TraktCrewMember> VisualEffects { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of crew members in an editing position. See also <seealso cref="TraktCrewMember" />.
+        /// Gets or sets a list of crew members in the editing category. See also <seealso cref="TraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "editing")]
