@@ -184,7 +184,7 @@
         /// Gets all movies the user has watched, sorted by most plays.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
@@ -203,7 +203,7 @@
         /// Gets all shows the user has watched, sorted by most plays.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
@@ -222,7 +222,7 @@
         /// Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched-history">"Trakt API Doc - Sync: Get History"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-history/get-watched-history">"Trakt API Doc - Sync: Get History"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="historyItemType">Determines, which type of history items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
@@ -289,7 +289,7 @@
         /// Removes items from the user's watch history. Accepts shows, seasons, episodes and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncHistoryRemovePostBuilder" /> to create an instance
@@ -371,7 +371,7 @@
         /// Removes items from the user's ratings. Accepts shows, seasons, episodes and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance

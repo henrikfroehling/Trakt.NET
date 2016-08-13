@@ -35,7 +35,7 @@
         /// </param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried movies and which also
-        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// contains the queried page number and the page's item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMovie" />.
         /// </para>
@@ -84,7 +84,7 @@
         /// </param>
         /// <returns>
         /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried shows and which also
-        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// contains the queried page number and the page's item count.
         /// <para>
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
         /// </para>

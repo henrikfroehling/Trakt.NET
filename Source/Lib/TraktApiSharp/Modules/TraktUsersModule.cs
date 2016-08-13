@@ -171,7 +171,7 @@
         /// Gets all collected movies in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected movies should be queried.</param>
@@ -198,7 +198,7 @@
         /// Gets all collected shows in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected shows should be queried.</param>
@@ -891,7 +891,7 @@
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/history/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/ratings/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the ratings should be queried.</param>
