@@ -2,10 +2,11 @@
 {
     using Base.Get;
     using Enums;
+    using Objects.Basic;
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal class TraktUserWatchlistRequest : TraktGetRequest<IEnumerable<TraktWatchlistItem>, TraktWatchlistItem>
+    internal class TraktUserWatchlistRequest : TraktGetRequest<TraktPaginationListResult<TraktWatchlistItem>, TraktWatchlistItem>
     {
         internal TraktUserWatchlistRequest(TraktClient client) : base(client) { }
 
@@ -28,6 +29,8 @@
         }
 
         protected override string UriTemplate => "users/{username}/watchlist{/type}{?extended}";
+
+        protected override bool SupportsPagination => true;
 
         protected override bool IsListResult => true;
     }
