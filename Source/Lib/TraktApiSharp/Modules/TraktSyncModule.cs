@@ -404,16 +404,26 @@
         /// The extended option, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktWatchlistItem" /> instances.</returns>
+        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <returns>
+        /// An <see cref="TraktPaginationListResult{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
+        /// </para>
+        /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
-                                                                             TraktExtendedOption extendedOption = null)
+        public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
+                                                                                           TraktExtendedOption extendedOption = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = watchlistItemType,
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
