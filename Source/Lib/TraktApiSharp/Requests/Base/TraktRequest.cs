@@ -27,6 +27,8 @@ namespace TraktApiSharp.Requests.Base
         private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
         private static string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
+        private static string HEADER_SORT_BY = "X-Sort-By";
+        private static string HEADER_SORT_HOW = "X-Sort-How";
 
         protected TraktRequest(TraktClient client)
         {
@@ -199,7 +201,7 @@ namespace TraktApiSharp.Requests.Base
                 (paginationListResult as TraktPaginationListResult<TItem>).Items = Json.Deserialize<IEnumerable<TItem>>(responseContent);
 
                 if (response.Headers != null)
-                    ParseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
+                    ParserResponseHeaderValues(paginationListResult as TraktPaginationListResult<TItem>, response.Headers);
 
                 return (TResult)paginationListResult;
             }
@@ -208,11 +210,11 @@ namespace TraktApiSharp.Requests.Base
             return (TResult)results;
         }
 
-        private void ParseHeaderValues(TraktPaginationListResult<TItem> paginationListResult, HttpResponseHeaders headers)
+        private void ParserResponseHeaderValues(ITraktPaginationResultHeaders paginationListResult, HttpResponseHeaders responseHeaders)
         {
             IEnumerable<string> values;
 
-            if (headers.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
             {
                 var strPage = values.First();
                 int page;
@@ -221,7 +223,7 @@ namespace TraktApiSharp.Requests.Base
                     paginationListResult.Page = page;
             }
 
-            if (headers.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
             {
                 var strLimit = values.First();
                 int limit;
@@ -230,7 +232,7 @@ namespace TraktApiSharp.Requests.Base
                     paginationListResult.Limit = limit;
             }
 
-            if (headers.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
             {
                 var strPageCount = values.First();
                 int pageCount;
@@ -239,7 +241,7 @@ namespace TraktApiSharp.Requests.Base
                     paginationListResult.PageCount = pageCount;
             }
 
-            if (headers.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
             {
                 var strItemCount = values.First();
                 int itemCount;
@@ -248,13 +250,25 @@ namespace TraktApiSharp.Requests.Base
                     paginationListResult.ItemCount = itemCount;
             }
 
-            if (headers.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
             {
                 var strUserCount = values.First();
                 int userCount;
 
                 if (int.TryParse(strUserCount, out userCount))
                     paginationListResult.UserCount = userCount;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_SORT_BY, out values))
+            {
+                var strSortBy = values.First();
+                paginationListResult.SortBy = strSortBy;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_SORT_HOW, out values))
+            {
+                var strSortHow = values.First();
+                paginationListResult.SortHow = strSortHow;
             }
         }
 
