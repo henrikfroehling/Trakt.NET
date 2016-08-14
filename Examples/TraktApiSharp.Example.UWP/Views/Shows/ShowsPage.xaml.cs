@@ -6,7 +6,7 @@
     {
         public ShowsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
     }
