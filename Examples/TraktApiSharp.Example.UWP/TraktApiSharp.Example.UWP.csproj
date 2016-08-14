@@ -126,7 +126,14 @@
     <Compile Include="ViewModels\Movies\RecentlyUpdatedMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\Movies\TrendingMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostAnticipatedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostCollectedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostPlayedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostWatchedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\PopularShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\RecentlyUpdatedShowsPageViewModel.cs" />
     <Compile Include="ViewModels\Shows\ShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\TrendingShowsPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
       <DependentUpon>Busy.xaml</DependentUpon>
     </Compile>

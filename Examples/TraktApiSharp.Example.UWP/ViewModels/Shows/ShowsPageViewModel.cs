@@ -1,22 +1,54 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Shows
 {
+    using Models;
+    using System.Collections.Generic;
     using Template10.Mvvm;
 
     public class ShowsPageViewModel : ViewModelBase
     {
-        public TrendingShowsPartViewModel TrendingShowsViewModel { get; } = new TrendingShowsPartViewModel();
+        public ShowsPageViewModel()
+        {
+            NavigationItems = new List<PageNavigationItem>()
+            {
+                new PageNavigationItem
+                {
+                    Title = "Trending",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Popular",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Played",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Watched",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Collected",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Anticipated",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Recently Updated",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                }
+            };
+        }
 
-        public PopularShowsPartViewModel PopularShowsViewModel { get; } = new PopularShowsPartViewModel();
-
-        public MostPlayedShowsPartViewModel MostPlayedShowsViewModel { get; } = new MostPlayedShowsPartViewModel();
-
-        public MostWatchedShowsPartViewModel MostWatchedShowsViewModel { get; } = new MostWatchedShowsPartViewModel();
-
-        public MostCollectedShowsPartViewModel MostCollectedShowsViewModel { get; } = new MostCollectedShowsPartViewModel();
-
-        public MostAnticipatedShowsPartViewModel MostAnticipatedShowsViewModel { get; } = new MostAnticipatedShowsPartViewModel();
-
-        public RecentlyUpdatedShowsPartViewModel RecentlyUpdatedShowsViewModel { get; } = new RecentlyUpdatedShowsPartViewModel();
+        public IEnumerable<PageNavigationItem> NavigationItems { get; }
 
         public void GotoTraktSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
@@ -26,40 +58,5 @@
 
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
-    }
-
-    public class TrendingShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class PopularShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostPlayedShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostWatchedShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostCollectedShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostAnticipatedShowsPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class RecentlyUpdatedShowsPartViewModel : ViewModelBase
-    {
-
     }
 }
