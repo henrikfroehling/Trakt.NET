@@ -8,6 +8,7 @@
       xmlns:local="using:TraktApiSharp.Example.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:movieViews="using:TraktApiSharp.Example.UWP.Views.Movies"
+      xmlns:showViews="using:TraktApiSharp.Example.UWP.Views.Shows"
       xmlns:views="using:TraktApiSharp.Example.UWP.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
@@ -42,7 +43,7 @@
             </Controls:HamburgerButtonInfo>
 
             <!--  shows button  -->
-            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="views:ShowsPage">
+            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="showViews:ShowsPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
