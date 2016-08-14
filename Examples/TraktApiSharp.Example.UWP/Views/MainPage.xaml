@@ -24,9 +24,9 @@
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.GotoTraktSettings}" Label="Trakt Client Settings" />
-                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Application Settings" />
-                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}" Label="Trakt Client Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoSettings}" Label="Application Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoAbout}" Label="About" />
             </controls:PageHeader.SecondaryCommands>
 
         </controls:PageHeader>
@@ -54,7 +54,7 @@
                            TextWrapping="WrapWholeWords" />
 
                 <Button Margin="12"
-                        Click="{x:Bind ViewModel.GotoTraktSettings}"
+                        Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}"
                         RelativePanel.AlignHorizontalCenterWithPanel="True"
                         RelativePanel.Below="txtInfo">
                     <Button.Content>

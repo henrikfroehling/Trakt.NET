@@ -1,16 +1,7 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Shows
 {
-    using Template10.Mvvm;
-
-    public class TrendingShowsPageViewModel : ViewModelBase
+    public class TrendingShowsPageViewModel : BaseViewModel
     {
-        public void GotoTraktSettings() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 0);
 
-        public void GotoSettings() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 1);
-
-        public void GotoAbout() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 2);
     }
 }

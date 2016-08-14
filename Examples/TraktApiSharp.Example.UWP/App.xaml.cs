@@ -1,14 +1,11 @@
-using System.Threading.Tasks;
-using Template10.Controls;
-using TraktApiSharp.Example.UWP.Services.SettingsServices;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Data;
-
 namespace TraktApiSharp.Example.UWP
 {
-    /// Documentation on APIs used in this page:
-    /// https://github.com/Windows-XAML/Template10/wiki
+    using Services.SettingsServices;
+    using System.Threading.Tasks;
+    using Template10.Controls;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Data;
 
     [Bindable]
     sealed partial class App : Template10.Common.BootStrapper

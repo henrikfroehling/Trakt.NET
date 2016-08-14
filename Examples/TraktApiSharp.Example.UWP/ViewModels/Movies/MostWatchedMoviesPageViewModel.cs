@@ -1,16 +1,7 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Movies
 {
-    using Template10.Mvvm;
-
-    public class MostWatchedMoviesPageViewModel : ViewModelBase
+    public class MostWatchedMoviesPageViewModel : BaseViewModel
     {
-        public void GotoTraktSettings() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 0);
 
-        public void GotoSettings() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 1);
-
-        public void GotoAbout() =>
-            NavigationService.Navigate(typeof(Views.SettingsPage), 2);
     }
 }
