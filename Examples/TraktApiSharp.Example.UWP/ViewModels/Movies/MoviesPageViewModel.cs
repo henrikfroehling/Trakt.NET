@@ -1,24 +1,59 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Movies
 {
+    using Models;
+    using System.Collections.Generic;
     using Template10.Mvvm;
 
     public class MoviesPageViewModel : ViewModelBase
     {
-        public TrendingMoviesPartViewModel TrendingMoviesViewModel { get; } = new TrendingMoviesPartViewModel();
+        public MoviesPageViewModel()
+        {
+            NavigationItems = new List<PageNavigationItem>()
+            {
+                new PageNavigationItem
+                {
+                    Title = "Trending",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Popular",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Played",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Watched",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Collected",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Most Anticipated",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Box Office",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                },
+                new PageNavigationItem
+                {
+                    Title = "Recently Updated",
+                    GoTo = new DelegateCommand(() => NavigationService.Navigate(typeof(Views.SettingsPage), 0))
+                }
+            };
+        }
 
-        public PopularMoviesPartViewModel PopularMoviesViewModel { get; } = new PopularMoviesPartViewModel();
-
-        public MostPlayedMoviesPartViewModel MostPlayedMoviesViewModel { get; } = new MostPlayedMoviesPartViewModel();
-
-        public MostWatchedMoviesPartViewModel MostWatchedMoviesViewModel { get; } = new MostWatchedMoviesPartViewModel();
-
-        public MostCollectedMoviesPartViewModel MostCollectedMoviesViewModel { get; } = new MostCollectedMoviesPartViewModel();
-
-        public MostAnticipatedMoviesPartViewModel MostAnticipatedMoviesViewModel { get; } = new MostAnticipatedMoviesPartViewModel();
-
-        public BoxOfficeMoviesPartViewModel BoxOfficeMoviesViewModel { get; } = new BoxOfficeMoviesPartViewModel();
-
-        public RecentlyUpdatedMoviesPartViewModel RecentlyUpdatedMoviesViewModel { get; } = new RecentlyUpdatedMoviesPartViewModel();
+        public IEnumerable<PageNavigationItem> NavigationItems { get; }
 
         public void GotoTraktSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
@@ -28,45 +63,5 @@
 
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
-    }
-
-    public class TrendingMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class PopularMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostPlayedMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostWatchedMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostCollectedMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class MostAnticipatedMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class BoxOfficeMoviesPartViewModel : ViewModelBase
-    {
-
-    }
-
-    public class RecentlyUpdatedMoviesPartViewModel : ViewModelBase
-    {
-
     }
 }

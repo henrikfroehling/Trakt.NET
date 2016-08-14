@@ -101,6 +101,7 @@
     <Compile Include="Models\Movies\BoxOfficeMovie.cs" />
     <Compile Include="Models\Movies\MostPWCMovie.cs" />
     <Compile Include="Models\Movies\Movie.cs" />
+    <Compile Include="Models\PageNavigationItem.cs" />
     <Compile Include="Models\PaginationList.cs" />
     <Compile Include="Models\Movies\RecentlyUpdatedMovie.cs" />
     <Compile Include="Models\Movies\TrendingMovie.cs" />
@@ -115,7 +116,15 @@
     <Compile Include="Services\TraktService\TraktServiceProvider.cs" />
     <Compile Include="Services\TraktService\TraktShowsService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\BoxOfficeMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostAnticipatedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostCollectedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostPlayedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostWatchedMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\Movies\MoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\PopularMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\RecentlyUpdatedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\TrendingMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Shows\ShowsPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
