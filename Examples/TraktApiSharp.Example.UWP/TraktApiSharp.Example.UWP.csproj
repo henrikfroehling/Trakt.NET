@@ -140,8 +140,32 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Movies\BoxOfficeMoviesPage.xaml.cs">
+      <DependentUpon>BoxOfficeMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostAnticipatedMoviesPage.xaml.cs">
+      <DependentUpon>MostAnticipatedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostCollectedMoviesPage.xaml.cs">
+      <DependentUpon>MostCollectedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostPlayedMoviesPage.xaml.cs">
+      <DependentUpon>MostPlayedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostWatchedMoviesPage.xaml.cs">
+      <DependentUpon>MostWatchedMoviesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Movies\MoviesPage.xaml.cs">
       <DependentUpon>MoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\PopularMoviesPage.xaml.cs">
+      <DependentUpon>PopularMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\RecentlyUpdatedMoviesPage.xaml.cs">
+      <DependentUpon>RecentlyUpdatedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\TrendingMoviesPage.xaml.cs">
+      <DependentUpon>TrendingMoviesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -192,7 +216,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Movies\BoxOfficeMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostAnticipatedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostCollectedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostPlayedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostWatchedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Movies\MoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\PopularMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\RecentlyUpdatedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\TrendingMoviesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
