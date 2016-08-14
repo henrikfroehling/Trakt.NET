@@ -115,7 +115,7 @@
     <Compile Include="Services\TraktService\TraktServiceProvider.cs" />
     <Compile Include="Services\TraktService\TraktShowsService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\MoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MoviesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\ShowsPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
@@ -124,7 +124,7 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MoviesPage.xaml.cs">
+    <Compile Include="Views\Movies\MoviesPage.xaml.cs">
       <DependentUpon>MoviesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
@@ -176,7 +176,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MoviesPage.xaml">
+    <Page Include="Views\Movies\MoviesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

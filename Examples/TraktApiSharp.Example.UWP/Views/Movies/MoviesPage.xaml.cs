@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Example.UWP.Views
+﻿namespace TraktApiSharp.Example.UWP.Views.Movies
 {
     using Windows.UI.Xaml.Controls;
 

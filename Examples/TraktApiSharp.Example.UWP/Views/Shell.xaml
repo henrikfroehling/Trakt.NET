@@ -7,6 +7,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TraktApiSharp.Example.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:movieViews="using:TraktApiSharp.Example.UWP.Views.Movies"
       xmlns:views="using:TraktApiSharp.Example.UWP.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
@@ -29,7 +30,7 @@
             </Controls:HamburgerButtonInfo>
 
             <!--  movies button  -->
-            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="views:MoviesPage">
+            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="movieViews:MoviesPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
