@@ -184,7 +184,7 @@
         /// Gets all movies the user has watched, sorted by most plays.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
@@ -203,7 +203,7 @@
         /// Gets all shows the user has watched, sorted by most plays.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">"Trakt API Doc - Sync: Get Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedOption">
@@ -222,7 +222,7 @@
         /// Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched-history">"Trakt API Doc - Sync: Get History"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-history/get-watched-history">"Trakt API Doc - Sync: Get History"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="historyItemType">Determines, which type of history items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
@@ -289,7 +289,7 @@
         /// Removes items from the user's watch history. Accepts shows, seasons, episodes and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncHistoryRemovePostBuilder" /> to create an instance
@@ -371,7 +371,7 @@
         /// Removes items from the user's ratings. Accepts shows, seasons, episodes and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance
@@ -404,16 +404,26 @@
         /// The extended option, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktWatchlistItem" /> instances.</returns>
+        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <returns>
+        /// An <see cref="TraktPaginationListResult{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
+        /// </para>
+        /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
-                                                                             TraktExtendedOption extendedOption = null)
+        public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
+                                                                                           TraktExtendedOption extendedOption = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = watchlistItemType,
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 

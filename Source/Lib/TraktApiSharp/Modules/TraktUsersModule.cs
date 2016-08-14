@@ -171,7 +171,7 @@
         /// Gets all collected movies in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected movies should be queried.</param>
@@ -198,7 +198,7 @@
         /// Gets all collected shows in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected shows should be queried.</param>
@@ -891,7 +891,7 @@
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/history/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/ratings/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the ratings should be queried.</param>
@@ -936,12 +936,21 @@
         /// The extended option, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktWatchlistItem" /> instances.</returns>
+        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <returns>
+        /// An <see cref="TraktPaginationListResult{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
+        /// </para>
+        /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
-                                                                             TraktExtendedOption extendedOption = null)
+        public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
+                                                                                           TraktExtendedOption extendedOption = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -949,7 +958,8 @@
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 

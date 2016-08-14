@@ -10508,12 +10508,23 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist", userWatchlist);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist", userWatchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -10523,13 +10534,25 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/watchlist", userWatchlist);
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"users/{username}/watchlist", userWatchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
+
             TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -10539,13 +10562,131 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
             var type = TraktSyncItemType.Movie;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist/{type.UriName}", userWatchlist);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.UriName}",
+                userWatchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithTypeAndExtendedOption()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var type = TraktSyncItemType.Movie;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.UriName}?extended={extendedOption.ToString()}",
+                userWatchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithTypeAndExtendedOptionAndPage()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var type = TraktSyncItemType.Movie;
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
+                userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption,
+                                                                                page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithTypeAndExtendedOptionAndLimit()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var type = TraktSyncItemType.Movie;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
+                userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption,
+                                                                                null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -10555,6 +10696,9 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
 
             var extendedOption = new TraktExtendedOption
             {
@@ -10562,11 +10706,213 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/watchlist?extended={extendedOption.ToString()}", userWatchlist);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?extended={extendedOption.ToString()}",
+                userWatchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithExtendedOptionAndPage()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var page = 2;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?extended={extendedOption.ToString()}&page={page}",
+                userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption,
+                                                                                page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithExtendedOptionAndLimit()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?extended={extendedOption.ToString()}&limit={limit}",
+                userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption,
+                                                                                null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithExtendedOptionAndPageAndLimit()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var page = 2;
+            var limit = 4;
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedOption,
+                                                                                page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithPage()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?page={page}",
+                userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithLimit()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?limit={limit}",
+                userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null,
+                                                                                null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktUsersModuleGetWatchlistWithPageAndLimit()
+        {
+            var userWatchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            userWatchlist.Should().NotBeNullOrEmpty();
+
+            var username = "sean";
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist?page={page}&limit={limit}",
+                userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null,
+                                                                                page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -10576,7 +10922,12 @@
             userWatchlist.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncItemType.Show;
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+            var type = TraktSyncItemType.Movie;
+            var page = 2;
+            var limit = 4;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -10584,13 +10935,22 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}?extended={extendedOption.ToString()}",
-                userWatchlist);
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"users/{username}/watchlist/{type.UriName}" +
+                $"?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedOption,
+                                                                                page, limit).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
