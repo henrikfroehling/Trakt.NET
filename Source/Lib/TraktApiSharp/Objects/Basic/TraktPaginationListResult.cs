@@ -9,7 +9,7 @@
     /// and can also contain the total user count (e.g. in trending shows and movies requests).
     /// </summary>
     /// <typeparam name="ListItem">The underlying item type of the list results.</typeparam>
-    public class TraktPaginationListResult<ListItem> : IEnumerable<ListItem>
+    public class TraktPaginationListResult<ListItem> : IEnumerable<ListItem>, ITraktPaginationResultHeaders
     {
         /// <summary>Gets or sets the actual list results.</summary>
         public IEnumerable<ListItem> Items { get; set; } = new List<ListItem>();
@@ -28,11 +28,23 @@
 
         /// <summary>
         /// Gets or sets the total user count.
-        /// <para>
-        /// May be only supported for trending shows and movies requests.
-        /// </para>
+        /// <para>Will possibly only supported by trending shows and movies requests.</para>
         /// </summary>
         public int? UserCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets, by which value the results are sorted.
+        /// <para>Will possibly only supported by some requests.</para>
+        /// <para>Nullable</para>
+        /// </summary>
+        public string SortBy { get; set; }
+
+        /// <summary>
+        /// Gets or sets, how the results are sorted.
+        /// <para>Will possibly only supported by some requests.</para>
+        /// <para>Nullable</para>
+        /// </summary>
+        public string SortHow { get; set; }
 
         /// <summary>Returns an enumerator for the containing items list.</summary>
         /// <returns>An enumerator for the containing items list.</returns>

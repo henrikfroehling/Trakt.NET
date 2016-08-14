@@ -138,6 +138,8 @@
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
     <Compile Include="Modules\TraktUsersModule.cs" />
+    <Compile Include="Objects\Basic\ITraktPaginationResultHeaders.cs" />
+    <Compile Include="Objects\Basic\ITraktResultHeaders.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
