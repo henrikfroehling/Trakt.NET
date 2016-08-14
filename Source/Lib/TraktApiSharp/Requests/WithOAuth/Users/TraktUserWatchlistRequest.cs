@@ -28,7 +28,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "users/{username}/watchlist{/type}{?extended}";
+        protected override string UriTemplate => "users/{username}/watchlist{/type}{?extended,page,limit}";
 
         protected override bool SupportsPagination => true;
 
