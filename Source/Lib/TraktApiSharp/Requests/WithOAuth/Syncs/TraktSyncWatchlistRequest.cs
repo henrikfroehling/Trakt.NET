@@ -24,7 +24,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "sync/watchlist{/type}{?extended}";
+        protected override string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
 
         protected override bool SupportsPagination => true;
 
