@@ -13,7 +13,18 @@
     {
         private TraktShowsService Movies { get; } = TraktShowsService.Instance;
 
-        public ObservableCollection<TrendingShow> TrendingShows { get; set; } = new ObservableCollection<TrendingShow>();
+        private ObservableCollection<TrendingShow> _trendingShows = new ObservableCollection<TrendingShow>();
+
+        public ObservableCollection<TrendingShow> TrendingShows
+        {
+            get { return _trendingShows; }
+
+            set
+            {
+                _trendingShows = value;
+                base.RaisePropertyChanged();
+            }
+        }
 
         private int _totalUsers = 0;
 
@@ -31,28 +42,33 @@
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             if (TrendingShows != null && TrendingShows.Count <= 0)
+                await LoadPage(1, DEFAULT_LIMIT);
+        }
+
+        protected override async Task LoadPage(int? page = null, int? limit = null)
+        {
+            var extendedOption = new TraktExtendedOption
             {
-                var extendedOption = new TraktExtendedOption
-                {
-                    Full = true,
-                    Images = true
-                };
+                Full = true,
+                Images = true
+            };
 
-                Busy.SetBusy(true, "Loading trending movies...");
-                var trendingShows = await Movies.GetTrendingShowsAsync(extendedOption, limitPerPage: DEFAULT_LIMIT);
+            Busy.SetBusy(true, "Loading trending shows...");
+            var traktTrendingShows = await Movies.GetTrendingShowsAsync(extendedOption, whichPage: page, limitPerPage: limit);
 
-                if (trendingShows.Items != null)
-                {
-                    TrendingShows = trendingShows.Items;
-                    TotalUsers = trendingShows.TotalUserCount.GetValueOrDefault();
-                    CurrentPage = trendingShows.CurrentPage.GetValueOrDefault();
-                    ItemsPerPage = trendingShows.LimitPerPage.GetValueOrDefault();
-                    TotalItems = trendingShows.TotalItemCount.GetValueOrDefault();
-                    TotalPages = trendingShows.TotalPages.GetValueOrDefault();
-                }
-
-                Busy.SetBusy(false);
+            if (traktTrendingShows.Items != null)
+            {
+                TrendingShows = traktTrendingShows.Items;
+                TotalUsers = traktTrendingShows.TotalUserCount.GetValueOrDefault();
+                CurrentPage = traktTrendingShows.CurrentPage.GetValueOrDefault();
+                ItemsPerPage = traktTrendingShows.LimitPerPage.GetValueOrDefault();
+                TotalItems = traktTrendingShows.TotalItemCount.GetValueOrDefault();
+                TotalPages = traktTrendingShows.TotalPages.GetValueOrDefault();
+                SelectedLimit = ItemsPerPage;
+                SelectedPage = CurrentPage;
             }
+
+            Busy.SetBusy(false);
         }
     }
 }

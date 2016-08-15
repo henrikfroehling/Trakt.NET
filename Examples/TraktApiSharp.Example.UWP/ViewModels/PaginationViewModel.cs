@@ -1,8 +1,44 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels
 {
+    using System.Threading.Tasks;
+    using Template10.Mvvm;
+
     public abstract class PaginationViewModel : BaseViewModel
     {
         protected const int DEFAULT_LIMIT = 40;
+
+        protected PaginationViewModel()
+        {
+            GoToPreviousPage = new DelegateCommand(PreviousPage);
+            GoToNextPage = new DelegateCommand(NextPage);
+            GoToSelectedPage = new DelegateCommand(SelectPage);
+        }
+
+        public DelegateCommand GoToPreviousPage { get; }
+
+        public DelegateCommand GoToNextPage { get; }
+
+        public DelegateCommand GoToSelectedPage { get; }
+
+        protected async void PreviousPage()
+        {
+            if (CurrentPage > 1)
+                await LoadPage(CurrentPage - 1, SelectedLimit > 0 ? SelectedLimit : DEFAULT_LIMIT);
+        }
+
+        protected async void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+                await LoadPage(CurrentPage + 1, SelectedLimit > 0 ? SelectedLimit : DEFAULT_LIMIT);
+        }
+
+        protected async void SelectPage()
+        {
+            if (SelectedPage > 0 && SelectedPage <= TotalPages)
+                await LoadPage(SelectedPage, SelectedLimit > 0 ? SelectedLimit : DEFAULT_LIMIT);
+        }
+
+        protected abstract Task LoadPage(int? page = null, int? limit = null);
 
         private int _currentPage = 0;
 

@@ -40,7 +40,7 @@
         <uwpControls:ResponsiveGridView Margin="12"
                                         DesiredWidth="400"
                                         ItemHeight="250"
-                                        ItemsSource="{x:Bind ViewModel.TrendingShows}"
+                                        ItemsSource="{x:Bind ViewModel.TrendingShows, Mode=OneWay}"
                                         RelativePanel.Above="pagination"
                                         RelativePanel.AlignLeftWithPanel="True"
                                         RelativePanel.AlignRightWithPanel="True"
@@ -90,8 +90,13 @@
                                        Margin="4"
                                        CurrentPage="{x:Bind ViewModel.CurrentPage, Mode=OneWay}"
                                        ItemsPerPage="{x:Bind ViewModel.ItemsPerPage, Mode=OneWay}"
+                                       NextPageCommand="{x:Bind ViewModel.GoToNextPage, Mode=OneWay}"
+                                       PreviousPageCommand="{x:Bind ViewModel.GoToPreviousPage, Mode=OneWay}"
                                        RelativePanel.AlignBottomWithPanel="True"
                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                       SelectPageCommand="{x:Bind ViewModel.GoToSelectedPage, Mode=OneWay}"
+                                       SelectedLimit="{x:Bind ViewModel.SelectedLimit, Mode=TwoWay}"
+                                       SelectedPage="{x:Bind ViewModel.SelectedPage, Mode=TwoWay}"
                                        TotalItemCount="{x:Bind ViewModel.TotalItems, Mode=OneWay}"
                                        TotalPageCount="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
     </RelativePanel>
