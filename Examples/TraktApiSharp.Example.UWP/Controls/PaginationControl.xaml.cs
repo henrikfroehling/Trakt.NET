@@ -22,8 +22,12 @@
             DependencyProperty.Register("TotalItemCount", typeof(int), typeof(PaginationControl),
                 new PropertyMetadata(0));
 
-        public static readonly DependencyProperty SelectPageProperty =
-            DependencyProperty.Register("SelectPage", typeof(int), typeof(PaginationControl),
+        public static readonly DependencyProperty SelectedPageProperty =
+            DependencyProperty.Register("SelectedPage", typeof(int), typeof(PaginationControl),
+                new PropertyMetadata(0));
+
+        public static readonly DependencyProperty SelectedLimitProperty =
+            DependencyProperty.Register("SelectedLimit", typeof(int), typeof(PaginationControl),
                 new PropertyMetadata(0));
 
         public static readonly DependencyProperty PreviousPageCommandProperty =
@@ -52,8 +56,8 @@
 
         public DelegateCommand NextPageCommand
         {
-            get { return (DelegateCommand)GetValue(SelectPageCommandProperty); }
-            set { SetValue(SelectPageCommandProperty, value); }
+            get { return (DelegateCommand)GetValue(NextPageCommandProperty); }
+            set { SetValue(NextPageCommandProperty, value); }
         }
 
         public DelegateCommand SelectPageCommand
@@ -86,10 +90,16 @@
             set { SetValue(TotalItemCountProperty, value); }
         }
 
-        public int SelectPage
+        public int SelectedPage
         {
-            get { return (int)GetValue(SelectPageProperty); }
-            set { SetValue(SelectPageProperty, value); }
+            get { return (int)GetValue(SelectedPageProperty); }
+            set { SetValue(SelectedPageProperty, value); }
+        }
+
+        public int SelectedLimit
+        {
+            get { return (int)GetValue(SelectedLimitProperty); }
+            set { SetValue(SelectedLimitProperty, value); }
         }
     }
 }

@@ -55,5 +55,31 @@
                 base.RaisePropertyChanged();
             }
         }
+
+        private int _selectedPage;
+
+        public int SelectedPage
+        {
+            get { return _selectedPage; }
+
+            set
+            {
+                _selectedPage = value;
+                base.RaisePropertyChanged();
+            }
+        }
+
+        private int _selectedLimit;
+
+        public int SelectedLimit
+        {
+            get { return _selectedLimit; }
+
+            set
+            {
+                _selectedLimit = value;
+                base.RaisePropertyChanged();
+            }
+        }
     }
 }
