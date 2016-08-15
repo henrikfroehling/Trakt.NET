@@ -100,6 +100,7 @@
     <Compile Include="Controls\PaginationControl.xaml.cs">
       <DependentUpon>PaginationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelConverter\MovieModelConverter.cs" />
     <Compile Include="Models\Movies\AnticipatedMovie.cs" />
     <Compile Include="Models\Movies\BoxOfficeMovie.cs" />
     <Compile Include="Models\Movies\MostPWCMovie.cs" />

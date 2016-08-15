@@ -24,28 +24,28 @@
                        Grid.Column="0"
                        Margin="4">
                 <Run FontWeight="SemiBold" Text="Current Page:" />
-                <Run Text="{x:Bind CurrentPage}" />
+                <Run Text="{x:Bind CurrentPage, Mode=OneWay}" />
             </TextBlock>
 
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Margin="12,4,4,4">
                 <Run FontWeight="SemiBold" Text="Items per Page:" />
-                <Run Text="{x:Bind ItemsPerPage}" />
+                <Run Text="{x:Bind ItemsPerPage, Mode=OneWay}" />
             </TextBlock>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Margin="4">
                 <Run FontWeight="SemiBold" Text="Total Pages:" />
-                <Run Text="{x:Bind TotalPageCount}" />
+                <Run Text="{x:Bind TotalPageCount, Mode=OneWay}" />
             </TextBlock>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
                        Margin="12,4,4,4">
                 <Run FontWeight="SemiBold" Text="Total Items:" />
-                <Run Text="{x:Bind TotalItemCount}" />
+                <Run Text="{x:Bind TotalItemCount, Mode=OneWay}" />
             </TextBlock>
         </Grid>
 
@@ -56,11 +56,11 @@
                     RelativePanel.RightOf="grdPaginationInfo">
 
             <Button Margin="4"
-                    Command="{x:Bind PreviousPageCommand}"
+                    Command="{x:Bind PreviousPageCommand, Mode=OneWay}"
                     Content="Previous Page" />
 
             <Button Margin="4"
-                    Command="{x:Bind NextPageCommand}"
+                    Command="{x:Bind NextPageCommand, Mode=OneWay}"
                     Content="Next Page" />
 
         </StackPanel>
@@ -79,10 +79,10 @@
             <TextBox Width="20"
                      Margin="4"
                      VerticalAlignment="Center"
-                     Text="{x:Bind SelectPage}" />
+                     Text="{x:Bind SelectPage, Mode=TwoWay}" />
 
             <Button Margin="12,4,4,4"
-                    Command="{x:Bind SelectPageCommand}"
+                    Command="{x:Bind SelectPageCommand, Mode=OneWay}"
                     Content="Select Page" />
 
         </StackPanel>

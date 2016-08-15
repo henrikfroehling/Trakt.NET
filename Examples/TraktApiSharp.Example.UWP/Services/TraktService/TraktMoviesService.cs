@@ -2,6 +2,7 @@
 {
     using Enums;
     using Models;
+    using Models.ModelConverter;
     using Models.Movies;
     using Objects.Get.Movies;
     using Requests.Params;
@@ -68,9 +69,10 @@
 
             foreach (var traktTrendingMovie in traktResults)
             {
-                var trendingMovie = traktTrendingMovie.Movie as TrendingMovie;
-                trendingMovie.Watchers = traktTrendingMovie.Watchers;
-                results.Items.Add(trendingMovie);
+                TrendingMovie trendingMovie = MovieModelConverter.Convert(traktTrendingMovie);
+
+                if (trendingMovie != null)
+                    results.Items.Add(trendingMovie);
             }
 
             return results;
