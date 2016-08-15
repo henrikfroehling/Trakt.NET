@@ -1,47 +1,49 @@
 ﻿namespace TraktApiSharp.Example.UWP.Models.ModelConverter
 {
-    using Movies;
     using Objects.Basic;
     using Objects.Get.Movies;
-    using Objects.Get.Movies.Common;
+    using System;
     using System.Collections.Generic;
 
     public static class MovieModelConverter
     {
         private const string DEFAULT_IMAGE = "ms-appx:///Assets/StoreLogo.jpg";
 
-        public static TrendingMovie Convert(TraktTrendingMovie traktTrendingMovie)
+        public static T Convert<T>(TraktMovie traktMovie) where T : TraktMovie, new()
         {
-            if (traktTrendingMovie == null)
+            if (traktMovie == null)
                 return null;
 
-            var movie = traktTrendingMovie.Movie;
+            var movie = Activator.CreateInstance<T>();
 
             if (movie == null)
                 return null;
 
-            var trendingMovie = new TrendingMovie
-            {
-                AvailableTranslationLanguageCodes = movie.AvailableTranslationLanguageCodes ?? new List<string>(),
-                Certification = movie.Certification ?? string.Empty,
-                Genres = movie.Genres ?? new List<string>(),
-                Homepage = movie.Homepage ?? string.Empty,
-                LanguageCode = movie.LanguageCode ?? string.Empty,
-                Overview = movie.Overview ?? string.Empty,
-                Rating = movie.Rating ?? 0.0f,
-                Runtime = movie.Runtime ?? 0,
-                Tagline = movie.Tagline ?? string.Empty,
-                Title = movie.Title ?? string.Empty,
-                Trailer = movie.Trailer ?? string.Empty,
-                Votes = movie.Votes ?? 0,
-                Watchers = traktTrendingMovie.Watchers ?? 0,
-                Year = movie.Year ?? 1900,
-                Ids = movie.Ids,
-                Released = movie.Released,
-                UpdatedAt = movie.UpdatedAt
-            };
+            movie.AvailableTranslationLanguageCodes = traktMovie.AvailableTranslationLanguageCodes ?? new List<string>();
+            movie.Certification = traktMovie.Certification ?? string.Empty;
+            movie.Genres = traktMovie.Genres ?? new List<string>();
+            movie.Homepage = traktMovie.Homepage ?? string.Empty;
+            movie.LanguageCode = traktMovie.LanguageCode ?? string.Empty;
+            movie.Overview = traktMovie.Overview ?? string.Empty;
+            movie.Rating = traktMovie.Rating ?? 0.0f;
+            movie.Runtime = traktMovie.Runtime ?? 0;
+            movie.Tagline = traktMovie.Tagline ?? string.Empty;
+            movie.Title = traktMovie.Title ?? string.Empty;
+            movie.Trailer = traktMovie.Trailer ?? string.Empty;
+            movie.Votes = traktMovie.Votes ?? 0;
+            movie.Year = traktMovie.Year ?? 1900;
+            movie.Ids = traktMovie.Ids;
+            movie.Released = traktMovie.Released;
+            movie.UpdatedAt = traktMovie.UpdatedAt;
 
-            var traktImages = movie.Images;
+            movie.Images = GetImages(traktMovie);
+
+            return movie as T;
+        }
+
+        private static TraktMovieImages GetImages(TraktMovie traktMovie)
+        {
+            var traktImages = traktMovie.Images;
             var images = new TraktMovieImages();
 
             if (traktImages != null)
@@ -68,23 +70,11 @@
             }
             else
             {
-                images.FanArt = new TraktImageSet
-                {
-                    Full = DEFAULT_IMAGE,
-                    Medium = DEFAULT_IMAGE,
-                    Thumb = DEFAULT_IMAGE
-                };
-
-                images.Poster = new TraktImageSet
-                {
-                    Full = DEFAULT_IMAGE,
-                    Medium = DEFAULT_IMAGE,
-                    Thumb = DEFAULT_IMAGE
-                };
+                images.FanArt = new TraktImageSet { Full = DEFAULT_IMAGE, Medium = DEFAULT_IMAGE, Thumb = DEFAULT_IMAGE };
+                images.Poster = new TraktImageSet { Full = DEFAULT_IMAGE, Medium = DEFAULT_IMAGE, Thumb = DEFAULT_IMAGE };
             }
 
-            trendingMovie.Images = images;
-            return trendingMovie;
+            return images;
         }
     }
 }

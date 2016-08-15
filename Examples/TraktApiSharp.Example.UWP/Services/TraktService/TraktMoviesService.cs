@@ -69,10 +69,13 @@
 
             foreach (var traktTrendingMovie in traktResults)
             {
-                TrendingMovie trendingMovie = MovieModelConverter.Convert(traktTrendingMovie);
+                var trendingMovie = MovieModelConverter.Convert<TrendingMovie>(traktTrendingMovie.Movie);
 
                 if (trendingMovie != null)
+                {
+                    trendingMovie.Watchers = traktTrendingMovie.Watchers ?? 0;
                     results.Items.Add(trendingMovie);
+                }
             }
 
             return results;
