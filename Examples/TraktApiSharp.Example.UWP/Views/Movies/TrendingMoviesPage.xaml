@@ -23,8 +23,7 @@
 
             <controls:PageHeader.Content>
                 <TextBlock>
-                    <Run Text="Trending Movies" />
-                    <Run Text=" - Total Users" />
+                    <Run Text="Trending Movies - Total Users" />
                     <Run Text="{x:Bind ViewModel.TotalUsers, Mode=OneWay}" />
                 </TextBlock>
             </controls:PageHeader.Content>

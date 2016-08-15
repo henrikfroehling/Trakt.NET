@@ -2,6 +2,7 @@
 {
     using Enums;
     using Models;
+    using Models.ModelConverter;
     using Models.Shows;
     using Objects.Get.Shows;
     using Requests.Params;
@@ -65,9 +66,13 @@
 
             foreach (var traktTrendingShow in traktResults)
             {
-                var trendingShow = traktTrendingShow.Show as TrendingShow;
-                trendingShow.Watchers = traktTrendingShow.Watchers;
-                results.Items.Add(trendingShow);
+                var trendingShow = ShowModelConverter.Convert<TrendingShow>(traktTrendingShow.Show);
+
+                if (trendingShow != null)
+                {
+                    trendingShow.Watchers = traktTrendingShow.Watchers ?? 0;
+                    results.Items.Add(trendingShow);
+                }
             }
 
             return results;

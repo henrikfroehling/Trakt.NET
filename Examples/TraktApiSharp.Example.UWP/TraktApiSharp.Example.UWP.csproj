@@ -101,6 +101,7 @@
       <DependentUpon>PaginationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelConverter\MovieModelConverter.cs" />
+    <Compile Include="Models\ModelConverter\ShowModelConverter.cs" />
     <Compile Include="Models\Movies\AnticipatedMovie.cs" />
     <Compile Include="Models\Movies\BoxOfficeMovie.cs" />
     <Compile Include="Models\Movies\MostPWCMovie.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="ViewModels\Movies\PopularMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\Movies\RecentlyUpdatedMoviesPageViewModel.cs" />
     <Compile Include="ViewModels\Movies\TrendingMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Shows\MostAnticipatedShowsPageViewModel.cs" />
     <Compile Include="ViewModels\Shows\MostCollectedShowsPageViewModel.cs" />

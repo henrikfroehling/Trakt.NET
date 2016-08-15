@@ -6,6 +6,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TraktApiSharp.Example.UWP.Views.Shows"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:TraktApiSharp.Example.UWP.Models.Shows"
+      xmlns:uwpControls="using:AppStudio.Uwp.Controls"
       xmlns:vm="using:TraktApiSharp.Example.UWP.ViewModels.Shows"
       mc:Ignorable="d">
 
@@ -17,8 +19,14 @@
         <controls:PageHeader x:Name="pageHeader"
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True"
-                             Text="Trending Shows">
+                             RelativePanel.AlignTopWithPanel="True">
+
+            <controls:PageHeader.Content>
+                <TextBlock>
+                    <Run Text="Trending Shows - Total Users" />
+                    <Run Text="{x:Bind ViewModel.TotalUsers, Mode=OneWay}" />
+                </TextBlock>
+            </controls:PageHeader.Content>
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
@@ -29,9 +37,62 @@
 
         </controls:PageHeader>
 
+        <uwpControls:ResponsiveGridView Margin="12"
+                                        DesiredWidth="400"
+                                        ItemHeight="250"
+                                        ItemsSource="{x:Bind ViewModel.TrendingShows}"
+                                        RelativePanel.Above="pagination"
+                                        RelativePanel.AlignLeftWithPanel="True"
+                                        RelativePanel.AlignRightWithPanel="True"
+                                        RelativePanel.Below="pageHeader">
+            <uwpControls:ResponsiveGridView.ItemTemplate>
+                <DataTemplate x:DataType="models:TrendingShow">
+                    <RelativePanel>
+                        <uwpControls:ImageEx RelativePanel.AlignBottomWithPanel="True"
+                                             RelativePanel.AlignLeftWithPanel="True"
+                                             RelativePanel.AlignRightWithPanel="True"
+                                             RelativePanel.AlignTopWithPanel="True"
+                                             Source="{x:Bind Images.FanArt.Thumb}"
+                                             Stretch="UniformToFill" />
+
+                        <StackPanel Background="Black"
+                                    Opacity="0.8"
+                                    Orientation="Horizontal"
+                                    RelativePanel.AlignBottomWithPanel="True"
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel>
+                                <TextBlock Margin="12,4,4,4"
+                                           Foreground="White"
+                                           TextWrapping="WrapWholeWords">
+                                    <Run FontSize="16" Text="{x:Bind Title}" />
+                                    <Run FontSize="12"
+                                         Foreground="{ThemeResource CustomColorBrush}"
+                                         Text="{x:Bind Year}" />
+                                </TextBlock>
+
+                                <TextBlock Margin="12,4,4,8"
+                                           FontSize="12"
+                                           Foreground="White"
+                                           TextWrapping="WrapWholeWords">
+                                    <Run Text="Watched by" />
+                                    <Run Text="{x:Bind Watchers}" />
+                                    <Run Text="Users" />
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </RelativePanel>
+                </DataTemplate>
+            </uwpControls:ResponsiveGridView.ItemTemplate>
+        </uwpControls:ResponsiveGridView>
+
         <appControls:PaginationControl x:Name="pagination"
                                        Margin="4"
+                                       CurrentPage="{x:Bind ViewModel.CurrentPage, Mode=OneWay}"
+                                       ItemsPerPage="{x:Bind ViewModel.ItemsPerPage, Mode=OneWay}"
                                        RelativePanel.AlignBottomWithPanel="True"
-                                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                       TotalItemCount="{x:Bind ViewModel.TotalItems, Mode=OneWay}"
+                                       TotalPageCount="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
     </RelativePanel>
 </Page>
