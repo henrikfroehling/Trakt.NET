@@ -1,6 +1,7 @@
 ﻿<Page x:Class="TraktApiSharp.Example.UWP.Views.Movies.RecentlyUpdatedMoviesPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:appControls="using:TraktApiSharp.Example.UWP.Controls"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TraktApiSharp.Example.UWP.Views.Movies"
@@ -28,5 +29,9 @@
 
         </controls:PageHeader>
 
+        <appControls:PaginationControl x:Name="pagination"
+                                       Margin="4"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
     </RelativePanel>
 </Page>
