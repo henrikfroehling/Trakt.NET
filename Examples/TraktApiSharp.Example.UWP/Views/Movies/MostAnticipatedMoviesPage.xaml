@@ -22,6 +22,14 @@
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTrendingMovies}" Label="Trending Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoPopularMovies}" Label="Popular Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostPlayedMovies}" Label="Most Played Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostWatchedMovies}" Label="Most Watched Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostCollectedMovies}" Label="Most Collected Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoBoxOfficeMovies}" Label="Box Office Movies" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoRecentlyUpdatedMovies}" Label="Recently Updated Movies" />
+                <AppBarSeparator />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}" Label="Trakt Client Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoSettings}" Label="Application Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoAbout}" Label="About" />
