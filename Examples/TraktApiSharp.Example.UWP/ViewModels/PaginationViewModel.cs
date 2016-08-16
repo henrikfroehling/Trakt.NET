@@ -1,12 +1,16 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels
 {
     using Models;
+    using Requests.Params;
     using System.Threading.Tasks;
     using Template10.Mvvm;
 
     public abstract class PaginationViewModel : BaseViewModel
     {
         protected const int DEFAULT_LIMIT = 40;
+
+        protected static readonly TraktExtendedOption DEFAULT_EXTENDED_OPTION =
+            new TraktExtendedOption { Full = true, Images = true };
 
         protected PaginationViewModel()
         {

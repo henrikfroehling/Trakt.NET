@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Movies
 {
     using Models.Movies;
-    using Requests.Params;
     using Services.TraktService;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -34,14 +33,8 @@
 
         protected override async Task LoadPage(int? page = default(int?), int? limit = default(int?))
         {
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
             Busy.SetBusy(true, "Loading popular movies...");
-            var traktPopularMovies = await Movies.GetPopularMoviesAsync(extendedOption, whichPage: page, limitPerPage: limit);
+            var traktPopularMovies = await Movies.GetPopularMoviesAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
 
             if (traktPopularMovies.Items != null)
             {

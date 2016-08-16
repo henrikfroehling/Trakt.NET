@@ -248,9 +248,13 @@
 
             foreach (var traktAnticipatedShow in traktResults)
             {
-                var anticipatedShow = traktAnticipatedShow.Show as AnticipatedShow;
-                anticipatedShow.ListCount = traktAnticipatedShow.ListCount;
-                results.Items.Add(anticipatedShow);
+                var anticipatedShow = ShowModelConverter.Convert<AnticipatedShow>(traktAnticipatedShow.Show);
+
+                if (anticipatedShow != null)
+                {
+                    anticipatedShow.ListCount = traktAnticipatedShow.ListCount.GetValueOrDefault();
+                    results.Items.Add(anticipatedShow);
+                }
             }
 
             return results;

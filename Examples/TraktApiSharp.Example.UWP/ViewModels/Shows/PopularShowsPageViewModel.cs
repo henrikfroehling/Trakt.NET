@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Shows
 {
     using Models.Shows;
-    using Requests.Params;
     using Services.TraktService;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -47,14 +46,8 @@
 
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
-            var extendedOption = new TraktExtendedOption
-            {
-                Full = true,
-                Images = true
-            };
-
             Busy.SetBusy(true, "Loading popular shows...");
-            var traktPopularShows = await Shows.GetPopularShowsAsync(extendedOption, whichPage: page, limitPerPage: limit);
+            var traktPopularShows = await Shows.GetPopularShowsAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
 
             if (traktPopularShows.Items != null)
             {
