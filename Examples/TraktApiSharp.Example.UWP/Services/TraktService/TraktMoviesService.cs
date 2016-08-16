@@ -301,9 +301,14 @@
 
             foreach (var traktRecentlyUpdatedMovie in traktResults)
             {
-                var recentlyUpdatedMovie = traktRecentlyUpdatedMovie.Movie as RecentlyUpdatedMovie;
-                recentlyUpdatedMovie.MovieUpdatedAt = traktRecentlyUpdatedMovie.UpdatedAt;
-                results.Items.Add(recentlyUpdatedMovie);
+                var recentlyUpdatedMovie = MovieModelConverter.Convert<RecentlyUpdatedMovie>(traktRecentlyUpdatedMovie.Movie);
+
+                if (recentlyUpdatedMovie != null)
+                {
+                    var updatedAt = traktRecentlyUpdatedMovie.UpdatedAt;
+                    recentlyUpdatedMovie.MovieUpdatedAt = updatedAt.HasValue ? updatedAt.ToString() : string.Empty;
+                    results.Items.Add(recentlyUpdatedMovie);
+                }
             }
 
             return results;

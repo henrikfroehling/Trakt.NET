@@ -282,9 +282,14 @@
 
             foreach (var traktRecentlyUpdatedShow in traktResults)
             {
-                var recentlyUpdatedShow = traktRecentlyUpdatedShow.Show as RecentlyUpdatedShow;
-                recentlyUpdatedShow.ShowUpdatedAt = traktRecentlyUpdatedShow.UpdatedAt;
-                results.Items.Add(recentlyUpdatedShow);
+                var recentlyUpdatedShow = ShowModelConverter.Convert<RecentlyUpdatedShow>(traktRecentlyUpdatedShow.Show);
+
+                if (recentlyUpdatedShow != null)
+                {
+                    var updatedAt = traktRecentlyUpdatedShow.UpdatedAt;
+                    recentlyUpdatedShow.ShowUpdatedAt = updatedAt.HasValue ? updatedAt.ToString() : string.Empty;
+                    results.Items.Add(recentlyUpdatedShow);
+                }
             }
 
             return results;
