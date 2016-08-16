@@ -83,6 +83,8 @@
                                     <Run Text="{x:Bind PlayCount}" />
                                     <Run Text="- Collected by" />
                                     <Run Text="{x:Bind CollectedCount}" />
+                                    <Run Text="- Collectors" />
+                                    <Run Text="{x:Bind CollectorCount}" />
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>

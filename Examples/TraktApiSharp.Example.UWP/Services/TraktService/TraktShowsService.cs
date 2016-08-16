@@ -139,6 +139,7 @@
                     mostPlayedShow.WatcherCount = traktMostPlayedShow.WatcherCount.GetValueOrDefault();
                     mostPlayedShow.PlayCount = traktMostPlayedShow.PlayCount.GetValueOrDefault();
                     mostPlayedShow.CollectedCount = traktMostPlayedShow.CollectedCount.GetValueOrDefault();
+                    mostPlayedShow.CollectorCount = traktMostPlayedShow.CollectorCount.GetValueOrDefault();
 
                     results.Items.Add(mostPlayedShow);
                 }
@@ -177,6 +178,7 @@
                     mostWatchedShow.WatcherCount = traktMostWatchedShow.WatcherCount.GetValueOrDefault();
                     mostWatchedShow.PlayCount = traktMostWatchedShow.PlayCount.GetValueOrDefault();
                     mostWatchedShow.CollectedCount = traktMostWatchedShow.CollectedCount.GetValueOrDefault();
+                    mostWatchedShow.CollectorCount = traktMostWatchedShow.CollectorCount.GetValueOrDefault();
 
                     results.Items.Add(mostWatchedShow);
                 }
@@ -208,13 +210,17 @@
 
             foreach (var traktMostCollectedShow in traktResults)
             {
-                var mostCollectedShow = traktMostCollectedShow.Show as MostPWCShow;
+                var mostCollectedShow = ShowModelConverter.Convert<MostPWCShow>(traktMostCollectedShow.Show);
 
-                mostCollectedShow.CollectedCount = traktMostCollectedShow.CollectedCount;
-                mostCollectedShow.PlayCount = traktMostCollectedShow.PlayCount;
-                mostCollectedShow.WatcherCount = traktMostCollectedShow.WatcherCount;
+                if (mostCollectedShow != null)
+                {
+                    mostCollectedShow.WatcherCount = traktMostCollectedShow.WatcherCount.GetValueOrDefault();
+                    mostCollectedShow.PlayCount = traktMostCollectedShow.PlayCount.GetValueOrDefault();
+                    mostCollectedShow.CollectedCount = traktMostCollectedShow.CollectedCount.GetValueOrDefault();
+                    mostCollectedShow.CollectorCount = traktMostCollectedShow.CollectorCount.GetValueOrDefault();
 
-                results.Items.Add(mostCollectedShow);
+                    results.Items.Add(mostCollectedShow);
+                }
             }
 
             return results;

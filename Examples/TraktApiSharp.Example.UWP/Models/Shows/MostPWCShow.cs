@@ -9,5 +9,7 @@
         public int? PlayCount { get; set; }
 
         public int? CollectedCount { get; set; }
+
+        public int? CollectorCount { get; set; }
     }
 }
