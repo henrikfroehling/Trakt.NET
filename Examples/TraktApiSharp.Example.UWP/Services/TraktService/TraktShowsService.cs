@@ -99,7 +99,12 @@
             results.Items = new ObservableCollection<Show>();
 
             foreach (var traktPopularShow in traktResults)
-                results.Items.Add(traktPopularShow as Show);
+            {
+                var popularShow = ShowModelConverter.Convert<Show>(traktPopularShow);
+
+                if (popularShow != null)
+                    results.Items.Add(popularShow);
+            }
 
             return results;
         }

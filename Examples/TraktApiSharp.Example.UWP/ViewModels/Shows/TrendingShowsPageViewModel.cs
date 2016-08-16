@@ -11,7 +11,7 @@
 
     public class TrendingShowsPageViewModel : PaginationViewModel
     {
-        private TraktShowsService Movies { get; } = TraktShowsService.Instance;
+        private TraktShowsService Shows { get; } = TraktShowsService.Instance;
 
         private ObservableCollection<TrendingShow> _trendingShows = new ObservableCollection<TrendingShow>();
 
@@ -54,7 +54,7 @@
             };
 
             Busy.SetBusy(true, "Loading trending shows...");
-            var traktTrendingShows = await Movies.GetTrendingShowsAsync(extendedOption, whichPage: page, limitPerPage: limit);
+            var traktTrendingShows = await Shows.GetTrendingShowsAsync(extendedOption, whichPage: page, limitPerPage: limit);
 
             if (traktTrendingShows.Items != null)
             {
