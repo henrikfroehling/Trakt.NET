@@ -132,13 +132,16 @@
 
             foreach (var traktMostPlayedShow in traktResults)
             {
-                var mostPlayedShow = traktMostPlayedShow.Show as MostPWCShow;
+                var mostPlayedShow = ShowModelConverter.Convert<MostPWCShow>(traktMostPlayedShow.Show);
 
-                mostPlayedShow.CollectedCount = traktMostPlayedShow.CollectedCount;
-                mostPlayedShow.PlayCount = traktMostPlayedShow.PlayCount;
-                mostPlayedShow.WatcherCount = traktMostPlayedShow.WatcherCount;
+                if (mostPlayedShow != null)
+                {
+                    mostPlayedShow.WatcherCount = traktMostPlayedShow.WatcherCount.GetValueOrDefault();
+                    mostPlayedShow.PlayCount = traktMostPlayedShow.PlayCount.GetValueOrDefault();
+                    mostPlayedShow.CollectedCount = traktMostPlayedShow.CollectedCount.GetValueOrDefault();
 
-                results.Items.Add(mostPlayedShow);
+                    results.Items.Add(mostPlayedShow);
+                }
             }
 
             return results;

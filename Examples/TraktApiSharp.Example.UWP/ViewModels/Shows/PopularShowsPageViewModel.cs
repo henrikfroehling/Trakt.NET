@@ -59,13 +59,7 @@
             if (traktPopularShows.Items != null)
             {
                 PopularShows = traktPopularShows.Items;
-                TotalUsers = traktPopularShows.TotalUserCount.GetValueOrDefault();
-                CurrentPage = traktPopularShows.CurrentPage.GetValueOrDefault();
-                ItemsPerPage = traktPopularShows.LimitPerPage.GetValueOrDefault();
-                TotalItems = traktPopularShows.TotalItemCount.GetValueOrDefault();
-                TotalPages = traktPopularShows.TotalPages.GetValueOrDefault();
-                SelectedLimit = ItemsPerPage;
-                SelectedPage = CurrentPage;
+                SetPaginationValues(traktPopularShows);
             }
 
             Busy.SetBusy(false);

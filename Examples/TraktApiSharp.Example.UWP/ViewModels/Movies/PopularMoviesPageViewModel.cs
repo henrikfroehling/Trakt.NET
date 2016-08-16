@@ -46,12 +46,7 @@
             if (traktPopularMovies.Items != null)
             {
                 PopularMovies = traktPopularMovies.Items;
-                CurrentPage = traktPopularMovies.CurrentPage.GetValueOrDefault();
-                ItemsPerPage = traktPopularMovies.LimitPerPage.GetValueOrDefault();
-                TotalItems = traktPopularMovies.TotalItemCount.GetValueOrDefault();
-                TotalPages = traktPopularMovies.TotalPages.GetValueOrDefault();
-                SelectedLimit = ItemsPerPage;
-                SelectedPage = CurrentPage;
+                SetPaginationValues(traktPopularMovies);
             }
 
             Busy.SetBusy(false);

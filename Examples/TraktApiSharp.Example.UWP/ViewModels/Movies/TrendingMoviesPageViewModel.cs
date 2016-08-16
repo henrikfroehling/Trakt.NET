@@ -56,16 +56,11 @@
             Busy.SetBusy(true, "Loading trending movies...");
             var traktTrendingMovies = await Movies.GetTrendingMoviesAsync(extendedOption, whichPage: page, limitPerPage: limit);
 
-            if (traktTrendingMovies.Items != null)
+            if (traktTrendingMovies != null && traktTrendingMovies.Items != null)
             {
                 TrendingMovies = traktTrendingMovies.Items;
+                SetPaginationValues(traktTrendingMovies);
                 TotalUsers = traktTrendingMovies.TotalUserCount.GetValueOrDefault();
-                CurrentPage = traktTrendingMovies.CurrentPage.GetValueOrDefault();
-                ItemsPerPage = traktTrendingMovies.LimitPerPage.GetValueOrDefault();
-                TotalItems = traktTrendingMovies.TotalItemCount.GetValueOrDefault();
-                TotalPages = traktTrendingMovies.TotalPages.GetValueOrDefault();
-                SelectedLimit = ItemsPerPage;
-                SelectedPage = CurrentPage;
             }
 
             Busy.SetBusy(false);

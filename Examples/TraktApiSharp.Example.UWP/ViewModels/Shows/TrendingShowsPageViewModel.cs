@@ -59,13 +59,8 @@
             if (traktTrendingShows.Items != null)
             {
                 TrendingShows = traktTrendingShows.Items;
+                SetPaginationValues(traktTrendingShows);
                 TotalUsers = traktTrendingShows.TotalUserCount.GetValueOrDefault();
-                CurrentPage = traktTrendingShows.CurrentPage.GetValueOrDefault();
-                ItemsPerPage = traktTrendingShows.LimitPerPage.GetValueOrDefault();
-                TotalItems = traktTrendingShows.TotalItemCount.GetValueOrDefault();
-                TotalPages = traktTrendingShows.TotalPages.GetValueOrDefault();
-                SelectedLimit = ItemsPerPage;
-                SelectedPage = CurrentPage;
             }
 
             Busy.SetBusy(false);

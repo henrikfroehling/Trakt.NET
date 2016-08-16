@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels
 {
+    using Models;
     using System.Threading.Tasks;
     using Template10.Mvvm;
 
@@ -19,6 +20,16 @@
         public DelegateCommand GoToNextPage { get; }
 
         public DelegateCommand GoToSelectedPage { get; }
+
+        protected void SetPaginationValues<T>(PaginationList<T> paginationList)
+        {
+            CurrentPage = paginationList.CurrentPage.GetValueOrDefault();
+            ItemsPerPage = paginationList.LimitPerPage.GetValueOrDefault();
+            TotalItems = paginationList.TotalItemCount.GetValueOrDefault();
+            TotalPages = paginationList.TotalPages.GetValueOrDefault();
+            SelectedLimit = ItemsPerPage;
+            SelectedPage = CurrentPage;
+        }
 
         protected async void PreviousPage()
         {
