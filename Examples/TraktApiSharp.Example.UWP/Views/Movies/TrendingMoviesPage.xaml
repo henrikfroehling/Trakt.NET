@@ -56,7 +56,8 @@
             <uwpControls:ResponsiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:TrendingMovie">
                     <RelativePanel>
-                        <uwpControls:ImageEx RelativePanel.AlignBottomWithPanel="True"
+                        <uwpControls:ImageEx Background="Black"
+                                             RelativePanel.AlignBottomWithPanel="True"
                                              RelativePanel.AlignLeftWithPanel="True"
                                              RelativePanel.AlignRightWithPanel="True"
                                              RelativePanel.AlignTopWithPanel="True"

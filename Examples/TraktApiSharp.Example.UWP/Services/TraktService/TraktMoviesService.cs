@@ -102,7 +102,12 @@
             results.Items = new ObservableCollection<Movie>();
 
             foreach (var traktPopularMovie in traktResults)
-                results.Items.Add(traktPopularMovie as Movie);
+            {
+                var popularMovie = MovieModelConverter.Convert<Movie>(traktPopularMovie);
+
+                if (popularMovie != null)
+                    results.Items.Add(popularMovie);
+            }
 
             return results;
         }
