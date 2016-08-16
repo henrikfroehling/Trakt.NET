@@ -211,13 +211,16 @@
 
             foreach (var traktMostCollectedMovie in traktResults)
             {
-                var mostCollectedMovie = traktMostCollectedMovie.Movie as MostPWCMovie;
+                var mostCollectedMovie = MovieModelConverter.Convert<MostPWCMovie>(traktMostCollectedMovie.Movie);
 
-                mostCollectedMovie.CollectedCount = traktMostCollectedMovie.CollectedCount;
-                mostCollectedMovie.PlayCount = traktMostCollectedMovie.PlayCount;
-                mostCollectedMovie.WatcherCount = traktMostCollectedMovie.WatcherCount;
+                if (mostCollectedMovie != null)
+                {
+                    mostCollectedMovie.WatcherCount = traktMostCollectedMovie.WatcherCount.GetValueOrDefault();
+                    mostCollectedMovie.PlayCount = traktMostCollectedMovie.PlayCount.GetValueOrDefault();
+                    mostCollectedMovie.CollectedCount = traktMostCollectedMovie.CollectedCount.GetValueOrDefault();
 
-                results.Items.Add(mostCollectedMovie);
+                    results.Items.Add(mostCollectedMovie);
+                }
             }
 
             return results;
