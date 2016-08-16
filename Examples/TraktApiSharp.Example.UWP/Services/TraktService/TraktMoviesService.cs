@@ -271,9 +271,13 @@
 
             foreach (var traktBoxOfficeMovie in traktResults)
             {
-                var boxOfficeMovie = traktBoxOfficeMovie.Movie as BoxOfficeMovie;
-                boxOfficeMovie.Revenue = traktBoxOfficeMovie.Revenue;
-                results.Add(boxOfficeMovie);
+                var boxOfficeMovie = MovieModelConverter.Convert<BoxOfficeMovie>(traktBoxOfficeMovie.Movie);
+
+                if (boxOfficeMovie != null)
+                {
+                    boxOfficeMovie.Revenue = traktBoxOfficeMovie.Revenue.GetValueOrDefault();
+                    results.Add(boxOfficeMovie);
+                }
             }
 
             return results;
