@@ -248,9 +248,13 @@
 
             foreach (var traktAnticipatedMovie in traktResults)
             {
-                var anticipatedMovie = traktAnticipatedMovie.Movie as AnticipatedMovie;
-                anticipatedMovie.ListCount = traktAnticipatedMovie.ListCount;
-                results.Items.Add(anticipatedMovie);
+                var anticipatedMovie = MovieModelConverter.Convert<AnticipatedMovie>(traktAnticipatedMovie.Movie);
+
+                if (anticipatedMovie != null)
+                {
+                    anticipatedMovie.ListCount = traktAnticipatedMovie.ListCount.GetValueOrDefault();
+                    results.Items.Add(anticipatedMovie);
+                }
             }
 
             return results;
