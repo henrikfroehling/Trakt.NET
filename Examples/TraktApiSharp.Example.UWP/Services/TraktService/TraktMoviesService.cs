@@ -73,7 +73,7 @@
 
                 if (trendingMovie != null)
                 {
-                    trendingMovie.Watchers = traktTrendingMovie.Watchers ?? 0;
+                    trendingMovie.Watchers = traktTrendingMovie.Watchers.GetValueOrDefault();
                     results.Items.Add(trendingMovie);
                 }
             }
@@ -135,13 +135,16 @@
 
             foreach (var traktMostPlayedMovie in traktResults)
             {
-                var mostPlayedMovie = traktMostPlayedMovie.Movie as MostPWCMovie;
+                var mostPlayedMovie = MovieModelConverter.Convert<MostPWCMovie>(traktMostPlayedMovie.Movie);
 
-                mostPlayedMovie.CollectedCount = traktMostPlayedMovie.CollectedCount;
-                mostPlayedMovie.PlayCount = traktMostPlayedMovie.PlayCount;
-                mostPlayedMovie.WatcherCount = traktMostPlayedMovie.WatcherCount;
+                if (mostPlayedMovie != null)
+                {
+                    mostPlayedMovie.WatcherCount = traktMostPlayedMovie.WatcherCount.GetValueOrDefault();
+                    mostPlayedMovie.PlayCount = traktMostPlayedMovie.PlayCount.GetValueOrDefault();
+                    mostPlayedMovie.CollectedCount = traktMostPlayedMovie.CollectedCount.GetValueOrDefault();
 
-                results.Items.Add(mostPlayedMovie);
+                    results.Items.Add(mostPlayedMovie);
+                }
             }
 
             return results;
