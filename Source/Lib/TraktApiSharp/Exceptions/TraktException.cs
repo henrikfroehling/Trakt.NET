@@ -10,8 +10,17 @@
     /// </summary>
     public class TraktException : Exception
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktException" /> class with a custom message.
+        /// </summary>
+        /// <param name="message">A custom exception message.</param>
         public TraktException(string message) : base(message) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktException" /> class with a custom message.
+        /// </summary>
+        /// <param name="message">A custom exception message.</param>
+        /// <param name="innerException">An exception that is the cause of the current exception.</param>
         public TraktException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>Returns the response's status code.</summary>
