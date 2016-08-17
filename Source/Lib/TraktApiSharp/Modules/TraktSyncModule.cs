@@ -317,7 +317,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-ratings/get-ratings">"Trakt API Doc - Sync: Get Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktSyncRatingsItemType" />.</param>
+        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktRatingsItemType" />.</param>
         /// <param name="ratingsFilter">
         /// An array of numbers. Numbers should be between 1 and 10.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
@@ -330,7 +330,7 @@
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktSyncRatingsItemType ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
                                                                          int[] ratingsFilter = null,
                                                                          TraktExtendedOption extendedOption = null)
         {

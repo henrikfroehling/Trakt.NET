@@ -164,7 +164,7 @@
     <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Enums\TraktHistoryActionTypeTests.cs" />
     <Compile Include="Enums\TraktSyncItemTypeTests.cs" />
-    <Compile Include="Enums\TraktSyncRatingsItemTypeTests.cs" />
+    <Compile Include="Enums\TraktRatingsItemTypeTests.cs" />
     <Compile Include="Enums\TraktSyncTypeTests.cs" />
     <Compile Include="Enums\TraktUserLikeTypeTests.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceExceptionTests.cs" />

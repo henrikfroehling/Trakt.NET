@@ -43,7 +43,7 @@
 
             ratings[0].RatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             ratings[0].Rating.Should().Be(10);
-            ratings[0].Type.Should().Be(TraktSyncRatingsItemType.Movie);
+            ratings[0].Type.Should().Be(TraktRatingsItemType.Movie);
             ratings[0].Movie.Should().NotBeNull();
             ratings[0].Movie.Title.Should().Be("TRON: Legacy");
             ratings[0].Movie.Year.Should().Be(2010);
@@ -58,7 +58,7 @@
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-02T09:10:11.000Z").ToUniversalTime());
             ratings[1].Rating.Should().Be(8);
-            ratings[1].Type.Should().Be(TraktSyncRatingsItemType.Movie);
+            ratings[1].Type.Should().Be(TraktRatingsItemType.Movie);
             ratings[1].Movie.Should().NotBeNull();
             ratings[1].Movie.Title.Should().Be("The Dark Knight");
             ratings[1].Movie.Year.Should().Be(2008);
@@ -88,7 +88,7 @@
 
             ratings[0].RatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             ratings[0].Rating.Should().Be(10);
-            ratings[0].Type.Should().Be(TraktSyncRatingsItemType.Show);
+            ratings[0].Type.Should().Be(TraktRatingsItemType.Show);
             ratings[0].Movie.Should().BeNull();
             ratings[0].Show.Should().NotBeNull();
             ratings[0].Show.Title.Should().Be("Breaking Bad");
@@ -105,7 +105,7 @@
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-03T09:10:11.000Z").ToUniversalTime());
             ratings[1].Rating.Should().Be(9);
-            ratings[1].Type.Should().Be(TraktSyncRatingsItemType.Show);
+            ratings[1].Type.Should().Be(TraktRatingsItemType.Show);
             ratings[1].Movie.Should().BeNull();
             ratings[1].Show.Should().NotBeNull();
             ratings[1].Show.Title.Should().Be("The Walking Dead");
@@ -137,7 +137,7 @@
 
             ratings[0].RatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             ratings[0].Rating.Should().Be(8);
-            ratings[0].Type.Should().Be(TraktSyncRatingsItemType.Season);
+            ratings[0].Type.Should().Be(TraktRatingsItemType.Season);
             ratings[0].Movie.Should().BeNull();
             ratings[0].Show.Should().NotBeNull();
             ratings[0].Show.Title.Should().Be("Breaking Bad");
@@ -160,7 +160,7 @@
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-04T09:10:11.000Z").ToUniversalTime());
             ratings[1].Rating.Should().Be(9);
-            ratings[1].Type.Should().Be(TraktSyncRatingsItemType.Season);
+            ratings[1].Type.Should().Be(TraktRatingsItemType.Season);
             ratings[1].Movie.Should().BeNull();
             ratings[1].Show.Should().NotBeNull();
             ratings[1].Show.Title.Should().Be("Breaking Bad");
@@ -198,7 +198,7 @@
 
             ratings[0].RatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             ratings[0].Rating.Should().Be(5);
-            ratings[0].Type.Should().Be(TraktSyncRatingsItemType.Episode);
+            ratings[0].Type.Should().Be(TraktRatingsItemType.Episode);
             ratings[0].Movie.Should().BeNull();
             ratings[0].Show.Should().NotBeNull();
             ratings[0].Show.Title.Should().Be("Breaking Bad");
@@ -224,7 +224,7 @@
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-06T09:10:11.000Z").ToUniversalTime());
             ratings[1].Rating.Should().Be(9);
-            ratings[1].Type.Should().Be(TraktSyncRatingsItemType.Episode);
+            ratings[1].Type.Should().Be(TraktRatingsItemType.Episode);
             ratings[1].Movie.Should().BeNull();
             ratings[1].Show.Should().NotBeNull();
             ratings[1].Show.Title.Should().Be("Breaking Bad");
