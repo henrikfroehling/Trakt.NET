@@ -116,7 +116,7 @@
             ratings[1].Show.Ids.Tvdb.Should().Be(153021);
             ratings[1].Show.Ids.Imdb.Should().Be("tt1520211");
             ratings[1].Show.Ids.Tmdb.Should().Be(1402);
-            ratings[1].Show.Ids.TvRage.Should().NotHaveValue();
+            ratings[1].Show.Ids.TvRage.Should().BeNull();
             ratings[1].Season.Should().BeNull();
             ratings[1].Episode.Should().BeNull();
         }
@@ -155,7 +155,7 @@
             ratings[0].Season.Ids.Trakt.Should().Be(0);
             ratings[0].Season.Ids.Tvdb.Should().Be(439371);
             ratings[0].Season.Ids.Tmdb.Should().Be(3577);
-            ratings[0].Season.Ids.TvRage.Should().NotHaveValue();
+            ratings[0].Season.Ids.TvRage.Should().BeNull();
             ratings[0].Episode.Should().BeNull();
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-04T09:10:11.000Z").ToUniversalTime());
@@ -178,7 +178,7 @@
             ratings[1].Season.Ids.Trakt.Should().Be(0);
             ratings[1].Season.Ids.Tvdb.Should().Be(30272);
             ratings[1].Season.Ids.Tmdb.Should().Be(3572);
-            ratings[1].Season.Ids.TvRage.Should().NotHaveValue();
+            ratings[1].Season.Ids.TvRage.Should().BeNull();
             ratings[1].Episode.Should().BeNull();
         }
 
@@ -220,7 +220,7 @@
             ratings[0].Episode.Ids.Tvdb.Should().Be(2639411);
             ratings[0].Episode.Ids.Imdb.Should().Be("tt1683084");
             ratings[0].Episode.Ids.Tmdb.Should().Be(62118);
-            ratings[0].Episode.Ids.TvRage.Should().NotHaveValue();
+            ratings[0].Episode.Ids.TvRage.Should().BeNull();
 
             ratings[1].RatedAt.Should().Be(DateTime.Parse("2014-09-06T09:10:11.000Z").ToUniversalTime());
             ratings[1].Rating.Should().Be(9);
@@ -246,7 +246,7 @@
             ratings[1].Episode.Ids.Tvdb.Should().Be(4127161);
             ratings[1].Episode.Ids.Imdb.Should().Be("tt1683095");
             ratings[1].Episode.Ids.Tmdb.Should().Be(62127);
-            ratings[1].Episode.Ids.TvRage.Should().NotHaveValue();
+            ratings[1].Episode.Ids.TvRage.Should().BeNull();
         }
     }
 }

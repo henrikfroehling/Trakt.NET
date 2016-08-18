@@ -56,7 +56,7 @@
             cast[1].Show.Ids.Tvdb.Should().Be(73838);
             cast[1].Show.Ids.Imdb.Should().Be("tt0212671");
             cast[1].Show.Ids.Tmdb.Should().Be(2004);
-            cast[1].Show.Ids.TvRage.Should().NotHaveValue();
+            cast[1].Show.Ids.TvRage.Should().BeNull();
 
             showCredits.Crew.Should().NotBeNull();
             showCredits.Crew.Art.Should().BeNull();

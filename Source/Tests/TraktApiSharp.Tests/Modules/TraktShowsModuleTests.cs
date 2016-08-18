@@ -1842,7 +1842,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -1913,7 +1913,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -1986,7 +1986,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2059,7 +2059,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2130,7 +2130,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2203,7 +2203,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2274,7 +2274,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2349,7 +2349,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2519,7 +2519,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2590,7 +2590,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2663,7 +2663,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2736,7 +2736,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2807,7 +2807,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2880,7 +2880,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -2951,7 +2951,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }
@@ -3026,7 +3026,7 @@
             hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
             hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
             hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
         }

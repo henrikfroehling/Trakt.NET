@@ -37,10 +37,10 @@
 
             var movieTitle = "Guardians of the Galaxy";
             var movieYear = 2014;
-            var movieTraktId = 28;
+            var movieTraktId = 28U;
             var movieSlug = "guardiangs-of-the-galaxy-2014";
             var movieImdb = "tt2015381";
-            var movieTmdb = 118340;
+            var movieTmdb = 118340U;
 
             var movie = new TraktMovie
             {

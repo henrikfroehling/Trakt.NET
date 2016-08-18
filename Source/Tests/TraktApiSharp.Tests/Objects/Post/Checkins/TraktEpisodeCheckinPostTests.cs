@@ -40,20 +40,20 @@
             var episodeNr = 1;
             var seasonNr = 1;
             var episodeTitle = "Pilot";
-            var episodeTraktId = 16;
-            var episodeTvdb = 349232;
+            var episodeTraktId = 16U;
+            var episodeTvdb = 349232U;
             var episodeImdb = "tt0959621";
-            var episodeTmdb = 62085;
-            var episodeTvRage = 637041;
+            var episodeTmdb = 62085U;
+            var episodeTvRage = 637041U;
 
             var showTitle = "Breaking Bad";
             var showYear = 2008;
-            var showTraktId = 1;
+            var showTraktId = 1U;
             var showSlug = "breaking-bad";
-            var showTvdb = 81189;
+            var showTvdb = 81189U;
             var showImdb = "tt0903747";
-            var showTmdb = 1396;
-            var showTvRage = 18164;
+            var showTmdb = 1396U;
+            var showTvRage = 18164U;
 
             var episode = new TraktEpisode
             {

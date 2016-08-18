@@ -82,7 +82,7 @@
             items[1].Episode.Ids.Tvdb.Should().Be(797571);
             items[1].Episode.Ids.Imdb.Should().BeNull();
             items[1].Episode.Ids.Tmdb.Should().Be(397629);
-            items[1].Episode.Ids.TvRage.Should().NotHaveValue();
+            items[1].Episode.Ids.TvRage.Should().BeNull();
 
             items[2].Id.Should().Be(1982348);
             items[2].WatchedAt.Should().Be(DateTime.Parse("2013-06-15T05:54:27.000Z").ToUniversalTime());
@@ -114,7 +114,7 @@
             items[3].Season.Ids.Trakt.Should().Be(1);
             items[3].Season.Ids.Tvdb.Should().Be(439371);
             items[3].Season.Ids.Tmdb.Should().Be(3577);
-            items[3].Season.Ids.TvRage.Should().NotHaveValue();
+            items[3].Season.Ids.TvRage.Should().BeNull();
             items[3].Episode.Should().BeNull();
         }
     }

@@ -77,7 +77,7 @@
             playbackProgress.Episode.Ids.Tvdb.Should().Be(3859781);
             playbackProgress.Episode.Ids.Imdb.Should().Be("");
             playbackProgress.Episode.Ids.Tmdb.Should().Be(62131);
-            playbackProgress.Episode.Ids.TvRage.Should().NotHaveValue();
+            playbackProgress.Episode.Ids.TvRage.Should().BeNull();
             playbackProgress.Show.Should().NotBeNull();
             playbackProgress.Show.Title.Should().Be("Breaking Bad");
             playbackProgress.Show.Year.Should().Be(2008);

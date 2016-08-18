@@ -45,7 +45,7 @@
             calendarShows[0].Episode.Ids.Tvdb.Should().Be(4851180);
             calendarShows[0].Episode.Ids.Imdb.Should().Be("tt3500614");
             calendarShows[0].Episode.Ids.Tmdb.Should().Be(988123);
-            calendarShows[0].Episode.Ids.TvRage.Should().NotHaveValue();
+            calendarShows[0].Episode.Ids.TvRage.Should().BeNull();
             calendarShows[0].Show.Should().NotBeNull();
             calendarShows[0].Show.Title.Should().Be("True Blood");
             calendarShows[0].Show.Year.Should().Be(2008);
@@ -67,7 +67,7 @@
             calendarShows[1].Episode.Ids.Tvdb.Should().Be(4854797);
             calendarShows[1].Episode.Ids.Imdb.Should().Be("tt3631218");
             calendarShows[1].Episode.Ids.Tmdb.Should().Be(988346);
-            calendarShows[1].Episode.Ids.TvRage.Should().NotHaveValue();
+            calendarShows[1].Episode.Ids.TvRage.Should().BeNull();
             calendarShows[1].Show.Should().NotBeNull();
             calendarShows[1].Show.Title.Should().Be("The Leftovers");
             calendarShows[1].Show.Year.Should().Be(2014);
@@ -77,7 +77,7 @@
             calendarShows[1].Show.Ids.Tvdb.Should().Be(269689);
             calendarShows[1].Show.Ids.Imdb.Should().Be("tt2699128");
             calendarShows[1].Show.Ids.Tmdb.Should().Be(54344);
-            calendarShows[1].Show.Ids.TvRage.Should().NotHaveValue();
+            calendarShows[1].Show.Ids.TvRage.Should().BeNull();
         }
     }
 }

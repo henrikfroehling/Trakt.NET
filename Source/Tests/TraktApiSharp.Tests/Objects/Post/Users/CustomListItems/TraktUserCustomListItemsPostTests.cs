@@ -120,13 +120,13 @@
             movies[0].Ids.Trakt.Should().Be(1);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().BeNullOrEmpty();
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             movies[1].Ids.Should().NotBeNull();
             movies[1].Ids.Trakt.Should().Be(0);
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
-            movies[1].Ids.Tmdb.Should().NotHaveValue();
+            movies[1].Ids.Tmdb.Should().BeNull();
 
             var shows = userListItemsPostFromJson.Shows.ToArray();
 
@@ -134,18 +134,18 @@
             shows[0].Ids.Trakt.Should().Be(1);
             shows[0].Ids.Slug.Should().BeNullOrEmpty();
             shows[0].Ids.Imdb.Should().BeNullOrEmpty();
-            shows[0].Ids.Tmdb.Should().NotHaveValue();
-            shows[0].Ids.Tvdb.Should().NotHaveValue();
-            shows[0].Ids.TvRage.Should().NotHaveValue();
+            shows[0].Ids.Tmdb.Should().BeNull();
+            shows[0].Ids.Tvdb.Should().BeNull();
+            shows[0].Ids.TvRage.Should().BeNull();
             shows[0].Seasons.Should().BeNull();
 
             shows[1].Ids.Should().NotBeNull();
             shows[1].Ids.Trakt.Should().Be(1);
             shows[1].Ids.Slug.Should().BeNullOrEmpty();
             shows[1].Ids.Imdb.Should().BeNullOrEmpty();
-            shows[1].Ids.Tmdb.Should().NotHaveValue();
-            shows[1].Ids.Tvdb.Should().NotHaveValue();
-            shows[1].Ids.TvRage.Should().NotHaveValue();
+            shows[1].Ids.Tmdb.Should().BeNull();
+            shows[1].Ids.Tvdb.Should().BeNull();
+            shows[1].Ids.TvRage.Should().BeNull();
             shows[1].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             var show1Seasons = shows[1].Seasons.ToArray();
@@ -157,9 +157,9 @@
             shows[2].Ids.Trakt.Should().Be(1);
             shows[2].Ids.Slug.Should().BeNullOrEmpty();
             shows[2].Ids.Imdb.Should().BeNullOrEmpty();
-            shows[2].Ids.Tmdb.Should().NotHaveValue();
-            shows[2].Ids.Tvdb.Should().NotHaveValue();
-            shows[2].Ids.TvRage.Should().NotHaveValue();
+            shows[2].Ids.Tmdb.Should().BeNull();
+            shows[2].Ids.Tvdb.Should().BeNull();
+            shows[2].Ids.TvRage.Should().BeNull();
             shows[2].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             var show2Seasons = shows[2].Seasons.ToArray();

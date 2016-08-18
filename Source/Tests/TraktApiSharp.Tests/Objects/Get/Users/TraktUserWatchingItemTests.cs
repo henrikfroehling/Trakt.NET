@@ -87,7 +87,7 @@
             userWatchlistItemEpisode.Episode.Ids.Tvdb.Should().Be(3859791);
             userWatchlistItemEpisode.Episode.Ids.Imdb.Should().BeEmpty();
             userWatchlistItemEpisode.Episode.Ids.Tmdb.Should().Be(62133);
-            userWatchlistItemEpisode.Episode.Ids.TvRage.Should().NotHaveValue();
+            userWatchlistItemEpisode.Episode.Ids.TvRage.Should().BeNull();
         }
     }
 }

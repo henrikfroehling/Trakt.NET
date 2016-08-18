@@ -16,7 +16,7 @@
             var commentPostResponse = new TraktCommentPostResponse();
 
             commentPostResponse.Id.Should().Be(0);
-            commentPostResponse.ParentId.Should().NotHaveValue();
+            commentPostResponse.ParentId.Should().BeNull();
             commentPostResponse.CreatedAt.Should().Be(DateTime.MinValue);
             commentPostResponse.Comment.Should().BeNullOrEmpty();
             commentPostResponse.Spoiler.Should().BeFalse();

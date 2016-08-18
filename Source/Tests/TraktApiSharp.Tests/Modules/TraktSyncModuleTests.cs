@@ -333,7 +333,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItem()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             TestUtility.SetupMockResponseWithOAuth($"sync/playback/{playbackId}", HttpStatusCode.NoContent);
 
@@ -344,7 +344,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemExceptions()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             var uri = $"sync/playback/{playbackId}";
 
@@ -417,13 +417,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemArgumentExceptions()
         {
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync("user name");
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -813,7 +807,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -1112,7 +1106,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -4065,7 +4059,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -4364,7 +4358,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5131,7 +5125,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5432,7 +5426,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -6211,7 +6205,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -6508,7 +6502,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();

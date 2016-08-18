@@ -98,7 +98,7 @@
             shows[1].Show.Ids.Tvdb.Should().Be(153021);
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
             shows[1].Show.Ids.Tmdb.Should().Be(1402);
-            shows[1].Show.Ids.TvRage.Should().NotHaveValue();
+            shows[1].Show.Ids.TvRage.Should().BeNull();
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 
@@ -232,7 +232,7 @@
             shows[1].Show.Ids.Tvdb.Should().Be(153021);
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
             shows[1].Show.Ids.Tmdb.Should().Be(1402);
-            shows[1].Show.Ids.TvRage.Should().NotHaveValue();
+            shows[1].Show.Ids.TvRage.Should().BeNull();
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 

@@ -164,7 +164,7 @@
             movies[1].Ids.Trakt.Should().Be(0);
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
-            movies[1].Ids.Tmdb.Should().NotHaveValue();
+            movies[1].Ids.Tmdb.Should().BeNull();
 
             var shows = watchlistPostFromJson.Shows.ToArray();
 

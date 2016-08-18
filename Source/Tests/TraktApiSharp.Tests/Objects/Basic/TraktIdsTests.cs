@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
     using Utils;
+
     [TestClass]
     public class TraktIdsTests
     {
@@ -15,10 +16,10 @@
 
             ids.Trakt.Should().Be(0);
             ids.Slug.Should().BeNullOrEmpty();
-            ids.Tvdb.Should().NotHaveValue();
+            ids.Tvdb.Should().BeNull();
             ids.Imdb.Should().BeNullOrEmpty();
-            ids.Tmdb.Should().NotHaveValue();
-            ids.TvRage.Should().NotHaveValue();
+            ids.Tmdb.Should().BeNull();
+            ids.TvRage.Should().BeNull();
             ids.HasAnyId.Should().BeFalse();
             ids.GetBestId().Should().BeEmpty();
         }

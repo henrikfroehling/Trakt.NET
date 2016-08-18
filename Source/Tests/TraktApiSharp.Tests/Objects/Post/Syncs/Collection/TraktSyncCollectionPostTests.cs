@@ -171,7 +171,7 @@
             movies[1].Ids.Trakt.Should().Be(0);
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
-            movies[1].Ids.Tmdb.Should().NotHaveValue();
+            movies[1].Ids.Tmdb.Should().BeNull();
             movies[1].Metadata.Should().BeNull();
 
             var shows = collectionPostFromJson.Shows.ToArray();
@@ -421,7 +421,7 @@
             movies[1].Ids.Trakt.Should().Be(0);
             movies[1].Ids.Slug.Should().BeNullOrEmpty();
             movies[1].Ids.Imdb.Should().Be("tt0000111");
-            movies[1].Ids.Tmdb.Should().NotHaveValue();
+            movies[1].Ids.Tmdb.Should().BeNull();
             movies[1].Metadata.Should().NotBeNull();
             movies[1].Metadata.Audio.Should().Be(TraktMediaAudio.DolbyTrueHD);
             movies[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_7_1);
