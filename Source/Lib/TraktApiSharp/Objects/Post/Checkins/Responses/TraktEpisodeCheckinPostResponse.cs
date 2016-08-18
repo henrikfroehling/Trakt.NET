@@ -5,7 +5,7 @@
     using Get.Shows.Episodes;
     using Newtonsoft.Json;
 
-    /// <summary>Represents a episode checkin response.</summary>
+    /// <summary>Represents an episode checkin response.</summary>
     public class TraktEpisodeCheckinPostResponse : TraktCheckinPostResponse
     {
         /// <summary>
