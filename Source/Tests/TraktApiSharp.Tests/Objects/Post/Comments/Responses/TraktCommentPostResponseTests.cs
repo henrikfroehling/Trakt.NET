@@ -38,8 +38,8 @@
             var commentPostResponse = JsonConvert.DeserializeObject<TraktCommentPostResponse>(jsonFile);
 
             commentPostResponse.Should().NotBeNull();
-            commentPostResponse.Id.Should().Be(190);
-            commentPostResponse.ParentId.Should().Be(0);
+            commentPostResponse.Id.Should().Be(190U);
+            commentPostResponse.ParentId.Should().Be(0U);
             commentPostResponse.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             commentPostResponse.Comment.Should().Be("Oh, I wasn't really listening.");
             commentPostResponse.Spoiler.Should().BeFalse();
