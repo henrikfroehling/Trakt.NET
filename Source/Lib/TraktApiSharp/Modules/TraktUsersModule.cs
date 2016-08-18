@@ -869,7 +869,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
-                                                                                              string itemId = null, DateTime? startAt = null,
+                                                                                              ulong? itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {

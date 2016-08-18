@@ -16,7 +16,7 @@
 
         internal TraktSyncItemType Type { get; set; }
 
-        internal string ItemId { get; set; }
+        internal ulong? ItemId { get; set; }
 
         internal DateTime? StartAt { get; set; }
 
@@ -31,8 +31,8 @@
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.UriName);
 
-            if (!string.IsNullOrEmpty(ItemId) && isTypeSetAndValid)
-                uriParams.Add("item_id", ItemId);
+            if (ItemId.HasValue && ItemId.Value > 0)
+                uriParams.Add("item_id", ItemId.ToString());
 
             if (StartAt.HasValue)
             {
