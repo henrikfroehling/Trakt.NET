@@ -7,6 +7,7 @@
         public RecentlyUpdatedMoviesPage()
         {
             InitializeComponent();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
     }
 }

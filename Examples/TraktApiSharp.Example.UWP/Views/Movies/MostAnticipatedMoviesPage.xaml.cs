@@ -7,6 +7,7 @@
         public MostAnticipatedMoviesPage()
         {
             InitializeComponent();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
     }
 }
