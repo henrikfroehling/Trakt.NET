@@ -11056,10 +11056,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }
@@ -11086,10 +11086,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }
@@ -11121,10 +11121,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }
