@@ -65,10 +65,10 @@
             response.Title.Should().Be("Star Wars: The Force Awakens");
             response.Year.Should().Be(2015);
             response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(94024);
+            response.Ids.Trakt.Should().Be(94024U);
             response.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
             response.Ids.Imdb.Should().Be("tt2488496");
-            response.Ids.Tmdb.Should().Be(140607);
+            response.Ids.Tmdb.Should().Be(140607U);
         }
 
         [TestMethod]
@@ -93,10 +93,10 @@
             response.Title.Should().Be("Star Wars: The Force Awakens");
             response.Year.Should().Be(2015);
             response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(94024);
+            response.Ids.Trakt.Should().Be(94024U);
             response.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
             response.Ids.Imdb.Should().Be("tt2488496");
-            response.Ids.Tmdb.Should().Be(140607);
+            response.Ids.Tmdb.Should().Be(140607U);
             response.Images.Should().NotBeNull();
             response.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/original/707a0ae2ab.jpg");
             response.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/medium/707a0ae2ab.jpg");

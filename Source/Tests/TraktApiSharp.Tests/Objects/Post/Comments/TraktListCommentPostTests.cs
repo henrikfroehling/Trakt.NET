@@ -28,7 +28,7 @@
             var spoiler = false;
             var sharing = new TraktSharing { Facebook = false, Twitter = true, Tumblr = false };
 
-            var listTraktId = 16;
+            var listTraktId = 16U;
 
             var list = new TraktList { Ids = new TraktListIds { Trakt = listTraktId } };
 

@@ -41,10 +41,10 @@
             movieScrobbleResponse.Movie.Title.Should().Be("Guardians of the Galaxy");
             movieScrobbleResponse.Movie.Year.Should().Be(2014);
             movieScrobbleResponse.Movie.Ids.Should().NotBeNull();
-            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28);
+            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28U);
             movieScrobbleResponse.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             movieScrobbleResponse.Movie.Ids.Imdb.Should().Be("tt2015381");
-            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340);
+            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -67,10 +67,10 @@
             movieScrobbleResponse.Movie.Title.Should().Be("Guardians of the Galaxy");
             movieScrobbleResponse.Movie.Year.Should().Be(2014);
             movieScrobbleResponse.Movie.Ids.Should().NotBeNull();
-            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28);
+            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28U);
             movieScrobbleResponse.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             movieScrobbleResponse.Movie.Ids.Imdb.Should().Be("tt2015381");
-            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340);
+            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -93,10 +93,10 @@
             movieScrobbleResponse.Movie.Title.Should().Be("Guardians of the Galaxy");
             movieScrobbleResponse.Movie.Year.Should().Be(2014);
             movieScrobbleResponse.Movie.Ids.Should().NotBeNull();
-            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28);
+            movieScrobbleResponse.Movie.Ids.Trakt.Should().Be(28U);
             movieScrobbleResponse.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             movieScrobbleResponse.Movie.Ids.Imdb.Should().Be("tt2015381");
-            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340);
+            movieScrobbleResponse.Movie.Ids.Tmdb.Should().Be(118340U);
         }
     }
 }

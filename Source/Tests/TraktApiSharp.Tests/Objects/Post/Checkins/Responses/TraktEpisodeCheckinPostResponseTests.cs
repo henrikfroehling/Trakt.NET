@@ -41,21 +41,21 @@
             episodeCheckinResponse.Episode.Number.Should().Be(1);
             episodeCheckinResponse.Episode.Title.Should().Be("Pilot");
             episodeCheckinResponse.Episode.Ids.Should().NotBeNull();
-            episodeCheckinResponse.Episode.Ids.Trakt.Should().Be(16);
-            episodeCheckinResponse.Episode.Ids.Tvdb.Should().Be(349232);
+            episodeCheckinResponse.Episode.Ids.Trakt.Should().Be(16U);
+            episodeCheckinResponse.Episode.Ids.Tvdb.Should().Be(349232U);
             episodeCheckinResponse.Episode.Ids.Imdb.Should().Be("tt0959621");
-            episodeCheckinResponse.Episode.Ids.Tmdb.Should().Be(62085);
-            episodeCheckinResponse.Episode.Ids.TvRage.Should().Be(637041);
+            episodeCheckinResponse.Episode.Ids.Tmdb.Should().Be(62085U);
+            episodeCheckinResponse.Episode.Ids.TvRage.Should().Be(637041U);
             episodeCheckinResponse.Show.Should().NotBeNull();
             episodeCheckinResponse.Show.Title.Should().Be("Breaking Bad");
             episodeCheckinResponse.Show.Year.Should().Be(2008);
             episodeCheckinResponse.Show.Ids.Should().NotBeNull();
-            episodeCheckinResponse.Show.Ids.Trakt.Should().Be(1);
+            episodeCheckinResponse.Show.Ids.Trakt.Should().Be(1U);
             episodeCheckinResponse.Show.Ids.Slug.Should().Be("breaking-bad");
-            episodeCheckinResponse.Show.Ids.Tvdb.Should().Be(81189);
+            episodeCheckinResponse.Show.Ids.Tvdb.Should().Be(81189U);
             episodeCheckinResponse.Show.Ids.Imdb.Should().Be("tt0903747");
-            episodeCheckinResponse.Show.Ids.Tmdb.Should().Be(1396);
-            episodeCheckinResponse.Show.Ids.TvRage.Should().Be(18164);
+            episodeCheckinResponse.Show.Ids.Tmdb.Should().Be(1396U);
+            episodeCheckinResponse.Show.Ids.TvRage.Should().Be(18164U);
         }
     }
 }

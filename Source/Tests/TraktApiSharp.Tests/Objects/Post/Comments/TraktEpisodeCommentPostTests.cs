@@ -28,7 +28,7 @@
             var spoiler = false;
             var sharing = new TraktSharing { Facebook = true, Twitter = false, Tumblr = true };
 
-            var episodeTraktId = 16;
+            var episodeTraktId = 16U;
 
             var episode = new TraktEpisode { Ids = new TraktEpisodeIds { Trakt = episodeTraktId } };
 

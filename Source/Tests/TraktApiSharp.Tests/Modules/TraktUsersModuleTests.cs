@@ -5183,7 +5183,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5304,7 +5304,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5643,7 +5643,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -7094,7 +7094,7 @@
             var approvedUser = TestUtility.ReadFileContents(@"Objects\Get\Users\UserFollower.json");
             approvedUser.Should().NotBeNullOrEmpty();
 
-            var requestId = "3";
+            var requestId = 3U;
 
             TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", approvedUser);
 
@@ -7113,7 +7113,7 @@
         [TestMethod]
         public void TestTraktUsersModuleApproveFollowerExceptions()
         {
-            var requestId = "3";
+            var requestId = 3U;
 
             var uri = $"users/requests/{requestId}";
 
@@ -7188,13 +7188,7 @@
         public void TestTraktUsersModuleApproveFollowerArgumentExceptions()
         {
             Func<Task<TraktUserFollower>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync("request id");
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -7208,7 +7202,7 @@
         [TestMethod]
         public void TestTraktUsersModuleDenyFollower()
         {
-            var requestId = "3";
+            var requestId = 3U;
 
             TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", HttpStatusCode.NoContent);
 
@@ -7219,7 +7213,7 @@
         [TestMethod]
         public void TestTraktUsersModuleDenyFollowerExceptions()
         {
-            var requestId = "3";
+            var requestId = 3U;
 
             var uri = $"users/requests/{requestId}";
 
@@ -7293,13 +7287,7 @@
         public void TestTraktUsersModuleDenyFollowerArgumentExceptions()
         {
             Func<Task> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync("request id");
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -11068,10 +11056,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }
@@ -11098,10 +11086,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }
@@ -11133,10 +11121,10 @@
             response.Movie.Title.Should().Be("Super 8");
             response.Movie.Year.Should().Be(2011);
             response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2);
+            response.Movie.Ids.Trakt.Should().Be(2U);
             response.Movie.Ids.Slug.Should().Be("super-8-2011");
             response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686);
+            response.Movie.Ids.Tmdb.Should().Be(37686U);
             response.Show.Should().BeNull();
             response.Episode.Should().BeNull();
         }

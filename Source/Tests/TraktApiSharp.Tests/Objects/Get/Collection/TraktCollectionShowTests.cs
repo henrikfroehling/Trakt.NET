@@ -42,12 +42,12 @@
             shows[0].Show.Title.Should().Be("Breaking Bad");
             shows[0].Show.Year.Should().Be(2008);
             shows[0].Show.Ids.Should().NotBeNull();
-            shows[0].Show.Ids.Trakt.Should().Be(1);
+            shows[0].Show.Ids.Trakt.Should().Be(1U);
             shows[0].Show.Ids.Slug.Should().Be("breaking-bad");
-            shows[0].Show.Ids.Tvdb.Should().Be(81189);
+            shows[0].Show.Ids.Tvdb.Should().Be(81189U);
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
-            shows[0].Show.Ids.Tmdb.Should().Be(1396);
-            shows[0].Show.Ids.TvRage.Should().Be(18164);
+            shows[0].Show.Ids.Tmdb.Should().Be(1396U);
+            shows[0].Show.Ids.TvRage.Should().Be(18164U);
             shows[0].Seasons.Should().NotBeNull();
             shows[0].Seasons.Should().HaveCount(2);
 
@@ -93,12 +93,12 @@
             shows[1].Show.Title.Should().Be("The Walking Dead");
             shows[1].Show.Year.Should().Be(2010);
             shows[1].Show.Ids.Should().NotBeNull();
-            shows[1].Show.Ids.Trakt.Should().Be(2);
+            shows[1].Show.Ids.Trakt.Should().Be(2U);
             shows[1].Show.Ids.Slug.Should().Be("the-walking-dead");
-            shows[1].Show.Ids.Tvdb.Should().Be(153021);
+            shows[1].Show.Ids.Tvdb.Should().Be(153021U);
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
-            shows[1].Show.Ids.Tmdb.Should().Be(1402);
-            shows[1].Show.Ids.TvRage.Should().NotHaveValue();
+            shows[1].Show.Ids.Tmdb.Should().Be(1402U);
+            shows[1].Show.Ids.TvRage.Should().BeNull();
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 
@@ -156,12 +156,12 @@
             shows[0].Show.Title.Should().Be("Breaking Bad");
             shows[0].Show.Year.Should().Be(2008);
             shows[0].Show.Ids.Should().NotBeNull();
-            shows[0].Show.Ids.Trakt.Should().Be(1);
+            shows[0].Show.Ids.Trakt.Should().Be(1U);
             shows[0].Show.Ids.Slug.Should().Be("breaking-bad");
-            shows[0].Show.Ids.Tvdb.Should().Be(81189);
+            shows[0].Show.Ids.Tvdb.Should().Be(81189U);
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
-            shows[0].Show.Ids.Tmdb.Should().Be(1396);
-            shows[0].Show.Ids.TvRage.Should().Be(18164);
+            shows[0].Show.Ids.Tmdb.Should().Be(1396U);
+            shows[0].Show.Ids.TvRage.Should().Be(18164U);
             shows[0].Seasons.Should().NotBeNull();
             shows[0].Seasons.Should().HaveCount(2);
 
@@ -227,12 +227,12 @@
             shows[1].Show.Title.Should().Be("The Walking Dead");
             shows[1].Show.Year.Should().Be(2010);
             shows[1].Show.Ids.Should().NotBeNull();
-            shows[1].Show.Ids.Trakt.Should().Be(2);
+            shows[1].Show.Ids.Trakt.Should().Be(2U);
             shows[1].Show.Ids.Slug.Should().Be("the-walking-dead");
-            shows[1].Show.Ids.Tvdb.Should().Be(153021);
+            shows[1].Show.Ids.Tvdb.Should().Be(153021U);
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
-            shows[1].Show.Ids.Tmdb.Should().Be(1402);
-            shows[1].Show.Ids.TvRage.Should().NotHaveValue();
+            shows[1].Show.Ids.Tmdb.Should().Be(1402U);
+            shows[1].Show.Ids.TvRage.Should().BeNull();
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 

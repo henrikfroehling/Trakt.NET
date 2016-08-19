@@ -19,10 +19,10 @@
     {
         /// <summary>Adds a new user list query parameter pack to the collection.</summary>
         /// <param name="usernameOrSlug">An username or slug for a Trakt user.</param>
-        /// <param name="listId">A list id for a list, which belongs the an user with the given username or slug.</param>
-        public void Add(string usernameOrSlug, string listId)
+        /// <param name="listIdOrSlug">A list id or slug for a list, which belongs the an user with the given username or slug.</param>
+        public void Add(string usernameOrSlug, string listIdOrSlug)
         {
-            Add(new TraktUserListsQueryParams(usernameOrSlug, listId));
+            Add(new TraktUserListsQueryParams(usernameOrSlug, listIdOrSlug));
         }
     }
 
@@ -34,11 +34,11 @@
     {
         /// <summary>Initializes a new instance of the <see cref="TraktUserListsQueryParams" /> class.</summary>
         /// <param name="username">A username or slug for a Trakt user.</param>
-        /// <param name="listId"></param>
-        public TraktUserListsQueryParams(string username, string listId)
+        /// <param name="listIdOrSlug">A list id or slug for a list, which belongs the an user with the given username or slug.</param>
+        public TraktUserListsQueryParams(string username, string listIdOrSlug)
         {
             Username = username;
-            ListId = listId;
+            ListId = listIdOrSlug;
         }
 
         /// <summary>Returns the username of slug for a Trakt user.</summary>

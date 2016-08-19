@@ -13,7 +13,7 @@
     {
         /// <summary>Gets or sets the id of this progress item.</summary>
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public uint Id { get; set; }
 
         /// <summary>
         /// Gets or sets a value between 0 and 100 representing the watched progress percentage

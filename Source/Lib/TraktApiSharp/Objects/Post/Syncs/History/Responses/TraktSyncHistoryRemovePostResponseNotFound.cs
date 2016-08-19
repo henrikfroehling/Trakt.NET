@@ -9,6 +9,6 @@
     {
         [JsonProperty(PropertyName = "ids")]
         [Nullable]
-        public IEnumerable<int> Ids { get; set; }
+        public IEnumerable<uint> Ids { get; set; }
     }
 }
