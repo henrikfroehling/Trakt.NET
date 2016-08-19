@@ -66,12 +66,12 @@
             response.Title.Should().Be("Game of Thrones");
             response.Year.Should().Be(2011);
             response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(1390);
+            response.Ids.Trakt.Should().Be(1390U);
             response.Ids.Slug.Should().Be("game-of-thrones");
-            response.Ids.Tvdb.Should().Be(121361);
+            response.Ids.Tvdb.Should().Be(121361U);
             response.Ids.Imdb.Should().Be("tt0944947");
-            response.Ids.Tmdb.Should().Be(1399);
-            response.Ids.TvRage.Should().Be(24493);
+            response.Ids.Tmdb.Should().Be(1399U);
+            response.Ids.TvRage.Should().Be(24493U);
         }
 
         [TestMethod]
@@ -101,12 +101,12 @@
             response.Airs.TimeZoneId.Should().Be("America/New_York");
             response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(1390);
+            response.Ids.Trakt.Should().Be(1390U);
             response.Ids.Slug.Should().Be("game-of-thrones");
-            response.Ids.Tvdb.Should().Be(121361);
+            response.Ids.Tvdb.Should().Be(121361U);
             response.Ids.Imdb.Should().Be("tt0944947");
-            response.Ids.Tmdb.Should().Be(1399);
-            response.Ids.TvRage.Should().Be(24493);
+            response.Ids.Tmdb.Should().Be(1399U);
+            response.Ids.TvRage.Should().Be(24493U);
             response.Images.Should().NotBeNull();
             response.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/original/76d5df8aed.jpg");
             response.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/medium/76d5df8aed.jpg");
@@ -1839,9 +1839,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -1910,9 +1910,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -1983,9 +1983,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2056,9 +2056,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2127,9 +2127,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2200,9 +2200,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2271,9 +2271,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2346,9 +2346,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2516,9 +2516,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2587,9 +2587,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2660,9 +2660,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2733,9 +2733,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2804,9 +2804,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2877,9 +2877,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -2948,9 +2948,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
@@ -3023,9 +3023,9 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
             hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             response.NextEpisode.Should().BeNull();
