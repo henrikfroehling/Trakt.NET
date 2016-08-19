@@ -44,10 +44,10 @@
             playbackProgress.Movie.Title.Should().Be("Batman Begins");
             playbackProgress.Movie.Year.Should().Be(2005);
             playbackProgress.Movie.Ids.Should().NotBeNull();
-            playbackProgress.Movie.Ids.Trakt.Should().Be(1);
+            playbackProgress.Movie.Ids.Trakt.Should().Be(1U);
             playbackProgress.Movie.Ids.Slug.Should().Be("batman-begins-2005");
             playbackProgress.Movie.Ids.Imdb.Should().Be("tt0372784");
-            playbackProgress.Movie.Ids.Tmdb.Should().Be(272);
+            playbackProgress.Movie.Ids.Tmdb.Should().Be(272U);
             playbackProgress.Episode.Should().BeNull();
             playbackProgress.Show.Should().BeNull();
         }
@@ -73,21 +73,21 @@
             playbackProgress.Episode.Number.Should().Be(1);
             playbackProgress.Episode.Title.Should().Be("Good Cop Bad Cop");
             playbackProgress.Episode.Ids.Should().NotBeNull();
-            playbackProgress.Episode.Ids.Trakt.Should().Be(1);
-            playbackProgress.Episode.Ids.Tvdb.Should().Be(3859781);
-            playbackProgress.Episode.Ids.Imdb.Should().Be("");
-            playbackProgress.Episode.Ids.Tmdb.Should().Be(62131);
+            playbackProgress.Episode.Ids.Trakt.Should().Be(1U);
+            playbackProgress.Episode.Ids.Tvdb.Should().Be(3859781U);
+            playbackProgress.Episode.Ids.Imdb.Should().BeNullOrEmpty();
+            playbackProgress.Episode.Ids.Tmdb.Should().Be(62131U);
             playbackProgress.Episode.Ids.TvRage.Should().BeNull();
             playbackProgress.Show.Should().NotBeNull();
             playbackProgress.Show.Title.Should().Be("Breaking Bad");
             playbackProgress.Show.Year.Should().Be(2008);
             playbackProgress.Show.Ids.Should().NotBeNull();
-            playbackProgress.Show.Ids.Trakt.Should().Be(1);
+            playbackProgress.Show.Ids.Trakt.Should().Be(1U);
             playbackProgress.Show.Ids.Slug.Should().Be("breaking-bad");
-            playbackProgress.Show.Ids.Tvdb.Should().Be(81189);
+            playbackProgress.Show.Ids.Tvdb.Should().Be(81189U);
             playbackProgress.Show.Ids.Imdb.Should().Be("tt0903747");
-            playbackProgress.Show.Ids.Tmdb.Should().Be(1396);
-            playbackProgress.Show.Ids.TvRage.Should().Be(18164);
+            playbackProgress.Show.Ids.Tmdb.Should().Be(1396U);
+            playbackProgress.Show.Ids.TvRage.Should().Be(18164U);
         }
     }
 }

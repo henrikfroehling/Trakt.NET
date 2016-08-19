@@ -4355,7 +4355,7 @@
             var movies = response.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Trakt.Should().Be(0U);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
@@ -4365,7 +4365,7 @@
             response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            response.NotFound.Ids.Should().Contain(new List<int>() { 23, 42 });
+            response.NotFound.Ids.Should().Contain(new List<uint>() { 23U, 42U });
         }
 
         [TestMethod]
