@@ -39,20 +39,20 @@
             cast[0].Movie.Title.Should().Be("Kung Fu Panda 3");
             cast[0].Movie.Year.Should().Be(2016);
             cast[0].Movie.Ids.Should().NotBeNull();
-            cast[0].Movie.Ids.Trakt.Should().Be(93870);
+            cast[0].Movie.Ids.Trakt.Should().Be(93870U);
             cast[0].Movie.Ids.Slug.Should().Be("kung-fu-panda-3-2016");
             cast[0].Movie.Ids.Imdb.Should().Be("tt2267968");
-            cast[0].Movie.Ids.Tmdb.Should().Be(140300);
+            cast[0].Movie.Ids.Tmdb.Should().Be(140300U);
 
             cast[1].Character.Should().Be("Joe Brody");
             cast[1].Movie.Should().NotBeNull();
             cast[1].Movie.Title.Should().Be("Godzilla");
             cast[1].Movie.Year.Should().Be(2014);
             cast[1].Movie.Ids.Should().NotBeNull();
-            cast[1].Movie.Ids.Trakt.Should().Be(24);
+            cast[1].Movie.Ids.Trakt.Should().Be(24U);
             cast[1].Movie.Ids.Slug.Should().Be("godzilla-2014");
             cast[1].Movie.Ids.Imdb.Should().Be("tt0831387");
-            cast[1].Movie.Ids.Tmdb.Should().Be(124905);
+            cast[1].Movie.Ids.Tmdb.Should().Be(124905U);
 
             movieCredits.Crew.Should().NotBeNull();
             movieCredits.Crew.Art.Should().BeNull();
@@ -68,10 +68,10 @@
             directing[0].Movie.Title.Should().Be("Godzilla");
             directing[0].Movie.Year.Should().Be(2014);
             directing[0].Movie.Ids.Should().NotBeNull();
-            directing[0].Movie.Ids.Trakt.Should().Be(24);
+            directing[0].Movie.Ids.Trakt.Should().Be(24U);
             directing[0].Movie.Ids.Slug.Should().Be("godzilla-2014");
             directing[0].Movie.Ids.Imdb.Should().Be("tt0831387");
-            directing[0].Movie.Ids.Tmdb.Should().Be(124905);
+            directing[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
             movieCredits.Crew.Editing.Should().BeNull();
             movieCredits.Crew.Lighting.Should().BeNull();
@@ -84,10 +84,10 @@
             production[0].Movie.Title.Should().Be("Godzilla");
             production[0].Movie.Year.Should().Be(2014);
             production[0].Movie.Ids.Should().NotBeNull();
-            production[0].Movie.Ids.Trakt.Should().Be(24);
+            production[0].Movie.Ids.Trakt.Should().Be(24U);
             production[0].Movie.Ids.Slug.Should().Be("godzilla-2014");
             production[0].Movie.Ids.Imdb.Should().Be("tt0831387");
-            production[0].Movie.Ids.Tmdb.Should().Be(124905);
+            production[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
             movieCredits.Crew.Sound.Should().BeNull();
             movieCredits.Crew.VisualEffects.Should().BeNull();
@@ -100,10 +100,10 @@
             writing[0].Movie.Title.Should().Be("Godzilla");
             writing[0].Movie.Year.Should().Be(2014);
             writing[0].Movie.Ids.Should().NotBeNull();
-            writing[0].Movie.Ids.Trakt.Should().Be(24);
+            writing[0].Movie.Ids.Trakt.Should().Be(24U);
             writing[0].Movie.Ids.Slug.Should().Be("godzilla-2014");
             writing[0].Movie.Ids.Imdb.Should().Be("tt0831387");
-            writing[0].Movie.Ids.Tmdb.Should().Be(124905);
+            writing[0].Movie.Ids.Tmdb.Should().Be(124905U);
         }
     }
 }
