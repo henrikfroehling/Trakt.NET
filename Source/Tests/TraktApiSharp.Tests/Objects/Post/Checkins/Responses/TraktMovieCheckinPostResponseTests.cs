@@ -39,10 +39,10 @@
             movieCheckinResponse.Movie.Title.Should().Be("Guardians of the Galaxy");
             movieCheckinResponse.Movie.Year.Should().Be(2014);
             movieCheckinResponse.Movie.Ids.Should().NotBeNull();
-            movieCheckinResponse.Movie.Ids.Trakt.Should().Be(28);
+            movieCheckinResponse.Movie.Ids.Trakt.Should().Be(28U);
             movieCheckinResponse.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
             movieCheckinResponse.Movie.Ids.Imdb.Should().Be("tt2015381");
-            movieCheckinResponse.Movie.Ids.Tmdb.Should().Be(118340);
+            movieCheckinResponse.Movie.Ids.Tmdb.Should().Be(118340U);
         }
     }
 }
