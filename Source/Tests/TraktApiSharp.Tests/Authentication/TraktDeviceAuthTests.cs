@@ -2972,21 +2972,18 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            var postContent = $"{{ \"access_token\": \"{accessToken.AccessToken}\" }}";
+            var postContent = $"token={accessToken.AccessToken}";
 
             var uri = TraktConstants.OAuthRevokeUri;
 
-            TestUtility.SetupMockAuthenticationResponse(uri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
             act.ShouldNotThrow();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuthWithoutContent(uri, postContent, accessToken);
+            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
             act.ShouldNotThrow();
@@ -3160,21 +3157,18 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            var postContent = $"{{ \"access_token\": \"{accessToken.AccessToken}\" }}";
+            var postContent = $"token={accessToken.AccessToken}";
 
             var uri = TraktConstants.OAuthRevokeUri;
 
-            TestUtility.SetupMockAuthenticationResponse(uri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
             act.ShouldNotThrow();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuthWithoutContent(uri, postContent, accessToken);
+            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
             act.ShouldNotThrow();
@@ -3393,21 +3387,18 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            var postContent = $"{{ \"access_token\": \"{accessToken.AccessToken}\" }}";
+            var postContent = $"token={accessToken.AccessToken}";
 
             var uri = TraktConstants.OAuthRevokeUri;
 
-            TestUtility.SetupMockAuthenticationResponse(uri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
             act.ShouldNotThrow();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuthWithoutContent(uri, postContent, accessToken, clientId);
+            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken, clientId);
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
             act.ShouldNotThrow();
