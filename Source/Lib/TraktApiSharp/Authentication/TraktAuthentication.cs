@@ -427,7 +427,7 @@
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", nameof(clientId));
 
-            var postContent = $"{{ \"access_token\": \"{accessToken}\" }}";
+            var postContent = $"token={accessToken}";
 
             var httpClient = TraktConfiguration.HTTP_CLIENT;
 
@@ -438,7 +438,7 @@
             SetAuthorizationRequestHeaders(httpClient, accessToken, clientId);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthRevokeUri}";
-            var content = new StringContent(postContent, Encoding.UTF8, "application/json");
+            var content = new StringContent(postContent, Encoding.UTF8, "application/x-www-form-urlencoded");
 
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
