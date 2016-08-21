@@ -449,7 +449,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -460,7 +460,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -679,7 +679,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -690,7 +690,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -904,7 +904,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -915,7 +915,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -1127,7 +1127,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -1138,7 +1138,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -1348,7 +1348,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -1359,7 +1359,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -1573,7 +1573,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -1584,7 +1584,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -1830,7 +1830,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -1841,7 +1841,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -2130,7 +2130,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -2141,7 +2141,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -2426,7 +2426,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -2437,7 +2437,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
@@ -2717,7 +2717,7 @@
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
             response.AccessScope.Should().Be(accessToken.AccessScope);
             response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeTrue();
+            response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authentication.Authorization;
 
@@ -2728,7 +2728,7 @@
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
-            clientAccessToken.IsExpired.Should().BeTrue();
+            clientAccessToken.IsExpired.Should().BeFalse();
         }
 
         [TestMethod]
