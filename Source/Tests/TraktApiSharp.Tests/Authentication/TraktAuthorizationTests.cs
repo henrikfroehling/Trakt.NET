@@ -68,6 +68,22 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthorizationIsRefreshPossible()
+        {
+            var token = new TraktAuthorization();
+            token.IsRefreshPossible.Should().BeFalse();
+
+            token.RefreshToken = string.Empty;
+            token.IsRefreshPossible.Should().BeFalse();
+
+            token.RefreshToken = "refresh token";
+            token.IsRefreshPossible.Should().BeFalse();
+
+            token.RefreshToken = "refreshToken";
+            token.IsRefreshPossible.Should().BeTrue();
+        }
+
+        [TestMethod]
         public void TestTraktAuthorizationIsExpired()
         {
             var token = new TraktAuthorization();
