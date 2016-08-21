@@ -83,6 +83,15 @@
         [JsonIgnore]
         public bool IsValid => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace();
 
+        /// <summary>
+        /// Returns, whether this authorization information can be refreshed with a refresh token.
+        /// <para>
+        /// Returns false, if <see cref="RefreshToken" /> is null, empty or contains spaces.
+        /// </para>
+        /// </summary>
+        [JsonIgnore]
+        public bool IsRefreshPossible => !string.IsNullOrEmpty(RefreshToken) && !RefreshToken.ContainsSpace();
+
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
         [JsonIgnore]
         public DateTime Created { get; private set; }
