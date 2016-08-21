@@ -64,15 +64,13 @@
         public TraktAccessTokenType TokenType { get; set; }
 
         /// <summary>
-        /// Returns, whether this authorization information is not expired yet.
+        /// Returns, whether this authorization information is expired.
         /// <para>
-        /// Returns false, if <see cref="AccessToken" /> is null, empty or contains spaces, or,
-        /// if the authorization information is expired.
+        /// Returns false, if <see cref="IsValid" /> returns false, or, if the authorization information is expired.
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsExpired => (string.IsNullOrEmpty(AccessToken) || AccessToken.ContainsSpace())
-                                    && (IgnoreExpiration || (DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow));
+        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
 
         /// <summary>
         /// Returns, whether this authorization information is valid.
