@@ -50,6 +50,22 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthorizationIsValid()
+        {
+            var token = new TraktAuthorization();
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = string.Empty;
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "access token";
+            token.IsValid.Should().BeFalse();
+
+            token.AccessToken = "accessToken";
+            token.IsValid.Should().BeTrue();
+        }
+
+        [TestMethod]
         public void TestTraktAuthorizationIsExpired()
         {
             var token = new TraktAuthorization();
