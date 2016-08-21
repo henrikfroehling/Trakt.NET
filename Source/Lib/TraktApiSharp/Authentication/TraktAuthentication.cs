@@ -100,7 +100,7 @@
         /// Returns whether the client is authorized with a valid access token.
         /// See also <seealso cref="TraktAuthorization.IsExpired" />.
         /// </summary>
-        public bool IsAuthorized => Authorization != null && Authorization.IsExpired;
+        public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.

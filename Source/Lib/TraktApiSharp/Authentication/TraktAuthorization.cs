@@ -50,9 +50,13 @@
         [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
         public TraktAccessScope AccessScope { get; set; }
 
-        /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
+        /// <summary>Gets or sets the epoch value, after which this authorization will expire.</summary>
         [JsonProperty(PropertyName = "expires_in")]
-        public int ExpiresInSeconds { get; set; }
+        public int ExpiresIn { get; set; }
+
+        /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
+        [JsonIgnore]
+        public int ExpiresInSeconds => ExpiresIn * 1000;
 
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
         [JsonProperty(PropertyName = "token_type")]
@@ -60,15 +64,31 @@
         public TraktAccessTokenType TokenType { get; set; }
 
         /// <summary>
-        /// Returns, whether this authorization information is not expired yet.
+        /// Returns, whether this authorization information is expired.
         /// <para>
-        /// Returns false, if <see cref="AccessToken" /> is null, empty or contains spaces, or,
-        /// if the authorization information is expired.
+        /// Returns false, if <see cref="IsValid" /> returns false, or, if the authorization information is expired.
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsExpired => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace()
-                                    && (IgnoreExpiration || DateTime.UtcNow.AddSeconds(ExpiresInSeconds) > DateTime.UtcNow);
+        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
+
+        /// <summary>
+        /// Returns, whether this authorization information is valid.
+        /// <para>
+        /// Returns false, if <see cref="AccessToken" /> is null, empty or contains spaces.
+        /// </para>
+        /// </summary>
+        [JsonIgnore]
+        public bool IsValid => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace();
+
+        /// <summary>
+        /// Returns, whether this authorization information can be refreshed with a refresh token.
+        /// <para>
+        /// Returns false, if <see cref="RefreshToken" /> is null, empty or contains spaces.
+        /// </para>
+        /// </summary>
+        [JsonIgnore]
+        public bool IsRefreshPossible => !string.IsNullOrEmpty(RefreshToken) && !RefreshToken.ContainsSpace();
 
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
         [JsonIgnore]
