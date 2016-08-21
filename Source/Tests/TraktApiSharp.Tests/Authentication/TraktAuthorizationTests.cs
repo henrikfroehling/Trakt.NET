@@ -50,29 +50,41 @@
         }
 
         [TestMethod]
-        public void TestTraktAuthorizationIsValid()
+        public void TestTraktAuthorizationIsExpired()
         {
             var token = new TraktAuthorization();
-            token.IsExpired.Should().BeFalse();
-
-            token.ExpiresIn = 3600;
-            token.IsExpired.Should().BeFalse();
-
-            token.AccessToken = "acces token";
-            token.IsExpired.Should().BeFalse();
-
-            token.AccessToken = "accessToken";
             token.IsExpired.Should().BeTrue();
 
-            token = new TraktAuthorization();
-            token.IgnoreExpiration = true;
-            token.IsExpired.Should().BeFalse();
+            token.AccessToken = string.Empty;
+            token.IsExpired.Should().BeTrue();
 
             token.AccessToken = "access token";
-            token.IsExpired.Should().BeFalse();
+            token.IsExpired.Should().BeTrue();
 
             token.AccessToken = "accessToken";
             token.IsExpired.Should().BeTrue();
+
+            token.ExpiresIn = 1;
+            token.IsExpired.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationIsExpiredWithIgnoreExpiration()
+        {
+            var token = new TraktAuthorization();
+            token.IgnoreExpiration = true;
+            token.ExpiresIn = 0;
+
+            token.IsExpired.Should().BeTrue();
+
+            token.AccessToken = string.Empty;
+            token.IsExpired.Should().BeTrue();
+
+            token.AccessToken = "access token";
+            token.IsExpired.Should().BeTrue();
+
+            token.AccessToken = "accessToken";
+            token.IsExpired.Should().BeFalse();
         }
     }
 }
