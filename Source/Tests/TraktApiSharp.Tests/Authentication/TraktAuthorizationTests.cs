@@ -24,6 +24,7 @@
             token.ExpiresIn.Should().Be(0);
             token.ExpiresInSeconds.Should().Be(0);
             token.RefreshToken.Should().BeNullOrEmpty();
+            token.IsValid.Should().BeFalse();
             token.IsExpired.Should().BeFalse();
             token.Created.Should().BeCloseTo(dtNowUtc);
             token.IgnoreExpiration.Should().BeFalse();
@@ -46,6 +47,7 @@
             token.RefreshToken.Should().Be("76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c");
             token.AccessScope.Should().Be(TraktAccessScope.Public);
             token.IsExpired.Should().BeTrue();
+            token.IsValid.Should().BeTrue();
             token.IgnoreExpiration.Should().BeFalse();
         }
 
