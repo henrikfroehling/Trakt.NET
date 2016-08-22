@@ -32,6 +32,11 @@
             return Json.Serialize(authorizationWrapper);
         }
 
+        public static string Serialize(TraktDevice device)
+        {
+            return string.Empty;
+        }
+
         /// <summary>
         /// Deserializes a JSON string to an <see cref="TraktAuthorization" /> instance.
         /// </summary>

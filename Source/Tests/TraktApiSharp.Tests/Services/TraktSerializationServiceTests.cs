@@ -24,7 +24,7 @@
         };
 
         private static readonly string AUTHORIZATION_JSON =
-            $"{{" +
+            "{" +
                 $"\"AccessToken\":\"{AUTHORIZATION.AccessToken}\"," +
                 $"\"RefreshToken\":\"{AUTHORIZATION.RefreshToken}\"," +
                 $"\"ExpiresIn\":{AUTHORIZATION.ExpiresIn}," +
@@ -32,7 +32,27 @@
                 $"\"TokenType\":\"{AUTHORIZATION.TokenType.ObjectName}\"," +
                 $"\"CreatedAtTicks\":{CREATED_AT.Ticks}," +
                 $"\"IgnoreExpiration\":{AUTHORIZATION.IgnoreExpiration.ToString().ToLower()}" +
-            $"}}";
+            "}";
+
+        private static readonly TraktDevice DEVICE = new TraktDevice
+        {
+            UserCode = "5055CC52",
+            DeviceCode = "d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64",
+            VerificationUrl = "https://trakt.tv/activate",
+            ExpiresInSeconds = 600,
+            IntervalInSeconds = 5,
+            Created = CREATED_AT
+        };
+
+        private static readonly string DEVICE_JSON =
+            "{" +
+                $"\"UserCode\":\"{DEVICE.UserCode}\"," +
+                $"\"DeviceCode\":\"{DEVICE.DeviceCode}\"," +
+                $"\"VerificationUrl\":\"{DEVICE.VerificationUrl}\"" +
+                $"\"ExpiresInSeconds\":{DEVICE.ExpiresInSeconds}" +
+                $"\"IntervalInSeconds\":{DEVICE.IntervalInSeconds}" +
+                $"\"CreatedAtTicks\":{CREATED_AT.Ticks}" +
+            "}";
 
         [TestMethod]
         public void TestTraktSerializationServiceSerializeTraktAuthorization()
@@ -46,7 +66,23 @@
         [TestMethod]
         public void TestTraktSerializationServiceSerializeTraktAuthorizationArgumentExceptions()
         {
-            Action act = () => TraktSerializationService.Serialize(null);
+            Action act = () => TraktSerializationService.Serialize(default(TraktAuthorization));
+            act.ShouldThrow<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceSerializeTraktDevice()
+        {
+            var jsonDevice = TraktSerializationService.Serialize(DEVICE);
+
+            jsonDevice.Should().NotBeNullOrEmpty();
+            jsonDevice.Should().Be(DEVICE_JSON);
+        }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceSerializeTraktDeviceArgumentExceptions()
+        {
+            Action act = () => TraktSerializationService.Serialize(default(TraktDevice));
             act.ShouldThrow<ArgumentNullException>();
         }
 
