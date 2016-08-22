@@ -112,6 +112,16 @@
         }
 
         [TestMethod]
+        public void TestTraktSerializationServiceDeserializeTraktAuthorizationInvalidJson()
+        {
+            Action act = () => TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
+            act.ShouldNotThrow();
+
+            var result = TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
+            result.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktDevice()
         {
             var device = TraktSerializationService.DeserializeDevice(DEVICE_JSON);
@@ -133,6 +143,16 @@
 
             act = () => TraktSerializationService.DeserializeDevice(string.Empty);
             act.ShouldThrow<ArgumentException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceDeserializeTraktDeviceInvalidJson()
+        {
+            Action act = () => TraktSerializationService.DeserializeDevice("{ \"invalid\": \"json\" }");
+            act.ShouldNotThrow();
+
+            var result = TraktSerializationService.DeserializeDevice("{ \"invalid\": \"json\" }");
+            result.Should().BeNull();
         }
     }
 }

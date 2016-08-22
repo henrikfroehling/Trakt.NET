@@ -89,14 +89,17 @@
                 var createdAtTicks = anonymousAuthorization.CreatedAtTicks;
                 var ignoreExpiration = anonymousAuthorization.IgnoreExpiration;
 
-                var accessScope = !string.IsNullOrEmpty(scope) ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
-                var accessTokenType = !string.IsNullOrEmpty(tokenType) ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
+                if (accessToken == null || refreshToken == null || scope == null || tokenType == null)
+                    return default(TraktAuthorization);
+
+                var accessScope = scope != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
+                var accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
                 var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
 
                 var authorization = new TraktAuthorization
                 {
-                    AccessToken = accessToken ?? string.Empty,
-                    RefreshToken = refreshToken ?? string.Empty,
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken,
                     ExpiresIn = expiresIn,
                     AccessScope = accessScope,
                     TokenType = accessTokenType,
@@ -143,13 +146,16 @@
                 var intervalInSeconds = anonymousDevice.IntervalInSeconds;
                 var createdAtTicks = anonymousDevice.CreatedAtTicks;
 
+                if (userCode == null || deviceCode == null || verificationUrl == null)
+                    return default(TraktDevice);
+
                 var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
 
                 var device = new TraktDevice
                 {
-                    UserCode = userCode ?? string.Empty,
-                    DeviceCode = deviceCode ?? string.Empty,
-                    VerificationUrl = verificationUrl ?? string.Empty,
+                    UserCode = userCode,
+                    DeviceCode = deviceCode,
+                    VerificationUrl = verificationUrl,
                     ExpiresInSeconds = expiresInSeconds,
                     IntervalInSeconds = intervalInSeconds,
                     Created = createdDateTime
