@@ -3,7 +3,7 @@
     using Attributes;
     using Newtonsoft.Json;
 
-    /// <summary>A collection of ids a Trakt user.</summary>
+    /// <summary>A collection of ids for a Trakt user.</summary>
     public class TraktUserIds
     {
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>

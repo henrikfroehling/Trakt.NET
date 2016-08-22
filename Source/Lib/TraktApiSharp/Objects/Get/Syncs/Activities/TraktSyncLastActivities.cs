@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System;
 
-    /// <summary>Contains a collection of UTC datetimes of last activities.</summary>
+    /// <summary>A collection of UTC datetimes of last activities.</summary>
     public class TraktSyncLastActivities
     {
         /// <summary>Gets or sets the UTC datetime of the overall last activity.</summary>

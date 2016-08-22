@@ -12,7 +12,7 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        internal TraktSyncRatingsItemType Type { get; set; }
+        internal TraktRatingsItemType Type { get; set; }
 
         internal int[] Rating { get; set; }
 
@@ -20,7 +20,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            var isTypeSetAndValid = Type != null && Type != TraktSyncRatingsItemType.Unspecified;
+            var isTypeSetAndValid = Type != null && Type != TraktRatingsItemType.Unspecified;
 
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.UriName);
