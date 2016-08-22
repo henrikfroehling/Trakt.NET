@@ -63,10 +63,10 @@
         /// If the JSON string could not be parsed, null will be returned.
         /// </returns>
         /// <exception cref="ArgumentException">Thrown, if the given authorizationJson is null or empty.</exception>
-        public static TraktAuthorization Deserialize(string authorizationJson)
+        public static TraktAuthorization DeserializeAuthorization(string authorizationJson)
         {
             if (string.IsNullOrEmpty(authorizationJson))
-                throw new ArgumentException("authorization is invalid", nameof(authorizationJson));
+                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
 
             var authorizationWrapper = new
             {
@@ -110,6 +110,14 @@
             }
 
             return default(TraktAuthorization);
+        }
+
+        public static TraktDevice DeserializeDevice(string deviceJson)
+        {
+            if (string.IsNullOrEmpty(deviceJson))
+                throw new ArgumentException("device JSON is invalid", nameof(deviceJson));
+
+            return default(TraktDevice);
         }
     }
 }

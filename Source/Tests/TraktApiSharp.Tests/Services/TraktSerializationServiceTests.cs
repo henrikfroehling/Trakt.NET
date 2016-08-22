@@ -89,7 +89,7 @@
         [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktAuthorization()
         {
-            var authorization = TraktSerializationService.Deserialize(AUTHORIZATION_JSON);
+            var authorization = TraktSerializationService.DeserializeAuthorization(AUTHORIZATION_JSON);
 
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().Be(AUTHORIZATION.AccessToken);
@@ -104,17 +104,17 @@
         [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktAuthorizationArgumentExceptions()
         {
-            Action act = () => TraktSerializationService.Deserialize(null);
+            Action act = () => TraktSerializationService.DeserializeAuthorization(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => TraktSerializationService.Deserialize(string.Empty);
+            act = () => TraktSerializationService.DeserializeAuthorization(string.Empty);
             act.ShouldThrow<ArgumentException>();
         }
 
         [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktDevice()
         {
-            var device = TraktSerializationService.Deserialize(DEVICE_JSON);
+            var device = TraktSerializationService.DeserializeDevice(DEVICE_JSON);
 
             device.Should().NotBeNull();
             device.UserCode.Should().Be(DEVICE.UserCode);
@@ -128,10 +128,10 @@
         [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktDeviceArgumentExceptions()
         {
-            Action act = () => TraktSerializationService.Deserialize(null);
+            Action act = () => TraktSerializationService.DeserializeDevice(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => TraktSerializationService.Deserialize(string.Empty);
+            act = () => TraktSerializationService.DeserializeDevice(string.Empty);
             act.ShouldThrow<ArgumentException>();
         }
     }
