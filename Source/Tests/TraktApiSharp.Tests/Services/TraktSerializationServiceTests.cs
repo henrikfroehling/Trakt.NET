@@ -110,5 +110,29 @@
             act = () => TraktSerializationService.Deserialize(string.Empty);
             act.ShouldThrow<ArgumentException>();
         }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceDeserializeTraktDevice()
+        {
+            var device = TraktSerializationService.Deserialize(DEVICE_JSON);
+
+            device.Should().NotBeNull();
+            device.UserCode.Should().Be(DEVICE.UserCode);
+            device.DeviceCode.Should().Be(DEVICE.DeviceCode);
+            device.VerificationUrl.Should().Be(DEVICE.VerificationUrl);
+            device.ExpiresInSeconds.Should().Be(DEVICE.ExpiresInSeconds);
+            device.IntervalInSeconds.Should().Be(DEVICE.IntervalInSeconds);
+            device.Created.Should().Be(DEVICE.Created);
+        }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceDeserializeTraktDeviceArgumentExceptions()
+        {
+            Action act = () => TraktSerializationService.Deserialize(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => TraktSerializationService.Deserialize(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+        }
     }
 }
