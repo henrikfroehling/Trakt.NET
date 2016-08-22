@@ -5,7 +5,6 @@
     using System;
     using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Extensions;
     using TraktApiSharp.Services;
 
     [TestClass]
@@ -31,7 +30,7 @@
                 $"\"ExpiresIn\":{AUTHORIZATION.ExpiresIn}," +
                 $"\"Scope\":\"{AUTHORIZATION.AccessScope.ObjectName}\"," +
                 $"\"TokenType\":\"{AUTHORIZATION.TokenType.ObjectName}\"," +
-                $"\"CreatedAt\":\"{CREATED_AT.ToTraktLongDateTimeString()}\"," +
+                $"\"CreatedAtTicks\":{CREATED_AT.Ticks}," +
                 $"\"IgnoreExpiration\":{AUTHORIZATION.IgnoreExpiration.ToString().ToLower()}" +
             $"}}";
 
