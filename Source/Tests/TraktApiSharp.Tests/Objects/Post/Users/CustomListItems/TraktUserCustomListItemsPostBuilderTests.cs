@@ -62,10 +62,10 @@
 
             movies[0].Should().NotBeNull();
             movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(2);
+            movies[0].Ids.Trakt.Should().Be(2U);
             movies[0].Ids.Slug.Should().Be("movie1");
             movies[0].Ids.Imdb.Should().Be("imdb1");
-            movies[0].Ids.Tmdb.Should().Be(1234);
+            movies[0].Ids.Tmdb.Should().Be(1234U);
 
             var movie2 = new TraktMovie
             {
@@ -91,17 +91,17 @@
 
             movies[0].Should().NotBeNull();
             movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(2);
+            movies[0].Ids.Trakt.Should().Be(2U);
             movies[0].Ids.Slug.Should().Be("movie1");
             movies[0].Ids.Imdb.Should().Be("imdb1");
-            movies[0].Ids.Tmdb.Should().Be(1234);
+            movies[0].Ids.Tmdb.Should().Be(1234U);
 
             movies[1].Should().NotBeNull();
             movies[1].Ids.Should().NotBeNull();
-            movies[1].Ids.Trakt.Should().Be(3);
+            movies[1].Ids.Trakt.Should().Be(3U);
             movies[1].Ids.Slug.Should().Be("movie2");
             movies[1].Ids.Imdb.Should().Be("imdb2");
-            movies[1].Ids.Tmdb.Should().Be(12345);
+            movies[1].Ids.Tmdb.Should().Be(12345U);
         }
 
         [TestMethod]
@@ -177,11 +177,11 @@
             persons[0].Should().NotBeNull();
             persons[0].Name.Should().Be("New Person Name");
             persons[0].Ids.Should().NotBeNull();
-            persons[0].Ids.Trakt.Should().Be(1);
+            persons[0].Ids.Trakt.Should().Be(1U);
             persons[0].Ids.Slug.Should().Be("person1");
             persons[0].Ids.Imdb.Should().Be("imdb1");
-            persons[0].Ids.Tmdb.Should().Be(1234);
-            persons[0].Ids.TvRage.Should().Be(123456);
+            persons[0].Ids.Tmdb.Should().Be(1234U);
+            persons[0].Ids.TvRage.Should().Be(123456U);
 
             var person2 = new TraktPerson
             {
@@ -210,20 +210,20 @@
             persons[0].Should().NotBeNull();
             persons[0].Name.Should().Be("New Person Name");
             persons[0].Ids.Should().NotBeNull();
-            persons[0].Ids.Trakt.Should().Be(1);
+            persons[0].Ids.Trakt.Should().Be(1U);
             persons[0].Ids.Slug.Should().Be("person1");
             persons[0].Ids.Imdb.Should().Be("imdb1");
-            persons[0].Ids.Tmdb.Should().Be(1234);
-            persons[0].Ids.TvRage.Should().Be(123456);
+            persons[0].Ids.Tmdb.Should().Be(1234U);
+            persons[0].Ids.TvRage.Should().Be(123456U);
 
             persons[1].Should().NotBeNull();
             persons[1].Name.Should().Be("Person 2 Name");
             persons[1].Ids.Should().NotBeNull();
-            persons[1].Ids.Trakt.Should().Be(2);
+            persons[1].Ids.Trakt.Should().Be(2U);
             persons[1].Ids.Slug.Should().Be("person2");
             persons[1].Ids.Imdb.Should().Be("imdb2");
-            persons[1].Ids.Tmdb.Should().Be(12345);
-            persons[1].Ids.TvRage.Should().Be(1234567);
+            persons[1].Ids.Tmdb.Should().Be(12345U);
+            persons[1].Ids.TvRage.Should().Be(1234567U);
         }
 
         [TestMethod]
@@ -299,12 +299,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
 
             var show2 = new TraktShow
             {
@@ -332,21 +332,21 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
 
             shows[1].Should().NotBeNull();
             shows[1].Ids.Should().NotBeNull();
-            shows[1].Ids.Trakt.Should().Be(3);
+            shows[1].Ids.Trakt.Should().Be(3U);
             shows[1].Ids.Slug.Should().Be("show2");
             shows[1].Ids.Imdb.Should().Be("imdb2");
-            shows[1].Ids.Tmdb.Should().Be(12345);
-            shows[1].Ids.Tvdb.Should().Be(123456);
-            shows[1].Ids.TvRage.Should().Be(1234567);
+            shows[1].Ids.Tmdb.Should().Be(12345U);
+            shows[1].Ids.Tvdb.Should().Be(123456U);
+            shows[1].Ids.TvRage.Should().Be(1234567U);
         }
 
         [TestMethod]
@@ -401,12 +401,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             var show1Seasons = shows[0].Seasons.ToArray();
@@ -429,12 +429,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -460,12 +460,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -496,12 +496,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -543,22 +543,22 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
 
             shows[1].Should().NotBeNull();
             shows[1].Ids.Should().NotBeNull();
-            shows[1].Ids.Trakt.Should().Be(3);
+            shows[1].Ids.Trakt.Should().Be(3U);
             shows[1].Ids.Slug.Should().Be("show2");
             shows[1].Ids.Imdb.Should().Be("imdb2");
-            shows[1].Ids.Tmdb.Should().Be(12345);
-            shows[1].Ids.Tvdb.Should().Be(123456);
-            shows[1].Ids.TvRage.Should().Be(1234567);
+            shows[1].Ids.Tmdb.Should().Be(12345U);
+            shows[1].Ids.Tvdb.Should().Be(123456U);
+            shows[1].Ids.TvRage.Should().Be(1234567U);
             shows[1].Seasons.Should().NotBeNull().And.HaveCount(3);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -642,12 +642,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             var show1Seasons = shows[0].Seasons.ToArray();
@@ -674,12 +674,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -707,12 +707,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -744,12 +744,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -788,12 +788,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -833,12 +833,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(1);
+            shows[0].Ids.Trakt.Should().Be(1U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -881,12 +881,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -940,22 +940,22 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(2);
+            shows[0].Ids.Trakt.Should().Be(2U);
             shows[0].Ids.Slug.Should().Be("show1");
             shows[0].Ids.Imdb.Should().Be("imdb1");
-            shows[0].Ids.Tmdb.Should().Be(1234);
-            shows[0].Ids.Tvdb.Should().Be(12345);
-            shows[0].Ids.TvRage.Should().Be(123456);
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             shows[1].Should().NotBeNull();
             shows[1].Ids.Should().NotBeNull();
-            shows[1].Ids.Trakt.Should().Be(3);
+            shows[1].Ids.Trakt.Should().Be(3U);
             shows[1].Ids.Slug.Should().Be("show2");
             shows[1].Ids.Imdb.Should().Be("imdb2");
-            shows[1].Ids.Tmdb.Should().Be(12345);
-            shows[1].Ids.Tvdb.Should().Be(123456);
-            shows[1].Ids.TvRage.Should().Be(1234567);
+            shows[1].Ids.Tmdb.Should().Be(12345U);
+            shows[1].Ids.Tvdb.Should().Be(123456U);
+            shows[1].Ids.TvRage.Should().Be(1234567U);
             shows[1].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -1015,12 +1015,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Trakt.Should().Be(3U);
             shows[0].Ids.Slug.Should().Be("show2");
             shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Ids.Tmdb.Should().Be(12345U);
+            shows[0].Ids.Tvdb.Should().Be(123456U);
+            shows[0].Ids.TvRage.Should().Be(1234567U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
 
             show1Seasons = shows[0].Seasons.ToArray();
@@ -1048,12 +1048,12 @@
 
             shows[0].Should().NotBeNull();
             shows[0].Ids.Should().NotBeNull();
-            shows[0].Ids.Trakt.Should().Be(3);
+            shows[0].Ids.Trakt.Should().Be(3U);
             shows[0].Ids.Slug.Should().Be("show2");
             shows[0].Ids.Imdb.Should().Be("imdb2");
-            shows[0].Ids.Tmdb.Should().Be(12345);
-            shows[0].Ids.Tvdb.Should().Be(123456);
-            shows[0].Ids.TvRage.Should().Be(1234567);
+            shows[0].Ids.Tmdb.Should().Be(12345U);
+            shows[0].Ids.Tvdb.Should().Be(123456U);
+            shows[0].Ids.TvRage.Should().Be(1234567U);
             shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
 
             show1Seasons = shows[0].Seasons.ToArray();

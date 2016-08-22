@@ -333,7 +333,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItem()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             TestUtility.SetupMockResponseWithOAuth($"sync/playback/{playbackId}", HttpStatusCode.NoContent);
 
@@ -344,7 +344,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemExceptions()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             var uri = $"sync/playback/{playbackId}";
 
@@ -417,13 +417,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemArgumentExceptions()
         {
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync("user name");
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -813,7 +807,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -1112,7 +1106,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -1543,7 +1537,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}/{itemId}",
@@ -1566,7 +1560,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1591,7 +1585,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1618,7 +1612,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1653,7 +1647,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1689,7 +1683,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1725,7 +1719,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1758,7 +1752,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1792,7 +1786,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
@@ -1826,7 +1820,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1862,7 +1856,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1888,7 +1882,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
@@ -1914,7 +1908,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1941,7 +1935,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1975,7 +1969,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -2009,7 +2003,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -2044,7 +2038,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -2070,7 +2064,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -2096,7 +2090,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -3812,7 +3806,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -4065,7 +4059,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -4361,17 +4355,17 @@
             var movies = response.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Trakt.Should().Be(0U);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            response.NotFound.Ids.Should().Contain(new List<int>() { 23, 42 });
+            response.NotFound.Ids.Should().Contain(new List<uint>() { 23U, 42U });
         }
 
         [TestMethod]
@@ -5131,7 +5125,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5432,7 +5426,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -6211,7 +6205,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -6508,7 +6502,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();

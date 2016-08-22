@@ -90,21 +90,21 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             collectionProgress.NextEpisode.Should().NotBeNull();
             collectionProgress.NextEpisode.SeasonNumber.Should().Be(1);
             collectionProgress.NextEpisode.Number.Should().Be(7);
             collectionProgress.NextEpisode.Title.Should().Be("Water");
             collectionProgress.NextEpisode.Ids.Should().NotBeNull();
-            collectionProgress.NextEpisode.Ids.Trakt.Should().Be(62315);
-            collectionProgress.NextEpisode.Ids.Tvdb.Should().Be(4849873);
+            collectionProgress.NextEpisode.Ids.Trakt.Should().Be(62315U);
+            collectionProgress.NextEpisode.Ids.Tvdb.Should().Be(4849873U);
             collectionProgress.NextEpisode.Ids.Imdb.Should().BeNull();
-            collectionProgress.NextEpisode.Ids.Tmdb.Should().NotHaveValue();
-            collectionProgress.NextEpisode.Ids.TvRage.Should().NotHaveValue();
+            collectionProgress.NextEpisode.Ids.Tmdb.Should().BeNull();
+            collectionProgress.NextEpisode.Ids.TvRage.Should().BeNull();
         }
 
         [TestMethod]
@@ -165,10 +165,10 @@
 
             hiddenSeasons[0].Number.Should().Be(2);
             hiddenSeasons[0].Ids.Should().NotBeNull();
-            hiddenSeasons[0].Ids.Trakt.Should().Be(3051);
-            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968);
-            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334);
-            hiddenSeasons[0].Ids.TvRage.Should().NotHaveValue();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
 
             collectionProgress.NextEpisode.Should().BeNull();
         }

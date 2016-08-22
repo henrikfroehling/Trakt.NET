@@ -26,7 +26,7 @@
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
 
-        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
+        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresIn = 3600 };
 
         private static readonly string TRAKT_CLIENT_ID = "traktClientId";
         private static readonly string TRAKT_CLIENT_SECRET = "traktClientSecret";
@@ -89,6 +89,73 @@
                      .Respond("application/json", responseContent);
         }
 
+        public static void SetupMockAuthenticationTokenRevokeResponse(string url, string requestContent)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{url}")
+                     .WithFormData(requestContent)
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {MOCK_TEST_CLIENT.AccessToken}" }
+                     })
+                     .Respond(HttpStatusCode.OK);
+        }
+
+        public static void SetupMockAuthenticationTokenRevokeResponseWithToken(string uri, string requestContent, TraktAuthorization accessToken)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            accessToken.Should().NotBeNull();
+            accessToken.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithFormData(requestContent)
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
+                     })
+                     .Respond(HttpStatusCode.OK);
+        }
+
+        public static void SetupMockAuthenticationTokenRevokeResponseWithToken(string uri, string requestContent, TraktAuthorization accessToken, string clientID)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+            accessToken.Should().NotBeNull();
+            accessToken.AccessToken.Should().NotBeNullOrEmpty();
+
+            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithFormData(requestContent)
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{clientID}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
+                     })
+                     .Respond(HttpStatusCode.OK);
+        }
+
         public static void SetupMockAuthenticationResponse(string url, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -117,20 +184,6 @@
                      .Respond(httpStatusCode, "application/json", responseContent);
         }
 
-        public static void SetupMockAuthenticationErrorResponse(string url, string requestContent, HttpStatusCode httpStatusCode)
-        {
-            MOCK_HTTP.Clear();
-
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-
-            url.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{url}")
-                     .WithContent(requestContent)
-                     .Respond(httpStatusCode);
-        }
-
         public static void SetupMockAuthenticationErrorResponse(string url, HttpStatusCode httpStatusCode)
         {
             MOCK_HTTP.Clear();
@@ -157,24 +210,6 @@
                          { "trakt-api-key", "trakt client id" },
                          { "trakt-api-version", "2" }
                      })
-                     .Respond("application/json", responseContent);
-        }
-
-        public static void SetupMockResponseWithoutOAuth(string uri, string requestContent, string responseContent)
-        {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-
-            uri.Should().NotBeNullOrEmpty();
-            responseContent.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", "trakt client id" },
-                         { "trakt-api-version", "2" }
-                     })
-                     .WithContent(requestContent)
                      .Respond("application/json", responseContent);
         }
 
@@ -286,52 +321,6 @@
                      })
                      .WithContent(requestContent)
                      .Respond("application/json", responseContent);
-        }
-
-        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAuthorization accessToken)
-        {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-            MOCK_TEST_CLIENT.Should().NotBeNull();
-            accessToken.Should().NotBeNull();
-            accessToken.AccessToken.Should().NotBeNullOrEmpty();
-
-            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
-
-            uri.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
-                         { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
-                     })
-                     .WithContent(requestContent)
-                     .Respond(HttpStatusCode.OK);
-        }
-
-        public static void SetupMockResponseWithOAuthWithoutContent(string uri, string requestContent, TraktAuthorization accessToken, string clientId)
-        {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-            MOCK_TEST_CLIENT.Should().NotBeNull();
-            accessToken.Should().NotBeNull();
-            accessToken.AccessToken.Should().NotBeNullOrEmpty();
-
-            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
-
-            uri.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", $"{clientId}" },
-                         { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {accessToken.AccessToken}" }
-                     })
-                     .WithContent(requestContent)
-                     .Respond(HttpStatusCode.OK);
         }
 
         public static void SetupMockResponseWithOAuth(string uri, HttpStatusCode httpStatusCode)

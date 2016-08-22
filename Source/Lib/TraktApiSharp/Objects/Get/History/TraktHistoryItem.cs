@@ -14,7 +14,7 @@
     {
         /// <summary>Gets or sets the id of this history item.</summary>
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public ulong Id { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was watched.</summary>
         [JsonProperty(PropertyName = "watched_at")]

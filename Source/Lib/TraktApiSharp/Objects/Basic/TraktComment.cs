@@ -10,11 +10,11 @@
     {
         /// <summary>Gets or sets the Trakt id of the comment.</summary>
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public uint Id { get; set; }
 
         /// <summary>Gets or sets the parent comment id, if this comment is a reply.</summary>
         [JsonProperty(PropertyName = "parent_id")]
-        public int? ParentId { get; set; }
+        public uint? ParentId { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when this comment was created.</summary>
         [JsonProperty(PropertyName = "created_at")]

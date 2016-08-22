@@ -43,12 +43,12 @@
             shows[0].Show.Title.Should().Be("Breaking Bad");
             shows[0].Show.Year.Should().Be(2008);
             shows[0].Show.Ids.Should().NotBeNull();
-            shows[0].Show.Ids.Trakt.Should().Be(1);
+            shows[0].Show.Ids.Trakt.Should().Be(1U);
             shows[0].Show.Ids.Slug.Should().Be("breaking-bad");
-            shows[0].Show.Ids.Tvdb.Should().Be(81189);
+            shows[0].Show.Ids.Tvdb.Should().Be(81189U);
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
-            shows[0].Show.Ids.Tmdb.Should().Be(1396);
-            shows[0].Show.Ids.TvRage.Should().Be(18164);
+            shows[0].Show.Ids.Tmdb.Should().Be(1396U);
+            shows[0].Show.Ids.TvRage.Should().Be(18164U);
             shows[0].Seasons.Should().NotBeNull();
             shows[0].Seasons.Should().HaveCount(2);
 
@@ -88,12 +88,12 @@
             shows[1].Show.Title.Should().Be("Parks and Recreation");
             shows[1].Show.Year.Should().Be(2009);
             shows[1].Show.Ids.Should().NotBeNull();
-            shows[1].Show.Ids.Trakt.Should().Be(4);
+            shows[1].Show.Ids.Trakt.Should().Be(4U);
             shows[1].Show.Ids.Slug.Should().Be("parks-and-recreation");
-            shows[1].Show.Ids.Tvdb.Should().Be(84912);
+            shows[1].Show.Ids.Tvdb.Should().Be(84912U);
             shows[1].Show.Ids.Imdb.Should().Be("tt1266020");
-            shows[1].Show.Ids.Tmdb.Should().Be(8592);
-            shows[1].Show.Ids.TvRage.Should().Be(21686);
+            shows[1].Show.Ids.Tmdb.Should().Be(8592U);
+            shows[1].Show.Ids.TvRage.Should().Be(21686U);
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 
@@ -148,12 +148,12 @@
             shows[0].Show.Title.Should().Be("Breaking Bad");
             shows[0].Show.Year.Should().Be(2008);
             shows[0].Show.Ids.Should().NotBeNull();
-            shows[0].Show.Ids.Trakt.Should().Be(1);
+            shows[0].Show.Ids.Trakt.Should().Be(1U);
             shows[0].Show.Ids.Slug.Should().Be("breaking-bad");
-            shows[0].Show.Ids.Tvdb.Should().Be(81189);
+            shows[0].Show.Ids.Tvdb.Should().Be(81189U);
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
-            shows[0].Show.Ids.Tmdb.Should().Be(1396);
-            shows[0].Show.Ids.TvRage.Should().Be(18164);
+            shows[0].Show.Ids.Tmdb.Should().Be(1396U);
+            shows[0].Show.Ids.TvRage.Should().Be(18164U);
             shows[0].Seasons.Should().BeNull();
 
             shows[1].Plays.Should().Be(23);
@@ -162,12 +162,12 @@
             shows[1].Show.Title.Should().Be("Parks and Recreation");
             shows[1].Show.Year.Should().Be(2009);
             shows[1].Show.Ids.Should().NotBeNull();
-            shows[1].Show.Ids.Trakt.Should().Be(4);
+            shows[1].Show.Ids.Trakt.Should().Be(4U);
             shows[1].Show.Ids.Slug.Should().Be("parks-and-recreation");
-            shows[1].Show.Ids.Tvdb.Should().Be(84912);
+            shows[1].Show.Ids.Tvdb.Should().Be(84912U);
             shows[1].Show.Ids.Imdb.Should().Be("tt1266020");
-            shows[1].Show.Ids.Tmdb.Should().Be(8592);
-            shows[1].Show.Ids.TvRage.Should().Be(21686);
+            shows[1].Show.Ids.Tmdb.Should().Be(8592U);
+            shows[1].Show.Ids.TvRage.Should().Be(21686U);
             shows[1].Seasons.Should().BeNull();
         }
     }

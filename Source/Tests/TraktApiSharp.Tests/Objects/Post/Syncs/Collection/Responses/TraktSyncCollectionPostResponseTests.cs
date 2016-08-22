@@ -59,7 +59,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             collectionPostResponse.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             collectionPostResponse.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();

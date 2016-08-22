@@ -2,7 +2,6 @@
 {
     using Attributes;
     using Enums;
-    using Extensions;
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
@@ -84,12 +83,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task RemovePlaybackItemAsync([NotNull] string playbackId)
+        public async Task RemovePlaybackItemAsync(uint playbackId)
         {
-            if (string.IsNullOrEmpty(playbackId) || playbackId.ContainsSpace())
+            if (playbackId == 0)
                 throw new ArgumentException("playback id not valid", nameof(playbackId));
 
-            await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId });
+            await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId.ToString() });
         }
 
         /// <summary>
@@ -244,7 +243,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, string historyItemId = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, ulong? historyItemId = null,
                                                                                               DateTime? startAt = null, DateTime? endAt = null,
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)

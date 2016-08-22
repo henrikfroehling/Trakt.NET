@@ -8,7 +8,7 @@
     {
         /// <summary>Gets or sets the Trakt numeric id.</summary>
         [JsonProperty(PropertyName = "trakt")]
-        public int Trakt { get; set; }
+        public uint Trakt { get; set; }
 
         /// <summary>Gets or sets the Trakt slug.</summary>
         [JsonProperty(PropertyName = "slug")]

@@ -29,7 +29,7 @@
             var sharing = new TraktSharing { Facebook = false, Twitter = false, Tumblr = true };
 
             var showTitle = "Breaking Bad";
-            var showTraktId = 1;
+            var showTraktId = 1U;
             var showSlug = "breaking-bad";
 
             var show = new TraktShow
