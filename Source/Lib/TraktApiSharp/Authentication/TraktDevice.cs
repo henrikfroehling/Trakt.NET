@@ -59,7 +59,7 @@
 
         /// <summary>Gets the UTC DateTime, when this device was created.</summary>
         [JsonIgnore]
-        public DateTime Created { get; private set; }
+        public DateTime Created { get; internal set; }
 
         /// <summary>Gets, whether this device is expired without actually using it for polling for an access token.</summary>
         [JsonIgnore]
