@@ -48,9 +48,9 @@
             "{" +
                 $"\"UserCode\":\"{DEVICE.UserCode}\"," +
                 $"\"DeviceCode\":\"{DEVICE.DeviceCode}\"," +
-                $"\"VerificationUrl\":\"{DEVICE.VerificationUrl}\"" +
-                $"\"ExpiresInSeconds\":{DEVICE.ExpiresInSeconds}" +
-                $"\"IntervalInSeconds\":{DEVICE.IntervalInSeconds}" +
+                $"\"VerificationUrl\":\"{DEVICE.VerificationUrl}\"," +
+                $"\"ExpiresInSeconds\":{DEVICE.ExpiresInSeconds}," +
+                $"\"IntervalInSeconds\":{DEVICE.IntervalInSeconds}," +
                 $"\"CreatedAtTicks\":{CREATED_AT.Ticks}" +
             "}";
 

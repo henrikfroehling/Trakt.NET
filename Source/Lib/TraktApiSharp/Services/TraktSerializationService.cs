@@ -32,9 +32,26 @@
             return Json.Serialize(authorizationWrapper);
         }
 
+        /// <summary>Serializes an <see cref="TraktDevice" /> instance to a JSON string.</summary>
+        /// <param name="device">The device information, which should be serialized.</param>
+        /// <returns>A Json string, containing all properties of the given device.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given device is null.</exception>
         public static string Serialize(TraktDevice device)
         {
-            return string.Empty;
+            if (device == null)
+                throw new ArgumentNullException(nameof(device), "device must not be null");
+
+            var deviceWrapper = new
+            {
+                UserCode = device.UserCode,
+                DeviceCode = device.DeviceCode,
+                VerificationUrl = device.VerificationUrl,
+                ExpiresInSeconds = device.ExpiresInSeconds,
+                IntervalInSeconds = device.IntervalInSeconds,
+                CreatedAtTicks = device.Created.Ticks
+            };
+
+            return Json.Serialize(deviceWrapper);
         }
 
         /// <summary>
