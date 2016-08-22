@@ -33,6 +33,9 @@
 
         public static TraktAuthorization Deserialize(string authorization)
         {
+            if (string.IsNullOrEmpty(authorization))
+                throw new ArgumentException("authorization is invalid", nameof(authorization));
+
             return null;
         }
     }
