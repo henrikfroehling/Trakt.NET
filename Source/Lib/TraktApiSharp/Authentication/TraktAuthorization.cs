@@ -92,7 +92,7 @@
 
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
         [JsonIgnore]
-        public DateTime Created { get; private set; }
+        public DateTime Created { get; internal set; }
 
         [JsonIgnore]
         internal bool IgnoreExpiration { get; set; }
