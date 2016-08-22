@@ -54,9 +54,7 @@
             return Json.Serialize(deviceWrapper);
         }
 
-        /// <summary>
-        /// Deserializes a JSON string to an <see cref="TraktAuthorization" /> instance.
-        /// </summary>
+        /// <summary>Deserializes a JSON string to an <see cref="TraktAuthorization" /> instance.</summary>
         /// <param name="authorizationJson">The JSON string, which should be deserialized.</param>
         /// <returns>
         /// An <see cref="TraktAuthorization" /> instance, containing the information from the JSON string, if successful.
@@ -112,10 +110,53 @@
             return default(TraktAuthorization);
         }
 
+        /// <summary>Deserializes a JSON string to an <see cref="TraktDevice" /> instance.</summary>
+        /// <param name="deviceJson">The JSON string, which should be deserialized.</param>
+        /// <returns>
+        /// An <see cref="TraktDevice" /> instance, containing the information from the JSON string, if successful.
+        /// If the JSON string could not be parsed, null will be returned.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown, if the given deviceJson is null or empty.</exception>
         public static TraktDevice DeserializeDevice(string deviceJson)
         {
             if (string.IsNullOrEmpty(deviceJson))
                 throw new ArgumentException("device JSON is invalid", nameof(deviceJson));
+
+            var deviceWrapper = new
+            {
+                UserCode = string.Empty,
+                DeviceCode = string.Empty,
+                VerificationUrl = string.Empty,
+                ExpiresInSeconds = 0,
+                IntervalInSeconds = 0,
+                CreatedAtTicks = 0L
+            };
+
+            var anonymousDevice = JsonConvert.DeserializeAnonymousType(deviceJson, deviceWrapper);
+
+            if (anonymousDevice != null)
+            {
+                var userCode = anonymousDevice.UserCode;
+                var deviceCode = anonymousDevice.DeviceCode;
+                var verificationUrl = anonymousDevice.VerificationUrl;
+                var expiresInSeconds = anonymousDevice.ExpiresInSeconds;
+                var intervalInSeconds = anonymousDevice.IntervalInSeconds;
+                var createdAtTicks = anonymousDevice.CreatedAtTicks;
+
+                var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
+
+                var device = new TraktDevice
+                {
+                    UserCode = userCode ?? string.Empty,
+                    DeviceCode = deviceCode ?? string.Empty,
+                    VerificationUrl = verificationUrl ?? string.Empty,
+                    ExpiresInSeconds = expiresInSeconds,
+                    IntervalInSeconds = intervalInSeconds,
+                    Created = createdDateTime
+                };
+
+                return device;
+            }
 
             return default(TraktDevice);
         }
