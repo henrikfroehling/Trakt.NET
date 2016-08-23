@@ -1,6 +1,40 @@
 Release notes
 =============
 
+Version 0.3.0
+===
+---------
+---------
+
+#### 0.3.0
+*(2016-08-23)*
+
+Added:
+- missing source documentation
+- user ids (slug)
+- count-specials parameter for show-collection- and show-watched-progress-request
+- pagination support for sync-get-watchlist- and users-get-watchlist-request
+- support for sorting headers (X-Sort-By, X-Sort-How)
+- IsValid and IsRefreshPossible properties in TraktAuthorization
+- serialization service for TraktDevice and TraktAuthorization
+- display names for Trakt enums (-> Trakt[EnumName].DisplayName)
+
+Removed:
+- slug from episode ids
+
+Improved:
+- parameter names in modules
+- minor performance improvements
+
+Changed:
+- type of "Release" property in "TraktCalendarMovie" from string to DateTime
+- object ids are now unsigned
+- TraktHistoryItem id is now unsigned long
+
+Fixed:
+- revoking of access token
+- IsExpired calculation of TraktAuthorization
+
 Version 0.2.0
 ===
 ---------
