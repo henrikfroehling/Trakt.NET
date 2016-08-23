@@ -1,7 +1,7 @@
 # configuration for "master" branch
 # build in Release mode
 -
-  version: '{branch}-v0.2.0-{build}'
+  version: '{branch}-v0.3.0-{build}'
   image: Visual Studio 2015
   
   install:
