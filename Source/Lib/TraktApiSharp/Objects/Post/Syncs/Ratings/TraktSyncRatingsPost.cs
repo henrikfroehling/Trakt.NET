@@ -9,7 +9,7 @@
     using System.Linq;
 
     /// <summary>
-    /// A Trakt ratings post, containing all movies, shows and or episodes,
+    /// A Trakt ratings post, containing all movies, shows and / or episodes,
     /// which should be added to the user's ratings.
     /// </summary>
     public class TraktSyncRatingsPost
@@ -454,7 +454,7 @@
             return AddEpisodeOrIgnore(episode, rating, ratedAt);
         }
 
-        /// <summary>Removes all already added movies, shows and episodes.</summary>
+        /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>
         public void Reset()
         {
             if (_ratingsPost.Movies != null)
@@ -478,7 +478,7 @@
 
         /// <summary>
         /// Returns an <see cref="TraktSyncRatingsPost" /> instance, which contains all
-        /// added movies, shows and episodes, including ratings and rated at UTC datetimes.
+        /// added movies, shows, seasons and episodes, including ratings and rated at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncRatingsPost" /> instance.</returns>
         public TraktSyncRatingsPost Build()

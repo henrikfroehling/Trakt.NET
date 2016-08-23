@@ -10,7 +10,7 @@
     using System.Linq;
 
     /// <summary>
-    /// A Trakt collection post, containing all movies, shows and or episodes,
+    /// A Trakt collection post, containing all movies, shows and / or episodes,
     /// which should be added to the user's collection.
     /// </summary>
     public class TraktSyncCollectionPost
@@ -558,7 +558,7 @@
             return AddEpisodeOrIgnore(episode, metadata, collectedAt);
         }
 
-        /// <summary>Removes all already added movies, shows and episodes.</summary>
+        /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>
         public void Reset()
         {
             if (_collectionPost.Movies != null)
@@ -582,7 +582,7 @@
 
         /// <summary>
         /// Returns an <see cref="TraktSyncCollectionPost" /> instance, which contains all
-        /// added movies, shows and episodes, including metadata and collected at UTC datetimes.
+        /// added movies, shows, seasons and episodes, including metadata and collected at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncCollectionPost" /> instance.</returns>
         public TraktSyncCollectionPost Build()

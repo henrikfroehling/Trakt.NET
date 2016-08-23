@@ -9,7 +9,7 @@
     using System.Linq;
 
     /// <summary>
-    /// A Trakt watchlist post, containing all movies, shows and or episodes,
+    /// A Trakt watchlist post, containing all movies, shows and / or episodes,
     /// which should be added to the user's watchlist.
     /// </summary>
     public class TraktSyncWatchlistPost
@@ -305,7 +305,7 @@
             return this;
         }
 
-        /// <summary>Removes all already added movies, shows and episodes.</summary>
+        /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>
         public void Reset()
         {
             if (_watchlistPost.Movies != null)
@@ -329,7 +329,7 @@
 
         /// <summary>
         /// Returns an <see cref="TraktSyncWatchlistPost" /> instance, which contains all
-        /// added movies, shows and episodes.
+        /// added movies, shows, seasons and episodes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncWatchlistPost" /> instance.</returns>
         public TraktSyncWatchlistPost Build()

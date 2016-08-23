@@ -185,7 +185,7 @@
             return this;
         }
 
-        /// <summary>Removes all already added movies, shows, episodes and history ids from the builder.</summary>
+        /// <summary>Removes all already added movies, shows, seasons, episodes and history ids from the builder.</summary>
         public void Reset()
         {
             if (_historyPost.Movies != null)
@@ -215,7 +215,7 @@
 
         /// <summary>
         /// Returns an <see cref="TraktSyncHistoryRemovePost" /> instance, which contains all
-        /// added movies, shows, episodes, including watched at UTC datetimes, and history ids,
+        /// added movies, shows, seasons and episodes, including watched at UTC datetimes, and history ids,
         /// which should be removed.
         /// </summary>
         /// <returns>An <see cref="TraktSyncHistoryRemovePost" /> instance.</returns>

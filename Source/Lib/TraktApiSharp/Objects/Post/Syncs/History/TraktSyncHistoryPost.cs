@@ -8,7 +8,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// A Trakt history post, containing all movies, shows and or episodes,
+    /// A Trakt history post, containing all movies, shows and / or episodes,
     /// which should be added to the user's history.
     /// </summary>
     public class TraktSyncHistoryPost
@@ -278,7 +278,7 @@
 
         /// <summary>
         /// Returns an <see cref="TraktSyncHistoryPost" /> instance, which contains all
-        /// added movies, shows and episodes, including watched at UTC datetimes.
+        /// added movies, shows, seasons and episodes, including watched at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncHistoryPost" /> instance.</returns>
         public new TraktSyncHistoryPost Build()

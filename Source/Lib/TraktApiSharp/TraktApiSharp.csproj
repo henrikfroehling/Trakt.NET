@@ -319,7 +319,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFound.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovie.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowEpisode.cs" />
