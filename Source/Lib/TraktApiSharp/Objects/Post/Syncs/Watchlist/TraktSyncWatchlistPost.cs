@@ -152,8 +152,7 @@
         /// Thrown, if the given show has an year set, which has more or less than four digits.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if at least one of the given season numbers in <paramref name="seasons" /> is below zero.
-        /// Thrown, if at least one of the given episode numbers in <paramref name="seasons" /> is below zero.
+        /// Thrown, if at least one of the given season numbers is below zero.
         /// </exception>
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
