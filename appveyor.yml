@@ -4,7 +4,7 @@
   environment:
     libVersion: '0.3.0'
 
-  version: '{branch}-v$libVersion-{build}'
+  version: '{branch}-v$env:libVersion-{build}'
   image: Visual Studio 2015
   
   install:
