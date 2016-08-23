@@ -52,8 +52,8 @@ Fixed:
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.XML" />
+        <file src="..\..\..\Build\Lib\**\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
+        <file src="..\..\..\Build\Lib\**\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
+        <file src="..\..\..\Build\Lib\**\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.XML" />
     </files>
 </package>
