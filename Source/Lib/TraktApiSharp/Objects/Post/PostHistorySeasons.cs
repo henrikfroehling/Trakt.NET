@@ -8,6 +8,45 @@
     /// A collection of season and episode numbers.
     /// <para>Can also contain watched datetimes for each season and episode number.</para>
     /// </summary>
+    /// <example>
+    /// This example shows an instantiation of this class.
+    /// <code>
+    /// new PostHistorySeasons
+    /// {
+    ///     1,
+    ///     { 2 },
+    ///     { 3, DateTime.Now },
+    ///     { 4, new PostHistoryEpisodes { 1 } },
+    ///     { 5, DateTime.Now, new PostHistoryEpisodes { 2 } },
+    ///     { 6, new PostHistoryEpisodes { 1, 2, 3 } },
+    ///     { 7, DateTime.Now, new PostHistoryEpisodes { 1, 2, 3 } },
+    ///     { 8, new PostHistoryEpisodes
+    ///         {
+    ///             { 1, DateTime.Now }
+    ///         }
+    ///     },
+    ///     { 9, DateTime.Now, new PostHistoryEpisodes
+    ///         {
+    ///             { 2, DateTime.Now  }
+    ///         }
+    ///     },
+    ///     { 10, new PostHistoryEpisodes
+    ///         {
+    ///             { 1, DateTime.Now },
+    ///             2,
+    ///             { 3, DateTime.Now }
+    ///         }
+    ///     },
+    ///     { 11, DateTime.Now, new PostHistoryEpisodes
+    ///         {
+    ///             { 2, DateTime.Now  },
+    ///             { 3 },
+    ///             4
+    ///         }
+    ///     },
+    /// };
+    /// </code>
+    /// </example>
     public sealed class PostHistorySeasons : IEnumerable<PostHistorySeason>
     {
         private readonly List<PostHistorySeason> _seasons;

@@ -4,6 +4,18 @@
     using System.Collections.Generic;
 
     /// <summary>A collection of season and episode numbers.</summary>
+    /// <example>
+    /// This example shows an instantiation of this class.
+    /// <code>
+    /// new PostSeasons
+    /// {
+    ///     1,
+    ///     { 2, new PostEpisodes { 1, 2, 3 } },
+    ///     3,
+    ///     { 4 }
+    /// };
+    /// </code>
+    /// </example>
     public sealed class PostSeasons : IEnumerable<PostSeason>
     {
         private readonly List<PostSeason> _seasons;
