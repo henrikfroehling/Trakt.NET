@@ -43,8 +43,8 @@
     - path: Build\Lib\Release\TraktApiSharp.XML
       name: DocumentationXML
 
-    nuget:
-      project_feed: true
+  nuget:
+    project_feed: true
 
 # configuration for all branches starting from "dev-"
 # build in Debug mode
@@ -92,8 +92,8 @@
     - path: Build\Lib\Debug\TraktApiSharp.XML
       name: DebugDocumentationXML
 
-    nuget:
-      project_feed: true
+  nuget:
+    project_feed: true
 
 # "fall back" configuration for all other branches
 # no "branches" section defined
