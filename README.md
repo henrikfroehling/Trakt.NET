@@ -26,15 +26,17 @@ TraktApiSharp
 - Xamarin Android
 - Xamarin iOS
 
+---
+#### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues)
+#### [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+---
 ### Where to get
 - Available on [Nuget.org](https://www.nuget.org/packages/TraktApiSharp)
 - Each release will also be published [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 ```
 PM> Install-Package TraktApiSharp
 ```
-
----
-#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
 
 ---
 ### Build Requirements
