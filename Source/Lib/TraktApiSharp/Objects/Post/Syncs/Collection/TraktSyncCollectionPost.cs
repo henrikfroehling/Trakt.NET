@@ -354,7 +354,7 @@
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
         /// An <see cref="PostSeasons" /> instance, containing season and episode numbers.<para />
-        /// Only the episodes with the given episode numbers will be added to the collection.
+        /// If it contains episode numbers, only the episodes with the given episode numbers will be added to the collection.
         /// </param>
         /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -389,7 +389,7 @@
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="seasons">
         /// An <see cref="PostSeasons" /> instance, containing season and episode numbers.<para />
-        /// Only the episodes with the given episode numbers will be added to the collection.
+        /// If it contains episode numbers, only the episodes with the given episode numbers will be added to the collection.
         /// </param>
         /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -424,7 +424,7 @@
         /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
         /// <param name="seasons">
         /// An <see cref="PostSeasons" /> instance, containing season and episode numbers.<para />
-        /// Only the episodes with the given episode numbers will be added to the collection.
+        /// If it contains episode numbers, only the episodes with the given episode numbers will be added to the collection.
         /// </param>
         /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -460,7 +460,7 @@
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="seasons">
         /// An <see cref="PostSeasons" /> instance, containing season and episode numbers.<para />
-        /// Only the episodes with the given episode numbers will be added to the collection.
+        /// If it contains episode numbers, only the episodes with the given episode numbers will be added to the collection.
         /// </param>
         /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
