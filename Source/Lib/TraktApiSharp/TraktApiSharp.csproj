@@ -279,6 +279,7 @@
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseGroup.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPost.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePost.cs" />
@@ -318,7 +319,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFound.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovie.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowEpisode.cs" />

@@ -53,7 +53,7 @@
             historyRemovePost.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             historyRemovePost.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            historyRemovePost.NotFound.Ids.Should().Contain(new List<uint>() { 23, 42 });
+            historyRemovePost.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
         }
     }
 }
