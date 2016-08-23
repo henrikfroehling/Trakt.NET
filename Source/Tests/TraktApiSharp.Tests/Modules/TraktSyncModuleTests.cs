@@ -4365,7 +4365,7 @@
             response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            response.NotFound.Ids.Should().Contain(new List<uint>() { 23U, 42U });
+            response.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
         }
 
         [TestMethod]

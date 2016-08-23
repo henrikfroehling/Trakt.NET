@@ -8,23 +8,49 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// A Trakt history remove post, containing all movies, shows, episodes and / or history ids,
+    /// which should be removed from the user's history.
+    /// </summary>
     public class TraktSyncHistoryRemovePost : TraktSyncHistoryPost
     {
+        /// <summary>An optional list of history ids, which should be removed.</summary>
         [JsonProperty(PropertyName = "ids")]
-        public IEnumerable<int> HistoryIds { get; set; }
+        public IEnumerable<ulong> HistoryIds { get; set; }
 
+        /// <summary>Returns a new <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</summary>
+        /// <returns>A new <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
         public static new TraktSyncHistoryRemovePostBuilder Builder() => new TraktSyncHistoryRemovePostBuilder();
     }
 
+    /// <summary>
+    /// This is a helper class to build a <see cref="TraktSyncHistoryRemovePost" />.
+    /// <para>
+    /// It is recommended to use this class to build a history remove post.<para /> 
+    /// An instance of this class can be obtained with <see cref="TraktSyncHistoryRemovePost.Builder()" />.
+    /// </para>
+    /// </summary>
     public class TraktSyncHistoryRemovePostBuilder
     {
         protected TraktSyncHistoryRemovePost _historyPost;
 
+        /// <summary>Initializes a new instance of the <see cref="TraktSyncHistoryRemovePostBuilder" /> class.</summary>
         public TraktSyncHistoryRemovePostBuilder()
         {
             _historyPost = new TraktSyncHistoryRemovePost();
         }
 
+        /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the history remove post.</summary>
+        /// <param name="movie">The Trakt movie, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movie is null.
+        /// Thrown, if the given movie ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given movie has no valid ids set.
+        /// Thrown, if the given movie has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktSyncHistoryRemovePostBuilder AddMovie(TraktMovie movie)
         {
             ValidateMovie(movie);
@@ -33,6 +59,17 @@
             return AddMovieOrIgnore(movie);
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show)
         {
             ValidateShow(show);
@@ -41,6 +78,27 @@
             return AddShowOrIgnore(show);
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="season">
+        /// A season number for a season in the given show. The complete season will be removed from the history.
+        /// </param>
+        /// <param name="seasons">
+        /// An optional array of season numbers for seasons in the given show.
+        /// The complete seasons will be removed from the history.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
@@ -52,6 +110,25 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An <see cref="PostHistorySeasons" /> instance, containing season and episode numbers.<para />
+        /// If it contains episode numbers, only the episodes with the given episode numbers will be removed from the history.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers in <paramref name="seasons" /> is below zero.
+        /// Thrown, if at least one of the given episode numbers in <paramref name="seasons" /> is below zero.
+        /// </exception>
         public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, PostHistorySeasons seasons)
         {
             ValidateShow(show);
@@ -67,6 +144,14 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the history remove post.</summary>
+        /// <param name="episode">The Trakt episode, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null.
+        /// Thrown, if the given episode ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         public TraktSyncHistoryRemovePostBuilder AddEpisode(TraktEpisode episode)
         {
             ValidateEpisode(episode);
@@ -75,26 +160,32 @@
             return AddEpisodeOrIgnore(episode);
         }
 
-        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(int id, params int[] ids)
+        /// <summary>Adds history ids, which will be added to the history remove post.</summary>
+        /// <param name="id">A history item id. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <param name="ids">An optional array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least one of the given history ids equals zero.</exception>
+        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong id, params ulong[] ids)
         {
-            var idsToAdd = new int[ids.Length + 1];
+            var idsToAdd = new ulong[ids.Length + 1];
             idsToAdd[0] = id;
             ids.CopyTo(idsToAdd, 1);
 
             if (_historyPost.HistoryIds == null)
-                _historyPost.HistoryIds = new List<int>();
+                _historyPost.HistoryIds = new List<ulong>();
 
             for (int i = 0; i < idsToAdd.Length; i++)
             {
-                if (idsToAdd[i] <= 0)
-                    throw new ArgumentOutOfRangeException("at least one id is not valid");
+                if (idsToAdd[i] == 0)
+                    throw new ArgumentOutOfRangeException("at least one history id is not valid");
 
-                (_historyPost.HistoryIds as List<int>).Add(idsToAdd[i]);
+                (_historyPost.HistoryIds as List<ulong>).Add(idsToAdd[i]);
             }
 
             return this;
         }
 
+        /// <summary>Removes all already added movies, shows, episodes and history ids from the builder.</summary>
         public void Reset()
         {
             if (_historyPost.Movies != null)
@@ -117,11 +208,17 @@
 
             if (_historyPost.HistoryIds != null)
             {
-                (_historyPost.HistoryIds as List<int>).Clear();
+                (_historyPost.HistoryIds as List<ulong>).Clear();
                 _historyPost.HistoryIds = null;
             }
         }
 
+        /// <summary>
+        /// Returns an <see cref="TraktSyncHistoryRemovePost" /> instance, which contains all
+        /// added movies, shows, episodes, including watched at UTC datetimes, and history ids,
+        /// which should be removed.
+        /// </summary>
+        /// <returns>An <see cref="TraktSyncHistoryRemovePost" /> instance.</returns>
         public TraktSyncHistoryRemovePost Build()
         {
             return _historyPost;

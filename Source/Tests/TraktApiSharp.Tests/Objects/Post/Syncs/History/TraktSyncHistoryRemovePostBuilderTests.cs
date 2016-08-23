@@ -1571,7 +1571,7 @@
             historyPost.Shows.Should().BeNull();
             historyPost.Movies.Should().BeNull();
             historyPost.HistoryIds.Should().NotBeNull().And.HaveCount(4);
-            historyPost.HistoryIds.Should().Contain(new List<int> { 1, 2, 3, 4 });
+            historyPost.HistoryIds.Should().Contain(new List<ulong> { 1, 2, 3, 4 });
 
             builder.AddHistoryIds(5, 6, 7, 8);
 
@@ -1582,7 +1582,7 @@
             historyPost.Shows.Should().BeNull();
             historyPost.Movies.Should().BeNull();
             historyPost.HistoryIds.Should().NotBeNull().And.HaveCount(8);
-            historyPost.HistoryIds.Should().Contain(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 });
+            historyPost.HistoryIds.Should().Contain(new List<ulong> { 1, 2, 3, 4, 5, 6, 7, 8 });
         }
 
         [TestMethod]
@@ -1590,13 +1590,10 @@
         {
             var builder = TraktSyncHistoryRemovePost.Builder();
 
-            Action act = () => builder.AddHistoryIds(-1, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
+            Action act = () => builder.AddHistoryIds(0, 2, 1, 4);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddHistoryIds(0, 2, 3, 4);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => builder.AddHistoryIds(1, 2, -1, 4);
+            act = () => builder.AddHistoryIds(1, 2, 0, 4);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddHistoryIds(1, 2, 0, 4);
