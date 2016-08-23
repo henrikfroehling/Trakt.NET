@@ -23,7 +23,7 @@
     
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
+    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -69,7 +69,7 @@
 
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
-    - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
+    - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
     - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
