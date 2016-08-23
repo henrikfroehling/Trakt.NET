@@ -8,7 +8,7 @@
     {
         /// <summary>Gets or sets the Trakt numeric id.</summary>
         [JsonProperty(PropertyName = "trakt")]
-        public int Trakt { get; set; }
+        public uint Trakt { get; set; }
 
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "slug")]
@@ -22,11 +22,11 @@
 
         /// <summary>Gets or sets the numeric id from themoviedb.org</summary>
         [JsonProperty(PropertyName = "tmdb")]
-        public int? Tmdb { get; set; }
+        public uint? Tmdb { get; set; }
 
         /// <summary>Gets or sets the numeric id from tvrage.com</summary>
         [JsonProperty(PropertyName = "tvrage")]
-        public int? TvRage { get; set; }
+        public uint? TvRage { get; set; }
 
         /// <summary>Returns, whether any id has been set.</summary>
         [JsonIgnore]

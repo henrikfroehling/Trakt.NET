@@ -49,11 +49,11 @@
             episode.Rating.Should().NotHaveValue();
             episode.Votes.Should().NotHaveValue();
             episode.Ids.Should().NotBeNull();
-            episode.Ids.Trakt.Should().Be(73640);
-            episode.Ids.Tvdb.Should().Be(3254641);
+            episode.Ids.Trakt.Should().Be(73640U);
+            episode.Ids.Tvdb.Should().Be(3254641U);
             episode.Ids.Imdb.Should().Be("tt1480055");
-            episode.Ids.Tmdb.Should().Be(63056);
-            episode.Ids.TvRage.Should().Be(1065008299);
+            episode.Ids.Tmdb.Should().Be(63056U);
+            episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
         }
@@ -78,11 +78,11 @@
             episode.Rating.Should().NotHaveValue();
             episode.Votes.Should().NotHaveValue();
             episode.Ids.Should().NotBeNull();
-            episode.Ids.Trakt.Should().Be(73640);
-            episode.Ids.Tvdb.Should().Be(3254641);
+            episode.Ids.Trakt.Should().Be(73640U);
+            episode.Ids.Tvdb.Should().Be(3254641U);
             episode.Ids.Imdb.Should().Be("tt1480055");
-            episode.Ids.Tmdb.Should().Be(63056);
-            episode.Ids.TvRage.Should().Be(1065008299);
+            episode.Ids.Tmdb.Should().Be(63056U);
+            episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().NotBeNull();
             episode.Images.Screenshot.Should().NotBeNull();
             episode.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
@@ -111,11 +111,11 @@
             episode.Rating.Should().Be(9.0f);
             episode.Votes.Should().Be(111);
             episode.Ids.Should().NotBeNull();
-            episode.Ids.Trakt.Should().Be(73640);
-            episode.Ids.Tvdb.Should().Be(3254641);
+            episode.Ids.Trakt.Should().Be(73640U);
+            episode.Ids.Tvdb.Should().Be(3254641U);
             episode.Ids.Imdb.Should().Be("tt1480055");
-            episode.Ids.Tmdb.Should().Be(63056);
-            episode.Ids.TvRage.Should().Be(1065008299);
+            episode.Ids.Tmdb.Should().Be(63056U);
+            episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
@@ -140,11 +140,11 @@
             episode.Rating.Should().Be(9.0f);
             episode.Votes.Should().Be(111);
             episode.Ids.Should().NotBeNull();
-            episode.Ids.Trakt.Should().Be(73640);
-            episode.Ids.Tvdb.Should().Be(3254641);
+            episode.Ids.Trakt.Should().Be(73640U);
+            episode.Ids.Tvdb.Should().Be(3254641U);
             episode.Ids.Imdb.Should().Be("tt1480055");
-            episode.Ids.Tmdb.Should().Be(63056);
-            episode.Ids.TvRage.Should().Be(1065008299);
+            episode.Ids.Tmdb.Should().Be(63056U);
+            episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().NotBeNull();
             episode.Images.Screenshot.Should().NotBeNull();
             episode.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");

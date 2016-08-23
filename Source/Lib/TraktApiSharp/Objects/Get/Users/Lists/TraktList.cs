@@ -18,10 +18,11 @@
         [Nullable]
         public string Description { get; set; }
 
-        /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktAccessScope" />.</summary>
+        /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktAccessScope" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "privacy")]
-        [JsonConverter(typeof(TraktAccessScopeConverter))]
-        public TraktAccessScope? Privacy { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
+        [Nullable]
+        public TraktAccessScope Privacy { get; set; }
 
         /// <summary>Gets or sets, whether the list displays ranking numbers.</summary>
         [JsonProperty(PropertyName = "display_numbers")]

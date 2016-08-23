@@ -1,68 +1,24 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktSyncType
+    /// <summary>Determines the type of an object in a playback progress item.</summary>
+    public sealed class TraktSyncType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Episode
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktSyncType Unspecified { get; } = new TraktSyncType();
 
-    public static class TraktSyncTypeExtensions
-    {
-        public static string AsString(this TraktSyncType syncType)
-        {
-            switch (syncType)
-            {
-                case TraktSyncType.Movie: return "movie";
-                case TraktSyncType.Episode: return "episode";
-                case TraktSyncType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncType.ToString());
-            }
-        }
+        /// <summary>The playback progress item contains a movie.</summary>
+        public static TraktSyncType Movie { get; } = new TraktSyncType(1, "movie", "movies", "Movie");
 
-        public static string AsStringUriParameter(this TraktSyncType syncType)
-        {
-            switch (syncType)
-            {
-                case TraktSyncType.Movie: return "movies";
-                case TraktSyncType.Episode: return "episodes";
-                case TraktSyncType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncType.ToString());
-            }
-        }
-    }
+        /// <summary>The playback progress item contains an episode.</summary>
+        public static TraktSyncType Episode { get; } = new TraktSyncType(2, "episode", "episodes", "Episode");
 
-    public class TraktSyncTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktSyncType" /> class.<para />
+        /// The initialized <see cref="TraktSyncType" /> is invalid.
+        /// </summary>
+        public TraktSyncType() : base() { }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktSyncType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktSyncType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var syncType = (TraktSyncType)value;
-            writer.WriteValue(syncType.AsString());
-        }
+        private TraktSyncType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

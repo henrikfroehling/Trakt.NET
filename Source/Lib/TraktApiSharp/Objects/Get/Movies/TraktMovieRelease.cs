@@ -25,10 +25,12 @@
         /// <summary>
         /// Gets or sets the release type for the movie release.
         /// See also <seealso cref="TraktReleaseType" />.
+        /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "release_type")]
-        [JsonConverter(typeof(TraktReleaseTypeConverter))]
-        public TraktReleaseType? ReleaseType { get; set; }
+        [JsonConverter(typeof(TraktEnumerationConverter<TraktReleaseType>))]
+        [Nullable]
+        public TraktReleaseType ReleaseType { get; set; }
 
         /// <summary>Gets or sets a note for the movie release.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "note")]

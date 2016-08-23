@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
     using Utils;
+
     [TestClass]
     public class TraktIdsTests
     {
@@ -15,10 +16,10 @@
 
             ids.Trakt.Should().Be(0);
             ids.Slug.Should().BeNullOrEmpty();
-            ids.Tvdb.Should().NotHaveValue();
+            ids.Tvdb.Should().BeNull();
             ids.Imdb.Should().BeNullOrEmpty();
-            ids.Tmdb.Should().NotHaveValue();
-            ids.TvRage.Should().NotHaveValue();
+            ids.Tmdb.Should().BeNull();
+            ids.TvRage.Should().BeNull();
             ids.HasAnyId.Should().BeFalse();
             ids.GetBestId().Should().BeEmpty();
         }
@@ -33,12 +34,12 @@
             var ids = JsonConvert.DeserializeObject<TraktIds>(jsonFile);
 
             ids.Should().NotBeNull();
-            ids.Trakt.Should().Be(60300);
+            ids.Trakt.Should().Be(60300U);
             ids.Slug.Should().Be("the-flash-2014");
-            ids.Tvdb.Should().Be(279121);
+            ids.Tvdb.Should().Be(279121U);
             ids.Imdb.Should().Be("tt3107288");
-            ids.Tmdb.Should().Be(60735);
-            ids.TvRage.Should().Be(36939);
+            ids.Tmdb.Should().Be(60735U);
+            ids.TvRage.Should().Be(36939U);
             ids.HasAnyId.Should().BeTrue();
             ids.GetBestId().Should().Be("60300");
         }

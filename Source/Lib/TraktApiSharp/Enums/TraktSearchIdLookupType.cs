@@ -1,76 +1,39 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktSearchIdLookupType
+    /// <summary>Determines the id type, for which should be searched in an id lookup request.</summary>
+    public sealed class TraktSearchIdLookupType : TraktEnumeration
     {
-        Unspecified,
-        TraktMovie,
-        TraktShow,
-        TraktEpisode,
-        ImDB,
-        TmDB,
-        TvDB,
-        TVRage
-    }
+        /// <summary>An invalid id type.</summary>
+        public static TraktSearchIdLookupType Unspecified { get; } = new TraktSearchIdLookupType();
 
-    public static class TraktSearchIdLookupTypeExtensions
-    {
-        public static string AsString(this TraktSearchIdLookupType searchIdLookupType)
-        {
-            switch (searchIdLookupType)
-            {
-                case TraktSearchIdLookupType.TraktMovie: return "trakt-movie";
-                case TraktSearchIdLookupType.TraktShow: return "trakt-show";
-                case TraktSearchIdLookupType.TraktEpisode: return "trakt-episode";
-                case TraktSearchIdLookupType.ImDB: return "imdb";
-                case TraktSearchIdLookupType.TmDB: return "tmdb";
-                case TraktSearchIdLookupType.TvDB: return "tvdb";
-                case TraktSearchIdLookupType.TVRage: return "tvrage";
-                case TraktSearchIdLookupType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(searchIdLookupType.ToString());
-            }
-        }
-    }
+        /// <summary>Search for Trakt movie ids.</summary>
+        public static TraktSearchIdLookupType TraktMovie { get; } = new TraktSearchIdLookupType(1, "trakt-movie", "trakt-movie", "Trakt Movie");
 
-    public class TraktSearchIdLookupTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>Search for Trakt show ids.</summary>
+        public static TraktSearchIdLookupType TraktShow { get; } = new TraktSearchIdLookupType(2, "trakt-show", "trakt-show", "Trakt Show");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>Search for Trakt episode ids.</summary>
+        public static TraktSearchIdLookupType TraktEpisode { get; } = new TraktSearchIdLookupType(4, "trakt-episode", "trakt-episode", "Trakt Episode");
 
-            var enumString = reader.Value as string;
+        /// <summary>Search for ImDB ids.</summary>
+        public static TraktSearchIdLookupType ImDB { get; } = new TraktSearchIdLookupType(8, "imdb", "imdb", "Internet Movie Database");
 
-            if (enumString.Equals(TraktSearchIdLookupType.TraktMovie.AsString()))
-                return TraktSearchIdLookupType.TraktMovie;
-            else if (enumString.Equals(TraktSearchIdLookupType.TraktShow.AsString()))
-                return TraktSearchIdLookupType.TraktShow;
-            else if (enumString.Equals(TraktSearchIdLookupType.TraktEpisode.AsString()))
-                return TraktSearchIdLookupType.TraktEpisode;
-            else if (enumString.Equals(TraktSearchIdLookupType.ImDB.AsString()))
-                return TraktSearchIdLookupType.ImDB;
-            else if (enumString.Equals(TraktSearchIdLookupType.TmDB.AsString()))
-                return TraktSearchIdLookupType.TmDB;
-            else if (enumString.Equals(TraktSearchIdLookupType.TvDB.AsString()))
-                return TraktSearchIdLookupType.TvDB;
-            else if (enumString.Equals(TraktSearchIdLookupType.TVRage.AsString()))
-                return TraktSearchIdLookupType.TVRage;
+        /// <summary>Search for TmDB ids.</summary>
+        public static TraktSearchIdLookupType TmDB { get; } = new TraktSearchIdLookupType(16, "tmdb", "tmdb", "The Movie Database");
 
-            return TraktSearchIdLookupType.Unspecified;
-        }
+        /// <summary>Search for TvDB ids.</summary>
+        public static TraktSearchIdLookupType TvDB { get; } = new TraktSearchIdLookupType(32, "tvdb", "tvdb", "TheTVDB");
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var searchIdLookupType = (TraktSearchIdLookupType)value;
-            writer.WriteValue(searchIdLookupType.AsString());
-        }
+        /// <summary>Search for TVRage ids.</summary>
+        public static TraktSearchIdLookupType TVRage { get; } = new TraktSearchIdLookupType(64, "tvrage", "tvrage", "TVRage");
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktSearchIdLookupType" /> class.<para />
+        /// The initialized <see cref="TraktSearchIdLookupType" /> is invalid.
+        /// </summary>
+        public TraktSearchIdLookupType() : base() { }
+
+        private TraktSearchIdLookupType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

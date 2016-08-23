@@ -1,81 +1,36 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktObjectType
+    /// <summary>Determines the type of an object in a comment.</summary>
+    public sealed class TraktObjectType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode,
-        List,
-        All
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktObjectType Unspecified { get; } = new TraktObjectType();
 
-    public static class TraktObjectTypeExtensions
-    {
-        public static string AsString(this TraktObjectType objectType)
-        {
-            switch (objectType)
-            {
-                case TraktObjectType.Movie: return "movie";
-                case TraktObjectType.Show: return "show";
-                case TraktObjectType.Season: return "season";
-                case TraktObjectType.Episode: return "episode";
-                case TraktObjectType.List: return "list";
-                case TraktObjectType.All:
-                case TraktObjectType.Unspecified:
-                    return string.Empty;
-                default:
-                    throw new NotSupportedException(objectType.ToString());
-            }
-        }
+        /// <summary>The comment contains a movie.</summary>
+        public static TraktObjectType Movie { get; } = new TraktObjectType(1, "movie", "movies", "Movie");
 
-        public static string AsStringUriParameter(this TraktObjectType objectType)
-        {
-            switch (objectType)
-            {
-                case TraktObjectType.Movie: return "movies";
-                case TraktObjectType.Show: return "shows";
-                case TraktObjectType.Season: return "seasons";
-                case TraktObjectType.Episode: return "episodes";
-                case TraktObjectType.List: return "lists";
-                case TraktObjectType.All: return "all";
-                case TraktObjectType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(objectType.ToString());
-            }
-        }
-    }
+        /// <summary>The comment contains a show.</summary>
+        public static TraktObjectType Show { get; } = new TraktObjectType(2, "show", "shows", "Show");
 
-    public class TraktObjectTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The comment contains a season.</summary>
+        public static TraktObjectType Season { get; } = new TraktObjectType(4, "season", "seasons", "Season");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The comment contains an episode.</summary>
+        public static TraktObjectType Episode { get; } = new TraktObjectType(8, "episode", "episodes", "Episode");
 
-            var enumString = reader.Value as string;
+        /// <summary>The comment contains a list.</summary>
+        public static TraktObjectType List { get; } = new TraktObjectType(16, "list", "lists", "List");
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktObjectType.Unspecified;
+        /// <summary>The comment contains a movie, show, season, list or an episode.</summary>
+        public static TraktObjectType All { get; } = new TraktObjectType(32, "all", "all", "All");
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktObjectType), enumString, true);
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktObjectType" /> class.<para />
+        /// The initialized <see cref="TraktObjectType" /> is invalid.
+        /// </summary>
+        public TraktObjectType() : base() { }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var objectType = (TraktObjectType)value;
-            writer.WriteValue(objectType.AsString());
-        }
+        private TraktObjectType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

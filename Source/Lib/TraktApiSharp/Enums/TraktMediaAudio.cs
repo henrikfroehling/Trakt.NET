@@ -1,94 +1,51 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktMediaAudio
+    /// <summary>Determines the audio type in a collection item's metadata.</summary>
+    public sealed class TraktMediaAudio : TraktEnumeration
     {
-        Unspecified,
-        LPCM,
-        MP3,
-        AAC,
-        OGG,
-        WMA,
-        DTS,
-        DTS_MA,
-        DolbyPrologic,
-        DolbyDigital,
-        DolbyDigitalPlus,
-        DolbyTrueHD
-    }
+        /// <summary>An invalid audio type.</summary>
+        public static TraktMediaAudio Unspecified { get; } = new TraktMediaAudio();
 
-    public static class TraktMediaAudioExtensions
-    {
-        public static string AsString(this TraktMediaAudio mediaAudio)
-        {
-            switch (mediaAudio)
-            {
-                case TraktMediaAudio.LPCM: return "lpcm";
-                case TraktMediaAudio.MP3: return "mp3";
-                case TraktMediaAudio.AAC: return "aac";
-                case TraktMediaAudio.OGG: return "ogg";
-                case TraktMediaAudio.WMA: return "wma";
-                case TraktMediaAudio.DTS: return "dts";
-                case TraktMediaAudio.DTS_MA: return "dts_ma";
-                case TraktMediaAudio.DolbyPrologic: return "dolby_prologic";
-                case TraktMediaAudio.DolbyDigital: return "dolby_digital";
-                case TraktMediaAudio.DolbyDigitalPlus: return "dolby_digital_plus";
-                case TraktMediaAudio.DolbyTrueHD: return "dolby_truehd";
-                case TraktMediaAudio.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(mediaAudio.ToString());
-            }
-        }
-    }
+        /// <summary>The collection item has LPCM audio.</summary>
+        public static TraktMediaAudio LPCM { get; } = new TraktMediaAudio(1, "lpcm", "lpcm", "LPCM");
 
-    public class TraktMediaAudioConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The collection item has MP3 audio.</summary>
+        public static TraktMediaAudio MP3 { get; } = new TraktMediaAudio(2, "mp3", "mp3", "MP3");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The collection item has AAC audio.</summary>
+        public static TraktMediaAudio AAC { get; } = new TraktMediaAudio(4, "aac", "aac", "AAC");
 
-            var enumString = reader.Value as string;
+        /// <summary>The collection item has OGG audio.</summary>
+        public static TraktMediaAudio OGG { get; } = new TraktMediaAudio(8, "ogg", "ogg", "OGG");
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktMediaAudio.Unspecified;
-            else if (enumString.Equals(TraktMediaAudio.LPCM.AsString()))
-                return TraktMediaAudio.LPCM;
-            else if (enumString.Equals(TraktMediaAudio.MP3.AsString()))
-                return TraktMediaAudio.MP3;
-            else if (enumString.Equals(TraktMediaAudio.AAC.AsString()))
-                return TraktMediaAudio.AAC;
-            else if (enumString.Equals(TraktMediaAudio.OGG.AsString()))
-                return TraktMediaAudio.OGG;
-            else if (enumString.Equals(TraktMediaAudio.WMA.AsString()))
-                return TraktMediaAudio.WMA;
-            else if (enumString.Equals(TraktMediaAudio.DTS.AsString()))
-                return TraktMediaAudio.DTS;
-            else if (enumString.Equals(TraktMediaAudio.DTS_MA.AsString()))
-                return TraktMediaAudio.DTS_MA;
-            else if (enumString.Equals(TraktMediaAudio.DolbyPrologic.AsString()))
-                return TraktMediaAudio.DolbyPrologic;
-            else if (enumString.Equals(TraktMediaAudio.DolbyDigital.AsString()))
-                return TraktMediaAudio.DolbyDigital;
-            else if (enumString.Equals(TraktMediaAudio.DolbyDigitalPlus.AsString()))
-                return TraktMediaAudio.DolbyDigitalPlus;
-            else if (enumString.Equals(TraktMediaAudio.DolbyTrueHD.AsString()))
-                return TraktMediaAudio.DolbyTrueHD;
+        /// <summary>The collection item has WMA audio.</summary>
+        public static TraktMediaAudio WMA { get; } = new TraktMediaAudio(16, "wma", "wma", "WMA");
 
-            return TraktMediaAudio.Unspecified;
-        }
+        /// <summary>The collection item has DTS audio.</summary>
+        public static TraktMediaAudio DTS { get; } = new TraktMediaAudio(32, "dts", "dts", "DTS");
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var mediaAudio = (TraktMediaAudio)value;
-            writer.WriteValue(mediaAudio.AsString());
-        }
+        /// <summary>The collection item has DTS Master Audio.</summary>
+        public static TraktMediaAudio DTS_MA { get; } = new TraktMediaAudio(64, "dts_ma", "dts_ma", "DTS Master Audio");
+
+        /// <summary>The collection item has Dolby Prologic audio.</summary>
+        public static TraktMediaAudio DolbyPrologic { get; } = new TraktMediaAudio(128, "dolby_prologic", "dolby_prologic", "Dolby Prologic");
+
+        /// <summary>The collection item has Dolby Digital audio.</summary>
+        public static TraktMediaAudio DolbyDigital { get; } = new TraktMediaAudio(256, "dolby_digital", "dolby_digital", "Dolby Digital");
+
+        /// <summary>The collection item has Dolby Digital Plus audio.</summary>
+        public static TraktMediaAudio DolbyDigitalPlus { get; } = new TraktMediaAudio(512, "dolby_digital_plus", "dolby_digital_plus", "Dolby Digital Plus");
+
+        /// <summary>The collection item has Dolby True HD audio.</summary>
+        public static TraktMediaAudio DolbyTrueHD { get; } = new TraktMediaAudio(1024, "dolby_truehd", "dolby_truehd", "Dolby True HD");
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktMediaAudio" /> class.<para />
+        /// The initialized <see cref="TraktMediaAudio" /> is invalid.
+        /// </summary>
+        public TraktMediaAudio() : base() { }
+
+        private TraktMediaAudio(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

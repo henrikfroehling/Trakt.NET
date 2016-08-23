@@ -213,7 +213,7 @@
 
             var type = TraktSyncType.Episode;
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}", playbackProgress);
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.UriName}", playbackProgress);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type).Result;
 
@@ -244,8 +244,7 @@
             var type = TraktSyncType.Episode;
             var limit = 4;
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.AsStringUriParameter()}?limit={limit}",
-                                                   playbackProgress);
+            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{type.UriName}?limit={limit}", playbackProgress);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, limit).Result;
 
@@ -334,7 +333,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItem()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             TestUtility.SetupMockResponseWithOAuth($"sync/playback/{playbackId}", HttpStatusCode.NoContent);
 
@@ -345,7 +344,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemExceptions()
         {
-            var playbackId = "13";
+            var playbackId = 13U;
 
             var uri = $"sync/playback/{playbackId}";
 
@@ -418,13 +417,7 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemArgumentExceptions()
         {
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync("user name");
+            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -814,7 +807,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -1113,7 +1106,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -1524,7 +1517,7 @@
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}",
                                                              watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type).Result;
@@ -1544,10 +1537,10 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.AsStringUriParameter()}/{itemId}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}/{itemId}",
                                                              watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId).Result;
@@ -1567,12 +1560,12 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
+                $"sync/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt).Result;
@@ -1592,13 +1585,13 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
@@ -1619,7 +1612,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1631,7 +1624,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
@@ -1654,7 +1647,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1667,7 +1660,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
@@ -1690,7 +1683,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1703,7 +1696,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
@@ -1726,7 +1719,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1737,7 +1730,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
@@ -1759,7 +1752,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1771,7 +1764,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -1793,7 +1786,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
@@ -1805,7 +1798,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
@@ -1827,7 +1820,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1840,7 +1833,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
@@ -1863,14 +1856,13 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
+                $"sync/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, page).Result;
@@ -1890,14 +1882,13 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
+                $"sync/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, null, limit).Result;
@@ -1917,15 +1908,14 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                $"sync/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, page, limit).Result;
@@ -1945,7 +1935,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1957,7 +1947,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -1979,7 +1969,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -1991,7 +1981,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
@@ -2013,7 +2003,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -2026,7 +2016,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
@@ -2048,14 +2038,13 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                $"sync/history/{type.UriName}/{itemId}?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, page).Result;
@@ -2075,14 +2064,13 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                $"sync/history/{type.UriName}/{itemId}?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, null, limit).Result;
@@ -2102,15 +2090,14 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
+                $"sync/history/{type.UriName}/{itemId}?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, page, limit).Result;
@@ -2140,8 +2127,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, null,
@@ -2173,7 +2159,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -2206,7 +2192,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
@@ -2240,8 +2226,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
@@ -2267,7 +2252,7 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?start_at={startAt.ToTraktLongDateTimeString()}",
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt).Result;
@@ -2298,8 +2283,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
@@ -2333,8 +2317,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -2368,8 +2351,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
@@ -2404,7 +2386,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
@@ -2432,8 +2414,7 @@
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt).Result;
@@ -2459,7 +2440,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -2486,7 +2467,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
@@ -2514,7 +2495,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
@@ -2546,8 +2527,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
@@ -2579,7 +2559,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
+                $"sync/history/{type.UriName}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
@@ -2612,8 +2592,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
@@ -2645,10 +2624,9 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
-                watchedHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}" +
+                                                             $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                             watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
                                                                                     extendedOption, page, limit).Result;
@@ -2671,9 +2649,8 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}",
-                watchedHistory, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}",
+                                                             watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt).Result;
 
@@ -2697,7 +2674,7 @@
             var page = 2;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, page).Result;
@@ -2722,7 +2699,7 @@
             var limit = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, null, limit).Result;
@@ -2747,10 +2724,9 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&page={page}&limit={limit}",
-                watchedHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}" +
+                                                             $"&page={page}&limit={limit}",
+                                                             watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, page, limit).Result;
 
@@ -2777,9 +2753,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
-                watchedHistory, 1, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}",
+                                                             watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
                                                                                     extendedOption).Result;
@@ -2808,9 +2783,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&page={page}",
-                watchedHistory, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
+                                                             watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
                                                                                     extendedOption, page).Result;
@@ -2839,9 +2813,8 @@
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&limit={limit}",
-                watchedHistory, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
+                                                             watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
                                                                                     extendedOption, null, limit).Result;
@@ -2872,7 +2845,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"sync/history/{type.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
@@ -2896,9 +2869,8 @@
             var itemCount = 4;
             var page = 2;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?page={page}",
-                watchedHistory, page, 10, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?page={page}",
+                                                             watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, page).Result;
 
@@ -2920,9 +2892,8 @@
             var itemCount = 4;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?limit={limit}",
-                watchedHistory, 1, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?limit={limit}",
+                                                             watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, null, limit).Result;
 
@@ -2945,9 +2916,8 @@
             var page = 2;
             var limit = 4;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}?page={page}&limit={limit}",
-                watchedHistory, page, limit, 1, itemCount);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?page={page}&limit={limit}",
+                                                             watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, page, limit).Result;
 
@@ -3836,7 +3806,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = "123";
+            var itemId = 123UL;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -3850,7 +3820,7 @@
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.AsStringUriParameter()}/{itemId}" +
+                $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
                 $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
@@ -4089,7 +4059,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -4385,17 +4355,17 @@
             var movies = response.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(0);
+            movies[0].Ids.Trakt.Should().Be(0U);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            response.NotFound.Ids.Should().Contain(new List<int>() { 23, 42 });
+            response.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
         }
 
         [TestMethod]
@@ -4567,9 +4537,9 @@
             var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type).Result;
 
@@ -4584,12 +4554,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4604,12 +4573,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4624,12 +4592,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4644,12 +4611,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4664,12 +4630,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4684,12 +4649,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4704,12 +4668,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4724,12 +4687,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4744,12 +4706,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4764,12 +4725,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}",
-                                                   ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4784,11 +4744,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4803,11 +4763,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4822,11 +4782,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4841,11 +4801,11 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.AsStringUriParameter()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
@@ -4876,7 +4836,7 @@
             var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -4884,9 +4844,7 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"sync/ratings/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
-                ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}?extended={extendedOption.ToString()}", ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedOption).Result;
 
@@ -4920,7 +4878,7 @@
 
             var encodedComma = "%2C";
 
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -4931,7 +4889,7 @@
             };
 
             TestUtility.SetupMockResponseWithOAuth(
-                $"sync/ratings/{type.AsStringUriParameter()}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                $"sync/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedOption.ToString()}",
                 ratings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedOption).Result;
@@ -5167,7 +5125,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5468,7 +5426,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -5631,11 +5589,23 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist", watchlist);
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist",
+                                                             watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -5644,13 +5614,124 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
+            var itemCount = 4;
             var type = TraktSyncItemType.Episode;
+            var sortBy = "rank";
+            var sortHow = "asc";
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist/{type.AsStringUriParameter()}", watchlist);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist/{type.UriName}",
+                                                             watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithTypeAndExtendedOption()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var type = TraktSyncItemType.Episode;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}",
+                                                             watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithTypeAndExtendedOptionAndPage()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var type = TraktSyncItemType.Episode;
+            var page = 2;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
+                watchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithTypeAndExtendedOptionAndLimit()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var type = TraktSyncItemType.Episode;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
+                watchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -5659,17 +5740,209 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
+            var itemCount = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
             var extendedOption = new TraktExtendedOption
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watchlist?extended={extendedOption.ToString()}", watchlist);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist?extended={extendedOption.ToString()}",
+                                                             watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndPage()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?extended={extendedOption.ToString()}&page={page}",
+                watchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndLimit()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?extended={extendedOption.ToString()}&limit={limit}",
+                watchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndPageAndLimit()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            var extendedOption = new TraktExtendedOption
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                watchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithPage()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?page={page}", watchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithLimit()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?limit={limit}", watchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncModuleGetWatchlistWithPageAndLimit()
+        {
+            var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
+            watchlist.Should().NotBeNullOrEmpty();
+
+            var itemCount = 4;
+            var page = 2;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
+
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist?page={page}&limit={limit}",
+                watchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -5678,7 +5951,12 @@
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
 
+            var itemCount = 4;
             var type = TraktSyncItemType.Episode;
+            var page = 2;
+            var limit = 4;
+            var sortBy = "rank";
+            var sortHow = "asc";
 
             var extendedOption = new TraktExtendedOption
             {
@@ -5686,13 +5964,20 @@
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"sync/watchlist/{type.AsStringUriParameter()}?extended={extendedOption.ToString()}",
-                watchlist);
+            TestUtility.SetupMockPaginationResponseWithOAuth(
+                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                watchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, page, limit).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(sortBy);
+            response.SortHow.Should().NotBeNull().And.Be(sortHow);
         }
 
         [TestMethod]
@@ -5920,7 +6205,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
@@ -6217,7 +6502,7 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();

@@ -12,17 +12,17 @@
 
         internal string LookupId { get; set; }
 
-        internal TraktSearchResultType? ResultType { get; set; }
+        internal TraktSearchResultType ResultType { get; set; }
 
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("id_type", IdType.AsString());
+            uriParams.Add("id_type", IdType.UriName);
             uriParams.Add("id", LookupId);
 
-            if (ResultType.HasValue && ResultType.Value != TraktSearchResultType.Unspecified)
-                uriParams.Add("type", ResultType.Value.AsString());
+            if (ResultType != null && ResultType != TraktSearchResultType.Unspecified)
+                uriParams.Add("type", ResultType.UriName);
 
             return uriParams;
         }

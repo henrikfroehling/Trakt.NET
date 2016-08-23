@@ -8,9 +8,9 @@
     /// <summary>
     /// Provides additional filter parameters for some <see cref="Modules.TraktShowsModule" /> methods.<para />
     /// Supported by <see cref="Modules.TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktPeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktPeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktPeriod?, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
     /// <see cref="Modules.TraktShowsModule.GetPopularShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
     /// <see cref="Modules.TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedOption, int?, int?)" /> and
     /// <see cref="Modules.TraktShowsModule.GetTrendingShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />.<para />
@@ -273,7 +273,7 @@
                 var statesAsString = new string[States.Length];
 
                 for (int i = 0; i < States.Length; i++)
-                    statesAsString[i] = States[i].AsString();
+                    statesAsString[i] = States[i].UriName;
 
                 parameters.Add("status", string.Join(",", statesAsString));
             }
@@ -306,14 +306,14 @@
             if (keepExisting && this.States != null && this.States.Length > 0)
                 statesList.AddRange(this.States);
 
-            if (status != TraktShowStatus.Unspecified)
+            if (status != null && status != TraktShowStatus.Unspecified)
                 statesList.Add(status);
 
             if (states != null && states.Length > 0)
             {
                 for (int i = 0; i < states.Length; i++)
                 {
-                    if (states[i] == TraktShowStatus.Unspecified)
+                    if (states[i] == null || states[i] == TraktShowStatus.Unspecified)
                         throw new ArgumentException("status not valid", nameof(states));
                 }
 

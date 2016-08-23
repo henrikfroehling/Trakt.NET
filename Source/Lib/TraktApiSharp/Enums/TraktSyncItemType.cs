@@ -1,74 +1,30 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktSyncItemType
+    /// <summary>Determines the type of an object in an history item or in a watchlist item, .</summary>
+    public sealed class TraktSyncItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktSyncItemType Unspecified { get; } = new TraktSyncItemType();
 
-    public static class TraktSyncItemTypeExtensions
-    {
-        public static string AsString(this TraktSyncItemType syncItemType)
-        {
-            switch (syncItemType)
-            {
-                case TraktSyncItemType.Movie: return "movie";
-                case TraktSyncItemType.Show: return "show";
-                case TraktSyncItemType.Season: return "season";
-                case TraktSyncItemType.Episode: return "episode";
-                case TraktSyncItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncItemType.ToString());
-            }
-        }
+        /// <summary>The history or watchlist item contains a movie.</summary>
+        public static TraktSyncItemType Movie { get; } = new TraktSyncItemType(1, "movie", "movies", "Movie");
 
-        public static string AsStringUriParameter(this TraktSyncItemType syncItemType)
-        {
-            switch (syncItemType)
-            {
-                case TraktSyncItemType.Movie: return "movies";
-                case TraktSyncItemType.Show: return "shows";
-                case TraktSyncItemType.Season: return "seasons";
-                case TraktSyncItemType.Episode: return "episodes";
-                case TraktSyncItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(syncItemType.ToString());
-            }
-        }
-    }
+        /// <summary>The history or watchlist item contains a show.</summary>
+        public static TraktSyncItemType Show { get; } = new TraktSyncItemType(2, "show", "shows", "Show");
 
-    public class TraktSyncItemTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The history or watchlist item contains a season.</summary>
+        public static TraktSyncItemType Season { get; } = new TraktSyncItemType(4, "season", "seasons", "Season");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The history or watchlist item contains an episode.</summary>
+        public static TraktSyncItemType Episode { get; } = new TraktSyncItemType(8, "episode", "episodes", "Episode");
 
-            var enumString = reader.Value as string;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktSyncItemType" /> class.<para />
+        /// The initialized <see cref="TraktSyncItemType" /> is invalid.
+        /// </summary>
+        public TraktSyncItemType() : base() { }
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktSyncItemType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktSyncItemType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var syncItemType = (TraktSyncItemType)value;
-            writer.WriteValue(syncItemType.AsString());
-        }
+        private TraktSyncItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

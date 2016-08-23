@@ -36,8 +36,8 @@
             userLike.LikedAt.Should().Be(DateTime.Parse("2015-03-30T23:18:42.000Z").ToUniversalTime());
             userLike.Type.Should().Be(TraktUserLikeType.Comment);
             userLike.Comment.Should().NotBeNull();
-            userLike.Comment.Id.Should().Be(190);
-            userLike.Comment.ParentId.Should().Be(0);
+            userLike.Comment.Id.Should().Be(190U);
+            userLike.Comment.ParentId.Should().Be(0U);
             userLike.Comment.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             userLike.Comment.Comment.Should().Be("Oh, I wasn't really listening.");
             userLike.Comment.Spoiler.Should().BeFalse();
@@ -79,7 +79,7 @@
             userLike.List.CommentCount.Should().Be(0);
             userLike.List.Likes.Should().Be(0);
             userLike.List.Ids.Should().NotBeNull();
-            userLike.List.Ids.Trakt.Should().Be(55);
+            userLike.List.Ids.Trakt.Should().Be(55U);
             userLike.List.Ids.Slug.Should().Be("star-wars-in-machete-order");
             userLike.List.User.Should().NotBeNull();
             userLike.List.User.Username.Should().Be("sean");

@@ -1,77 +1,33 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktListItemType
+    /// <summary>Determines the type of an object in a list item.</summary>
+    public sealed class TraktListItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season,
-        Episode,
-        Person
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktListItemType Unspecified { get; } = new TraktListItemType();
 
-    public static class TraktListItemTypeExtensions
-    {
-        public static string AsString(this TraktListItemType listItemType)
-        {
-            switch (listItemType)
-            {
-                case TraktListItemType.Movie: return "movie";
-                case TraktListItemType.Show: return "show";
-                case TraktListItemType.Season: return "season";
-                case TraktListItemType.Episode: return "episode";
-                case TraktListItemType.Person: return "person";
-                case TraktListItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(listItemType.ToString());
-            }
-        }
+        /// <summary>The list item contains a movie.</summary>
+        public static TraktListItemType Movie { get; } = new TraktListItemType(1, "movie", "movies", "Movie");
 
-        public static string AsStringUriParameter(this TraktListItemType listItemType)
-        {
-            switch (listItemType)
-            {
-                case TraktListItemType.Movie: return "movies";
-                case TraktListItemType.Show: return "shows";
-                case TraktListItemType.Season: return "seasons";
-                case TraktListItemType.Episode: return "episodes";
-                case TraktListItemType.Person: return "people";
-                case TraktListItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(listItemType.ToString());
-            }
-        }
-    }
+        /// <summary>The list item contains a show.</summary>
+        public static TraktListItemType Show { get; } = new TraktListItemType(2, "show", "shows", "Show");
 
-    public class TraktListItemTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The list item contains a season.</summary>
+        public static TraktListItemType Season { get; } = new TraktListItemType(4, "season", "seasons", "Season");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The list item contains an episode.</summary>
+        public static TraktListItemType Episode { get; } = new TraktListItemType(8, "episode", "episodes", "Episode");
 
-            var enumString = reader.Value as string;
+        /// <summary>The list item contains a person.</summary>
+        public static TraktListItemType Person { get; } = new TraktListItemType(16, "person", "people", "Person");
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktListItemType.Unspecified;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktListItemType" /> class.<para />
+        /// The initialized <see cref="TraktListItemType" /> is invalid.
+        /// </summary>
+        public TraktListItemType() : base() { }
 
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktListItemType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var listItemType = (TraktListItemType)value;
-            writer.WriteValue(listItemType.AsString());
-        }
+        private TraktListItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

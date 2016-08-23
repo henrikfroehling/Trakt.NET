@@ -1,54 +1,21 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktAccessTokenType
+    /// <summary>Determines the type of an access token.</summary>
+    public sealed class TraktAccessTokenType : TraktEnumeration
     {
-        Unspecified,
-        Bearer
-    }
+        /// <summary>An invalid access token type.</summary>
+        public static TraktAccessTokenType Unspecified { get; } = new TraktAccessTokenType();
 
-    public static class TraktAccessTokenTypeExtensions
-    {
-        public static string AsString(this TraktAccessTokenType accessTokenType)
-        {
-            switch (accessTokenType)
-            {
-                case TraktAccessTokenType.Bearer: return "bearer";
-                case TraktAccessTokenType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessTokenType.ToString());
-            }
-        }
-    }
+        /// <summary>The access token type for Bearer tokens.</summary>
+        public static TraktAccessTokenType Bearer { get; } = new TraktAccessTokenType(1, "bearer", "bearer", "Bearer");
 
-    public class TraktAccessTokenTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktAccessTokenType" /> class.<para />
+        /// The initialized <see cref="TraktAccessTokenType" /> is invalid.
+        /// </summary>
+        public TraktAccessTokenType() : base() { }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktAccessTokenType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessTokenType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var accessTokenType = (TraktAccessTokenType)value;
-            writer.WriteValue(accessTokenType.AsString());
-        }
+        private TraktAccessTokenType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

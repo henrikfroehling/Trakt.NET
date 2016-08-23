@@ -29,23 +29,23 @@
         internal TraktCommentsModule(TraktClient client) : base(client) { }
 
         /// <summary>
-        /// Gets a <see cref="TraktComment" /> or reply with the given Trakt-Id or -Slug.
+        /// Gets a <see cref="TraktComment" /> or reply with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(string[])" />.</para>
+        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(uint[])" />.</para>
         /// </summary>
-        /// <param name="commentId">The comment's Trakt-Id or -Slug.</param>
+        /// <param name="commentId">The comment's id.</param>
         /// <returns>An <see cref="TraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktComment> GetCommentAsync([NotNull] string commentId)
+        public async Task<TraktComment> GetCommentAsync(uint commentId)
         {
             ValidateId(commentId);
 
-            return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = commentId });
+            return await QueryAsync(new TraktCommentSummaryRequest(Client) { Id = commentId.ToString() });
         }
 
         /// <summary>
@@ -54,14 +54,14 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCommentAsync(string)" />.</para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint)" />.</para>
         /// </summary>
-        /// <param name="commentIds">An array of comment Trakt-Ids or -Slugs.</param>
+        /// <param name="commentIds">An array of comment ids.</param>
         /// <returns>A list of <see cref="TraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(string[] commentIds)
+        public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(uint[] commentIds)
         {
             if (commentIds == null || commentIds.Length <= 0)
                 return new List<TraktComment>();
@@ -283,13 +283,13 @@
         }
 
         /// <summary>
-        /// Updates a comment or reply with the given comment Trakt-Id or -Slug, which was posted within the last hour.
+        /// Updates a comment or reply with the given comment id, which was posted within the last hour.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be updated.</param>
+        /// <param name="commentId">The id of the comment, which should be updated.</param>
         /// <param name="comment">The new comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
@@ -300,14 +300,14 @@
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktCommentPostResponse> UpdateCommentAsync([NotNull] string commentId, [NotNull] string comment, bool? containsSpoiler = null)
+        public async Task<TraktCommentPostResponse> UpdateCommentAsync(uint commentId, [NotNull] string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
 
             return await QueryAsync(new TraktCommentUpdateRequest(Client)
             {
-                Id = commentId,
+                Id = commentId.ToString(),
                 RequestBody = new TraktCommentUpdatePost
                 {
                     Comment = comment,
@@ -317,13 +317,13 @@
         }
 
         /// <summary>
-        /// Posts a reply to a comment with the given comment Trakt-Id or -Slug.
+        /// Posts a reply to a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the reply should be posted.</param>
+        /// <param name="commentId">The id of the comment, for which the reply should be posted.</param>
         /// <param name="comment">The comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
@@ -334,14 +334,14 @@
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktCommentPostResponse> PostCommentReplyAsync([NotNull] string commentId, [NotNull] string comment, bool? containsSpoiler = null)
+        public async Task<TraktCommentPostResponse> PostCommentReplyAsync(uint commentId, [NotNull] string comment, bool? containsSpoiler = null)
         {
             ValidateId(commentId);
             ValidateComment(comment);
 
             return await QueryAsync(new TraktCommentReplyRequest(Client)
             {
-                Id = commentId,
+                Id = commentId.ToString(),
                 RequestBody = new TraktCommentReplyPost
                 {
                     Comment = comment,
@@ -351,67 +351,67 @@
         }
 
         /// <summary>
-        /// Deletes a comment with the given comment Trakt-Id or -Slug.
+        /// Deletes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be deleted.</param>
+        /// <param name="commentId">The id of the comment, which should be deleted.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task DeleteCommentAsync([NotNull] string commentId)
+        public async Task DeleteCommentAsync(uint commentId)
         {
             ValidateId(commentId);
 
-            await QueryAsync(new TraktCommentDeleteRequest(Client) { Id = commentId });
+            await QueryAsync(new TraktCommentDeleteRequest(Client) { Id = commentId.ToString() });
         }
 
         /// <summary>
-        /// Likes a comment with the given comment Trakt-Id or -Slug.
+        /// Likes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be liked.</param>
+        /// <param name="commentId">The id of the comment, which should be liked.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task LikeCommentAsync([NotNull] string commentId)
+        public async Task LikeCommentAsync(uint commentId)
         {
             ValidateId(commentId);
 
-            await QueryAsync(new TraktCommentLikeRequest(Client) { Id = commentId });
+            await QueryAsync(new TraktCommentLikeRequest(Client) { Id = commentId.ToString() });
         }
 
         /// <summary>
-        /// Unlikes a comment with the given comment Trakt-Id or -Slug.
+        /// Unlikes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, which should be unliked.</param>
+        /// <param name="commentId">The id of the comment, which should be unliked.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task UnlikeCommentAsync([NotNull] string commentId)
+        public async Task UnlikeCommentAsync(uint commentId)
         {
             ValidateId(commentId);
 
-            await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId });
+            await QueryAsync(new TraktCommentUnlikeRequest(Client) { Id = commentId.ToString() });
         }
 
         /// <summary>
-        /// Gets replies for comment with the given Trakt-Id or -Slug.
+        /// Gets replies for comment with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="commentId">The Trakt-Id or -Slug of the comment, for which the replies should be queried.</param>
+        /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>
         /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried.</param>
         /// <returns>
@@ -424,20 +424,20 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync([NotNull] string commentId, int? page = null, int? limitPerPage = null)
+        public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(uint commentId, int? page = null, int? limitPerPage = null)
         {
             ValidateId(commentId);
 
             return await QueryAsync(new TraktCommentRepliesRequest(Client)
             {
-                Id = commentId,
+                Id = commentId.ToString(),
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
-        private void ValidateId(string commentId)
+        private void ValidateId(uint commentId)
         {
-            if (string.IsNullOrEmpty(commentId) || commentId.ContainsSpace())
+            if (commentId == 0)
                 throw new ArgumentException("comment id not valid", nameof(commentId));
         }
 

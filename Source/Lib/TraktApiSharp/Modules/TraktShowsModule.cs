@@ -175,7 +175,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetShowCommentsAsync([NotNull] string showIdOrSlug,
-                                                                                        TraktCommentSortOrder? commentSortOrder = null,
+                                                                                        TraktCommentSortOrder commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             Validate(showIdOrSlug);
@@ -450,7 +450,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/played/get-the-most-played-shows">"Trakt API Doc - Shows: Played"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most played shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most played shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -467,7 +467,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                                   TraktExtendedOption extendedOption = null,
                                                                                                   TraktShowFilter filter = null,
                                                                                                   int? page = null, int? limitPerPage = null)
@@ -488,7 +488,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched/get-the-most-watched-shows">"Trakt API Doc - Shows: Watched"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most watched shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most watched shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -505,7 +505,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
                                                                                                     TraktExtendedOption extendedOption = null,
                                                                                                     TraktShowFilter filter = null,
                                                                                                     int? page = null, int? limitPerPage = null)
@@ -526,7 +526,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collected/get-the-most-collected-shows">"Trakt API Doc - Shows: Collected"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most collected shows should be queried. See also <seealso cref="TraktPeriod" />.</param>
+        /// <param name="period">The time period, for which the most collected shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
@@ -543,7 +543,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktPeriod? period = null,
+        public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
                                                                                                         TraktExtendedOption extendedOption = null,
                                                                                                         TraktShowFilter filter = null,
                                                                                                         int? page = null, int? limitPerPage = null)

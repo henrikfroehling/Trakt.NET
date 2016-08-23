@@ -1,68 +1,24 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktUserLikeType
+    /// <summary>Determines the type of an object in an user like item.</summary>
+    public sealed class TraktUserLikeType : TraktEnumeration
     {
-        Unspecified,
-        Comment,
-        List
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktUserLikeType Unspecified { get; } = new TraktUserLikeType();
 
-    public static class TraktUserLikeTypeExtensions
-    {
-        public static string AsString(this TraktUserLikeType userLikeType)
-        {
-            switch (userLikeType)
-            {
-                case TraktUserLikeType.Comment: return "comment";
-                case TraktUserLikeType.List: return "list";
-                case TraktUserLikeType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(userLikeType.ToString());
-            }
-        }
+        /// <summary>The user like item contains a comment.</summary>
+        public static TraktUserLikeType Comment { get; } = new TraktUserLikeType(1, "comment", "comments", "Comment");
 
-        public static string AsStringUriParameter(this TraktUserLikeType userLikeType)
-        {
-            switch (userLikeType)
-            {
-                case TraktUserLikeType.Comment: return "comments";
-                case TraktUserLikeType.List: return "lists";
-                case TraktUserLikeType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(userLikeType.ToString());
-            }
-        }
-    }
+        /// <summary>The user like item contains a list.</summary>
+        public static TraktUserLikeType List { get; } = new TraktUserLikeType(2, "list", "lists", "List");
 
-    public class TraktUserLikeTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktUserLikeType" /> class.<para />
+        /// The initialized <see cref="TraktUserLikeType" /> is invalid.
+        /// </summary>
+        public TraktUserLikeType() : base() { }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
-
-            var enumString = reader.Value as string;
-
-            if (string.IsNullOrEmpty(enumString))
-                return TraktUserLikeType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktUserLikeType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var userLikeType = (TraktUserLikeType)value;
-            writer.WriteValue(userLikeType.AsString());
-        }
+        private TraktUserLikeType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

@@ -1,58 +1,27 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktHiddenItemType
+    /// <summary>Determines the type of an object in an hidden item.</summary>
+    public sealed class TraktHiddenItemType : TraktEnumeration
     {
-        Unspecified,
-        Movie,
-        Show,
-        Season
-    }
+        /// <summary>An invalid object type.</summary>
+        public static TraktHiddenItemType Unspecified { get; } = new TraktHiddenItemType();
 
-    public static class TraktHiddenItemTypeExtensions
-    {
-        public static string AsString(this TraktHiddenItemType hiddenItemType)
-        {
-            switch (hiddenItemType)
-            {
-                case TraktHiddenItemType.Movie: return "movie";
-                case TraktHiddenItemType.Show: return "show";
-                case TraktHiddenItemType.Season: return "season";
-                case TraktHiddenItemType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(hiddenItemType.ToString());
-            }
-        }
-    }
+        /// <summary>The hidden item contains a movie.</summary>
+        public static TraktHiddenItemType Movie { get; } = new TraktHiddenItemType(1, "movie", "movie", "Movie");
 
-    public class TraktHiddenItemTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The listhidden item contains a show.</summary>
+        public static TraktHiddenItemType Show { get; } = new TraktHiddenItemType(2, "show", "show", "Show");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The hidden item contains a season.</summary>
+        public static TraktHiddenItemType Season { get; } = new TraktHiddenItemType(4, "season", "season", "Season");
 
-            var enumString = reader.Value as string;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktHiddenItemType" /> class.<para />
+        /// The initialized <see cref="TraktHiddenItemType" /> is invalid.
+        /// </summary>
+        public TraktHiddenItemType() : base() { }
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktHiddenItemType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktHiddenItemType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var hiddenItemType = (TraktHiddenItemType)value;
-            writer.WriteValue(hiddenItemType.AsString());
-        }
+        private TraktHiddenItemType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

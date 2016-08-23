@@ -478,7 +478,7 @@
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"},
                                                                                        { "certifications", "cert1,cert2,cert3" },
                                                                                        { "networks", "network1,network2" },
-                                                                                       { "status", $"{state1.AsString()},{state2.AsString()}" } });
+                                                                                       { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
         [TestMethod]
@@ -538,7 +538,7 @@
                                           $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query" +
                                           $"&certifications=cert1,cert2,cert3" +
                                           $"&networks=network1,network2" +
-                                          $"&status={state1.AsString()},{state2.AsString()}");
+                                          $"&status={state1.UriName},{state2.UriName}");
         }
     }
 }

@@ -44,10 +44,10 @@
             userWatchlistItemMovie.Movie.Title.Should().Be("Super 8");
             userWatchlistItemMovie.Movie.Year.Should().Be(2011);
             userWatchlistItemMovie.Movie.Ids.Should().NotBeNull();
-            userWatchlistItemMovie.Movie.Ids.Trakt.Should().Be(2);
+            userWatchlistItemMovie.Movie.Ids.Trakt.Should().Be(2U);
             userWatchlistItemMovie.Movie.Ids.Slug.Should().Be("super-8-2011");
             userWatchlistItemMovie.Movie.Ids.Imdb.Should().Be("tt1650062");
-            userWatchlistItemMovie.Movie.Ids.Tmdb.Should().Be(37686);
+            userWatchlistItemMovie.Movie.Ids.Tmdb.Should().Be(37686U);
             userWatchlistItemMovie.Show.Should().BeNull();
             userWatchlistItemMovie.Episode.Should().BeNull();
         }
@@ -72,23 +72,22 @@
             userWatchlistItemEpisode.Show.Title.Should().Be("Breaking Bad");
             userWatchlistItemEpisode.Show.Year.Should().Be(2008);
             userWatchlistItemEpisode.Show.Ids.Should().NotBeNull();
-            userWatchlistItemEpisode.Show.Ids.Trakt.Should().Be(1);
+            userWatchlistItemEpisode.Show.Ids.Trakt.Should().Be(1U);
             userWatchlistItemEpisode.Show.Ids.Slug.Should().Be("breaking-bad");
-            userWatchlistItemEpisode.Show.Ids.Tvdb.Should().Be(81189);
+            userWatchlistItemEpisode.Show.Ids.Tvdb.Should().Be(81189U);
             userWatchlistItemEpisode.Show.Ids.Imdb.Should().Be("tt0903747");
-            userWatchlistItemEpisode.Show.Ids.Tmdb.Should().Be(1396);
-            userWatchlistItemEpisode.Show.Ids.TvRage.Should().Be(18164);
+            userWatchlistItemEpisode.Show.Ids.Tmdb.Should().Be(1396U);
+            userWatchlistItemEpisode.Show.Ids.TvRage.Should().Be(18164U);
             userWatchlistItemEpisode.Episode.Should().NotBeNull();
             userWatchlistItemEpisode.Episode.SeasonNumber.Should().Be(0);
             userWatchlistItemEpisode.Episode.Number.Should().Be(2);
             userWatchlistItemEpisode.Episode.Title.Should().Be("Wedding Day");
             userWatchlistItemEpisode.Episode.Ids.Should().NotBeNull();
-            userWatchlistItemEpisode.Episode.Ids.Trakt.Should().Be(2);
-            userWatchlistItemEpisode.Episode.Ids.Slug.Should().BeNull();
-            userWatchlistItemEpisode.Episode.Ids.Tvdb.Should().Be(3859791);
+            userWatchlistItemEpisode.Episode.Ids.Trakt.Should().Be(2U);
+            userWatchlistItemEpisode.Episode.Ids.Tvdb.Should().Be(3859791U);
             userWatchlistItemEpisode.Episode.Ids.Imdb.Should().BeEmpty();
-            userWatchlistItemEpisode.Episode.Ids.Tmdb.Should().Be(62133);
-            userWatchlistItemEpisode.Episode.Ids.TvRage.Should().NotHaveValue();
+            userWatchlistItemEpisode.Episode.Ids.Tmdb.Should().Be(62133U);
+            userWatchlistItemEpisode.Episode.Ids.TvRage.Should().BeNull();
         }
     }
 }

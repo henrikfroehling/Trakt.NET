@@ -1,65 +1,30 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktShowStatus
+    /// <summary>Determines the status of a show.</summary>
+    public sealed class TraktShowStatus : TraktEnumeration
     {
-        Unspecified,
-        ReturningSeries,
-        InProduction,
-        Canceled,
-        Ended
-    }
+        /// <summary>An invalid status.</summary>
+        public static TraktShowStatus Unspecified { get; } = new TraktShowStatus();
 
-    public static class TraktShowStatusExtensions
-    {
-        public static string AsString(this TraktShowStatus showStatus)
-        {
-            switch (showStatus)
-            {
-                case TraktShowStatus.ReturningSeries: return "returning series";
-                case TraktShowStatus.InProduction: return "in production";
-                case TraktShowStatus.Canceled: return "canceled";
-                case TraktShowStatus.Ended: return "ended";
-                case TraktShowStatus.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(showStatus.ToString());
-            }
-        }
-    }
+        /// <summary>The status for a show, which continues.</summary>
+        public static TraktShowStatus ReturningSeries { get; } = new TraktShowStatus(1, "returning series", "returning series", "Returning Series");
 
-    public class TraktShowStatusConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The status for a show, which is in production.</summary>
+        public static TraktShowStatus InProduction { get; } = new TraktShowStatus(2, "in production", "in production", "In Production");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The status for a show, which was canceled.</summary>
+        public static TraktShowStatus Canceled { get; } = new TraktShowStatus(4, "canceled", "canceled", "Canceled");
 
-            var enumString = reader.Value as string;
-            enumString = enumString.ToLower();
+        /// <summary>The status for a show, which has ended.</summary>
+        public static TraktShowStatus Ended { get; } = new TraktShowStatus(8, "ended", "ended", "Ended");
 
-            if (enumString.Equals(TraktShowStatus.ReturningSeries.AsString()))
-                return TraktShowStatus.ReturningSeries;
-            else if (enumString.Equals(TraktShowStatus.InProduction.AsString()))
-                return TraktShowStatus.InProduction;
-            else if (enumString.Equals(TraktShowStatus.Canceled.AsString()))
-                return TraktShowStatus.Canceled;
-            else if (enumString.Equals(TraktShowStatus.Ended.AsString()))
-                return TraktShowStatus.Ended;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktShowStatus" /> class.<para />
+        /// The initialized <see cref="TraktShowStatus" /> is invalid.
+        /// </summary>
+        public TraktShowStatus() : base() { }
 
-            return TraktShowStatus.Unspecified;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var showStatus = (TraktShowStatus)value;
-            writer.WriteValue(showStatus.AsString());
-        }
+        private TraktShowStatus(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

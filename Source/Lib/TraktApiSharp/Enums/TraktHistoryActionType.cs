@@ -1,58 +1,27 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktHistoryActionType
+    /// <summary>Determines the action type of an history item.</summary>
+    public sealed class TraktHistoryActionType : TraktEnumeration
     {
-        Unspecified,
-        Scrobble,
-        Checkin,
-        Watch
-    }
+        /// <summary>An invalid action type.</summary>
+        public static TraktHistoryActionType Unspecified { get; } = new TraktHistoryActionType();
 
-    public static class TraktHistoryActionTypeExtensions
-    {
-        public static string AsString(this TraktHistoryActionType historyActionType)
-        {
-            switch (historyActionType)
-            {
-                case TraktHistoryActionType.Unspecified: return string.Empty;
-                case TraktHistoryActionType.Scrobble: return "scrobble";
-                case TraktHistoryActionType.Checkin: return "checkin";
-                case TraktHistoryActionType.Watch: return "watch";
-                default:
-                    throw new NotSupportedException(historyActionType.ToString());
-            }
-        }
-    }
+        /// <summary>The history item is / was scrobbled.</summary>
+        public static TraktHistoryActionType Scrobble { get; } = new TraktHistoryActionType(1, "scrobble", "scrobble", "Scrobble");
 
-    public class TraktHistoryActionTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The history item is / was checked in.</summary>
+        public static TraktHistoryActionType Checkin { get; } = new TraktHistoryActionType(2, "checkin", "checkin", "Checkin");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The history item is / was watched.</summary>
+        public static TraktHistoryActionType Watch { get; } = new TraktHistoryActionType(4, "watch", "watch", "Watch");
 
-            var enumString = reader.Value as string;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktHistoryActionType" /> class.<para />
+        /// The initialized <see cref="TraktHistoryActionType" /> is invalid.
+        /// </summary>
+        public TraktHistoryActionType() : base() { }
 
-            if (enumString.Equals(TraktHistoryActionType.Unspecified.AsString()))
-                return TraktHistoryActionType.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktHistoryActionType), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var historyActionType = (TraktHistoryActionType)value;
-            writer.WriteValue(historyActionType.AsString());
-        }
+        private TraktHistoryActionType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

@@ -46,14 +46,14 @@
             movies[0].Ids.Trakt.Should().Be(0);
             movies[0].Ids.Slug.Should().BeNullOrEmpty();
             movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().NotHaveValue();
+            movies[0].Ids.Tmdb.Should().BeNull();
 
             historyRemovePost.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
             historyRemovePost.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
             historyRemovePost.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
             historyRemovePost.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            historyRemovePost.NotFound.Ids.Should().Contain(new List<int>() { 23, 42 });
+            historyRemovePost.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
         }
     }
 }

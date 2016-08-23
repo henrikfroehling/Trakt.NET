@@ -1,60 +1,39 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktReleaseType
+    /// <summary>Determines, how a movie was released.</summary>
+    public sealed class TraktReleaseType : TraktEnumeration
     {
-        Unknown,
-        Premiere,
-        Limited,
-        Theatrical,
-        Digital,
-        Physical,
-        Tv
-    }
+        /// <summary>An invalid release type.</summary>
+        public static TraktReleaseType Unspecified { get; } = new TraktReleaseType();
 
-    public static class TraktReleaseTypeExtensions
-    {
-        public static string AsString(this TraktReleaseType releaseType)
-        {
-            switch (releaseType)
-            {
-                case TraktReleaseType.Unknown: return "unknown";
-                case TraktReleaseType.Premiere: return "premiere";
-                case TraktReleaseType.Limited: return "limited";
-                case TraktReleaseType.Theatrical: return "theatrical";
-                case TraktReleaseType.Digital: return "digital";
-                case TraktReleaseType.Physical: return "physical";
-                case TraktReleaseType.Tv: return "tv";
-                default:
-                    throw new NotSupportedException(releaseType.ToString());
-            }
-        }
-    }
+        /// <summary>An unknown release type.</summary>
+        public static TraktReleaseType Unknown { get; } = new TraktReleaseType(1, "unknown", "unknown", "Unknown");
 
-    public class TraktReleaseTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The release was a premiere.</summary>
+        public static TraktReleaseType Premiere { get; } = new TraktReleaseType(2, "premiere", "premiere", "Premiere");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>The release was limited.</summary>
+        public static TraktReleaseType Limited { get; } = new TraktReleaseType(4, "limited", "limited", "Limited");
 
-            var enumString = reader.Value as string;
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktReleaseType), enumString, true);
-        }
+        /// <summary>The release was theatrical.</summary>
+        public static TraktReleaseType Theatrical { get; } = new TraktReleaseType(8, "theatrical", "theatrical", "Theatrical");
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var releaseType = (TraktReleaseType)value;
-            writer.WriteValue(releaseType.AsString());
-        }
+        /// <summary>The release was digital.</summary>
+        public static TraktReleaseType Digital { get; } = new TraktReleaseType(16, "digital", "digital", "Digital");
+
+        /// <summary>The release was physical.</summary>
+        public static TraktReleaseType Physical { get; } = new TraktReleaseType(32, "physical", "physical", "Physical");
+
+        /// <summary>The release was in TV.</summary>
+        public static TraktReleaseType TV { get; } = new TraktReleaseType(64, "tv", "tv", "TV");
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktReleaseType" /> class.<para />
+        /// The initialized <see cref="TraktReleaseType" /> is invalid.
+        /// </summary>
+        public TraktReleaseType() : base() { }
+
+        private TraktReleaseType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

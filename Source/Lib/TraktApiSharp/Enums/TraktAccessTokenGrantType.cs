@@ -1,57 +1,24 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktAccessTokenGrantType
+    /// <summary>Determines the grant type to specify how an access tokenshould be retrieved during authentication.</summary>
+    public sealed class TraktAccessTokenGrantType : TraktEnumeration
     {
-        Unspecified,
-        AuthorizationCode,
-        RefreshToken
-    }
+        /// <summary>An invalid access token grant type.</summary>
+        public static TraktAccessTokenGrantType Unspecified { get; } = new TraktAccessTokenGrantType();
 
-    public static class TraktAccessTokenGrantTypeExtensions
-    {
-        public static string AsString(this TraktAccessTokenGrantType accessTokenGrantType)
-        {
-            switch (accessTokenGrantType)
-            {
-                case TraktAccessTokenGrantType.AuthorizationCode: return "authorization_code";
-                case TraktAccessTokenGrantType.RefreshToken: return "refresh_token";
-                case TraktAccessTokenGrantType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessTokenGrantType.ToString());
-            }
-        }
-    }
+        /// <summary>The grant type to specify the retrieving of an access token with an user code.</summary>
+        public static TraktAccessTokenGrantType AuthorizationCode { get; } = new TraktAccessTokenGrantType(1, "authorization_code", "authorization_code", "Authorization Code");
 
-    public class TraktAccessTokenGrantTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>The grant type to specify the retrieving of an access token with a refresh token.</summary>
+        public static TraktAccessTokenGrantType RefreshToken { get; } = new TraktAccessTokenGrantType(2, "refresh_token", "refresh_token", "Refresh Token");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktAccessTokenGrantType" /> class.<para />
+        /// The initialized <see cref="TraktAccessTokenGrantType" /> is invalid.
+        /// </summary>
+        public TraktAccessTokenGrantType() : base() { }
 
-            var enumString = reader.Value as string;
-            enumString = enumString.ToLower();
-
-            if (enumString.Equals(TraktAccessTokenGrantType.AuthorizationCode.AsString()))
-                return TraktAccessTokenGrantType.AuthorizationCode;
-            else if (enumString.Equals(TraktAccessTokenGrantType.RefreshToken.AsString()))
-                return TraktAccessTokenGrantType.RefreshToken;
-
-            return TraktAccessTokenGrantType.Unspecified;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var accessTokenGrantType = (TraktAccessTokenGrantType)value;
-            writer.WriteValue(accessTokenGrantType.AsString());
-        }
+        private TraktAccessTokenGrantType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

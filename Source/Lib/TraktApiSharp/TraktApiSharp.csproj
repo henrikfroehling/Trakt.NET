@@ -65,6 +65,7 @@
     <Compile Include="Core\TraktConstants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
     <Compile Include="Enums\TraktCommentType.cs" />
+    <Compile Include="Enums\TraktEnumeration.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
     <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
@@ -79,14 +80,14 @@
     <Compile Include="Enums\TraktAccessTokenType.cs" />
     <Compile Include="Enums\TraktGenreType.cs" />
     <Compile Include="Enums\TraktHiddenItemType.cs" />
-    <Compile Include="Enums\TraktPeriod.cs" />
+    <Compile Include="Enums\TraktTimePeriod.cs" />
     <Compile Include="Enums\TraktReleaseType.cs" />
     <Compile Include="Enums\TraktSearchIdType.cs" />
     <Compile Include="Enums\TraktSearchResultType.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
     <Compile Include="Enums\TraktHistoryActionType.cs" />
     <Compile Include="Enums\TraktSyncItemType.cs" />
-    <Compile Include="Enums\TraktSyncRatingsItemType.cs" />
+    <Compile Include="Enums\TraktRatingsItemType.cs" />
     <Compile Include="Enums\TraktSyncType.cs" />
     <Compile Include="Enums\TraktUserLikeType.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceException.cs" />
@@ -137,6 +138,8 @@
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
     <Compile Include="Modules\TraktUsersModule.cs" />
+    <Compile Include="Objects\Basic\ITraktPaginationResultHeaders.cs" />
+    <Compile Include="Objects\Basic\ITraktResultHeaders.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
@@ -157,9 +160,9 @@
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionEpisode.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionShowEpisode.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionMovie.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionSeason.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionShowSeason.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncCommentsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncEpisodesLastActivities.cs" />
@@ -276,6 +279,7 @@
     <Compile Include="Objects\Post\Syncs\Collection\Responses\TraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponse.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseGroup.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\TraktSyncHistoryRemovePostResponseNotFound.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPost.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePost.cs" />
@@ -315,7 +319,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFound.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsPostResponseNotFoundItem.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\TraktUserCustomListItemsRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostMovie.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowEpisode.cs" />
@@ -328,6 +331,8 @@
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
+    <Compile Include="Services\TraktSerializationService.cs" />
+    <Compile Include="Utils\Json.cs" />
     <Compile Include="Utils\Range.cs" />
     <Compile Include="Requests\Params\TraktCommonFilter.cs" />
     <Compile Include="Requests\Params\TraktCommonMovieAndShowFilter.cs" />

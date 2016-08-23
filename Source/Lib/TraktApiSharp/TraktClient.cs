@@ -115,7 +115,7 @@ namespace TraktApiSharp
         /// Provides access to the configuration settings for the <see cref="TraktClient" />.
         /// See <seealso cref="TraktConfiguration" />.
         /// </summary>
-        public TraktConfiguration Configuration { get; }// = new TraktConfiguration();
+        public TraktConfiguration Configuration { get; }
 
         /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthentication" />.</summary>
         public TraktAuthentication Authentication { get; }

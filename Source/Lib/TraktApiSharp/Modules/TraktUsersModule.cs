@@ -95,11 +95,11 @@
         /// <exception cref="ArgumentException">Thrown, if the given hidden items section is unspecified.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
-                                                                                              TraktHiddenItemType? hiddenItemType = null,
+                                                                                              TraktHiddenItemType hiddenItemType = null,
                                                                                               TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
-            if (hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
+            if (hiddenItemsSection == null || hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
                 throw new ArgumentException("section not valid", nameof(hiddenItemsSection));
 
             return await QueryAsync(new TraktUserHiddenItemsRequest(Client)
@@ -130,7 +130,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType? likeType = null,
+        public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
                                                                                       int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktUserLikesRequest(Client)
@@ -171,7 +171,7 @@
         /// Gets all collected movies in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected movies should be queried.</param>
@@ -198,7 +198,7 @@
         /// Gets all collected shows in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected shows should be queried.</param>
@@ -248,8 +248,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
-                                                                                        TraktCommentType? commentType = null,
-                                                                                        TraktObjectType? objectType = null,
+                                                                                        TraktCommentType commentType = null,
+                                                                                        TraktObjectType objectType = null,
                                                                                         TraktExtendedOption extendedOption = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
@@ -293,7 +293,7 @@
         /// <para>See also <seealso cref="GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams)" />.</para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be queried.</param>
-        /// <param name="listId">The id of the custom list, which should be queried.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, which should be queried.</param>
         /// <returns>Anv <see cref="TraktList" /> instance containing the custom list informations.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -301,15 +301,15 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktList> GetCustomSingleListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
+        public async Task<TraktList> GetCustomSingleListAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             return await QueryAsync(new TraktUserCustomSingleListRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId
+                Id = listIdOrSlug
             });
         }
 
@@ -354,7 +354,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list items should be queried.</param>
-        /// <param name="listId">The id of the custom list, for which the items should be queried.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, for which the items should be queried.</param>
         /// <param name="listItemType">Determines, which type of list items should be queried. See also <seealso cref="TraktListItemType" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the list items should be queried.
@@ -367,17 +367,17 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                              TraktListItemType? listItemType = null,
+        public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
+                                                                              TraktListItemType listItemType = null,
                                                                               TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             return await QueryAsync(new TraktUserCustomListItemsRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId,
+                Id = listIdOrSlug,
                 Type = listItemType,
                 ExtendedOption = extendedOption
             });
@@ -404,7 +404,7 @@
         /// </exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktList> CreateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listName, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -420,8 +420,8 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (privacy != null && privacy != TraktAccessScope.Unspecified)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListAddRequest(Client)
             {
@@ -438,7 +438,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be updated.</param>
-        /// <param name="listId">The id of the custom list, which should be updated.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, which should be updated.</param>
         /// <param name="listName">A new name for the custom list with the given id.</param>
         /// <param name="listDescription">A new description for the custom list with the given id.</param>
         /// <param name="privacy">A new visibility setting for the custom list with the given id.</param>
@@ -453,17 +453,17 @@
         /// display numbers is not set and comments allowed is not set).
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktList> UpdateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
+        public async Task<TraktList> UpdateCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
                                                            string listName = null, string listDescription = null,
-                                                           TraktAccessScope? privacy = null,
+                                                           TraktAccessScope privacy = null,
                                                            bool? displayNumbers = null, bool? allowComments = null)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             var isListNameNotValid = string.IsNullOrEmpty(listName);
             var isDescriptionNotSet = listDescription == null;
-            var isPrivacyNotSetOrValid = !privacy.HasValue || privacy.Value == TraktAccessScope.Unspecified;
+            var isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
             var isDisplayNumbersNotSet = !displayNumbers.HasValue;
             var isAllowCommentsNotSet = !allowComments.HasValue;
 
@@ -480,13 +480,13 @@
                 AllowComments = allowComments
             };
 
-            if (privacy.HasValue && privacy.Value != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy.Value;
+            if (!isPrivacyNotSetOrValid)
+                requestBody.Privacy = privacy;
 
             return await QueryAsync(new TraktUserCustomListUpdateRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId,
+                Id = listIdOrSlug,
                 RequestBody = requestBody
             });
         }
@@ -499,22 +499,22 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be deleted.</param>
-        /// <param name="listId">The id of the list, which should be deleted.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, which should be deleted.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task DeleteCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
+        public async Task DeleteCustomListAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             await QueryAsync(new TraktUserCustomListDeleteRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId
+                Id = listIdOrSlug
             });
         }
 
@@ -531,7 +531,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
-        /// <param name="listId">The id of the custom list, to which items should be added.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, to which items should be added.</param>
         /// <param name="listItemsPost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
         /// <param name="listItemType">Determines, which type of items should be added. See also <seealso cref="TraktListItemType" />.</param>
         /// <returns>An <see cref="TraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
@@ -543,18 +543,18 @@
         /// Thrown, if the given list items post is empty.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
+        public async Task<TraktUserCustomListItemsPostResponse> AddCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
                                                                                         [NotNull] TraktUserCustomListItemsPost listItemsPost,
-                                                                                        TraktListItemType? listItemType = null)
+                                                                                        TraktListItemType listItemType = null)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
             ValidateCustomListItemsPost(listItemsPost);
 
             return await QueryAsync(new TraktUserCustomListItemsAddRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId,
+                Id = listIdOrSlug,
                 Type = listItemType,
                 RequestBody = listItemsPost
             });
@@ -573,7 +573,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
-        /// <param name="listId">The id of the custom list, from which items should be removed.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, from which items should be removed.</param>
         /// <param name="listItemsRemovePost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
         /// <returns>An <see cref="TraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -584,17 +584,17 @@
         /// Thrown, if the given list items remove post is empty.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
+        public async Task<TraktUserCustomListItemsRemovePostResponse> RemoveCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
                                                                                                  [NotNull] TraktUserCustomListItemsPost listItemsRemovePost)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
             ValidateCustomListItemsPost(listItemsRemovePost);
 
             return await QueryAsync(new TraktUserCustomListItemsRemoveRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId,
+                Id = listIdOrSlug,
                 RequestBody = listItemsRemovePost
             });
         }
@@ -607,7 +607,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list comments should be queried.</param>
-        /// <param name="listId">The id of the custom list, for which the comments should be queried.</param>
+        /// <param name="listIdOrSlug">The id or slug of the custom list, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
@@ -624,17 +624,17 @@
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync([NotNull] string usernameOrSlug, [NotNull] string listId,
-                                                                                        TraktCommentSortOrder? commentSortOrder = null,
+        public async Task<TraktPaginationListResult<TraktComment>> GetListCommentsAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
+                                                                                        TraktCommentSortOrder commentSortOrder = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             return await QueryAsync(new TraktUserListCommentsRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId,
+                Id = listIdOrSlug,
                 Sorting = commentSortOrder,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -648,22 +648,22 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be liked.</param>
-        /// <param name="listId">The id of the list, which should be liked.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, which should be liked.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task LikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
+        public async Task LikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             await QueryAsync(new TraktUserListLikeRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId
+                Id = listIdOrSlug
             });
         }
 
@@ -675,22 +675,22 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which a like on a custom list should be removed.</param>
-        /// <param name="listId">The id of the list, for which a like should be removed.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which a like should be removed.</param>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task UnlikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listId)
+        public async Task UnlikeListAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug)
         {
             ValidateUsername(usernameOrSlug);
-            ValidateListId(listId);
+            ValidateListId(listIdOrSlug);
 
             await QueryAsync(new TraktUserListUnlikeRequest(Client)
             {
                 Username = usernameOrSlug,
-                Id = listId
+                Id = listIdOrSlug
             });
         }
 
@@ -815,11 +815,11 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktUserFollower> ApproveFollowRequestAsync([NotNull] string followerRequestId)
+        public async Task<TraktUserFollower> ApproveFollowRequestAsync([NotNull] uint followerRequestId)
         {
             ValidateFollowerRequestId(followerRequestId);
 
-            return await QueryAsync(new TraktUserApproveFollowerRequest(Client) { Id = followerRequestId });
+            return await QueryAsync(new TraktUserApproveFollowerRequest(Client) { Id = followerRequestId.ToString() });
         }
 
         /// <summary>
@@ -833,11 +833,11 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task DenyFollowRequestAsync([NotNull] string followerRequestId)
+        public async Task DenyFollowRequestAsync([NotNull] uint followerRequestId)
         {
             ValidateFollowerRequestId(followerRequestId);
 
-            await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId });
+            await QueryAsync(new TraktUserDenyFollowerRequest(Client) { Id = followerRequestId.ToString() });
         }
 
         /// <summary>
@@ -868,8 +868,8 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType? historyItemType = null,
-                                                                                              string itemId = null, DateTime? startAt = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
+                                                                                              ulong? itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedOption extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
@@ -891,11 +891,11 @@
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/history/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/ratings/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the ratings should be queried.</param>
-        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktSyncRatingsItemType" />.</param>
+        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktRatingsItemType" />.</param>
         /// <param name="ratingsFilter">
         /// An array of numbers. Numbers should be between 1 and 10.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
@@ -909,7 +909,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktSyncRatingsItemType? ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
                                                                          int[] ratingsFilter = null, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -936,12 +936,21 @@
         /// The extended option, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedOption" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktWatchlistItem" /> instances.</returns>
+        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
+        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <returns>
+        /// An <see cref="TraktPaginationListResult{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
+        /// </para>
+        /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType? watchlistItemType = null,
-                                                                             TraktExtendedOption extendedOption = null)
+        public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
+                                                                                           TraktExtendedOption extendedOption = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -949,7 +958,8 @@
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedOption,
+                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
 
@@ -1082,9 +1092,9 @@
                 throw new ArgumentException("no items set");
         }
 
-        private void ValidateFollowerRequestId(string followerRequestId)
+        private void ValidateFollowerRequestId(ulong followerRequestId)
         {
-            if (string.IsNullOrEmpty(followerRequestId) || followerRequestId.ContainsSpace())
+            if (followerRequestId == 0)
                 throw new ArgumentException("follower request id is not valid", nameof(followerRequestId));
         }
     }

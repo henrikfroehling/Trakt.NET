@@ -1,58 +1,27 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using Extensions;
-    using Newtonsoft.Json;
-    using System;
-
-    public enum TraktAccessScope
+    /// <summary>Determines the access authorization for different resources.</summary>
+    public sealed class TraktAccessScope : TraktEnumeration
     {
-        Unspecified,
-        Public,
-        Private,
-        Friends
-    }
+        /// <summary>An invalid access scope.</summary>
+        public static TraktAccessScope Unspecified { get; } = new TraktAccessScope();
 
-    public static class TraktAccessScopeExtensions
-    {
-        public static string AsString(this TraktAccessScope accessScope)
-        {
-            switch (accessScope)
-            {
-                case TraktAccessScope.Public: return "public";
-                case TraktAccessScope.Private: return "private";
-                case TraktAccessScope.Friends: return "friends";
-                case TraktAccessScope.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(accessScope.ToString());
-            }
-        }
-    }
+        /// <summary>A resource can be accessed by all.</summary>
+        public static TraktAccessScope Public { get; } = new TraktAccessScope(1, "public", "public", "Public");
 
-    public class TraktAccessScopeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        /// <summary>A resource can only be accessed by the user.</summary>
+        public static TraktAccessScope Private { get; } = new TraktAccessScope(2, "private", "private", "Private");
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.Value == null)
-                return null;
+        /// <summary>A resource can only be accessed by friends of an user.</summary>
+        public static TraktAccessScope Friends { get; } = new TraktAccessScope(4, "friends", "friends", "Friends");
 
-            var enumString = reader.Value as string;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktAccessScope" /> class.<para />
+        /// The initialized <see cref="TraktAccessScope" /> is invalid.
+        /// </summary>
+        public TraktAccessScope() : base() { }
 
-            if (string.IsNullOrEmpty(enumString))
-                return TraktAccessScope.Unspecified;
-
-            enumString = enumString.FirstToUpper();
-            return Enum.Parse(typeof(TraktAccessScope), enumString, true);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var accessScope = (TraktAccessScope)value;
-            writer.WriteValue(accessScope.AsString());
-        }
+        private TraktAccessScope(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }

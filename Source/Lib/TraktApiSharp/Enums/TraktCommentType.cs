@@ -1,28 +1,27 @@
 ﻿namespace TraktApiSharp.Enums
 {
-    using System;
-
-    public enum TraktCommentType
+    /// <summary>Determines the comment type.</summary>
+    public sealed class TraktCommentType : TraktEnumeration
     {
-        Unspecified,
-        Review,
-        Shout,
-        All
-    }
+        /// <summary>An invalid comment type.</summary>
+        public static TraktCommentType Unspecified { get; } = new TraktCommentType();
 
-    public static class TraktCommentTypeExtensions
-    {
-        public static string AsStringUriParameter(this TraktCommentType commentType)
-        {
-            switch (commentType)
-            {
-                case TraktCommentType.Review: return "reviews";
-                case TraktCommentType.Shout: return "shouts";
-                case TraktCommentType.All: return "all";
-                case TraktCommentType.Unspecified: return string.Empty;
-                default:
-                    throw new NotSupportedException(commentType.ToString());
-            }
-        }
+        /// <summary>The comment type for reviews.</summary>
+        public static TraktCommentType Review { get; } = new TraktCommentType(1, "reviews", "reviews", "Review");
+
+        /// <summary>The comment type for shouts.</summary>
+        public static TraktCommentType Shout { get; } = new TraktCommentType(2, "shouts", "shouts", "Shout");
+
+        /// <summary>The comment type for both reviews and shouts.</summary>
+        public static TraktCommentType All { get; } = new TraktCommentType(4, "all", "all", "All");
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraktCommentType" /> class.<para />
+        /// The initialized <see cref="TraktCommentType" /> is invalid.
+        /// </summary>
+        public TraktCommentType() : base() { }
+
+        private TraktCommentType(int value, string objectName, string uriName, string displayName)
+            : base(value, objectName, uriName, displayName) { }
     }
 }
