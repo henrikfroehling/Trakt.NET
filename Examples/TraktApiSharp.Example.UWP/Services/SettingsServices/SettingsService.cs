@@ -1,7 +1,9 @@
 using System;
 using Template10.Common;
 using Template10.Utils;
+using TraktApiSharp.Authentication;
 using TraktApiSharp.Example.UWP.Services.TraktService;
+using TraktApiSharp.Services;
 using Windows.UI.Xaml;
 
 namespace TraktApiSharp.Example.UWP.Services.SettingsServices
@@ -70,6 +72,37 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             {
                 _helper.Write(nameof(TraktClientAccessToken), value);
                 TraktServiceProvider.Instance.Client.AccessToken = value;
+            }
+        }
+
+        public TraktAuthorization TraktClientAuthorization
+        {
+            get
+            {
+                var authorizationJson = _helper.Read<string>(nameof(TraktClientAuthorization), string.Empty);
+
+                if (!string.IsNullOrEmpty(authorizationJson))
+                {
+                    var authorization = TraktSerializationService.DeserializeAuthorization(authorizationJson);
+
+                    if (authorization == null)
+                        return new TraktAuthorization();
+
+                    return authorization;
+                }
+
+                return new TraktAuthorization();
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    var authorizationJson = TraktSerializationService.Serialize(value);
+
+                    if (!string.IsNullOrEmpty(authorizationJson))
+                        _helper.Write(nameof(TraktClientAuthorization), authorizationJson);
+                }
             }
         }
 
