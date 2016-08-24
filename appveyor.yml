@@ -23,7 +23,6 @@
     
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    #- ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -53,22 +52,9 @@
       on:
         appveyor_repo_tag: true
 
-    - provider: GitHub
-      artifact: TraktApiSharp.$(libVersion).nupkg
-      auth_token:
-        secure: 7x+sLCjI0R9Z25SaL5k4jQjGgdNMWJUpC4NtteB3KcKX98YEzm8SmvkfUkNl1jKm
-      prerelease: false
-      draft: true
-      release: v$(libVersion)
-      on:
-        appveyor_repo_tag: true
-
 # configuration for all branches starting from "dev-"
 # build in Debug mode
 -
-  #environment:
-  #  libVersion: '0.3.0'
-
   version: '{branch}-{build}'
   image: Visual Studio 2015
 
@@ -88,7 +74,6 @@
 
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
-    #- ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Rename-Item -LiteralPath $_.FullName -NewName "TraktApiSharp.$env:libVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER.nupkg" }
     - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
