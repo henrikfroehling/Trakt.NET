@@ -1,5 +1,6 @@
 namespace TraktApiSharp.Example.UWP.ViewModels
 {
+    using Authentication;
     using Template10.Mvvm;
     using Windows.UI.Xaml;
 
@@ -78,7 +79,23 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
     public class TraktAuthorizationPartViewModel : ViewModelBase
     {
+        Services.SettingsServices.SettingsService _settings;
 
+        public TraktAuthorizationPartViewModel()
+        {
+            _settings = Services.SettingsServices.SettingsService.Instance;
+        }
+
+        public TraktAuthorization Authorization
+        {
+            get { return _settings.TraktClientAuthorization; }
+
+            set
+            {
+                _settings.TraktClientAuthorization = value;
+                base.RaisePropertyChanged();
+            }
+        }
     }
 
     public class SettingsPartViewModel : ViewModelBase
