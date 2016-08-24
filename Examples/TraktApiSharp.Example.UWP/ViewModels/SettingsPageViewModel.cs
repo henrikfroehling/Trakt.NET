@@ -1,15 +1,40 @@
 namespace TraktApiSharp.Example.UWP.ViewModels
 {
     using Authentication;
+    using Enums;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Template10.Mvvm;
+    using Template10.Services.NavigationService;
     using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Navigation;
 
     public class SettingsPageViewModel : ViewModelBase
     {
+        Services.SettingsServices.SettingsService _settings;
+
+        public SettingsPageViewModel()
+        {
+            _settings = Services.SettingsServices.SettingsService.Instance;
+        }
+
         public TraktClientPartViewModel TraktClientPartViewModel { get; } = new TraktClientPartViewModel();
         public TraktAuthorizationPartViewModel TraktAuthorizationPartViewModel { get; } = new TraktAuthorizationPartViewModel();
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
+
+        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+
+            TraktAuthorizationPartViewModel.Authorization = _settings.TraktClientAuthorization;
+            return base.OnNavigatedToAsync(parameter, mode, state);
+        }
+
+        public override Task OnNavigatingFromAsync(NavigatingEventArgs args)
+        {
+            _settings.TraktClientAuthorization = TraktAuthorizationPartViewModel.Authorization;
+            return base.OnNavigatingFromAsync(args);
+        }
     }
 
     public class TraktClientPartViewModel : ViewModelBase
@@ -82,49 +107,39 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         private const int OAUTH_AUTHENTICATION = 1;
         private const int DEVICE_AUTHENTICATION = 2;
 
-        Services.SettingsServices.SettingsService _settings;
-
-        private TraktAuthorization _authorization = null;
-
-        public TraktAuthorizationPartViewModel()
-        {
-            _settings = Services.SettingsServices.SettingsService.Instance;
-            _authorization = _settings.TraktClientAuthorization;
-        }
-
         public string AccessToken
         {
-            get { return _authorization.AccessToken; }
+            get { return Authorization.AccessToken; }
         }
 
         public string RefreshToken
         {
-            get { return _authorization.RefreshToken; }
+            get { return Authorization.RefreshToken; }
         }
 
         public int ExpiresInDays
         {
-            get { return _authorization.ExpiresInSeconds / 3600 / 24; }
+            get { return Authorization.ExpiresInSeconds / 3600 / 24; }
         }
 
         public bool IsExpired
         {
-            get { return _authorization.IsExpired; }
+            get { return Authorization.IsExpired; }
         }
 
         public bool IsValid
         {
-            get { return _authorization.IsValid; }
+            get { return Authorization.IsValid; }
         }
 
         public bool IsRefreshPossible
         {
-            get { return _authorization.IsRefreshPossible; }
+            get { return Authorization.IsRefreshPossible; }
         }
 
         public string CreatedAt
         {
-            get { return _authorization.Created.ToString(); }
+            get { return Authorization.Created.ToString(); }
         }
 
         private int _authenticationMethod = OAUTH_AUTHENTICATION;
@@ -163,16 +178,25 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
-        //public TraktAuthorization Authorization
-        //{
-        //    get { return _settings.TraktClientAuthorization; }
+        private TraktAuthorization _authorization = new TraktAuthorization
+        {
+            AccessToken = string.Empty,
+            RefreshToken = string.Empty,
+            AccessScope = TraktAccessScope.Public,
+            ExpiresIn = 0,
+            TokenType = TraktAccessTokenType.Bearer
+        };
 
-        //    set
-        //    {
-        //        _settings.TraktClientAuthorization = value;
-        //        base.RaisePropertyChanged();
-        //    }
-        //}
+        public TraktAuthorization Authorization
+        {
+            get { return _authorization; }
+
+            set
+            {
+                _authorization = value;
+                base.RaisePropertyChanged();
+            }
+        }
     }
 
     public class SettingsPartViewModel : ViewModelBase

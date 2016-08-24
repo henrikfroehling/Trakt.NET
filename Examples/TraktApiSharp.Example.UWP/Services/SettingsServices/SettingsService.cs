@@ -98,10 +98,13 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             {
                 if (value != null)
                 {
-                    var authorizationJson = TraktSerializationService.Serialize(value);
+                    if (value.IsValid)
+                    {
+                        var authorizationJson = TraktSerializationService.Serialize(value);
 
-                    if (!string.IsNullOrEmpty(authorizationJson))
-                        _helper.Write(nameof(TraktClientAuthorization), authorizationJson);
+                        if (!string.IsNullOrEmpty(authorizationJson))
+                            _helper.Write(nameof(TraktClientAuthorization), authorizationJson);
+                    }
                 }
             }
         }
