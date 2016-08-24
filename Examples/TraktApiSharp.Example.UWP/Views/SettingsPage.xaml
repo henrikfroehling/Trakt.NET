@@ -181,11 +181,12 @@
                                 <RadioButton Margin="4"
                                              Content="OAuth"
                                              GroupName="AuthenticationMethod"
-                                             Tag="1" />
+                                             IsChecked="{x:Bind ViewModel.TraktAuthorizationPartViewModel.OAuthAuthentication, Mode=TwoWay}" />
+
                                 <RadioButton Margin="4"
                                              Content="Device"
                                              GroupName="AuthenticationMethod"
-                                             Tag="2" />
+                                             IsChecked="{x:Bind ViewModel.TraktAuthorizationPartViewModel.DeviceAuthentication, Mode=TwoWay}" />
                             </StackPanel>
                         </StackPanel>
 

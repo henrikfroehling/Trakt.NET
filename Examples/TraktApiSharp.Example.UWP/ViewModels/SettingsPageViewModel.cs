@@ -79,6 +79,9 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
     public class TraktAuthorizationPartViewModel : ViewModelBase
     {
+        private const int OAUTH_AUTHENTICATION = 1;
+        private const int DEVICE_AUTHENTICATION = 2;
+
         Services.SettingsServices.SettingsService _settings;
 
         private TraktAuthorization _authorization = null;
@@ -122,6 +125,42 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         public string CreatedAt
         {
             get { return _authorization.Created.ToString(); }
+        }
+
+        private int _authenticationMethod = OAUTH_AUTHENTICATION;
+
+        public int AuthenticationMethod
+        {
+            get { return _authenticationMethod; }
+
+            set
+            {
+                _authenticationMethod = value;
+                base.RaisePropertyChanged(nameof(OAuthAuthentication));
+                base.RaisePropertyChanged(nameof(DeviceAuthentication));
+            }
+        }
+
+        public bool? OAuthAuthentication
+        {
+            get { return AuthenticationMethod == OAUTH_AUTHENTICATION; }
+
+            set
+            {
+                if (value == true)
+                    AuthenticationMethod = OAUTH_AUTHENTICATION;
+            }
+        }
+
+        public bool? DeviceAuthentication
+        {
+            get { return AuthenticationMethod == DEVICE_AUTHENTICATION; }
+
+            set
+            {
+                if (value == true)
+                    AuthenticationMethod = DEVICE_AUTHENTICATION;
+            }
         }
 
         //public TraktAuthorization Authorization
