@@ -54,7 +54,7 @@
                     <RelativePanel HorizontalAlignment="Left">
 
                         <TextBox x:Name="txtClientId"
-                                 Width="300"
+                                 Width="400"
                                  Margin="12"
                                  HorizontalAlignment="Left"
                                  Header="Client Id"
@@ -63,7 +63,7 @@
                                  Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientId, Mode=TwoWay}" />
 
                         <TextBox x:Name="txtClientSecret"
-                                 Width="300"
+                                 Width="400"
                                  Margin="12"
                                  HorizontalAlignment="Left"
                                  Header="Client Secret"
@@ -101,7 +101,6 @@
                     <RelativePanel HorizontalAlignment="Left">
 
                         <TextBlock x:Name="lblAuthorizationAccessToken"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -111,7 +110,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationRefreshToken"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -121,7 +119,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationExpiresIn"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -132,7 +129,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsExpired"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -142,7 +138,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsValid"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -152,7 +147,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsRefreshPossible"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -162,7 +156,6 @@
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationCreated"
-                                   Width="300"
                                    Margin="12"
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
@@ -193,12 +186,14 @@
                         <Button x:Name="btnAuthenticate"
                                 Margin="12"
                                 HorizontalAlignment="Left"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.AuthenticateCommand}"
                                 Content="Authenticate"
                                 RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.Below="stpnlAuthenticationMethod" />
 
                         <Button x:Name="btnReAuthenticate"
                                 Margin="12"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.ReAuthenticateCommand}"
                                 Content="Re-Authenticate"
                                 IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay}"
                                 RelativePanel.Below="stpnlAuthenticationMethod"
@@ -206,6 +201,7 @@
 
                         <Button x:Name="btnRevoke"
                                 Margin="12"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RevokeCommand}"
                                 Content="Revoke"
                                 IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsValid, Mode=OneWay}"
                                 RelativePanel.Below="stpnlAuthenticationMethod"

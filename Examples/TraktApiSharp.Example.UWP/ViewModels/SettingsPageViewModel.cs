@@ -3,6 +3,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using Authentication;
     using Enums;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using Template10.Mvvm;
     using Template10.Services.NavigationService;
@@ -25,8 +26,11 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
+            var authorization = _settings.TraktClientAuthorization;
 
-            TraktAuthorizationPartViewModel.Authorization = _settings.TraktClientAuthorization;
+            if (authorization != null && authorization.IsValid)
+                TraktAuthorizationPartViewModel.Authorization = authorization;
+
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
 
@@ -107,6 +111,22 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         private const int OAUTH_AUTHENTICATION = 1;
         private const int DEVICE_AUTHENTICATION = 2;
 
+        private static readonly TraktAuthorization DEFAULT_AUTHORIZATION = new TraktAuthorization
+        {
+            AccessToken = "no token",
+            RefreshToken = "no token",
+            AccessScope = TraktAccessScope.Public,
+            ExpiresIn = 0,
+            TokenType = TraktAccessTokenType.Bearer
+        };
+
+        public TraktAuthorizationPartViewModel()
+        {
+            AuthenticateCommand = new DelegateCommand(Authenticate);
+            ReAuthenticateCommand = new DelegateCommand(ReAuthenticate);
+            RevokeCommand = new DelegateCommand(Revoke);
+        }
+
         public string AccessToken
         {
             get { return Authorization.AccessToken; }
@@ -178,14 +198,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
-        private TraktAuthorization _authorization = new TraktAuthorization
-        {
-            AccessToken = string.Empty,
-            RefreshToken = string.Empty,
-            AccessScope = TraktAccessScope.Public,
-            ExpiresIn = 0,
-            TokenType = TraktAccessTokenType.Bearer
-        };
+        private TraktAuthorization _authorization = DEFAULT_AUTHORIZATION;
 
         public TraktAuthorization Authorization
         {
@@ -196,6 +209,27 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 _authorization = value;
                 base.RaisePropertyChanged();
             }
+        }
+
+        public DelegateCommand AuthenticateCommand { get; }
+
+        public DelegateCommand ReAuthenticateCommand { get; }
+
+        public DelegateCommand RevokeCommand { get; }
+
+        private void Authenticate()
+        {
+            Debug.WriteLine("Authenticate");
+        }
+
+        private void ReAuthenticate()
+        {
+            Debug.WriteLine("ReAuthenticate");
+        }
+
+        private void Revoke()
+        {
+            Debug.WriteLine("Revoke");
         }
     }
 
