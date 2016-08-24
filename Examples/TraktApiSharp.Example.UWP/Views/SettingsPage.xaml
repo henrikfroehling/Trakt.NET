@@ -42,7 +42,7 @@
                                  Width="300"
                                  Margin="12"
                                  HorizontalAlignment="Left"
-                                 Header="Cliend Id"
+                                 Header="Client Id"
                                  RelativePanel.AlignLeftWithPanel="True"
                                  RelativePanel.AlignTopWithPanel="True"
                                  Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientId, Mode=TwoWay}" />
@@ -51,7 +51,7 @@
                                  Width="300"
                                  Margin="12"
                                  HorizontalAlignment="Left"
-                                 Header="Cliend Secret"
+                                 Header="Client Secret"
                                  RelativePanel.AlignLeftWithPanel="True"
                                  RelativePanel.Below="txtClientId"
                                  Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientSecret, Mode=TwoWay}" />
@@ -60,7 +60,7 @@
                                  Width="300"
                                  Margin="12"
                                  HorizontalAlignment="Left"
-                                 Header="Cliend Access Token"
+                                 Header="Client Access Token"
                                  RelativePanel.AlignLeftWithPanel="True"
                                  RelativePanel.Below="txtClientSecret"
                                  Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientAccessToken, Mode=TwoWay}" />
