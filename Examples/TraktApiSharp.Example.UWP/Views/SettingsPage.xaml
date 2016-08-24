@@ -87,6 +87,15 @@
                 </ScrollViewer>
             </PivotItem>
 
+            <!--  trakt authorization  -->
+            <PivotItem Header="Trakt Authorization">
+                <ScrollViewer Margin="0,12,-12,0"
+                              HorizontalContentAlignment="Left"
+                              VerticalScrollBarVisibility="Auto">
+                    <RelativePanel HorizontalAlignment="Left" />
+                </ScrollViewer>
+            </PivotItem>
+
             <!--  settings  -->
             <PivotItem Header="Application Settings">
                 <ScrollViewer Margin="0,12,-12,0"

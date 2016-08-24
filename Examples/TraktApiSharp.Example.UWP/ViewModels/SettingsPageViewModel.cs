@@ -6,6 +6,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     public class SettingsPageViewModel : ViewModelBase
     {
         public TraktClientPartViewModel TraktClientPartViewModel { get; } = new TraktClientPartViewModel();
+        public TraktAuthorizationPartViewModel TraktAuthorizationPartViewModel { get; } = new TraktAuthorizationPartViewModel();
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
     }
@@ -73,6 +74,11 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 base.RaisePropertyChanged();
             }
         }
+    }
+
+    public class TraktAuthorizationPartViewModel : ViewModelBase
+    {
+
     }
 
     public class SettingsPartViewModel : ViewModelBase
