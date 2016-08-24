@@ -5,6 +5,7 @@
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
+      xmlns:converters="using:Template10.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TraktApiSharp.Example.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,6 +15,20 @@
     <Page.DataContext>
         <vm:SettingsPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
+
+    <Page.Resources>
+        <converters:ValueWhenConverter x:Key="BoolToTextConverter">
+            <converters:ValueWhenConverter.When>
+                <x:Boolean>True</x:Boolean>
+            </converters:ValueWhenConverter.When>
+            <converters:ValueWhenConverter.Value>
+                <x:String>Yes</x:String>
+            </converters:ValueWhenConverter.Value>
+            <converters:ValueWhenConverter.Otherwise>
+                <x:String>No</x:String>
+            </converters:ValueWhenConverter.Otherwise>
+        </converters:ValueWhenConverter>
+    </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--  header  -->
@@ -91,8 +106,8 @@
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.AlignTopWithPanel="True">
-                            <Run FontWeight="SemiBold" Text="Access Token" />
-                            <Run Text="Access Token" />
+                            <Run FontWeight="SemiBold" Text="Access Token:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.AccessToken, Mode=OneWay}" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationRefreshToken"
@@ -101,8 +116,8 @@
                                    HorizontalAlignment="Left"
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationAccessToken">
-                            <Run FontWeight="SemiBold" Text="Refresh Token" />
-                            <Run Text="Refresh Token" />
+                            <Run FontWeight="SemiBold" Text="Refresh Token:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RefreshToken, Mode=OneWay}" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationExpiresIn"
@@ -112,7 +127,7 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationRefreshToken">
                             <Run FontWeight="SemiBold" Text="Expires in:" />
-                            <Run Text="90" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.ExpiresInDays, Mode=OneWay}" />
                             <Run Text="Days" />
                         </TextBlock>
 
@@ -123,7 +138,7 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationExpiresIn">
                             <Run FontWeight="SemiBold" Text="Is Expired:" />
-                            <Run Text="Yes / No" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsExpired, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsValid"
@@ -133,7 +148,7 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationIsExpired">
                             <Run FontWeight="SemiBold" Text="Is Valid:" />
-                            <Run Text="Yes / No" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsValid, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsRefreshPossible"
@@ -143,7 +158,7 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationIsValid">
                             <Run FontWeight="SemiBold" Text="Is Refresh Possible:" />
-                            <Run Text="Yes / No" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationCreated"
@@ -153,26 +168,46 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.Below="lblAuthorizationIsRefreshPossible">
                             <Run FontWeight="SemiBold" Text="Created:" />
-                            <Run Text="2016-08-24 18:27:45:123" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.CreatedAt, Mode=OneWay}" />
                         </TextBlock>
+
+                        <StackPanel x:Name="stpnlAuthenticationMethod"
+                                    Margin="12"
+                                    Orientation="Vertical"
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    RelativePanel.Below="lblAuthorizationCreated">
+                            <TextBlock FontWeight="SemiBold" Text="Authentication Method:" />
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Margin="4"
+                                             Content="OAuth"
+                                             GroupName="AuthenticationMethod"
+                                             Tag="1" />
+                                <RadioButton Margin="4"
+                                             Content="Device"
+                                             GroupName="AuthenticationMethod"
+                                             Tag="2" />
+                            </StackPanel>
+                        </StackPanel>
 
                         <Button x:Name="btnAuthenticate"
                                 Margin="12"
                                 HorizontalAlignment="Left"
                                 Content="Authenticate"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                RelativePanel.Below="lblAuthorizationCreated" />
+                                RelativePanel.Below="stpnlAuthenticationMethod" />
 
                         <Button x:Name="btnReAuthenticate"
                                 Margin="12"
                                 Content="Re-Authenticate"
-                                RelativePanel.Below="lblAuthorizationCreated"
+                                IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay}"
+                                RelativePanel.Below="stpnlAuthenticationMethod"
                                 RelativePanel.RightOf="btnAuthenticate" />
 
                         <Button x:Name="btnRevoke"
                                 Margin="12"
                                 Content="Revoke"
-                                RelativePanel.Below="lblAuthorizationCreated"
+                                IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsValid, Mode=OneWay}"
+                                RelativePanel.Below="stpnlAuthenticationMethod"
                                 RelativePanel.RightOf="btnReAuthenticate" />
 
                     </RelativePanel>

@@ -81,21 +81,59 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     {
         Services.SettingsServices.SettingsService _settings;
 
+        private TraktAuthorization _authorization = null;
+
         public TraktAuthorizationPartViewModel()
         {
             _settings = Services.SettingsServices.SettingsService.Instance;
+            _authorization = _settings.TraktClientAuthorization;
         }
 
-        public TraktAuthorization Authorization
+        public string AccessToken
         {
-            get { return _settings.TraktClientAuthorization; }
-
-            set
-            {
-                _settings.TraktClientAuthorization = value;
-                base.RaisePropertyChanged();
-            }
+            get { return _authorization.AccessToken; }
         }
+
+        public string RefreshToken
+        {
+            get { return _authorization.RefreshToken; }
+        }
+
+        public int ExpiresInDays
+        {
+            get { return _authorization.ExpiresInSeconds / 3600 / 24; }
+        }
+
+        public bool IsExpired
+        {
+            get { return _authorization.IsExpired; }
+        }
+
+        public bool IsValid
+        {
+            get { return _authorization.IsValid; }
+        }
+
+        public bool IsRefreshPossible
+        {
+            get { return _authorization.IsRefreshPossible; }
+        }
+
+        public string CreatedAt
+        {
+            get { return _authorization.Created.ToString(); }
+        }
+
+        //public TraktAuthorization Authorization
+        //{
+        //    get { return _settings.TraktClientAuthorization; }
+
+        //    set
+        //    {
+        //        _settings.TraktClientAuthorization = value;
+        //        base.RaisePropertyChanged();
+        //    }
+        //}
     }
 
     public class SettingsPartViewModel : ViewModelBase
