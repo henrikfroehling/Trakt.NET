@@ -56,15 +56,6 @@
                                  RelativePanel.Below="txtClientId"
                                  Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientSecret, Mode=TwoWay}" />
 
-                        <TextBox x:Name="txtClientAccessToken"
-                                 Width="300"
-                                 Margin="12"
-                                 HorizontalAlignment="Left"
-                                 Header="Client Access Token"
-                                 RelativePanel.AlignLeftWithPanel="True"
-                                 RelativePanel.Below="txtClientSecret"
-                                 Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientAccessToken, Mode=TwoWay}" />
-
                         <ToggleSwitch x:Name="tglUseStagingUrl"
                                       Margin="12"
                                       Header="Trakt API Staging / Production Url"
@@ -72,7 +63,7 @@
                                       OffContent="Use Production Url"
                                       OnContent="Use Staging Url"
                                       RelativePanel.AlignLeftWithPanel="True"
-                                      RelativePanel.Below="txtClientAccessToken" />
+                                      RelativePanel.Below="txtClientSecret" />
 
                         <ToggleSwitch x:Name="tglForceAuthorization"
                                       Margin="12"
@@ -92,7 +83,99 @@
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
                               VerticalScrollBarVisibility="Auto">
-                    <RelativePanel HorizontalAlignment="Left" />
+                    <RelativePanel HorizontalAlignment="Left">
+
+                        <TextBlock x:Name="lblAuthorizationAccessToken"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.AlignTopWithPanel="True">
+                            <Run FontWeight="SemiBold" Text="Access Token" />
+                            <Run Text="Access Token" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationRefreshToken"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationAccessToken">
+                            <Run FontWeight="SemiBold" Text="Refresh Token" />
+                            <Run Text="Refresh Token" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationExpiresIn"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationRefreshToken">
+                            <Run FontWeight="SemiBold" Text="Expires in:" />
+                            <Run Text="90" />
+                            <Run Text="Days" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsExpired"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationExpiresIn">
+                            <Run FontWeight="SemiBold" Text="Is Expired:" />
+                            <Run Text="Yes / No" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsValid"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsExpired">
+                            <Run FontWeight="SemiBold" Text="Is Valid:" />
+                            <Run Text="Yes / No" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsRefreshPossible"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsValid">
+                            <Run FontWeight="SemiBold" Text="Is Refresh Possible:" />
+                            <Run Text="Yes / No" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationCreated"
+                                   Width="300"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsRefreshPossible">
+                            <Run FontWeight="SemiBold" Text="Created:" />
+                            <Run Text="2016-08-24 18:27:45:123" />
+                        </TextBlock>
+
+                        <Button x:Name="btnAuthenticate"
+                                Margin="12"
+                                HorizontalAlignment="Left"
+                                Content="Authenticate"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.Below="lblAuthorizationCreated" />
+
+                        <Button x:Name="btnReAuthenticate"
+                                Margin="12"
+                                Content="Re-Authenticate"
+                                RelativePanel.Below="lblAuthorizationCreated"
+                                RelativePanel.RightOf="btnAuthenticate" />
+
+                        <Button x:Name="btnRevoke"
+                                Margin="12"
+                                Content="Revoke"
+                                RelativePanel.Below="lblAuthorizationCreated"
+                                RelativePanel.RightOf="btnReAuthenticate" />
+
+                    </RelativePanel>
                 </ScrollViewer>
             </PivotItem>
 
