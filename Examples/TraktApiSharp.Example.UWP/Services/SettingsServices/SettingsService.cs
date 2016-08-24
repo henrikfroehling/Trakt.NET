@@ -34,11 +34,11 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             }
         }
 
-        public static string DEFAULT_CLIENT_ID_VALUE { get; } = "Enter your Trakt Client Id here";
+        public static string DEFAULT_CLIENT_ID_VALUE { get; } = string.Empty;
 
-        public static string DEFAULT_CLIENT_SECRET_VALUE { get; } = "Enter your Trakt Client Secret here";
+        public static string DEFAULT_CLIENT_SECRET_VALUE { get; } = string.Empty;
 
-        public static string DEFAULT_CLIENT_ACCESS_TOKEN_VALUE { get; } = "Enter your Trakt Client Access Token here";
+        public static string DEFAULT_CLIENT_ACCESS_TOKEN_VALUE { get; } = string.Empty;
 
         public string TraktClientId
         {
