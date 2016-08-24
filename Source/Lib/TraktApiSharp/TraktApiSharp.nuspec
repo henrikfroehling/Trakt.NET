@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.2.0</version>
+        <version>0.3.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -23,12 +23,12 @@ Features
         <language>en-US</language>
         <tags>trakt REST</tags>
         <dependencies>
-            <dependency id="Newtonsoft.Json" version="8.0.3" />
+            <dependency id="Newtonsoft.Json" version="9.0.1" />
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
-        <file src="..\..\..\Build\Lib\*\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.XML" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.XML" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.XML" />
     </files>
 </package>

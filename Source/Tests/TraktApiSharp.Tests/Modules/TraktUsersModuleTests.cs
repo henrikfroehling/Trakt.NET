@@ -10029,7 +10029,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
 
@@ -10047,7 +10047,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10067,7 +10067,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10087,7 +10087,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Show;
+            var type = TraktRatingsItemType.Show;
             var ratingsFilter = new int[] { 1, 2, 3 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10107,7 +10107,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10127,7 +10127,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Season;
+            var type = TraktRatingsItemType.Season;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10147,7 +10147,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10167,7 +10167,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Episode;
+            var type = TraktRatingsItemType.Episode;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10187,7 +10187,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10207,7 +10207,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.All;
+            var type = TraktRatingsItemType.All;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10227,7 +10227,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
@@ -10245,7 +10245,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
@@ -10262,7 +10262,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
@@ -10279,7 +10279,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
@@ -10296,7 +10296,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/ratings/{type.UriName}", userRatings);
@@ -10329,7 +10329,7 @@
             userRatings.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
 
             var extendedOption = new TraktExtendedOption
             {
@@ -10376,7 +10376,7 @@
             var encodedComma = "%2C";
 
             var username = "sean";
-            var type = TraktSyncRatingsItemType.Movie;
+            var type = TraktRatingsItemType.Movie;
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 

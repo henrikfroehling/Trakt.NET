@@ -2,11 +2,13 @@ TraktApiSharp
 ===
 ##### This is a C# wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 ---
-[![NuGet Package](https://img.shields.io/badge/NuGet-v0.2.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v0.3.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/master)
 [![Build status branch dev](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/dev)
 [![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
+
+[![Gitter](https://badges.gitter.im/traktapisharp/Lobby.svg)](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ![Platforms](https://img.shields.io/badge/Platforms-%20.Net%20%3E=%204.5%20%7C%20ASP.Net%20Core%201.0%20%7C%20Win%208%20%7C%20Win%208.1%20%7C%20Win%2010%20%7C%20Win%2010%20UWP%20%7C%20Win%20Phone%208.1%20%7C%20Xamarin%20Android%20%7C%20Xamarin%20iOS%20-orange.svg)
 
@@ -24,15 +26,17 @@ TraktApiSharp
 - Xamarin Android
 - Xamarin iOS
 
+---
+#### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues)
+#### [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+---
 ### Where to get
 - Available on [Nuget.org](https://www.nuget.org/packages/TraktApiSharp)
 - Each release will also be published [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 ```
 PM> Install-Package TraktApiSharp
 ```
-
----
-#### [Report a bug or ask a question](https://github.com/henrikfroehling/TraktApiSharp/issues)
 
 ---
 ### Build Requirements

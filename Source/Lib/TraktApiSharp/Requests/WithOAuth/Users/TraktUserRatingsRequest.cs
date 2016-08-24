@@ -14,7 +14,7 @@
 
         internal string Username { get; set; }
 
-        internal TraktSyncRatingsItemType Type { get; set; }
+        internal TraktRatingsItemType Type { get; set; }
 
         internal int[] Rating { get; set; }
 
@@ -24,7 +24,7 @@
 
             uriParams.Add("username", Username);
 
-            var isTypeSetAndValid = Type != null && Type != TraktSyncRatingsItemType.Unspecified;
+            var isTypeSetAndValid = Type != null && Type != TraktRatingsItemType.Unspecified;
 
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.UriName);

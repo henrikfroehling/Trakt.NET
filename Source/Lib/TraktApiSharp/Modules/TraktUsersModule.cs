@@ -895,7 +895,7 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the ratings should be queried.</param>
-        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktSyncRatingsItemType" />.</param>
+        /// <param name="ratingsItemType">Determines, which type of rating items should be queried. See also <seealso cref="TraktRatingsItemType" />.</param>
         /// <param name="ratingsFilter">
         /// An array of numbers. Numbers should be between 1 and 10.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
@@ -909,7 +909,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktSyncRatingsItemType ratingsItemType = null,
+        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
                                                                          int[] ratingsFilter = null, TraktExtendedOption extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
