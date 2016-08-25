@@ -8,11 +8,6 @@
         {
             var settings = SettingsServices.SettingsService.Instance;
             Client = new TraktClient(settings.TraktClientId, settings.TraktClientSecret);
-
-            var accessToken = settings.TraktClientAccessToken;
-
-            if (!string.IsNullOrEmpty(accessToken) && accessToken != SettingsServices.SettingsService.DEFAULT_CLIENT_ACCESS_TOKEN_VALUE)
-                Client.AccessToken = accessToken;
         }
 
         public TraktClient Client { get; }

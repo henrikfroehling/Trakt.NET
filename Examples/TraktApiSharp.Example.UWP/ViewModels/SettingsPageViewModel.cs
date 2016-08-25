@@ -72,17 +72,6 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
-        public string ClientAccessToken
-        {
-            get { return _settings.TraktClientAccessToken; }
-
-            set
-            {
-                _settings.TraktClientAccessToken = value;
-                base.RaisePropertyChanged();
-            }
-        }
-
         public bool UseStagingUrl
         {
             get { return _settings.TraktUseStagingUrl; }
@@ -123,7 +112,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         public TraktAuthorizationPartViewModel()
         {
             AuthenticateCommand = new DelegateCommand(Authenticate);
-            ReAuthenticateCommand = new DelegateCommand(ReAuthenticate);
+            RefreshCommand = new DelegateCommand(RefreshAuthorization);
             RevokeCommand = new DelegateCommand(Revoke);
         }
 
@@ -211,20 +200,59 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
+        private bool _isAuthorizationInfoVisible = true;
+
+        public bool IsAuthorizationInfoVisible
+        {
+            get { return _isAuthorizationInfoVisible; }
+
+            set
+            {
+                _isAuthorizationInfoVisible = value;
+                base.RaisePropertyChanged();
+            }
+        }
+
+        private bool _isWebContentVisible = false;
+
+        public bool IsWebContentVisible
+        {
+            get { return _isWebContentVisible; }
+
+            set
+            {
+                _isWebContentVisible = value;
+                base.RaisePropertyChanged();
+            }
+        }
+
         public DelegateCommand AuthenticateCommand { get; }
 
-        public DelegateCommand ReAuthenticateCommand { get; }
+        public DelegateCommand RefreshCommand { get; }
 
         public DelegateCommand RevokeCommand { get; }
 
         private void Authenticate()
         {
-            Debug.WriteLine("Authenticate");
+            if (AuthenticationMethod == OAUTH_AUTHENTICATION)
+                OAuthAuthenticate();
+            else if (AuthenticationMethod == DEVICE_AUTHENTICATION)
+                DeviceAuthenticate();
         }
 
-        private void ReAuthenticate()
+        private void DeviceAuthenticate()
         {
-            Debug.WriteLine("ReAuthenticate");
+            Debug.WriteLine("DeviceAuthenticate");
+        }
+
+        private void OAuthAuthenticate()
+        {
+            Debug.WriteLine("OAuthAuthenticate");
+        }
+
+        private void RefreshAuthorization()
+        {
+            Debug.WriteLine("RefreshAuthorization");
         }
 
         private void Revoke()

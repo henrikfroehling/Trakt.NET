@@ -28,6 +28,18 @@
                 <x:String>No</x:String>
             </converters:ValueWhenConverter.Otherwise>
         </converters:ValueWhenConverter>
+
+        <converters:ValueWhenConverter x:Key="VisibleWhenTrueConverter">
+            <converters:ValueWhenConverter.When>
+                <x:Boolean>True</x:Boolean>
+            </converters:ValueWhenConverter.When>
+            <converters:ValueWhenConverter.Value>
+                <Visibility>Visible</Visibility>
+            </converters:ValueWhenConverter.Value>
+            <converters:ValueWhenConverter.Otherwise>
+                <Visibility>Collapsed</Visibility>
+            </converters:ValueWhenConverter.Otherwise>
+        </converters:ValueWhenConverter>
     </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -100,7 +112,7 @@
                                   Margin="0,12,-12,0"
                                   HorizontalContentAlignment="Left"
                                   VerticalScrollBarVisibility="Auto"
-                                  Visibility="Visible">
+                                  Visibility="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsAuthorizationInfoVisible, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}">
                         <RelativePanel HorizontalAlignment="Left">
 
                             <TextBlock x:Name="lblAuthorizationAccessToken"
@@ -196,7 +208,7 @@
 
                             <Button x:Name="btnReAuthenticate"
                                     Margin="12"
-                                    Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.ReAuthenticateCommand}"
+                                    Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RefreshCommand}"
                                     Content="Re-Authenticate"
                                     IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay}"
                                     RelativePanel.Below="stpnlAuthenticationMethod"
@@ -218,7 +230,7 @@
                                    RelativePanel.AlignLeftWithPanel="True"
                                    RelativePanel.AlignRightWithPanel="True"
                                    RelativePanel.AlignTopWithPanel="True"
-                                   Visibility="Collapsed">
+                                   Visibility="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsWebContentVisible, Mode=OneWay, Converter={StaticResource VisibleWhenTrueConverter}}">
 
                         <TextBlock x:Name="webContentMessage"
                                    Margin="12"
