@@ -3,6 +3,8 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using Authentication;
     using Dialogs;
     using Enums;
+    using Exceptions;
+    using Services.TraktService;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -131,12 +133,14 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
         public int ExpiresInDays
         {
-            get { return Authorization.ExpiresInSeconds / 3600 / 24; }
+            // See bug issue #13
+            get { return Authorization.ExpiresIn / 3600 / 24; }
         }
 
         public bool IsExpired
         {
-            get { return Authorization.IsExpired; }
+            // See bug issue #13
+            get { return !Authorization.IsValid || (Authorization.Created.AddSeconds(Authorization.ExpiresIn) <= DateTime.UtcNow); }
         }
 
         public bool IsValid
@@ -200,6 +204,13 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             {
                 _authorization = value;
                 base.RaisePropertyChanged();
+                base.RaisePropertyChanged(nameof(AccessToken));
+                base.RaisePropertyChanged(nameof(RefreshToken));
+                base.RaisePropertyChanged(nameof(ExpiresInDays));
+                base.RaisePropertyChanged(nameof(IsExpired));
+                base.RaisePropertyChanged(nameof(IsValid));
+                base.RaisePropertyChanged(nameof(IsRefreshPossible));
+                base.RaisePropertyChanged(nameof(CreatedAt));
             }
         }
 
@@ -245,20 +256,56 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
         private async void DeviceAuthenticate()
         {
-            var dialog = new DeviceAuthenticationDialog
+            try
             {
-                WebsiteUrl = "https://www.trakt.tv",
-                UserCode = "12345678",
-                PrimaryButtonCommand = new DelegateCommand(async () =>
+                var authentication = TraktAuthenticationService.Instance;
+
+                var deviceInfo = await authentication.CreateDevice();
+
+                if (deviceInfo.Success)
                 {
-                    var success = await Launcher.LaunchUriAsync(new Uri("https://www.trakt.tv"));
+                    var dialog = new DeviceAuthenticationDialog
+                    {
+                        WebsiteUrl = deviceInfo.Url,
+                        UserCode = deviceInfo.UserCode,
+                        PrimaryButtonCommand = new DelegateCommand(async () =>
+                        {
+                            var success = await Launcher.LaunchUriAsync(new Uri(deviceInfo.Url));
 
-                    if (success)
-                        Debug.WriteLine("Website launched successfully");
-                })
-            };
+                            if (success)
+                            {
+                                var newAuthorization = await authentication.GetDeviceAuthorization();
 
-            await dialog.ShowAsync();
+                                if (newAuthorization.IsValid)
+                                {
+                                    Debug.WriteLine("Authorization retrieved successfully");
+                                    Authorization = newAuthorization;
+                                }
+                            }
+                        })
+                    };
+
+                    await dialog.ShowAsync();
+                }
+            }
+            catch (TraktException ex)
+            {
+                Debug.WriteLine("-------------- Trakt Exception --------------");
+                Debug.WriteLine($"Exception message: {ex.Message}");
+                Debug.WriteLine($"Status code: {ex.StatusCode}");
+                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
+                Debug.WriteLine($"Request message: {ex.RequestBody}");
+                Debug.WriteLine($"Request response: {ex.Response}");
+                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
+                Debug.WriteLine("---------------------------------------------");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("-------------- Exception --------------");
+                Debug.WriteLine($"Exception message: {ex.Message}");
+                Debug.WriteLine($"Status code: {ex.StackTrace}");
+                Debug.WriteLine("---------------------------------------");
+            }
         }
 
         private void OAuthAuthenticate()

@@ -32,22 +32,12 @@
             set { SetValue(UserCodeProperty, value); }
         }
 
-        private void btnCopyWebsite_Click(object sender, RoutedEventArgs e)
-        {
-            Copy(WebsiteUrl);
-        }
-
         private void btnCopyCode_Click(object sender, RoutedEventArgs e)
-        {
-            Copy(UserCode);
-        }
-
-        private void Copy(string content)
         {
             DataPackage dataPackage = new DataPackage();
 
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
-            dataPackage.SetText(content);
+            dataPackage.SetText(UserCode);
 
             Clipboard.SetContent(dataPackage);
         }

@@ -175,7 +175,7 @@
                                        HorizontalAlignment="Left"
                                        RelativePanel.AlignLeftWithPanel="True"
                                        RelativePanel.Below="lblAuthorizationIsRefreshPossible">
-                                <Run FontWeight="SemiBold" Text="Created:" />
+                                <Run FontWeight="SemiBold" Text="Created (UTC):" />
                                 <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.CreatedAt, Mode=OneWay}" />
                             </TextBlock>
 

@@ -19,15 +19,10 @@
             <Run FontWeight="SemiBold" Text="{x:Bind UserCode, Mode=OneWay}" />
         </TextBlock>
 
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="btnCopyWebsite"
-                    Margin="12"
-                    Click="btnCopyWebsite_Click"
-                    Content="Copy website URL to clipboard" />
-            <Button x:Name="btnCopyCode"
-                    Margin="12"
-                    Click="btnCopyCode_Click"
-                    Content="Copy code to clipboard" />
-        </StackPanel>
+        <Button x:Name="btnCopyCode"
+                Margin="12"
+                HorizontalAlignment="Center"
+                Click="btnCopyCode_Click"
+                Content="Copy code to clipboard" />
     </StackPanel>
 </ContentDialog>
