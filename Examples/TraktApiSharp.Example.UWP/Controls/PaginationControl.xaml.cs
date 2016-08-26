@@ -45,7 +45,7 @@
         public PaginationControl()
         {
             InitializeComponent();
-            (this.Content as FrameworkElement).DataContext = this;
+            (Content as FrameworkElement).DataContext = this;
         }
 
         public DelegateCommand PreviousPageCommand

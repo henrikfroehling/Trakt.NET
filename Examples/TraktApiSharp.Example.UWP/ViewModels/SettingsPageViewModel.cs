@@ -1,12 +1,15 @@
 namespace TraktApiSharp.Example.UWP.ViewModels
 {
     using Authentication;
+    using Dialogs;
     using Enums;
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Template10.Mvvm;
     using Template10.Services.NavigationService;
+    using Windows.System;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Navigation;
 
@@ -240,9 +243,22 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 DeviceAuthenticate();
         }
 
-        private void DeviceAuthenticate()
+        private async void DeviceAuthenticate()
         {
-            Debug.WriteLine("DeviceAuthenticate");
+            var dialog = new DeviceAuthenticationDialog
+            {
+                WebsiteUrl = "https://www.trakt.tv",
+                UserCode = "12345678",
+                PrimaryButtonCommand = new DelegateCommand(async () =>
+                {
+                    var success = await Launcher.LaunchUriAsync(new Uri("https://www.trakt.tv"));
+
+                    if (success)
+                        Debug.WriteLine("Website launched successfully");
+                })
+            };
+
+            await dialog.ShowAsync();
         }
 
         private void OAuthAuthenticate()

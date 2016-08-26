@@ -100,6 +100,9 @@
     <Compile Include="Controls\PaginationControl.xaml.cs">
       <DependentUpon>PaginationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DeviceAuthenticationDialog.xaml.cs">
+      <DependentUpon>DeviceAuthenticationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelConverter\MovieModelConverter.cs" />
     <Compile Include="Models\ModelConverter\ShowModelConverter.cs" />
     <Compile Include="Models\Movies\AnticipatedMovie.cs" />
@@ -233,6 +236,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\PaginationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DeviceAuthenticationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
