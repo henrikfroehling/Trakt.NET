@@ -21,8 +21,9 @@
         // ---------------------------------------
 
         public void GotoTraktSettings() => NavigationService.Navigate(typeof(SettingsPage), 0);
-        public void GotoSettings() => NavigationService.Navigate(typeof(SettingsPage), 1);
-        public void GotoAbout() => NavigationService.Navigate(typeof(SettingsPage), 2);
+        public void GotoTraktAuthorization() => NavigationService.Navigate(typeof(SettingsPage), 1);
+        public void GotoSettings() => NavigationService.Navigate(typeof(SettingsPage), 2);
+        public void GotoAbout() => NavigationService.Navigate(typeof(SettingsPage), 3);
 
         // ---------------------------------------
         // Movies

@@ -9,10 +9,10 @@
             var settings = SettingsServices.SettingsService.Instance;
             Client = new TraktClient(settings.TraktClientId, settings.TraktClientSecret);
 
-            var accessToken = settings.TraktClientAccessToken;
+            var authorization = settings.TraktClientAuthorization;
 
-            if (!string.IsNullOrEmpty(accessToken) && accessToken != SettingsServices.SettingsService.DEFAULT_CLIENT_ACCESS_TOKEN_VALUE)
-                Client.AccessToken = accessToken;
+            if (authorization != null)
+                Client.Authorization = authorization;
         }
 
         public TraktClient Client { get; }

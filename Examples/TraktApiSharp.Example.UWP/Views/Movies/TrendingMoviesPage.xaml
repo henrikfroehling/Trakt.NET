@@ -39,6 +39,7 @@
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoRecentlyUpdatedMovies}" Label="Recently Updated Movies" />
                 <AppBarSeparator />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}" Label="Trakt Client Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktAuthorization}" Label="Trakt Authorization" />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoSettings}" Label="Application Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoAbout}" Label="About" />
             </controls:PageHeader.SecondaryCommands>

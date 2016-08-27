@@ -1,7 +1,9 @@
 using System;
 using Template10.Common;
 using Template10.Utils;
+using TraktApiSharp.Authentication;
 using TraktApiSharp.Example.UWP.Services.TraktService;
+using TraktApiSharp.Services;
 using Windows.UI.Xaml;
 
 namespace TraktApiSharp.Example.UWP.Services.SettingsServices
@@ -34,11 +36,9 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             }
         }
 
-        public static string DEFAULT_CLIENT_ID_VALUE { get; } = "Enter your Trakt Client Id here";
+        public static string DEFAULT_CLIENT_ID_VALUE { get; } = string.Empty;
 
-        public static string DEFAULT_CLIENT_SECRET_VALUE { get; } = "Enter your Trakt Client Secret here";
-
-        public static string DEFAULT_CLIENT_ACCESS_TOKEN_VALUE { get; } = "Enter your Trakt Client Access Token here";
+        public static string DEFAULT_CLIENT_SECRET_VALUE { get; } = string.Empty;
 
         public string TraktClientId
         {
@@ -62,14 +62,39 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             }
         }
 
-        public string TraktClientAccessToken
+        public TraktAuthorization TraktClientAuthorization
         {
-            get { return _helper.Read<string>(nameof(TraktClientAccessToken), DEFAULT_CLIENT_ID_VALUE); }
+            get
+            {
+                var authorizationJson = _helper.Read<string>(nameof(TraktClientAuthorization), string.Empty);
+
+                if (!string.IsNullOrEmpty(authorizationJson))
+                {
+                    var authorization = TraktSerializationService.DeserializeAuthorization(authorizationJson);
+
+                    if (authorization == null)
+                        return new TraktAuthorization();
+
+                    return authorization;
+                }
+
+                return new TraktAuthorization();
+            }
 
             set
             {
-                _helper.Write(nameof(TraktClientAccessToken), value);
-                TraktServiceProvider.Instance.Client.AccessToken = value;
+                if (value != null)
+                {
+                    TraktServiceProvider.Instance.Client.Authorization = value;
+
+                    if (!string.IsNullOrEmpty(value.AccessToken))
+                    {
+                        var authorizationJson = TraktSerializationService.Serialize(value);
+
+                        if (!string.IsNullOrEmpty(authorizationJson))
+                            _helper.Write(nameof(TraktClientAuthorization), authorizationJson);
+                    }
+                }
             }
         }
 
