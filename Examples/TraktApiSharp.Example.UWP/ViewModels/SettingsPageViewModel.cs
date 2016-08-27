@@ -217,32 +217,6 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
-        private bool _isAuthorizationInfoVisible = true;
-
-        public bool IsAuthorizationInfoVisible
-        {
-            get { return _isAuthorizationInfoVisible; }
-
-            set
-            {
-                _isAuthorizationInfoVisible = value;
-                base.RaisePropertyChanged();
-            }
-        }
-
-        private bool _isWebContentVisible = false;
-
-        public bool IsWebContentVisible
-        {
-            get { return _isWebContentVisible; }
-
-            set
-            {
-                _isWebContentVisible = value;
-                base.RaisePropertyChanged();
-            }
-        }
-
         public DelegateCommand AuthenticateCommand { get; }
 
         public DelegateCommand RefreshCommand { get; }
