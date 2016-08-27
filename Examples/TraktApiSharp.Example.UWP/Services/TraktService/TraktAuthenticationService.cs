@@ -15,7 +15,7 @@
 
         public static TraktAuthenticationService Instance { get; } = new TraktAuthenticationService();
 
-        public async Task<DeviceInfo> CreateDevice()
+        public async Task<DeviceInfo> CreateDeviceAsync()
         {
             if (!Client.IsValidForAuthenticationProcess)
                 throw new InvalidOperationException("Trakt client not valid for authentication");
@@ -28,17 +28,17 @@
             return new DeviceInfo(false, string.Empty, string.Empty);
         }
 
-        public async Task<TraktAuthorization> GetAuthorization(bool deviceAuthentication, string code = null)
+        public async Task<TraktAuthorization> GetAuthorizationAsync(bool deviceAuthentication, string code = null)
         {
             if (deviceAuthentication)
-                return await GetDeviceAuthorization();
+                return await GetDeviceAuthorizationAsync();
             else
-                return await GetOAuthAuthorization(code);
+                return await GetOAuthAuthorizationAsync(code);
 
             throw new InvalidOperationException("no authentication method specified");
         }
 
-        public async Task<TraktAuthorization> GetDeviceAuthorization()
+        public async Task<TraktAuthorization> GetDeviceAuthorizationAsync()
         {
             var device = Client.Authentication.Device;
 
@@ -53,7 +53,7 @@
             return Client.OAuth.CreateAuthorizationUrl();
         }
 
-        public async Task<TraktAuthorization> GetOAuthAuthorization(string code)
+        public async Task<TraktAuthorization> GetOAuthAuthorizationAsync(string code)
         {
             if (string.IsNullOrEmpty(code))
                 throw new ArgumentException("code not valid");
@@ -61,12 +61,12 @@
             return await Client.OAuth.GetAuthorizationAsync(code);
         }
 
-        public async Task<TraktAuthorization> RefreshAuthorization()
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync()
         {
             return await Client.Authentication.RefreshAuthorizationAsync();
         }
 
-        public async Task RevokeAuthorization()
+        public async Task RevokeAuthorizationAsync()
         {
             await Client.Authentication.RevokeAuthorizationAsync();
         }

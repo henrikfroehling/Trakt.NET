@@ -12,7 +12,9 @@
 
     <StackPanel>
         <TextBlock Text="Vist following website:" />
-        <TextBlock FontWeight="SemiBold" Text="{x:Bind WebsiteUrl, Mode=OneWay}" />
+        <TextBlock FontWeight="SemiBold"
+                   Text="{x:Bind WebsiteUrl, Mode=OneWay}"
+                   TextWrapping="Wrap" />
         <Button x:Name="btnVisitWebsite"
                 Margin="12"
                 HorizontalAlignment="Center"

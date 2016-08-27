@@ -7,7 +7,6 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using Services.TraktService;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Threading.Tasks;
     using Template10.Mvvm;
     using Template10.Services.NavigationService;
@@ -15,6 +14,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using Windows.System;
     using Windows.UI.Popups;
     using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
 
     public class SettingsPageViewModel : ViewModelBase
@@ -264,31 +264,33 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 var authentication = TraktAuthenticationService.Instance;
 
                 Busy.SetBusy(true, "Create authorization device...");
-                var deviceInfo = await authentication.CreateDevice();
+                var deviceInfo = await authentication.CreateDeviceAsync();
                 Busy.SetBusy(false);
 
                 if (deviceInfo.Success)
                 {
+                    var primaryButtonDelegate = new DelegateCommand(async () =>
+                    {
+                        var success = await Launcher.LaunchUriAsync(new Uri(deviceInfo.Url));
+
+                        if (success)
+                        {
+                            Busy.SetBusy(true, "Retrieve authorization...");
+
+                            var newAuthorization = await authentication.GetDeviceAuthorizationAsync();
+
+                            if (newAuthorization.IsValid)
+                                Authorization = newAuthorization;
+
+                            Busy.SetBusy(false);
+                        }
+                    });
+
                     var dialog = new DeviceAuthenticationDialog
                     {
                         WebsiteUrl = deviceInfo.Url,
                         UserCode = deviceInfo.UserCode,
-                        PrimaryButtonCommand = new DelegateCommand(async () =>
-                        {
-                            var success = await Launcher.LaunchUriAsync(new Uri(deviceInfo.Url));
-
-                            if (success)
-                            {
-                                Busy.SetBusy(true, "Retrieve authorization...");
-
-                                var newAuthorization = await authentication.GetDeviceAuthorization();
-
-                                if (newAuthorization.IsValid)
-                                    Authorization = newAuthorization;
-
-                                Busy.SetBusy(false);
-                            }
-                        })
+                        PrimaryButtonCommand = primaryButtonDelegate
                     };
 
                     await dialog.ShowAsync();
@@ -296,28 +298,48 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
             catch (TraktException ex)
             {
-                Debug.WriteLine("-------------- Trakt Exception --------------");
-                Debug.WriteLine($"Exception message: {ex.Message}");
-                Debug.WriteLine($"Status code: {ex.StatusCode}");
-                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
-                Debug.WriteLine($"Request message: {ex.RequestBody}");
-                Debug.WriteLine($"Request response: {ex.Response}");
-                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-                Debug.WriteLine("---------------------------------------------");
+                ShowTraktExceptionMessage(ex);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("-------------- Exception --------------");
-                Debug.WriteLine($"Exception message: {ex.Message}");
-                Debug.WriteLine($"Status code: {ex.StackTrace}");
-                Debug.WriteLine("---------------------------------------");
+                ShowExceptionMessage(ex);
             }
         }
 
         private async void OAuthAuthenticate()
         {
-            var dialog = new OAuthAuthenticationDialog();
-            await dialog.ShowAsync();
+            var authentication = TraktAuthenticationService.Instance;
+            var authenticationUrl = authentication.GetOAuthAuthorizationUrl();
+
+            if (!string.IsNullOrEmpty(authenticationUrl))
+            {
+                var dialog = new OAuthAuthenticationDialog { WebsiteUrl = authenticationUrl };
+                var result = await dialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary)
+                {
+                    var code = dialog.Code;
+
+                    if (!string.IsNullOrEmpty(code))
+                    {
+                        try
+                        {
+                            Busy.SetBusy(true, "Retrieve authorization...");
+
+                            var newAuthorization = await authentication.GetOAuthAuthorizationAsync(code);
+
+                            if (newAuthorization.IsValid)
+                                Authorization = newAuthorization;
+
+                            Busy.SetBusy(false);
+                        }
+                        catch (TraktException ex)
+                        {
+                            ShowTraktExceptionMessage(ex);
+                        }
+                    }
+                }
+            }
         }
 
         private async void RefreshAuthorization()
@@ -326,7 +348,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             {
                 Busy.SetBusy(true, "Refresh authorization...");
 
-                var newAuthorization = await TraktAuthenticationService.Instance.RefreshAuthorization();
+                var newAuthorization = await TraktAuthenticationService.Instance.RefreshAuthorizationAsync();
 
                 if (newAuthorization != null)
                     Authorization = newAuthorization;
@@ -335,14 +357,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
             catch (TraktException ex)
             {
-                Debug.WriteLine("-------------- Trakt Exception --------------");
-                Debug.WriteLine($"Exception message: {ex.Message}");
-                Debug.WriteLine($"Status code: {ex.StatusCode}");
-                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
-                Debug.WriteLine($"Request message: {ex.RequestBody}");
-                Debug.WriteLine($"Request response: {ex.Response}");
-                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-                Debug.WriteLine("---------------------------------------------");
+                ShowTraktExceptionMessage(ex);
             }
         }
 
@@ -364,7 +379,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                 {
                     Busy.SetBusy(true, "Revoke authorization...");
 
-                    await TraktAuthenticationService.Instance.RevokeAuthorization();
+                    await TraktAuthenticationService.Instance.RevokeAuthorizationAsync();
                     Authorization = DEFAULT_AUTHORIZATION;
 
                     Busy.SetBusy(false);
@@ -372,15 +387,33 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
             catch (TraktException ex)
             {
-                Debug.WriteLine("-------------- Trakt Exception --------------");
-                Debug.WriteLine($"Exception message: {ex.Message}");
-                Debug.WriteLine($"Status code: {ex.StatusCode}");
-                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
-                Debug.WriteLine($"Request message: {ex.RequestBody}");
-                Debug.WriteLine($"Request response: {ex.Response}");
-                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-                Debug.WriteLine("---------------------------------------------");
+                ShowTraktExceptionMessage(ex);
             }
+        }
+
+        private async void ShowTraktExceptionMessage(TraktException ex)
+        {
+            var content = $"Exception message: {ex.Message}\n" +
+                          $"Status code: {ex.StatusCode}\n" +
+                          $"Request URL: {ex.RequestUrl}\n" +
+                          $"Request message: {ex.RequestBody}\n" +
+                          $"Request response: {ex.Response}\n" +
+                          $"Server Reason Phrase: {ex.ServerReasonPhrase}\n" +
+                          "----------------------------------------------------\n" +
+                          $"Stacktrace: {ex.StackTrace}";
+
+            var dialog = new MessageDialog(content, "Trakt Exception");
+            await dialog.ShowAsync();
+        }
+
+        private async void ShowExceptionMessage(Exception ex)
+        {
+            var content = $"Exception message: {ex.Message}\n" +
+                          "----------------------------------------------------\n" +
+                          $"Stacktrace: {ex.StackTrace}";
+
+            var dialog = new MessageDialog(content, "Exception");
+            await dialog.ShowAsync();
         }
     }
 
