@@ -209,7 +209,7 @@
                             <Button x:Name="btnReAuthenticate"
                                     Margin="12"
                                     Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RefreshCommand}"
-                                    Content="Re-Authenticate"
+                                    Content="Refresh"
                                     IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay}"
                                     RelativePanel.Below="stpnlAuthenticationMethod"
                                     RelativePanel.RightOf="btnAuthenticate" />

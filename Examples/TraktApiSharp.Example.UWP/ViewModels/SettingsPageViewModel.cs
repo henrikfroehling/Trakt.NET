@@ -11,6 +11,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using System.Threading.Tasks;
     using Template10.Mvvm;
     using Template10.Services.NavigationService;
+    using Views;
     using Windows.System;
     using Windows.UI.Popups;
     using Windows.UI.Xaml;
@@ -262,7 +263,9 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             {
                 var authentication = TraktAuthenticationService.Instance;
 
+                Busy.SetBusy(true, "Create authorization device...");
                 var deviceInfo = await authentication.CreateDevice();
+                Busy.SetBusy(false);
 
                 if (deviceInfo.Success)
                 {
@@ -276,13 +279,14 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
                             if (success)
                             {
+                                Busy.SetBusy(true, "Retrieve authorization...");
+
                                 var newAuthorization = await authentication.GetDeviceAuthorization();
 
                                 if (newAuthorization.IsValid)
-                                {
-                                    Debug.WriteLine("Authorization retrieved successfully");
                                     Authorization = newAuthorization;
-                                }
+
+                                Busy.SetBusy(false);
                             }
                         })
                     };
@@ -315,9 +319,30 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             Debug.WriteLine("OAuthAuthenticate");
         }
 
-        private void RefreshAuthorization()
+        private async void RefreshAuthorization()
         {
-            Debug.WriteLine("RefreshAuthorization");
+            try
+            {
+                Busy.SetBusy(true, "Refresh authorization...");
+
+                var newAuthorization = await TraktAuthenticationService.Instance.RefreshAuthorization();
+
+                if (newAuthorization != null)
+                    Authorization = newAuthorization;
+
+                Busy.SetBusy(false);
+            }
+            catch (TraktException ex)
+            {
+                Debug.WriteLine("-------------- Trakt Exception --------------");
+                Debug.WriteLine($"Exception message: {ex.Message}");
+                Debug.WriteLine($"Status code: {ex.StatusCode}");
+                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
+                Debug.WriteLine($"Request message: {ex.RequestBody}");
+                Debug.WriteLine($"Request response: {ex.Response}");
+                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
+                Debug.WriteLine("---------------------------------------------");
+            }
         }
 
         private async void Revoke()
@@ -336,8 +361,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
                 if ((int)result.Id == RESULT_YES)
                 {
+                    Busy.SetBusy(true, "Revoke authorization...");
+
                     await TraktAuthenticationService.Instance.RevokeAuthorization();
                     Authorization = DEFAULT_AUTHORIZATION;
+
+                    Busy.SetBusy(false);
                 }
             }
             catch (TraktException ex)
