@@ -5,6 +5,7 @@
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
+      xmlns:converters="using:Template10.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:TraktApiSharp.Example.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,6 +15,20 @@
     <Page.DataContext>
         <vm:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
+
+    <Page.Resources>
+        <converters:ValueWhenConverter x:Key="VisibleWhenFalseConverter">
+            <converters:ValueWhenConverter.When>
+                <x:Boolean>False</x:Boolean>
+            </converters:ValueWhenConverter.When>
+            <converters:ValueWhenConverter.Value>
+                <Visibility>Visible</Visibility>
+            </converters:ValueWhenConverter.Value>
+            <converters:ValueWhenConverter.Otherwise>
+                <Visibility>Collapsed</Visibility>
+            </converters:ValueWhenConverter.Otherwise>
+        </converters:ValueWhenConverter>
+    </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <controls:PageHeader x:Name="pageHeader"
@@ -41,30 +56,29 @@
                       VerticalScrollBarVisibility="Auto">
 
             <RelativePanel HorizontalAlignment="Center">
+                <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Visibility="{x:Bind ViewModel.IsTraktClientIdAvailable, Mode=OneWay, Converter={StaticResource VisibleWhenFalseConverter}}">
+                    <TextBlock MaxWidth="300"
+                               Margin="12"
+                               HorizontalAlignment="Center"
+                               FontSize="24"
+                               Foreground="DarkRed"
+                               Padding="12"
+                               Text="Before you use any functionality, you have to set up the Trakt client."
+                               TextAlignment="Center"
+                               TextWrapping="WrapWholeWords" />
 
-                <TextBlock x:Name="txtInfo"
-                           MaxWidth="300"
-                           Margin="12"
-                           FontSize="24"
-                           Foreground="DarkRed"
-                           Padding="12"
-                           RelativePanel.AlignHorizontalCenterWithPanel="True"
-                           RelativePanel.AlignVerticalCenterWithPanel="True"
-                           Text="Before you use any functionality, you have to set up the Trakt client."
-                           TextAlignment="Center"
-                           TextWrapping="WrapWholeWords" />
-
-                <Button Margin="12"
-                        Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}"
-                        RelativePanel.AlignHorizontalCenterWithPanel="True"
-                        RelativePanel.Below="txtInfo">
-                    <Button.Content>
-                        <TextBlock Margin="4"
-                                   FontSize="24"
-                                   Text="Setup Trakt Client" />
-                    </Button.Content>
-                </Button>
-
+                    <Button Margin="12"
+                            HorizontalAlignment="Center"
+                            Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}">
+                        <Button.Content>
+                            <TextBlock Margin="4"
+                                       FontSize="24"
+                                       Text="Setup Trakt Client" />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
             </RelativePanel>
 
         </ScrollViewer>
