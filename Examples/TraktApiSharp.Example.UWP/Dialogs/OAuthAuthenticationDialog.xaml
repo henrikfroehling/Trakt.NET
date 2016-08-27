@@ -11,7 +11,7 @@
                mc:Ignorable="d">
 
     <StackPanel>
-        <TextBlock Text="Vist following website:" />
+        <TextBlock Text="Visit following website:" />
         <TextBlock FontWeight="SemiBold"
                    Text="{x:Bind WebsiteUrl, Mode=OneWay}"
                    TextWrapping="Wrap" />
