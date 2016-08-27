@@ -1,8 +1,10 @@
 namespace TraktApiSharp.Example.UWP
 {
     using Services.SettingsServices;
+    using Services.TraktService;
     using System.Threading.Tasks;
     using Template10.Controls;
+    using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Data;
@@ -43,6 +45,14 @@ namespace TraktApiSharp.Example.UWP
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
             NavigationService.Navigate(typeof(Views.MainPage));
+            await Task.CompletedTask;
+        }
+
+        public override async Task OnSuspendingAsync(object s, SuspendingEventArgs e, bool prelaunchActivated)
+        {
+            var authorization = TraktServiceProvider.Instance.Client.Authorization;
+            SettingsService.Instance.TraktClientAuthorization = authorization;
+
             await Task.CompletedTask;
         }
     }
