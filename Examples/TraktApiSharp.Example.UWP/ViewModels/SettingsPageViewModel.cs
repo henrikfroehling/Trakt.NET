@@ -12,6 +12,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
     using Template10.Mvvm;
     using Template10.Services.NavigationService;
     using Windows.System;
+    using Windows.UI.Popups;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Navigation;
 
@@ -203,6 +204,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             set
             {
                 _authorization = value;
+                TraktServiceProvider.Instance.Client.Authorization = value;
                 base.RaisePropertyChanged();
                 base.RaisePropertyChanged(nameof(AccessToken));
                 base.RaisePropertyChanged(nameof(RefreshToken));
@@ -318,9 +320,37 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             Debug.WriteLine("RefreshAuthorization");
         }
 
-        private void Revoke()
+        private async void Revoke()
         {
-            Debug.WriteLine("Revoke");
+            try
+            {
+                const int RESULT_YES = 0;
+                string message = "Are you sure you want to revoke your current access token?";
+
+                var dialog = new MessageDialog(message, "Revoke current Trakt.TV access token");
+
+                dialog.Commands.Add(new UICommand("Yes") { Id = RESULT_YES });
+                dialog.Commands.Add(new UICommand("No") { Id = 1 });
+
+                var result = await dialog.ShowAsync();
+
+                if ((int)result.Id == RESULT_YES)
+                {
+                    await TraktAuthenticationService.Instance.RevokeAuthorization();
+                    Authorization = DEFAULT_AUTHORIZATION;
+                }
+            }
+            catch (TraktException ex)
+            {
+                Debug.WriteLine("-------------- Trakt Exception --------------");
+                Debug.WriteLine($"Exception message: {ex.Message}");
+                Debug.WriteLine($"Status code: {ex.StatusCode}");
+                Debug.WriteLine($"Request URL: {ex.RequestUrl}");
+                Debug.WriteLine($"Request message: {ex.RequestBody}");
+                Debug.WriteLine($"Request response: {ex.Response}");
+                Debug.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
+                Debug.WriteLine("---------------------------------------------");
+            }
         }
     }
 

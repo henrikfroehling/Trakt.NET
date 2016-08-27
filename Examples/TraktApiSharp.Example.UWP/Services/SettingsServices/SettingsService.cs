@@ -85,7 +85,9 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             {
                 if (value != null)
                 {
-                    if (value.IsValid)
+                    TraktServiceProvider.Instance.Client.Authorization = value;
+
+                    if (!string.IsNullOrEmpty(value.AccessToken))
                     {
                         var authorizationJson = TraktSerializationService.Serialize(value);
 
