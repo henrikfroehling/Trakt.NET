@@ -314,9 +314,10 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             }
         }
 
-        private void OAuthAuthenticate()
+        private async void OAuthAuthenticate()
         {
-            Debug.WriteLine("OAuthAuthenticate");
+            var dialog = new OAuthAuthenticationDialog();
+            await dialog.ShowAsync();
         }
 
         private async void RefreshAuthorization()

@@ -103,6 +103,9 @@
     <Compile Include="Dialogs\DeviceAuthenticationDialog.xaml.cs">
       <DependentUpon>DeviceAuthenticationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\OAuthAuthenticationDialog.xaml.cs">
+      <DependentUpon>OAuthAuthenticationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelConverter\MovieModelConverter.cs" />
     <Compile Include="Models\ModelConverter\ShowModelConverter.cs" />
     <Compile Include="Models\Movies\AnticipatedMovie.cs" />
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\DeviceAuthenticationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\OAuthAuthenticationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
