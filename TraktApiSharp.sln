@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktDeviceAuthenticationExample", "Examples\Authentication\TraktDeviceAuthenticationExample\TraktDeviceAuthenticationExample.csproj", "{CFB3BE84-E6F2-4D17-BED4-C93DB5E0CFC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktOAuthAuthenticationExample", "Examples\Authentication\TraktOAuthAuthenticationExample\TraktOAuthAuthenticationExample.csproj", "{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,22 @@ Global
 		{CFB3BE84-E6F2-4D17-BED4-C93DB5E0CFC4}.Release|x64.Build.0 = Release|Any CPU
 		{CFB3BE84-E6F2-4D17-BED4-C93DB5E0CFC4}.Release|x86.ActiveCfg = Release|Any CPU
 		{CFB3BE84-E6F2-4D17-BED4-C93DB5E0CFC4}.Release|x86.Build.0 = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|x64.Build.0 = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Debug|x86.Build.0 = Debug|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|ARM.Build.0 = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|x64.ActiveCfg = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|x64.Build.0 = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|x86.ActiveCfg = Release|Any CPU
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,5 +140,6 @@ Global
 		{1741D85A-E2E6-425A-B2C5-632701D3D060} = {92853F03-B70B-4112-88FD-E2106054AC7A}
 		{613D12C2-41D5-4DC9-80D2-DF18A1658E00} = {8CDD4A4D-986A-4422-BEEC-6C67F6AD4A27}
 		{CFB3BE84-E6F2-4D17-BED4-C93DB5E0CFC4} = {613D12C2-41D5-4DC9-80D2-DF18A1658E00}
+		{5912AAAD-1421-4D1E-A09F-9ED9F969BF68} = {613D12C2-41D5-4DC9-80D2-DF18A1658E00}
 	EndGlobalSection
 EndGlobal
