@@ -24,6 +24,20 @@
 
                 if (authorization == null || !authorization.IsValid)
                     throw new InvalidOperationException("Trakt Client not authenticated for requests, that require OAuth");
+
+                Console.Write("\nDo you want to refresh the current authorization? [y/n]: ");
+                string yesNo = Console.ReadLine();
+
+                if (yesNo.Equals("y"))
+                    TryToRefreshAuthorization().Wait();
+
+                Console.Write("\nDo you want to revoke your authorization? [y/n]: ");
+                yesNo = Console.ReadLine();
+
+                if (yesNo.Equals("y"))
+                    TryToRevokeAuthorization().Wait();
+
+                Console.ReadLine();
             }
             catch (TraktException ex)
             {
@@ -35,15 +49,17 @@
                 Console.WriteLine($"Request response: {ex.Response}");
                 Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
                 Console.WriteLine("---------------------------------------------");
+
+                Console.ReadLine();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("-------------- Exception --------------");
                 Console.WriteLine($"Exception message: {ex.Message}");
                 Console.WriteLine("---------------------------------------");
-            }
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
 
         static void SetupClient()
@@ -77,19 +93,45 @@
                     if (authorization != null && authorization.IsValid)
                     {
                         Console.WriteLine("-------------- Authentication successful --------------");
-                        Console.WriteLine($"Created (UTC): {authorization.Created}");
-                        Console.WriteLine($"Access Scope: {authorization.AccessScope.DisplayName}");
-                        Console.WriteLine($"Refresh Possible: {authorization.IsRefreshPossible}");
-                        Console.WriteLine($"Valid: {authorization.IsValid}");
-                        Console.WriteLine($"Token Type: {authorization.TokenType.DisplayName}");
-                        Console.WriteLine($"Access Token: {authorization.AccessToken}");
-                        Console.WriteLine($"Refresh Token: {authorization.RefreshToken}");
-                        Console.WriteLine($"Token Expired: {authorization.IsExpired}");
-                        Console.WriteLine($"Expires in {authorization.ExpiresIn / 3600 / 24} days");
+                        WriteAuthorizationInformation(authorization);
                         Console.WriteLine("-------------------------------------------------------");
                     }
                 }
             }
+        }
+
+        static async Task TryToRefreshAuthorization()
+        {
+            TraktAuthorization newAuthorization = await _client.OAuth.RefreshAuthorizationAsync();
+
+            if (newAuthorization != null && newAuthorization.IsValid)
+            {
+                Console.WriteLine("-------------- Authorization refreshed successfully --------------");
+                WriteAuthorizationInformation(newAuthorization);
+                Console.WriteLine("-------------------------------------------------------");
+            }
+        }
+
+        static async Task TryToRevokeAuthorization()
+        {
+            await _client.OAuth.RevokeAuthorizationAsync();
+            // If no exception was thrown, revoking was successfull
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("Authorization revoked successfully");
+            Console.WriteLine("-----------------------------------");
+        }
+
+        static void WriteAuthorizationInformation(TraktAuthorization authorization)
+        {
+            Console.WriteLine($"Created (UTC): {authorization.Created}");
+            Console.WriteLine($"Access Scope: {authorization.AccessScope.DisplayName}");
+            Console.WriteLine($"Refresh Possible: {authorization.IsRefreshPossible}");
+            Console.WriteLine($"Valid: {authorization.IsValid}");
+            Console.WriteLine($"Token Type: {authorization.TokenType.DisplayName}");
+            Console.WriteLine($"Access Token: {authorization.AccessToken}");
+            Console.WriteLine($"Refresh Token: {authorization.RefreshToken}");
+            Console.WriteLine($"Token Expired: {authorization.IsExpired}");
+            Console.WriteLine($"Expires in {authorization.ExpiresIn / 3600 / 24} days");
         }
     }
 }
