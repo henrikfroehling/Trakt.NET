@@ -404,7 +404,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                           "----------------------------------------------------\n" +
                           $"Stacktrace: {ex.StackTrace}";
 
-            var dialog = new MessageDialog(content, "Trakt Exception");
+            var dialog = new ExceptionDialog
+            {
+                Title = "Trakt Exception",
+                ExceptionContent = content
+            };
+
             await dialog.ShowAsync();
         }
 
@@ -414,7 +419,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                           "----------------------------------------------------\n" +
                           $"Stacktrace: {ex.StackTrace}";
 
-            var dialog = new MessageDialog(content, "Exception");
+            var dialog = new ExceptionDialog
+            {
+                Title = "Exception",
+                ExceptionContent = content
+            };
+
             await dialog.ShowAsync();
         }
     }
