@@ -20,7 +20,7 @@
                 SetupClient();
                 TryToOAuthAuthenticate().Wait();
 
-                var authorization = _client.Authorization;
+                TraktAuthorization authorization = _client.Authorization;
 
                 if (authorization == null || !authorization.IsValid)
                     throw new InvalidOperationException("Trakt Client not authenticated for requests, that require OAuth");
@@ -59,7 +59,7 @@
 
         static async Task TryToOAuthAuthenticate()
         {
-            var authorizationUrl = _client.OAuth.CreateAuthorizationUrl();
+            string authorizationUrl = _client.OAuth.CreateAuthorizationUrl();
 
             if (!string.IsNullOrEmpty(authorizationUrl))
             {
@@ -68,7 +68,7 @@
                 Console.WriteLine($"{authorizationUrl}\n");
                 Console.Write("Enter the PIN code from Trakt.tv: ");
 
-                var code = Console.ReadLine();
+                string code = Console.ReadLine();
 
                 if (!string.IsNullOrEmpty(code))
                 {

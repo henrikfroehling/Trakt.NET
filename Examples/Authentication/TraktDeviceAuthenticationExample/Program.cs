@@ -20,7 +20,7 @@
                 SetupClient();
                 TryToDeviceAuthenticate().Wait();
 
-                var authorization = _client.Authorization;
+                TraktAuthorization authorization = _client.Authorization;
 
                 if (authorization == null || !authorization.IsValid)
                     throw new InvalidOperationException("Trakt Client not authenticated for requests, that require OAuth");
