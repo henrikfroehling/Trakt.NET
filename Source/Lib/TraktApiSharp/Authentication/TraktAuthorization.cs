@@ -70,7 +70,7 @@
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
+        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresIn) <= DateTime.UtcNow);
 
         /// <summary>
         /// Returns, whether this authorization information is valid.
