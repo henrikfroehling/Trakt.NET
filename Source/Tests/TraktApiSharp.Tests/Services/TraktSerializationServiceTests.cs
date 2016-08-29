@@ -64,6 +64,31 @@
         }
 
         [TestMethod]
+        public void TestTraktSerializationServiceSerializeEmptyTraktAuthorization()
+        {
+            var emptyAuthorization = new TraktAuthorization();
+
+            string emptyAuthorizationJson =
+            "{" +
+                $"\"AccessToken\":\"\"," +
+                $"\"RefreshToken\":\"\"," +
+                $"\"ExpiresIn\":0," +
+                $"\"Scope\":\"public\"," +
+                $"\"TokenType\":\"bearer\"," +
+                $"\"CreatedAtTicks\":{emptyAuthorization.Created.Ticks}," +
+                $"\"IgnoreExpiration\":false" +
+            "}";
+
+            Action act = () => TraktSerializationService.Serialize(emptyAuthorization);
+            act.ShouldNotThrow();
+
+            var jsonAuthorization = TraktSerializationService.Serialize(emptyAuthorization);
+
+            jsonAuthorization.Should().NotBeNullOrEmpty();
+            jsonAuthorization.Should().Be(emptyAuthorizationJson);
+        }
+
+        [TestMethod]
         public void TestTraktSerializationServiceSerializeTraktAuthorizationArgumentExceptions()
         {
             Action act = () => TraktSerializationService.Serialize(default(TraktAuthorization));
@@ -77,6 +102,30 @@
 
             jsonDevice.Should().NotBeNullOrEmpty();
             jsonDevice.Should().Be(DEVICE_JSON);
+        }
+
+        [TestMethod]
+        public void TestTraktSerializationServiceSerializeEmptyTraktDevice()
+        {
+            var emptyDevice = new TraktDevice();
+
+            string emptyDeviceJson =
+            "{" +
+                $"\"UserCode\":\"\"," +
+                $"\"DeviceCode\":\"\"," +
+                $"\"VerificationUrl\":\"\"," +
+                $"\"ExpiresInSeconds\":0," +
+                $"\"IntervalInSeconds\":0," +
+                $"\"CreatedAtTicks\":{emptyDevice.Created.Ticks}" +
+            "}";
+
+            Action act = () => TraktSerializationService.Serialize(emptyDevice);
+            act.ShouldNotThrow();
+
+            var jsonDevice = TraktSerializationService.Serialize(emptyDevice);
+
+            jsonDevice.Should().NotBeNullOrEmpty();
+            jsonDevice.Should().Be(emptyDeviceJson);
         }
 
         [TestMethod]

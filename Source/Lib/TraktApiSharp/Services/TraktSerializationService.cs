@@ -18,13 +18,16 @@
             if (authorization == null)
                 throw new ArgumentNullException(nameof(authorization), "authorization must not be null");
 
+            var scope = authorization.AccessScope ?? TraktAccessScope.Public;
+            var tokenType = authorization.TokenType ?? TraktAccessTokenType.Bearer;
+
             var authorizationWrapper = new
             {
-                AccessToken = authorization.AccessToken,
-                RefreshToken = authorization.RefreshToken,
+                AccessToken = authorization.AccessToken ?? string.Empty,
+                RefreshToken = authorization.RefreshToken ?? string.Empty,
                 ExpiresIn = authorization.ExpiresIn,
-                Scope = authorization.AccessScope.ObjectName,
-                TokenType = authorization.TokenType.ObjectName,
+                Scope = scope.ObjectName,
+                TokenType = tokenType.ObjectName,
                 CreatedAtTicks = authorization.Created.Ticks,
                 IgnoreExpiration = authorization.IgnoreExpiration
             };
@@ -43,9 +46,9 @@
 
             var deviceWrapper = new
             {
-                UserCode = device.UserCode,
-                DeviceCode = device.DeviceCode,
-                VerificationUrl = device.VerificationUrl,
+                UserCode = device.UserCode ?? string.Empty,
+                DeviceCode = device.DeviceCode ?? string.Empty,
+                VerificationUrl = device.VerificationUrl ?? string.Empty,
                 ExpiresInSeconds = device.ExpiresInSeconds,
                 IntervalInSeconds = device.IntervalInSeconds,
                 CreatedAtTicks = device.Created.Ticks
