@@ -105,7 +105,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktDeviceWithNullProperties()
+        public void TestTraktSerializationServiceSerializeEmptyTraktDevice()
         {
             var emptyDevice = new TraktDevice();
 
