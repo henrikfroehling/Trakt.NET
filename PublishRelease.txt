@@ -1,9 +1,10 @@
 Steps needed to do for a new release
 
 1. Update version number in Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
-2. Update version numbers in assemblies
+2. Update version number in assembly
 3. Update version number in NuGet readme badge
-4. Update release notes in Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
-5. Update changelog
-6. Build release
-7. Test release
+4. Update version number in appveyor build script
+5. Update release notes in Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
+6. Update changelog
+7. Build release
+8. Test release
