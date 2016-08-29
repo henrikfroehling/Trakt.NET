@@ -64,7 +64,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktAuthorizationWithNullProperties()
+        public void TestTraktSerializationServiceSerializeEmptyTraktAuthorization()
         {
             var emptyAuthorization = new TraktAuthorization();
 
