@@ -46,9 +46,9 @@
 
             var deviceWrapper = new
             {
-                UserCode = device.UserCode,
-                DeviceCode = device.DeviceCode,
-                VerificationUrl = device.VerificationUrl,
+                UserCode = device.UserCode ?? string.Empty,
+                DeviceCode = device.DeviceCode ?? string.Empty,
+                VerificationUrl = device.VerificationUrl ?? string.Empty,
                 ExpiresInSeconds = device.ExpiresInSeconds,
                 IntervalInSeconds = device.IntervalInSeconds,
                 CreatedAtTicks = device.Created.Ticks
