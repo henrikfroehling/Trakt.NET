@@ -1,9 +1,10 @@
-﻿namespace GetSingleShowExample
+﻿namespace GetMultipleShowsExample
 {
     using System;
     using System.Threading.Tasks;
     using TraktApiSharp;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Params;
@@ -11,7 +12,10 @@
     class Program
     {
         private const string CLIENT_ID = "ENTER_CLIENT_ID_HERE";
-        private const string DEFAULT_SHOW_SLUG = "game-of-thrones";
+
+        private const string DEFAULT_SHOW_SLUG1 = "game-of-thrones";
+        private const string DEFAULT_SHOW_SLUG2 = "mr-robot";
+        private const string DEFAULT_SHOW_SLUG3 = "the-flash-2014";
 
         private static TraktClient _client = null;
 
@@ -21,13 +25,22 @@
             {
                 SetupClient();
 
-                Console.Write("Enter the Trakt-Id or -Slug of the Show: ");
-                string showIdOrSlug = Console.ReadLine();
+                Console.WriteLine("Enter three Trakt-Ids or -Slugs of Shows.");
 
-                if (!string.IsNullOrEmpty(showIdOrSlug))
-                    GetShow(showIdOrSlug).Wait();
-                else
-                    GetShow(DEFAULT_SHOW_SLUG).Wait();
+                Console.Write("Show 1: ");
+                string showIdOrSlug1 = Console.ReadLine();
+
+                Console.Write("Show 2: ");
+                string showIdOrSlug2 = Console.ReadLine();
+
+                Console.Write("Show 3: ");
+                string showIdOrSlug3 = Console.ReadLine();
+
+                string show1 = string.IsNullOrEmpty(showIdOrSlug1) ? DEFAULT_SHOW_SLUG1 : showIdOrSlug1;
+                string show2 = string.IsNullOrEmpty(showIdOrSlug2) ? DEFAULT_SHOW_SLUG2 : showIdOrSlug2;
+                string show3 = string.IsNullOrEmpty(showIdOrSlug3) ? DEFAULT_SHOW_SLUG3 : showIdOrSlug3;
+
+                GetMultipleShows(show1, show2, show3).Wait();
 
                 Console.ReadLine();
             }
@@ -65,42 +78,29 @@
             }
         }
 
-        static async Task GetShow(string showIdOrSlug)
+        static async Task GetMultipleShows(string showIdOrSlug1, string showIdOrSlug2, string showIdOrSlug3)
         {
-            await GetShowMinimal(showIdOrSlug);
-            await GetShowFull(showIdOrSlug);
-            await GetShowFullWithImages(showIdOrSlug);
+            var parameters = new TraktMultipleObjectsQueryParams
+            {
+                showIdOrSlug1,
+                { showIdOrSlug2, new TraktExtendedOption { Full = true } },
+                { showIdOrSlug3, new TraktExtendedOption { Full = true, Images = true } }
+            };
+
+            var mutlipleShows = await _client.Shows.GetMultipleShowsAsync(parameters);
+
+            if (mutlipleShows != null)
+            {
+                foreach (TraktShow show in mutlipleShows)
+                {
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                    WriteShowFullWithImages(show);
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                }
+            }
         }
 
-        static async Task GetShowMinimal(string showIdOrSlug)
-        {
-            Console.WriteLine("------------------------- Show Minimal -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug);
-            WriteShowMinimal(show);
-            Console.WriteLine("----------------------------------------------------------------");
-        }
-
-        static async Task GetShowFull(string showIdOrSlug)
-        {
-            var extendedOption = new TraktExtendedOption().SetFull();
-
-            Console.WriteLine("------------------------- Show Full -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedOption);
-            WriteShowFull(show);
-            Console.WriteLine("-------------------------------------------------------------");
-        }
-
-        static async Task GetShowFullWithImages(string showIdOrSlug)
-        {
-            var extendedOption = new TraktExtendedOption().SetFull().SetImages();
-
-            Console.WriteLine("------------------------- Show Full with Images -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedOption);
-            WriteShowFullWithImages(show);
-            Console.WriteLine("-------------------------------------------------------------------------");
-        }
-
-        static void WriteShowMinimal(TraktShow show)
+        static void WriteShowFullWithImages(TraktShow show)
         {
             if (show != null)
             {
@@ -118,15 +118,7 @@
                     Console.WriteLine($"TVDB-Id: {ids.Tvdb ?? 0}");
                     Console.WriteLine($"TVRage-Id: {ids.TvRage ?? 0}");
                 }
-            }
-        }
 
-        static void WriteShowFull(TraktShow show)
-        {
-            WriteShowMinimal(show);
-
-            if (show != null)
-            {
                 Console.WriteLine($"Overview: {show.Overview}");
 
                 if (show.FirstAired.HasValue)
@@ -166,15 +158,7 @@
 
                 Console.WriteLine($"Trailer: {show.Trailer}");
                 Console.WriteLine($"Homepage: {show.Homepage}");
-            }
-        }
 
-        static void WriteShowFullWithImages(TraktShow show)
-        {
-            WriteShowFull(show);
-
-            if (show != null)
-            {
                 TraktShowImages images = show.Images;
 
                 if (images != null)
