@@ -6,7 +6,7 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Services;
 
-    class Program
+    class SerializeAuthorization
     {
         private const string CLIENT_ID = "FAKE_CLIENT_ID";
         private const string CLIENT_SECRET = "FAKE_CLIENT_SECRET";

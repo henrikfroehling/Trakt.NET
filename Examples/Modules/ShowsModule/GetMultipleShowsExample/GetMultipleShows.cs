@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Params;
 
-    class Program
+    class GetMultipleShows
     {
         private const string CLIENT_ID = "ENTER_CLIENT_ID_HERE";
 
@@ -40,31 +40,16 @@
                 string show2 = string.IsNullOrEmpty(showIdOrSlug2) ? DEFAULT_SHOW_SLUG2 : showIdOrSlug2;
                 string show3 = string.IsNullOrEmpty(showIdOrSlug3) ? DEFAULT_SHOW_SLUG3 : showIdOrSlug3;
 
-                GetMultipleShows(show1, show2, show3).Wait();
-
-                Console.ReadLine();
-            }
-            catch (TraktException ex)
-            {
-                Console.WriteLine("-------------- Trakt Exception --------------");
-                Console.WriteLine($"Exception message: {ex.Message}");
-                Console.WriteLine($"Status code: {ex.StatusCode}");
-                Console.WriteLine($"Request URL: {ex.RequestUrl}");
-                Console.WriteLine($"Request message: {ex.RequestBody}");
-                Console.WriteLine($"Request response: {ex.Response}");
-                Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-                Console.WriteLine("---------------------------------------------");
-
-                Console.ReadLine();
+                GetMultipleShowsAsync(show1, show2, show3).Wait();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("-------------- Exception --------------");
                 Console.WriteLine($"Exception message: {ex.Message}");
                 Console.WriteLine("---------------------------------------");
-
-                Console.ReadLine();
             }
+
+            Console.ReadLine();
         }
 
         static void SetupClient()
@@ -78,7 +63,7 @@
             }
         }
 
-        static async Task GetMultipleShows(string showIdOrSlug1, string showIdOrSlug2, string showIdOrSlug3)
+        static async Task GetMultipleShowsAsync(string showIdOrSlug1, string showIdOrSlug2, string showIdOrSlug3)
         {
             var parameters = new TraktMultipleObjectsQueryParams
             {
@@ -87,16 +72,39 @@
                 { showIdOrSlug3, new TraktExtendedOption { Full = true, Images = true } }
             };
 
-            var mutlipleShows = await _client.Shows.GetMultipleShowsAsync(parameters);
-
-            if (mutlipleShows != null)
+            try
             {
-                foreach (TraktShow show in mutlipleShows)
+                var mutlipleShows = await _client.Shows.GetMultipleShowsAsync(parameters);
+
+                if (mutlipleShows != null)
                 {
-                    Console.WriteLine("-------------------------------------------------------------------------");
-                    WriteShowFullWithImages(show);
-                    Console.WriteLine("-------------------------------------------------------------------------");
+                    foreach (TraktShow show in mutlipleShows)
+                    {
+                        Console.WriteLine("-------------------------------------------------------------------------");
+                        WriteShowFullWithImages(show);
+                        Console.WriteLine("-------------------------------------------------------------------------");
+                    }
                 }
+            }
+            catch (TraktException ex)
+            {
+                Console.WriteLine("-------------- Trakt Exception --------------");
+                Console.WriteLine($"Exception message: {ex.Message}");
+                Console.WriteLine($"Status code: {ex.StatusCode}");
+                Console.WriteLine($"Request URL: {ex.RequestUrl}");
+                Console.WriteLine($"Request message: {ex.RequestBody}");
+                Console.WriteLine($"Request response: {ex.Response}");
+                Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
+
+                if (ex is TraktShowNotFoundException)
+                {
+                    var showEx = ex as TraktShowNotFoundException;
+
+                    if (showEx != null)
+                        Console.WriteLine($"Show-Id or -Slug: {showEx.ObjectId}");
+                }
+
+                Console.WriteLine("---------------------------------------------");
             }
         }
 

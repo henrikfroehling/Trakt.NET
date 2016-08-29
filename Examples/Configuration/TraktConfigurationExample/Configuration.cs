@@ -5,7 +5,7 @@
     using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
 
-    class Program
+    class Configuration
     {
         private const string CLIENT_ID = "FAKE_CLIENT_ID";
         private const string CLIENT_SECRET = "FAKE_CLIENT_SECRET";

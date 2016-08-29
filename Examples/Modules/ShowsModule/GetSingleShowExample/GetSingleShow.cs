@@ -8,7 +8,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Params;
 
-    class Program
+    class GetSingleShow
     {
         private const string CLIENT_ID = "ENTER_CLIENT_ID_HERE";
         private const string DEFAULT_SHOW_SLUG = "game-of-thrones";
@@ -28,30 +28,15 @@
                     GetShow(showIdOrSlug).Wait();
                 else
                     GetShow(DEFAULT_SHOW_SLUG).Wait();
-
-                Console.ReadLine();
-            }
-            catch (TraktException ex)
-            {
-                Console.WriteLine("-------------- Trakt Exception --------------");
-                Console.WriteLine($"Exception message: {ex.Message}");
-                Console.WriteLine($"Status code: {ex.StatusCode}");
-                Console.WriteLine($"Request URL: {ex.RequestUrl}");
-                Console.WriteLine($"Request message: {ex.RequestBody}");
-                Console.WriteLine($"Request response: {ex.Response}");
-                Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-                Console.WriteLine("---------------------------------------------");
-
-                Console.ReadLine();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("-------------- Exception --------------");
                 Console.WriteLine($"Exception message: {ex.Message}");
                 Console.WriteLine("---------------------------------------");
-
-                Console.ReadLine();
             }
+
+            Console.ReadLine();
         }
 
         static void SetupClient()
@@ -67,9 +52,32 @@
 
         static async Task GetShow(string showIdOrSlug)
         {
-            await GetShowMinimal(showIdOrSlug);
-            await GetShowFull(showIdOrSlug);
-            await GetShowFullWithImages(showIdOrSlug);
+            try
+            {
+                await GetShowMinimal(showIdOrSlug);
+                await GetShowFull(showIdOrSlug);
+                await GetShowFullWithImages(showIdOrSlug);
+            }
+            catch (TraktException ex)
+            {
+                Console.WriteLine("-------------- Trakt Exception --------------");
+                Console.WriteLine($"Exception message: {ex.Message}");
+                Console.WriteLine($"Status code: {ex.StatusCode}");
+                Console.WriteLine($"Request URL: {ex.RequestUrl}");
+                Console.WriteLine($"Request message: {ex.RequestBody}");
+                Console.WriteLine($"Request response: {ex.Response}");
+                Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
+
+                if (ex is TraktShowNotFoundException)
+                {
+                    var showEx = ex as TraktShowNotFoundException;
+
+                    if (showEx != null)
+                        Console.WriteLine($"Show-Id or -Slug: {showEx.ObjectId}");
+                }
+
+                Console.WriteLine("---------------------------------------------");
+            }
         }
 
         static async Task GetShowMinimal(string showIdOrSlug)
