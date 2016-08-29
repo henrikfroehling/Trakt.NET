@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.3.0</version>
+        <version>0.3.1</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -18,7 +18,10 @@ Features
 - Completely asynchronous
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes>Enter release notes here</releaseNotes>
+        <releaseNotes>Fixed:
+- NullReferenceException in TraktSerializationService
+- IsExpired calculation of TraktAuthorization
+        </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
