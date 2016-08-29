@@ -1,0 +1,25 @@
+﻿<ContentDialog x:Class="TraktApiSharp.Example.UWP.Dialogs.ExceptionDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:local="using:TraktApiSharp.Example.UWP.Dialogs"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               Title="Exception"
+               PrimaryButtonText="Close"
+               mc:Ignorable="d">
+
+    <StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      HorizontalScrollMode="Auto"
+                      Padding="12,12,24,24"
+                      VerticalScrollBarVisibility="Auto"
+                      VerticalScrollMode="Auto">
+            <TextBlock Text="{x:Bind ExceptionContent, Mode=OneWay}" />
+        </ScrollViewer>
+        <Button x:Name="btnCopyContent"
+                Margin="12"
+                HorizontalAlignment="Center"
+                Click="btnCopyContent_Click"
+                Content="Copy exception message to clipboad" />
+    </StackPanel>
+</ContentDialog>

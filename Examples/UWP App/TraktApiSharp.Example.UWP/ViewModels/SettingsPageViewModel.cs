@@ -278,25 +278,29 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             {
                 ShowExceptionMessage(ex);
             }
+            finally
+            {
+                Busy.SetBusy(false);
+            }
         }
 
         private async void OAuthAuthenticate()
         {
-            var authentication = TraktAuthenticationService.Instance;
-            var authenticationUrl = authentication.GetOAuthAuthorizationUrl();
-
-            if (!string.IsNullOrEmpty(authenticationUrl))
+            try
             {
-                var dialog = new OAuthAuthenticationDialog { WebsiteUrl = authenticationUrl };
-                var result = await dialog.ShowAsync();
+                var authentication = TraktAuthenticationService.Instance;
+                var authenticationUrl = authentication.GetOAuthAuthorizationUrl();
 
-                if (result == ContentDialogResult.Primary)
+                if (!string.IsNullOrEmpty(authenticationUrl))
                 {
-                    var code = dialog.Code;
+                    var dialog = new OAuthAuthenticationDialog { WebsiteUrl = authenticationUrl };
+                    var result = await dialog.ShowAsync();
 
-                    if (!string.IsNullOrEmpty(code))
+                    if (result == ContentDialogResult.Primary)
                     {
-                        try
+                        var code = dialog.Code;
+
+                        if (!string.IsNullOrEmpty(code))
                         {
                             Busy.SetBusy(true, "Retrieve authorization...");
 
@@ -307,12 +311,20 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
                             Busy.SetBusy(false);
                         }
-                        catch (TraktException ex)
-                        {
-                            ShowTraktExceptionMessage(ex);
-                        }
                     }
                 }
+            }
+            catch (TraktException ex)
+            {
+                ShowTraktExceptionMessage(ex);
+            }
+            catch (Exception ex)
+            {
+                ShowExceptionMessage(ex);
+            }
+            finally
+            {
+                Busy.SetBusy(false);
             }
         }
 
@@ -332,6 +344,14 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             catch (TraktException ex)
             {
                 ShowTraktExceptionMessage(ex);
+            }
+            catch (Exception ex)
+            {
+                ShowExceptionMessage(ex);
+            }
+            finally
+            {
+                Busy.SetBusy(false);
             }
         }
 
@@ -363,6 +383,14 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             {
                 ShowTraktExceptionMessage(ex);
             }
+            catch (Exception ex)
+            {
+                ShowExceptionMessage(ex);
+            }
+            finally
+            {
+                Busy.SetBusy(false);
+            }
         }
 
         private async void ShowTraktExceptionMessage(TraktException ex)
@@ -376,7 +404,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                           "----------------------------------------------------\n" +
                           $"Stacktrace: {ex.StackTrace}";
 
-            var dialog = new MessageDialog(content, "Trakt Exception");
+            var dialog = new ExceptionDialog
+            {
+                Title = "Trakt Exception",
+                ExceptionContent = content
+            };
+
             await dialog.ShowAsync();
         }
 
@@ -386,7 +419,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
                           "----------------------------------------------------\n" +
                           $"Stacktrace: {ex.StackTrace}";
 
-            var dialog = new MessageDialog(content, "Exception");
+            var dialog = new ExceptionDialog
+            {
+                Title = "Exception",
+                ExceptionContent = content
+            };
+
             await dialog.ShowAsync();
         }
     }
