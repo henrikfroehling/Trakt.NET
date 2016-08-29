@@ -50,13 +50,9 @@
         [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
         public TraktAccessScope AccessScope { get; set; }
 
-        /// <summary>Gets or sets the epoch value, after which this authorization will expire.</summary>
+        /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
         [JsonProperty(PropertyName = "expires_in")]
         public int ExpiresIn { get; set; }
-
-        /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
-        [JsonIgnore]
-        public int ExpiresInSeconds => ExpiresIn * 1000;
 
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
         [JsonProperty(PropertyName = "token_type")]
@@ -70,7 +66,7 @@
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
+        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresIn) <= DateTime.UtcNow);
 
         /// <summary>
         /// Returns, whether this authorization information is valid.
