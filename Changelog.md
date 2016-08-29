@@ -6,6 +6,15 @@ Version 0.3.0
 ---------
 ---------
 
+#### 0.3.1
+*(2016-08-30)*
+
+Fixed:
+- NullReferenceException in TraktSerializationService
+- IsExpired calculation of TraktAuthorization
+
+---------
+
 #### 0.3.0
 *(2016-08-24)*
 
