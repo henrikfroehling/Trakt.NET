@@ -135,14 +135,12 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
         public int ExpiresInDays
         {
-            // See bug issue #13
             get { return Authorization.ExpiresIn / 3600 / 24; }
         }
 
         public bool IsExpired
         {
-            // See bug issue #13
-            get { return !Authorization.IsValid || (Authorization.Created.AddSeconds(Authorization.ExpiresIn) <= DateTime.UtcNow); }
+            get { return Authorization.IsExpired; }
         }
 
         public bool IsValid
