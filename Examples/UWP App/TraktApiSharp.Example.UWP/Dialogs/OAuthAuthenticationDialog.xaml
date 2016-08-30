@@ -1,0 +1,27 @@
+﻿<ContentDialog x:Class="TraktApiSharp.Example.UWP.Dialogs.OAuthAuthenticationDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:local="using:TraktApiSharp.Example.UWP.Dialogs"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               Title="Authenticate with Trakt.tv"
+               PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+               PrimaryButtonText="I got a code"
+               SecondaryButtonText="Close"
+               mc:Ignorable="d">
+
+    <StackPanel>
+        <TextBlock Text="Visit following website:" />
+        <TextBlock FontWeight="SemiBold"
+                   Text="{x:Bind WebsiteUrl, Mode=OneWay}"
+                   TextWrapping="Wrap" />
+        <Button x:Name="btnVisitWebsite"
+                Margin="12"
+                HorizontalAlignment="Center"
+                Click="btnVisitWebsite_Click"
+                Content="Visit Website" />
+        <TextBox x:Name="txtCode"
+                 Header="Sign in or sign up and enter the code from Trakt.tv:"
+                 Text="{x:Bind Code, Mode=TwoWay}" />
+    </StackPanel>
+</ContentDialog>
