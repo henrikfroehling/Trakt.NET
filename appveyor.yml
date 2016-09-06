@@ -22,7 +22,7 @@
     - cmd: nuget restore
     
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release;libraryVersion=$(libVersion)
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release;libraryVersion="$env:libVersion"
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -76,7 +76,7 @@
     - cmd: nuget restore
 
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug;libraryVersion=$(libVersion)
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug;libraryVersion="$env:libVersion"
     - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
