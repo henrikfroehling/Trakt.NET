@@ -22,7 +22,7 @@
     - cmd: nuget restore
     
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release libraryVersion=$(libVersion)
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -55,6 +55,9 @@
 # configuration for all branches starting from "dev-"
 # build in Debug mode
 -
+  environment:
+    libVersion: '0.3.1'
+
   version: '{branch}-{build}'
   image: Visual Studio 2015
 
@@ -73,7 +76,7 @@
     - cmd: nuget restore
 
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug libraryVersion=$(libVersion)
     - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -119,3 +122,11 @@
     verbosity: minimal
 
   configuration: Debug
+  
+  artifacts:
+    - path: Build\Lib\Debug\TraktApiSharp.dll
+      name: DebugAssembly
+    - path: Build\Lib\Debug\TraktApiSharp.pdb
+      name: DebugAssemblyPDB
+    - path: Build\Lib\Debug\TraktApiSharp.XML
+      name: DebugDocumentationXML
