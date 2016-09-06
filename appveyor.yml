@@ -3,7 +3,7 @@
 -
   environment:
     packageVersion: 0.3.1
-    prereleaseSuffix: -
+    versionSuffix: "-$env:appveyor_build_number"
 
   version: '{branch}-v$env:packageVersion-{build}'
   image: Visual Studio 2015
@@ -12,7 +12,7 @@
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
   init:
-    - ps: $env:nugetVersion = "$env:packageVersion$env:prereleaseSuffix$env:appveyor_build_number"
+    - ps: $env:nugetVersion = "$env:packageVersion$env:versionSuffix"
     - ps: $env:nugetVersion
 
   cache:
@@ -62,12 +62,17 @@
 -
   environment:
     packageVersion: 0.3.1
+    versionSuffix: "-$env:appveyor_build_number"
 
   version: '{branch}-{build}'
   image: Visual Studio 2015
 
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+  init:
+    - ps: $env:nugetVersion = "$env:packageVersion$env:versionSuffix"
+    - ps: $env:nugetVersion
 
   cache:
     - packages -> **\packages.config
