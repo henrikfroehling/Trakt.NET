@@ -3,17 +3,12 @@
 -
   environment:
     packageVersion: 0.3.1
-    versionSuffix: "-$env:appveyor_build_number"
 
-  version: '{branch}-v$env:packageVersion-{build}'
+  version: '{branch}-v0.3.1-{build}'
   image: Visual Studio 2015
   
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
-  init:
-    - ps: $env:nugetVersion = "$env:packageVersion$env:versionSuffix"
-    - ps: $env:nugetVersion
 
   cache:
     - packages -> **\packages.config
@@ -27,7 +22,7 @@
     - cmd: nuget restore
     
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release -Version "$env:nugetVersion"
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
@@ -60,19 +55,11 @@
 # configuration for all branches starting from "dev-"
 # build in Debug mode
 -
-  environment:
-    packageVersion: 0.3.1
-    versionSuffix: "-$env:appveyor_build_number"
-
   version: '{branch}-{build}'
   image: Visual Studio 2015
 
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
-  init:
-    - ps: $env:nugetVersion = "$env:packageVersion$env:versionSuffix"
-    - ps: $env:nugetVersion
 
   cache:
     - packages -> **\packages.config
@@ -86,7 +73,7 @@
     - cmd: nuget restore
 
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug -Version "$env:nugetVersion"
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
     - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
