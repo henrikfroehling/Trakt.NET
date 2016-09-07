@@ -133,9 +133,20 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             get { return Authorization.RefreshToken; }
         }
 
-        public int ExpiresInDays
+        public string ExpiresInDays
         {
-            get { return Authorization.ExpiresIn / 3600 / 24; }
+            get
+            {
+                var created = Authorization.Created;
+                var expirationDate = created.AddSeconds(Authorization.ExpiresIn);
+                var difference = expirationDate - DateTime.UtcNow;
+
+                var days = difference.Days > 0 ? difference.Days : 0;
+                var hours = difference.Hours > 0 ? difference.Hours : 0;
+                var minutes = difference.Minutes > 0 ? difference.Minutes : 0;
+
+                return $"{days} Days, {hours} Hours, {minutes} Minutes";
+            }
         }
 
         public bool IsExpired

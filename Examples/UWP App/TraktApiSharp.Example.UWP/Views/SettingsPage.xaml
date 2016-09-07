@@ -137,7 +137,6 @@
                                    RelativePanel.Below="lblAuthorizationRefreshToken">
                             <Run FontWeight="SemiBold" Text="Expires in:" />
                             <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.ExpiresInDays, Mode=OneWay}" />
-                            <Run Text="Days" />
                         </TextBlock>
 
                         <TextBlock x:Name="lblAuthorizationIsExpired"
