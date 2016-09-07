@@ -150,7 +150,16 @@
             Console.WriteLine($"Access Token: {authorization.AccessToken}");
             Console.WriteLine($"Refresh Token: {authorization.RefreshToken}");
             Console.WriteLine($"Token Expired: {authorization.IsExpired}");
-            Console.WriteLine($"Expires in {authorization.ExpiresIn / 3600 / 24} days");
+
+            var created = authorization.Created;
+            var expirationDate = created.AddSeconds(authorization.ExpiresIn);
+            var difference = expirationDate - DateTime.UtcNow;
+
+            var days = difference.Days > 0 ? difference.Days : 0;
+            var hours = difference.Hours > 0 ? difference.Hours : 0;
+            var minutes = difference.Minutes > 0 ? difference.Minutes : 0;
+
+            Console.WriteLine($"Expires in {days} Days, {hours} Hours, {minutes} Minutes");
         }
 
         static void PrintTraktException(TraktException ex)

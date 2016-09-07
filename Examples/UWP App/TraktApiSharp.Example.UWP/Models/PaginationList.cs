@@ -18,14 +18,8 @@
 
         public int? TotalUserCount { get; set; }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
     }
 }

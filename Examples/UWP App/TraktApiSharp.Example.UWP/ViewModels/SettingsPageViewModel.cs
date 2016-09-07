@@ -123,40 +123,33 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             RevokeCommand = new DelegateCommand(Revoke);
         }
 
-        public string AccessToken
+        public string AccessToken => Authorization.AccessToken;
+
+        public string RefreshToken => Authorization.RefreshToken;
+
+        public string ExpiresInDays
         {
-            get { return Authorization.AccessToken; }
+            get
+            {
+                var created = Authorization.Created;
+                var expirationDate = created.AddSeconds(Authorization.ExpiresIn);
+                var difference = expirationDate - DateTime.UtcNow;
+
+                var days = difference.Days > 0 ? difference.Days : 0;
+                var hours = difference.Hours > 0 ? difference.Hours : 0;
+                var minutes = difference.Minutes > 0 ? difference.Minutes : 0;
+
+                return $"{days} Days, {hours} Hours, {minutes} Minutes";
+            }
         }
 
-        public string RefreshToken
-        {
-            get { return Authorization.RefreshToken; }
-        }
+        public bool IsExpired => Authorization.IsExpired;
 
-        public int ExpiresInDays
-        {
-            get { return Authorization.ExpiresIn / 3600 / 24; }
-        }
+        public bool IsValid => Authorization.IsValid;
 
-        public bool IsExpired
-        {
-            get { return Authorization.IsExpired; }
-        }
+        public bool IsRefreshPossible => Authorization.IsRefreshPossible;
 
-        public bool IsValid
-        {
-            get { return Authorization.IsValid; }
-        }
-
-        public bool IsRefreshPossible
-        {
-            get { return Authorization.IsRefreshPossible; }
-        }
-
-        public string CreatedAt
-        {
-            get { return Authorization.Created.ToString(); }
-        }
+        public string CreatedAt => Authorization.Created.ToString();
 
         private int _authenticationMethod = OAUTH_AUTHENTICATION;
 

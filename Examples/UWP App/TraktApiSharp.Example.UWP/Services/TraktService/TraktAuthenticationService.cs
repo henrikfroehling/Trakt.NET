@@ -48,10 +48,7 @@
             return await Client.DeviceAuth.PollForAuthorizationAsync();
         }
 
-        public string GetOAuthAuthorizationUrl()
-        {
-            return Client.OAuth.CreateAuthorizationUrl();
-        }
+        public string GetOAuthAuthorizationUrl() => Client.OAuth.CreateAuthorizationUrl();
 
         public async Task<TraktAuthorization> GetOAuthAuthorizationAsync(string code)
         {
@@ -61,10 +58,7 @@
             return await Client.OAuth.GetAuthorizationAsync(code);
         }
 
-        public async Task<TraktAuthorization> RefreshAuthorizationAsync()
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync();
-        }
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync() => await Client.Authentication.RefreshAuthorizationAsync();
 
         public async Task RevokeAuthorizationAsync()
         {
