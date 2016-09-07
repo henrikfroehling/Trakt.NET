@@ -21,7 +21,12 @@
                 uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
 
             if (Days.HasValue)
+            {
                 uriParams.Add("days", Days.Value);
+
+                if (!StartDate.HasValue)
+                    uriParams.Add("start_date", DateTime.UtcNow.ToTraktDateString());
+            }
 
             return uriParams;
         }
