@@ -4,9 +4,6 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 
     public class MainPageViewModel : BaseViewModel
     {
-        public bool IsTraktClientIdAvailable
-        {
-            get { return TraktServiceProvider.Instance.Client.IsValidForUseWithoutAuthorization; }
-        }
+        public bool IsTraktClientIdAvailable => TraktServiceProvider.Instance.Client.IsValidForUseWithoutAuthorization;
     }
 }
