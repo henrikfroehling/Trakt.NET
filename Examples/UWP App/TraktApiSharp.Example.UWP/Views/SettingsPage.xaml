@@ -1,0 +1,330 @@
+<Page x:Class="TraktApiSharp.Example.UWP.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:converters="using:Template10.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TraktApiSharp.Example.UWP.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:TraktApiSharp.Example.UWP.ViewModels"
+      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:SettingsPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <converters:ValueWhenConverter x:Key="BoolToTextConverter">
+            <converters:ValueWhenConverter.When>
+                <x:Boolean>True</x:Boolean>
+            </converters:ValueWhenConverter.When>
+            <converters:ValueWhenConverter.Value>
+                <x:String>Yes</x:String>
+            </converters:ValueWhenConverter.Value>
+            <converters:ValueWhenConverter.Otherwise>
+                <x:String>No</x:String>
+            </converters:ValueWhenConverter.Otherwise>
+        </converters:ValueWhenConverter>
+
+        <converters:ValueWhenConverter x:Key="VisibleWhenTrueConverter">
+            <converters:ValueWhenConverter.When>
+                <x:Boolean>True</x:Boolean>
+            </converters:ValueWhenConverter.When>
+            <converters:ValueWhenConverter.Value>
+                <Visibility>Visible</Visibility>
+            </converters:ValueWhenConverter.Value>
+            <converters:ValueWhenConverter.Otherwise>
+                <Visibility>Collapsed</Visibility>
+            </converters:ValueWhenConverter.Otherwise>
+        </converters:ValueWhenConverter>
+    </Page.Resources>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--  header  -->
+        <controls:PageHeader x:Name="pageHeader"
+                             Content="Settings"
+                             Frame="{x:Bind Frame}"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" />
+
+        <!--  content  -->
+        <Pivot x:Name="MyPivot"
+               RelativePanel.AlignBottomWithPanel="True"
+               RelativePanel.AlignLeftWithPanel="True"
+               RelativePanel.AlignRightWithPanel="True"
+               RelativePanel.Below="pageHeader">
+
+            <!--  trakt settings  -->
+            <PivotItem Header="Trakt Client Settings">
+                <ScrollViewer Margin="0,12,-12,0"
+                              HorizontalContentAlignment="Left"
+                              VerticalScrollBarVisibility="Auto">
+                    <RelativePanel HorizontalAlignment="Left">
+
+                        <TextBox x:Name="txtClientId"
+                                 Width="400"
+                                 Margin="12"
+                                 HorizontalAlignment="Left"
+                                 Header="Client Id"
+                                 RelativePanel.AlignLeftWithPanel="True"
+                                 RelativePanel.AlignTopWithPanel="True"
+                                 Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientId, Mode=TwoWay}" />
+
+                        <TextBox x:Name="txtClientSecret"
+                                 Width="400"
+                                 Margin="12"
+                                 HorizontalAlignment="Left"
+                                 Header="Client Secret"
+                                 RelativePanel.AlignLeftWithPanel="True"
+                                 RelativePanel.Below="txtClientId"
+                                 Text="{x:Bind ViewModel.TraktClientPartViewModel.ClientSecret, Mode=TwoWay}" />
+
+                        <ToggleSwitch x:Name="tglUseStagingUrl"
+                                      Margin="12"
+                                      Header="Trakt API Staging / Production Url"
+                                      IsOn="{x:Bind ViewModel.TraktClientPartViewModel.UseStagingUrl, Mode=TwoWay}"
+                                      OffContent="Use Production Url"
+                                      OnContent="Use Staging Url"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      RelativePanel.Below="txtClientSecret" />
+
+                        <ToggleSwitch x:Name="tglForceAuthorization"
+                                      Margin="12"
+                                      Header="Optional OAuth Authorization"
+                                      IsOn="{x:Bind ViewModel.TraktClientPartViewModel.ForceAuthorization, Mode=TwoWay}"
+                                      OffContent="Ignore OAuth authorization, if it's optional"
+                                      OnContent="Force OAuth authorization, even if it's optional"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      RelativePanel.Below="tglUseStagingUrl" />
+
+                    </RelativePanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <!--  trakt authorization  -->
+            <PivotItem Header="Trakt Authorization">
+                <ScrollViewer Margin="0,12,-12,0"
+                              HorizontalContentAlignment="Left"
+                              VerticalScrollBarVisibility="Auto">
+                    <RelativePanel HorizontalAlignment="Left">
+
+                        <TextBlock x:Name="lblAuthorizationAccessToken"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.AlignTopWithPanel="True">
+                            <Run FontWeight="SemiBold" Text="Access Token:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.AccessToken, Mode=OneWay}" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationRefreshToken"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationAccessToken">
+                            <Run FontWeight="SemiBold" Text="Refresh Token:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RefreshToken, Mode=OneWay}" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationExpiresIn"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationRefreshToken">
+                            <Run FontWeight="SemiBold" Text="Expires in:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.ExpiresInDays, Mode=OneWay}" />
+                            <Run Text="Days" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsExpired"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationExpiresIn">
+                            <Run FontWeight="SemiBold" Text="Is Expired:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsExpired, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsValid"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsExpired">
+                            <Run FontWeight="SemiBold" Text="Is Valid:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsValid, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationIsRefreshPossible"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsValid">
+                            <Run FontWeight="SemiBold" Text="Is Refresh Possible:" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay, Converter={StaticResource BoolToTextConverter}}" />
+                        </TextBlock>
+
+                        <TextBlock x:Name="lblAuthorizationCreated"
+                                   Margin="12"
+                                   HorizontalAlignment="Left"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.Below="lblAuthorizationIsRefreshPossible">
+                            <Run FontWeight="SemiBold" Text="Created (UTC):" />
+                            <Run Text="{x:Bind ViewModel.TraktAuthorizationPartViewModel.CreatedAt, Mode=OneWay}" />
+                        </TextBlock>
+
+                        <StackPanel x:Name="stpnlAuthenticationMethod"
+                                    Margin="12"
+                                    Orientation="Vertical"
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    RelativePanel.Below="lblAuthorizationCreated">
+                            <TextBlock FontWeight="SemiBold" Text="Authentication Method:" />
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Margin="4"
+                                             Content="OAuth"
+                                             GroupName="AuthenticationMethod"
+                                             IsChecked="{x:Bind ViewModel.TraktAuthorizationPartViewModel.OAuthAuthentication, Mode=TwoWay}" />
+
+                                <RadioButton Margin="4"
+                                             Content="Device"
+                                             GroupName="AuthenticationMethod"
+                                             IsChecked="{x:Bind ViewModel.TraktAuthorizationPartViewModel.DeviceAuthentication, Mode=TwoWay}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button x:Name="btnAuthenticate"
+                                Margin="12"
+                                HorizontalAlignment="Left"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.AuthenticateCommand}"
+                                Content="Authenticate"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.Below="stpnlAuthenticationMethod" />
+
+                        <Button x:Name="btnReAuthenticate"
+                                Margin="12"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RefreshCommand}"
+                                Content="Refresh"
+                                IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsRefreshPossible, Mode=OneWay}"
+                                RelativePanel.Below="stpnlAuthenticationMethod"
+                                RelativePanel.RightOf="btnAuthenticate" />
+
+                        <Button x:Name="btnRevoke"
+                                Margin="12"
+                                Command="{x:Bind ViewModel.TraktAuthorizationPartViewModel.RevokeCommand}"
+                                Content="Revoke"
+                                IsEnabled="{x:Bind ViewModel.TraktAuthorizationPartViewModel.IsValid, Mode=OneWay}"
+                                RelativePanel.Below="stpnlAuthenticationMethod"
+                                RelativePanel.RightOf="btnReAuthenticate" />
+
+                    </RelativePanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <!--  settings  -->
+            <PivotItem Header="Application Settings">
+                <ScrollViewer Margin="0,12,-12,0"
+                              HorizontalContentAlignment="Left"
+                              VerticalScrollBarVisibility="Auto">
+                    <RelativePanel HorizontalAlignment="Left">
+
+                        <ToggleSwitch x:Name="UseShellDrawnBackButtonToggleSwtich"
+                                      Header="Use shell-drawn back button"
+                                      IsOn="{x:Bind ViewModel.SettingsPartViewModel.UseShellBackButton, Mode=TwoWay}"
+                                      OffContent="Back button in page header"
+                                      OnContent="Back button in titlebar or taskbar"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      RelativePanel.AlignTopWithPanel="True" />
+
+                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch"
+                                      Header="Use Light Theme"
+                                      IsOn="{x:Bind ViewModel.SettingsPartViewModel.UseLightThemeButton, Mode=TwoWay}"
+                                      OffContent="Dark theme"
+                                      OnContent="Light theme"
+                                      RelativePanel.AlignLeftWithPanel="True"
+                                      RelativePanel.Below="UseShellDrawnBackButtonToggleSwtich" />
+
+                    </RelativePanel>
+
+                </ScrollViewer>
+            </PivotItem>
+
+            <!--  about  -->
+            <PivotItem Header="About">
+                <RelativePanel>
+
+                    <Border x:Name="LogoImage"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            BorderBrush="DimGray"
+                            BorderThickness="1"
+                            IsHitTestVisible="False"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignTopWithPanel="True">
+                        <Border.Background>
+                            <SolidColorBrush Color="{ThemeResource SystemAccentColor}" />
+                        </Border.Background>
+                        <Image Margin="12"
+                               Source="{x:Bind ViewModel.AboutPartViewModel.Logo}"
+                               Stretch="None" />
+                    </Border>
+
+                    <TextBlock x:Name="DisplayNameTextBlock"
+                               Margin="0,0,0,12"
+                               FontSize="24"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignRightWith="LogoImage"
+                               RelativePanel.AlignTopWithPanel="True"
+                               Text="{x:Bind ViewModel.AboutPartViewModel.DisplayName}" />
+
+                    <TextBlock x:Name="PublisherTextBlock"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.Below="DisplayNameTextBlock">
+                        <Run FontWeight="SemiBold" Text="Author" />
+                        <Run Text="{x:Bind ViewModel.AboutPartViewModel.Publisher}" />
+                    </TextBlock>
+
+                    <TextBlock x:Name="VersionTextBlock"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.Below="PublisherTextBlock">
+                        <Run FontWeight="SemiBold" Text="Version" />
+                        <Run Text="{x:Bind ViewModel.AboutPartViewModel.Version}" />
+                    </TextBlock>
+
+                </RelativePanel>
+            </PivotItem>
+        </Pivot>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for narrow view  -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for normal view  -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--  TODO: change properties for wide view  -->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
+
+</Page>

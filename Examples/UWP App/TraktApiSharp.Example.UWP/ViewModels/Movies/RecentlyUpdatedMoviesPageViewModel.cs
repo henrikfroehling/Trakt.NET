@@ -1,0 +1,48 @@
+﻿namespace TraktApiSharp.Example.UWP.ViewModels.Movies
+{
+    using Models.Movies;
+    using Services.TraktService;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using Views;
+    using Windows.UI.Xaml.Navigation;
+
+    public class RecentlyUpdatedMoviesPageViewModel : PaginationViewModel
+    {
+        private TraktMoviesService Movies { get; } = TraktMoviesService.Instance;
+
+        private ObservableCollection<RecentlyUpdatedMovie> _recentlyUpdatedMovies = new ObservableCollection<RecentlyUpdatedMovie>();
+
+        public ObservableCollection<RecentlyUpdatedMovie> RecentlyUpdatedMovies
+        {
+            get { return _recentlyUpdatedMovies; }
+
+            set
+            {
+                _recentlyUpdatedMovies = value;
+                base.RaisePropertyChanged();
+            }
+        }
+
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+            if (RecentlyUpdatedMovies != null && RecentlyUpdatedMovies.Count <= 0)
+                await LoadPage(1, DEFAULT_LIMIT);
+        }
+
+        protected override async Task LoadPage(int? page = null, int? limit = null)
+        {
+            Busy.SetBusy(true, "Loading recently updated movies...");
+            var traktRecentlyUpdatedMovies = await Movies.GetRecentlyUpdatedMoviesAsync(extendedInfo: DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+
+            if (traktRecentlyUpdatedMovies.Items != null)
+            {
+                RecentlyUpdatedMovies = traktRecentlyUpdatedMovies.Items;
+                SetPaginationValues(traktRecentlyUpdatedMovies);
+            }
+
+            Busy.SetBusy(false);
+        }
+    }
+}

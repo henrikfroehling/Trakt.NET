@@ -2,7 +2,7 @@
 # build in Release mode
 -
   environment:
-    libVersion: '0.3.1'
+    packageVersion: 0.3.1
 
   version: '{branch}-v0.3.1-{build}'
   image: Visual Studio 2015
@@ -48,7 +48,7 @@
         secure: SN3+YTcNTLpLVVD+/VA9UV2r6EWhR60wVcmZlKOhQwpS98bqSymIA+gDT+yYYnKA
       skip_symbols: true
       symbol_server:
-      artifact: TraktApiSharp.$(libVersion).nupkg
+      artifact: TraktApiSharp.$(packageVersion).nupkg
       on:
         appveyor_repo_tag: true
 
@@ -119,3 +119,11 @@
     verbosity: minimal
 
   configuration: Debug
+  
+  artifacts:
+    - path: Build\Lib\Debug\TraktApiSharp.dll
+      name: DebugAssembly
+    - path: Build\Lib\Debug\TraktApiSharp.pdb
+      name: DebugAssemblyPDB
+    - path: Build\Lib\Debug\TraktApiSharp.XML
+      name: DebugDocumentationXML

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{1741D85A-E2E6-425A-B2C5-632701D3D060}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TraktApiSharp.Example.UWP</RootNamespace>
+    <AssemblyName>TraktApiSharp.Example.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>TraktApiSharp.Example.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\Build\Examples\UWP App\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\..\..\Build\Examples\UWP App\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="TraktApiSharp.Example.UWP_TemporaryKey.pfx" />
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PaginationControl.xaml.cs">
+      <DependentUpon>PaginationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DeviceAuthenticationDialog.xaml.cs">
+      <DependentUpon>DeviceAuthenticationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExceptionDialog.xaml.cs">
+      <DependentUpon>ExceptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OAuthAuthenticationDialog.xaml.cs">
+      <DependentUpon>OAuthAuthenticationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConverter\MovieModelConverter.cs" />
+    <Compile Include="Models\ModelConverter\ShowModelConverter.cs" />
+    <Compile Include="Models\Movies\AnticipatedMovie.cs" />
+    <Compile Include="Models\Movies\BoxOfficeMovie.cs" />
+    <Compile Include="Models\Movies\MostPWCMovie.cs" />
+    <Compile Include="Models\Movies\Movie.cs" />
+    <Compile Include="Models\PageNavigationItem.cs" />
+    <Compile Include="Models\PaginationList.cs" />
+    <Compile Include="Models\Movies\RecentlyUpdatedMovie.cs" />
+    <Compile Include="Models\Movies\TrendingMovie.cs" />
+    <Compile Include="Models\Shows\AnticipatedShow.cs" />
+    <Compile Include="Models\Shows\MostPWCShow.cs" />
+    <Compile Include="Models\Shows\RecentlyUpdatedShow.cs" />
+    <Compile Include="Models\Shows\Show.cs" />
+    <Compile Include="Models\Shows\TrendingShow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AppNavigationService\AppNavigationService.cs" />
+    <Compile Include="Services\SettingsServices\SettingsService.cs" />
+    <Compile Include="Services\TraktService\TraktAuthenticationService.cs" />
+    <Compile Include="Services\TraktService\TraktMoviesService.cs" />
+    <Compile Include="Services\TraktService\TraktServiceProvider.cs" />
+    <Compile Include="Services\TraktService\TraktShowsService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\BoxOfficeMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostAnticipatedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostCollectedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostPlayedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MostWatchedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\MoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\PopularMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\RecentlyUpdatedMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\Movies\TrendingMoviesPageViewModel.cs" />
+    <Compile Include="ViewModels\PaginationViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostAnticipatedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostCollectedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostPlayedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\MostWatchedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\PopularShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\RecentlyUpdatedShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\ShowsPageViewModel.cs" />
+    <Compile Include="ViewModels\Shows\TrendingShowsPageViewModel.cs" />
+    <Compile Include="Views\Busy.xaml.cs">
+      <DependentUpon>Busy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\BoxOfficeMoviesPage.xaml.cs">
+      <DependentUpon>BoxOfficeMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostAnticipatedMoviesPage.xaml.cs">
+      <DependentUpon>MostAnticipatedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostCollectedMoviesPage.xaml.cs">
+      <DependentUpon>MostCollectedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostPlayedMoviesPage.xaml.cs">
+      <DependentUpon>MostPlayedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MostWatchedMoviesPage.xaml.cs">
+      <DependentUpon>MostWatchedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\MoviesPage.xaml.cs">
+      <DependentUpon>MoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\PopularMoviesPage.xaml.cs">
+      <DependentUpon>PopularMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\RecentlyUpdatedMoviesPage.xaml.cs">
+      <DependentUpon>RecentlyUpdatedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movies\TrendingMoviesPage.xaml.cs">
+      <DependentUpon>TrendingMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\MostAnticipatedShowsPage.xaml.cs">
+      <DependentUpon>MostAnticipatedShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\MostCollectedShowsPage.xaml.cs">
+      <DependentUpon>MostCollectedShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\MostPlayedShowsPage.xaml.cs">
+      <DependentUpon>MostPlayedShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\MostWatchedShowsPage.xaml.cs">
+      <DependentUpon>MostWatchedShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\PopularShowsPage.xaml.cs">
+      <DependentUpon>PopularShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\RecentlyUpdatedShowsPage.xaml.cs">
+      <DependentUpon>RecentlyUpdatedShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\ShowsPage.xaml.cs">
+      <DependentUpon>ShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shows\TrendingShowsPage.xaml.cs">
+      <DependentUpon>TrendingShowsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\PaginationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DeviceAuthenticationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ExceptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\OAuthAuthenticationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Custom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Busy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Movies\BoxOfficeMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostAnticipatedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostCollectedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostPlayedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MostWatchedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\MoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\PopularMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\RecentlyUpdatedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Movies\TrendingMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\MostAnticipatedShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\MostCollectedShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\MostPlayedShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\MostWatchedShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\PopularShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\RecentlyUpdatedShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\ShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shows\TrendingShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Source\Lib\TraktApiSharp\TraktApiSharp.csproj">
+      <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
+      <Name>TraktApiSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

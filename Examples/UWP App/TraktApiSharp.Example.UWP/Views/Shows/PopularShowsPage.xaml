@@ -1,0 +1,95 @@
+﻿<Page x:Class="TraktApiSharp.Example.UWP.Views.Shows.PopularShowsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:appControls="using:TraktApiSharp.Example.UWP.Controls"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TraktApiSharp.Example.UWP.Views.Shows"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:TraktApiSharp.Example.UWP.Models.Shows"
+      xmlns:uwpControls="using:AppStudio.Uwp.Controls"
+      xmlns:vm="using:TraktApiSharp.Example.UWP.ViewModels.Shows"
+      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:PopularShowsPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:PageHeader x:Name="pageHeader"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True"
+                             Text="Popular Shows">
+
+            <!--  secondary commands  -->
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTrendingShows}" Label="Trending Shows" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostPlayedShows}" Label="Most Played Shows" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostWatchedShows}" Label="Most Watched Shows" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostCollectedShows}" Label="Most Collected Shows" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoMostAnticipatedShows}" Label="Most Anticipated Shows" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoRecentlyUpdatedShows}" Label="Recently Updated Shows" />
+                <AppBarSeparator />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktSettings}" Label="Trakt Client Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoTraktAuthorization}" Label="Trakt Authorization" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoSettings}" Label="Application Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Navigation.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>
+
+        </controls:PageHeader>
+
+        <uwpControls:ResponsiveGridView Margin="12"
+                                        DesiredWidth="400"
+                                        ItemHeight="250"
+                                        ItemsSource="{x:Bind ViewModel.PopularShows, Mode=OneWay}"
+                                        RelativePanel.Above="pagination"
+                                        RelativePanel.AlignLeftWithPanel="True"
+                                        RelativePanel.AlignRightWithPanel="True"
+                                        RelativePanel.Below="pageHeader">
+            <uwpControls:ResponsiveGridView.ItemTemplate>
+                <DataTemplate x:DataType="models:Show">
+                    <RelativePanel>
+                        <uwpControls:ImageEx Background="Black"
+                                             RelativePanel.AlignBottomWithPanel="True"
+                                             RelativePanel.AlignLeftWithPanel="True"
+                                             RelativePanel.AlignRightWithPanel="True"
+                                             RelativePanel.AlignTopWithPanel="True"
+                                             Source="{x:Bind Images.FanArt.Thumb}"
+                                             Stretch="UniformToFill" />
+
+                        <StackPanel Background="Black"
+                                    Opacity="0.8"
+                                    Orientation="Horizontal"
+                                    RelativePanel.AlignBottomWithPanel="True"
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    RelativePanel.AlignRightWithPanel="True">
+                            <TextBlock Margin="12,4,4,4"
+                                       Foreground="White"
+                                       TextWrapping="WrapWholeWords">
+                                <Run FontSize="16" Text="{x:Bind Title}" />
+                                <Run FontSize="12"
+                                     Foreground="{ThemeResource CustomColorBrush}"
+                                     Text="{x:Bind Year}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </RelativePanel>
+                </DataTemplate>
+            </uwpControls:ResponsiveGridView.ItemTemplate>
+        </uwpControls:ResponsiveGridView>
+
+        <appControls:PaginationControl x:Name="pagination"
+                                       Margin="4"
+                                       CurrentPage="{x:Bind ViewModel.CurrentPage, Mode=OneWay}"
+                                       ItemsPerPage="{x:Bind ViewModel.ItemsPerPage, Mode=OneWay}"
+                                       NextPageCommand="{x:Bind ViewModel.GoToNextPage, Mode=OneWay}"
+                                       PreviousPageCommand="{x:Bind ViewModel.GoToPreviousPage, Mode=OneWay}"
+                                       RelativePanel.AlignBottomWithPanel="True"
+                                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                       SelectPageCommand="{x:Bind ViewModel.GoToSelectedPage, Mode=OneWay}"
+                                       SelectedLimit="{x:Bind ViewModel.SelectedLimit, Mode=TwoWay}"
+                                       SelectedPage="{x:Bind ViewModel.SelectedPage, Mode=TwoWay}"
+                                       TotalItemCount="{x:Bind ViewModel.TotalItems, Mode=OneWay}"
+                                       TotalPageCount="{x:Bind ViewModel.TotalPages, Mode=OneWay}" />
+    </RelativePanel>
+</Page>

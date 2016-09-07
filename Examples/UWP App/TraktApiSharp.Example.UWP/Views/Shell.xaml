@@ -1,0 +1,79 @@
+<Page x:Class="TraktApiSharp.Example.UWP.Views.Shell"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="using:Template10.Controls"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TraktApiSharp.Example.UWP.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:movieViews="using:TraktApiSharp.Example.UWP.Views.Movies"
+      xmlns:showViews="using:TraktApiSharp.Example.UWP.Views.Shows"
+      xmlns:views="using:TraktApiSharp.Example.UWP.Views"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
+
+        <Controls:HamburgerMenu.PrimaryButtons>
+            <!--  mainpage button  -->
+            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry"
+                                          ClearHistory="True"
+                                          PageType="views:MainPage">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Home" />
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Home" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+
+            <!--  movies button  -->
+            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="movieViews:MoviesPage">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Home" />
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Movies" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+
+            <!--  shows button  -->
+            <Controls:HamburgerButtonInfo AutomationProperties.Name="Jerry" PageType="showViews:ShowsPage">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Home" />
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Shows" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+        </Controls:HamburgerMenu.PrimaryButtons>
+
+        <Controls:HamburgerMenu.SecondaryButtons>
+            <!--  settingspage button  -->
+            <Controls:HamburgerButtonInfo x:Name="SettingsButton"
+                                          PageParameter="0"
+                                          PageType="views:SettingsPage">
+                <Controls:HamburgerButtonInfo.NavigationTransitionInfo>
+                    <SuppressNavigationTransitionInfo />
+                </Controls:HamburgerButtonInfo.NavigationTransitionInfo>
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Setting" />
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Settings" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+        </Controls:HamburgerMenu.SecondaryButtons>
+
+    </Controls:HamburgerMenu>
+
+</Page>
