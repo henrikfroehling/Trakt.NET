@@ -583,9 +583,10 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{days}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}", calendarNewShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days).Result;
 
@@ -598,6 +599,7 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var filter = new TraktCalendarFilter()
@@ -609,7 +611,7 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{days}?{filter.ToString()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
                                                       calendarNewShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, null, filter).Result;
@@ -765,6 +767,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var extendedOption = new TraktExtendedOption();
@@ -772,7 +775,8 @@
             extendedOption.Full = true;
             extendedOption.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{days}?extended={extendedOption.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuth(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}", calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedOption).Result;
 
@@ -785,6 +789,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var extendedOption = new TraktExtendedOption();
@@ -802,7 +807,7 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithoutOAuth(
-                $"calendars/all/shows/new/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
                 calendarShowsJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedOption, filter).Result;
