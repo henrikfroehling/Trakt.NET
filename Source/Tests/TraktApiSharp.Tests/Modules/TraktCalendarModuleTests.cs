@@ -2881,9 +2881,11 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+                                                   calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
 
@@ -2896,6 +2898,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var filter = new TraktCalendarFilter()
@@ -2907,7 +2910,7 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}?{filter.ToString()}",
+            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
                                                    calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
@@ -3063,6 +3066,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var extendedOption = new TraktExtendedOption();
@@ -3070,7 +3074,8 @@
             extendedOption.Full = true;
             extendedOption.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{days}?extended={extendedOption.ToString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuth(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}", calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedOption).Result;
 
@@ -3083,6 +3088,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
+            var today = DateTime.UtcNow;
             var days = 14;
 
             var extendedOption = new TraktExtendedOption();
@@ -3100,7 +3106,7 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/premieres/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedOption.ToString()}&{filter.ToString()}",
                 calendarSeasonPremieresJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedOption, filter).Result;
