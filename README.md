@@ -147,4 +147,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-**Copyright (c) 2016 [Henrik Fröhling](mailto:henrik.froehling+traktapisharp@gmail.com?subject=TraktApiSharp)**
+**Copyright (c) 2016 [Henrik Fröhling](mailto:support@traktapisharp.net)**
