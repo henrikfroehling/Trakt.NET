@@ -74,6 +74,7 @@
     <Compile Include="Enums\TraktMediaType.cs" />
     <Compile Include="Enums\TraktObjectType.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
+    <Compile Include="Enums\TraktSearchField.cs" />
     <Compile Include="Enums\TraktSearchIdLookupType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />

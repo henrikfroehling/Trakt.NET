@@ -27,11 +27,12 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="searchResultType">
+        /// <param name="searchResultTypes">
         /// The object type(s), for which will be searched. See also <seealso cref="TraktSearchResultType" />.
         /// Multiple <see cref="TraktSearchResultType" /> values can be combined with a binary operator, like this: TraktSearchResultType.Movie | TraktSearchResultType.Show.
         /// </param>
         /// <param name="searchQuery">The query, for which will be searched.</param>
+        /// <param name="searchFields">Determines the text fields, which will be searched. See also <seealso cref="TraktSearchField" />.</param>
         /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
@@ -53,18 +54,19 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultType, [NotNull] string searchQuery,
-                                                                                                 TraktSearchFilter filter = null,
+        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
+                                                                                                 TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                                  TraktExtendedOption extendedOption = null,
                                                                                                  int? page = null, int? limitPerPage = null)
         {
-            Validate(searchResultType);
+            Validate(searchResultTypes);
             Validate(searchQuery);
 
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
             {
-                ResultType = searchResultType,
+                ResultTypes = searchResultTypes,
                 Query = searchQuery,
+                SearchFields = searchFields,
                 Filter = filter,
                 ExtendedOption = extendedOption,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
@@ -121,7 +123,7 @@
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
         /// <para>OAuth authorization not required.</para>
-        /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchField, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>

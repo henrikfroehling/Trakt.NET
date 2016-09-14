@@ -60,40 +60,45 @@
 
             // -----------------------------------------------------
 
-            var movieResult = TraktSearchResultType.Movie;
+            result = TraktSearchResultType.Movie;
 
-            movieResult.Value.Should().Be(1);
-            movieResult.ObjectName.Should().Be("movie");
-            movieResult.UriName.Should().Be("movie");
-            movieResult.DisplayName.Should().Be("Movie");
+            result.Value.Should().Be(1);
+            result.ObjectName.Should().Be("movie");
+            result.UriName.Should().Be("movie");
+            result.DisplayName.Should().Be("Movie");
 
-            var movieAndShowResult = TraktSearchResultType.Movie | TraktSearchResultType.Show;
+            var oldResult = result;
+            result = TraktSearchResultType.Movie | TraktSearchResultType.Show;
 
-            movieAndShowResult.Value.Should().Be(movieResult.Value | TraktSearchResultType.Show.Value);
-            movieAndShowResult.ObjectName.Should().Be("movie,show");
-            movieAndShowResult.UriName.Should().Be("movie,show");
-            movieAndShowResult.DisplayName.Should().Be("Movie, Show");
+            oldResult = result;
+            result.Value.Should().Be(oldResult.Value | TraktSearchResultType.Show.Value);
+            result.ObjectName.Should().Be("movie,show");
+            result.UriName.Should().Be("movie,show");
+            result.DisplayName.Should().Be("Movie, Show");
 
-            var movieAndShowAndEpisodeResult = movieAndShowResult | TraktSearchResultType.Episode;
+            oldResult = result;
+            result = result | TraktSearchResultType.Episode;
 
-            movieAndShowAndEpisodeResult.Value.Should().Be(movieAndShowResult.Value | TraktSearchResultType.Episode.Value);
-            movieAndShowAndEpisodeResult.ObjectName.Should().Be("movie,show,episode");
-            movieAndShowAndEpisodeResult.UriName.Should().Be("movie,show,episode");
-            movieAndShowAndEpisodeResult.DisplayName.Should().Be("Movie, Show, Episode");
+            result.Value.Should().Be(oldResult.Value | TraktSearchResultType.Episode.Value);
+            result.ObjectName.Should().Be("movie,show,episode");
+            result.UriName.Should().Be("movie,show,episode");
+            result.DisplayName.Should().Be("Movie, Show, Episode");
 
-            var movieAndShowAndEpisodeAndPersonResult = movieAndShowAndEpisodeResult | TraktSearchResultType.Person;
+            oldResult = result;
+            result = result | TraktSearchResultType.Person;
 
-            movieAndShowAndEpisodeAndPersonResult.Value.Should().Be(movieAndShowAndEpisodeResult.Value | TraktSearchResultType.Person.Value);
-            movieAndShowAndEpisodeAndPersonResult.ObjectName.Should().Be("movie,show,episode,person");
-            movieAndShowAndEpisodeAndPersonResult.UriName.Should().Be("movie,show,episode,person");
-            movieAndShowAndEpisodeAndPersonResult.DisplayName.Should().Be("Movie, Show, Episode, Person");
+            result.Value.Should().Be(oldResult.Value | TraktSearchResultType.Person.Value);
+            result.ObjectName.Should().Be("movie,show,episode,person");
+            result.UriName.Should().Be("movie,show,episode,person");
+            result.DisplayName.Should().Be("Movie, Show, Episode, Person");
 
-            var movieAndShowAndEpisodeAndPersonAndListResult = movieAndShowAndEpisodeAndPersonResult | TraktSearchResultType.List;
+            oldResult = result;
+            result = result | TraktSearchResultType.List;
 
-            movieAndShowAndEpisodeAndPersonAndListResult.Value.Should().Be(movieAndShowAndEpisodeAndPersonResult.Value | TraktSearchResultType.List.Value);
-            movieAndShowAndEpisodeAndPersonAndListResult.ObjectName.Should().Be("movie,show,episode,person,list");
-            movieAndShowAndEpisodeAndPersonAndListResult.UriName.Should().Be("movie,show,episode,person,list");
-            movieAndShowAndEpisodeAndPersonAndListResult.DisplayName.Should().Be("Movie, Show, Episode, Person, List");
+            result.Value.Should().Be(oldResult.Value | TraktSearchResultType.List.Value);
+            result.ObjectName.Should().Be("movie,show,episode,person,list");
+            result.UriName.Should().Be("movie,show,episode,person,list");
+            result.DisplayName.Should().Be("Movie, Show, Episode, Person, List");
         }
 
         [TestMethod]
