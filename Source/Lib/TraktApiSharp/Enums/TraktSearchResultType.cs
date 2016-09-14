@@ -40,7 +40,7 @@
         /// <param name="second">The second enumeration.</param>
         /// <returns>
         /// A binary combination of both given enumerations or null,
-        /// of at least on of the given enumerations is null or unspecified.
+        /// if at least on of the given enumerations is null or unspecified.
         /// </returns>
         public static TraktSearchResultType operator |(TraktSearchResultType first, TraktSearchResultType second)
         {

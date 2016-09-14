@@ -6,6 +6,14 @@ Version 0.3.0
 ---------
 ---------
 
+#### 0.3.2
+*(2016-09-07)*
+
+Fixed:
+- Missing default startDate value in calendar methods
+
+---------
+
 #### 0.3.1
 *(2016-08-30)*
 

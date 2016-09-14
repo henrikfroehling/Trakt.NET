@@ -2,9 +2,9 @@
 # build in Release mode
 -
   environment:
-    packageVersion: 0.3.1
+    packageVersion: 0.3.2
 
-  version: '{branch}-v0.3.1-{build}'
+  version: '{branch}-v0.3.2-{build}'
   image: Visual Studio 2015
   
   install:

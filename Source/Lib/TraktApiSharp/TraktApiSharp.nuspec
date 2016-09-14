@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.3.1</version>
+        <version>0.3.2</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -19,8 +19,7 @@ Features
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>Fixed:
-- NullReferenceException in TraktSerializationService
-- IsExpired calculation of TraktAuthorization
+- Missing default startDate value in calendar methods
         </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
