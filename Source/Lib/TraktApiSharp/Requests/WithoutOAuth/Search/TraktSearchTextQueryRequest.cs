@@ -8,7 +8,9 @@
     {
         internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 
-        internal TraktSearchResultType ResultType { get; set; }
+        internal TraktSearchResultType ResultTypes { get; set; }
+
+        internal TraktSearchField SearchFields { get; set; }
 
         internal string Query { get; set; }
 
@@ -16,12 +18,15 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("type", ResultType.UriName);
+            uriParams.Add("type", ResultTypes.UriName);
             uriParams.Add("query", Query);
+
+            if (SearchFields != null && SearchFields != TraktSearchField.Unspecified)
+                uriParams.Add("fields", SearchFields.UriName);
 
             return uriParams;
         }
 
-        protected override string UriTemplate => "search/{type}{?query,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
+        protected override string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
     }
 }

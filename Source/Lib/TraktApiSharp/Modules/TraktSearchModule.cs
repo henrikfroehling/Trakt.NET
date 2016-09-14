@@ -63,8 +63,9 @@
 
             return await QueryAsync(new TraktSearchTextQueryRequest(Client)
             {
-                ResultType = searchResultTypes,
+                ResultTypes = searchResultTypes,
                 Query = searchQuery,
+                SearchFields = searchFields,
                 Filter = filter,
                 ExtendedOption = extendedOption,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
