@@ -69,6 +69,32 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}",
+            //                                                    searchResults, 1, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithFilter()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -98,6 +124,40 @@
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+
+            //var type = TraktSearchResultType.Show;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}",
+            //                                                    searchResults, 1, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -138,6 +198,48 @@
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+
+            //var type = TraktSearchResultType.Episode;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
+            //    searchResults, 1, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            extendedOption).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -182,6 +284,49 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndPageAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+
+            //var type = TraktSearchResultType.Person;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+            //    searchResults, page, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            extendedOption, page).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -223,6 +368,49 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndExtendedOptionAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.List;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+            //    searchResults, 1, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            extendedOption, null, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -257,6 +445,42 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPageAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}&page={page}",
+            //                                                    searchResults, page, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            null, page).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -288,6 +512,42 @@
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&{filter.ToString()}&limit={limit}",
+            //                                                    searchResults, 1, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            null, null, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -327,6 +587,44 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithFilterAndPageAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var filter = new TraktSearchFilter()
+            //    .WithYears(2011)
+            //    .WithGenres("action", "thriller")
+            //    .WithLanguages("en", "de")
+            //    .WithCountries("us")
+            //    .WithRuntimes(70, 140)
+            //    .WithRatings(70, 95);
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&{filter.ToString()}&page={page}&limit={limit}",
+            //    searchResults, page, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
+            //                                                                            null, page, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOption()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -355,6 +653,39 @@
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}",
+            //                                                    searchResults, 1, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            extendedOption).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -391,6 +722,41 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}",
+            //    searchResults, page, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            extendedOption, page).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -421,6 +787,41 @@
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
+            //    searchResults, 1, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            extendedOption, null, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -458,6 +859,42 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //var extendedOption = new TraktExtendedOption
+            //{
+            //    Full = true,
+            //    Images = true
+            //};
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth(
+            //    $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            //    searchResults, page, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            extendedOption, page, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -481,6 +918,34 @@
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPageAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&page={page}",
+            //                                                    searchResults, page, 10, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            null, page).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(10);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
@@ -510,6 +975,34 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&limit={limit}",
+            //                                                    searchResults, 1, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            null, null, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(1);
+            //response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
         public void TestTraktSearchModuleGetTextQueryResultsWithPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
@@ -534,6 +1027,35 @@
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchModuleGetTextQueryResultsWithPageAndLimitAndFields()
+        {
+            Assert.Fail();
+
+            //var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
+            //searchResults.Should().NotBeNullOrEmpty();
+
+            //var itemCount = 5;
+            //var page = 2;
+            //var limit = 4;
+
+            //var type = TraktSearchResultType.Movie;
+            //var query = "batman";
+
+            //TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&page={page}&limit={limit}",
+            //                                                    searchResults, page, limit, 1, itemCount);
+
+            //var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
+            //                                                                            null, page, limit).Result;
+
+            //response.Should().NotBeNull();
+            //response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            //response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            //response.Limit.Should().HaveValue().And.Be(limit);
+            //response.Page.Should().HaveValue().And.Be(page);
+            //response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [TestMethod]
