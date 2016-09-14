@@ -32,6 +32,7 @@
         /// Multiple <see cref="TraktSearchResultType" /> values can be combined with a binary operator, like this: TraktSearchResultType.Movie | TraktSearchResultType.Show.
         /// </param>
         /// <param name="searchQuery">The query, for which will be searched.</param>
+        /// <param name="searchFields">Determines the text fields, which will be searched. See also <seealso cref="TraktSearchField" />.</param>
         /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
