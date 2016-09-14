@@ -1,6 +1,17 @@
 Release notes
 =============
 
+Version 0.4.0
+===
+---------
+---------
+
+#### 0.4.0
+*(2016-09-14)*
+
+Added:
+- Support for new search fields
+
 Version 0.3.0
 ===
 ---------
