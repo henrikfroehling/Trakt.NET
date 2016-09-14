@@ -27,5 +27,20 @@
         private TraktSearchField(int value, string objectName, string uriName, string displayName)
             : base(value, objectName, uriName, displayName) { }
 
+        public static TraktSearchField operator |(TraktSearchField first, TraktSearchField second)
+        {
+            if (first == null || second == null)
+                return null;
+
+            if (first == Unspecified || second == Unspecified)
+                return Unspecified;
+
+            var newValue = first.Value | second.Value;
+            var newObjectName = string.Join(",", first.ObjectName, second.ObjectName);
+            var newUriName = string.Join(",", first.UriName, second.UriName);
+            var newDisplayName = string.Join(", ", first.DisplayName, second.DisplayName);
+
+            return new TraktSearchField(newValue, newObjectName, newUriName, newDisplayName);
+        }
     }
 }
