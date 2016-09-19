@@ -3,13 +3,13 @@
     using Exceptions;
     using System;
 
-    public class TraktResponse<T> : ITraktResponseHeaders
+    public class TraktResponse<TItem> : ITraktResponseHeaders
     {
         public bool HasValue { get; }
 
-        private T _value;
+        private TItem _value;
 
-        public T Value
+        public TItem Value
         {
             get
             {
@@ -28,10 +28,10 @@
 
         public string SortHow { get; set; }
 
-        public TraktResponse(T value)
+        public TraktResponse(TItem value)
         {
             _value = value;
-            HasValue = true;
+            HasValue = value != null;
         }
 
         public TraktResponse(TraktException exception)
@@ -40,19 +40,19 @@
             HasValue = false;
         }
 
-        public static explicit operator T(TraktResponse<T> response) => response.Value;
+        public static explicit operator TItem(TraktResponse<TItem> response) => response.Value;
 
-        public static implicit operator TraktResponse<T>(T value) => new TraktResponse<T>(value);
+        public static implicit operator TraktResponse<TItem>(TItem value) => new TraktResponse<TItem>(value);
 
         public override bool Equals(object obj)
         {
-            if (obj is TraktResponse<T>)
-                return Equals((TraktResponse<T>)obj);
+            if (obj is TraktResponse<TItem>)
+                return Equals((TraktResponse<TItem>)obj);
 
             return false;
         }
 
-        public bool Equals(TraktResponse<T> other)
+        public bool Equals(TraktResponse<TItem> other)
         {
             if (HasValue && other.HasValue)
                 return Equals(_value, other._value);
