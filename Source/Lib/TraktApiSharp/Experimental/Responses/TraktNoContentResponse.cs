@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Experimental.Base
+﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Exceptions;
 
