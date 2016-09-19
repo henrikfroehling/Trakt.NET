@@ -118,6 +118,10 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
+    <Compile Include="Experimental\Requests\ITraktListQueryable.cs" />
+    <Compile Include="Experimental\Requests\ITraktNoContentQueryable.cs" />
+    <Compile Include="Experimental\Requests\ITraktPaginationQueryable.cs" />
+    <Compile Include="Experimental\Requests\ITraktQueryable.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
