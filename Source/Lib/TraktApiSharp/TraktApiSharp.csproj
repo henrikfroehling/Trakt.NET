@@ -119,6 +119,10 @@
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktBaseRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktListQueryable.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktNoContentQueryable.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktPaginationQueryable.cs" />

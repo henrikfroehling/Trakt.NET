@@ -23,13 +23,7 @@
             }
         }
 
-        public HttpMethod Method
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        protected abstract HttpMethod Method { get; }
 
         public TRequestBody RequestBody
         {
