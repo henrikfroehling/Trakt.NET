@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
+    using Interfaces;
     using Responses;
     using System;
     using System.Threading.Tasks;
