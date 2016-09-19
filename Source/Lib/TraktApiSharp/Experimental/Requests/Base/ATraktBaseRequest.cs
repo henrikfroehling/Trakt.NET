@@ -1,14 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
-    using Interfaces;
-    using Responses;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
-    using System.Threading.Tasks;
     using TraktApiSharp.Requests;
 
-    internal abstract class TraktListRequest<TItem, TRequestBody> : ITraktListQueryable<TItem>, ITraktRequest<TRequestBody>
+    internal abstract class ATraktBaseRequest<TRequestBody>
     {
         public TraktAuthorizationRequirement AuthorizationRequirement
         {
@@ -93,11 +90,6 @@
         }
 
         public IDictionary<string, object> GetUriPathParameters()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TraktListResponse<TItem>> QueryAsync()
         {
             throw new NotImplementedException();
         }
