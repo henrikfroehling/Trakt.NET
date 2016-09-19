@@ -3,7 +3,7 @@
     using Exceptions;
     using System.Collections.Generic;
 
-    public class TraktPaginationResponse<TItem> : TraktResponse<List<TItem>>, ITraktPaginationResponseHeaders
+    public class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponseHeaders
     {
         public int? ItemCount { get; set; }
 
@@ -13,30 +13,14 @@
 
         public int? PageCount { get; set; }
 
-        public TraktPaginationResponse(List<TItem> value) : base(value) { }
+        internal TraktPaginationResponse() : base() { }
 
-        public TraktPaginationResponse(TraktException exception) : base(exception) { }
+        internal TraktPaginationResponse(List<TContentType> value) : base(value) { }
 
-        public static explicit operator List<TItem>(TraktPaginationResponse<TItem> response) => response.Value;
+        internal TraktPaginationResponse(TraktException exception) : base(exception) { }
 
-        public static implicit operator TraktPaginationResponse<TItem>(List<TItem> value) => new TraktPaginationResponse<TItem>(value);
+        public static explicit operator List<TContentType>(TraktPaginationResponse<TContentType> response) => response.Value;
 
-        public override bool Equals(object obj)
-        {
-            if (obj is TraktPaginationResponse<TItem>)
-                return Equals((TraktPaginationResponse<TItem>)obj);
-
-            return false;
-        }
-
-        public bool Equals(TraktPaginationResponse<TItem> other)
-        {
-            if (HasValue && other.HasValue)
-                return Equals(Value, other.Value);
-
-            return HasValue == other.HasValue;
-        }
-
-        public override int GetHashCode() => HasValue ? Value.GetHashCode() : base.GetHashCode();
+        public static implicit operator TraktPaginationResponse<TContentType>(List<TContentType> value) => new TraktPaginationResponse<TContentType>(value);
     }
 }
