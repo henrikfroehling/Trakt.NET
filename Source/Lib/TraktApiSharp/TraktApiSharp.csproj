@@ -122,6 +122,7 @@
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktNoContentQueryable.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktPaginationQueryable.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktQueryable.cs" />
+    <Compile Include="Experimental\Requests\Base\Interfaces\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Base\TraktListRequest.cs" />
     <Compile Include="Experimental\Requests\Base\TraktNoContentRequest.cs" />
     <Compile Include="Experimental\Requests\Base\TraktPaginationRequest.cs" />
