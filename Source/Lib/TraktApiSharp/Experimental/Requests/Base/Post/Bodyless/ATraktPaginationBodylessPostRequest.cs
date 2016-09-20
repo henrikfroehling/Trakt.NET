@@ -3,7 +3,7 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationBodylessPostResponse<TItem> : ATraktPaginationRequest<TItem, object>
+    internal abstract class ATraktPaginationBodylessPostRequest<TItem> : ATraktPaginationRequest<TItem, object>
     {
         protected override HttpMethod Method => HttpMethod.Put;
 
