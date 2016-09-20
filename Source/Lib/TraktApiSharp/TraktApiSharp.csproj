@@ -121,9 +121,13 @@
     <Compile Include="Experimental\Requests\Base\ATraktBaseRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktListGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktListQueryable.cs" />
     <Compile Include="Experimental\Requests\Base\Interfaces\ITraktNoContentQueryable.cs" />
