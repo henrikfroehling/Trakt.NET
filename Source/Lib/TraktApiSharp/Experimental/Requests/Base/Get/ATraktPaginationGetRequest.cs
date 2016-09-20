@@ -6,7 +6,7 @@
 
     internal abstract class ATraktPaginationGetRequest<TItem> : ATraktPaginationRequest<TItem>, ITraktRequest
     {
-        public ATraktPaginationGetRequest(TraktClient client) : base(client) { }
+        internal ATraktPaginationGetRequest(TraktClient client) : base(client) { }
 
         public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 

@@ -6,7 +6,7 @@
 
     internal abstract class ATraktListPutRequest<TItem, TRequestBody> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>
     {
-        public ATraktListPutRequest(TraktClient client) : base(client)
+        internal ATraktListPutRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
         }

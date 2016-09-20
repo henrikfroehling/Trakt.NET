@@ -6,7 +6,7 @@
 
     internal abstract class ATraktNoContentPostRequest<TRequestBody> : ATraktNoContentRequest, ITraktRequest, ITraktHasRequestBody<TRequestBody>
     {
-        public ATraktNoContentPostRequest(TraktClient client) : base(client)
+        internal ATraktNoContentPostRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
         }

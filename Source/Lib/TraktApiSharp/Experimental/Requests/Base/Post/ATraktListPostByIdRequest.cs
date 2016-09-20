@@ -6,7 +6,7 @@
 
     internal abstract class ATraktListPostByIdRequest<TItem, TRequestBody> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>, ITraktHasId
     {
-        public ATraktListPostByIdRequest(TraktClient client) : base(client)
+        internal ATraktListPostByIdRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
             RequestId = new TraktRequestId();

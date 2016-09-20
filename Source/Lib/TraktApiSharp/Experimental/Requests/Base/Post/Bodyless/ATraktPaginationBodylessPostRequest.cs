@@ -6,7 +6,7 @@
 
     internal abstract class ATraktPaginationBodylessPostRequest<TItem> : ATraktPaginationRequest<TItem>, ITraktRequest
     {
-        public ATraktPaginationBodylessPostRequest(TraktClient client) : base(client) { }
+        internal ATraktPaginationBodylessPostRequest(TraktClient client) : base(client) { }
 
         public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

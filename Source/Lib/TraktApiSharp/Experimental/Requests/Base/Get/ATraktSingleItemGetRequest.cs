@@ -6,7 +6,7 @@
 
     internal abstract class ATraktSingleItemGetRequest<TItem> : ATraktSingleItemRequest<TItem>, ITraktRequest
     {
-        public ATraktSingleItemGetRequest(TraktClient client) : base(client) { }
+        internal ATraktSingleItemGetRequest(TraktClient client) : base(client) { }
 
         public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 

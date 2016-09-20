@@ -6,7 +6,7 @@
 
     internal abstract class ATraktPaginationPutByIdRequest<TItem, TRequestBody> : ATraktPaginationRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>, ITraktHasId
     {
-        public ATraktPaginationPutByIdRequest(TraktClient client) : base(client)
+        internal ATraktPaginationPutByIdRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
             RequestId = new TraktRequestId();

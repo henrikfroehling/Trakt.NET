@@ -6,7 +6,7 @@
 
     internal abstract class ATraktListGetByIdRequest<TItem> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasId
     {
-        public ATraktListGetByIdRequest(TraktClient client) : base(client)
+        internal ATraktListGetByIdRequest(TraktClient client) : base(client)
         {
             RequestId = new TraktRequestId();
         }

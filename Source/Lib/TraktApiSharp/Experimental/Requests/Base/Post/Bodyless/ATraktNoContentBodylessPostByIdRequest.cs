@@ -6,7 +6,7 @@
 
     internal abstract class ATraktNoContentBodylessPostByIdRequest : ATraktNoContentRequest, ITraktRequest, ITraktHasId
     {
-        public ATraktNoContentBodylessPostByIdRequest(TraktClient client) : base(client)
+        internal ATraktNoContentBodylessPostByIdRequest(TraktClient client) : base(client)
         {
             RequestId = new TraktRequestId();
         }

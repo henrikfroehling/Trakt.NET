@@ -6,7 +6,7 @@
 
     internal abstract class ATraktNoContentBodylessPostRequest : ATraktNoContentRequest, ITraktRequest
     {
-        public ATraktNoContentBodylessPostRequest(TraktClient client) : base(client) { }
+        internal ATraktNoContentBodylessPostRequest(TraktClient client) : base(client) { }
 
         public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

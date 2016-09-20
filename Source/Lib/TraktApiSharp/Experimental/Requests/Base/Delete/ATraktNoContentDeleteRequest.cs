@@ -6,7 +6,7 @@
 
     internal abstract class ATraktNoContentDeleteRequest : ATraktNoContentRequest, ITraktRequest
     {
-        public ATraktNoContentDeleteRequest(TraktClient client) : base(client) { }
+        internal ATraktNoContentDeleteRequest(TraktClient client) : base(client) { }
 
         public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

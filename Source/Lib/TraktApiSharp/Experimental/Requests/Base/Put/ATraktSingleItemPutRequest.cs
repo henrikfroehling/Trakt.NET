@@ -6,7 +6,7 @@
 
     internal abstract class ATraktSingleItemPutRequest<TItem, TRequestBody> : ATraktSingleItemRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>
     {
-        public ATraktSingleItemPutRequest(TraktClient client) : base(client)
+        internal ATraktSingleItemPutRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
         }

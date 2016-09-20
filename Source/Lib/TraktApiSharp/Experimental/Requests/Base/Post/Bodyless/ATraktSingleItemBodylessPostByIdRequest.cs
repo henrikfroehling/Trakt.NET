@@ -6,7 +6,7 @@
 
     internal abstract class ATraktSingleItemBodylessPostByIdRequest<TItem> : ATraktSingleItemRequest<TItem>, ITraktRequest, ITraktHasId
     {
-        public ATraktSingleItemBodylessPostByIdRequest(TraktClient client) : base(client)
+        internal ATraktSingleItemBodylessPostByIdRequest(TraktClient client) : base(client)
         {
             RequestId = new TraktRequestId();
         }

@@ -6,7 +6,7 @@
 
     internal abstract class ATraktNoContentPutByIdRequest<TRequestBody> : ATraktNoContentRequest, ITraktRequest, ITraktHasRequestBody<TRequestBody>, ITraktHasId
     {
-        public ATraktNoContentPutByIdRequest(TraktClient client) : base(client)
+        internal ATraktNoContentPutByIdRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
             RequestId = new TraktRequestId();
