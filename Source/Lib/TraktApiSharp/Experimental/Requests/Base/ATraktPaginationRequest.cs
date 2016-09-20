@@ -1,13 +1,18 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
-    using Interfaces;
+    using Interfaces.Requests;
     using Responses;
     using System;
     using System.Threading.Tasks;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationRequest<TItem, TRequestBody> : ATraktBaseRequest<TRequestBody>, ITraktPaginationQueryable<TItem>
+    internal abstract class ATraktPaginationRequest<TItem> : ATraktBaseRequest, ITraktPaginationRequest<TItem>
     {
-        public ATraktPaginationRequest(TraktClient client) : base(client) { }
+        internal ATraktPaginationRequest(TraktClient client) : base(client) { }
+
+        public TraktPaginationOptions PaginationOptions { get; set; }
+
+        public virtual bool SupportsOnlyPaginationParameters => false;
 
         public Task<TraktPaginationResponse<TItem>> QueryAsync()
         {

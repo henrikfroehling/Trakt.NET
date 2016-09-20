@@ -1,13 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
-    using Interfaces;
+    using Interfaces.Requests;
     using Responses;
     using System;
     using System.Threading.Tasks;
 
-    internal abstract class ATraktListRequest<TItem, TRequestBody> : ATraktBaseRequest<TRequestBody>, ITraktListQueryable<TItem>
+    internal abstract class ATraktListRequest<TItem> : ATraktBaseRequest, ITraktListRequest<TItem>
     {
-        public ATraktListRequest(TraktClient client) : base(client) { }
+        internal ATraktListRequest(TraktClient client) : base(client) { }
 
         public Task<TraktListResponse<TItem>> QueryAsync()
         {

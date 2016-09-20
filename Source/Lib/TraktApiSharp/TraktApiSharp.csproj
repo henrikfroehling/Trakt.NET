@@ -119,6 +119,10 @@
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktBaseRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\ATraktListRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktGetByIdRequest.cs" />
@@ -142,10 +146,6 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktPostable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktPostableByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktPostableRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktListRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />

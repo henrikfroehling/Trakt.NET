@@ -6,6 +6,6 @@
     {
         TraktPaginationOptions PaginationOptions { get; set; }
 
-        bool SupportsPaginationParameters { get; }
+        bool SupportsOnlyPaginationParameters { get; }
     }
 }
