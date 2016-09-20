@@ -7,13 +7,7 @@
 
     internal abstract class ATraktBaseRequest<TRequestBody>
     {
-        public TraktAuthorizationRequirement AuthorizationRequirement
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        protected abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 
         public TraktClient Client
         {
@@ -24,6 +18,8 @@
         }
 
         protected abstract HttpMethod Method { get; }
+
+        internal string Id { get; set; }
 
         public TRequestBody RequestBody
         {
@@ -83,14 +79,8 @@
             throw new NotImplementedException();
         }
 
-        public IDictionary<string, object> GetUriPathParameters()
-        {
-            throw new NotImplementedException();
-        }
+        protected virtual IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
 
-        public void Validate()
-        {
-            throw new NotImplementedException();
-        }
+        protected virtual void Validate() { }
     }
 }

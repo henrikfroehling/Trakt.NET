@@ -119,6 +119,8 @@
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktBaseRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteByIdRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
