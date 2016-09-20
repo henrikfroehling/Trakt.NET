@@ -127,6 +127,12 @@
     <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\ITraktHasRequestBody.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktSingleItemPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\TraktRequestBody.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
@@ -542,7 +548,6 @@
   <ItemGroup>
     <Folder Include="Experimental\Requests\Base\Delete\" />
     <Folder Include="Experimental\Requests\Base\Post\Bodyless\" />
-    <Folder Include="Experimental\Requests\Base\Put\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
