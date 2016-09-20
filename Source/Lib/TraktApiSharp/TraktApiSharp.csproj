@@ -133,6 +133,10 @@
     <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktSingleItemPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktListBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktNoContentBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktSingleItemBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequest.cs" />
@@ -550,9 +554,7 @@
     <Compile Include="Services\TraktLanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Experimental\Requests\Base\Post\Bodyless\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
