@@ -1,14 +1,15 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
+﻿namespace TraktApiSharp.Experimental.Requests.Base.Post.Bodyless
 {
+    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktNoContentBodylessPostRequest : ATraktNoContentRequest<object>
+    internal abstract class ATraktNoContentBodylessPostRequest : ATraktNoContentRequest, ITraktRequest
     {
         public ATraktNoContentBodylessPostRequest(TraktClient client) : base(client) { }
 
-        protected override HttpMethod Method => HttpMethod.Put;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public HttpMethod Method => HttpMethod.Post;
     }
 }

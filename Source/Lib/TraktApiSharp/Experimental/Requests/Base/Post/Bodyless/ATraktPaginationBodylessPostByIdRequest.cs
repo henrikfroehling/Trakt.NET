@@ -1,28 +1,26 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
+﻿namespace TraktApiSharp.Experimental.Requests.Base.Post.Bodyless
 {
-    using System;
-    using System.Collections.Generic;
+    using Interfaces;
+    using System.Net.Http;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationBodylessPostByIdRequest<TItem> : ATraktPaginationBodylessPostRequest<TItem>
+    internal abstract class ATraktPaginationBodylessPostByIdRequest<TItem> : ATraktPaginationRequest<TItem>, ITraktRequest, ITraktHasId
     {
-        public ATraktPaginationBodylessPostByIdRequest(TraktClient client) : base(client) { }
-
-        protected override IDictionary<string, object> GetUriPathParameters()
+        public ATraktPaginationBodylessPostByIdRequest(TraktClient client) : base(client)
         {
-            var uriParams = base.GetUriPathParameters();
-            uriParams.Add("id", Id);
-            return uriParams;
+            RequestId = new TraktRequestId();
         }
 
-        protected override void Validate()
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
+        public HttpMethod Method => HttpMethod.Post;
+
+        public string Id
         {
-            base.Validate();
-
-            if (string.IsNullOrEmpty(Id))
-                throw new ArgumentException("id not valid");
-
-            if (RequestBody == null)
-                throw new ArgumentException("request body not valid");
+            get { return RequestId.Id; }
+            set { RequestId.Id = value; }
         }
+
+        public TraktRequestId RequestId { get; set; }
     }
 }

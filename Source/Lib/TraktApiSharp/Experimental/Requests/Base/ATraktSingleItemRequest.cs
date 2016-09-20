@@ -5,9 +5,9 @@
     using System;
     using System.Threading.Tasks;
 
-    internal abstract class ATraktRequest<TItem, TRequestBody> : ATraktBaseRequest<TRequestBody>, ITraktQueryable<TItem>
+    internal abstract class ATraktSingleItemRequest<TItem> : ATraktBaseRequest, ITraktSingleItemRequest<TItem>
     {
-        public ATraktRequest(TraktClient client) : base(client) { }
+        internal ATraktSingleItemRequest(TraktClient client) : base(client) { }
 
         public Task<TraktResponse<TItem>> QueryAsync()
         {

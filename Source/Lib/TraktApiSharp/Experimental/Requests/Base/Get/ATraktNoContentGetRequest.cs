@@ -1,11 +1,15 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
+    using Interfaces;
     using System.Net.Http;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktNoContentGetRequest : ATraktNoContentRequest<object>
+    internal abstract class ATraktNoContentGetRequest : ATraktNoContentRequest, ITraktRequest
     {
         public ATraktNoContentGetRequest(TraktClient client) : base(client) { }
 
-        protected override HttpMethod Method => HttpMethod.Get;
+        public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
+
+        public HttpMethod Method => HttpMethod.Get;
     }
 }

@@ -1,25 +1,26 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
-    using System;
-    using System.Collections.Generic;
+    using Interfaces;
+    using System.Net.Http;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListGetByIdRequest<TItem> : ATraktListGetRequest<TItem>
+    internal abstract class ATraktListGetByIdRequest<TItem> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasId
     {
-        public ATraktListGetByIdRequest(TraktClient client) : base(client) { }
-
-        protected override IDictionary<string, object> GetUriPathParameters()
+        public ATraktListGetByIdRequest(TraktClient client) : base(client)
         {
-            var uriParams = base.GetUriPathParameters();
-            uriParams.Add("id", Id);
-            return uriParams;
+            RequestId = new TraktRequestId();
         }
 
-        protected override void Validate()
-        {
-            base.Validate();
+        public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 
-            if (string.IsNullOrEmpty(Id))
-                throw new ArgumentException("id not valid");
+        public HttpMethod Method => HttpMethod.Get;
+
+        public string Id
+        {
+            get { return RequestId.Id; }
+            set { RequestId.Id = value; }
         }
+
+        public TraktRequestId RequestId { get; set; }
     }
 }

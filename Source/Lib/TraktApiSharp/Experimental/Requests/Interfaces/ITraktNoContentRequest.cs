@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Base.Interfaces
+﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
     using Responses;
     using System.Threading.Tasks;
 
-    internal interface ITraktNoContentQueryable
+    internal interface ITraktNoContentRequest
     {
         Task<TraktNoContentResponse> QueryAsync();
     }

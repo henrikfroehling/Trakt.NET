@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Base.Interfaces
+﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
     using Responses;
     using System.Threading.Tasks;
 
-    internal interface ITraktListQueryable<TItem>
+    internal interface ITraktListRequest<TItem>
     {
         Task<TraktListResponse<TItem>> QueryAsync();
     }

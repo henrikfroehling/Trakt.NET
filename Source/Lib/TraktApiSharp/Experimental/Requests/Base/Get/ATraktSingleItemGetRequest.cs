@@ -4,9 +4,9 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationGetRequest<TItem> : ATraktPaginationRequest<TItem>, ITraktRequest
+    internal abstract class ATraktSingleItemGetRequest<TItem> : ATraktSingleItemRequest<TItem>, ITraktRequest
     {
-        public ATraktPaginationGetRequest(TraktClient client) : base(client) { }
+        public ATraktSingleItemGetRequest(TraktClient client) : base(client) { }
 
         public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 

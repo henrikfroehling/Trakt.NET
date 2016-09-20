@@ -4,9 +4,9 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListBodylessPostByIdRequest<TItem> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasId
+    internal abstract class ATraktSingleItemBodylessPostByIdRequest<TItem> : ATraktSingleItemRequest<TItem>, ITraktRequest, ITraktHasId
     {
-        public ATraktListBodylessPostByIdRequest(TraktClient client) : base(client)
+        public ATraktSingleItemBodylessPostByIdRequest(TraktClient client) : base(client)
         {
             RequestId = new TraktRequestId();
         }

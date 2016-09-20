@@ -1,28 +1,35 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Put
 {
-    using System;
-    using System.Collections.Generic;
+    using Interfaces;
+    using System.Net.Http;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktNoContentPutByIdRequest<TRequestBody> : ATraktNoContentPutRequest<TRequestBody>
+    internal abstract class ATraktNoContentPutByIdRequest<TRequestBody> : ATraktNoContentRequest, ITraktRequest, ITraktHasRequestBody<TRequestBody>, ITraktHasId
     {
-        public ATraktNoContentPutByIdRequest(TraktClient client) : base(client) { }
-
-        protected override IDictionary<string, object> GetUriPathParameters()
+        public ATraktNoContentPutByIdRequest(TraktClient client) : base(client)
         {
-            var uriParams = base.GetUriPathParameters();
-            uriParams.Add("id", Id);
-            return uriParams;
+            RequestBody = new TraktRequestBody<TRequestBody>();
+            RequestId = new TraktRequestId();
         }
 
-        protected override void Validate()
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
+        public HttpMethod Method => HttpMethod.Put;
+
+        public TraktRequestBody<TRequestBody> RequestBody { get; set; }
+
+        public TRequestBody RequestBodyContent
         {
-            base.Validate();
-
-            if (string.IsNullOrEmpty(Id))
-                throw new ArgumentException("id not valid");
-
-            if (RequestBody == null)
-                throw new ArgumentException("request body not valid");
+            get { return RequestBody.RequestBody; }
+            set { RequestBody.RequestBody = value; }
         }
+
+        public string Id
+        {
+            get { return RequestId.Id; }
+            set { RequestId.Id = value; }
+        }
+
+        public TraktRequestId RequestId { get; set; }
     }
 }

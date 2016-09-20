@@ -4,11 +4,12 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListPutRequest<TItem, TRequestBody> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>
+    internal abstract class ATraktSingleItemPutByIdRequest<TItem, TRequestBody> : ATraktSingleItemRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>, ITraktHasId
     {
-        public ATraktListPutRequest(TraktClient client) : base(client)
+        public ATraktSingleItemPutByIdRequest(TraktClient client) : base(client)
         {
             RequestBody = new TraktRequestBody<TRequestBody>();
+            RequestId = new TraktRequestId();
         }
 
         public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
@@ -22,5 +23,13 @@
             get { return RequestBody.RequestBody; }
             set { RequestBody.RequestBody = value; }
         }
+
+        public string Id
+        {
+            get { return RequestId.Id; }
+            set { RequestId.Id = value; }
+        }
+
+        public TraktRequestId RequestId { get; set; }
     }
 }

@@ -1,85 +1,27 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
+    using Interfaces;
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
-    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktBaseRequest<TRequestBody>
+    internal abstract class ATraktBaseRequest : ITraktUriBuildable
     {
         internal ATraktBaseRequest(TraktClient client)
         {
             Client = client;
         }
 
-        protected abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
+        public abstract string UriTemplate { get; }
+
+        public string Url => BuildUrl();
 
         internal TraktClient Client { get; }
-
-        protected abstract HttpMethod Method { get; }
-
-        internal string Id { get; set; }
-
-        public TRequestBody RequestBody
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public HttpContent RequestBodyContent
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string RequestBodyJson
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public TraktRequestObjectType? RequestObjectType
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string Url
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public string BuildUrl()
         {
             throw new NotImplementedException();
         }
 
-        protected virtual IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
-
-        protected virtual void Validate() { }
+        public virtual IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
     }
 }

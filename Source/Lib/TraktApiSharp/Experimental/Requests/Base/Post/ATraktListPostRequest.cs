@@ -1,23 +1,26 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
 {
-    using System;
+    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListPostRequest<TItem, TRequestBody> : ATraktListRequest<TItem, TRequestBody>
+    internal abstract class ATraktListPostRequest<TItem, TRequestBody> : ATraktListRequest<TItem>, ITraktRequest, ITraktHasRequestBody<TRequestBody>
     {
-        public ATraktListPostRequest(TraktClient client) : base(client) { }
-
-        protected override HttpMethod Method => HttpMethod.Put;
-
-        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
-
-        protected override void Validate()
+        public ATraktListPostRequest(TraktClient client) : base(client)
         {
-            base.Validate();
+            RequestBody = new TraktRequestBody<TRequestBody>();
+        }
 
-            if (RequestBody == null)
-                throw new ArgumentException("request body not valid");
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
+        public HttpMethod Method => HttpMethod.Post;
+
+        public TraktRequestBody<TRequestBody> RequestBody { get; set; }
+
+        public TRequestBody RequestBodyContent
+        {
+            get { return RequestBody.RequestBody; }
+            set { RequestBody.RequestBody = value; }
         }
     }
 }
