@@ -133,6 +133,10 @@
     <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktPutRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
