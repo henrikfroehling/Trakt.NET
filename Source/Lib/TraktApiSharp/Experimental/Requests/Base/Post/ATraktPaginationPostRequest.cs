@@ -4,7 +4,7 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationPostResponse<TItem, TRequestBody> : ATraktPaginationRequest<TItem, TRequestBody>
+    internal abstract class ATraktPaginationPostRequest<TItem, TRequestBody> : ATraktPaginationRequest<TItem, TRequestBody>
     {
         protected override HttpMethod Method => HttpMethod.Put;
 
