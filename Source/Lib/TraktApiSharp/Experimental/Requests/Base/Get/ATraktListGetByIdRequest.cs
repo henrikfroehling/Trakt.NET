@@ -5,6 +5,8 @@
 
     internal abstract class ATraktListGetByIdRequest<TItem> : ATraktListGetRequest<TItem>
     {
+        public ATraktListGetByIdRequest(TraktClient client) : base(client) { }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();

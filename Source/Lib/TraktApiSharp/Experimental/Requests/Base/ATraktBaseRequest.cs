@@ -7,15 +7,14 @@
 
     internal abstract class ATraktBaseRequest<TRequestBody>
     {
+        internal ATraktBaseRequest(TraktClient client)
+        {
+            Client = client;
+        }
+
         protected abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 
-        public TraktClient Client
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        internal TraktClient Client { get; }
 
         protected abstract HttpMethod Method { get; }
 

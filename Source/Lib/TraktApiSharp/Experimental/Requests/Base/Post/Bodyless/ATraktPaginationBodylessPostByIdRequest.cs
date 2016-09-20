@@ -5,6 +5,8 @@
 
     internal abstract class ATraktPaginationBodylessPostByIdRequest<TItem> : ATraktPaginationBodylessPostRequest<TItem>
     {
+        public ATraktPaginationBodylessPostByIdRequest(TraktClient client) : base(client) { }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();

@@ -7,6 +7,8 @@
 
     internal abstract class ATraktNoContentRequest<TRequestBody> : ATraktBaseRequest<TRequestBody>, ITraktNoContentQueryable
     {
+        public ATraktNoContentRequest(TraktClient client) : base(client) { }
+
         public Task<TraktNoContentResponse> QueryAsync()
         {
             throw new NotImplementedException();

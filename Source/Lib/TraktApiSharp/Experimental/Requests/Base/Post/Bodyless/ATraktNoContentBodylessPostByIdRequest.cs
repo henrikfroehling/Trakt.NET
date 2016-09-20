@@ -5,6 +5,8 @@
 
     internal abstract class ATraktNoContentBodylessPostByIdRequest : ATraktNoContentBodylessPostRequest
     {
+        public ATraktNoContentBodylessPostByIdRequest(TraktClient client) : base(client) { }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();

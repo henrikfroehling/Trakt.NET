@@ -5,6 +5,8 @@
 
     internal abstract class ATraktPutByIdRequest<TItem, TRequestBody> : ATraktPutRequest<TItem, TRequestBody>
     {
+        public ATraktPutByIdRequest(TraktClient client) : base(client) { }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();

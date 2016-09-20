@@ -7,6 +7,8 @@
 
     internal abstract class ATraktPaginationRequest<TItem, TRequestBody> : ATraktBaseRequest<TRequestBody>, ITraktPaginationQueryable<TItem>
     {
+        public ATraktPaginationRequest(TraktClient client) : base(client) { }
+
         public Task<TraktPaginationResponse<TItem>> QueryAsync()
         {
             throw new NotImplementedException();

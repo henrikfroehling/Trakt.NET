@@ -6,6 +6,8 @@
 
     internal abstract class ATraktListPutRequest<TItem, TRequestBody> : ATraktListRequest<TItem, TRequestBody>
     {
+        public ATraktListPutRequest(TraktClient client) : base(client) { }
+
         protected override HttpMethod Method => HttpMethod.Put;
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;

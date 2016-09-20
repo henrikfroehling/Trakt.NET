@@ -5,6 +5,8 @@
 
     internal abstract class ATraktDeleteByIdRequest : ATraktDeleteRequest
     {
+        public ATraktDeleteByIdRequest(TraktClient client) : base(client) { }
+
         protected override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();

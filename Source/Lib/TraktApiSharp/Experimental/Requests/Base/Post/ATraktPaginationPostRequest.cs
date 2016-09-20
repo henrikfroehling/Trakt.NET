@@ -6,6 +6,8 @@
 
     internal abstract class ATraktPaginationPostRequest<TItem, TRequestBody> : ATraktPaginationRequest<TItem, TRequestBody>
     {
+        public ATraktPaginationPostRequest(TraktClient client) : base(client) { }
+
         protected override HttpMethod Method => HttpMethod.Put;
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
