@@ -137,6 +137,10 @@
     <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostResponse.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktListBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktNoContentBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostResponse.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequest.cs" />
