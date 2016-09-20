@@ -123,16 +123,6 @@
     <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Delete\ATraktDeleteRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktGetByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktListGetByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
@@ -149,30 +139,6 @@
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktListPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktListPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\ATraktPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktListBodylessPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktListBodylessPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktNoContentBodylessPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktNoContentBodylessPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktBodylessPostRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktBodylessPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktListPutByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktPutByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\Put\ATraktPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktSingleItemRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
@@ -569,7 +535,12 @@
     <Compile Include="Services\TraktLanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Experimental\Requests\Base\Delete\" />
+    <Folder Include="Experimental\Requests\Base\Get\" />
+    <Folder Include="Experimental\Requests\Base\Post\Bodyless\" />
+    <Folder Include="Experimental\Requests\Base\Put\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
