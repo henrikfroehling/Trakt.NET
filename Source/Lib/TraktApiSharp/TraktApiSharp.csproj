@@ -123,6 +123,10 @@
     <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Requests\ITraktByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
@@ -537,7 +541,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Experimental\Requests\Base\Delete\" />
-    <Folder Include="Experimental\Requests\Base\Get\" />
     <Folder Include="Experimental\Requests\Base\Post\Bodyless\" />
     <Folder Include="Experimental\Requests\Base\Put\" />
   </ItemGroup>
