@@ -24,7 +24,7 @@
         }
 
         [TestMethod]
-        public void TestITraktListRequestHasGetIdPathParametersMethod()
+        public void TestITraktListRequestHasQueryAsyncMethod()
         {
             var methodInfo = typeof(ITraktListRequest<int>).GetMethods()
                                                            .Where(m => m.Name == "QueryAsync")
