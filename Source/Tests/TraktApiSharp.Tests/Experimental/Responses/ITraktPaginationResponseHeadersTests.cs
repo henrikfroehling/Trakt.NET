@@ -18,7 +18,7 @@
         public void TestITraktPaginationResponseHeadersHasPageProperty()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
-                                                                               .Where((p) => { return p.Name == "Page"; })
+                                                                               .Where(p => p.Name == "Page")
                                                                                .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
@@ -30,7 +30,7 @@
         public void TestITraktPaginationResponseHeadersHasLimitProperty()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
-                                                                               .Where((p) => { return p.Name == "Limit"; })
+                                                                               .Where(p => p.Name == "Limit")
                                                                                .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
@@ -42,7 +42,7 @@
         public void TestITraktPaginationResponseHeadersHasPageCountProperty()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
-                                                                               .Where((p) => { return p.Name == "PageCount"; })
+                                                                               .Where(p => p.Name == "PageCount")
                                                                                .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
@@ -54,7 +54,7 @@
         public void TestITraktPaginationResponseHeadersHasItemCountProperty()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
-                                                                               .Where((p) => { return p.Name == "ItemCount"; })
+                                                                               .Where(p => p.Name == "ItemCount")
                                                                                .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();

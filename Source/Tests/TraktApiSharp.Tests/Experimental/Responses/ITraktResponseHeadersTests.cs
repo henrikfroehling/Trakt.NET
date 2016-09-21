@@ -18,7 +18,7 @@
         public void TestITraktResponseHeadersHasUserCountProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
-                                                                     .Where((p) => { return p.Name == "UserCount"; })
+                                                                     .Where(p => p.Name == "UserCount")
                                                                      .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
@@ -30,7 +30,7 @@
         public void TestITraktResponseHeadersHasSortByProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
-                                                                     .Where((p) => { return p.Name == "SortBy"; })
+                                                                     .Where(p => p.Name == "SortBy")
                                                                      .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
@@ -42,7 +42,7 @@
         public void TestITraktResponseHeadersHasSortHowProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
-                                                                     .Where((p) => { return p.Name == "SortHow"; })
+                                                                     .Where(p => p.Name == "SortHow")
                                                                      .FirstOrDefault();
 
             userCountPropertyInfo.CanRead.Should().BeTrue();

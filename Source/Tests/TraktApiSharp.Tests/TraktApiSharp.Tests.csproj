@@ -110,6 +110,7 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
+    <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
