@@ -115,6 +115,7 @@
     <Compile Include="Experimental\Requests\Base\ATraktNoContentRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktPaginationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ITraktHasIdTests.cs" />
     <Compile Include="Experimental\Requests\Base\ITraktHasRequestBodyTests.cs" />
