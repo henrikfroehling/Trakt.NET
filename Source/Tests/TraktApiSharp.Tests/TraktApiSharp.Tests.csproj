@@ -115,6 +115,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHttpRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktIdTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktListRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
