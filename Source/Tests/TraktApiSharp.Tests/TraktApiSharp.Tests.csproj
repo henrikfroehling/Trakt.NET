@@ -118,6 +118,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktListRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktNoContentRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktObjectRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktPaginationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPaginationTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
