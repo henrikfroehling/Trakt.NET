@@ -118,6 +118,7 @@
     <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Base\Get\ATraktNoContentGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ITraktHasIdTests.cs" />
     <Compile Include="Experimental\Requests\Base\ITraktHasRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\TraktRequestBodyTests.cs" />
