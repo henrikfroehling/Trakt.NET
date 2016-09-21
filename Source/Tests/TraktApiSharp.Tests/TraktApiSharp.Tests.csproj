@@ -114,6 +114,7 @@
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\TraktNoContentResponseTests.cs" />
+    <Compile Include="Experimental\Responses\TraktResponseTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
