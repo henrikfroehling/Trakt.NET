@@ -129,6 +129,7 @@
     <Compile Include="Experimental\Requests\Base\ITraktHasRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktNoContentPutRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Base\Put\ATraktPaginationPutRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\TraktRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\TraktRequestIdTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktCheckinRequestTests.cs" />
