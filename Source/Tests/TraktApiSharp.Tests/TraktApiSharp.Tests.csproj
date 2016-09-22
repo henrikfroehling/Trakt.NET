@@ -131,6 +131,7 @@
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktPaginationPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktSingleItemPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutByIdRequestTests.cs" />
