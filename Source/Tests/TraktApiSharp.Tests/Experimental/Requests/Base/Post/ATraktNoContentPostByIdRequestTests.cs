@@ -9,38 +9,38 @@
     [TestClass]
     public class ATraktNoContentPostByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestIsAbstract()
         {
             typeof(ATraktNoContentPostByIdRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentPostByIdRequest<float>).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestHasGenericTypeParameter()
         {
             typeof(ATraktNoContentPostByIdRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktNoContentPostByIdRequest<float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestImplementsITraktHasRequestBodyInterface()
         {
             typeof(ATraktNoContentPostByIdRequest<float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
         public void TestATraktNoContentPostByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktNoContentPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));

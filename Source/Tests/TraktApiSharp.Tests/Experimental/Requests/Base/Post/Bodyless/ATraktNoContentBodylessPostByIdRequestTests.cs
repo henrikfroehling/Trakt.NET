@@ -9,25 +9,25 @@
     [TestClass]
     public class ATraktNoContentBodylessPostByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostByIdRequestIsAbstract()
         {
             typeof(ATraktNoContentBodylessPostByIdRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostByIdRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentBodylessPostByIdRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentBodylessPostByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktNoContentBodylessPostByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));

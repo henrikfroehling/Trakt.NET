@@ -9,19 +9,19 @@
     [TestClass]
     public class ATraktNoContentBodylessPostRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostRequestIsAbstract()
         {
             typeof(ATraktNoContentBodylessPostRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentBodylessPostRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktNoContentBodylessPostRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentBodylessPostRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));

@@ -9,32 +9,32 @@
     [TestClass]
     public class ATraktListGetByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktListGetByIdRequestIsAbstract()
         {
             typeof(ATraktListGetByIdRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktListGetByIdRequestIsSubclassOfATraktListRequest()
         {
             typeof(ATraktListGetByIdRequest<int>).IsSubclassOf(typeof(ATraktListRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktListGetByIdRequestHasGenericTypeParameter()
         {
             typeof(ATraktListGetByIdRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktListGetByIdRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktListGetByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktListGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktListGetByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktListGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));

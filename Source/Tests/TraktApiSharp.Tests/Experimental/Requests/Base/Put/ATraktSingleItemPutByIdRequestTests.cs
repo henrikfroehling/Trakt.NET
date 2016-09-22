@@ -9,38 +9,38 @@
     [TestClass]
     public class ATraktSingleItemPutByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestIsAbstract()
         {
             typeof(ATraktSingleItemPutByIdRequest<,>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestIsSubclassOfATraktSingleItemRequest()
         {
             typeof(ATraktSingleItemPutByIdRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestHasGenericTypeParameter()
         {
             typeof(ATraktSingleItemPutByIdRequest<,>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktSingleItemPutByIdRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktSingleItemPutByIdRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestImplementsITraktHasRequestBodyInterface()
         {
             typeof(ATraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktSingleItemPutByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasId));

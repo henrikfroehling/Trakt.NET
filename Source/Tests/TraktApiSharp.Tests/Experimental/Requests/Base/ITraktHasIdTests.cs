@@ -8,13 +8,13 @@
     [TestClass]
     public class ITraktHasIdTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasIdIsInterface()
         {
             typeof(ITraktHasId).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasIdHasIdProperty()
         {
             var idPropertyInfo = typeof(ITraktHasId).GetProperties()
@@ -26,7 +26,7 @@
             idPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasIdHasRequestIdProperty()
         {
             var requestIdPropertyInfo = typeof(ITraktHasId).GetProperties()

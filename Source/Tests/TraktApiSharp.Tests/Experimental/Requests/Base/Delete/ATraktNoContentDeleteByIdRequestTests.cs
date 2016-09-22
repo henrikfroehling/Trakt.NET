@@ -9,25 +9,25 @@
     [TestClass]
     public class ATraktNoContentDeleteByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteByIdRequestIsAbstract()
         {
             typeof(ATraktNoContentDeleteByIdRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteByIdRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentDeleteByIdRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));

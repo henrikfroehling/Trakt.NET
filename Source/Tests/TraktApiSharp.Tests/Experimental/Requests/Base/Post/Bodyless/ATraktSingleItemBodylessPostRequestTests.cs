@@ -9,26 +9,26 @@
     [TestClass]
     public class ATraktSingleItemBodylessPostRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostRequestIsAbstract()
         {
             typeof(ATraktSingleItemBodylessPostRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostRequestIsSubclassOfATraktSingleItemRequest()
         {
             typeof(ATraktSingleItemBodylessPostRequest<int>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostRequestHasGenericTypeParameter()
         {
             typeof(ATraktSingleItemBodylessPostRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktSingleItemBodylessPostRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktSingleItemBodylessPostRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));

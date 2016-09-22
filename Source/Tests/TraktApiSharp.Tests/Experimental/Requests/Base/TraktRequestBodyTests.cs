@@ -8,25 +8,25 @@
     [TestClass]
     public class TraktRequestBodyTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestBodyIsNotAbstract()
         {
             typeof(TraktRequestBody<>).IsAbstract.Should().BeFalse();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestBodyIsSealed()
         {
             typeof(TraktRequestBody<>).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestBodyImplementsITraktPostableInterface()
         {
             typeof(TraktRequestBody<int>).GetInterfaces().Should().Contain(typeof(ITraktPostable<int>));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestBodyImplementsITraktValidatableInterface()
         {
             typeof(TraktRequestBody<>).GetInterfaces().Should().Contain(typeof(ITraktValidatable));

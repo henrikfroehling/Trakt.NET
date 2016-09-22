@@ -8,19 +8,19 @@
     [TestClass]
     public class ATraktNoContentRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktNoContentRequestIsAbstract()
         {
             typeof(ATraktNoContentRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktNoContentRequestIsSubclassOfATraktBaseRequest()
         {
             typeof(ATraktNoContentRequest).IsSubclassOf(typeof(ATraktBaseRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktNoContentRequestImplementsITraktNoContentRequestInterface()
         {
             typeof(ATraktNoContentRequest).GetInterfaces().Should().Contain(typeof(ITraktNoContentRequest));

@@ -10,19 +10,19 @@
     [TestClass]
     public class ATraktBaseRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktBaseRequestIsAbstract()
         {
             typeof(ATraktBaseRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktBaseRequestImplementsITraktUriBuildableInterface()
         {
             typeof(ATraktBaseRequest).GetInterfaces().Should().Contain(typeof(ITraktUriBuildable));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
         public void TestATraktBaseRequestHasClientProperty()
         {
             var clientPropertyInfo = typeof(ATraktBaseRequest)

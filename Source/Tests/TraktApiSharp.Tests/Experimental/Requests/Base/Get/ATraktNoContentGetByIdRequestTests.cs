@@ -9,25 +9,25 @@
     [TestClass]
     public class ATraktNoContentGetByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktNoContentGetByIdRequestIsAbstract()
         {
             typeof(ATraktNoContentGetByIdRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktNoContentGetByIdRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentGetByIdRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktNoContentGetByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktNoContentGetByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));

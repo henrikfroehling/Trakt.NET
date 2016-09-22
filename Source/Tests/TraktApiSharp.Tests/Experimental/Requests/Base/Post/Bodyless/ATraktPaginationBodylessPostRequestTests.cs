@@ -9,26 +9,26 @@
     [TestClass]
     public class ATraktPaginationBodylessPostRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktPaginationBodylessPostRequestIsAbstract()
         {
             typeof(ATraktPaginationBodylessPostRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktPaginationBodylessPostRequestIsSubclassOfATraktPaginationRequest()
         {
             typeof(ATraktPaginationBodylessPostRequest<int>).IsSubclassOf(typeof(ATraktPaginationRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktPaginationBodylessPostRequestHasGenericTypeParameter()
         {
             typeof(ATraktPaginationBodylessPostRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktPaginationBodylessPostRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktPaginationBodylessPostRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktPaginationBodylessPostRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));

@@ -9,26 +9,26 @@
     [TestClass]
     public class ATraktPaginationGetRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktPaginationGetRequestIsAbstract()
         {
             typeof(ATraktPaginationGetRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktPaginationGetRequestIsSubclassOfATraktPaginationRequest()
         {
             typeof(ATraktPaginationGetRequest<int>).IsSubclassOf(typeof(ATraktPaginationRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktPaginationGetRequestHasGenericTypeParameter()
         {
             typeof(ATraktPaginationGetRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktPaginationGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktPaginationGetRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktPaginationGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));

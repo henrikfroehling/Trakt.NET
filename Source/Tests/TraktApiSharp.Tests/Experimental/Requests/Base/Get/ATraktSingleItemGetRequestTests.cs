@@ -9,26 +9,26 @@
     [TestClass]
     public class ATraktSingleItemGetRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktSingleItemGetRequestIsAbstract()
         {
             typeof(ATraktSingleItemGetRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktSingleItemGetRequestIsSubclassOfATraktSingleItemRequest()
         {
             typeof(ATraktSingleItemGetRequest<int>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktSingleItemGetRequestHasGenericTypeParameter()
         {
             typeof(ATraktSingleItemGetRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktSingleItemGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
         public void TestATraktSingleItemGetRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktSingleItemGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));

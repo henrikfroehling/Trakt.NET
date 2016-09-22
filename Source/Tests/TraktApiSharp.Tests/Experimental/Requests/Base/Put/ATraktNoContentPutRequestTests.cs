@@ -9,32 +9,32 @@
     [TestClass]
     public class ATraktNoContentPutRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktNoContentPutRequestIsAbstract()
         {
             typeof(ATraktNoContentPutRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktNoContentPutRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentPutRequest<float>).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktNoContentPutRequestHasGenericTypeParameter()
         {
             typeof(ATraktNoContentPutRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktNoContentPutRequest<float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktNoContentPutRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentPutRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
         public void TestATraktNoContentPutRequestImplementsITraktHasRequestBodyInterface()
         {
             typeof(ATraktNoContentPutRequest<float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));

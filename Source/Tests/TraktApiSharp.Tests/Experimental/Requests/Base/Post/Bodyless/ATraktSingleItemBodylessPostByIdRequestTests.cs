@@ -9,32 +9,32 @@
     [TestClass]
     public class ATraktSingleItemBodylessPostByIdRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostByIdRequestIsAbstract()
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostByIdRequestIsSubclassOfATraktSingleItemRequest()
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<int>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostByIdRequestHasGenericTypeParameter()
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktSingleItemBodylessPostByIdRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostByIdRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
         public void TestATraktSingleItemBodylessPostByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));

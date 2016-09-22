@@ -8,19 +8,19 @@
     [TestClass]
     public class TraktRequestIdTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestIdIsNotAbstract()
         {
             typeof(TraktRequestId).IsAbstract.Should().BeFalse();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestIdIsSealed()
         {
             typeof(TraktRequestId).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
         public void TestTraktRequestIdImplementsITraktIdInterface()
         {
             typeof(TraktRequestId).GetInterfaces().Should().Contain(typeof(ITraktId));

@@ -9,19 +9,19 @@
     [TestClass]
     public class ATraktNoContentDeleteRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteRequestIsAbstract()
         {
             typeof(ATraktNoContentDeleteRequest).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteRequestIsSubclassOfATraktNoContentRequest()
         {
             typeof(ATraktNoContentDeleteRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
         public void TestATraktNoContentDeleteRequestImplementsITraktRequestInterface()
         {
             typeof(ATraktNoContentDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));

@@ -8,13 +8,13 @@
     [TestClass]
     public class ITraktHasRequestBodyTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasRequestBodyIsInterface()
         {
             typeof(ITraktHasRequestBody<>).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasRequestBodyHasRequestBodyContentProperty()
         {
             var requestBodyContentPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
@@ -26,7 +26,7 @@
             requestBodyContentPropertyInfo.PropertyType.Should().Be(typeof(int));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasRequestBodyHasRequestBodyProperty()
         {
             var requestBodyPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
