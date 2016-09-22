@@ -10,13 +10,13 @@
     [TestClass]
     public class ITraktNoContentRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktNoContentRequestIsInterface()
         {
             typeof(ITraktNoContentRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktNoContentRequestHasQueryAsyncMethod()
         {
             var methodInfo = typeof(ITraktNoContentRequest).GetMethods()

@@ -10,20 +10,20 @@
     [TestClass]
     public class ITraktListRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktListRequestIsInterface()
         {
             typeof(ITraktListRequest<>).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktListRequestHasGenericTypeParameter()
         {
             typeof(ITraktListRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ITraktListRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktListRequestHasQueryAsyncMethod()
         {
             var methodInfo = typeof(ITraktListRequest<int>).GetMethods()

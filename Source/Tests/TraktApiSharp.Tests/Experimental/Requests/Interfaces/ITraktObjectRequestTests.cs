@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktObjectRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktObjectRequestIsInterface()
         {
             typeof(ITraktObjectRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktObjectRequestHasRequestObjectTypeProperty()
         {
             var requestObjectTypePropertyInfo = typeof(ITraktObjectRequest).GetProperties()

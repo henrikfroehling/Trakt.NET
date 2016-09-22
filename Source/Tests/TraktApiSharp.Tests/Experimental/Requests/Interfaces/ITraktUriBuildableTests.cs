@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktUriBuildableTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableIsInterface()
         {
             typeof(ITraktUriBuildable).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasUriTemplateProperty()
         {
             var uriTemplatePropertyInfo = typeof(ITraktUriBuildable).GetProperties()
@@ -27,7 +27,7 @@
             uriTemplatePropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasUrlProperty()
         {
             var urlPropertyInfo = typeof(ITraktUriBuildable).GetProperties()
@@ -39,7 +39,7 @@
             urlPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasBuildUrlMethod()
         {
             var methodInfo = typeof(ITraktUriBuildable).GetMethods()
@@ -50,7 +50,7 @@
             methodInfo.GetParameters().Should().BeEmpty();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasGetUriPathParametersMethod()
         {
             var methodInfo = typeof(ITraktUriBuildable).GetMethods()

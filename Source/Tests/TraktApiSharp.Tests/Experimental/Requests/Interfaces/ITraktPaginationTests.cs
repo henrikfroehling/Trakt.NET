@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktPaginationTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationIsInterface()
         {
             typeof(ITraktPagination).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationHasPaginationOptionsProperty()
         {
             var paginationOptionsPropertyInfo = typeof(ITraktPagination).GetProperties()
@@ -27,7 +27,7 @@
             paginationOptionsPropertyInfo.PropertyType.Should().Be(typeof(TraktPaginationOptions));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationHasSupportsOnlyPaginationParametersProperty()
         {
             var supportsOnlyPaginationParametersPropertyInfo = typeof(ITraktPagination).GetProperties()

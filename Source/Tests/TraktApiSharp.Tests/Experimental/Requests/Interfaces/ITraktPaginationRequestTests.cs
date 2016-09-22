@@ -10,20 +10,20 @@
     [TestClass]
     public class ITraktPaginationRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationRequestIsInterface()
         {
             typeof(ITraktPaginationRequest<>).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationRequestHasGenericTypeParameter()
         {
             typeof(ITraktPaginationRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ITraktPaginationRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationRequestHasQueryAsyncMethod()
         {
             var methodInfo = typeof(ITraktPaginationRequest<int>).GetMethods()

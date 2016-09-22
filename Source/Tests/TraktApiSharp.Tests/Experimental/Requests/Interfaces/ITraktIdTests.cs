@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktIdTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdIsInterface()
         {
             typeof(ITraktId).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdHasIdProperty()
         {
             var idPropertyInfo = typeof(ITraktId).GetProperties()
@@ -27,7 +27,7 @@
             idPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdHasGetIdPathParametersMethod()
         {
             var methodInfo = typeof(ITraktId).GetMethods()
@@ -38,7 +38,7 @@
             methodInfo.GetParameters().Should().BeEmpty();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdHasValidateIdMethod()
         {
             var methodInfo = typeof(ITraktId).GetMethods()

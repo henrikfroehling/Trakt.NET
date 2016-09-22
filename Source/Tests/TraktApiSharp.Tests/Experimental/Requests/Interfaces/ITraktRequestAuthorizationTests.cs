@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktRequestAuthorizationTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestAuthorizationIsInterface()
         {
             typeof(ITraktRequestAuthorization).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestAuthorizationHasAuthorizationRequirementProperty()
         {
             var authorizationRequirementPropertyInfo = typeof(ITraktRequestAuthorization).GetProperties()

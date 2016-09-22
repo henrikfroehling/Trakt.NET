@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktExtendedInfoTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktExtendedInfoIsInterface()
         {
             typeof(ITraktExtendedInfo).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktExtendedInfoHasExtendedOptionProperty()
         {
             var extendedOptionPropertyInfo = typeof(ITraktExtendedInfo).GetProperties()

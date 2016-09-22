@@ -8,13 +8,13 @@
     [TestClass]
     public class ITraktCheckinRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktCheckinRequestIsInterface()
         {
             typeof(ITraktCheckinRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktCheckinRequestHasIsCheckinRequestProperty()
         {
             var isCheckinRequestPropertyInfo = typeof(ITraktCheckinRequest).GetProperties()

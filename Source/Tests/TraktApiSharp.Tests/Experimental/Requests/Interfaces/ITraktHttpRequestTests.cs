@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktHttpRequestTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHttpRequestIsInterface()
         {
             typeof(ITraktHttpRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHttpRequestHasMethodProperty()
         {
             var methodPropertyInfo = typeof(ITraktHttpRequest).GetProperties()

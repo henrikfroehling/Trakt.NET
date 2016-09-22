@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktFilterableTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktFilterableIsInterface()
         {
             typeof(ITraktFilterable).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktFilterableHasFilterProperty()
         {
             var filterPropertyInfo = typeof(ITraktFilterable).GetProperties()

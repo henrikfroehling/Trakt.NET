@@ -9,13 +9,13 @@
     [TestClass]
     public class ITraktPostableTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPostableIsInterface()
         {
             typeof(ITraktPostable<>).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPostableHasRequestBodyProperty()
         {
             var requestBodyPropertyInfo = typeof(ITraktPostable<int>).GetProperties()
@@ -27,7 +27,7 @@
             requestBodyPropertyInfo.PropertyType.Should().Be(typeof(int));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPostableHasRequestBodyContentProperty()
         {
             var requestBodyContentPropertyInfo = typeof(ITraktPostable<>).GetProperties()
@@ -39,7 +39,7 @@
             requestBodyContentPropertyInfo.PropertyType.Should().Be(typeof(HttpContent));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPostableHasRequestBodyJsonProperty()
         {
             var requestBodyJsonPropertyInfo = typeof(ITraktPostable<>).GetProperties()

@@ -8,13 +8,13 @@
     [TestClass]
     public class ITraktValidatableTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktValidatableIsInterface()
         {
             typeof(ITraktValidatable).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktValidatableHasValidateMethod()
         {
             var methodInfo = typeof(ITraktValidatable).GetMethods()
