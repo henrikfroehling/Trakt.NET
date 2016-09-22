@@ -141,6 +141,7 @@
     <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktNoContentBodylessPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktPaginationBodylessPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktSingleItemBodylessPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\Bodyless\ATraktSingleItemBodylessPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktListPutRequestTests.cs" />
