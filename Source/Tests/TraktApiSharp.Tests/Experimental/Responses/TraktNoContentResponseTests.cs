@@ -9,13 +9,13 @@
     [TestClass]
     public class TraktNoContentResponseTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktNoContentResponseIsNotAbstract()
         {
             typeof(TraktNoContentResponse).IsAbstract.Should().BeFalse();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktNoContentResponseHasIsSuccessProperty()
         {
             var isSuccessPropertyInfo = typeof(ATraktResponse<>).GetProperties()
@@ -27,7 +27,7 @@
             isSuccessPropertyInfo.PropertyType.Should().Be(typeof(bool));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktNoContentResponseHasExceptionProperty()
         {
             var exceptionPropertyInfo = typeof(ATraktResponse<>).GetProperties()

@@ -8,32 +8,32 @@
     [TestClass]
     public class TraktListResponseTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktListResponseIsNotAbstract()
         {
             typeof(TraktListResponse<>).IsAbstract.Should().BeFalse();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktListResponseIsSubclassOfATraktResponse()
         {
             typeof(TraktListResponse<int>).IsSubclassOf(typeof(ATraktResponse<List<int>>)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktListResponseHasGenericTypeParameter()
         {
             typeof(TraktListResponse<>).ContainsGenericParameters.Should().BeTrue();
             typeof(TraktListResponse<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktListResponseImplementsITraktResponseHeadersInterface()
         {
             typeof(TraktListResponse<>).GetInterfaces().Should().Contain(typeof(ITraktResponseHeaders));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktListResponseImplementsIEnumerableInterface()
         {
             typeof(TraktListResponse<int>).GetInterfaces().Should().Contain(typeof(IEnumerable<int>));

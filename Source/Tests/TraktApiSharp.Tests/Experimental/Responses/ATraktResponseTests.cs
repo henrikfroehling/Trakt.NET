@@ -8,26 +8,26 @@
     [TestClass]
     public class ATraktResponseTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Abstract Base Classes")]
         public void TestATraktResponseIsAbstract()
         {
             typeof(ATraktResponse<>).IsAbstract.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Abstract Base Classes")]
         public void TestATraktResponseIsSubclassOfTraktNoContentResponse()
         {
             typeof(ATraktResponse<>).IsSubclassOf(typeof(TraktNoContentResponse)).Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Abstract Base Classes")]
         public void TestATraktResponseHasGenericTypeParameter()
         {
             typeof(ATraktResponse<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktResponse<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Abstract Base Classes")]
         public void TestATraktResponseHasHasValueProperty()
         {
             var hasValuePropertyInfo = typeof(ATraktResponse<>).GetProperties()
@@ -39,7 +39,7 @@
             hasValuePropertyInfo.PropertyType.Should().Be(typeof(bool));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Abstract Base Classes")]
         public void TestATraktResponseHasValueProperty()
         {
             var valuePropertyInfo = typeof(ATraktResponse<>).GetProperties()

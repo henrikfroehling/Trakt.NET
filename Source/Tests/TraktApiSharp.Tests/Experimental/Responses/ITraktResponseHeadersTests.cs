@@ -8,13 +8,13 @@
     [TestClass]
     public class ITraktResponseHeadersTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
         public void TestITraktResponseHeadersIsInterface()
         {
             typeof(ITraktResponseHeaders).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
         public void TestITraktResponseHeadersHasUserCountProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
@@ -26,7 +26,7 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
         public void TestITraktResponseHeadersHasSortByProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
@@ -38,7 +38,7 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
         public void TestITraktResponseHeadersHasSortHowProperty()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
