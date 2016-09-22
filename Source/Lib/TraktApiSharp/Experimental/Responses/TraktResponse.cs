@@ -2,7 +2,7 @@
 {
     using Exceptions;
 
-    public class TraktResponse<TContentType> : ATraktResponse<TContentType>, ITraktResponseHeaders
+    public sealed class TraktResponse<TContentType> : ATraktResponse<TContentType>, ITraktResponseHeaders
     {
         public string SortBy { get; set; }
 
