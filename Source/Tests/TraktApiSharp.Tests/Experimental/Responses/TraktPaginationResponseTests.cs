@@ -14,6 +14,12 @@
         }
 
         [TestMethod, TestCategory("Responses")]
+        public void TestTraktPaginationResponseIsSealed()
+        {
+            typeof(TraktPaginationResponse<>).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Responses")]
         public void TestTraktPaginationResponseIsSubclassOfTraktListResponse()
         {
             typeof(TraktPaginationResponse<int>).IsSubclassOf(typeof(TraktListResponse<int>)).Should().BeTrue();

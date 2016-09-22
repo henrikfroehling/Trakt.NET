@@ -3,7 +3,7 @@
     using Exceptions;
     using System.Collections.Generic;
 
-    public class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponseHeaders
+    public sealed class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponseHeaders
     {
         public int? ItemCount { get; set; }
 
