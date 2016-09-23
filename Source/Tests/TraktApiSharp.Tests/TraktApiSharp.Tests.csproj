@@ -158,6 +158,7 @@
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserNewShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserSeasonPremieresRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllNewShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllSeasonPremieresRequestTests.cs" />
