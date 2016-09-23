@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
         public void TestATraktCalendarRequestIsAbstract()
         {
-            typeof(ATraktCalendarRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktCalendarRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
+        public void TestATraktCalendarRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktCalendarRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktCalendarRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }

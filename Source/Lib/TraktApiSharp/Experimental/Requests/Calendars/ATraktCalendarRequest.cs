@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars
 {
-    internal abstract class ATraktCalendarRequest
+    internal abstract class ATraktCalendarRequest<T>
     {
 
     }
