@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars.OAuth
 {
-    internal class TraktCalendarUserSeasonPremieresRequest
+    internal sealed class TraktCalendarUserSeasonPremieresRequest
     {
 
     }
