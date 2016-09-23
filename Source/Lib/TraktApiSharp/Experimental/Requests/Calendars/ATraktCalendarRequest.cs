@@ -8,5 +8,7 @@
         public ATraktCalendarRequest(TraktClient client) : base(client) { }
 
         internal DateTime? StartDate { get; set; }
+
+        internal int? Days { get; set; }
     }
 }

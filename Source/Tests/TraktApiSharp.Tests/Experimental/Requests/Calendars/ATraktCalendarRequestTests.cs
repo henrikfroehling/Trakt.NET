@@ -42,5 +42,18 @@
             startDatePropertyInfo.CanWrite.Should().BeTrue();
             startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
+        public void TestATraktCalendarRequestHasDaysProperty()
+        {
+            var daysPropertyInfo = typeof(ATraktCalendarRequest<>)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Days")
+                    .FirstOrDefault();
+
+            daysPropertyInfo.CanRead.Should().BeTrue();
+            daysPropertyInfo.CanWrite.Should().BeTrue();
+            daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
+        }
     }
 }
