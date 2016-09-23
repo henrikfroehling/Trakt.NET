@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
@@ -54,6 +55,17 @@
             daysPropertyInfo.CanRead.Should().BeTrue();
             daysPropertyInfo.CanWrite.Should().BeTrue();
             daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
+        public void TestATraktCalendarRequestHasGetUriPathParametersMethod()
+        {
+            var methodInfo = typeof(ATraktCalendarRequest<>).GetMethods()
+                                                            .Where(m => m.Name == "GetUriPathParameters")
+                                                            .FirstOrDefault();
+
+            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
+            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }
