@@ -1,18 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars.OAuth
 {
-    using Base.Get;
     using Extensions;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktCalendarUserRequest<T> : ATraktListGetRequest<T>
+    internal abstract class ATraktCalendarUserRequest<T> : ATraktCalendarRequest<T>
     {
         public ATraktCalendarUserRequest(TraktClient client) : base(client) { }
-
-        internal DateTime? StartDate { get; set; }
-
-        internal int? Days { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
