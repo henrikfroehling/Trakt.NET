@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars.OAuth
 {
-    internal class TraktCalendarUserMoviesRequest
+    internal sealed class TraktCalendarUserMoviesRequest
     {
 
     }
