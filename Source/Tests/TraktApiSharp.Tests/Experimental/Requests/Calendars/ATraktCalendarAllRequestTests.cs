@@ -34,12 +34,26 @@
         public void TestATraktCalendarAllRequestHasStartDateProperty()
         {
             var startDatePropertyInfo = typeof(ATraktCalendarAllRequest<>)
-                .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                .Where(p => p.Name == "StartDate").FirstOrDefault();
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "StartDate")
+                    .FirstOrDefault();
 
             startDatePropertyInfo.CanRead.Should().BeTrue();
             startDatePropertyInfo.CanWrite.Should().BeTrue();
             startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
+        public void TestATraktCalendarAllRequestHasDaysProperty()
+        {
+            var daysPropertyInfo = typeof(ATraktCalendarAllRequest<>)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Days")
+                    .FirstOrDefault();
+
+            daysPropertyInfo.CanRead.Should().BeTrue();
+            daysPropertyInfo.CanWrite.Should().BeTrue();
+            daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
     }
 }
