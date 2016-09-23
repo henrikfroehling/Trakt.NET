@@ -8,13 +8,7 @@
     {
         public TraktCalendarUserMoviesRequest(TraktClient client) : base(client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public override string UriTemplate
         {
