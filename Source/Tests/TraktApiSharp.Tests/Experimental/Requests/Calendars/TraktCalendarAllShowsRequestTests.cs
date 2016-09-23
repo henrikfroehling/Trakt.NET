@@ -33,5 +33,12 @@
             var request = new TraktCalendarAllShowsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequestHasValidUriTemplate()
+        {
+            var request = new TraktCalendarAllShowsRequest(null);
+            request.UriTemplate.Should().Be("calendars/all/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
     }
 }

@@ -9,25 +9,25 @@
     [TestClass]
     public class TraktCalendarAllSeasonPremieresRequestTests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
         public void TestTraktCalendarAllSeasonPremieresRequestIsNotAbstract()
         {
             typeof(TraktCalendarAllSeasonPremieresRequest).IsAbstract.Should().BeFalse();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
         public void TestTraktCalendarAllSeasonPremieresRequestIsSealed()
         {
             typeof(TraktCalendarAllSeasonPremieresRequest).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
         public void TestTraktCalendarAllSeasonPremieresRequestIsSubclassOfATraktCalendarAllRequest()
         {
             typeof(TraktCalendarAllSeasonPremieresRequest).IsSubclassOf(typeof(ATraktCalendarAllRequest<TraktCalendarShow>)).Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
         public void TestTraktCalendarAllSeasonPremieresRequestHasAuthorizationNotRequired()
         {
             var request = new TraktCalendarAllSeasonPremieresRequest(null);
