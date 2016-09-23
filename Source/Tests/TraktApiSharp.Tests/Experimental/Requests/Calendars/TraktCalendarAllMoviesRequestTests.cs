@@ -33,5 +33,12 @@
             var request = new TraktCalendarAllMoviesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Movies")]
+        public void TestTraktCalendarAllMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktCalendarAllMoviesRequest(null);
+            request.UriTemplate.Should().Be("calendars/all/movies{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
     }
 }
