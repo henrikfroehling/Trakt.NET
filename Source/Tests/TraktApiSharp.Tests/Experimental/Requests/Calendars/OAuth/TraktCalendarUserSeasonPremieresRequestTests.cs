@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Calendars.OAuth;
     using TraktApiSharp.Objects.Get.Calendars;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktCalendarUserSeasonPremieresRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktCalendarUserSeasonPremieresRequestIsSubclassOfATraktCalendarUserRequest()
         {
             typeof(TraktCalendarUserSeasonPremieresRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<TraktCalendarShow>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarUserSeasonPremieresRequestHasAuthorizationRequired()
+        {
+            var request = new TraktCalendarUserSeasonPremieresRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
