@@ -154,6 +154,7 @@
     <Compile Include="Experimental\Requests\Base\TraktRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\TraktRequestIdTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserNewShowsRequestTests.cs" />
