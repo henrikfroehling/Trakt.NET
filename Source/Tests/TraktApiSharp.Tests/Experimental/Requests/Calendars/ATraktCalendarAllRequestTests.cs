@@ -10,7 +10,15 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
         public void TestATraktCalendarAllRequestIsAbstract()
         {
-            typeof(ATraktCalendarAllRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktCalendarAllRequest<>).IsAbstract.Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
+        public void TestATraktCalendarAllRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktCalendarAllRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktCalendarAllRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
     }
 }
