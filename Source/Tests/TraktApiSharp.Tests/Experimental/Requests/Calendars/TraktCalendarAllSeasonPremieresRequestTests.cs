@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Calendars;
+    using TraktApiSharp.Objects.Get.Calendars;
 
     [TestClass]
     public class TraktCalendarAllSeasonPremieresRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktCalendarAllSeasonPremieresRequestIsSealed()
         {
             typeof(TraktCalendarAllSeasonPremieresRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        public void TestTraktCalendarAllSeasonPremieresRequestIsSubclassOfATraktCalendarAllRequest()
+        {
+            typeof(TraktCalendarAllSeasonPremieresRequest).IsSubclassOf(typeof(ATraktCalendarAllRequest<TraktCalendarShow>)).Should().BeTrue();
         }
     }
 }
