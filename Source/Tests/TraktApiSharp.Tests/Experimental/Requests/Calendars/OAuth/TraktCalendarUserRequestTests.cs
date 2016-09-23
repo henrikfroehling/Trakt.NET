@@ -8,9 +8,16 @@
     public class TraktCalendarUserRequestTests
     {
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth")]
-        public void TestTraktCalendarUserRequestIsAbstract()
+        public void TestATraktCalendarUserRequestIsAbstract()
         {
-            typeof(ATraktCalendarUserRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktCalendarUserRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth")]
+        public void TestATraktCalendarUserRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktCalendarUserRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktCalendarUserRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
