@@ -12,5 +12,11 @@
         {
             typeof(TraktCalendarAllShowsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequestIsSealed()
+        {
+            typeof(TraktCalendarAllShowsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
