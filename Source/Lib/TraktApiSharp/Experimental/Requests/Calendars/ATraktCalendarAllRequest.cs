@@ -2,6 +2,7 @@
 {
     using Base.Get;
     using System;
+    using TraktApiSharp.Requests;
 
     internal abstract class ATraktCalendarAllRequest<T> : ATraktListGetRequest<T>
     {
@@ -10,5 +11,7 @@
         internal DateTime? StartDate { get; set; }
 
         internal int? Days { get; set; }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
     }
 }
