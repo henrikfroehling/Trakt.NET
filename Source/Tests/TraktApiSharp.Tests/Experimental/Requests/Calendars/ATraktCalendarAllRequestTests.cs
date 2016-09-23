@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Calendars;
 
@@ -25,6 +28,18 @@
         public void TestATraktCalendarAllRequestIsSubclassOfATraktListGetRequest()
         {
             typeof(ATraktCalendarAllRequest<int>).IsSubclassOf(typeof(ATraktListGetRequest<int>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
+        public void TestATraktCalendarAllRequestHasStartDateProperty()
+        {
+            var startDatePropertyInfo = typeof(ATraktCalendarAllRequest<>)
+                .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                .Where(p => p.Name == "StartDate").FirstOrDefault();
+
+            startDatePropertyInfo.CanRead.Should().BeTrue();
+            startDatePropertyInfo.CanWrite.Should().BeTrue();
+            startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
     }
 }
