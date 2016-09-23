@@ -34,5 +34,11 @@
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
 
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllNewShowsRequestHasValidUriTemplate()
+        {
+            var request = new TraktCalendarAllNewShowsRequest(null);
+            request.UriTemplate.Should().Be("calendars/all/shows/new{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
     }
 }
