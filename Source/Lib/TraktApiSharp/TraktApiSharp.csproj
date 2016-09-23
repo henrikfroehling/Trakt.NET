@@ -163,6 +163,7 @@
     <Compile Include="Experimental\Requests\Base\TraktRequestId.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllMoviesRequest.cs" />
+    <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
