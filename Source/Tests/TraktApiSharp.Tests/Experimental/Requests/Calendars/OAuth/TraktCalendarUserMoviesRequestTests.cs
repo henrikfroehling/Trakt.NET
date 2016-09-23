@@ -22,7 +22,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Movies")]
-        public void TestTraktCalendarUserMoviesRequestIsSubclassOfATraktCalendarAllRequest()
+        public void TestTraktCalendarUserMoviesRequestIsSubclassOfATraktCalendarUserRequest()
         {
             typeof(TraktCalendarUserMoviesRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<TraktCalendarMovie>)).Should().BeTrue();
         }
