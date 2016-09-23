@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Calendars;
     using TraktApiSharp.Objects.Get.Calendars;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktCalendarAllMoviesRequestTests
@@ -26,5 +27,11 @@
             typeof(TraktCalendarAllMoviesRequest).IsSubclassOf(typeof(ATraktCalendarAllRequest<TraktCalendarMovie>)).Should().BeTrue();
         }
 
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Movies")]
+        public void TestTraktCalendarAllMoviesRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktCalendarAllMoviesRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+        }
     }
 }
