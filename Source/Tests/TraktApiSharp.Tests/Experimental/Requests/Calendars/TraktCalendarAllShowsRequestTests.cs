@@ -2,7 +2,10 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
     using TraktApiSharp.Experimental.Requests.Calendars;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests;
 
@@ -39,6 +42,76 @@
         {
             var request = new TraktCalendarAllShowsRequest(null);
             request.UriTemplate.Should().Be("calendars/all/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequestUriParamsWithoutStartDateAndDays()
+        {
+            var request = new TraktCalendarAllShowsRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequestUriParamsWithStartDate()
+        {
+            var startDate = DateTime.Now;
+
+            var request = new TraktCalendarAllShowsRequest(null)
+            {
+                StartDate = startDate
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("start_date", startDate.ToTraktDateString());
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequestUriParamsWithStartDateAndDays()
+        {
+            var startDate = DateTime.Now;
+            var days = 14;
+
+            var request = new TraktCalendarAllShowsRequest(null)
+            {
+                StartDate = startDate,
+                Days = days
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["start_date"] = startDate.ToTraktDateString(),
+                ["days"] = days
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarAllShowsRequesttUriParamsWithDays()
+        {
+            var startDate = DateTime.Now;
+            var days = 14;
+
+            var request = new TraktCalendarAllShowsRequest(null)
+            {
+                Days = days
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["start_date"] = startDate.ToTraktDateString(),
+                ["days"] = days
+            });
         }
     }
 }
