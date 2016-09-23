@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars.OAuth
 {
-    internal abstract class ATraktCalendarUserRequest<T>
-    {
+    using Base.Get;
 
+    internal abstract class ATraktCalendarUserRequest<T> : ATraktListGetRequest<T>
+    {
+        public ATraktCalendarUserRequest(TraktClient client) : base(client) { }
     }
 }
