@@ -93,7 +93,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
-        public void TestTraktCalendarAllShowsRequesttUriParamsWithDays()
+        public void TestTraktCalendarAllShowsRequestUriParamsWithDays()
         {
             var startDate = DateTime.Now;
             var days = 14;
