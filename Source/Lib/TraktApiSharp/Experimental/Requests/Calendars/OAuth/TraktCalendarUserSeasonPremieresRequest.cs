@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars.OAuth
 {
     using Objects.Get.Calendars;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktCalendarUserSeasonPremieresRequest : ATraktCalendarUserRequest<TraktCalendarShow>
@@ -10,12 +9,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "calendars/my/shows/premieres{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
     }
 }

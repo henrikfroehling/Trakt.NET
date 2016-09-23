@@ -33,5 +33,12 @@
             var request = new TraktCalendarUserSeasonPremieresRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Shows")]
+        public void TestTraktCalendarUserSeasonPremieresRequestHasValidUriTemplate()
+        {
+            var request = new TraktCalendarUserSeasonPremieresRequest(null);
+            request.UriTemplate.Should().Be("calendars/my/shows/premieres{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
     }
 }
