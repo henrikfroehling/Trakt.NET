@@ -2,10 +2,6 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Calendars;
 
     [TestClass]
@@ -25,35 +21,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
-        public void TestATraktCalendarAllRequestIsSubclassOfATraktListGetRequest()
+        public void TestATraktCalendarAllRequestIsSubclassOfATraktCalendarRequest()
         {
-            typeof(ATraktCalendarAllRequest<int>).IsSubclassOf(typeof(ATraktListGetRequest<int>)).Should().BeTrue();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
-        public void TestATraktCalendarAllRequestHasStartDateProperty()
-        {
-            var startDatePropertyInfo = typeof(ATraktCalendarAllRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartDate")
-                    .FirstOrDefault();
-
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
-        public void TestATraktCalendarAllRequestHasDaysProperty()
-        {
-            var daysPropertyInfo = typeof(ATraktCalendarAllRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Days")
-                    .FirstOrDefault();
-
-            daysPropertyInfo.CanRead.Should().BeTrue();
-            daysPropertyInfo.CanWrite.Should().BeTrue();
-            daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            typeof(ATraktCalendarAllRequest<int>).IsSubclassOf(typeof(ATraktCalendarRequest<int>)).Should().BeTrue();
         }
     }
 }
