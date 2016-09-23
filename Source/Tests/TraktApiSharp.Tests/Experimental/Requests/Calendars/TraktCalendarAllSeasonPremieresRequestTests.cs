@@ -12,5 +12,11 @@
         {
             typeof(TraktCalendarAllSeasonPremieresRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Seasons")]
+        public void TestTraktCalendarAllSeasonPremieresRequestIsSealed()
+        {
+            typeof(TraktCalendarAllSeasonPremieresRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
