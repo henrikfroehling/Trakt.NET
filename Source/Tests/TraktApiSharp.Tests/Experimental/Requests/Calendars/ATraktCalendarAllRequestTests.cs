@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Calendars;
 
     [TestClass]
@@ -20,5 +21,10 @@
             typeof(ATraktCalendarAllRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth")]
+        public void TestATraktCalendarAllRequestIsSubclassOfATraktListGetRequest()
+        {
+            typeof(ATraktCalendarAllRequest<int>).IsSubclassOf(typeof(ATraktListGetRequest<int>)).Should().BeTrue();
+        }
     }
 }
