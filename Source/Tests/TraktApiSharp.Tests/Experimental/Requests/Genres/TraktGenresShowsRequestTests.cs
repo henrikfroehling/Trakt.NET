@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Genres;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktGenresShowsRequestTests
@@ -23,6 +24,13 @@
         public void TestTraktGenresShowsRequestIsSubclassOfATraktGenresRequest()
         {
             typeof(TraktGenresShowsRequest).IsSubclassOf(typeof(ATraktGenresRequest)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Genres"), TestCategory("Shows")]
+        public void TestTraktGenresShowsRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktGenresShowsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
