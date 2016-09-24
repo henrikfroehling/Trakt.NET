@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.People;
     using TraktApiSharp.Objects.Get.People.Credits;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktPersonShowCreditsRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktPersonShowCreditsRequestIsSubclassOfATraktPersonCreditsRequest()
         {
             typeof(TraktPersonShowCreditsRequest).IsSubclassOf(typeof(ATraktPersonCreditsRequest<TraktPersonShowCredits>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits"), TestCategory("Show")]
+        public void TestTraktPersonShowCreditsRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktPersonShowCreditsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }

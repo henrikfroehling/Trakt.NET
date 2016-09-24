@@ -9,6 +9,8 @@
     {
         public ATraktPersonCreditsRequest(TraktClient client) : base(client) { }
 
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
         public TraktExtendedOption ExtendedOption { get; set; }
 
         public TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.People;
