@@ -40,5 +40,12 @@
             var request = new TraktPersonShowCreditsRequest(null);
             request.UriTemplate.Should().Be("people/{id}/shows{?extended}");
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits"), TestCategory("Show")]
+        public void TestTraktPersonShowCreditsRequestHasValidRequestObjectType()
+        {
+            var request = new TraktPersonShowCreditsRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.People);
+        }
     }
 }
