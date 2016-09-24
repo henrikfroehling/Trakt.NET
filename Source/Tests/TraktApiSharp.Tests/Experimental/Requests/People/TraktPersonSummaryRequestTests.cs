@@ -34,5 +34,12 @@
             var request = new TraktPersonSummaryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People")]
+        public void TestTraktPersonSummaryRequestHasValidUriTemplate()
+        {
+            var request = new TraktPersonSummaryRequest(null);
+            request.UriTemplate.Should().Be("people/{id}{?extended}");
+        }
     }
 }
