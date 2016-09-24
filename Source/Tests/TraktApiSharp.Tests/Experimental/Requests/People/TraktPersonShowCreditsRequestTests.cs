@@ -33,5 +33,12 @@
             var request = new TraktPersonShowCreditsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits"), TestCategory("Show")]
+        public void TestTraktPersonShowCreditsRequestHasValidUriTemplate()
+        {
+            var request = new TraktPersonShowCreditsRequest(null);
+            request.UriTemplate.Should().Be("people/{id}/shows{?extended}");
+        }
     }
 }
