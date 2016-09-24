@@ -18,5 +18,11 @@
         {
             typeof(TraktGenresShowsRequest).IsSealed.Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Genres"), TestCategory("Shows")]
+        public void TestTraktGenresShowsRequestIsSubclassOfATraktGenresRequest()
+        {
+            typeof(TraktGenresShowsRequest).IsSubclassOf(typeof(ATraktGenresRequest)).Should().BeTrue();
+        }
     }
 }
