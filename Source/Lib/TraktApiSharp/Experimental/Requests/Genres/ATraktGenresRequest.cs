@@ -1,7 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Genres
 {
-    internal abstract class ATraktGenresRequest
-    {
+    using Base.Get;
+    using Objects.Basic;
 
+    internal abstract class ATraktGenresRequest : ATraktListGetRequest<TraktGenre>
+    {
+        public ATraktGenresRequest(TraktClient client) : base(client) { }
     }
 }
