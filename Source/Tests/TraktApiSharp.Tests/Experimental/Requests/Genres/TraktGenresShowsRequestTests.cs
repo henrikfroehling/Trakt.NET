@@ -32,5 +32,12 @@
             var request = new TraktGenresShowsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Genres"), TestCategory("Shows")]
+        public void TestTraktGenresShowsRequestHasValidUriTemplate()
+        {
+            var request = new TraktGenresShowsRequest(null);
+            request.UriTemplate.Should().Be("genres/shows");
+        }
     }
 }
