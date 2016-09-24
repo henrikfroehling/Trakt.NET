@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Genres
 {
-    internal class TraktGenresShowsRequest
+    internal sealed class TraktGenresShowsRequest
     {
 
     }
