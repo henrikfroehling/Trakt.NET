@@ -36,6 +36,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("People")]
+        public void TestTraktPersonSummaryRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktPersonSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People")]
         public void TestTraktPersonSummaryRequestHasAuthorizationNotRequired()
         {
             var request = new TraktPersonSummaryRequest(null);
