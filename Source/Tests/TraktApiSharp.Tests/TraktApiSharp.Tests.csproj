@@ -166,6 +166,7 @@
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktCheckinRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfoTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterableTests.cs" />
