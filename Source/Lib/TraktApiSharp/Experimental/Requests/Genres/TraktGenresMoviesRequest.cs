@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Genres
 {
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktGenresMoviesRequest : ATraktGenresRequest
@@ -9,12 +8,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "genres/movies";
     }
 }
