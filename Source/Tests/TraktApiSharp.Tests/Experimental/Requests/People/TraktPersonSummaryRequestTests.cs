@@ -56,7 +56,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("People")]
-        public void TestTraktPersonSummaryRequestHasValidObjectRequestType()
+        public void TestTraktPersonSummaryRequestHasValidRequestObjectType()
         {
             var request = new TraktPersonSummaryRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.People);
