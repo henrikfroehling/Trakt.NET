@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.People
 {
-    internal abstract class ATraktPersonCreditsRequest<T>
-    {
+    using Base.Get;
 
+    internal abstract class ATraktPersonCreditsRequest<T> : ATraktSingleItemGetByIdRequest<T>
+    {
+        public ATraktPersonCreditsRequest(TraktClient client) : base(client) { }
     }
 }
