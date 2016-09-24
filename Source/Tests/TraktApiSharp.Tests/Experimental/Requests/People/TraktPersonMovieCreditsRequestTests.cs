@@ -12,5 +12,11 @@
         {
             typeof(TraktPersonMovieCreditsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits"), TestCategory("Movie")]
+        public void TestTraktPersonMovieCreditsRequestIsSealed()
+        {
+            typeof(TraktPersonMovieCreditsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
