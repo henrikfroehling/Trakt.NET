@@ -48,5 +48,12 @@
             var request = new TraktPersonSummaryRequest(null);
             request.UriTemplate.Should().Be("people/{id}{?extended}");
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People")]
+        public void TestTraktPersonSummaryRequestHasValidObjectRequestType()
+        {
+            var request = new TraktPersonSummaryRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.People);
+        }
     }
 }
