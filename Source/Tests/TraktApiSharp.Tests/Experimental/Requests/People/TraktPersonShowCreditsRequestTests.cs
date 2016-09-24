@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.People;
+    using TraktApiSharp.Objects.Get.People.Credits;
 
     [TestClass]
     public class TraktPersonShowCreditsRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktPersonShowCreditsRequestIsSealed()
         {
             typeof(TraktPersonShowCreditsRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits"), TestCategory("Show")]
+        public void TestTraktPersonShowCreditsRequestIsSubclassOfATraktPersonCreditsRequest()
+        {
+            typeof(TraktPersonShowCreditsRequest).IsSubclassOf(typeof(ATraktPersonCreditsRequest<TraktPersonShowCredits>)).Should().BeTrue();
         }
     }
 }
