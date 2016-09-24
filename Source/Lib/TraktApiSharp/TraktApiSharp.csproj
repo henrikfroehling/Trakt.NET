@@ -192,6 +192,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequest.cs" />
+    <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonSummaryRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
