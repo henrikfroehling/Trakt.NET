@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.People
 {
-    internal abstract class ATraktPersonCreditsRequest
+    internal abstract class ATraktPersonCreditsRequest<T>
     {
 
     }
