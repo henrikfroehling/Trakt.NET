@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Checkins.OAuth
 {
-    internal sealed class TraktCheckinRequest
+    internal sealed class TraktCheckinRequest<TItem, TRequestBody>
     {
 
     }

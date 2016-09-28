@@ -10,13 +10,20 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
         public void TestTraktCheckinRequestIsNotAbstract()
         {
-            typeof(TraktCheckinRequest).IsAbstract.Should().BeFalse();
+            typeof(TraktCheckinRequest<,>).IsAbstract.Should().BeFalse();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
         public void TestTraktCheckinRequestIsSealed()
         {
-            typeof(TraktCheckinRequest).IsSealed.Should().BeTrue();
+            typeof(TraktCheckinRequest<,>).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinRequestHasGenericTypeParameter()
+        {
+            typeof(TraktCheckinRequest<,>).ContainsGenericParameters.Should().BeTrue();
+            typeof(TraktCheckinRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
         }
     }
 }
