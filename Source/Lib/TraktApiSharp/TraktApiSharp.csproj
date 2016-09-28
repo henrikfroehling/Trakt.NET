@@ -172,6 +172,7 @@
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
