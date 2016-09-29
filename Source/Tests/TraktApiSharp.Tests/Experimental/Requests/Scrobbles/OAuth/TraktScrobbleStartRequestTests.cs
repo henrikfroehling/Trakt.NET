@@ -12,5 +12,11 @@
         {
             typeof(TraktScrobbleStartRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Start")]
+        public void TestTraktScrobbleStartRequestIsSealed()
+        {
+            typeof(TraktScrobbleStartRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
