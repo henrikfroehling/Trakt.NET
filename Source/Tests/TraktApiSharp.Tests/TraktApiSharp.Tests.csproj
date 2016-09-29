@@ -190,6 +190,7 @@
     <Compile Include="Experimental\Requests\People\TraktPersonSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
