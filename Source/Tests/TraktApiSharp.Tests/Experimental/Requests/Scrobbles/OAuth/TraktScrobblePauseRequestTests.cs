@@ -10,13 +10,20 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Pause")]
         public void TestTraktScrobblePauseRequestIsNotAbstract()
         {
-            typeof(TraktScrobblePauseRequest).IsAbstract.Should().BeFalse();
+            typeof(TraktScrobblePauseRequest<,>).IsAbstract.Should().BeFalse();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Pause")]
         public void TestTraktScrobblePauseRequestIsSealed()
         {
-            typeof(TraktScrobblePauseRequest).IsSealed.Should().BeTrue();
+            typeof(TraktScrobblePauseRequest<,>).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Pause")]
+        public void TestTraktScrobblePauseRequestHasGenericTypeParameter()
+        {
+            typeof(TraktScrobblePauseRequest<,>).ContainsGenericParameters.Should().BeTrue();
+            typeof(TraktScrobblePauseRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
         }
     }
 }
