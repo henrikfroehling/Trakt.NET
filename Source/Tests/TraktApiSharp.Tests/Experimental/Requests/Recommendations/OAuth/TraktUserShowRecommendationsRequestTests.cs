@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Recommendations.OAuth;
+    using TraktApiSharp.Objects.Get.Shows;
 
     [TestClass]
     public class TraktUserShowRecommendationsRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktUserShowRecommendationsRequestIsSealed()
         {
             typeof(TraktUserShowRecommendationsRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Shows")]
+        public void TestTraktUserShowRecommendationsRequestIsSubclassOfATraktUserRecommendationsRequest()
+        {
+            typeof(TraktUserShowRecommendationsRequest).IsSubclassOf(typeof(ATraktUserRecommendationsRequest<TraktShow>)).Should().BeTrue();
         }
     }
 }
