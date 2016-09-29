@@ -93,7 +93,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Movies")]
-        public void TestTraktCalendarUserMoviesRequesttUriParamsWithDays()
+        public void TestTraktCalendarUserMoviesRequestUriParamsWithDays()
         {
             var startDate = DateTime.Now;
             var days = 14;
