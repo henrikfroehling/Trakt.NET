@@ -40,5 +40,12 @@
             var request = new TraktUserRecommendationHideShowRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Shows")]
+        public void TestTraktUserRecommendationHideShowRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserRecommendationHideShowRequest(null);
+            request.UriTemplate.Should().Be("recommendations/shows/{id}");
+        }
     }
 }
