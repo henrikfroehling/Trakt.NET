@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post;
     using TraktApiSharp.Experimental.Requests.Checkins.OAuth;
 
     [TestClass]
@@ -24,6 +25,12 @@
         {
             typeof(TraktCheckinRequest<,>).ContainsGenericParameters.Should().BeTrue();
             typeof(TraktCheckinRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinRequestIsSubclassOfATraktSingleItemPostRequest()
+        {
+            typeof(TraktCheckinRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<int, float>)).Should().BeTrue();
         }
     }
 }
