@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Checkins.OAuth;
 
     [TestClass]
@@ -17,6 +18,12 @@
         public void TestTraktCheckinsDeleteRequestIsSealed()
         {
             typeof(TraktCheckinsDeleteRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinsDeleteRequestIsSubclassOfATraktNoContentDeleteRequest()
+        {
+            typeof(TraktCheckinsDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteRequest)).Should().BeTrue();
         }
     }
 }
