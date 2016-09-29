@@ -12,5 +12,11 @@
         {
             typeof(TraktUserRecommendationHideShowRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Shows")]
+        public void TestTraktUserRecommendationHideShowRequestIsSealed()
+        {
+            typeof(TraktUserRecommendationHideShowRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
