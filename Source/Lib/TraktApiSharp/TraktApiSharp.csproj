@@ -199,6 +199,7 @@
     <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest.cs" />
+    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
