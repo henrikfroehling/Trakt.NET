@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post;
     using TraktApiSharp.Experimental.Requests.Scrobbles.OAuth;
 
     [TestClass]
@@ -24,6 +25,12 @@
         {
             typeof(TraktScrobbleStartRequest<,>).ContainsGenericParameters.Should().BeTrue();
             typeof(TraktScrobbleStartRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Start")]
+        public void TestTraktScrobbleStartRequestIsSubclassOfATraktSingleItemPostRequest()
+        {
+            typeof(TraktScrobbleStartRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<int, float>)).Should().BeTrue();
         }
     }
 }
