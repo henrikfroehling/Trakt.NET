@@ -33,5 +33,12 @@
             var request = new TraktUserShowRecommendationsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Shows")]
+        public void TestTraktUserShowRecommendationsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserShowRecommendationsRequest(null);
+            request.UriTemplate.Should().Be("recommendations/shows{?extended,limit}");
+        }
     }
 }
