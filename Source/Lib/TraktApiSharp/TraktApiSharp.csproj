@@ -201,6 +201,7 @@
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest.cs" />
+    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStartRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
