@@ -12,5 +12,11 @@
         {
             typeof(TraktUserMovieRecommendationsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktUserMovieRecommendationsRequesttIsSealed()
+        {
+            typeof(TraktUserMovieRecommendationsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
