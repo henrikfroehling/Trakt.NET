@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Recommendations.OAuth;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserMovieRecommendationsRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktUserMovieRecommendationsRequestIsSubclassOfATraktUserRecommendationsRequest()
         {
             typeof(TraktUserMovieRecommendationsRequest).IsSubclassOf(typeof(ATraktUserRecommendationsRequest<TraktMovie>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktUserMovieRecommendationsRequestHasAuthorizationRequired()
+        {
+            var request = new TraktUserMovieRecommendationsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
