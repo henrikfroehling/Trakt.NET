@@ -33,5 +33,12 @@
             var request = new TraktUserMovieRecommendationsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktUserMovieRecommendationsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserMovieRecommendationsRequest(null);
+            request.UriTemplate.Should().Be("recommendations/movies{?extended,limit}");
+        }
     }
 }
