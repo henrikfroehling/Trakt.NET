@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktCalendarRequest<T> : ATraktListGetRequest<T>
+    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>
     {
         public ATraktCalendarRequest(TraktClient client) : base(client) { }
 

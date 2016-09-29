@@ -2,7 +2,7 @@
 {
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktCalendarAllRequest<T> : ATraktCalendarRequest<T>
+    internal abstract class ATraktCalendarAllRequest<TITem> : ATraktCalendarRequest<TITem>
     {
         public ATraktCalendarAllRequest(TraktClient client) : base(client) { }
 
