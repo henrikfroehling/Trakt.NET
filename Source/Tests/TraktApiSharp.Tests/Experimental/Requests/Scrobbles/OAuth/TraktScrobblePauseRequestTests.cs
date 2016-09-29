@@ -32,5 +32,12 @@
         {
             typeof(TraktScrobblePauseRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<int, float>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Pause")]
+        public void TestTraktScrobblePauseRequestHasValidUriTemplate()
+        {
+            var request = new TraktScrobblePauseRequest<int, float>(null);
+            request.UriTemplate.Should().Be("scrobble/pause");
+        }
     }
 }
