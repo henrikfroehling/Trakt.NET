@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Post;
     using TraktApiSharp.Experimental.Requests.Checkins.OAuth;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class TraktCheckinRequestTests
@@ -32,12 +31,6 @@
         public void TestTraktCheckinRequestIsSubclassOfATraktSingleItemPostRequest()
         {
             typeof(TraktCheckinRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<int, float>)).Should().BeTrue();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
-        public void TestTraktCheckinRequestImplementsITraktCheckinRequestInterface()
-        {
-            typeof(TraktCheckinRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktCheckinRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
