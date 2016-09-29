@@ -196,6 +196,7 @@
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonSummaryRequest.cs" />
+    <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
