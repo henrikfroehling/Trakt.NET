@@ -12,5 +12,11 @@
         {
             typeof(TraktCheckinsDeleteRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinsDeleteRequestIsSealed()
+        {
+            typeof(TraktCheckinsDeleteRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
