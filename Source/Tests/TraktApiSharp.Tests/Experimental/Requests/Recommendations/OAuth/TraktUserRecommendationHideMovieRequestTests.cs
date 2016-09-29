@@ -40,5 +40,12 @@
             var request = new TraktUserRecommendationHideMovieRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Movies);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktUserRecommendationHideMovieRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserRecommendationHideMovieRequest(null);
+            request.UriTemplate.Should().Be("recommendations/movies/{id}");
+        }
     }
 }
