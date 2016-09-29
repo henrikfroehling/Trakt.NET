@@ -193,6 +193,7 @@
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobblePauseRequestTests.cs" />
     <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStartRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
