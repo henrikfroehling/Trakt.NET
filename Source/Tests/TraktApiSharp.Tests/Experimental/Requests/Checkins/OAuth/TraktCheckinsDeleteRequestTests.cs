@@ -25,5 +25,12 @@
         {
             typeof(TraktCheckinsDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteRequest)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinsDeleteRequestHasValidUriTemplate()
+        {
+            var request = new TraktCheckinsDeleteRequest(null);
+            request.UriTemplate.Should().Be("checkin");
+        }
     }
 }
