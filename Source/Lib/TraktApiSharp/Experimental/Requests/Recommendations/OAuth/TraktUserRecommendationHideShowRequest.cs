@@ -8,7 +8,7 @@
     {
         public TraktUserRecommendationHideShowRequest(TraktClient client) : base(client) { }
 
-        public TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
         public override string UriTemplate => "recommendations/shows/{id}";
     }

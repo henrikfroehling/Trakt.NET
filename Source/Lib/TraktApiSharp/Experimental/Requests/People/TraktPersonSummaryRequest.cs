@@ -14,7 +14,7 @@
 
         public TraktExtendedOption ExtendedOption { get; set; }
 
-        public TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.People;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
 
         public override string UriTemplate => "people/{id}{?extended}";
     }

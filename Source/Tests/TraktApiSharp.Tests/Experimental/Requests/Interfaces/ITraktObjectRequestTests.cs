@@ -24,7 +24,7 @@
 
             requestObjectTypePropertyInfo.CanRead.Should().BeTrue();
             requestObjectTypePropertyInfo.CanWrite.Should().BeFalse();
-            requestObjectTypePropertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType?));
+            requestObjectTypePropertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType));
         }
     }
 }

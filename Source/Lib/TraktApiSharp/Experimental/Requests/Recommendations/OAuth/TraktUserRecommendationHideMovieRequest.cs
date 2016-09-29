@@ -8,7 +8,7 @@
     {
         public TraktUserRecommendationHideMovieRequest(TraktClient client) : base(client) { }
 
-        public TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Movies;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
         public override string UriTemplate => "recommendations/movies/{id}";
     }
