@@ -39,5 +39,12 @@
         {
             typeof(TraktCheckinRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktCheckinRequest));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Checkins"), TestCategory("With OAuth")]
+        public void TestTraktCheckinRequestHasValidUriTemplate()
+        {
+            var request = new TraktCheckinRequest<int, float>(null);
+            request.UriTemplate.Should().Be("checkin");
+        }
     }
 }
