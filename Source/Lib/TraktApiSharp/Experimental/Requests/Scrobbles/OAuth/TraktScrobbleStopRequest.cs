@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Scrobbles.OAuth
 {
-    internal class TraktScrobbleStopRequest
+    internal sealed class TraktScrobbleStopRequest
     {
 
     }
