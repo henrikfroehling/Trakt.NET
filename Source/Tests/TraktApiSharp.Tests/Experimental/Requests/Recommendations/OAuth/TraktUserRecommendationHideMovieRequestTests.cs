@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Recommendations.OAuth;
 
     [TestClass]
@@ -17,6 +18,12 @@
         public void TestTraktUserRecommendationHideMovieRequestIsSealed()
         {
             typeof(TraktUserRecommendationHideMovieRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktUserRecommendationHideMovieRequestIsSubclassOfATraktNoContentDeleteByIdRequest()
+        {
+            typeof(TraktUserRecommendationHideMovieRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
     }
 }
