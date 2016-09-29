@@ -172,6 +172,8 @@
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequest.cs" />
+    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
@@ -179,7 +181,6 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterable.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktCheckinRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPagination.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktListRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktNoContentRequest.cs" />
