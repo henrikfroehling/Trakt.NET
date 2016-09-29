@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth")]
         public void TestATraktUserRecommendationsRequestIsAbstract()
         {
-            typeof(ATraktUserRecommendationsRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktUserRecommendationsRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth")]
+        public void TestATraktUserRecommendationsRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktUserRecommendationsRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktUserRecommendationsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
