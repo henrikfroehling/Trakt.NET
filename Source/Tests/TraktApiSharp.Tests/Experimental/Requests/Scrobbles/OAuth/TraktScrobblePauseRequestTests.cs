@@ -12,5 +12,11 @@
         {
             typeof(TraktScrobblePauseRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Scrobbles"), TestCategory("With OAuth"), TestCategory("Pause")]
+        public void TestTraktScrobblePauseRequestIsSealed()
+        {
+            typeof(TraktScrobblePauseRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
