@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Recommendations.OAuth
 {
-    internal class TraktUserRecommendationHideMovieRequest
+    internal sealed class TraktUserRecommendationHideMovieRequest
     {
 
     }
