@@ -4,14 +4,11 @@
     using Interfaces;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
     internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest, ITraktFilterable
     {
         public TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktCommonFilter Filter { get; set; }
 

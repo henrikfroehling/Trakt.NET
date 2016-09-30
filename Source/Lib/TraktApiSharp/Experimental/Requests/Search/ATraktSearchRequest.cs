@@ -4,11 +4,14 @@
     using Enums;
     using Interfaces;
     using Objects.Basic;
+    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
     internal abstract class ATraktSearchRequest : ATraktPaginationGetRequest<TraktSearchResult>, ITraktExtendedInfo
     {
         public ATraktSearchRequest(TraktClient client) : base(client) { }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedOption ExtendedOption { get; set; }
 
