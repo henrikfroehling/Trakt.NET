@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Search;
     using TraktApiSharp.Requests;
@@ -45,6 +48,19 @@
         {
             var request = new TraktSearchTextQueryRequest(null);
             request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]
+        public void TestTraktSearchTextQueryRequestHasSearchFieldsProperty()
+        {
+            var startDatePropertyInfo = typeof(TraktSearchTextQueryRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "SearchFields")
+                    .FirstOrDefault();
+
+            startDatePropertyInfo.CanRead.Should().BeTrue();
+            startDatePropertyInfo.CanWrite.Should().BeTrue();
+            startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchField));
         }
     }
 }
