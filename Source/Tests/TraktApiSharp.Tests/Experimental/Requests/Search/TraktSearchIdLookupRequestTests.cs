@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Search;
     using TraktApiSharp.Requests;
 
@@ -38,6 +41,19 @@
         {
             var request = new TraktSearchIdLookupRequest(null);
             request.UriTemplate.Should().Be("search/{id_type}/{id}{?type,extended,page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Id Lookup")]
+        public void TestTraktSearchIdLookupRequestHasIdTypeProperty()
+        {
+            var startDatePropertyInfo = typeof(TraktSearchIdLookupRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "IdType")
+                    .FirstOrDefault();
+
+            startDatePropertyInfo.CanRead.Should().BeTrue();
+            startDatePropertyInfo.CanWrite.Should().BeTrue();
+            startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchIdType));
         }
     }
 }
