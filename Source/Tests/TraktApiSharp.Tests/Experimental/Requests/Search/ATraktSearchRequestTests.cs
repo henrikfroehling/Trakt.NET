@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Search;
     using TraktApiSharp.Objects.Basic;
 
@@ -19,6 +20,12 @@
         public void TestATraktSearchRequestIsSubclassOfATraktPaginationGetRequest()
         {
             typeof(ATraktSearchRequest).IsSubclassOf(typeof(ATraktPaginationGetRequest<TraktSearchResult>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth")]
+        public void TestATraktSearchRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
     }
 }

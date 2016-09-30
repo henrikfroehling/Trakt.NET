@@ -1,10 +1,14 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Search
 {
     using Base.Get;
+    using Interfaces;
     using Objects.Basic;
+    using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktSearchRequest : ATraktPaginationGetRequest<TraktSearchResult>
+    internal abstract class ATraktSearchRequest : ATraktPaginationGetRequest<TraktSearchResult>, ITraktExtendedInfo
     {
         public ATraktSearchRequest(TraktClient client) : base(client) { }
+
+        public TraktExtendedOption ExtendedOption { get; set; }
     }
 }
