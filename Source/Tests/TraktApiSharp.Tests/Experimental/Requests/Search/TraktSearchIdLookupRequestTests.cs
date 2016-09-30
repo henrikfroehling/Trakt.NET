@@ -32,5 +32,12 @@
             var request = new TraktSearchIdLookupRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Id Lookup")]
+        public void TestTraktSearchIdLookupRequestHasValidUriTemplate()
+        {
+            var request = new TraktSearchIdLookupRequest(null);
+            request.UriTemplate.Should().Be("search/{id_type}/{id}{?type,extended,page,limit}");
+        }
     }
 }
