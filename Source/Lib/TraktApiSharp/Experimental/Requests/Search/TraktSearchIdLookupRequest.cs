@@ -8,6 +8,8 @@
 
         internal TraktSearchIdType IdType { get; set; }
 
+        internal string LookupId { get; set; }
+
         public override string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
     }
 }

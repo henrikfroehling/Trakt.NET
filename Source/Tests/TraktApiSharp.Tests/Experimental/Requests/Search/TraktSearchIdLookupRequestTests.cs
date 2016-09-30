@@ -55,5 +55,18 @@
             startDatePropertyInfo.CanWrite.Should().BeTrue();
             startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchIdType));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Id Lookup")]
+        public void TestTraktSearchIdLookupRequestHasLookupIdProperty()
+        {
+            var startDatePropertyInfo = typeof(TraktSearchIdLookupRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "LookupId")
+                    .FirstOrDefault();
+
+            startDatePropertyInfo.CanRead.Should().BeTrue();
+            startDatePropertyInfo.CanWrite.Should().BeTrue();
+            startDatePropertyInfo.PropertyType.Should().Be(typeof(string));
+        }
     }
 }
