@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktExtendedInfo
+    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktExtendedInfo, ITraktFilterable
     {
         public ATraktCalendarRequest(TraktClient client) : base(client) { }
 
@@ -16,6 +16,8 @@
         internal int? Days { get; set; }
 
         public TraktExtendedOption ExtendedOption { get; set; }
+
+        public TraktCommonFilter Filter { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

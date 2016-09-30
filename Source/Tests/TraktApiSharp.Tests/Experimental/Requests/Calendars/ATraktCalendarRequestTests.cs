@@ -39,6 +39,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
+        public void TestATraktCalendarRequestImplementsITraktFilterableInterface()
+        {
+            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktFilterable));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
         public void TestATraktCalendarRequestHasStartDateProperty()
         {
             var startDatePropertyInfo = typeof(ATraktCalendarRequest<>)
