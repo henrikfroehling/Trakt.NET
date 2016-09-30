@@ -32,5 +32,12 @@
             var request = new TraktSearchTextQueryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]
+        public void TestTraktSearchTextQueryRequestHasValidUriTemplate()
+        {
+            var request = new TraktSearchTextQueryRequest(null);
+            request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
+        }
     }
 }

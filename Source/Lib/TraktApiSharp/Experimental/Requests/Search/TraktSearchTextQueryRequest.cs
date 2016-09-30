@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Search
 {
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest
@@ -9,12 +8,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
     }
 }
