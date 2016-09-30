@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Search
 {
-    internal class TraktSearchTextQueryRequest
+    internal sealed class TraktSearchTextQueryRequest
     {
 
     }

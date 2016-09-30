@@ -12,5 +12,11 @@
         {
             typeof(TraktSearchTextQueryRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]
+        public void TestTraktSearchTextQueryRequestIsSealed()
+        {
+            typeof(TraktSearchTextQueryRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
