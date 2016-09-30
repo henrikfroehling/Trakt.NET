@@ -8,7 +8,7 @@
 
     internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest, ITraktFilterable
     {
-        public TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
+        internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 
         public TraktCommonFilter Filter { get; set; }
 

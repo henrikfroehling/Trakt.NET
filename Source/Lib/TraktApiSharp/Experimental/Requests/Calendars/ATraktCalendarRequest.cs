@@ -9,7 +9,7 @@
 
     internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktExtendedInfo, ITraktFilterable
     {
-        public ATraktCalendarRequest(TraktClient client) : base(client) { }
+        internal ATraktCalendarRequest(TraktClient client) : base(client) { }
 
         internal DateTime? StartDate { get; set; }
 

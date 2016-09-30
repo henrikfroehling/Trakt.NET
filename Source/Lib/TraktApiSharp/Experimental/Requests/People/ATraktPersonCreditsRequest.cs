@@ -7,7 +7,7 @@
 
     internal abstract class ATraktPersonCreditsRequest<TITem> : ATraktSingleItemGetByIdRequest<TITem>, ITraktObjectRequest, ITraktExtendedInfo
     {
-        public ATraktPersonCreditsRequest(TraktClient client) : base(client) { }
+        internal ATraktPersonCreditsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

@@ -4,7 +4,7 @@
 
     internal sealed class TraktUserMovieRecommendationsRequest : ATraktUserRecommendationsRequest<TraktMovie>
     {
-        public TraktUserMovieRecommendationsRequest(TraktClient client) : base(client) { }
+        internal TraktUserMovieRecommendationsRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "recommendations/movies{?extended,limit}";
     }

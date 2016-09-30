@@ -4,7 +4,7 @@
 
     internal abstract class ATraktCalendarUserRequest<TITem> : ATraktCalendarRequest<TITem>
     {
-        public ATraktCalendarUserRequest(TraktClient client) : base(client) { }
+        internal ATraktCalendarUserRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }

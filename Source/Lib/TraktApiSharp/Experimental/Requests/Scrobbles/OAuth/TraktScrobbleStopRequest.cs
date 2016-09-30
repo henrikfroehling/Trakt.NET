@@ -4,7 +4,7 @@
 
     internal sealed class TraktScrobbleStopRequest<TItem, TRequestBody> : ATraktSingleItemPostRequest<TItem, TRequestBody>
     {
-        public TraktScrobbleStopRequest(TraktClient client) : base(client) { }
+        internal TraktScrobbleStopRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "scrobble/stop";
     }

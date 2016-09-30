@@ -6,7 +6,7 @@
 
     internal sealed class TraktUserRecommendationHideShowRequest : ATraktNoContentDeleteByIdRequest, ITraktObjectRequest
     {
-        public TraktUserRecommendationHideShowRequest(TraktClient client) : base(client) { }
+        internal TraktUserRecommendationHideShowRequest(TraktClient client) : base(client) { }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 

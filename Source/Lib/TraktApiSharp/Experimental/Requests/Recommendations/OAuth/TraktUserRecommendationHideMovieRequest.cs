@@ -6,7 +6,7 @@
 
     internal sealed class TraktUserRecommendationHideMovieRequest : ATraktNoContentDeleteByIdRequest, ITraktObjectRequest
     {
-        public TraktUserRecommendationHideMovieRequest(TraktClient client) : base(client) { }
+        internal TraktUserRecommendationHideMovieRequest(TraktClient client) : base(client) { }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 

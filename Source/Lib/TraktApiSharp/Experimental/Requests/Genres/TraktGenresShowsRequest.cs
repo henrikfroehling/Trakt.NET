@@ -2,7 +2,7 @@
 {
     internal sealed class TraktGenresShowsRequest : ATraktGenresRequest
     {
-        public TraktGenresShowsRequest(TraktClient client) : base(client) { }
+        internal TraktGenresShowsRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "genres/shows";
     }

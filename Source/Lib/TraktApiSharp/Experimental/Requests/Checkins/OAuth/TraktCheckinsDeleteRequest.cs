@@ -4,7 +4,7 @@
 
     internal sealed class TraktCheckinsDeleteRequest : ATraktNoContentDeleteRequest
     {
-        public TraktCheckinsDeleteRequest(TraktClient client) : base(client) { }
+        internal TraktCheckinsDeleteRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "checkin";
     }

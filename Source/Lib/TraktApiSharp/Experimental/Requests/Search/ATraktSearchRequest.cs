@@ -9,7 +9,7 @@
 
     internal abstract class ATraktSearchRequest : ATraktPaginationGetRequest<TraktSearchResult>, ITraktExtendedInfo
     {
-        public ATraktSearchRequest(TraktClient client) : base(client) { }
+        internal ATraktSearchRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

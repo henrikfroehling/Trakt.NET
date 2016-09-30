@@ -7,7 +7,7 @@
 
     internal abstract class ATraktUserRecommendationsRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo
     {
-        public ATraktUserRecommendationsRequest(TraktClient client) : base(client) { }
+        internal ATraktUserRecommendationsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

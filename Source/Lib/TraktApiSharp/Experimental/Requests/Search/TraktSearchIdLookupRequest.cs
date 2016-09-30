@@ -6,7 +6,7 @@
 
     internal sealed class TraktSearchIdLookupRequest : ATraktSearchRequest
     {
-        public TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
+        internal TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
 
         internal TraktSearchIdType IdType { get; set; }
 

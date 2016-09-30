@@ -4,7 +4,7 @@
 
     internal sealed class TraktPersonMovieCreditsRequest : ATraktPersonCreditsRequest<TraktPersonMovieCredits>
     {
-        public TraktPersonMovieCreditsRequest(TraktClient client) : base(client) { }
+        internal TraktPersonMovieCreditsRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "people/{id}/movies{?extended}";
     }

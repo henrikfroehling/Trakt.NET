@@ -4,7 +4,7 @@
 
     internal sealed class TraktCalendarAllMoviesRequest : ATraktCalendarAllRequest<TraktCalendarMovie>
     {
-        public TraktCalendarAllMoviesRequest(TraktClient client) : base(client) { }
+        internal TraktCalendarAllMoviesRequest(TraktClient client) : base(client) { }
 
         public override string UriTemplate => "calendars/all/movies{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
     }
