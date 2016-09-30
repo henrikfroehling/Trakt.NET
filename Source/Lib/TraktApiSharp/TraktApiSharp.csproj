@@ -204,6 +204,9 @@
     <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobblePauseRequest.cs" />
     <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStartRequest.cs" />
     <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStopRequest.cs" />
+    <Compile Include="Experimental\Requests\Search\ATraktSearchRequest.cs" />
+    <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequest.cs" />
+    <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
