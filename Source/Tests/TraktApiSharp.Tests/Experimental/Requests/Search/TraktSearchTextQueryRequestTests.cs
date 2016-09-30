@@ -62,5 +62,18 @@
             startDatePropertyInfo.CanWrite.Should().BeTrue();
             startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchField));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]
+        public void TestTraktSearchTextQueryRequestHasQueryProperty()
+        {
+            var startDatePropertyInfo = typeof(TraktSearchTextQueryRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Query")
+                    .FirstOrDefault();
+
+            startDatePropertyInfo.CanRead.Should().BeTrue();
+            startDatePropertyInfo.CanWrite.Should().BeTrue();
+            startDatePropertyInfo.PropertyType.Should().Be(typeof(string));
+        }
     }
 }
