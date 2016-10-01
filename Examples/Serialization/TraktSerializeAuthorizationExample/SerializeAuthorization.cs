@@ -3,7 +3,6 @@
     using System;
     using TraktApiSharp;
     using TraktApiSharp.Authentication;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Services;
 
     class SerializeAuthorization
@@ -15,14 +14,8 @@
         {
             TraktClient client = new TraktClient(CLIENT_ID, CLIENT_SECRET);
 
-            TraktAuthorization fakeAuthorization = new TraktAuthorization
-            {
-                AccessToken = "FakeAccessToken",
-                RefreshToken = "FakeRefreshToken",
-                ExpiresInSeconds = 90 * 24 * 3600,
-                AccessScope = TraktAccessScope.Public,
-                TokenType = TraktAccessTokenType.Bearer
-            };
+            TraktAuthorization fakeAuthorization = TraktAuthorization.CreateWith(DateTime.Now, 90 * 24 * 3600, "FakeAccessToken", "FakeRefreshToken");
+            client.Authorization = fakeAuthorization;
 
             Console.WriteLine("Fake Authorization:");
             Console.WriteLine($"Created (UTC): {fakeAuthorization.Created}");

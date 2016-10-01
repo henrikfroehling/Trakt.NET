@@ -2,7 +2,6 @@ namespace TraktApiSharp.Example.UWP.ViewModels
 {
     using Authentication;
     using Dialogs;
-    using Enums;
     using Exceptions;
     using Services.TraktService;
     using System;
@@ -107,14 +106,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
         private const int OAUTH_AUTHENTICATION = 1;
         private const int DEVICE_AUTHENTICATION = 2;
 
-        private static readonly TraktAuthorization DEFAULT_AUTHORIZATION = new TraktAuthorization
-        {
-            AccessToken = "no token",
-            RefreshToken = "no token",
-            AccessScope = TraktAccessScope.Public,
-            ExpiresInSeconds = 0,
-            TokenType = TraktAccessTokenType.Bearer
-        };
+        private static readonly TraktAuthorization DEFAULT_AUTHORIZATION = TraktAuthorization.CreateWith("no token", "no token");
 
         public TraktAuthorizationPartViewModel()
         {
