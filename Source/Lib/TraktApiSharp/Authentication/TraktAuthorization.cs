@@ -94,9 +94,14 @@
         internal bool IgnoreExpiration { get; set; }
 
         public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
-        {
-            return null;
-        }
+            => new TraktAuthorization
+            {
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty,
+                IgnoreExpiration = true
+            };
 
         public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
                                                     string accessToken, string refreshToken = null)
