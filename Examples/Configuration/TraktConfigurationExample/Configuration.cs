@@ -3,7 +3,6 @@
     using System;
     using TraktApiSharp;
     using TraktApiSharp.Authentication;
-    using TraktApiSharp.Enums;
 
     class Configuration
     {
@@ -33,17 +32,8 @@
             Console.WriteLine($"Requests with Authorization possible: {client.IsValidForUseWithAuthorization}");
 
             Console.WriteLine("-------------------------------------------------------");
-
-            TraktAuthorization fakeAuthorization = new TraktAuthorization
-            {
-                AccessToken = "FakeAccessToken",
-                RefreshToken = "FakeRefreshToken",
-                ExpiresInSeconds = 90 * 24 * 3600,
-                AccessScope = TraktAccessScope.Public,
-                TokenType = TraktAccessTokenType.Bearer
-            };
-
-            client.Authorization = fakeAuthorization;
+            
+            client.Authorization = TraktAuthorization.CreateWith(DateTime.Now, 90 * 24 * 3600, "FakeAccessToken", "FakeRefreshToken");
 
             Console.WriteLine($"Client Id: {client.ClientId}");
             Console.WriteLine($"Client Secret: {client.ClientSecret}\n");
