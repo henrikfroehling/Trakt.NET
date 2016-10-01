@@ -92,5 +92,16 @@
 
         [JsonIgnore]
         internal bool IgnoreExpiration { get; set; }
+
+        public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
+        {
+            return null;
+        }
+
+        public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
+                                                    string accessToken, string refreshToken = null)
+        {
+            return null;
+        }
     }
 }
