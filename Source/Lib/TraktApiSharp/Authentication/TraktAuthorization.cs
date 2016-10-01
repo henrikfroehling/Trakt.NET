@@ -105,8 +105,14 @@
 
         public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
                                                     string accessToken, string refreshToken = null)
-        {
-            return null;
-        }
+            => new TraktAuthorization
+            {
+                Created = createdAt.ToUniversalTime(),
+                ExpiresIn = expiresInSeconds,
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty
+            };
     }
 }
