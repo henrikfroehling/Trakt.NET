@@ -37,7 +37,7 @@
             Created = DateTime.UtcNow;
         }
 
-        /// <summary>Gets or sets the access token. See also <seealso cref="TraktClient.AccessToken" />.</summary>
+        /// <summary>Gets or sets the access token.</summary>
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
 

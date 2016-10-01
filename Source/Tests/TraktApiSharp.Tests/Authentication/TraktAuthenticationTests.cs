@@ -44,7 +44,7 @@
         [TestMethod]
         public void TestTraktAuthenticationConstructorWithValidAccessToken()
         {
-            var client = new TraktClient() { AccessToken = ACCESS_TOKEN };
+            var client = new TraktClient() { Authorization = TraktAuthorization.CreateWith(ACCESS_TOKEN) };
 
             client.Authentication.Client.Should().Be(client);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
@@ -85,7 +85,7 @@
         [TestMethod]
         public void TestTraktAuthenticationConstructorWithValidClientIdAndAccessToken()
         {
-            var client = new TraktClient(CLIENT_ID) { AccessToken = ACCESS_TOKEN };
+            var client = new TraktClient(CLIENT_ID) { Authorization = TraktAuthorization.CreateWith(ACCESS_TOKEN) };
 
             client.Authentication.Client.Should().Be(client);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
@@ -126,7 +126,7 @@
         [TestMethod]
         public void TestTraktAuthenticationConstructorWithValidClientIdAndClientSecretAndAccessToken()
         {
-            var client = new TraktClient(CLIENT_ID, CLIENT_SECRET) { AccessToken = ACCESS_TOKEN };
+            var client = new TraktClient(CLIENT_ID, CLIENT_SECRET) { Authorization = TraktAuthorization.CreateWith(ACCESS_TOKEN) };
 
             client.Authentication.Client.Should().Be(client);
             client.Authentication.AntiForgeryToken.Should().NotBeNullOrEmpty();
