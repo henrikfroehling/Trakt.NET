@@ -17,7 +17,7 @@
             AccessScope = TraktAccessScope.Public,
             AccessToken = "accessToken",
             RefreshToken = "refreshToken",
-            ExpiresIn = 7200,
+            ExpiresInSeconds = 7200,
             TokenType = TraktAccessTokenType.Bearer,
             IgnoreExpiration = false,
             Created = CREATED_AT
@@ -27,7 +27,7 @@
             "{" +
                 $"\"AccessToken\":\"{AUTHORIZATION.AccessToken}\"," +
                 $"\"RefreshToken\":\"{AUTHORIZATION.RefreshToken}\"," +
-                $"\"ExpiresIn\":{AUTHORIZATION.ExpiresIn}," +
+                $"\"ExpiresIn\":{AUTHORIZATION.ExpiresInSeconds}," +
                 $"\"Scope\":\"{AUTHORIZATION.AccessScope.ObjectName}\"," +
                 $"\"TokenType\":\"{AUTHORIZATION.TokenType.ObjectName}\"," +
                 $"\"CreatedAtTicks\":{CREATED_AT.Ticks}," +
@@ -143,7 +143,7 @@
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().Be(AUTHORIZATION.AccessToken);
             authorization.RefreshToken.Should().Be(AUTHORIZATION.RefreshToken);
-            authorization.ExpiresIn.Should().Be(AUTHORIZATION.ExpiresIn);
+            authorization.ExpiresInSeconds.Should().Be(AUTHORIZATION.ExpiresInSeconds);
             authorization.AccessScope.Should().Be(AUTHORIZATION.AccessScope);
             authorization.TokenType.Should().Be(AUTHORIZATION.TokenType);
             authorization.Created.Should().Be(AUTHORIZATION.Created);

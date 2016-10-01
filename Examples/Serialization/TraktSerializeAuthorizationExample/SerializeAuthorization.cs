@@ -19,7 +19,7 @@
             {
                 AccessToken = "FakeAccessToken",
                 RefreshToken = "FakeRefreshToken",
-                ExpiresIn = 90 * 24 * 3600,
+                ExpiresInSeconds = 90 * 24 * 3600,
                 AccessScope = TraktAccessScope.Public,
                 TokenType = TraktAccessTokenType.Bearer
             };
@@ -33,7 +33,7 @@
             Console.WriteLine($"Access Token: {fakeAuthorization.AccessToken}");
             Console.WriteLine($"Refresh Token: {fakeAuthorization.RefreshToken}");
             Console.WriteLine($"Token Expired: {fakeAuthorization.IsExpired}");
-            Console.WriteLine($"Expires in {fakeAuthorization.ExpiresIn / 3600 / 24} days");
+            Console.WriteLine($"Expires in {fakeAuthorization.ExpiresInSeconds / 3600 / 24} days");
 
             Console.WriteLine("-------------------------------------------------------------");
 
@@ -62,7 +62,7 @@
                     Console.WriteLine($"Access Token: {deserializedFakeAuthorization.AccessToken}");
                     Console.WriteLine($"Refresh Token: {deserializedFakeAuthorization.RefreshToken}");
                     Console.WriteLine($"Token Expired: {deserializedFakeAuthorization.IsExpired}");
-                    Console.WriteLine($"Expires in {deserializedFakeAuthorization.ExpiresIn / 3600 / 24} days");
+                    Console.WriteLine($"Expires in {deserializedFakeAuthorization.ExpiresInSeconds / 3600 / 24} days");
                 }
             }
 

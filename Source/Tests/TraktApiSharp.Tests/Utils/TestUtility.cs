@@ -26,7 +26,7 @@
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
 
-        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresIn = 3600 };
+        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
         private static readonly string TRAKT_CLIENT_ID = "traktClientId";
         private static readonly string TRAKT_CLIENT_SECRET = "traktClientSecret";
@@ -103,7 +103,7 @@
                      {
                          { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_TEST_CLIENT.AccessToken}" }
+                         { "Authorization", $"Bearer {MOCK_TEST_CLIENT.Authorization.AccessToken}" }
                      })
                      .Respond(HttpStatusCode.OK);
         }
@@ -116,7 +116,7 @@
             accessToken.Should().NotBeNull();
             accessToken.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+            MOCK_TEST_CLIENT.Authorization = accessToken;
 
             uri.Should().NotBeNullOrEmpty();
             requestContent.Should().NotBeNullOrEmpty();
@@ -140,7 +140,7 @@
             accessToken.Should().NotBeNull();
             accessToken.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = accessToken;
+            MOCK_TEST_CLIENT.Authorization = accessToken;
 
             uri.Should().NotBeNullOrEmpty();
             requestContent.Should().NotBeNullOrEmpty();
@@ -284,7 +284,7 @@
             MOCK_AUTHORIZATION.Should().NotBeNull();
             MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
+            MOCK_TEST_CLIENT.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
@@ -307,7 +307,7 @@
             MOCK_AUTHORIZATION.Should().NotBeNull();
             MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
+            MOCK_TEST_CLIENT.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
@@ -331,7 +331,7 @@
             MOCK_AUTHORIZATION.Should().NotBeNull();
             MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
+            MOCK_TEST_CLIENT.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
 
@@ -357,7 +357,7 @@
             MOCK_AUTHORIZATION.Should().NotBeNull();
             MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
-            MOCK_TEST_CLIENT.Authentication.Authorization = MOCK_AUTHORIZATION;
+            MOCK_TEST_CLIENT.Authorization = MOCK_AUTHORIZATION;
 
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
