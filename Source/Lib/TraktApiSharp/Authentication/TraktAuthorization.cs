@@ -93,6 +93,10 @@
         [JsonIgnore]
         internal bool IgnoreExpiration { get; set; }
 
+        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
+        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
         public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
             => new TraktAuthorization
             {
@@ -103,6 +107,12 @@
                 IgnoreExpiration = true
             };
 
+        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
+        /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
+        /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
+        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
         public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
                                                     string accessToken, string refreshToken = null)
             => new TraktAuthorization
