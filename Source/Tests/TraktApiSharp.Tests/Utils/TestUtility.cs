@@ -26,7 +26,7 @@
         private static MockHttpMessageHandler MOCK_HTTP;
         private static string BASE_URL;
 
-        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresIn = 3600 };
+        private static TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
         private static readonly string TRAKT_CLIENT_ID = "traktClientId";
         private static readonly string TRAKT_CLIENT_SECRET = "traktClientSecret";

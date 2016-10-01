@@ -52,7 +52,7 @@
 
         /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
         [JsonProperty(PropertyName = "expires_in")]
-        public int ExpiresIn { get; set; }
+        public int ExpiresInSeconds { get; set; }
 
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
         [JsonProperty(PropertyName = "token_type")]
@@ -66,7 +66,7 @@
         /// </para>
         /// </summary>
         [JsonIgnore]
-        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresIn) <= DateTime.UtcNow);
+        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
 
         /// <summary>
         /// Returns, whether this authorization information is valid.
@@ -118,7 +118,7 @@
             => new TraktAuthorization
             {
                 Created = createdAt.ToUniversalTime(),
-                ExpiresIn = expiresInSeconds,
+                ExpiresInSeconds = expiresInSeconds,
                 AccessScope = TraktAccessScope.Public,
                 TokenType = TraktAccessTokenType.Bearer,
                 AccessToken = accessToken ?? string.Empty,

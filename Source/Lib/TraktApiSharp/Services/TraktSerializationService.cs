@@ -25,7 +25,7 @@
             {
                 AccessToken = authorization.AccessToken ?? string.Empty,
                 RefreshToken = authorization.RefreshToken ?? string.Empty,
-                ExpiresIn = authorization.ExpiresIn,
+                ExpiresIn = authorization.ExpiresInSeconds,
                 Scope = scope.ObjectName,
                 TokenType = tokenType.ObjectName,
                 CreatedAtTicks = authorization.Created.Ticks,
@@ -103,7 +103,7 @@
                 {
                     AccessToken = accessToken,
                     RefreshToken = refreshToken,
-                    ExpiresIn = expiresIn,
+                    ExpiresInSeconds = expiresIn,
                     AccessScope = accessScope,
                     TokenType = accessTokenType,
                     IgnoreExpiration = ignoreExpiration,

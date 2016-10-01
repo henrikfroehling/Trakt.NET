@@ -38,7 +38,7 @@
             {
                 AccessToken = "FakeAccessToken",
                 RefreshToken = "FakeRefreshToken",
-                ExpiresIn = 90 * 24 * 3600,
+                ExpiresInSeconds = 90 * 24 * 3600,
                 AccessScope = TraktAccessScope.Public,
                 TokenType = TraktAccessTokenType.Bearer
             };
