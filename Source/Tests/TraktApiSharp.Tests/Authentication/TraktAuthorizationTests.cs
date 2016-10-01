@@ -120,5 +120,113 @@
             token.AccessToken = "accessToken";
             token.IsExpired.Should().BeFalse();
         }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithAccessToken()
+        {
+            var accessToken = "accessToken";
+
+            var authorization = TraktAuthorization.CreateWith(accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeTrue();
+            authorization.ExpiresIn.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithAccessTokenAndRefreshToken()
+        {
+            var accessToken = "accessToken";
+            var refreshToken = "refreshToken";
+
+            var authorization = TraktAuthorization.CreateWith(accessToken, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().Be(refreshToken);
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeTrue();
+            authorization.ExpiresIn.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithCreatedAtAndExpiresInAndAccessToken()
+        {
+            var createdAt = DateTime.Now;
+            var expiresIn = 3600 * 24 * 90;
+
+            var accessToken = "accessToken";
+
+            var authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeFalse();
+            authorization.Created.Should().Be(createdAt.ToUniversalTime());
+            authorization.ExpiresIn.Should().Be(expiresIn);
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithCreatedAtAndExpiresInAndAccessTokenAndRefreshToken()
+        {
+            var createdAt = DateTime.Now;
+            var expiresIn = 3600 * 24 * 90;
+
+            var accessToken = "accessToken";
+            var refreshToken = "refreshToken";
+
+            var authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().Be(refreshToken);
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeFalse();
+            authorization.Created.Should().Be(createdAt.ToUniversalTime());
+            authorization.ExpiresIn.Should().Be(expiresIn);
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithNullValues()
+        {
+            var createdAt = DateTime.Now;
+            var expiresIn = 3600 * 24 * 90;
+
+            var accessToken = "accessToken";
+            var refreshToken = "refreshToken";
+
+            var authorization = TraktAuthorization.CreateWith(null, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().Be(refreshToken);
+
+            authorization = TraktAuthorization.CreateWith(accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+
+            authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, null, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().Be(refreshToken);
+
+            authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+        }
     }
 }

@@ -37,7 +37,7 @@
             Created = DateTime.UtcNow;
         }
 
-        /// <summary>Gets or sets the access token. See also <seealso cref="TraktClient.AccessToken" />.</summary>
+        /// <summary>Gets or sets the access token.</summary>
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
 
@@ -92,5 +92,27 @@
 
         [JsonIgnore]
         internal bool IgnoreExpiration { get; set; }
+
+        public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
+            => new TraktAuthorization
+            {
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty,
+                IgnoreExpiration = true
+            };
+
+        public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
+                                                    string accessToken, string refreshToken = null)
+            => new TraktAuthorization
+            {
+                Created = createdAt.ToUniversalTime(),
+                ExpiresIn = expiresInSeconds,
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty
+            };
     }
 }

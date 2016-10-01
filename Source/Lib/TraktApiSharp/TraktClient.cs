@@ -65,21 +65,7 @@ namespace TraktApiSharp
             get { return Authentication.ClientSecret; }
             set { Authentication.ClientSecret = value; }
         }
-
-        /// <summary>Gets or sets the Trakt Access Token. See also <seealso cref="TraktAuthorization.AccessToken" />.</summary>
-        public string AccessToken
-        {
-            get { return Authentication.Authorization.AccessToken; }
-            set
-            {
-                Authentication.Authorization = new TraktAuthorization
-                {
-                    AccessToken = value,
-                    IgnoreExpiration = true
-                };
-            }
-        }
-
+        
         /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="TraktAuthorization" />.</summary>
         public TraktAuthorization Authorization
         {
@@ -98,7 +84,6 @@ namespace TraktApiSharp
         /// Returns, whether the client is valid to use for API requests, that require OAuth authorization.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Access Token.</para>
         /// See <seealso cref="ClientId" />.
-        /// See <seealso cref="AccessToken" />.
         /// See <seealso cref="TraktAuthentication.IsAuthorized" />.
         /// </summary>
         public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthorized;
