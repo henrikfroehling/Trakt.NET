@@ -112,7 +112,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             AccessToken = "no token",
             RefreshToken = "no token",
             AccessScope = TraktAccessScope.Public,
-            ExpiresIn = 0,
+            ExpiresInSeconds = 0,
             TokenType = TraktAccessTokenType.Bearer
         };
 
@@ -132,7 +132,7 @@ namespace TraktApiSharp.Example.UWP.ViewModels
             get
             {
                 var created = Authorization.Created;
-                var expirationDate = created.AddSeconds(Authorization.ExpiresIn);
+                var expirationDate = created.AddSeconds(Authorization.ExpiresInSeconds);
                 var difference = expirationDate - DateTime.UtcNow;
 
                 var days = difference.Days > 0 ? difference.Days : 0;

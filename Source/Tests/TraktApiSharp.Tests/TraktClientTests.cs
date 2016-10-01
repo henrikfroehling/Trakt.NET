@@ -2,13 +2,13 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Authentication;
 
     [TestClass]
     public class TraktClientTests
     {
         private const string CLIENT_ID = "CLIENT_ID";
         private const string CLIENT_SECRET = "CLIENT_SECRET";
-        private const string ACCESS_TOKEN = "ACCESS_TOKEN";
 
         [TestMethod]
         public void TestTraktClientDefaultConstructor()
@@ -17,7 +17,6 @@
 
             client.ClientId.Should().BeNull();
             client.ClientSecret.Should().BeNull();
-            client.AccessToken.Should().BeNullOrEmpty();
             client.Authorization.Should().NotBeNull();
             client.Authorization.IsExpired.Should().BeTrue();
         }
@@ -29,7 +28,6 @@
 
             client1.ClientId.Should().Be(CLIENT_ID);
             client1.ClientSecret.Should().BeNull();
-            client1.AccessToken.Should().BeNullOrEmpty();
             client1.Authorization.Should().NotBeNull();
             client1.Authorization.IsExpired.Should().BeTrue();
 
@@ -37,7 +35,6 @@
 
             client2.ClientId.Should().Be(CLIENT_ID);
             client2.ClientSecret.Should().Be(CLIENT_SECRET);
-            client2.AccessToken.Should().BeNullOrEmpty();
             client2.Authorization.Should().NotBeNull();
             client2.Authorization.IsExpired.Should().BeTrue();
         }
@@ -86,10 +83,10 @@
             client.ClientId = CLIENT_ID;
             client.IsValidForUseWithAuthorization.Should().BeFalse();
 
-            client.AccessToken = "access token";
+            client.Authorization = TraktAuthorization.CreateWith("access token");
             client.IsValidForUseWithAuthorization.Should().BeFalse();
 
-            client.AccessToken = ACCESS_TOKEN;
+            client.Authorization = TraktAuthorization.CreateWith("accessToken");
             client.IsValidForUseWithAuthorization.Should().BeTrue();
         }
 

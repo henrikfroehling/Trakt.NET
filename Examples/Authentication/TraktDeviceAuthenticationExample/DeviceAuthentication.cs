@@ -152,7 +152,7 @@
             Console.WriteLine($"Token Expired: {authorization.IsExpired}");
 
             var created = authorization.Created;
-            var expirationDate = created.AddSeconds(authorization.ExpiresIn);
+            var expirationDate = created.AddSeconds(authorization.ExpiresInSeconds);
             var difference = expirationDate - DateTime.UtcNow;
 
             var days = difference.Days > 0 ? difference.Days : 0;
