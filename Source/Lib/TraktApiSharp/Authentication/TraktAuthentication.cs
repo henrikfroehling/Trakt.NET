@@ -118,7 +118,7 @@
             }
         }
 
-        public async Task<bool> CheckIfAccessTokenWasRevokedAsync(string accessToken)
+        public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
                 throw new ArgumentException("access token must not be null, empty or contain any spaces", nameof(accessToken));

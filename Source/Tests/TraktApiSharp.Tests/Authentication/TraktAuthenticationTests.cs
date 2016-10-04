@@ -404,7 +404,7 @@
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedSuccess()
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedOrIsNotValidSuccess()
         {
             var accessToken = "mockAccessToken";
 
@@ -414,30 +414,30 @@
 
             TestUtility.SetupMockResponseWithOAuthWithToken("sync/last_activities", lastActivities, accessToken);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(accessToken).Result;
             response.Should().BeFalse();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedFailed()
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedOrIsNotValidFailed()
         {
             var accessToken = "mockAccessToken";
 
             TestUtility.SetupMockResponseWithOAuthWithToken("sync/last_activities", HttpStatusCode.Unauthorized, accessToken);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(accessToken).Result;
             response.Should().BeTrue();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedExceptions()
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedOrIsNotValidExceptions()
         {
             var accessToken = "mockAccessToken";
             var uri = "sync/last_activities";
 
             TestUtility.SetupMockResponseWithOAuthWithToken(uri, HttpStatusCode.NotFound, accessToken);
 
-            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken);
+            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(accessToken);
             act.ShouldThrow<TraktNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
@@ -498,15 +498,15 @@
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedArgumentExceptions()
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedOrIsNotValidArgumentExceptions()
         {
-            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(null);
+            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(string.Empty);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync("access token");
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync("access token");
             act.ShouldThrow<ArgumentException>();
         }
 
