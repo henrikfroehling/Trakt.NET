@@ -41,7 +41,7 @@
 
             TraktConfiguration.HTTP_CLIENT = new HttpClient(MOCK_HTTP);
 
-            TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Add("trakt-api-key", "trakt client id");
+            TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Add("trakt-api-key", $"{TRAKT_CLIENT_ID}");
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Add("trakt-api-version", "2");
 
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -207,7 +207,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" }
                      })
                      .Respond("application/json", responseContent);
@@ -223,7 +223,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" }
                      })
                      .Respond(httpStatusCode);
@@ -270,7 +270,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" }
                      })
                      .Respond(response);
@@ -292,7 +292,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
@@ -304,8 +304,6 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_AUTHORIZATION.Should().NotBeNull();
-            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
             MOCK_TEST_CLIENT.Authorization = authorization;
 
@@ -315,9 +313,9 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
+                         { "Authorization", $"Bearer {authorization.AccessToken}" }
                      })
                      .Respond("application/json", responseContent);
         }
@@ -327,16 +325,14 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_AUTHORIZATION.Should().NotBeNull();
-            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
-            
+
             uri.Should().NotBeNullOrEmpty();
             responseContent.Should().NotBeNullOrEmpty();
 
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {accessToken}" }
                      })
@@ -359,7 +355,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
@@ -382,7 +378,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })
@@ -394,8 +390,6 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_AUTHORIZATION.Should().NotBeNull();
-            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
 
             MOCK_TEST_CLIENT.Authorization = authorization;
 
@@ -404,9 +398,9 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
+                         { "Authorization", $"Bearer {authorization.AccessToken}" }
                      })
                      .Respond(httpStatusCode);
         }
@@ -416,15 +410,13 @@
             MOCK_HTTP.Should().NotBeNull();
             BASE_URL.Should().NotBeNullOrEmpty();
             MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_AUTHORIZATION.Should().NotBeNull();
-            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
-            
+
             uri.Should().NotBeNullOrEmpty();
 
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {accessToken}" }
                      })
@@ -477,7 +469,7 @@
             MOCK_HTTP.When($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
-                         { "trakt-api-key", "trakt client id" },
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
                          { "trakt-api-version", "2" },
                          { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
                      })

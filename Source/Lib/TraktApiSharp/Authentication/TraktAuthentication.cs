@@ -104,14 +104,43 @@
 
         public async Task<bool> CheckIfAuthorizationIsExpiredOrWasRevokedAsync()
         {
-            return false;
+            if (Authorization.IsExpired)
+                return true;
+
+            try
+            {
+                await Client.Sync.GetLastActivitiesAsync();
+                return false;
+            }
+            catch (TraktAuthorizationException)
+            {
+                return true;
+            }
         }
 
         public async Task<bool> CheckIfAccessTokenWasRevokedAsync(string accessToken)
         {
-            return false;
+            if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
+                throw new ArgumentException("access token must not be null, empty or contain any spaces", nameof(accessToken));
+
+            var currentAuthorization = Authorization;
+            Authorization = TraktAuthorization.CreateWith(accessToken);
+
+            try
+            {
+                await Client.Sync.GetLastActivitiesAsync();
+                return false;
+            }
+            catch (TraktAuthorizationException)
+            {
+                return true;
+            }
+            finally
+            {
+                Authorization = currentAuthorization;
+            }
         }
-        
+
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
         /// Uses the current <see cref="Authorization" />'s refresh token, <see cref="ClientId" />,
