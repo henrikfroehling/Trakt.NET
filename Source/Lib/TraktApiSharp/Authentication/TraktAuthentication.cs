@@ -102,6 +102,16 @@
         /// </summary>
         public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
+        public async Task<bool> CheckIfAuthorizationIsExpiredOrWasRevokedAsync()
+        {
+            return false;
+        }
+
+        public async Task<bool> CheckIfAccessTokenWasRevokedAsync(string accessToken)
+        {
+            return false;
+        }
+        
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
         /// Uses the current <see cref="Authorization" />'s refresh token, <see cref="ClientId" />,

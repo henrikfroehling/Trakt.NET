@@ -269,6 +269,51 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedSuccess()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailed()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedSuccess()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedFailed()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedExceptions()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedArgumentExceptions()
+        {
+            Assert.Fail();
+        }
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
         #region RefreshAuthorization
 
         [TestMethod]
