@@ -272,43 +272,230 @@
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedSuccess()
         {
-            Assert.Fail();
+            var accessToken = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            // "Fake-Request" is sync/last_activities
+            var lastActivities = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Activities\SyncLastActivities.json");
+            lastActivities.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/last_activities", lastActivities, accessToken);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
+            response.Should().BeFalse();
         }
 
         [TestMethod]
-        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailed()
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailedExpired()
         {
-            Assert.Fail();
+            var accessToken = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 0,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+            
+            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
+            response.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailedRevoked()
+        {
+            var accessToken = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+            
+            TestUtility.SetupMockResponseWithOAuth("sync/last_activities", HttpStatusCode.Unauthorized, accessToken);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
+            response.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedExceptions()
         {
-            Assert.Fail();
+            var uri = "sync/last_activities";
+            
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedSuccess()
         {
-            Assert.Fail();
+            var accessToken = "mockAccessToken";
+
+            // "Fake-Request" is sync/last_activities
+            var lastActivities = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Activities\SyncLastActivities.json");
+            lastActivities.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuthWithToken("sync/last_activities", lastActivities, accessToken);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken).Result;
+            response.Should().BeFalse();
         }
 
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedFailed()
         {
-            Assert.Fail();
+            var accessToken = "mockAccessToken";
+
+            TestUtility.SetupMockResponseWithOAuthWithToken("sync/last_activities", HttpStatusCode.Unauthorized, accessToken);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken).Result;
+            response.Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedExceptions()
         {
-            Assert.Fail();
+            var accessToken = "mockAccessToken";
+            var uri = "sync/last_activities";
+
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(accessToken);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
         }
 
         [TestMethod]
         public void TestTraktAuthenticationCheckIfAccessTokenWasRevokedArgumentExceptions()
         {
-            Assert.Fail();
+            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAccessTokenWasRevokedAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
         }
 
         // -----------------------------------------------------------------------------------------------
