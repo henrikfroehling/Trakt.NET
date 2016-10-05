@@ -4,6 +4,6 @@
 
     internal interface ITraktExtendedInfo
     {
-        TraktExtendedInfo ExtendedOption { get; set; }
+        TraktExtendedInfo ExtendedInfo { get; set; }
     }
 }

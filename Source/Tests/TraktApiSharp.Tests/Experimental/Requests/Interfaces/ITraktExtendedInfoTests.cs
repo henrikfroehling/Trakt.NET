@@ -19,7 +19,7 @@
         public void TestITraktExtendedInfoHasExtendedOptionProperty()
         {
             var extendedOptionPropertyInfo = typeof(ITraktExtendedInfo).GetProperties()
-                                                                       .Where(p => p.Name == "ExtendedOption")
+                                                                       .Where(p => p.Name == "ExtendedInfo")
                                                                        .FirstOrDefault();
 
             extendedOptionPropertyInfo.CanRead.Should().BeTrue();

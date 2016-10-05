@@ -13,7 +13,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktExtendedInfo ExtendedOption { get; set; }
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         internal TraktSearchResultType ResultTypes { get; set; }
     }

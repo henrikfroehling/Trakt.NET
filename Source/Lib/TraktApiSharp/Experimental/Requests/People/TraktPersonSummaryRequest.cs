@@ -12,7 +12,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktExtendedInfo ExtendedOption { get; set; }
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
 
