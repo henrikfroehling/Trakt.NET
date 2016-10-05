@@ -107,6 +107,11 @@
                 IgnoreExpiration = true
             };
 
+        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
+        /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
+        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
         public static TraktAuthorization CreateWith(int expiresInSeconds, string accessToken, string refreshToken = null)
             => new TraktAuthorization
             {
