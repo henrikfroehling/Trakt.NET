@@ -89,6 +89,25 @@
                      .Respond("application/json", responseContent);
         }
 
+        public static void AddMockExpectationResponse(string url, string requestContent, string responseContent)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            url.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.Expect($"{BASE_URL}{url}")
+                     .WithContent(requestContent)
+                     .Respond("application/json", responseContent);
+        }
+
+        public static void VerifyNoOutstandingExceptations()
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            MOCK_HTTP.VerifyNoOutstandingExpectation();
+        }
+
         public static void SetupMockAuthenticationTokenRevokeResponse(string url, string requestContent)
         {
             MOCK_HTTP.Should().NotBeNull();
@@ -396,6 +415,26 @@
             uri.Should().NotBeNullOrEmpty();
 
             MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
+                         { "trakt-api-version", "2" },
+                         { "Authorization", $"Bearer {authorization.AccessToken}" }
+                     })
+                     .Respond(httpStatusCode);
+        }
+
+        public static void AddMockExpectationResponse(string uri, HttpStatusCode httpStatusCode, TraktAuthorization authorization)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+            MOCK_TEST_CLIENT.Should().NotBeNull();
+
+            MOCK_TEST_CLIENT.Authorization = authorization;
+
+            uri.Should().NotBeNullOrEmpty();
+
+            MOCK_HTTP.Expect($"{BASE_URL}{uri}")
                      .WithHeaders(new Dictionary<string, string>
                      {
                          { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },

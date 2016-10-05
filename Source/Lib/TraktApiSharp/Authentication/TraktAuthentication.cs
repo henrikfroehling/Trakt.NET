@@ -114,7 +114,11 @@
             }
             catch (TraktAuthorizationException)
             {
-                return new Pair<bool, TraktAuthorization>(true, null);
+                if (!autoRefresh)
+                    return new Pair<bool, TraktAuthorization>(true, null);
+
+                var newAuthorization = await RefreshAuthorizationAsync();
+                return new Pair<bool, TraktAuthorization>(true, newAuthorization);
             }
         }
 
