@@ -102,6 +102,22 @@
         /// </summary>
         public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
+        /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the current <see cref="Authorization" /> is not expired yet and was not revoked by the user.
+        /// </summary>
+        /// <param name="autoRefresh">
+        /// Indicates, whether the current <see cref="Authorization" /> should be refreshed, if it was revoked.
+        /// If this is set to true, <see cref="RefreshAuthorizationAsync()" /> will be called.<para /> 
+        /// See also <seealso cref="RefreshAuthorizationAsync()" />.
+        /// </param>
+        /// <returns>
+        /// Returns an <see cref="Pair{T, U}" /> instance with <see cref="Pair{T, U}.First" /> set to true,
+        /// if the current <see cref="Authorization" /> is expired or was revoked, otherwise set to false.
+        /// If <paramref name="autoRefresh" /> is set to true, the returned <see cref="Pair{T, U}.Second" /> contains the new
+        /// <see cref="TraktAuthorization" /> information, otherwise the returned <see cref="Pair{T, U}.Second" /> will be null.
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="RefreshAuthorizationAsync()" /> fails.</exception>
         public async Task<Pair<bool, TraktAuthorization>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false)
         {
             if (Authorization.IsExpired)
@@ -122,6 +138,14 @@
             }
         }
 
+        /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the given access token is still valid and was not revoked by the user.
+        /// </summary>
+        /// <param name="accessToken">The access token, which will be checked.</param>
+        /// <returns>True, if the given access token was revoked and / or is not valid anymore, otherwise false.</returns>
+        /// <exception cref="ArgumentException">Thrown, if the given access token is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> fails.</exception>
         public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
