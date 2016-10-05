@@ -11,6 +11,7 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Utils;
     using Utils;
 
     [TestClass]
@@ -288,7 +289,10 @@
             TestUtility.SetupMockResponseWithOAuth("sync/last_activities", lastActivities, accessToken);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
-            response.Should().BeFalse();
+
+            response.Should().NotBeNull();
+            response.First.Should().BeFalse();
+            response.Second.Should().BeNull();
         }
 
         [TestMethod]
@@ -306,7 +310,10 @@
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
-            response.Should().BeTrue();
+
+            response.Should().NotBeNull();
+            response.First.Should().BeTrue();
+            response.Second.Should().BeNull();
         }
 
         [TestMethod]
@@ -324,7 +331,10 @@
             TestUtility.SetupMockResponseWithOAuth("sync/last_activities", HttpStatusCode.Unauthorized, accessToken);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
-            response.Should().BeTrue();
+
+            response.Should().NotBeNull();
+            response.First.Should().BeTrue();
+            response.Second.Should().BeNull();
         }
 
         [TestMethod]
@@ -343,7 +353,8 @@
 
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound, accessToken);
 
-            Func<Task<bool>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
+            Func<Task<Pair<bool, TraktAuthorization>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
             TestUtility.ClearMockHttpClient();

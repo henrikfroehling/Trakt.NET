@@ -102,19 +102,19 @@
         /// </summary>
         public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
-        public async Task<bool> CheckIfAuthorizationIsExpiredOrWasRevokedAsync()
+        public async Task<Pair<bool, TraktAuthorization>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false)
         {
             if (Authorization.IsExpired)
-                return true;
+                return new Pair<bool, TraktAuthorization>(true, null);
 
             try
             {
                 await Client.Sync.GetLastActivitiesAsync();
-                return false;
+                return new Pair<bool, TraktAuthorization>(false, null);
             }
             catch (TraktAuthorizationException)
             {
-                return true;
+                return new Pair<bool, TraktAuthorization>(true, null);
             }
         }
 
