@@ -41,9 +41,6 @@
         /// <summary>Returns, whether the given string contains any spaces.</summary>
         /// <param name="value">The string, which should be checked.</param>
         /// <returns>True, if the given string contains any spaces, otherwise false.</returns>
-        public static bool ContainsSpace(this string value)
-        {
-            return value.Contains(" ");
-        }
+        public static bool ContainsSpace(this string value) => value.Contains(" ");
     }
 }
