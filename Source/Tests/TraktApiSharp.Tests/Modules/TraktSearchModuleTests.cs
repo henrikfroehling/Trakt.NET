@@ -463,18 +463,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -508,18 +508,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -549,18 +549,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -595,18 +595,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -641,18 +641,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -692,18 +692,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, filter,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -733,18 +733,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -779,18 +779,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -821,18 +821,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -868,18 +868,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -915,18 +915,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -967,18 +967,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, filter,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1008,18 +1008,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1054,18 +1054,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1096,18 +1096,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1143,18 +1143,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1190,18 +1190,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1242,18 +1242,18 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, filter,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1983,7 +1983,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOption()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfo()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -1993,17 +1993,17 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2014,7 +2014,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOption()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfo()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2029,17 +2029,17 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{typesEncoded}?query={query}&extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2050,7 +2050,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2061,18 +2061,18 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2083,7 +2083,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2099,18 +2099,18 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2121,7 +2121,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2137,18 +2137,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2159,7 +2159,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2180,18 +2180,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, null,
-                                                                                        extendedOption).Result;
+                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2202,7 +2202,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPage()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2213,18 +2213,18 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2235,7 +2235,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPage()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2251,18 +2251,18 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2273,7 +2273,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPageAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2285,18 +2285,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2307,7 +2307,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPageAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPageAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2324,18 +2324,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2346,7 +2346,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPageAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2363,18 +2363,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2385,7 +2385,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPageAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPageAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2407,18 +2407,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, null,
-                                                                                        extendedOption, page).Result;
+                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2429,7 +2429,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimit()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2440,18 +2440,18 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2462,7 +2462,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndLimit()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2478,18 +2478,18 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2500,7 +2500,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimitAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndLimitAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2512,18 +2512,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2534,7 +2534,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndLimitAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndLimitAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2551,18 +2551,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2573,7 +2573,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndLimitAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndLimitAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2590,18 +2590,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2612,7 +2612,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndLimitAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndLimitAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2634,18 +2634,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, null,
-                                                                                        extendedOption, null, limit).Result;
+                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2656,7 +2656,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimit()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2668,18 +2668,18 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2690,7 +2690,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPageAndLimit()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2707,18 +2707,18 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2729,7 +2729,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimitAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPageAndLimitAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2742,18 +2742,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2764,7 +2764,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPageAndLimitAndField()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPageAndLimitAndField()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2782,18 +2782,18 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2804,7 +2804,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedOptionAndPageAndLimitAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsWithExtendedInfoAndPageAndLimitAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2822,18 +2822,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2844,7 +2844,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedOptionAndPageAndLimitAndMultipleFields()
+        public void TestTraktSearchModuleGetTextQueryResultsMultipleTypesWithExtendedInfoAndPageAndLimitAndMultipleFields()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -2867,18 +2867,18 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, null,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3475,7 +3475,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3483,11 +3483,11 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, filter,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3524,7 +3524,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3532,11 +3532,11 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, filter,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3573,7 +3573,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3581,11 +3581,11 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, filter,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3627,7 +3627,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3635,11 +3635,11 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, filter,
-                                                                                        extendedOption, page, limit).Result;
+                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3818,18 +3818,18 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}",
                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
-                                                                                       extendedOption).Result;
+                                                                                       extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3852,18 +3852,18 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}&page={page}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
-                                                                                       extendedOption, page).Result;
+                                                                                       extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3886,18 +3886,18 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
-                                                                                       extendedOption, null, limit).Result;
+                                                                                       extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3990,7 +3990,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOption()
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedInfo()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -4000,17 +4000,17 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
-                                                                                       extendedOption).Result;
+                                                                                       extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4021,7 +4021,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPage()
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedInfoAndPage()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -4032,18 +4032,18 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}&page={page}",
+                $"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}&page={page}",
                 searchResults, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
-                                                                                       extendedOption, page).Result;
+                                                                                       extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4054,7 +4054,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndLimit()
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedInfoAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -4065,18 +4065,18 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}&limit={limit}",
+                $"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}&limit={limit}",
                 searchResults, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
-                                                                                       extendedOption, null, limit).Result;
+                                                                                       extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4087,7 +4087,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedOptionAndPageAndLimit()
+        public void TestTraktSearchModuleGetIdLookupResultsWithExtendedInfoAndPageAndLimit()
         {
             var searchResults = TestUtility.ReadFileContents(@"Objects\Basic\Search\SearchIdLookupResults.json");
             searchResults.Should().NotBeNullOrEmpty();
@@ -4099,18 +4099,18 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedOption.ToString()}" +
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}" +
                                                                 $"&page={page}&limit={limit}",
                                                                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, null,
-                                                                                       extendedOption, page, limit).Result;
+                                                                                       extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4213,19 +4213,19 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedOption.ToString()}" +
+                $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}" +
                 $"&page={page}&limit={limit}",
                 searchResults, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType,
-                                                                                       extendedOption, page, limit).Result;
+                                                                                       extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);

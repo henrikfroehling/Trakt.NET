@@ -34,7 +34,7 @@
         protected override async Task LoadPage(int? page = default(int?), int? limit = default(int?))
         {
             Busy.SetBusy(true, "Loading popular movies...");
-            var traktPopularMovies = await Movies.GetPopularMoviesAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktPopularMovies = await Movies.GetPopularMoviesAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktPopularMovies.Items != null)
             {

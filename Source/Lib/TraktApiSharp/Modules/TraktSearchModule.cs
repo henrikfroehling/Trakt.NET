@@ -34,9 +34,9 @@
         /// <param name="searchQuery">The query, for which will be searched.</param>
         /// <param name="searchFields">Determines the text fields, which will be searched. See also <seealso cref="TraktSearchField" />.</param>
         /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
@@ -56,7 +56,7 @@
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
                                                                                                  TraktSearchField searchFields = null, TraktSearchFilter filter = null,
-                                                                                                 TraktExtendedOption extendedOption = null,
+                                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                                  int? page = null, int? limitPerPage = null)
         {
             Validate(searchResultTypes);
@@ -68,7 +68,7 @@
                 Query = searchQuery,
                 SearchFields = searchFields,
                 Filter = filter,
-                ExtendedOption = extendedOption,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -83,9 +83,9 @@
         /// <param name="searchIdType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdType" />.</param>
         /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
         /// <param name="searchResultType">The object type(s), which will be looked up. See also <seealso cref="TraktSearchResultType" />.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the lookup object(s) should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the lookup object(s) should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
@@ -105,7 +105,7 @@
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
                                                                                                 TraktSearchResultType searchResultType = null,
-                                                                                                TraktExtendedOption extendedOption = null,
+                                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
             Validate(searchIdType, lookupId);
@@ -115,7 +115,7 @@
                 IdType = searchIdType,
                 LookupId = lookupId,
                 ResultType = searchResultType,
-                ExtendedOption = extendedOption,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -123,7 +123,7 @@
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
         /// <para>OAuth authorization not required.</para>
-        /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchField, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchField, TraktSearchFilter, TraktExtendedInfo, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
@@ -164,7 +164,7 @@
         /// <summary>
         /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
         /// <para>OAuth authorization not required.</para>
-        /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType, TraktExtendedOption, int?, int?)" />.</para>
+        /// <para>This method is DEPRECATED. Please use <see cref="GetIdLookupResultsAsync(TraktSearchIdType, string, TraktSearchResultType, TraktExtendedInfo, int?, int?)" />.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
         /// </para>

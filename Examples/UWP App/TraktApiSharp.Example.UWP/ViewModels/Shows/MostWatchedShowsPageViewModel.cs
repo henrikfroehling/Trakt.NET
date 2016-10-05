@@ -34,7 +34,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading most watched shows...");
-            var traktMostWatchedMovies = await Shows.GetMostWatchedShowsAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktMostWatchedMovies = await Shows.GetMostWatchedShowsAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktMostWatchedMovies.Items != null)
             {

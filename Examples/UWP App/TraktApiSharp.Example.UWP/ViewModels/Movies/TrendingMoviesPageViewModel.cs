@@ -47,7 +47,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading trending movies...");
-            var traktTrendingMovies = await Movies.GetTrendingMoviesAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktTrendingMovies = await Movies.GetTrendingMoviesAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktTrendingMovies != null && traktTrendingMovies.Items != null)
             {

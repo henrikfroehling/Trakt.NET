@@ -24,7 +24,7 @@
         // -------------------------------------------------------------
         // Single Movie
 
-        public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedOption extendedInfo = null,
+        public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedInfo extendedInfo = null,
                                                bool withAdditionalContent = false)
         {
             var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
@@ -50,7 +50,7 @@
         // -------------------------------------------------------------
         // Trending Movies
 
-        public async Task<PaginationList<TrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<TrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                 TraktMovieFilter movieFilter = null,
                                                                                 int? whichPage = null, int? limitPerPage = null)
         {
@@ -84,7 +84,7 @@
         // -------------------------------------------------------------
         // Popular Movies
 
-        public async Task<PaginationList<Movie>> GetPopularMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<Movie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                        TraktMovieFilter movieFilter = null,
                                                                        int? whichPage = null, int? limitPerPage = null)
         {
@@ -115,7 +115,7 @@
         // -------------------------------------------------------------
         // Most Played Movies
 
-        public async Task<PaginationList<MostPWCMovie>> GetMostPlayedMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCMovie>> GetMostPlayedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                  TraktMovieFilter movieFilter = null,
                                                                                  TraktTimePeriod period = null,
                                                                                  int? whichPage = null, int? limitPerPage = null)
@@ -153,7 +153,7 @@
         // -------------------------------------------------------------
         // Most Watched Movies
 
-        public async Task<PaginationList<MostPWCMovie>> GetMostWatchedMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCMovie>> GetMostWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                   TraktMovieFilter movieFilter = null,
                                                                                   TraktTimePeriod period = null,
                                                                                   int? whichPage = null, int? limitPerPage = null)
@@ -191,7 +191,7 @@
         // -------------------------------------------------------------
         // Most Collected Movies
 
-        public async Task<PaginationList<MostPWCMovie>> GetMostCollectedMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCMovie>> GetMostCollectedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                     TraktMovieFilter movieFilter = null,
                                                                                     TraktTimePeriod period = null,
                                                                                     int? whichPage = null, int? limitPerPage = null)
@@ -229,7 +229,7 @@
         // -------------------------------------------------------------
         // Most Anticipated Movies
 
-        public async Task<PaginationList<AnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<AnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                           TraktMovieFilter movieFilter = null,
                                                                                           int? whichPage = null, int? limitPerPage = null)
         {
@@ -263,7 +263,7 @@
         // -------------------------------------------------------------
         // Box Office Movies
 
-        public async Task<ObservableCollection<BoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedInfo = null)
+        public async Task<ObservableCollection<BoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
             var traktResults = await Client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);
 
@@ -287,7 +287,7 @@
         // Recently Updated Movies
 
         public async Task<PaginationList<RecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
-                                                                                              TraktExtendedOption extendedInfo = null,
+                                                                                              TraktExtendedInfo extendedInfo = null,
                                                                                               int? whichPage = null, int? limitPerPage = null)
         {
             var traktResults = await Client.Movies.GetRecentlyUpdatedMoviesAsync(startDate, extendedInfo, whichPage, limitPerPage);

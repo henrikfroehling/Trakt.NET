@@ -80,21 +80,21 @@
         }
 
         [TestMethod]
-        public void TestTraktRecommendationsModuleGetUserMovieRecommendationsWithExtendedOption()
+        public void TestTraktRecommendationsModuleGetUserMovieRecommendationsWithExtendedInfo()
         {
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?extended={extendedInfo.ToString()}",
                                                              movies, 1, 10);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -110,17 +110,17 @@
 
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"recommendations/movies?extended={extendedOption.ToString()}&limit={limit}",
+                $"recommendations/movies?extended={extendedInfo.ToString()}&limit={limit}",
                 movies, 1, limit);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -349,21 +349,21 @@
         }
 
         [TestMethod]
-        public void TestTraktRecommendationsModuleGetUserShowRecommendationsWithExtendedOption()
+        public void TestTraktRecommendationsModuleGetUserShowRecommendationsWithExtendedInfo()
         {
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?extended={extendedInfo.ToString()}",
                                                              shows, 1, 10);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
@@ -379,17 +379,17 @@
 
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"recommendations/shows?extended={extendedOption.ToString()}&limit={limit}",
+                $"recommendations/shows?extended={extendedInfo.ToString()}&limit={limit}",
                 shows, 1, limit);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(3);
