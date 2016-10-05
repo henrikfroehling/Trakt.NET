@@ -107,6 +107,16 @@
                 IgnoreExpiration = true
             };
 
+        public static TraktAuthorization CreateWith(int expiresInSeconds, string accessToken, string refreshToken = null)
+            => new TraktAuthorization
+            {
+                ExpiresInSeconds = expiresInSeconds,
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty
+            };
+
         /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
         /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
         /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
