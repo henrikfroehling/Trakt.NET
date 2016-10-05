@@ -332,10 +332,7 @@
         /// added movies, shows, seasons and episodes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncWatchlistPost" /> instance.</returns>
-        public TraktSyncWatchlistPost Build()
-        {
-            return _watchlistPost;
-        }
+        public TraktSyncWatchlistPost Build() => _watchlistPost;
 
         private void ValidateShow(TraktShow show)
         {

@@ -321,10 +321,7 @@
         /// added movies, shows, seasons, episodes and people.
         /// </summary>
         /// <returns>An <see cref="TraktUserCustomListItemsPost" /> instance.</returns>
-        public TraktUserCustomListItemsPost Build()
-        {
-            return _listItemsPost;
-        }
+        public TraktUserCustomListItemsPost Build() => _listItemsPost;
 
         private void ValidateShow(TraktShow show)
         {

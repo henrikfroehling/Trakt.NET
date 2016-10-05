@@ -219,10 +219,7 @@
         /// which should be removed.
         /// </summary>
         /// <returns>An <see cref="TraktSyncHistoryRemovePost" /> instance.</returns>
-        public TraktSyncHistoryRemovePost Build()
-        {
-            return _historyPost;
-        }
+        public TraktSyncHistoryRemovePost Build() => _historyPost;
 
         protected void ValidateMovie(TraktMovie movie)
         {
@@ -267,9 +264,7 @@
         }
 
         protected bool ContainsMovie(TraktMovie movie)
-        {
-            return _historyPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
-        }
+            => _historyPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
 
         protected void EnsureMoviesListExists()
         {
@@ -278,9 +273,7 @@
         }
 
         protected bool ContainsShow(TraktShow show)
-        {
-            return _historyPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
-        }
+            => _historyPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
 
         protected void EnsureShowsListExists()
         {
@@ -289,9 +282,7 @@
         }
 
         protected bool ContainsEpisode(TraktEpisode episode)
-        {
-            return _historyPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
-        }
+            => _historyPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
 
         protected void EnsureEpisodesListExists()
         {

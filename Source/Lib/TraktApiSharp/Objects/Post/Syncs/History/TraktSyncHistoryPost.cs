@@ -281,9 +281,6 @@
         /// added movies, shows, seasons and episodes, including watched at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncHistoryPost" /> instance.</returns>
-        public new TraktSyncHistoryPost Build()
-        {
-            return _historyPost;
-        }
+        public new TraktSyncHistoryPost Build() => _historyPost;
     }
 }
