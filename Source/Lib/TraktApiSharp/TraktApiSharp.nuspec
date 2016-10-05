@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.4.0</version>
+        <version>0.5.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -19,7 +19,19 @@ Features
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>Added:
-- Support for new search fields
+- method "CreateWith" in TraktAuthorization for simpler creation of TraktAuthorization from existing access tokens
+- method "CheckIfAuthorizationIsExpiredOrWasRevokedAsync" in TraktAuthentication for checking, whether authorization was revoked by user
+- method "CheckIfAccessTokenWasRevokedOrIsNotValidAsync" in TraktAuthentication for checking, whether access token was revoked by user
+
+Removed:
+- AccessToken property in TraktClient
+
+Renamed:
+- TraktExtendedOption -> TraktExtendedInfo
+
+Fixed:
+- item id parameter of GetWatchedHistoryAsync in TraktSyncModule
+- item id parameter of GetWatchedHistoryAsync in TraktUsersModule
         </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
