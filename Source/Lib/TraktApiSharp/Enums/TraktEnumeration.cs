@@ -67,10 +67,7 @@
 
         /// <summary>Returns the hash code of this enumeration.</summary>
         /// <returns>An hash code of this enumeration.</returns>
-        public override int GetHashCode()
-        {
-            return Value.GetHashCode();
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
         /// <summary>Returns a list of all enumerations of an enumeration of type T.</summary>
         /// <typeparam name="T">The enumeration, of which a list of all enumerations should be returned.</typeparam>
@@ -141,10 +138,7 @@
 
     public class TraktEnumerationConverter<T> : JsonConverter where T : TraktEnumeration, new()
     {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(string);
-        }
+        public override bool CanConvert(Type objectType) => objectType == typeof(string);
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {

@@ -16,7 +16,7 @@
 
         internal TraktSyncItemType Type { get; set; }
 
-        internal ulong? ItemId { get; set; }
+        internal uint? ItemId { get; set; }
 
         internal DateTime? StartAt { get; set; }
 

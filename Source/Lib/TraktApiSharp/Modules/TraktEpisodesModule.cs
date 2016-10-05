@@ -82,7 +82,7 @@
             foreach (var queryParam in episodesQueryParams)
             {
                 Task<TraktEpisode> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
-                                                          queryParam.ExtendedOption);
+                                                          queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 

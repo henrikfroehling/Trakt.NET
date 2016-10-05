@@ -6,8 +6,8 @@
     {
         protected TraktDeleteRequest(TraktClient client) : base(client) { }
 
-        protected override HttpMethod Method { get { return HttpMethod.Delete; } }
+        protected override HttpMethod Method => HttpMethod.Delete;
 
-        protected override TraktAuthorizationRequirement AuthorizationRequirement { get { return TraktAuthorizationRequirement.Required; } }
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }
 }

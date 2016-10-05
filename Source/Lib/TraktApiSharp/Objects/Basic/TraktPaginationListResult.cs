@@ -48,14 +48,8 @@
 
         /// <summary>Returns an enumerator for the containing items list.</summary>
         /// <returns>An enumerator for the containing items list.</returns>
-        public IEnumerator<ListItem> GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
+        public IEnumerator<ListItem> GetEnumerator() => Items.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

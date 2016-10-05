@@ -481,10 +481,7 @@
         /// added movies, shows, seasons and episodes, including ratings and rated at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncRatingsPost" /> instance.</returns>
-        public TraktSyncRatingsPost Build()
-        {
-            return _ratingsPost;
-        }
+        public TraktSyncRatingsPost Build() => _ratingsPost;
 
         private void ValidateMovie(TraktMovie movie)
         {
@@ -534,10 +531,7 @@
                 throw new ArgumentOutOfRangeException(nameof(rating));
         }
 
-        private bool ContainsMovie(TraktMovie movie)
-        {
-            return _ratingsPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
-        }
+        private bool ContainsMovie(TraktMovie movie) => _ratingsPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
 
         private void EnsureMoviesListExists()
         {
@@ -545,10 +539,7 @@
                 _ratingsPost.Movies = new List<TraktSyncRatingsPostMovie>();
         }
 
-        private bool ContainsShow(TraktShow show)
-        {
-            return _ratingsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
-        }
+        private bool ContainsShow(TraktShow show) => _ratingsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
 
         private void EnsureShowsListExists()
         {
@@ -556,10 +547,7 @@
                 _ratingsPost.Shows = new List<TraktSyncRatingsPostShow>();
         }
 
-        private bool ContainsEpisode(TraktEpisode episode)
-        {
-            return _ratingsPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
-        }
+        private bool ContainsEpisode(TraktEpisode episode) => _ratingsPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
 
         private void EnsureEpisodesListExists()
         {

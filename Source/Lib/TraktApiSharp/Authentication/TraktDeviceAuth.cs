@@ -14,13 +14,10 @@
     /// <summary>Provides access to Device authentication methods, such as creating a new device and polling for an access token.</summary>
     public class TraktDeviceAuth
     {
-        internal TraktDeviceAuth(TraktClient client)
-        {
-            Client = client;
-        }
+        internal TraktDeviceAuth(TraktClient client) { Client = client; }
 
         /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; private set; }
+        public TraktClient Client { get; }
 
         /// <summary>
         /// Generates a new Trakt device and starts the device authentication process. Uses the current <see cref="TraktAuthentication.ClientId" /> for the request.
@@ -35,10 +32,7 @@
         /// <returns>A new <see cref="TraktDevice" /> instance, which contains a new device code, user code and a verification URL.</returns>
         /// <exception cref="ArgumentException">Thrown, if the current client id is null, empty or contains spaces.</exception>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktDevice> GenerateDeviceAsync()
-        {
-            return await GenerateDeviceAsync(Client.ClientId);
-        }
+        public async Task<TraktDevice> GenerateDeviceAsync() => await GenerateDeviceAsync(Client.ClientId);
 
         /// <summary>
         /// Generates a new Trakt device and starts the device authentication process.
@@ -114,9 +108,7 @@
         /// Thrown, if the current client secret is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> PollForAuthorizationAsync()
-        {
-            return await PollForAuthorizationAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
-        }
+            => await PollForAuthorizationAsync(Client.Authentication.Device, Client.ClientId, Client.ClientSecret);
 
         /// <summary>
         /// Polls for a new access token. Uses the current <see cref="TraktAuthentication.ClientSecret" /> and <see cref="TraktAuthentication.ClientId" /> for the request.
@@ -146,9 +138,7 @@
         /// Thrown, if the current client secret is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> PollForAuthorizationAsync(TraktDevice device)
-        {
-            return await PollForAuthorizationAsync(device, Client.ClientId, Client.ClientSecret);
-        }
+            => await PollForAuthorizationAsync(device, Client.ClientId, Client.ClientSecret);
 
         /// <summary>
         /// Polls for a new access token. Uses the current <see cref="TraktAuthentication.ClientSecret" /> for the request.
@@ -179,9 +169,7 @@
         /// Thrown, if the current client secret is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> PollForAuthorizationAsync(TraktDevice device, string clientId)
-        {
-            return await PollForAuthorizationAsync(device, clientId, Client.ClientSecret);
-        }
+            => await PollForAuthorizationAsync(device, clientId, Client.ClientSecret);
 
         /// <summary>
         /// Polls for a new access token. Assigns the returned <see cref="TraktAuthorization" /> instance to <see cref="TraktAuthentication.Authorization" />, if successful.
@@ -338,9 +326,7 @@
         /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync()
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync();
-        }
+            => await Client.Authentication.RefreshAuthorizationAsync();
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
@@ -372,9 +358,7 @@
         /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken)
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync(refreshToken);
-        }
+            => await Client.Authentication.RefreshAuthorizationAsync(refreshToken);
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
@@ -407,9 +391,7 @@
         /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId)
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId);
-        }
+            => await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId);
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
@@ -443,9 +425,7 @@
         /// Thrown, if the current rediret URI is null, empty or contains spaces.
         /// </exception>
         public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId, string clientSecret)
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId, clientSecret);
-        }
+            => await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId, clientSecret);
 
         /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
@@ -478,10 +458,9 @@
         /// Thrown, if the given client secret is null, empty or contains spaces.
         /// Thrown, if the given rediret URI is null, empty or contains spaces.
         /// </exception>
-        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId, string clientSecret, string redirectUri)
-        {
-            return await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId, clientSecret, redirectUri);
-        }
+        public async Task<TraktAuthorization> RefreshAuthorizationAsync(string refreshToken, string clientId,
+                                                                        string clientSecret, string redirectUri)
+            => await Client.Authentication.RefreshAuthorizationAsync(refreshToken, clientId, clientSecret, redirectUri);
 
         /// <summary>
         /// Revokes the current access token. If, successful, the current access token will be invalid

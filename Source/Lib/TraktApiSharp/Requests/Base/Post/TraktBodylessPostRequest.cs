@@ -6,8 +6,8 @@
     {
         protected TraktBodylessPostRequest(TraktClient client) : base(client) { }
 
-        protected override HttpMethod Method { get { return HttpMethod.Post; } }
+        protected override HttpMethod Method => HttpMethod.Post;
 
-        protected override TraktAuthorizationRequirement AuthorizationRequirement { get { return TraktAuthorizationRequirement.Required; } }
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }
 }
