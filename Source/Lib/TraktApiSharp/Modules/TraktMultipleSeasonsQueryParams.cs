@@ -12,7 +12,7 @@
     /// {
     ///     // { show-id, seasonnumber[, extended info] }
     ///     { "show-id-1", 1 },
-    ///     { "show-id-2", 3, new TraktExtendedOption { Full = true } },
+    ///     { "show-id-2", 3, new TraktExtendedInfo { Full = true } },
     ///     { "show-id-3", 2 }
     /// };
     /// </code>
@@ -43,7 +43,7 @@
         {
             ShowId = showId;
             Season = seasonNumber;
-            ExtendedOption = extendedInfo;
+            ExtendedInfo = extendedInfo;
         }
 
         /// <summary>Returns the show id or slug.</summary>
@@ -56,6 +56,6 @@
         /// Returns the optional extended info.
         /// <para>Nullable.</para>
         /// </summary>
-        public TraktExtendedInfo ExtendedOption { get; }
+        public TraktExtendedInfo ExtendedInfo { get; }
     }
 }

@@ -77,7 +77,7 @@
 
             foreach (var queryParam in showsQueryParams)
             {
-                Task<TraktShow> task = GetShowAsync(queryParam.Id, queryParam.ExtendedOption);
+                Task<TraktShow> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 

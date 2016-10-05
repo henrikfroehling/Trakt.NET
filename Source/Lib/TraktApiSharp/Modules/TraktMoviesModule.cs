@@ -76,7 +76,7 @@
 
             foreach (var queryParam in moviesQueryParams)
             {
-                Task<TraktMovie> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedOption);
+                Task<TraktMovie> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 

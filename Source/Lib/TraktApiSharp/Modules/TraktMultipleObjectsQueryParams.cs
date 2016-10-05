@@ -12,7 +12,7 @@
     /// {
     ///     // { id[, extended info] }
     ///     "id-1",
-    ///     { "id-2", new TraktExtendedOption { Full = true } },
+    ///     { "id-2", new TraktExtendedInfo { Full = true } },
     ///     "id-3"
     /// };
     /// </code>
@@ -40,7 +40,7 @@
         public TraktObjectsQueryParams(string idOrSlug, TraktExtendedInfo extendedInfo)
         {
             Id = idOrSlug;
-            ExtendedOption = extendedInfo;
+            ExtendedInfo = extendedInfo;
         }
 
         /// <summary>Returns the Trakt id or slug.</summary>
@@ -50,6 +50,6 @@
         /// Returns the optional extended info.
         /// <para>Nullable.</para>
         /// </summary>
-        public TraktExtendedInfo ExtendedOption { get; }
+        public TraktExtendedInfo ExtendedInfo { get; }
     }
 }
