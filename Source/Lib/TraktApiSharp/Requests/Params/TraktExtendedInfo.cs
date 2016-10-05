@@ -16,19 +16,12 @@
         /// </summary>
         public TraktExtendedInfo()
         {
-            Minimal = false;
             Metadata = false;
             Images = false;
             Full = false;
             NoSeasons = false;
             Episodes = false;
         }
-
-        /// <summary>
-        /// Gets or sets, whether minimal information should be retrieved.
-        /// <para>See also <see cref="SetMinimal()" /> and <see cref="ResetMinimal()" />.</para>
-        /// </summary>
-        public bool Minimal { get; set; }
 
         /// <summary>
         /// Gets or sets, whether metadata information should be retrieved.
@@ -77,29 +70,7 @@
         public bool Episodes { get; set; }
 
         /// <summary>Returns, whether any flag is enabled.</summary>
-        public bool HasAnySet => Minimal || Metadata || Images || Full || NoSeasons || Episodes;
-
-        /// <summary>
-        /// Enables the minimal information flag.
-        /// <para>See also <see cref="Minimal" />.</para>
-        /// </summary>
-        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
-        public TraktExtendedInfo SetMinimal()
-        {
-            Minimal = true;
-            return this;
-        }
-
-        /// <summary>
-        /// Disables the minimal information flag.
-        /// <para>See also <see cref="Minimal" />.</para>
-        /// </summary>
-        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
-        public TraktExtendedInfo ResetMinimal()
-        {
-            Minimal = false;
-            return this;
-        }
+        public bool HasAnySet => Metadata || Images || Full || NoSeasons || Episodes;
 
         /// <summary>
         /// Enables the metadata information flag.
@@ -215,7 +186,6 @@
         /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
         public TraktExtendedInfo Reset()
         {
-            Minimal = false;
             Metadata = false;
             Images = false;
             Full = false;
@@ -232,9 +202,6 @@
         public IEnumerable<string> Resolve()
         {
             var options = new List<string>();
-
-            if (Minimal)
-                options.Add("min");
 
             if (Metadata)
                 options.Add("metadata");
