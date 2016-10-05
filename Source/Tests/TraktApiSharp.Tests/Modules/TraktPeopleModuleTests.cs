@@ -69,22 +69,22 @@
         }
 
         [TestMethod]
-        public void TestTraktPeopleModuleGetPersonWithExtendedOption()
+        public void TestTraktPeopleModuleGetPersonWithExtendedInfo()
         {
             var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFullAndImages.json");
             person.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}?extended={extendedOption.ToString()}", person);
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}?extended={extendedInfo.ToString()}", person);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Name.Should().Be("Bryan Cranston");
@@ -334,23 +334,23 @@
         }
 
         [TestMethod]
-        public void TestTraktPeopleModuleGetPersonMovieCreditsWithExtendedOption()
+        public void TestTraktPeopleModuleGetPersonMovieCreditsWithExtendedInfo()
         {
             var personMovieCredits = TestUtility.ReadFileContents(@"Objects\Get\People\Credits\PersonMovieCredits.json");
             personMovieCredits.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies?extended={extendedInfo.ToString()}",
                                                       personMovieCredits);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
 
@@ -603,23 +603,23 @@
         }
 
         [TestMethod]
-        public void TestTraktPeopleModuleGetPersonShowCreditsWithExtendedOption()
+        public void TestTraktPeopleModuleGetPersonShowCreditsWithExtendedInfo()
         {
             var personShowCredits = TestUtility.ReadFileContents(@"Objects\Get\People\Credits\PersonShowCredits.json");
             personShowCredits.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows?extended={extendedInfo.ToString()}",
                                                       personShowCredits);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
 

@@ -90,20 +90,20 @@
 
         static async Task GetShowFull(string showIdOrSlug)
         {
-            var extendedOption = new TraktExtendedOption().SetFull();
+            var extendedInfo = new TraktExtendedInfo().SetFull();
 
             Console.WriteLine("------------------------- Show Full -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedOption);
+            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
             WriteShowFull(show);
             Console.WriteLine("-------------------------------------------------------------");
         }
 
         static async Task GetShowFullWithImages(string showIdOrSlug)
         {
-            var extendedOption = new TraktExtendedOption().SetFull().SetImages();
+            var extendedInfo = new TraktExtendedInfo().SetFull().SetImages();
 
             Console.WriteLine("------------------------- Show Full with Images -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedOption);
+            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
             WriteShowFullWithImages(show);
             Console.WriteLine("-------------------------------------------------------------------------");
         }

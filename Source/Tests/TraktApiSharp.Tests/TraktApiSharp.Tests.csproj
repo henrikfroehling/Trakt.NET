@@ -241,7 +241,7 @@
     <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktCommentTypeTests.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilterTests.cs" />
-    <Compile Include="Requests\Params\TraktExtendedOptionTests.cs" />
+    <Compile Include="Requests\Params\TraktExtendedInfoTests.cs" />
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemsSectionTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />

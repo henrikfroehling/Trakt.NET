@@ -47,7 +47,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading trending shows...");
-            var traktTrendingShows = await Shows.GetTrendingShowsAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktTrendingShows = await Shows.GetTrendingShowsAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktTrendingShows.Items != null)
             {

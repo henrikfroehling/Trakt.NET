@@ -24,7 +24,7 @@
         // -------------------------------------------------------------
         // Single Show
 
-        public async Task<Show> GetShowAsync(string showId, TraktExtendedOption extendedInfo = null,
+        public async Task<Show> GetShowAsync(string showId, TraktExtendedInfo extendedInfo = null,
                                              bool withAdditionalContent = false)
         {
             var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
@@ -47,7 +47,7 @@
         // -------------------------------------------------------------
         // Trending Shows
 
-        public async Task<PaginationList<TrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<TrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                               TraktShowFilter showFilter = null,
                                                                               int? whichPage = null, int? limitPerPage = null)
         {
@@ -81,7 +81,7 @@
         // -------------------------------------------------------------
         // Popular Shows
 
-        public async Task<PaginationList<Show>> GetPopularShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<Show>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                      TraktShowFilter showFilter = null,
                                                                      int? whichPage = null, int? limitPerPage = null)
         {
@@ -112,7 +112,7 @@
         // -------------------------------------------------------------
         // Most Played Shows
 
-        public async Task<PaginationList<MostPWCShow>> GetMostPlayedShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCShow>> GetMostPlayedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                TraktShowFilter showFilter = null,
                                                                                TraktTimePeriod period = null,
                                                                                int? whichPage = null, int? limitPerPage = null)
@@ -151,7 +151,7 @@
         // -------------------------------------------------------------
         // Most Watched Shows
 
-        public async Task<PaginationList<MostPWCShow>> GetMostWatchedShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCShow>> GetMostWatchedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                 TraktShowFilter showFilter = null,
                                                                                 TraktTimePeriod period = null,
                                                                                 int? whichPage = null, int? limitPerPage = null)
@@ -190,7 +190,7 @@
         // -------------------------------------------------------------
         // Most Collected Shows
 
-        public async Task<PaginationList<MostPWCShow>> GetMostCollectedShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<MostPWCShow>> GetMostCollectedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                   TraktShowFilter showFilter = null,
                                                                                   TraktTimePeriod period = null,
                                                                                   int? whichPage = null, int? limitPerPage = null)
@@ -229,7 +229,7 @@
         // -------------------------------------------------------------
         // Most Anticipated Shows
 
-        public async Task<PaginationList<AnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extendedInfo = null,
+        public async Task<PaginationList<AnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                         TraktShowFilter showFilter = null,
                                                                                         int? whichPage = null, int? limitPerPage = null)
         {
@@ -264,7 +264,7 @@
         // Recently Updated Shows
 
         public async Task<PaginationList<RecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
-                                                                                            TraktExtendedOption extendedInfo = null,
+                                                                                            TraktExtendedInfo extendedInfo = null,
                                                                                             int? whichPage = null, int? limitPerPage = null)
         {
             var traktResults = await Client.Shows.GetRecentlyUpdatedShowsAsync(startDate, extendedInfo, whichPage, limitPerPage);

@@ -47,7 +47,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading popular shows...");
-            var traktPopularShows = await Shows.GetPopularShowsAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktPopularShows = await Shows.GetPopularShowsAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktPopularShows.Items != null)
             {

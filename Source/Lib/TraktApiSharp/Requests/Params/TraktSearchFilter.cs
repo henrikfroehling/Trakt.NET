@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Provides additional filter parameters for the new search methods.<para />
-    /// Supported by <see cref="Modules.TraktSearchModule.GetTextQueryResultsAsync(Enums.TraktSearchResultType, string, Enums.TraktSearchField, TraktSearchFilter, TraktExtendedOption, int?, int?)" />.<para />
+    /// Supported by <see cref="Modules.TraktSearchModule.GetTextQueryResultsAsync(Enums.TraktSearchResultType, string, Enums.TraktSearchField, TraktSearchFilter, TraktExtendedInfo, int?, int?)" />.<para />
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/filters">"Trakt API Doc - Filters"</a> for more information.</para>
     /// </summary>

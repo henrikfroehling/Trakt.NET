@@ -7,13 +7,13 @@
 
     /// <summary>
     /// Provides additional filter parameters for some <see cref="Modules.TraktShowsModule" /> methods.<para />
-    /// Supported by <see cref="Modules.TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetPopularShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />,
-    /// <see cref="Modules.TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedOption, int?, int?)" /> and
-    /// <see cref="Modules.TraktShowsModule.GetTrendingShowsAsync(TraktExtendedOption, TraktShowFilter, int?, int?)" />.<para />
+    /// Supported by <see cref="Modules.TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetPopularShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?)" />,
+    /// <see cref="Modules.TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedInfo, int?, int?)" /> and
+    /// <see cref="Modules.TraktShowsModule.GetTrendingShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?)" />.<para />
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/filters">"Trakt API Doc - Filters"</a> for more information.</para>
     /// </summary>

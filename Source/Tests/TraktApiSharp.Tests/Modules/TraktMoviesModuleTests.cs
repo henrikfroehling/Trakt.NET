@@ -72,22 +72,22 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetSingleMovieWithExtendedOption()
+        public void TestTraktMoviesModuleGetSingleMovieWithExtendedInfo()
         {
             var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFullAndImages.json");
             movie.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}?extended={extendedOption.ToString()}", movie);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}?extended={extendedInfo.ToString()}", movie);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieAsync(movieId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieAsync(movieId, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Title.Should().Be("Star Wars: The Force Awakens");
@@ -1192,22 +1192,22 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMoviePeopleWithExtendedOption()
+        public void TestTraktMoviesModuleGetMoviePeopleWithExtendedInfo()
         {
             var moviePeople = TestUtility.ReadFileContents(@"Objects\Get\Movies\MoviePeople.json");
             moviePeople.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people?extended={extendedOption.ToString()}", moviePeople);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people?extended={extendedInfo.ToString()}", moviePeople);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMoviePeopleAsync(movieId, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Cast.Should().NotBeNull().And.HaveCount(3);
@@ -1474,7 +1474,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfo()
         {
             var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
@@ -1482,16 +1482,16 @@
             var movieId = "94024";
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}",
                                                                 movieRelatedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1525,7 +1525,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfoAndPage()
         {
             var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
@@ -1534,16 +1534,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}",
                                                                 movieRelatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1577,7 +1577,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfoAndLimit()
         {
             var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
@@ -1586,16 +1586,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 movieRelatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1640,16 +1640,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 movieRelatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1899,22 +1899,22 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMovieWatchingUsersWithExtendedOption()
+        public void TestTraktMoviesModuleGetMovieWatchingUsersWithExtendedInfo()
         {
             var movieWatchingUsers = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieWatchingUsers.json");
             movieWatchingUsers.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching?extended={extendedOption.ToString()}", movieWatchingUsers);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching?extended={extendedInfo.ToString()}", movieWatchingUsers);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId, extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(3);
         }
@@ -2076,7 +2076,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfo()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2084,16 +2084,16 @@
             var itemCount = 2;
             var userCount = 300;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}",
                                                                 moviesTrending, 1, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2105,7 +2105,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfoFiltered()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2113,7 +2113,7 @@
             var itemCount = 2;
             var userCount = 300;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2129,10 +2129,10 @@
                 .WithRuntimes(90, 180)
                 .WithRatings(70, 90);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&{filter.ToString()}",
                                                                 moviesTrending, 1, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2201,7 +2201,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfoAndPage()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2210,16 +2210,16 @@
             var userCount = 300;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}",
                                                                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2231,7 +2231,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfoAndPageFiltered()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2240,7 +2240,7 @@
             var userCount = 300;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2257,10 +2257,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/trending?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                $"movies/trending?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2329,7 +2329,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfoAndLimit()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2338,16 +2338,16 @@
             var userCount = 300;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2359,7 +2359,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetTrendingMoviesWithExtendedInfoAndLimitFiltered()
         {
             var moviesTrending = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesTrending.json");
             moviesTrending.Should().NotBeNullOrEmpty();
@@ -2368,7 +2368,7 @@
             var userCount = 300;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2385,10 +2385,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/trending?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                $"movies/trending?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2470,16 +2470,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2501,7 +2501,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2518,10 +2518,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/trending?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/trending?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2662,23 +2662,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfo()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}",
                                                                 popularMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2689,14 +2689,14 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfoFiltered()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2712,10 +2712,10 @@
                 .WithRuntimes(90, 180)
                 .WithRatings(70, 90);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&{filter.ToString()}",
                                                                 popularMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2779,7 +2779,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfoAndPage()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
@@ -2787,16 +2787,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}",
                                                                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2807,7 +2807,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfoAndPageFiltered()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
@@ -2815,7 +2815,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2832,10 +2832,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                $"movies/popular?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2899,7 +2899,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfoAndLimit()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
@@ -2907,16 +2907,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2927,7 +2927,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetPopularMoviesWithExtendedInfoAndLimitFiltered()
         {
             var popularMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesPopular.json");
             popularMovies.Should().NotBeNullOrEmpty();
@@ -2935,7 +2935,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2952,10 +2952,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/popular?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                $"movies/popular?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3031,16 +3031,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3060,7 +3060,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3077,10 +3077,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/popular?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}&limit={limit}",
+                $"movies/popular?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}&limit={limit}",
                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3274,23 +3274,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfo()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3301,14 +3301,14 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoFiltered()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3324,10 +3324,10 @@
                 .WithRuntimes(90, 180)
                 .WithRatings(70, 90);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedOption.ToString()}&{filter.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&{filter.ToString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3452,16 +3452,16 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3480,7 +3480,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3497,10 +3497,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played/{period.UriName}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&{filter.ToString()}",
                 mostPlayedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3623,7 +3623,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndPage()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3631,16 +3631,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3651,7 +3651,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndPageFiltered()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3659,7 +3659,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3676,10 +3676,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                $"movies/played?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3690,7 +3690,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndLimit()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3698,16 +3698,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3718,7 +3718,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndLimitFiltered()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3726,7 +3726,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3743,10 +3743,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                $"movies/played?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3813,7 +3813,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndPageAndLimit()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndPageAndLimit()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3822,16 +3822,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3842,7 +3842,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedOptionAndPageAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostPlayedMoviesWithExtendedInfoAndPageAndLimitFiltered()
         {
             var mostPlayedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostPlayed.json");
             mostPlayedMovies.Should().NotBeNullOrEmpty();
@@ -3851,7 +3851,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3868,10 +3868,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/played?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3951,17 +3951,17 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3982,7 +3982,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3999,10 +3999,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/played/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4196,23 +4196,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfo()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}",
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4223,14 +4223,14 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoFiltered()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4247,10 +4247,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"movies/watched?extended={extendedInfo.ToString()}&{filter.ToString()}",
                 mostWatchedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4375,16 +4375,16 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4403,7 +4403,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4420,10 +4420,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&{filter.ToString()}",
                 mostWatchedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4546,7 +4546,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndPage()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4554,16 +4554,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4574,7 +4574,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndPageFiltered()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4582,7 +4582,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4599,10 +4599,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}",
+                $"movies/watched?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4613,7 +4613,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndLimit()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4621,16 +4621,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4641,7 +4641,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndLimitFiltered()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4649,7 +4649,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4666,10 +4666,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                $"movies/watched?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4737,7 +4737,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPageAndLimit()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndPageAndLimit()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4746,16 +4746,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4766,7 +4766,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedOptionAndPageAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostWatchedMoviesWithExtendedInfoAndPageAndLimitFiltered()
         {
             var mostWatchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostWatched.json");
             mostWatchedMovies.Should().NotBeNullOrEmpty();
@@ -4775,7 +4775,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4792,10 +4792,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
+                $"movies/watched?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4875,17 +4875,17 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4906,7 +4906,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4923,10 +4923,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5121,23 +5121,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfo()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}",
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5148,14 +5148,14 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoFiltered()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5172,10 +5172,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"movies/collected?extended={extendedInfo.ToString()}&{filter.ToString()}",
                 mostCollectedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5300,16 +5300,16 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5328,7 +5328,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5345,10 +5345,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?{filter.ToString()}&extended={extendedOption.ToString()}",
+                $"movies/collected/{period.UriName}?{filter.ToString()}&extended={extendedInfo.ToString()}",
                 mostCollectedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5471,7 +5471,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndPage()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5479,16 +5479,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5499,7 +5499,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndPageFiltered()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5507,7 +5507,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5524,10 +5524,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                $"movies/collected?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5538,7 +5538,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndLimit()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5546,16 +5546,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5566,7 +5566,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndLimitFiltered()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5574,7 +5574,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5591,10 +5591,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedOption.ToString()}&{filter.ToString()}&limit={limit}",
+                $"movies/collected?extended={extendedInfo.ToString()}&{filter.ToString()}&limit={limit}",
                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5662,7 +5662,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPageAndLimit()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndPageAndLimit()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5671,16 +5671,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5691,7 +5691,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedOptionAndPageAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostCollectedMoviesWithExtendedInfoAndPageAndLimitFiltered()
         {
             var mostCollectedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostCollected.json");
             mostCollectedMovies.Should().NotBeNullOrEmpty();
@@ -5700,7 +5700,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5717,10 +5717,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/collected?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5800,17 +5800,17 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5831,7 +5831,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5848,10 +5848,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
+                $"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5992,23 +5992,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfo()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}",
                                                                 mostAnticipatedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6019,14 +6019,14 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionFiltered()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfoFiltered()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -6043,10 +6043,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedOption.ToString()}&{filter.ToString()}",
+                $"movies/anticipated?extended={extendedInfo.ToString()}&{filter.ToString()}",
                 mostAnticipatedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6110,7 +6110,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfoAndPage()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
@@ -6118,16 +6118,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6138,7 +6138,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndPageFiltered()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfoAndPageFiltered()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
@@ -6146,7 +6146,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -6163,10 +6163,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedOption.ToString()}&{filter.ToString()}&page={page}",
+                $"movies/anticipated?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6230,7 +6230,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfoAndLimit()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
@@ -6238,16 +6238,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6258,7 +6258,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedOptionAndLimitFiltered()
+        public void TestTraktMoviesModuleGetMostAnticipatedMoviesWithExtendedInfoAndLimitFiltered()
         {
             var mostAnticipatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesMostAnticipated.json");
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
@@ -6266,7 +6266,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -6283,10 +6283,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedOption.ToString()}&limit={limit}&{filter.ToString()}",
+                $"movies/anticipated?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6363,16 +6363,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6392,7 +6392,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -6409,10 +6409,10 @@
                 .WithRatings(70, 90);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedOption.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
+                $"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedOption, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6515,20 +6515,20 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetBoxOfficeMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetBoxOfficeMoviesWithExtendedInfo()
         {
             var boxOfficeMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesBoxOffice.json");
             boxOfficeMovies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/boxoffice?extended={extendedOption.ToString()}", boxOfficeMovies);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/boxoffice?extended={extendedInfo.ToString()}", boxOfficeMovies);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetBoxOfficeMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetBoxOfficeMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -6655,23 +6655,23 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedOption()
+        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedInfo()
         {
             var recentlyUpdatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesRecentlyUpdated.json");
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}",
                                                                 recentlyUpdatedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6732,17 +6732,17 @@
             var itemCount = 2;
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}",
+                $"movies/updates/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
                 recentlyUpdatedMovies, 1, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6799,7 +6799,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedOptionAndPage()
+        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedInfoAndPage()
         {
             var recentlyUpdatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesRecentlyUpdated.json");
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
@@ -6807,16 +6807,16 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}",
                                                                 recentlyUpdatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6827,7 +6827,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedOptionAndLimit()
+        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedInfoAndLimit()
         {
             var recentlyUpdatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesRecentlyUpdated.json");
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
@@ -6835,16 +6835,16 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 recentlyUpdatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6878,7 +6878,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedOptionAndPageAndLimit()
+        public void TestTraktMoviesModuleGetRecentlyUpdatedMoviesWithExtendedInfoAndPageAndLimit()
         {
             var recentlyUpdatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesRecentlyUpdated.json");
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
@@ -6887,16 +6887,16 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -6941,17 +6941,17 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/updates/{today.ToTraktDateString()}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"movies/updates/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);

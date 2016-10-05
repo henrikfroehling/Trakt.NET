@@ -34,7 +34,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading most anticipated movies...");
-            var traktMostAnticipatedMovies = await Movies.GetMostAnticipatedMoviesAsync(DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktMostAnticipatedMovies = await Movies.GetMostAnticipatedMoviesAsync(DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktMostAnticipatedMovies.Items != null)
             {

@@ -86,7 +86,7 @@
         }
 
         [TestMethod]
-        public void TestTraktEpisodesModuleGetEpisodeWithExtendedOption()
+        public void TestTraktEpisodesModuleGetEpisodeWithExtendedInfo()
         {
             var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
             episode.Should().NotBeNullOrEmpty();
@@ -95,16 +95,16 @@
             var seasonNr = 1;
             var episodeNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended={extendedInfo.ToString()}",
                                                       episode);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Title.Should().Be("Winter Is Coming");
@@ -890,7 +890,7 @@
         }
 
         [TestMethod]
-        public void TestTraktEpisodesModuleGetEpisodeWatchingUsersWithExtendedOption()
+        public void TestTraktEpisodesModuleGetEpisodeWatchingUsersWithExtendedInfo()
         {
             var episodeWatchingUsers = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeWatchingUsers.json");
             episodeWatchingUsers.Should().NotBeNullOrEmpty();
@@ -899,16 +899,16 @@
             var seasonNr = 1;
             var episodeNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended={extendedInfo.ToString()}",
                                                       episodeWatchingUsers);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
