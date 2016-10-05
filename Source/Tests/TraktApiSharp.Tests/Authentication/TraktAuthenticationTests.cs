@@ -296,6 +296,31 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationSuccess()
+        {
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            // "Fake-Request" is sync/last_activities
+            var lastActivities = TestUtility.ReadFileContents(@"Objects\Get\Syncs\Activities\SyncLastActivities.json");
+            lastActivities.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithOAuth("sync/last_activities", lastActivities, authorization);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(authorization).Result;
+
+            response.Should().NotBeNull();
+            response.First.Should().BeFalse();
+            response.Second.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailedExpired()
         {
             var authorization = new TraktAuthorization
@@ -310,6 +335,25 @@
             TestUtility.MOCK_TEST_CLIENT.Authorization = authorization;
 
             var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync().Result;
+
+            response.Should().NotBeNull();
+            response.First.Should().BeTrue();
+            response.Second.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationFailedExpired()
+        {
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 0,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(authorization).Result;
 
             response.Should().NotBeNull();
             response.First.Should().BeTrue();
@@ -338,6 +382,27 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationFailedRevoked()
+        {
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            TestUtility.SetupMockResponseWithOAuth("sync/last_activities", HttpStatusCode.Unauthorized, authorization);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(authorization).Result;
+
+            response.Should().NotBeNull();
+            response.First.Should().BeTrue();
+            response.Second.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedFailedRevokedAutoRefresh()
         {
             var authorization = new TraktAuthorization
@@ -354,8 +419,8 @@
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            var accessTokenJson = JsonConvert.SerializeObject(authorization);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+            var authorizationJson = JsonConvert.SerializeObject(authorization);
+            authorizationJson.Should().NotBeNullOrEmpty();
 
             var postContent = $"{{ \"refresh_token\": \"{authorization.RefreshToken}\", \"client_id\": \"{clientId}\", " +
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
@@ -365,7 +430,7 @@
             TestUtility.AddMockExpectationResponse("sync/last_activities", HttpStatusCode.Unauthorized, authorization);
 
             // Second response for autoRefresh == true
-            TestUtility.AddMockExpectationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.AddMockExpectationResponse(TraktConstants.OAuthTokenUri, postContent, authorizationJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(true).Result;
 
@@ -394,6 +459,66 @@
             clientAccessToken.RefreshToken.Should().Be(responseAuthoriation.RefreshToken);
             clientAccessToken.AccessScope.Should().Be(responseAuthoriation.AccessScope);
             clientAccessToken.Created.Should().Be(responseAuthoriation.Created);
+            clientAccessToken.IsExpired.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationFailedRevokedAutoRefresh()
+        {
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+
+            var authorizationJson = JsonConvert.SerializeObject(authorization);
+            authorizationJson.Should().NotBeNullOrEmpty();
+
+            var postContent = $"{{ \"refresh_token\": \"{authorization.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+
+            // First response, if authorization was revoked
+            TestUtility.AddMockExpectationResponse("sync/last_activities", HttpStatusCode.Unauthorized, authorization);
+
+            // Second response for autoRefresh == true
+            TestUtility.AddMockExpectationResponse(TraktConstants.OAuthTokenUri, postContent, authorizationJson);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(authorization, true).Result;
+
+            TestUtility.VerifyNoOutstandingExceptations();
+
+            response.Should().NotBeNull();
+            response.First.Should().BeTrue();
+
+            var responseAuthoriation = response.Second;
+
+            responseAuthoriation.Should().NotBeNull();
+            responseAuthoriation.AccessToken.Should().Be(authorization.AccessToken);
+            responseAuthoriation.TokenType.Should().Be(authorization.TokenType);
+            responseAuthoriation.ExpiresInSeconds.Should().Be(authorization.ExpiresInSeconds);
+            responseAuthoriation.RefreshToken.Should().Be(authorization.RefreshToken);
+            responseAuthoriation.AccessScope.Should().Be(authorization.AccessScope);
+            responseAuthoriation.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthoriation.IsExpired.Should().BeFalse();
+
+            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+
+            clientAccessToken.Should().NotBeNull();
+            clientAccessToken.AccessToken.Should().Be(responseAuthoriation.AccessToken);
+            clientAccessToken.TokenType.Should().Be(responseAuthoriation.TokenType);
+            clientAccessToken.ExpiresInSeconds.Should().Be(responseAuthoriation.ExpiresInSeconds);
+            clientAccessToken.RefreshToken.Should().Be(responseAuthoriation.RefreshToken);
+            clientAccessToken.AccessScope.Should().Be(responseAuthoriation.AccessScope);
+            clientAccessToken.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -472,6 +597,91 @@
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522, authorization);
             act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationExceptions()
+        {
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = "mockAccessToken",
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = 7200,
+                RefreshToken = "mockRefreshToken",
+                AccessScope = TraktAccessScope.Public
+            };
+
+            var uri = "sync/last_activities";
+
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound, authorization);
+
+            Func<Task<Pair<bool, TraktAuthorization>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(authorization);
+            act.ShouldThrow<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest, authorization);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden, authorization);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed, authorization);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict, authorization);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError, authorization);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway, authorization);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412, authorization);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422, authorization);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429, authorization);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503, authorization);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504, authorization);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520, authorization);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521, authorization);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522, authorization);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktAuthenticationCheckIfAuthorizationIsExpiredOrWasRevokedWithAuthorizationArgumentExceptions()
+        {
+            Func<Task<Pair<bool, TraktAuthorization>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         [TestMethod]

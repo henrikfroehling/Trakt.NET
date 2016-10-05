@@ -140,6 +140,46 @@
 
         /// <summary>
         /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the given <see cref="TraktAuthorization" /> is not expired yet and was not revoked by the user.
+        /// </summary>
+        /// <param name="authorization">The authorization information, which will be checked.</param>
+        /// <param name="autoRefresh">
+        /// Indicates, whether the current <see cref="Authorization" /> should be refreshed, if it was revoked.
+        /// If this is set to true, <see cref="RefreshAuthorizationAsync()" /> will be called.<para /> 
+        /// See also <seealso cref="RefreshAuthorizationAsync()" />.
+        /// </param>
+        /// <returns>
+        /// Returns an <see cref="Pair{T, U}" /> instance with <see cref="Pair{T, U}.First" /> set to true,
+        /// if the current <see cref="Authorization" /> is expired or was revoked, otherwise set to false.
+        /// If <paramref name="autoRefresh" /> is set to true, the returned <see cref="Pair{T, U}.Second" /> contains the new
+        /// <see cref="TraktAuthorization" /> information, otherwise the returned <see cref="Pair{T, U}.Second" /> will be null.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="authorization" /> is null.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="RefreshAuthorizationAsync()" /> fails.</exception>
+        public async Task<Pair<bool, TraktAuthorization>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(TraktAuthorization authorization, bool autoRefresh = false)
+        {
+            if (authorization == null)
+                throw new ArgumentNullException(nameof(authorization));
+
+            var currentAuthorization = Authorization;
+            Authorization = authorization;
+
+            var result = new Pair<bool, TraktAuthorization>(true, null);
+
+            try
+            {
+                result = await CheckIfAuthorizationIsExpiredOrWasRevokedAsync(autoRefresh);
+            }
+            finally
+            {
+                Authorization = currentAuthorization;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
         /// whether the given access token is still valid and was not revoked by the user.
         /// </summary>
         /// <param name="accessToken">The access token, which will be checked.</param>
