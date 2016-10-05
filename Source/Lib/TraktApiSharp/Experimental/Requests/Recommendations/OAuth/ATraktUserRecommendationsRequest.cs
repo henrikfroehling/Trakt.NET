@@ -11,6 +11,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public TraktExtendedOption ExtendedOption { get; set; }
+        public TraktExtendedInfo ExtendedOption { get; set; }
     }
 }

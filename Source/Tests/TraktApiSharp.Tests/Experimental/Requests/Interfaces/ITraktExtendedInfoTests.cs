@@ -24,7 +24,7 @@
 
             extendedOptionPropertyInfo.CanRead.Should().BeTrue();
             extendedOptionPropertyInfo.CanWrite.Should().BeTrue();
-            extendedOptionPropertyInfo.PropertyType.Should().Be(typeof(TraktExtendedOption));
+            extendedOptionPropertyInfo.PropertyType.Should().Be(typeof(TraktExtendedInfo));
         }
     }
 }

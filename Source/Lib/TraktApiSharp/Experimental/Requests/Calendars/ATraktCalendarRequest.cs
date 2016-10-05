@@ -15,7 +15,7 @@
 
         internal int? Days { get; set; }
 
-        public TraktExtendedOption ExtendedOption { get; set; }
+        public TraktExtendedInfo ExtendedOption { get; set; }
 
         public TraktCommonFilter Filter { get; set; }
 
