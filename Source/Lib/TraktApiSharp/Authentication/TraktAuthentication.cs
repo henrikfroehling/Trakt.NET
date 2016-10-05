@@ -103,6 +103,113 @@
         public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
         /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the current <see cref="Authorization" /> is not expired yet and was not revoked by the user.
+        /// </summary>
+        /// <param name="autoRefresh">
+        /// Indicates, whether the current <see cref="Authorization" /> should be refreshed, if it was revoked.
+        /// If this is set to true, <see cref="RefreshAuthorizationAsync()" /> will be called.<para /> 
+        /// See also <seealso cref="RefreshAuthorizationAsync()" />.
+        /// </param>
+        /// <returns>
+        /// Returns an <see cref="Pair{T, U}" /> instance with <see cref="Pair{T, U}.First" /> set to true,
+        /// if the current <see cref="Authorization" /> is expired or was revoked, otherwise set to false.
+        /// If <paramref name="autoRefresh" /> is set to true, the returned <see cref="Pair{T, U}.Second" /> contains the new
+        /// <see cref="TraktAuthorization" /> information, otherwise the returned <see cref="Pair{T, U}.Second" /> will be null.
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="RefreshAuthorizationAsync()" /> fails.</exception>
+        public async Task<Pair<bool, TraktAuthorization>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false)
+        {
+            if (Authorization.IsExpired)
+                return new Pair<bool, TraktAuthorization>(true, null);
+
+            try
+            {
+                await Client.Sync.GetLastActivitiesAsync();
+                return new Pair<bool, TraktAuthorization>(false, null);
+            }
+            catch (TraktAuthorizationException)
+            {
+                if (!autoRefresh)
+                    return new Pair<bool, TraktAuthorization>(true, null);
+
+                var newAuthorization = await RefreshAuthorizationAsync();
+                return new Pair<bool, TraktAuthorization>(true, newAuthorization);
+            }
+        }
+
+        /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the given <see cref="TraktAuthorization" /> is not expired yet and was not revoked by the user.
+        /// </summary>
+        /// <param name="authorization">The authorization information, which will be checked.</param>
+        /// <param name="autoRefresh">
+        /// Indicates, whether the current <see cref="Authorization" /> should be refreshed, if it was revoked.
+        /// If this is set to true, <see cref="RefreshAuthorizationAsync()" /> will be called.<para /> 
+        /// See also <seealso cref="RefreshAuthorizationAsync()" />.
+        /// </param>
+        /// <returns>
+        /// Returns an <see cref="Pair{T, U}" /> instance with <see cref="Pair{T, U}.First" /> set to true,
+        /// if the current <see cref="Authorization" /> is expired or was revoked, otherwise set to false.
+        /// If <paramref name="autoRefresh" /> is set to true, the returned <see cref="Pair{T, U}.Second" /> contains the new
+        /// <see cref="TraktAuthorization" /> information, otherwise the returned <see cref="Pair{T, U}.Second" /> will be null.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="authorization" /> is null.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="RefreshAuthorizationAsync()" /> fails.</exception>
+        public async Task<Pair<bool, TraktAuthorization>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(TraktAuthorization authorization, bool autoRefresh = false)
+        {
+            if (authorization == null)
+                throw new ArgumentNullException(nameof(authorization));
+
+            var currentAuthorization = Authorization;
+            Authorization = authorization;
+
+            var result = new Pair<bool, TraktAuthorization>(true, null);
+
+            try
+            {
+                result = await CheckIfAuthorizationIsExpiredOrWasRevokedAsync(autoRefresh);
+            }
+            finally
+            {
+                Authorization = currentAuthorization;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// whether the given access token is still valid and was not revoked by the user.
+        /// </summary>
+        /// <param name="accessToken">The access token, which will be checked.</param>
+        /// <returns>True, if the given access token was revoked and / or is not valid anymore, otherwise false.</returns>
+        /// <exception cref="ArgumentException">Thrown, if the given access token is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> fails.</exception>
+        public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken)
+        {
+            if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
+                throw new ArgumentException("access token must not be null, empty or contain any spaces", nameof(accessToken));
+
+            var currentAuthorization = Authorization;
+            Authorization = TraktAuthorization.CreateWith(accessToken);
+
+            try
+            {
+                await Client.Sync.GetLastActivitiesAsync();
+                return false;
+            }
+            catch (TraktAuthorizationException)
+            {
+                return true;
+            }
+            finally
+            {
+                Authorization = currentAuthorization;
+            }
+        }
+
+        /// <summary>
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
         /// Uses the current <see cref="Authorization" />'s refresh token, <see cref="ClientId" />,
         /// <see cref="ClientSecret" /> and <see cref="RedirectUri" />for the request.

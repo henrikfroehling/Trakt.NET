@@ -334,6 +334,7 @@
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />
     <Compile Include="Utils\Json.cs" />
+    <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Range.cs" />
     <Compile Include="Requests\Params\TraktCommonFilter.cs" />
     <Compile Include="Requests\Params\TraktCommonMovieAndShowFilter.cs" />
