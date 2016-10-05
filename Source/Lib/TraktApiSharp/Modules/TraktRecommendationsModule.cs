@@ -29,8 +29,8 @@
         /// </para>
         /// </summary>
         /// <param name="limit">Determines, how many movie recommendations should be queried. Maximum is 100.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the movies should be queried.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
@@ -43,12 +43,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
-                                                                                              TraktExtendedInfo extendedOption = null)
+                                                                                              TraktExtendedInfo extendedInfo = null)
         {
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedInfo
             });
         }
 
@@ -78,8 +78,8 @@
         /// </para>
         /// </summary>
         /// <param name="limit">Determines, how many show recommendations should be queried. Maximum is 100.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
@@ -92,12 +92,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
-                                                                                            TraktExtendedInfo extendedOption = null)
+                                                                                            TraktExtendedInfo extendedInfo = null)
         {
             return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extendedOption
+                ExtendedOption = extendedInfo
             });
         }
 
