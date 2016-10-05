@@ -447,17 +447,17 @@
             var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true,
                 Metadata = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/collection/movies?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithOAuth($"sync/collection/movies?extended={extendedInfo.ToString()}",
                                                    collectionMovies);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -560,17 +560,17 @@
             var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true,
                 Metadata = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/collection/shows?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithOAuth($"sync/collection/shows?extended={extendedInfo.ToString()}",
                                                    collectionShows);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync(extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1283,16 +1283,16 @@
             var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watched/movies?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithOAuth($"sync/watched/movies?extended={extendedInfo.ToString()}",
                                                    watchedMovies);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync(extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1395,16 +1395,16 @@
             var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watched/shows?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockResponseWithOAuth($"sync/watched/shows?extended={extendedInfo.ToString()}",
                                                    watchedShows);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync(extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync(extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -1617,7 +1617,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1626,11 +1626,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}",
+                $"&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1653,7 +1653,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1662,11 +1662,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}",
+                $"&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1689,7 +1689,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1698,11 +1698,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1723,7 +1723,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1731,11 +1731,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1757,7 +1757,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1765,11 +1765,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1791,7 +1791,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1799,11 +1799,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1826,7 +1826,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1834,12 +1834,12 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1940,7 +1940,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1948,11 +1948,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -1974,7 +1974,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1982,11 +1982,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2009,7 +2009,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2017,11 +2017,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2120,18 +2120,18 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, null,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2152,7 +2152,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2160,11 +2160,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, null,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2185,7 +2185,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2193,11 +2193,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, null,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2219,19 +2219,19 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
+                $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, null,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2276,7 +2276,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2284,11 +2284,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}",
+                $"&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2310,7 +2310,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2318,11 +2318,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}",
+                $"&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2344,7 +2344,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2352,11 +2352,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2379,7 +2379,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2388,11 +2388,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2520,18 +2520,18 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2552,7 +2552,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2560,11 +2560,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&page={page}",
+                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2585,18 +2585,18 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}&limit={limit}",
+                $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2618,18 +2618,18 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}" +
-                                                             $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                                                             $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                              watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2747,17 +2747,17 @@
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}",
                                                              watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2777,17 +2777,17 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&page={page}",
                                                              watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2807,17 +2807,17 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                                                              watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2838,18 +2838,18 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history/{type.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2938,18 +2938,18 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}",
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -2969,7 +2969,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2977,11 +2977,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}",
+                $"&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3001,7 +3001,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3009,11 +3009,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3034,19 +3034,19 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedOption.ToString()}" +
+                $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}" +
                 $"&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3089,7 +3089,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3097,11 +3097,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}",
+                $"&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3122,7 +3122,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3130,11 +3130,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}",
+                $"&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3155,7 +3155,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3163,11 +3163,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3189,7 +3189,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3197,11 +3197,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3397,7 +3397,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3405,11 +3405,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}",
+                $"&extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3429,7 +3429,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3437,11 +3437,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}",
+                $"&extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3461,7 +3461,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3469,11 +3469,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3494,7 +3494,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3502,11 +3502,11 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3613,25 +3613,25 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedOption()
+        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedInfo()
         {
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?extended={extendedOption.ToString()}",
+                $"sync/history?extended={extendedInfo.ToString()}",
                 watchedHistory, 1, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null,
-                                                                                    extendedOption).Result;
+                                                                                    extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3642,7 +3642,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedOptionAndPage()
+        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedInfoAndPage()
         {
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
@@ -3650,18 +3650,18 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?extended={extendedOption.ToString()}&page={page}",
+                $"sync/history?extended={extendedInfo.ToString()}&page={page}",
                 watchedHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null,
-                                                                                    extendedOption, page).Result;
+                                                                                    extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3672,7 +3672,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedOptionAndLimit()
+        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedInfoAndLimit()
         {
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
@@ -3680,18 +3680,18 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?extended={extendedOption.ToString()}&limit={limit}",
+                $"sync/history?extended={extendedInfo.ToString()}&limit={limit}",
                 watchedHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null,
-                                                                                    extendedOption, null, limit).Result;
+                                                                                    extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3702,7 +3702,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedOptionAndPageAndLimit()
+        public void TestTraktSyncModuleGetWatchedHistoryWithExtendedInfoAndPageAndLimit()
         {
             var watchedHistory = TestUtility.ReadFileContents(@"Objects\Get\History\History.json");
             watchedHistory.Should().NotBeNullOrEmpty();
@@ -3711,18 +3711,18 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/history?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"sync/history?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -3813,7 +3813,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3822,11 +3822,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchedHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt,
-                                                                                    extendedOption, page, limit).Result;
+                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -4838,34 +4838,34 @@
 
             var type = TraktRatingsItemType.Movie;
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}?extended={extendedOption.ToString()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}?extended={extendedInfo.ToString()}", ratings);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetUserRatingsWithExtendedOption()
+        public void TestTraktSyncModuleGetUserRatingsWithExtendedInfo()
         {
             var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings?extended={extendedOption.ToString()}", ratings);
+            TestUtility.SetupMockResponseWithOAuth($"sync/ratings?extended={extendedInfo.ToString()}", ratings);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, null, extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(4);
         }
@@ -4882,17 +4882,17 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockResponseWithOAuth(
-                $"sync/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedOption.ToString()}",
+                $"sync/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedInfo.ToString()}",
                 ratings);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedInfo).Result;
 
             response.Should().NotBeNull().And.HaveCount(4);
         }
@@ -5645,16 +5645,16 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}",
                                                              watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5678,17 +5678,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&page={page}",
+                $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&page={page}",
                 watchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5712,17 +5712,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&limit={limit}",
+                $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                 watchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5735,7 +5735,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchlistWithExtendedOption()
+        public void TestTraktSyncModuleGetWatchlistWithExtendedInfo()
         {
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
@@ -5744,16 +5744,16 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist?extended={extendedOption.ToString()}",
+            TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist?extended={extendedInfo.ToString()}",
                                                              watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5766,7 +5766,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndPage()
+        public void TestTraktSyncModuleGetWatchlistWithExtendedInfoAndPage()
         {
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
@@ -5776,17 +5776,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist?extended={extendedOption.ToString()}&page={page}",
+                $"sync/watchlist?extended={extendedInfo.ToString()}&page={page}",
                 watchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5799,7 +5799,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndLimit()
+        public void TestTraktSyncModuleGetWatchlistWithExtendedInfoAndLimit()
         {
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
@@ -5809,17 +5809,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist?extended={extendedOption.ToString()}&limit={limit}",
+                $"sync/watchlist?extended={extendedInfo.ToString()}&limit={limit}",
                 watchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5832,7 +5832,7 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncModuleGetWatchlistWithExtendedOptionAndPageAndLimit()
+        public void TestTraktSyncModuleGetWatchlistWithExtendedInfoAndPageAndLimit()
         {
             var watchlist = TestUtility.ReadFileContents(@"Objects\Get\Watchlist\Watchlist.json");
             watchlist.Should().NotBeNullOrEmpty();
@@ -5843,17 +5843,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"sync/watchlist?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
@@ -5958,17 +5958,17 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedInfo
+            var extendedInfo = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
             };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"sync/watchlist/{type.UriName}?extended={extendedOption.ToString()}&page={page}&limit={limit}",
+                $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 watchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedOption, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
             response.Items.Should().NotBeNull().And.HaveCount(itemCount);
