@@ -18,17 +18,12 @@ namespace UriTemplates
             _operatorInfo = operatorInfo;
         }
 
-        internal OperatorInfo OperatorInfo
-        {
-            get { return _operatorInfo; }
-        }
+        internal OperatorInfo OperatorInfo => _operatorInfo;
 
         public override string ToString()
-        {
-            return (First ? _operatorInfo.First : "") +
+            => (First ? _operatorInfo.First : "") +
                    VarName.ToString()
                    + (Explode ? "*" : "")
                    + (PrefixLength > 0 ? ":" + PrefixLength : "");
-        }
     }
 }

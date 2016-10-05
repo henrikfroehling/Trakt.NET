@@ -96,14 +96,10 @@
         }
 
         public TraktCommonMovieAndShowFilter AddCertifications(string certification, params string[] certifications)
-        {
-            return AddCertifications(true, certification, certifications);
-        }
+            => AddCertifications(true, certification, certifications);
 
         public TraktCommonMovieAndShowFilter WithCertifications(string certification, params string[] certifications)
-        {
-            return AddCertifications(false, certification, certifications);
-        }
+            => AddCertifications(false, certification, certifications);
 
         /// <summary>Deletes all filter parameter values.</summary>
         public override void Clear()

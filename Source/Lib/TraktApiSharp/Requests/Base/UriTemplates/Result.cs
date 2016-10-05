@@ -22,20 +22,11 @@ namespace UriTemplates
             ParameterNames = new List<string>();
         }
 
-        internal StringBuilder Append(char value)
-        {
-            return _Result.Append(value);
-        }
+        internal StringBuilder Append(char value) => _Result.Append(value);
 
-        internal StringBuilder Append(string value)
-        {
-            return _Result.Append(value);
-        }
+        internal StringBuilder Append(string value) => _Result.Append(value);
 
-        public override string ToString()
-        {
-            return _Result.ToString();
-        }
+        public override string ToString() => _Result.ToString();
 
         internal void AppendName(string variable, OperatorInfo op, bool valueIsEmpty)
         {
