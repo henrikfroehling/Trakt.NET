@@ -47,9 +47,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktSyncLastActivities> GetLastActivitiesAsync()
-        {
-            return await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
-        }
+            => await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
 
         /// <summary>
         /// Gets the user's saved playback progress of scrobbles that are paused.
@@ -64,13 +62,11 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
-        {
-            return await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
+            => await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
             {
                 Type = objectType,
                 PaginationOptions = new TraktPaginationOptions(null, limit)
             });
-        }
 
         /// <summary>
         /// Removes a playback progress item from the user's playback progress list.
@@ -106,9 +102,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Gets all collected shows in the user's collection.
@@ -125,9 +119,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Adds items to the user's collection. Accepts shows, seasons, episodes and movies.
@@ -194,9 +186,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Gets all shows the user has watched, sorted by most plays.
@@ -213,9 +203,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
@@ -244,11 +232,10 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, ulong? historyItemId = null,
-                                                                                              DateTime? startAt = null, DateTime? endAt = null,
-                                                                                              TraktExtendedInfo extendedInfo = null,
-                                                                                              int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
+                                                                                  DateTime? startAt = null, DateTime? endAt = null,
+                                                                                  TraktExtendedInfo extendedInfo = null,
+                                                                                  int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
                 Type = historyItemType,
                 ItemId = historyItemId,
@@ -257,7 +244,6 @@
                 ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Adds items to the user's watch history. Accepts shows, seasons, episodes and movies.
@@ -330,16 +316,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
-                                                                         int[] ratingsFilter = null,
-                                                                         TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktSyncRatingsRequest(Client)
+                                                             int[] ratingsFilter = null,
+                                                             TraktExtendedInfo extendedInfo = null)
+            => await QueryAsync(new TraktSyncRatingsRequest(Client)
             {
                 Type = ratingsItemType,
                 Rating = ratingsFilter,
                 ExtendedInfo = extendedInfo
             });
-        }
 
         /// <summary>
         /// Adds items to the user's ratings. Accepts shows, seasons, episodes and movies.
@@ -415,16 +399,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktSyncWatchlistRequest(Client)
+                                                                               TraktExtendedInfo extendedInfo = null,
+                                                                               int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Adds items to the user's watchlist. Accepts shows, seasons, episodes and movies.

@@ -46,9 +46,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktUserSettings> GetSettingsAsync()
-        {
-            return await QueryAsync(new TraktUserSettingsRequest(Client));
-        }
+            => await QueryAsync(new TraktUserSettingsRequest(Client));
 
         /// <summary>
         /// Gets the user's pending follow requests.
@@ -65,9 +63,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Gets the user's hidden items, like movies, shows and / or seasons.
@@ -131,14 +127,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
-                                                                                      int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktUserLikesRequest(Client)
+                                                                          int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktUserLikesRequest(Client)
             {
                 Type = likeType,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets an user's profile information.
