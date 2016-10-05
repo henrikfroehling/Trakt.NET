@@ -34,8 +34,8 @@
         /// <param name="searchQuery">The query, for which will be searched.</param>
         /// <param name="searchFields">Determines the text fields, which will be searched. See also <seealso cref="TraktSearchField" />.</param>
         /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
@@ -56,7 +56,7 @@
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
                                                                                                  TraktSearchField searchFields = null, TraktSearchFilter filter = null,
-                                                                                                 TraktExtendedInfo extendedOption = null,
+                                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                                  int? page = null, int? limitPerPage = null)
         {
             Validate(searchResultTypes);
@@ -68,7 +68,7 @@
                 Query = searchQuery,
                 SearchFields = searchFields,
                 Filter = filter,
-                ExtendedOption = extendedOption,
+                ExtendedOption = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -83,8 +83,8 @@
         /// <param name="searchIdType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdType" />.</param>
         /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
         /// <param name="searchResultType">The object type(s), which will be looked up. See also <seealso cref="TraktSearchResultType" />.</param>
-        /// <param name="extendedOption">
-        /// The extended option, which determines how much data about the lookup object(s) should be queried.
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the lookup object(s) should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
@@ -105,7 +105,7 @@
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
                                                                                                 TraktSearchResultType searchResultType = null,
-                                                                                                TraktExtendedInfo extendedOption = null,
+                                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
             Validate(searchIdType, lookupId);
@@ -115,7 +115,7 @@
                 IdType = searchIdType,
                 LookupId = lookupId,
                 ResultType = searchResultType,
-                ExtendedOption = extendedOption,
+                ExtendedOption = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
