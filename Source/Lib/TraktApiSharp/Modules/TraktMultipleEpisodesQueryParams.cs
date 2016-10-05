@@ -3,14 +3,14 @@
     using Requests.Params;
 
     /// <summary>
-    /// Collection containing multiple different combinations of show ids, season- and episode-numbers and extended options.
+    /// Collection containing multiple different combinations of show ids, season- and episode-numbers and extended infos.
     /// </summary>
     /// <example>
     /// This example shows an instantiation of this class.
     /// <code>
     /// new TraktMultipleEpisodesQueryParams
     /// {
-    ///     // { show-id, seasonnumber, episodenumber[, extended option] }
+    ///     // { show-id, seasonnumber, episodenumber[, extended info] }
     ///     { "show-id-1", 1, 1 },
     ///     { "show-id-2", 3, 5, new TraktExtendedOption { Full = true } },
     ///     { "show-id-3", 2, 1 }
@@ -23,16 +23,16 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
-        public void Add(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedOption = null)
+        /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
+        public void Add(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedInfo = null)
         {
-            Add(new TraktEpisodeQueryParams(showId, seasonNumber, episodeNumber, extendedOption));
+            Add(new TraktEpisodeQueryParams(showId, seasonNumber, episodeNumber, extendedInfo));
         }
     }
 
     /// <summary>
     /// A single query parameter for multiple episode queries.
-    /// Contains a combination of a show id or slug, a season- and episode-number and an optional extended option.
+    /// Contains a combination of a show id or slug, a season- and episode-number and an optional extended info.
     /// </summary>
     public struct TraktEpisodeQueryParams
     {
@@ -40,13 +40,13 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
-        public TraktEpisodeQueryParams(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedOption)
+        /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
+        public TraktEpisodeQueryParams(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedInfo)
         {
             ShowId = showId;
             Season = seasonNumber;
             Episode = episodeNumber;
-            ExtendedOption = extendedOption;
+            ExtendedOption = extendedInfo;
         }
 
         /// <summary>Returns the show id or slug.</summary>
@@ -59,7 +59,7 @@
         public int Episode { get; }
 
         /// <summary>
-        /// Returns the optional extended option.
+        /// Returns the optional extended info.
         /// <para>Nullable.</para>
         /// </summary>
         public TraktExtendedInfo ExtendedOption { get; }
