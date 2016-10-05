@@ -69,7 +69,7 @@ namespace TraktApiSharp.Requests.Base
             return Json.Deserialize<TResult>(responseContent);
         }
 
-        internal TraktClient Client { get; private set; }
+        internal TraktClient Client { get; }
 
         internal string Id { get; set; }
 
@@ -91,10 +91,7 @@ namespace TraktApiSharp.Requests.Base
 
         protected abstract string UriTemplate { get; }
 
-        protected virtual IDictionary<string, object> GetUriPathParameters()
-        {
-            return new Dictionary<string, object>();
-        }
+        protected virtual IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
 
         private string BuildUrl()
         {

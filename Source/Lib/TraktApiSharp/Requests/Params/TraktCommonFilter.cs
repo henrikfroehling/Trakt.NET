@@ -90,35 +90,17 @@
             return this;
         }
 
-        public TraktCommonFilter AddGenres(string genre, params string[] genres)
-        {
-            return AddGenres(true, genre, genres);
-        }
+        public TraktCommonFilter AddGenres(string genre, params string[] genres) => AddGenres(true, genre, genres);
 
-        public TraktCommonFilter WithGenres(string genre, params string[] genres)
-        {
-            return AddGenres(false, genre, genres);
-        }
+        public TraktCommonFilter WithGenres(string genre, params string[] genres) => AddGenres(false, genre, genres);
 
-        public TraktCommonFilter AddLanguages(string language, params string[] languages)
-        {
-            return AddLanguages(true, language, languages);
-        }
+        public TraktCommonFilter AddLanguages(string language, params string[] languages) => AddLanguages(true, language, languages);
 
-        public TraktCommonFilter WithLanguages(string language, params string[] languages)
-        {
-            return AddLanguages(false, language, languages);
-        }
+        public TraktCommonFilter WithLanguages(string language, params string[] languages) => AddLanguages(false, language, languages);
 
-        public TraktCommonFilter AddCountries(string country, params string[] countries)
-        {
-            return AddCountries(true, country, countries);
-        }
+        public TraktCommonFilter AddCountries(string country, params string[] countries) => AddCountries(true, country, countries);
 
-        public TraktCommonFilter WithCountries(string country, params string[] countries)
-        {
-            return AddCountries(false, country, countries);
-        }
+        public TraktCommonFilter WithCountries(string country, params string[] countries) => AddCountries(false, country, countries);
 
         public TraktCommonFilter WithRuntimes(int begin, int end)
         {

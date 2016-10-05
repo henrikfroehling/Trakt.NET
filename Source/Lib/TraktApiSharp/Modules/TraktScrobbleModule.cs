@@ -262,19 +262,13 @@
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
-        {
-            return new TraktScrobbleStartRequest<T, U>(Client) { RequestBody = requestBody };
-        }
+            => new TraktScrobbleStartRequest<T, U>(Client) { RequestBody = requestBody };
 
         private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
-        {
-            return new TraktScrobblePauseRequest<T, U>(Client) { RequestBody = requestBody };
-        }
+            => new TraktScrobblePauseRequest<T, U>(Client) { RequestBody = requestBody };
 
         private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
-        {
-            return new TraktScrobbleStopRequest<T, U>(Client) { RequestBody = requestBody };
-        }
+            => new TraktScrobbleStopRequest<T, U>(Client) { RequestBody = requestBody };
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
                                                                string appVersion = null, DateTime? appDate = null)

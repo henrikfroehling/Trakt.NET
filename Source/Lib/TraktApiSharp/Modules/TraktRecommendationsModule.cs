@@ -43,14 +43,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
-                                                                                              TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
+                                                                                  TraktExtendedInfo extendedInfo = null)
+            => await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
                 ExtendedInfo = extendedInfo
             });
-        }
 
         /// <summary>
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
@@ -92,14 +90,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
-                                                                                            TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
+                                                                                TraktExtendedInfo extendedInfo = null)
+            => await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
                 ExtendedInfo = extendedInfo
             });
-        }
 
         /// <summary>
         /// Hides a show with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.

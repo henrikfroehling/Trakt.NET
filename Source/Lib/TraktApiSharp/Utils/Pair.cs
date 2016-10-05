@@ -1,5 +1,8 @@
 ﻿namespace TraktApiSharp.Utils
 {
+    /// <summary>A small container containing two values of different types.</summary>
+    /// <typeparam name="T">The type of the first element in this pair.</typeparam>
+    /// <typeparam name="U">The type of the second element in this pair.</typeparam>
     public sealed class Pair<T, U>
     {
         /// <summary>Initializes a new instance of the <see cref="Pair{T,U}" /> class.</summary>

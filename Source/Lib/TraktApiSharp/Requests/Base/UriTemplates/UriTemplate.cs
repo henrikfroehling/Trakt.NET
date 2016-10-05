@@ -39,10 +39,7 @@
                 : new Dictionary<string, object>();
         }
 
-        public override string ToString()
-        {
-            return _template;
-        }
+        public override string ToString() => _template;
 
         internal void SetParameter(string name, object value)
         {
@@ -297,13 +294,11 @@
         }
 
         private static bool IsVarNameChar(char c)
-        {
-            return ((c >= 'A' && c <= 'z') //Alpha
-                    || (c >= '0' && c <= '9') // Digit
-                    || c == '_'
-                    || c == '%'
-                    || c == '.');
-        }
+            => ((c >= 'A' && c <= 'z') //Alpha
+                || (c >= '0' && c <= '9') // Digit
+                || c == '_'
+                || c == '%'
+                || c == '.');
 
         private static OperatorInfo GetOperator(char operatorIndicator)
         {

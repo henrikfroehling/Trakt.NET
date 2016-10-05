@@ -71,7 +71,7 @@
 
             foreach (var queryParam in personsQueryParams)
             {
-                Task<TraktPerson> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedOption);
+                Task<TraktPerson> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 

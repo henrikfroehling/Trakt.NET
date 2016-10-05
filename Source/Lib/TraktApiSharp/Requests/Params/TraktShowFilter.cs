@@ -214,39 +214,27 @@
         /// <param name="network">A network name.</param>
         /// <param name="networks">An optional array of network names.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
-        public TraktShowFilter AddNetworks(string network, params string[] networks)
-        {
-            return AddNetworks(true, network, networks);
-        }
+        public TraktShowFilter AddNetworks(string network, params string[] networks) => AddNetworks(true, network, networks);
 
         /// <summary>Sets the network names parameter and overwrites already existing ones with given network names.</summary>
         /// <param name="network">A network name.</param>
         /// <param name="networks">An optional array of network names.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
-        public TraktShowFilter WithNetworks(string network, params string[] networks)
-        {
-            return AddNetworks(false, network, networks);
-        }
+        public TraktShowFilter WithNetworks(string network, params string[] networks) => AddNetworks(false, network, networks);
 
         /// <summary>Adds multiple show states to the already existing show states.</summary>
         /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
         /// <param name="states">An optional array of show states. See also <seealso cref="TraktShowStatus" />.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
-        public TraktShowFilter AddStates(TraktShowStatus status, params TraktShowStatus[] states)
-        {
-            return AddStates(true, status, states);
-        }
+        public TraktShowFilter AddStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(true, status, states);
 
         /// <summary>Sets the show states parameter and overwrites already existing ones with given show states.</summary>
         /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
         /// <param name="states">An optional array of show states. See also <seealso cref="TraktShowStatus" />.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
-        public TraktShowFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states)
-        {
-            return AddStates(false, status, states);
-        }
+        public TraktShowFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(false, status, states);
 
         /// <summary>Deletes all filter parameter values.</summary>
         public override void Clear()

@@ -7,9 +7,9 @@
     {
         protected TraktPutRequest(TraktClient client) : base(client) { }
 
-        protected override HttpMethod Method { get { return HttpMethod.Put; } }
+        protected override HttpMethod Method => HttpMethod.Put;
 
-        protected override TraktAuthorizationRequirement AuthorizationRequirement { get { return TraktAuthorizationRequirement.Required; } }
+        protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         protected override void Validate()
         {

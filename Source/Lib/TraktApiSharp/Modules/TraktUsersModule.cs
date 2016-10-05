@@ -46,9 +46,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktUserSettings> GetSettingsAsync()
-        {
-            return await QueryAsync(new TraktUserSettingsRequest(Client));
-        }
+            => await QueryAsync(new TraktUserSettingsRequest(Client));
 
         /// <summary>
         /// Gets the user's pending follow requests.
@@ -65,9 +63,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null)
-        {
-            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedInfo = extendedInfo });
-        }
+            => await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedInfo = extendedInfo });
 
         /// <summary>
         /// Gets the user's hidden items, like movies, shows and / or seasons.
@@ -131,14 +127,12 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
-                                                                                      int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktUserLikesRequest(Client)
+                                                                          int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktUserLikesRequest(Client)
             {
                 Type = likeType,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets an user's profile information.
@@ -849,7 +843,7 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched history should be queried.</param>
         /// <param name="historyItemType">Determines, which type of history items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
-        /// <param name="itemId">An unique history item id to determine, which item should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
+        /// <param name="itemId">The Trakt Id for the item, which should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
         /// <param name="startAt">The datetime, after which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="endAt">The datetime, until which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedInfo">
@@ -869,7 +863,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
-                                                                                              ulong? itemId = null, DateTime? startAt = null,
+                                                                                              uint? itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedInfo extendedInfo = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {

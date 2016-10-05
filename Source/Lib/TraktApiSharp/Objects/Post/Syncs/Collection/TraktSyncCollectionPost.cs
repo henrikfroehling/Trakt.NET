@@ -585,10 +585,7 @@
         /// added movies, shows, seasons and episodes, including metadata and collected at UTC datetimes.
         /// </summary>
         /// <returns>An <see cref="TraktSyncCollectionPost" /> instance.</returns>
-        public TraktSyncCollectionPost Build()
-        {
-            return _collectionPost;
-        }
+        public TraktSyncCollectionPost Build() => _collectionPost;
 
         private void ValidateMovie(TraktMovie movie)
         {
@@ -633,9 +630,7 @@
         }
 
         private bool ContainsMovie(TraktMovie movie)
-        {
-            return _collectionPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
-        }
+            => _collectionPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault() != null;
 
         private void EnsureMoviesListExists()
         {
@@ -644,9 +639,7 @@
         }
 
         private bool ContainsShow(TraktShow show)
-        {
-            return _collectionPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
-        }
+            => _collectionPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault() != null;
 
         private void EnsureShowsListExists()
         {
@@ -655,9 +648,7 @@
         }
 
         private bool ContainsEpisode(TraktEpisode episode)
-        {
-            return _collectionPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
-        }
+            => _collectionPost.Episodes.Where(e => e.Ids == episode.Ids).FirstOrDefault() != null;
 
         private void EnsureEpisodesListExists()
         {

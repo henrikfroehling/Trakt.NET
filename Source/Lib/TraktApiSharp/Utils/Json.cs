@@ -12,13 +12,9 @@
             };
 
         internal static string Serialize(object value)
-        {
-            return JsonConvert.SerializeObject(value, DEFAULT_JSON_SETTINGS);
-        }
+            => JsonConvert.SerializeObject(value, DEFAULT_JSON_SETTINGS);
 
         internal static TResult Deserialize<TResult>(string value)
-        {
-            return JsonConvert.DeserializeObject<TResult>(value, DEFAULT_JSON_SETTINGS);
-        }
+            => JsonConvert.DeserializeObject<TResult>(value, DEFAULT_JSON_SETTINGS);
     }
 }

@@ -77,7 +77,7 @@
 
             foreach (var queryParam in showsQueryParams)
             {
-                Task<TraktShow> task = GetShowAsync(queryParam.Id, queryParam.ExtendedOption);
+                Task<TraktShow> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 
@@ -397,16 +397,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                              TraktShowFilter filter = null,
-                                                                                              int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsTrendingRequest(Client)
+                                                                                  TraktShowFilter filter = null,
+                                                                                  int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsTrendingRequest(Client)
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets popular shows.
@@ -432,16 +430,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                     TraktShowFilter filter = null,
-                                                                                     int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsPopularRequest(Client)
+                                                                         TraktShowFilter filter = null,
+                                                                         int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsPopularRequest(Client)
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets the most played shows.
@@ -468,18 +464,16 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
-                                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                                  TraktShowFilter filter = null,
-                                                                                                  int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsMostPlayedRequest(Client)
+                                                                                      TraktExtendedInfo extendedInfo = null,
+                                                                                      TraktShowFilter filter = null,
+                                                                                      int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsMostPlayedRequest(Client)
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets the most watched shows.
@@ -506,18 +500,16 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
-                                                                                                    TraktExtendedInfo extendedInfo = null,
-                                                                                                    TraktShowFilter filter = null,
-                                                                                                    int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsMostWatchedRequest(Client)
+                                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                                        TraktShowFilter filter = null,
+                                                                                        int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsMostWatchedRequest(Client)
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets the most collected shows.
@@ -544,18 +536,16 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
-                                                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                                                        TraktShowFilter filter = null,
-                                                                                                        int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsMostCollectedRequest(Client)
+                                                                                            TraktExtendedInfo extendedInfo = null,
+                                                                                            TraktShowFilter filter = null,
+                                                                                            int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsMostCollectedRequest(Client)
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets the most anticipated shows.
@@ -581,16 +571,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                            TraktShowFilter filter = null,
-                                                                                                            int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
+                                                                                                TraktShowFilter filter = null,
+                                                                                                int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsMostAnticipatedRequest(Client)
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         /// <summary>
         /// Gets updated shows since the given <paramref name="startDate" />.
@@ -616,16 +604,14 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
-                                                                                                            TraktExtendedInfo extendedInfo = null,
-                                                                                                            int? page = null, int? limitPerPage = null)
-        {
-            return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
+                                                                                                TraktExtendedInfo extendedInfo = null,
+                                                                                                int? page = null, int? limitPerPage = null)
+            => await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
-        }
 
         private void Validate(string showIdOrSlug)
         {
