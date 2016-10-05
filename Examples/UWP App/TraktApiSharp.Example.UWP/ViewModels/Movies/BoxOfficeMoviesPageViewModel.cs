@@ -13,7 +13,7 @@
     {
         protected const int DEFAULT_LIMIT = 40;
 
-        protected static readonly TraktExtendedInfo DEFAULT_EXTENDED_OPTION =
+        protected static readonly TraktExtendedInfo DEFAULT_EXTENDED_INFO =
             new TraktExtendedInfo { Full = true, Images = true };
 
         private TraktMoviesService Movies { get; } = TraktMoviesService.Instance;
@@ -40,7 +40,7 @@
         protected async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading box office movies...");
-            var traktBoxOfficeMovies = await Movies.GetBoxOfficeMoviesAsync(DEFAULT_EXTENDED_OPTION);
+            var traktBoxOfficeMovies = await Movies.GetBoxOfficeMoviesAsync(DEFAULT_EXTENDED_INFO);
 
             if (traktBoxOfficeMovies != null)
                 BoxOfficeMovies = traktBoxOfficeMovies;

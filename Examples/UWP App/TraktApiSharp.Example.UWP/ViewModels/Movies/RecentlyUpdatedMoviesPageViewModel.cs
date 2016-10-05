@@ -34,7 +34,7 @@
         protected override async Task LoadPage(int? page = null, int? limit = null)
         {
             Busy.SetBusy(true, "Loading recently updated movies...");
-            var traktRecentlyUpdatedMovies = await Movies.GetRecentlyUpdatedMoviesAsync(extendedInfo: DEFAULT_EXTENDED_OPTION, whichPage: page, limitPerPage: limit);
+            var traktRecentlyUpdatedMovies = await Movies.GetRecentlyUpdatedMoviesAsync(extendedInfo: DEFAULT_EXTENDED_INFO, whichPage: page, limitPerPage: limit);
 
             if (traktRecentlyUpdatedMovies.Items != null)
             {
