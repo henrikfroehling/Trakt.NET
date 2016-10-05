@@ -2,7 +2,7 @@ TraktApiSharp
 ===
 ##### This is a C# wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 ---
-[![NuGet Package](https://img.shields.io/badge/NuGet-v0.4.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v0.5.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/master)
 [![Build status branch dev](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/dev)
@@ -33,7 +33,7 @@ TraktApiSharp
 ---
 ### Where to get
 - Available on [Nuget.org](https://www.nuget.org/packages/TraktApiSharp)
-- Each release will also be published [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
+- Each release will also be published on [traktapisharp.net](https://traktapisharp.net/downloads) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 ```
 PM> Install-Package TraktApiSharp
 ```
@@ -54,14 +54,42 @@ var client = new TraktClient("Your Trakt Client ID");
 var client = new TraktClient("Your Trakt Client ID", "Your Trakt Client Secret");
 
 // Both Client ID and Access Token are required, if you want to use requests, that require authorization
-var client = new TraktClient("Your Trakt Client ID") { AccessToken = "Trakt Access Token" };
+var client = new TraktClient("Your Trakt Client ID")
+{
+    Authorization = TraktAuthorization.CreateWith("Trakt Access Token")
+};
+```
+
+**Use your existing tokens**
+```csharp
+var client = new TraktClient("Your Trakt Client ID");
+
+// Only access token
+client.Authorization = TraktAuthorization.CreateWith("Your Access Token");
+
+// Access Token and Refresh Token
+client.Authorization = TraktAuthorization.CreateWith("Your Access Token", "Your Refresh Token");
+```
+
+**Serialize and deserialize authorization information**
+```csharp
+TraktAuthorization authorization = client.Authorization;
+
+// Get JSON string from current authorization
+string json = TraktSerializationService.Serialize(authorization);
+
+// Get TraktAuthorization from JSON string
+TraktAuthorization deserializedAuthorization = TraktSerializationService.DeserializeAuthorization(json);
+
+client.Authorization = deserializedAuthorization;
+
+// authorization == deserializedAuthorization
 ```
 
 **Configure the client.**
 ```csharp
 client.ClientId = "Your Trakt Client ID";
 client.ClientSecret = "Your Trakt Client Secret";
-client.AccessToken = "Trakt Access Token";
 
 client.Configuration.ApiVersion = 2; // Set by default
 
@@ -76,8 +104,8 @@ client.Configuration.ForceAuthorization = true;
 
 **Get the top 10 trending shows including full information and images.**
 ```csharp
-var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedOption().SetFull().SetImages(), null, 10);
-var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedOption() { Full = true, Images = true }, 1, 10);
+var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo().SetFull().SetImages(), null, 10);
+var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo() { Full = true, Images = true }, 1, 10);
 
 foreach (var trendingShow in trendingShowsTop10)
 {
@@ -88,9 +116,9 @@ foreach (var trendingShow in trendingShowsTop10)
 
 **Get the top 10 trending movies including full information and images.**
 ```csharp
-var extendedOption = new TraktExtendedOption() { Full = true, Images = true };
-var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedOption, null, 10);
-var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedOption, 1, 10);
+var extendedInfo = new TraktExtendedInfo() { Full = true, Images = true };
+var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, null, 10);
+var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, 1, 10);
 
 foreach (var trendingMovie in trendingMoviesTop10)
 {
@@ -101,7 +129,7 @@ foreach (var trendingMovie in trendingMoviesTop10)
 
 **Get the show 'Game of Thrones'**
 ```csharp
-var gameOfThrones = await client.Shows.GetShowAsync("game-of-thrones", new TraktExtendedOption().SetFull().SetImages());
+var gameOfThrones = await client.Shows.GetShowAsync("game-of-thrones", new TraktExtendedInfo().SetFull().SetImages());
 
 Console.WriteLine($"Title: {gameOfThrones.Title} / Year: {gameOfThrones.Year}");
 Console.WriteLine(gameOfThrones.Overview);
@@ -112,7 +140,7 @@ var imagePath = gameOfThrones.Images.Poster.Full;
 
 **Get the movie 'The Martian'**
 ```csharp
-var theMartian = await client.Movies.GetMovieAsync("the-martian-2015", new TraktExtendedOption().SetFull().SetImages());
+var theMartian = await client.Movies.GetMovieAsync("the-martian-2015", new TraktExtendedInfo().SetFull().SetImages());
 
 Console.WriteLine($"Title: {theMartian.Title} / Year: {theMartian.Year}");
 Console.WriteLine(theMartian.Overview);
@@ -147,4 +175,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-**Copyright (c) 2016 [Henrik Fröhling](mailto:support@traktapisharp.net)**
+**Copyright &copy; 2016 [Henrik Fröhling](mailto:support@traktapisharp.net)**
