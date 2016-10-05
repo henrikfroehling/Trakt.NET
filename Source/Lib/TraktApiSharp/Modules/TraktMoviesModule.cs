@@ -50,7 +50,7 @@
             return await QueryAsync(new TraktMovieSummaryRequest(Client)
             {
                 Id = movieIdOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -256,7 +256,7 @@
         {
             Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = movieIdOrSlug, ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktMoviePeopleRequest(Client) { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -310,7 +310,7 @@
             return await QueryAsync(new TraktMovieRelatedMoviesRequest(Client)
             {
                 Id = movieIdOrSlug,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -354,7 +354,7 @@
         {
             Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = movieIdOrSlug, ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktMovieWatchingUsersRequest(Client) { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -386,7 +386,7 @@
         {
             return await QueryAsync(new TraktMoviesTrendingRequest(Client)
             {
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -421,7 +421,7 @@
         {
             return await QueryAsync(new TraktMoviesPopularRequest(Client)
             {
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -459,7 +459,7 @@
             return await QueryAsync(new TraktMoviesMostPlayedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -497,7 +497,7 @@
             return await QueryAsync(new TraktMoviesMostWatchedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -535,7 +535,7 @@
             return await QueryAsync(new TraktMoviesMostCollectedRequest(Client)
             {
                 Period = period,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -570,7 +570,7 @@
         {
             return await QueryAsync(new TraktMoviesMostAnticipatedRequest(Client)
             {
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
@@ -592,7 +592,7 @@
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -625,7 +625,7 @@
             return await QueryAsync(new TraktMoviesRecentlyUpdatedRequest(Client)
             {
                 StartDate = startDate,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }

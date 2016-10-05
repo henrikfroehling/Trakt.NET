@@ -54,7 +54,7 @@
                 Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -213,7 +213,7 @@
                 Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 

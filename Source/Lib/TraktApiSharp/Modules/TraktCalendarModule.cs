@@ -47,7 +47,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -80,7 +80,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -113,7 +113,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -146,7 +146,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -179,7 +179,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -212,7 +212,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -245,7 +245,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }
@@ -278,7 +278,7 @@
             {
                 StartDate = startDate,
                 Days = days,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 Filter = filter
             });
         }

@@ -48,7 +48,7 @@
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showIdOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -80,7 +80,7 @@
             {
                 Id = showIdOrSlug,
                 Season = seasonNumber,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -232,7 +232,7 @@
             {
                 Id = showIdOrSlug,
                 Season = seasonNumber,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 

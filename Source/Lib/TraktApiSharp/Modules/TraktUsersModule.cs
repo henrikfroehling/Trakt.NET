@@ -66,7 +66,7 @@
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -106,7 +106,7 @@
             {
                 Section = hiddenItemsSection,
                 Type = hiddenItemType,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -163,7 +163,7 @@
             return await QueryAsync(new TraktUserProfileRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -190,7 +190,7 @@
             return await QueryAsync(new TraktUserCollectionMoviesRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -217,7 +217,7 @@
             return await QueryAsync(new TraktUserCollectionShowsRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -260,7 +260,7 @@
                 Username = usernameOrSlug,
                 CommentType = commentType,
                 Type = objectType,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -379,7 +379,7 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 Type = listItemType,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -714,7 +714,7 @@
         {
             ValidateUsername(usernameOrSlug);
 
-            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = usernameOrSlug, ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktUserFollowersRequest(Client) { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -737,7 +737,7 @@
         {
             ValidateUsername(usernameOrSlug);
 
-            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = usernameOrSlug, ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktUserFollowingRequest(Client) { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -760,7 +760,7 @@
         {
             ValidateUsername(usernameOrSlug);
 
-            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = usernameOrSlug, ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktUserFriendsRequest(Client) { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -882,7 +882,7 @@
                 ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -919,7 +919,7 @@
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
                 Rating = ratingsFilter,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -958,7 +958,7 @@
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -986,7 +986,7 @@
             return await QueryAsync(new TraktUserWatchingRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -1013,7 +1013,7 @@
             return await QueryAsync(new TraktUserWatchedMoviesRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -1040,7 +1040,7 @@
             return await QueryAsync(new TraktUserWatchedShowsRequest(Client)
             {
                 Username = usernameOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 

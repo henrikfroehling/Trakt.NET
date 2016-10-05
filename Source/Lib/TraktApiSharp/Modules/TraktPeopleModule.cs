@@ -45,7 +45,7 @@
             return await QueryAsync(new TraktPersonSummaryRequest(Client)
             {
                 Id = personIdOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -102,7 +102,7 @@
             return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
             {
                 Id = personIdOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -129,7 +129,7 @@
             return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
             {
                 Id = personIdOrSlug,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 

@@ -107,7 +107,7 @@
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -126,7 +126,7 @@
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -195,7 +195,7 @@
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -214,7 +214,7 @@
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null)
         {
-            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedOption = extendedInfo });
+            return await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
@@ -254,7 +254,7 @@
                 ItemId = historyItemId,
                 StartAt = startAt,
                 EndAt = endAt,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -337,7 +337,7 @@
             {
                 Type = ratingsItemType,
                 Rating = ratingsFilter,
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -421,7 +421,7 @@
             return await QueryAsync(new TraktSyncWatchlistRequest(Client)
             {
                 Type = watchlistItemType,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }

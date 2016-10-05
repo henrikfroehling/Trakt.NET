@@ -77,7 +77,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        internal TraktExtendedInfo ExtendedOption { get; set; }
+        internal TraktExtendedInfo ExtendedInfo { get; set; }
 
         internal TraktCommonFilter Filter { get; set; }
 
@@ -104,8 +104,8 @@ namespace TraktApiSharp.Requests.Base
             foreach (var param in pathParams)
                 uriPath.AddParameterFromKeyValuePair(param.Key, param.Value);
 
-            if (ExtendedOption != null && ExtendedOption.HasAnySet)
-                uriPath.AddParameters(new { extended = ExtendedOption.Resolve() });
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriPath.AddParameters(new { extended = ExtendedInfo.Resolve() });
 
             if (Filter != null && Filter.HasValues)
                 uriPath.AddParametersFromDictionary(Filter.GetParameters());

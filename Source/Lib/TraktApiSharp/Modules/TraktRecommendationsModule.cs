@@ -48,7 +48,7 @@
             return await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 
@@ -97,7 +97,7 @@
             return await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
             {
                 PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedOption = extendedInfo
+                ExtendedInfo = extendedInfo
             });
         }
 

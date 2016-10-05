@@ -68,7 +68,7 @@
                 Query = searchQuery,
                 SearchFields = searchFields,
                 Filter = filter,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
@@ -115,7 +115,7 @@
                 IdType = searchIdType,
                 LookupId = lookupId,
                 ResultType = searchResultType,
-                ExtendedOption = extendedInfo,
+                ExtendedInfo = extendedInfo,
                 PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
             });
         }
