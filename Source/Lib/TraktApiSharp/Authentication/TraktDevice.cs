@@ -20,10 +20,7 @@
         /// The instantiated device instance is invalid.
         /// </para>
         /// </summary>
-        public TraktDevice()
-        {
-            Created = DateTime.UtcNow;
-        }
+        public TraktDevice() { Created = DateTime.UtcNow; }
 
         /// <summary>Gets or sets the actual device code.</summary>
         [JsonProperty(PropertyName = "device_code")]

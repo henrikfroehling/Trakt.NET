@@ -32,10 +32,7 @@
         /// The instantiated authorization instance is invalid.
         /// </para>
         /// </summary>
-        public TraktAuthorization()
-        {
-            Created = DateTime.UtcNow;
-        }
+        public TraktAuthorization() { Created = DateTime.UtcNow; }
 
         /// <summary>Gets or sets the access token.</summary>
         [JsonProperty(PropertyName = "access_token")]
