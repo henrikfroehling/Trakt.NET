@@ -213,7 +213,7 @@
         /// </para>
         /// </summary>
         /// <param name="historyItemType">Determines, which type of history items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
-        /// <param name="historyItemId">An unique history item id to determine, which item should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
+        /// <param name="itemId">The Trakt Id for the item, which should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
         /// <param name="startAt">The datetime, after which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="endAt">The datetime, until which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedInfo">
@@ -231,14 +231,14 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, ulong? historyItemId = null,
+        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
                                                                                   DateTime? startAt = null, DateTime? endAt = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
                                                                                   int? page = null, int? limitPerPage = null)
             => await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
             {
                 Type = historyItemType,
-                ItemId = historyItemId,
+                ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
                 ExtendedInfo = extendedInfo,

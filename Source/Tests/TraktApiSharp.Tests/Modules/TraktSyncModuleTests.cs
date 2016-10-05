@@ -1537,7 +1537,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}/{itemId}",
@@ -1560,7 +1560,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1585,7 +1585,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1612,7 +1612,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1647,7 +1647,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1683,7 +1683,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
@@ -1719,7 +1719,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
@@ -1752,7 +1752,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1786,7 +1786,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
@@ -1820,7 +1820,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1856,7 +1856,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1882,7 +1882,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var limit = 4;
@@ -1908,7 +1908,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
             var page = 2;
@@ -1935,7 +1935,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -1969,7 +1969,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -2003,7 +2003,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -2038,7 +2038,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -2064,7 +2064,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var limit = 4;
@@ -2090,7 +2090,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
             var page = 2;
@@ -3806,7 +3806,7 @@
             watchedHistory.Should().NotBeNullOrEmpty();
 
             var type = TraktSyncItemType.Movie;
-            var itemId = 123UL;
+            var itemId = 123U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
