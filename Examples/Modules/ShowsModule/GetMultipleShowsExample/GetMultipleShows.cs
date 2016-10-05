@@ -68,8 +68,8 @@
             var parameters = new TraktMultipleObjectsQueryParams
             {
                 showIdOrSlug1,
-                { showIdOrSlug2, new TraktExtendedOption { Full = true } },
-                { showIdOrSlug3, new TraktExtendedOption { Full = true, Images = true } }
+                { showIdOrSlug2, new TraktExtendedInfo { Full = true } },
+                { showIdOrSlug3, new TraktExtendedInfo { Full = true, Images = true } }
             };
 
             try

@@ -30,7 +30,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -38,7 +38,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
-                                                                            TraktExtendedOption extendedOption = null,
+                                                                            TraktExtendedInfo extendedOption = null,
                                                                             TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -63,7 +63,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -71,7 +71,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
-                                                                               TraktExtendedOption extendedOption = null,
+                                                                               TraktExtendedInfo extendedOption = null,
                                                                                TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -96,7 +96,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -104,7 +104,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
-                                                                                      TraktExtendedOption extendedOption = null,
+                                                                                      TraktExtendedInfo extendedOption = null,
                                                                                       TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -129,7 +129,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarMovie" /> instances.</returns>
@@ -137,7 +137,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired]
         public async Task<IEnumerable<TraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
-                                                                              TraktExtendedOption extendedOption = null,
+                                                                              TraktExtendedInfo extendedOption = null,
                                                                               TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -162,7 +162,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -170,7 +170,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
-                                                                           TraktExtendedOption extendedOption = null,
+                                                                           TraktExtendedInfo extendedOption = null,
                                                                            TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -195,7 +195,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -203,7 +203,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
-                                                                              TraktExtendedOption extendedOption = null,
+                                                                              TraktExtendedInfo extendedOption = null,
                                                                               TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -228,7 +228,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarShow" /> instances.</returns>
@@ -236,7 +236,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
-                                                                                     TraktExtendedOption extendedOption = null,
+                                                                                     TraktExtendedInfo extendedOption = null,
                                                                                      TraktCalendarFilter filter = null)
         {
             ValidateDays(days);
@@ -261,7 +261,7 @@
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
         /// <returns>A list of <see cref="TraktCalendarMovie" /> instances.</returns>
@@ -269,7 +269,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
-                                                                             TraktExtendedOption extendedOption = null,
+                                                                             TraktExtendedInfo extendedOption = null,
                                                                              TraktCalendarFilter filter = null)
         {
             ValidateDays(days);

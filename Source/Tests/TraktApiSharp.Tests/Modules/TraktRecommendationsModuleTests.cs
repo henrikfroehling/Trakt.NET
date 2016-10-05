@@ -85,7 +85,7 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -110,7 +110,7 @@
 
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -354,7 +354,7 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -379,7 +379,7 @@
 
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true

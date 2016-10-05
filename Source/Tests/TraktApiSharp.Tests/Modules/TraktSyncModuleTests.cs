@@ -447,7 +447,7 @@
             var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true,
@@ -560,7 +560,7 @@
             var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true,
@@ -1283,7 +1283,7 @@
             var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1395,7 +1395,7 @@
             var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1617,7 +1617,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1653,7 +1653,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1689,7 +1689,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1723,7 +1723,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1757,7 +1757,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1791,7 +1791,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1826,7 +1826,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1940,7 +1940,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1974,7 +1974,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2009,7 +2009,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2120,7 +2120,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2152,7 +2152,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2185,7 +2185,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2219,7 +2219,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2276,7 +2276,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2310,7 +2310,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2344,7 +2344,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2379,7 +2379,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2520,7 +2520,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2552,7 +2552,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2585,7 +2585,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2618,7 +2618,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2747,7 +2747,7 @@
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2777,7 +2777,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2807,7 +2807,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2838,7 +2838,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2938,7 +2938,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2969,7 +2969,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3001,7 +3001,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3034,7 +3034,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3089,7 +3089,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3122,7 +3122,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3155,7 +3155,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3189,7 +3189,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3397,7 +3397,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3429,7 +3429,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3461,7 +3461,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3494,7 +3494,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3620,7 +3620,7 @@
 
             var itemCount = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3650,7 +3650,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3680,7 +3680,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3711,7 +3711,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3813,7 +3813,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4838,7 +4838,7 @@
 
             var type = TraktRatingsItemType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4857,7 +4857,7 @@
             var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4882,7 +4882,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5645,7 +5645,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5678,7 +5678,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5712,7 +5712,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5744,7 +5744,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5776,7 +5776,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5809,7 +5809,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5843,7 +5843,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -5958,7 +5958,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true

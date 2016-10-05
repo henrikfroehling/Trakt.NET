@@ -22,8 +22,8 @@
         /// <summary>Adds a new season query parameter pack to the collection.</summary>
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public void Add(string showId, int seasonNumber, TraktExtendedOption extendedOption = null)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public void Add(string showId, int seasonNumber, TraktExtendedInfo extendedOption = null)
         {
             Add(new TraktSeasonsQueryParams(showId, seasonNumber, extendedOption));
         }
@@ -38,8 +38,8 @@
         /// <summary>Initializes a new instance of the <see cref="TraktSeasonsQueryParams" /> class.</summary>
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public TraktSeasonsQueryParams(string showId, int seasonNumber, TraktExtendedOption extendedOption)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public TraktSeasonsQueryParams(string showId, int seasonNumber, TraktExtendedInfo extendedOption)
         {
             ShowId = showId;
             Season = seasonNumber;
@@ -56,6 +56,6 @@
         /// Returns the optional extended option.
         /// <para>Nullable.</para>
         /// </summary>
-        public TraktExtendedOption ExtendedOption { get; }
+        public TraktExtendedInfo ExtendedOption { get; }
     }
 }

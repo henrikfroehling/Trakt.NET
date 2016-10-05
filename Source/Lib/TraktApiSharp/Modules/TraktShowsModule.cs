@@ -38,13 +38,13 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the show should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktShow" /> instance with the queried show's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktShow> GetShowAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktShow> GetShowAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -61,7 +61,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedOption)" />.</para>
+        /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedInfo)" />.</para>
         /// </summary>
         /// <param name="showsQueryParams">A list of show ids and optional extended options. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
@@ -198,13 +198,13 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the people should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktCastAndCrew> GetShowPeopleAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktCastAndCrew> GetShowPeopleAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -244,7 +244,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the related shows list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of related shows for each page, that should be queried.</param>
@@ -258,7 +258,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktShow>> GetShowRelatedShowsAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedOption = null,
                                                                                          int? page = null, int? limitPerPage = null)
         {
             Validate(showIdOrSlug);
@@ -300,13 +300,13 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync([NotNull] string showIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUser>> GetShowWatchingUsersAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(showIdOrSlug);
 
@@ -382,7 +382,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the trending shows list, that should be queried. Defaults to the first page.</param>
@@ -396,7 +396,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedOption = null,
                                                                                               TraktShowFilter filter = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
@@ -417,7 +417,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the popular shows list, that should be queried. Defaults to the first page.</param>
@@ -431,7 +431,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedOption = null,
                                                                                      TraktShowFilter filter = null,
                                                                                      int? page = null, int? limitPerPage = null)
         {
@@ -453,7 +453,7 @@
         /// <param name="period">The time period, for which the most played shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the most played shows list, that should be queried. Defaults to the first page.</param>
@@ -468,7 +468,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
-                                                                                                  TraktExtendedOption extendedOption = null,
+                                                                                                  TraktExtendedInfo extendedOption = null,
                                                                                                   TraktShowFilter filter = null,
                                                                                                   int? page = null, int? limitPerPage = null)
         {
@@ -491,7 +491,7 @@
         /// <param name="period">The time period, for which the most watched shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the most watched shows list, that should be queried. Defaults to the first page.</param>
@@ -506,7 +506,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
-                                                                                                    TraktExtendedOption extendedOption = null,
+                                                                                                    TraktExtendedInfo extendedOption = null,
                                                                                                     TraktShowFilter filter = null,
                                                                                                     int? page = null, int? limitPerPage = null)
         {
@@ -529,7 +529,7 @@
         /// <param name="period">The time period, for which the most collected shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the most collected shows list, that should be queried. Defaults to the first page.</param>
@@ -544,7 +544,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
-                                                                                                        TraktExtendedOption extendedOption = null,
+                                                                                                        TraktExtendedInfo extendedOption = null,
                                                                                                         TraktShowFilter filter = null,
                                                                                                         int? page = null, int? limitPerPage = null)
         {
@@ -566,7 +566,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
         /// <param name="page">The page of the most anticipated shows list, that should be queried. Defaults to the first page.</param>
@@ -580,7 +580,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedOption = null,
                                                                                                             TraktShowFilter filter = null,
                                                                                                             int? page = null, int? limitPerPage = null)
         {
@@ -602,7 +602,7 @@
         /// <param name="startDate">The start date, after which updated shows should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the updated shows list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of updated shows for each page, that should be queried.</param>
@@ -616,7 +616,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
-                                                                                                            TraktExtendedOption extendedOption = null,
+                                                                                                            TraktExtendedInfo extendedOption = null,
                                                                                                             int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktShowsRecentlyUpdatedRequest(Client)

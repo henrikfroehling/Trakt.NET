@@ -463,7 +463,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -508,7 +508,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -549,7 +549,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -595,7 +595,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -641,7 +641,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -692,7 +692,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -733,7 +733,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -779,7 +779,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -821,7 +821,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -868,7 +868,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -915,7 +915,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -967,7 +967,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1008,7 +1008,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1054,7 +1054,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1096,7 +1096,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1143,7 +1143,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1190,7 +1190,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1242,7 +1242,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -1993,7 +1993,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2029,7 +2029,7 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2061,7 +2061,7 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2099,7 +2099,7 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2137,7 +2137,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2180,7 +2180,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2213,7 +2213,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2251,7 +2251,7 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2285,7 +2285,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2324,7 +2324,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2363,7 +2363,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2407,7 +2407,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2440,7 +2440,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2478,7 +2478,7 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2512,7 +2512,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2551,7 +2551,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2590,7 +2590,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2634,7 +2634,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2668,7 +2668,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2707,7 +2707,7 @@
 
             var query = "batman";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2742,7 +2742,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2782,7 +2782,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2822,7 +2822,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -2867,7 +2867,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3475,7 +3475,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3524,7 +3524,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3573,7 +3573,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3627,7 +3627,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3818,7 +3818,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3852,7 +3852,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -3886,7 +3886,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4000,7 +4000,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4032,7 +4032,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4065,7 +4065,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4099,7 +4099,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -4213,7 +4213,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true

@@ -37,13 +37,13 @@
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movie should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovie> GetMovieAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktMovie> GetMovieAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
@@ -60,7 +60,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedOption)" />.</para>
+        /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedInfo)" />.</para>
         /// </summary>
         /// <param name="moviesQueryParams">A list of movie ids and optional extended options. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktMovie" /> instances with the data of each queried movie.</returns>
@@ -246,13 +246,13 @@
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the people should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktCastAndCrew> GetMoviePeopleAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktCastAndCrew> GetMoviePeopleAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
@@ -288,7 +288,7 @@
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried.</param>
@@ -302,7 +302,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRelatedMoviesAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedOption = null,
                                                                                             int? page = null, int? limitPerPage = null)
         {
             Validate(movieIdOrSlug);
@@ -344,13 +344,13 @@
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync([NotNull] string movieIdOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUser>> GetMovieWatchingUsersAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Validate(movieIdOrSlug);
 
@@ -366,7 +366,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page.</param>
@@ -380,7 +380,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedOption = null,
                                                                                                 TraktMovieFilter filter = null,
                                                                                                 int? page = null, int? limitPerPage = null)
         {
@@ -401,7 +401,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page.</param>
@@ -415,7 +415,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMovie>> GetPopularMoviesAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedOption = null,
                                                                                        TraktMovieFilter filter = null,
                                                                                        int? page = null, int? limitPerPage = null)
         {
@@ -437,7 +437,7 @@
         /// <param name="period">The time period, for which the most played movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page.</param>
@@ -452,7 +452,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                    TraktExtendedOption extendedOption = null,
+                                                                                                    TraktExtendedInfo extendedOption = null,
                                                                                                     TraktMovieFilter filter = null,
                                                                                                     int? page = null, int? limitPerPage = null)
         {
@@ -475,7 +475,7 @@
         /// <param name="period">The time period, for which the most watched movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page.</param>
@@ -490,7 +490,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                      TraktExtendedOption extendedOption = null,
+                                                                                                      TraktExtendedInfo extendedOption = null,
                                                                                                       TraktMovieFilter filter = null,
                                                                                                       int? page = null, int? limitPerPage = null)
         {
@@ -513,7 +513,7 @@
         /// <param name="period">The time period, for which the most collected movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page.</param>
@@ -528,7 +528,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                          TraktExtendedOption extendedOption = null,
+                                                                                                          TraktExtendedInfo extendedOption = null,
                                                                                                           TraktMovieFilter filter = null,
                                                                                                           int? page = null, int? limitPerPage = null)
         {
@@ -550,7 +550,7 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
         /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page.</param>
@@ -564,7 +564,7 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedOption extendedOption = null,
+        public async Task<TraktPaginationListResult<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedOption = null,
                                                                                                               TraktMovieFilter filter = null,
                                                                                                               int? page = null, int? limitPerPage = null)
         {
@@ -585,12 +585,12 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktBoxOfficeMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedOption = null)
         {
             return await QueryAsync(new TraktMoviesBoxOfficeRequest(Client) { ExtendedOption = extendedOption });
         }
@@ -605,7 +605,7 @@
         /// <param name="startDate">The start date, after which updated movies should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried.</param>
@@ -619,7 +619,7 @@
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
-                                                                                                              TraktExtendedOption extendedOption = null,
+                                                                                                              TraktExtendedInfo extendedOption = null,
                                                                                                               int? page = null, int? limitPerPage = null)
         {
             return await QueryAsync(new TraktMoviesRecentlyUpdatedRequest(Client)

@@ -37,7 +37,7 @@
         /// <param name="episodeNumber">The number of the episode, which should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the episode should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -45,7 +45,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktEpisode> GetEpisodeAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                        TraktExtendedOption extendedOption = null)
+                                                        TraktExtendedInfo extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
 
@@ -64,7 +64,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetEpisodeAsync(string, int, int, TraktExtendedOption)" />.</para>
+        /// <para>See also <seealso cref="GetEpisodeAsync(string, int, int, TraktExtendedInfo)" />.</para>
         /// </summary>
         /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended options. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each queried episode.</returns>
@@ -196,7 +196,7 @@
         /// <param name="episodeNumber">The number of the episode, for which the watching users should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -204,7 +204,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                                               TraktExtendedOption extendedOption = null)
+                                                                               TraktExtendedInfo extendedOption = null)
         {
             Validate(showIdOrSlug, seasonNumber, episodeNumber);
 

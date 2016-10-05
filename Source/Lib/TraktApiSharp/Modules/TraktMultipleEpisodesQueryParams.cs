@@ -23,8 +23,8 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public void Add(string showId, int seasonNumber, int episodeNumber, TraktExtendedOption extendedOption = null)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public void Add(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedOption = null)
         {
             Add(new TraktEpisodeQueryParams(showId, seasonNumber, episodeNumber, extendedOption));
         }
@@ -40,8 +40,8 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public TraktEpisodeQueryParams(string showId, int seasonNumber, int episodeNumber, TraktExtendedOption extendedOption)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public TraktEpisodeQueryParams(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedOption)
         {
             ShowId = showId;
             Season = seasonNumber;
@@ -62,6 +62,6 @@
         /// Returns the optional extended option.
         /// <para>Nullable.</para>
         /// </summary>
-        public TraktExtendedOption ExtendedOption { get; }
+        public TraktExtendedInfo ExtendedOption { get; }
     }
 }

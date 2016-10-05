@@ -59,12 +59,12 @@
         /// </summary>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the follow request users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUserFollowRequest" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedOption = null)
         {
             return await QueryAsync(new TraktUserFollowRequestsRequest(Client) { ExtendedOption = extendedOption });
         }
@@ -80,7 +80,7 @@
         /// <param name="hiddenItemType">Determines, which type of hidden items should be queried. See also <seealso cref="TraktHiddenItemType" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the hidden items should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried.</param>
@@ -96,7 +96,7 @@
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
                                                                                               TraktHiddenItemType hiddenItemType = null,
-                                                                                              TraktExtendedOption extendedOption = null,
+                                                                                              TraktExtendedInfo extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
             if (hiddenItemsSection == null || hiddenItemsSection == TraktHiddenItemsSection.Unspecified)
@@ -150,13 +150,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the profile should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the user's profile should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktUser" /> instance containing the user's profile information.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktUser> GetUserProfileAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktUser> GetUserProfileAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -177,13 +177,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected movies should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the collected movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -204,13 +204,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected shows should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the collected shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -233,7 +233,7 @@
         /// <param name="objectType">Determines, for which object types comments should be queried. See also <seealso cref="TraktObjectType" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the commented objects should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
@@ -250,7 +250,7 @@
         public async Task<TraktPaginationListResult<TraktUserComment>> GetCommentsAsync([NotNull] string usernameOrSlug,
                                                                                         TraktCommentType commentType = null,
                                                                                         TraktObjectType objectType = null,
-                                                                                        TraktExtendedOption extendedOption = null,
+                                                                                        TraktExtendedInfo extendedOption = null,
                                                                                         int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -358,7 +358,7 @@
         /// <param name="listItemType">Determines, which type of list items should be queried. See also <seealso cref="TraktListItemType" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the list items should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktListItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
@@ -369,7 +369,7 @@
         [OAuthAuthorizationOptional]
         public async Task<IEnumerable<TraktListItem>> GetCustomListItemsAsync([NotNull] string usernameOrSlug, [NotNull] string listIdOrSlug,
                                                                               TraktListItemType listItemType = null,
-                                                                              TraktExtendedOption extendedOption = null)
+                                                                              TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
             ValidateListId(listIdOrSlug);
@@ -704,13 +704,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the followers should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the follower users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUserFollower" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFollower>> GetFollowersAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowersAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -727,13 +727,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the following users should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the following users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUserFollower" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFollower>> GetFollowingAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFollower>> GetFollowingAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -750,13 +750,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the friends should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the friend users should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUserFriend" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktUserFriend>> GetFriendsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktUserFriend>> GetFriendsAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -854,7 +854,7 @@
         /// <param name="endAt">The datetime, until which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the history items should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
@@ -870,7 +870,7 @@
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
                                                                                               ulong? itemId = null, DateTime? startAt = null,
-                                                                                              DateTime? endAt = null, TraktExtendedOption extendedOption = null,
+                                                                                              DateTime? endAt = null, TraktExtendedInfo extendedOption = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -903,14 +903,14 @@
         /// </param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the rating items should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync([NotNull] string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
-                                                                         int[] ratingsFilter = null, TraktExtendedOption extendedOption = null)
+                                                                         int[] ratingsFilter = null, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -934,7 +934,7 @@
         /// <param name="watchlistItemType">Determines, which type of items in the watchlist should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the watchlist items should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
@@ -949,7 +949,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync([NotNull] string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
-                                                                                           TraktExtendedOption extendedOption = null,
+                                                                                           TraktExtendedInfo extendedOption = null,
                                                                                            int? page = null, int? limitPerPage = null)
         {
             ValidateUsername(usernameOrSlug);
@@ -973,13 +973,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the currently watching item should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the currently watching item should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktUserWatchingItem" /> instance containing the movie or episode an user is currently watching.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<TraktUserWatchingItem> GetWatchingAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<TraktUserWatchingItem> GetWatchingAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -1000,13 +1000,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched movies should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the watched movies should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktWatchedMovie" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 
@@ -1027,13 +1027,13 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched shows should be queried.</param>
         /// <param name="extendedOption">
         /// The extended option, which determines how much data about the watched shows should be queried.
-        /// See also <seealso cref="TraktExtendedOption" />.
+        /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktWatchedShow" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
-        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync([NotNull] string usernameOrSlug, TraktExtendedOption extendedOption = null)
+        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync([NotNull] string usernameOrSlug, TraktExtendedInfo extendedOption = null)
         {
             ValidateUsername(usernameOrSlug);
 

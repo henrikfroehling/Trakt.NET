@@ -21,8 +21,8 @@
     {
         /// <summary>Adds a new object query parameter pack to the collection.</summary>
         /// <param name="idOrSlug">A Trakt id or slug.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public void Add(string idOrSlug, TraktExtendedOption extendedOption = null)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public void Add(string idOrSlug, TraktExtendedInfo extendedOption = null)
         {
             Add(new TraktObjectsQueryParams(idOrSlug, extendedOption));
         }
@@ -36,8 +36,8 @@
     {
         /// <summary>Initializes a new instance of the <see cref="TraktSeasonsQueryParams" /> class.</summary>
         /// <param name="idOrSlug">A Trakt id or slug.</param>
-        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedOption" />.</param>
-        public TraktObjectsQueryParams(string idOrSlug, TraktExtendedOption extendedOption)
+        /// <param name="extendedOption">An optional extended option. See also <see cref="TraktExtendedInfo" />.</param>
+        public TraktObjectsQueryParams(string idOrSlug, TraktExtendedInfo extendedOption)
         {
             Id = idOrSlug;
             ExtendedOption = extendedOption;
@@ -50,6 +50,6 @@
         /// Returns the optional extended option.
         /// <para>Nullable.</para>
         /// </summary>
-        public TraktExtendedOption ExtendedOption { get; }
+        public TraktExtendedInfo ExtendedOption { get; }
     }
 }

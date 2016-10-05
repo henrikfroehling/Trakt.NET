@@ -8,13 +8,13 @@
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/extended-info">"Trakt API Doc - Extended Info"</a> for more information.</para>
     /// </summary>
-    public class TraktExtendedOption
+    public class TraktExtendedInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TraktExtendedOption" /> class.
+        /// Initializes a new instance of the <see cref="TraktExtendedInfo" /> class.
         /// All flags are disabled by default.
         /// </summary>
-        public TraktExtendedOption()
+        public TraktExtendedInfo()
         {
             Minimal = false;
             Metadata = false;
@@ -33,10 +33,10 @@
         /// <summary>
         /// Gets or sets, whether metadata information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktExtendedOption)" />,
-        /// <see cref="Modules.TraktSyncModule.GetCollectionShowsAsync(TraktExtendedOption)" />,
-        /// <see cref="Modules.TraktUsersModule.GetCollectionMoviesAsync(string, TraktExtendedOption)" /> and
-        /// <see cref="Modules.TraktUsersModule.GetCollectionShowsAsync(string, TraktExtendedOption)" />.
+        /// Only supported by <see cref="Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktExtendedInfo)" />,
+        /// <see cref="Modules.TraktSyncModule.GetCollectionShowsAsync(TraktExtendedInfo)" />,
+        /// <see cref="Modules.TraktUsersModule.GetCollectionMoviesAsync(string, TraktExtendedInfo)" /> and
+        /// <see cref="Modules.TraktUsersModule.GetCollectionShowsAsync(string, TraktExtendedInfo)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetMetadata()" /> and <see cref="ResetMetadata()" />.</para>
@@ -58,8 +58,8 @@
         /// <summary>
         /// Gets or sets, whether no seasons information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSyncModule.GetWatchedShowsAsync(TraktExtendedOption)" /> and
-        /// <see cref="Modules.TraktUsersModule.GetWatchedShowsAsync(string, TraktExtendedOption)" />.
+        /// Only supported by <see cref="Modules.TraktSyncModule.GetWatchedShowsAsync(TraktExtendedInfo)" /> and
+        /// <see cref="Modules.TraktUsersModule.GetWatchedShowsAsync(string, TraktExtendedInfo)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetNoSeasons()" /> and <see cref="ResetNoSeasons()" />.</para>
@@ -69,7 +69,7 @@
         /// <summary>
         /// Gets or sets, whether episodes information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedOption)" />.
+        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetEpisodes()" /> and <see cref="ResetEpisodes()" />.</para>
@@ -83,8 +83,8 @@
         /// Enables the minimal information flag.
         /// <para>See also <see cref="Minimal" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetMinimal()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetMinimal()
         {
             Minimal = true;
             return this;
@@ -94,8 +94,8 @@
         /// Disables the minimal information flag.
         /// <para>See also <see cref="Minimal" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetMinimal()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetMinimal()
         {
             Minimal = false;
             return this;
@@ -105,8 +105,8 @@
         /// Enables the metadata information flag.
         /// <para>See also <see cref="Metadata" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetMetadata()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetMetadata()
         {
             Metadata = true;
             return this;
@@ -116,8 +116,8 @@
         /// Disables the metadata information flag.
         /// <para>See also <see cref="Metadata" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetMetadata()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetMetadata()
         {
             Metadata = false;
             return this;
@@ -127,8 +127,8 @@
         /// Enables the images information flag.
         /// <para>See also <see cref="Images" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetImages()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetImages()
         {
             Images = true;
             return this;
@@ -138,8 +138,8 @@
         /// Disables the images information flag.
         /// <para>See also <see cref="Images" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetImages()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetImages()
         {
             Images = false;
             return this;
@@ -149,8 +149,8 @@
         /// Enables the full information flag.
         /// <para>See also <see cref="Full" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetFull()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetFull()
         {
             Full = true;
             return this;
@@ -160,8 +160,8 @@
         /// Disables the full information flag.
         /// <para>See also <see cref="Full" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetFull()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetFull()
         {
             Full = false;
             return this;
@@ -171,8 +171,8 @@
         /// Enables the no seasons information flag.
         /// <para>See also <see cref="NoSeasons" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetNoSeasons()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetNoSeasons()
         {
             NoSeasons = true;
             return this;
@@ -182,8 +182,8 @@
         /// Disables the no seasons information flag.
         /// <para>See also <see cref="NoSeasons" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetNoSeasons()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetNoSeasons()
         {
             NoSeasons = false;
             return this;
@@ -193,8 +193,8 @@
         /// Enables the episodes information flag.
         /// <para>See also <see cref="Episodes" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption SetEpisodes()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetEpisodes()
         {
             Episodes = true;
             return this;
@@ -204,16 +204,16 @@
         /// Disables the episodes information flag.
         /// <para>See also <see cref="Episodes" />.</para>
         /// </summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption ResetEpisodes()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetEpisodes()
         {
             Episodes = false;
             return this;
         }
 
         /// <summary>Disables all flags.</summary>
-        /// <returns>The current <see cref="TraktExtendedOption" /> instance.</returns>
-        public TraktExtendedOption Reset()
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo Reset()
         {
             Minimal = false;
             Metadata = false;

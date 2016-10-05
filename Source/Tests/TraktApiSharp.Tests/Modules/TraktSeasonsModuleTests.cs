@@ -71,7 +71,7 @@
 
             var showId = "1390";
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -210,7 +210,7 @@
             var showId = "1390";
             var seasonNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true,
@@ -955,7 +955,7 @@
             var showId = "1390";
             var seasonNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true

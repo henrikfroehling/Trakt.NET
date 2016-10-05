@@ -211,7 +211,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -229,7 +229,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -260,7 +260,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -281,7 +281,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -313,7 +313,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -335,7 +335,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -367,7 +367,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -388,7 +388,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -668,7 +668,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -686,7 +686,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -717,7 +717,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -737,7 +737,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -770,7 +770,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -792,7 +792,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -824,7 +824,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -845,7 +845,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1131,7 +1131,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1150,7 +1150,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1181,7 +1181,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1202,7 +1202,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1235,7 +1235,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1258,7 +1258,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1290,7 +1290,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1312,7 +1312,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1593,7 +1593,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1612,7 +1612,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1643,7 +1643,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1664,7 +1664,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1697,7 +1697,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1720,7 +1720,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1752,7 +1752,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -1774,7 +1774,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2054,7 +2054,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2072,7 +2072,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2103,7 +2103,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2123,7 +2123,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2155,7 +2155,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2177,7 +2177,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2209,7 +2209,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2230,7 +2230,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2509,7 +2509,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2527,7 +2527,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2558,7 +2558,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2578,7 +2578,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2610,7 +2610,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2632,7 +2632,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2664,7 +2664,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2685,7 +2685,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2967,7 +2967,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -2985,7 +2985,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3016,7 +3016,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3036,7 +3036,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3069,7 +3069,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3091,7 +3091,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3123,7 +3123,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3144,7 +3144,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3424,7 +3424,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3442,7 +3442,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3473,7 +3473,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3493,7 +3493,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3526,7 +3526,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3548,7 +3548,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3580,7 +3580,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;
@@ -3601,7 +3601,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedOption = new TraktExtendedOption();
+            var extendedOption = new TraktExtendedInfo();
 
             extendedOption.Full = true;
             extendedOption.Images = true;

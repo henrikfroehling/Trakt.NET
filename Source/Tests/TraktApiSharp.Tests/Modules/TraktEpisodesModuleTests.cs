@@ -95,7 +95,7 @@
             var seasonNr = 1;
             var episodeNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true
@@ -899,7 +899,7 @@
             var seasonNr = 1;
             var episodeNr = 1;
 
-            var extendedOption = new TraktExtendedOption
+            var extendedOption = new TraktExtendedInfo
             {
                 Full = true,
                 Images = true

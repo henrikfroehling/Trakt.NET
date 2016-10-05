@@ -9,8 +9,8 @@
     {
         protected const int DEFAULT_LIMIT = 40;
 
-        protected static readonly TraktExtendedOption DEFAULT_EXTENDED_OPTION =
-            new TraktExtendedOption { Full = true, Images = true };
+        protected static readonly TraktExtendedInfo DEFAULT_EXTENDED_OPTION =
+            new TraktExtendedInfo { Full = true, Images = true };
 
         protected PaginationViewModel()
         {

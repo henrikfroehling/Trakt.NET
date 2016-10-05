@@ -77,7 +77,7 @@ namespace TraktApiSharp.Requests.Base
 
         internal virtual int Episode { get; set; }
 
-        internal TraktExtendedOption ExtendedOption { get; set; }
+        internal TraktExtendedInfo ExtendedOption { get; set; }
 
         internal TraktCommonFilter Filter { get; set; }
 
