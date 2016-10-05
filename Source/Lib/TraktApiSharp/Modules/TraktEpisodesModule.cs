@@ -36,7 +36,7 @@
         /// <param name="seasonNumber">The number of the season containing the episode, which should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, which should be queried.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the episode should be queried.
+        /// The extended info, which determines how much data about the episode should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
@@ -66,7 +66,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetEpisodeAsync(string, int, int, TraktExtendedInfo)" />.</para>
         /// </summary>
-        /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended options. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
+        /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended infos. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each queried episode.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
@@ -195,7 +195,7 @@
         /// <param name="seasonNumber">The number of the season containing the episode, for which the watching users should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the watching users should be queried.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the users should be queried.
+        /// The extended info, which determines how much data about the users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>

@@ -29,7 +29,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -62,7 +62,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -95,7 +95,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -128,7 +128,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the movies should be queried.
+        /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -161,7 +161,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -194,7 +194,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -227,7 +227,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the shows should be queried.
+        /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
@@ -260,7 +260,7 @@
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
         /// <param name="extendedInfo">
-        /// The extended option, which determines how much data about the movies should be queried.
+        /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
