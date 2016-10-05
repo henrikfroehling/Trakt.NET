@@ -843,7 +843,7 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched history should be queried.</param>
         /// <param name="historyItemType">Determines, which type of history items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
-        /// <param name="itemId">An unique history item id to determine, which item should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
+        /// <param name="itemId">The Trakt Id for the item, which should be specifically queried. Will be ignored, if <paramref name="historyItemType" /> is not set or unspecified.</param>
         /// <param name="startAt">The datetime, after which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="endAt">The datetime, until which history items should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="extendedInfo">
@@ -863,7 +863,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationOptional]
         public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync([NotNull] string usernameOrSlug, TraktSyncItemType historyItemType = null,
-                                                                                              ulong? itemId = null, DateTime? startAt = null,
+                                                                                              uint? itemId = null, DateTime? startAt = null,
                                                                                               DateTime? endAt = null, TraktExtendedInfo extendedInfo = null,
                                                                                               int? page = null, int? limitPerPage = null)
         {

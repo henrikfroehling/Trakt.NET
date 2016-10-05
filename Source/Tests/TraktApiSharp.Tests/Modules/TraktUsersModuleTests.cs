@@ -7371,7 +7371,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
 
@@ -7395,7 +7395,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Season;
             var itemCount = 4;
@@ -7421,7 +7421,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
@@ -7449,7 +7449,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
@@ -7485,7 +7485,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
@@ -7522,7 +7522,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
@@ -7559,7 +7559,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7593,7 +7593,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7628,7 +7628,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7663,7 +7663,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7700,7 +7700,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7728,7 +7728,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7756,7 +7756,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
@@ -7785,7 +7785,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7819,7 +7819,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7854,7 +7854,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7889,7 +7889,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7925,7 +7925,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7953,7 +7953,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -7981,7 +7981,7 @@
             userHistory.Should().NotBeNullOrEmpty();
 
             var username = "sean";
-            var itemId = 4UL;
+            var itemId = 4U;
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
@@ -9867,7 +9867,7 @@
 
             var username = "sean";
             var type = TraktSyncItemType.Movie;
-            var itemId = 4UL;
+            var itemId = 4U;
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
