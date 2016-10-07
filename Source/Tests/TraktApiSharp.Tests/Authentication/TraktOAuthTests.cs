@@ -73,8 +73,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -132,8 +135,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -189,8 +195,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -246,8 +255,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri, state);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -317,8 +329,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -378,8 +393,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
@@ -437,8 +455,11 @@
 
             var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
 
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = true;
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
+
+            TestUtility.MOCK_TEST_CLIENT.Configuration.UseStagingUrl = false;
         }
 
         [TestMethod]
