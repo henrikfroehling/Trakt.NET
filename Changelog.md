@@ -6,6 +6,18 @@ Release notes
 Version 0.5.0
 ===
 
+#### 0.5.1
+*(2016-10-07)*
+
+Added:
+- new method overload for "CreateWith" in TraktAuthorization
+
+Fixed:
+- wrong OAuth authorization URL, when staging environment is enabled
+- TraktClient.Authorization is not reset after successful call of RevokeAuthorizationAsync()
+
+---------
+
 #### 0.5.0
 *(2016-10-05)*
 
