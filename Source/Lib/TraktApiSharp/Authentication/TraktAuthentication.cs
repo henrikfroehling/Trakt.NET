@@ -558,6 +558,10 @@
 
                 await ErrorHandling(response, tokenUrl, postContent);
             }
+            else
+            {
+                Client.Authorization = TraktAuthorization.CreateWith(string.Empty, string.Empty);
+            }
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
