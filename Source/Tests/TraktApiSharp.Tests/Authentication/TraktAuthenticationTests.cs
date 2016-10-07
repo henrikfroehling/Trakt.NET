@@ -2253,6 +2253,19 @@
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync();
             act.ShouldNotThrow();
+
+            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.ExpiresInSeconds.Should().Be(0);
+            authorization.IgnoreExpiration.Should().BeTrue();
+            authorization.IsExpired.Should().BeTrue();
+            authorization.IsRefreshPossible.Should().BeFalse();
+            authorization.IsValid.Should().BeFalse();
         }
 
         [TestMethod]
@@ -2432,6 +2445,19 @@
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken);
             act.ShouldNotThrow();
+
+            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.ExpiresInSeconds.Should().Be(0);
+            authorization.IgnoreExpiration.Should().BeTrue();
+            authorization.IsExpired.Should().BeTrue();
+            authorization.IsRefreshPossible.Should().BeFalse();
+            authorization.IsValid.Should().BeFalse();
         }
 
         [TestMethod]
@@ -2656,6 +2682,19 @@
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
             act.ShouldNotThrow();
+
+            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.ExpiresInSeconds.Should().Be(0);
+            authorization.IgnoreExpiration.Should().BeTrue();
+            authorization.IsExpired.Should().BeTrue();
+            authorization.IsRefreshPossible.Should().BeFalse();
+            authorization.IsValid.Should().BeFalse();
         }
 
         [TestMethod]
