@@ -474,7 +474,7 @@
 
         private string BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
         {
-            var baseUrl = staging ? "https://staging.trakt.tv" : TraktConstants.OAuthBaseAuthorizeUrl;
+            var baseUrl = staging ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
             var oauthAuthorizeUri = TraktConstants.OAuthAuthorizeUri;
 
             var uriParams = new Dictionary<string, string>();
