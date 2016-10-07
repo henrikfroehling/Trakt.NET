@@ -2253,12 +2253,6 @@
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync();
             act.ShouldNotThrow();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync();
-            act.ShouldNotThrow();
         }
 
         [TestMethod]
@@ -2437,12 +2431,6 @@
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.ShouldNotThrow();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken);
             act.ShouldNotThrow();
         }
 
@@ -2667,12 +2655,6 @@
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
             Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.ShouldNotThrow();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockAuthenticationTokenRevokeResponseWithToken(uri, postContent, accessToken, clientId);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Authentication.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
             act.ShouldNotThrow();
         }
 
