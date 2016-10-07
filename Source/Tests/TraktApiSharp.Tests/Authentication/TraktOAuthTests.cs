@@ -59,10 +59,22 @@
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlDefault()
+        {
+            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -106,10 +118,22 @@
             var clientId = "clientId";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientId()
+        {
+            var clientId = "clientId";
+            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId);
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -151,10 +175,22 @@
             var clientId = "clientId";
             var redirectUri = "redirectUri";
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientIdAndRedirectUri()
+        {
+            var clientId = "clientId";
+            var redirectUri = "redirectUri";
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri);
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -195,10 +231,23 @@
             var redirectUri = "redirectUri";
             var state = "customState";
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri, state);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri, state);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri, state);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientIdAndRedirectUriAndState()
+        {
+            var clientId = "clientId";
+            var redirectUri = "redirectUri";
+            var state = "customState";
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri, state);
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -253,10 +302,23 @@
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri, state);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri, state);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateDefault()
+        {
+            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+            var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -301,10 +363,23 @@
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri, state);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri, state);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateAndClientId()
+        {
+            var clientId = "clientId";
+            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+            var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId);
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -347,10 +422,23 @@
             var redirectUri = "redirectUri";
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
 
-            var encodedUrl = BuildEncodedAuthorizeUrl(clientId, redirectUri, state);
+            var encodedUrl = BuildEncodedAuthorizeUrl(false, clientId, redirectUri, state);
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+        }
+
+        [TestMethod]
+        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateAndClientIdAndRedirectUri()
+        {
+            var clientId = "clientId";
+            var redirectUri = "redirectUri";
+            var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
+
+            var encodedStagingUrl = BuildEncodedAuthorizeUrl(true, clientId, redirectUri, state);
+
+            var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
+            createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
         }
 
         [TestMethod]
@@ -384,9 +472,9 @@
             act.ShouldThrow<ArgumentException>();
         }
 
-        private string BuildEncodedAuthorizeUrl(string clientId, string redirectUri, string state = null)
+        private string BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
         {
-            var baseUrl = TraktConstants.OAuthBaseAuthorizeUrl;
+            var baseUrl = staging ? "https://staging.trakt.tv" : TraktConstants.OAuthBaseAuthorizeUrl;
             var oauthAuthorizeUri = TraktConstants.OAuthAuthorizeUri;
 
             var uriParams = new Dictionary<string, string>();
