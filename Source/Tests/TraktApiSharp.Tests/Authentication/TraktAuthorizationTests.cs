@@ -193,6 +193,46 @@
         }
 
         [TestMethod]
+        public void TestTraktAuthorizationCreateWithCreatedAtAndAccessToken()
+        {
+            var createdAt = DateTime.Now;
+            var expiresIn = 3600 * 24 * 90;
+            var accessToken = "accessToken";
+
+            var authorization = TraktAuthorization.CreateWith(createdAt, accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeFalse();
+            authorization.Created.Should().Be(createdAt.ToUniversalTime());
+            authorization.ExpiresInSeconds.Should().Be(expiresIn);
+        }
+
+        [TestMethod]
+        public void TestTraktAuthorizationCreateWithCreatedAtAndAccessTokenAndRefreshToken()
+        {
+            var createdAt = DateTime.Now;
+            var expiresIn = 3600 * 24 * 90;
+
+            var accessToken = "accessToken";
+            var refreshToken = "refreshToken";
+
+            var authorization = TraktAuthorization.CreateWith(createdAt, accessToken, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().Be(refreshToken);
+            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.IgnoreExpiration.Should().BeFalse();
+            authorization.Created.Should().Be(createdAt.ToUniversalTime());
+            authorization.ExpiresInSeconds.Should().Be(expiresIn);
+        }
+
+        [TestMethod]
         public void TestTraktAuthorizationCreateWithCreatedAtAndExpiresInAndAccessToken()
         {
             var createdAt = DateTime.Now;
@@ -253,13 +293,9 @@
             authorization.AccessToken.Should().Be(accessToken);
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
 
+            // ------------------------------------------------------
+
             authorization = TraktAuthorization.CreateWith(expiresIn, null, refreshToken);
-
-            authorization.Should().NotBeNull();
-            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
-            authorization.RefreshToken.Should().Be(refreshToken);
-
-            authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, null, refreshToken);
 
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
@@ -270,6 +306,28 @@
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().Be(accessToken);
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+
+            // ------------------------------------------------------
+
+            authorization = TraktAuthorization.CreateWith(createdAt, null, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().Be(refreshToken);
+
+            authorization = TraktAuthorization.CreateWith(createdAt, accessToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().Be(accessToken);
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+
+            // ------------------------------------------------------
+
+            authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, null, refreshToken);
+
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().Be(refreshToken);
 
             authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken);
 

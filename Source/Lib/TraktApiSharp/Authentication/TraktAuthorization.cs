@@ -119,6 +119,26 @@
                 RefreshToken = refreshToken ?? string.Empty
             };
 
+        /// <summary>
+        /// Creates a new <see cref="TraktAuthorization" /> instance with the given values.
+        /// <see cref="ExpiresInSeconds" /> of the created <see cref="TraktAuthorization" /> instance will have the default
+        /// value of 3600 * 24 * 90 seconds, equal to 90 days.
+        /// </summary>
+        /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
+        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
+        public static TraktAuthorization CreateWith(DateTime createdAt, string accessToken, string refreshToken = null)
+            => new TraktAuthorization
+            {
+                Created = createdAt.ToUniversalTime(),
+                ExpiresInSeconds = 3600 * 24 * 90,
+                AccessScope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                AccessToken = accessToken ?? string.Empty,
+                RefreshToken = refreshToken ?? string.Empty
+            };
+
         /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
         /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
         /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
