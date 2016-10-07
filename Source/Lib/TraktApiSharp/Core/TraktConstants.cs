@@ -9,6 +9,7 @@
         internal const string APIVersionHeaderKey = "trakt-api-version";
 
         internal const string OAuthBaseAuthorizeUrl = "https://trakt.tv";
+        internal const string OAuthBaseAuthorizeStagingUrl = "https://staging.trakt.tv";
 
         internal const string OAuthAuthorizeUri = "oauth/authorize";
         internal const string OAuthTokenUri = "oauth/token";
