@@ -7,6 +7,10 @@
 
     public abstract class TraktScrobblePostResponse
     {
+        /// <summary>Gets or sets the history id for the scrobble response.</summary>
+        [JsonProperty(PropertyName = "id")]
+        public ulong Id { get; set; }
+
         /// <summary>
         /// Gets or sets the action type for the scrobble response.
         /// See also <seealso cref="TraktScrobbleActionType" />.

@@ -14,6 +14,7 @@
         {
             var episodeScrobbleResponse = new TraktEpisodeScrobblePostResponse();
 
+            episodeScrobbleResponse.Id.Should().Be(0);
             episodeScrobbleResponse.Action.Should().BeNull();
             episodeScrobbleResponse.Progress.Should().NotHaveValue();
             episodeScrobbleResponse.Sharing.Should().BeNull();
@@ -31,6 +32,7 @@
             var episodeScrobbleResponse = JsonConvert.DeserializeObject<TraktEpisodeScrobblePostResponse>(jsonFile);
 
             episodeScrobbleResponse.Should().NotBeNull();
+            episodeScrobbleResponse.Id.Should().Be(0);
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Start);
             episodeScrobbleResponse.Progress.Should().Be(10.0f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
@@ -69,6 +71,7 @@
             var episodeScrobbleResponse = JsonConvert.DeserializeObject<TraktEpisodeScrobblePostResponse>(jsonFile);
 
             episodeScrobbleResponse.Should().NotBeNull();
+            episodeScrobbleResponse.Id.Should().Be(0);
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Pause);
             episodeScrobbleResponse.Progress.Should().Be(75.0f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
@@ -107,6 +110,7 @@
             var episodeScrobbleResponse = JsonConvert.DeserializeObject<TraktEpisodeScrobblePostResponse>(jsonFile);
 
             episodeScrobbleResponse.Should().NotBeNull();
+            episodeScrobbleResponse.Id.Should().Be(3373536623);
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.0f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();

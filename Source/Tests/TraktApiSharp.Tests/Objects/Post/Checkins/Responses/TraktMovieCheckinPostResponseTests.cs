@@ -15,6 +15,7 @@
         {
             var movieCheckinResponse = new TraktMovieCheckinPostResponse();
 
+            movieCheckinResponse.Id.Should().Be(0);
             movieCheckinResponse.WatchedAt.Should().NotHaveValue();
             movieCheckinResponse.Sharing.Should().BeNull();
             movieCheckinResponse.Movie.Should().BeNull();
@@ -30,6 +31,7 @@
             var movieCheckinResponse = JsonConvert.DeserializeObject<TraktMovieCheckinPostResponse>(jsonFile);
 
             movieCheckinResponse.Should().NotBeNull();
+            movieCheckinResponse.Id.Should().Be(3373536619);
             movieCheckinResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
             movieCheckinResponse.Sharing.Should().NotBeNull();
             movieCheckinResponse.Sharing.Facebook.Should().BeTrue();

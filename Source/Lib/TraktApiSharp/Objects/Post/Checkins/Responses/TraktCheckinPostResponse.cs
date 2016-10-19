@@ -7,6 +7,10 @@
 
     public abstract class TraktCheckinPostResponse
     {
+        /// <summary>Gets or sets the history id for the checkin response.</summary>
+        [JsonProperty(PropertyName = "id")]
+        public ulong Id { get; set; }
+
         /// <summary>Gets or sets the UTC datetime, when the checked in movie or episode was watched.</summary>
         [JsonProperty(PropertyName = "watched_at")]
         public DateTime? WatchedAt { get; set; }
