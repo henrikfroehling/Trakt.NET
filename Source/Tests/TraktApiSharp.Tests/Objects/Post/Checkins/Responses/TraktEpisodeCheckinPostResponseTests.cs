@@ -15,6 +15,7 @@
         {
             var episodeCheckinResponse = new TraktEpisodeCheckinPostResponse();
 
+            episodeCheckinResponse.Id.Should().Be(0);
             episodeCheckinResponse.WatchedAt.Should().NotHaveValue();
             episodeCheckinResponse.Sharing.Should().BeNull();
             episodeCheckinResponse.Episode.Should().BeNull();
@@ -31,6 +32,7 @@
             var episodeCheckinResponse = JsonConvert.DeserializeObject<TraktEpisodeCheckinPostResponse>(jsonFile);
 
             episodeCheckinResponse.Should().NotBeNull();
+            episodeCheckinResponse.Id.Should().Be(3373536620);
             episodeCheckinResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             episodeCheckinResponse.Sharing.Should().NotBeNull();
             episodeCheckinResponse.Sharing.Facebook.Should().BeTrue();
