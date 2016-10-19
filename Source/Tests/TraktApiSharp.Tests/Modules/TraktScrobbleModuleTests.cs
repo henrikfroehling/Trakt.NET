@@ -983,6 +983,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536622);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -1036,6 +1037,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536622);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -1089,6 +1091,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536622);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -1144,6 +1147,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536622);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -1199,6 +1203,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536622);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
