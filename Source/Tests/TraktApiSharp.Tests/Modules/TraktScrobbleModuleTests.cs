@@ -533,6 +533,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(0);
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -586,6 +587,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(0);
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -639,6 +641,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(0);
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -694,6 +697,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(0);
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -749,6 +753,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(0);
             response.Action.Should().Be(TraktScrobbleActionType.Pause);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
