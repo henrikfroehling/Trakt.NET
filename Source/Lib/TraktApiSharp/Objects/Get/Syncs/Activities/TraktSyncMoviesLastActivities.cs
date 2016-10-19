@@ -29,5 +29,9 @@
         /// <summary>Gets or sets the UTC datetime, when a movie was lastly paused.</summary>
         [JsonProperty(PropertyName = "paused_at")]
         public DateTime? PausedAt { get; set; }
+
+        /// <summary>Gets or sets the UTC datetime, when a movie was lastly hidden.</summary>
+        [JsonProperty(PropertyName = "hidden_at")]
+        public DateTime? HiddenAt { get; set; }
     }
 }
