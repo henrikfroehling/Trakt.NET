@@ -3359,6 +3359,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3419,6 +3420,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3484,6 +3486,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3546,6 +3549,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3611,6 +3615,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3673,6 +3678,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3740,6 +3746,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3804,6 +3811,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3871,6 +3879,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
@@ -3935,6 +3944,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.Id.Should().Be(3373536623);
             response.Action.Should().Be(TraktScrobbleActionType.Stop);
             response.Progress.Should().Be(progress);
             response.Sharing.Should().NotBeNull();
