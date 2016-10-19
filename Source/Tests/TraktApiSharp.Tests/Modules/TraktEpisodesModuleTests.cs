@@ -134,7 +134,7 @@
         public void TestTraktEpisodesModuleGetEpisodeExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}";
 
@@ -212,7 +212,7 @@
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}", episode);
@@ -245,7 +245,7 @@
         public void TestTraktEpisodesModuleGetEpisodesArgumentExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             Func<Task<IEnumerable<TraktEpisode>>> act =
@@ -492,7 +492,7 @@
         public void TestTraktEpisodesModuleGetEpisodeCommmentsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments";
 
@@ -570,7 +570,7 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", episodeComments);
@@ -630,7 +630,7 @@
         public void TestTraktEpisodesModuleGetEpisodeRatingsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/ratings";
 
@@ -708,7 +708,7 @@
             episodeRatings.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/ratings", episodeRatings);
@@ -765,7 +765,7 @@
         public void TestTraktEpisodesModuleGetEpisodeStatisticsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/stats";
 
@@ -843,7 +843,7 @@
             episodeStatistics.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/stats", episodeStatistics);
@@ -917,7 +917,7 @@
         public void TestTraktEpisodesModuleGetEpisodeWatchingUsersExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching";
 
@@ -995,7 +995,7 @@
             episodeWatchingUsers.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
+            var seasonNr = 0;
             var episodeNr = 1;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching", episodeWatchingUsers);
