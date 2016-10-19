@@ -17,5 +17,9 @@
         /// <summary>Gets or sets the UTC datetime, when a season was lastly commented.</summary>
         [JsonProperty(PropertyName = "commented_at")]
         public DateTime? CommentedAt { get; set; }
+
+        /// <summary>Gets or sets the UTC datetime, when a season was lastly hidden.</summary>
+        [JsonProperty(PropertyName = "hidden_at")]
+        public DateTime? HiddenAt { get; set; }
     }
 }
