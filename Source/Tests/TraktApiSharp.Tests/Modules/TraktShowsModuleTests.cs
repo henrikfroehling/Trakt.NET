@@ -14,6 +14,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Params;
     using Utils;
@@ -3122,6 +3123,173 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync("show id");
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region NextEpisode
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowNextEpisode()
+        {
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json");
+            episode.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode", episode);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Title.Should().Be("Winter Is Coming");
+            response.SeasonNumber.Should().Be(1);
+            response.Number.Should().Be(1);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(73640U);
+            response.Ids.Tvdb.Should().Be(3254641U);
+            response.Ids.Imdb.Should().Be("tt1480055");
+            response.Ids.Tmdb.Should().Be(63056U);
+            response.Ids.TvRage.Should().Be(1065008299U);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowNextEpisodeWithExtendedInfo()
+        {
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            episode.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode?extended={extendedInfo.ToString()}", episode);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId, extendedInfo).Result;
+
+            response.Should().NotBeNull();
+            response.Title.Should().Be("Winter Is Coming");
+            response.SeasonNumber.Should().Be(1);
+            response.Number.Should().Be(1);
+            response.Ids.Should().NotBeNull();
+            response.Ids.Trakt.Should().Be(73640U);
+            response.Ids.Tvdb.Should().Be(3254641U);
+            response.Ids.Imdb.Should().Be("tt1480055");
+            response.Ids.Tmdb.Should().Be(63056U);
+            response.Ids.TvRage.Should().Be(1065008299U);
+            response.NumberAbsolute.Should().Be(50);
+            response.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
+            response.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            response.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
+            response.Rating.Should().Be(9.0f);
+            response.Votes.Should().Be(111);
+            response.Images.Should().NotBeNull();
+            response.Images.Screenshot.Should().NotBeNull();
+            response.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
+            response.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
+            response.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
+            response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowNextEpisodeExceptions()
+        {
+            var showId = "1390";
+            var uri = $"shows/{showId}/next_episode";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktEpisode>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowNextEpisodeArgumentExceptions()
+        {
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json");
+            show.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode", show);
+
+            Func<Task<TraktEpisode>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 

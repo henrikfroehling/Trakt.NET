@@ -6,6 +6,7 @@
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
+    using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Requests;
     using Requests.Params;
@@ -370,6 +371,18 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
+            });
+        }
+
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktEpisode> GetShowNextEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        {
+            Validate(showIdOrSlug);
+
+            return await QueryAsync(new TraktShowNextEpisodeRequest(Client)
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
             });
         }
 
