@@ -386,6 +386,18 @@
             });
         }
 
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktEpisode> GetShowLastEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        {
+            Validate(showIdOrSlug);
+
+            return await QueryAsync(new TraktShowLastEpisodeRequest(Client)
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
+            });
+        }
+
         /// <summary>
         /// Gets trending shows.
         /// <para>OAuth authorization not required.</para>
