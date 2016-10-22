@@ -428,6 +428,8 @@
     <Compile Include="Experimental\Responses\TraktResponse.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\TraktShowLastEpisodeRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />
     <Compile Include="Utils\Json.cs" />
     <Compile Include="Utils\Pair.cs" />

@@ -6,6 +6,7 @@
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Common;
+    using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Requests;
     using Requests.Params;
@@ -370,6 +371,60 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
+            });
+        }
+
+        /// <summary>
+        /// Gets the next scheduled to air <see cref="TraktEpisode" /> for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/next-episode/get-next-episode">"Trakt API Doc - Shows: Next Episode"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the episode should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data or null, if there is no scheduled to air episode.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktEpisode> GetShowNextEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        {
+            Validate(showIdOrSlug);
+
+            return await QueryAsync(new TraktShowNextEpisodeRequest(Client)
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
+            });
+        }
+
+        /// <summary>
+        /// Gets the most recently aired <see cref="TraktEpisode" /> for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/next-episode/get-last-episode">"Trakt API Doc - Shows: Last Episode"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the episode should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data or null, if there is no most recently aired episode.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<TraktEpisode> GetShowLastEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        {
+            Validate(showIdOrSlug);
+
+            return await QueryAsync(new TraktShowLastEpisodeRequest(Client)
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
             });
         }
 
