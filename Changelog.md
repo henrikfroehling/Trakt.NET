@@ -3,6 +3,26 @@ Release notes
 ---
 ---
 
+Version 0.6.0
+===
+
+#### 0.6.0
+*(2016-10-23)*
+
+Added:
+
+- "HiddenAt" properties in response of TraktSyncModule.GetLastActivitiesAsync()
+- "Id" property (history id) in response of TraktCheckinsModule.CheckInto[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Start[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Pause[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Stop[Movie|Episode|EpisodeWithShow]Async()
+- support for "shows/id/next_episode" request (TraktShowsModule.GetShowNextEpisodeAsync())
+- support for "shows/id/last_episode" request (TraktShowsModule.GetShowLastEpisodeAsync())
+
+Fixed:
+
+- thrown exception for episode requests with season number 0
+
 Version 0.5.0
 ===
 

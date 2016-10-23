@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.5.1</version>
+        <version>0.6.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -19,11 +19,18 @@ Features
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>Added:
-- new method overload for "CreateWith" in TraktAuthorization
+
+- "HiddenAt" properties in response of TraktSyncModule.GetLastActivitiesAsync()
+- "Id" property (history id) in response of TraktCheckinsModule.CheckInto[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Start[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Pause[Movie|Episode|EpisodeWithShow]Async()
+- "Id" property (history id) in response of TraktScrobbleModule.Stop[Movie|Episode|EpisodeWithShow]Async()
+- support for "shows/id/next_episode" request (TraktShowsModule.GetShowNextEpisodeAsync())
+- support for "shows/id/last_episode" request (TraktShowsModule.GetShowLastEpisodeAsync())
 
 Fixed:
-- wrong OAuth authorization url, when staging environment is enabled
-- TraktClient.Authorization is not reset after successful call of RevokeAuthorizationAsync()
+
+- thrown exception for episode requests with season number 0
         </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
