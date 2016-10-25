@@ -12,5 +12,11 @@
         {
             typeof(TraktCommentSummaryRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("Without OAuth")]
+        public void TestTraktCommentSummaryRequestIsSealed()
+        {
+            typeof(TraktCommentSummaryRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
