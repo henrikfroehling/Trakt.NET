@@ -34,5 +34,12 @@
             var request = new TraktCommentSummaryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("Without OAuth")]
+        public void TestTraktCommentSummaryRequestHasValidUriTemplate()
+        {
+            var request = new TraktCommentSummaryRequest(null);
+            request.UriTemplate.Should().Be("comments/{id}");
+        }
     }
 }
