@@ -34,5 +34,12 @@
             var request = new TraktCommentRepliesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("Without OAuth")]
+        public void TestTraktCommentRepliesRequestHasValidUriTemplate()
+        {
+            var request = new TraktCommentRepliesRequest(null);
+            request.UriTemplate.Should().Be("comments/{id}/replies{?page,limit}");
+        }
     }
 }
