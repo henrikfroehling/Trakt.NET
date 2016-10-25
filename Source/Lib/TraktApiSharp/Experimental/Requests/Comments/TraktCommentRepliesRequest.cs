@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments
 {
-    internal class TraktCommentRepliesRequest
+    internal sealed class TraktCommentRepliesRequest
     {
 
     }
