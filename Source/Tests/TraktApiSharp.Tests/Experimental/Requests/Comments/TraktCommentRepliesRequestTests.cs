@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Comments;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
 
@@ -40,6 +41,12 @@
         {
             var request = new TraktCommentRepliesRequest(null);
             request.UriTemplate.Should().Be("comments/{id}/replies{?page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("Without OAuth")]
+        public void TestTraktCommentRepliesRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktCommentRepliesRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
