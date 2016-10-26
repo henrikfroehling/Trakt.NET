@@ -12,5 +12,11 @@
         {
             typeof(TraktSeasonCommentPostRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktSeasonCommentPostRequestIsSealed()
+        {
+            typeof(TraktSeasonCommentPostRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
