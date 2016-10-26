@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Comments.OAuth;
 
     [TestClass]
@@ -17,6 +18,12 @@
         public void TestTraktCommentDeleteRequestIsSealed()
         {
             typeof(TraktCommentDeleteRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentDeleteRequestIsSubclassOfATraktNoContentDeleteByIdRequest()
+        {
+            typeof(TraktCommentDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
     }
 }
