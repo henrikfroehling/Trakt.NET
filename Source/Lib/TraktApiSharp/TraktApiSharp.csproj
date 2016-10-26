@@ -208,6 +208,7 @@
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesPopularRequest.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesTrendingRequest.cs" />
     <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequest.cs" />
