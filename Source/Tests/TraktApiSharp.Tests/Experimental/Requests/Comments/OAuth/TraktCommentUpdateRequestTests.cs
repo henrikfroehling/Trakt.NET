@@ -27,5 +27,12 @@
         {
             typeof(TraktCommentUpdateRequest).IsSubclassOf(typeof(ATraktSingleItemPutByIdRequest<TraktCommentPostResponse, TraktCommentUpdatePost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentUpdateRequestHasValidUriTemplate()
+        {
+            var request = new TraktCommentUpdateRequest(null);
+            request.UriTemplate.Should().Be("comments/{id}");
+        }
     }
 }
