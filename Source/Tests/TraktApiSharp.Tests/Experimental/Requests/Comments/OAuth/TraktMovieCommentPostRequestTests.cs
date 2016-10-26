@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Comments.OAuth;
+    using TraktApiSharp.Objects.Post.Comments;
 
     [TestClass]
     public class TraktMovieCommentPostRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktMovieCommentPostRequestIsSealed()
         {
             typeof(TraktMovieCommentPostRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktMovieCommentPostRequestIsSubclassOfATraktCommentPostRequest()
+        {
+            typeof(TraktMovieCommentPostRequest).IsSubclassOf(typeof(ATraktCommentPostRequest<TraktMovieCommentPost>)).Should().BeTrue();
         }
     }
 }
