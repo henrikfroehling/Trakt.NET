@@ -25,5 +25,12 @@
         {
             typeof(TraktCommentDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentDeleteRequestHasValidUriTemplate()
+        {
+            var request = new TraktCommentDeleteRequest(null);
+            request.UriTemplate.Should().Be("comments/{id}");
+        }
     }
 }
