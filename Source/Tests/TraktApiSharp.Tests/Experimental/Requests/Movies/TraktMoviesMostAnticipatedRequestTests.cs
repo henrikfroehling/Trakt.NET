@@ -12,5 +12,11 @@
         {
             typeof(TraktMoviesMostAnticipatedRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostAnticipatedRequestIsSealed()
+        {
+            typeof(TraktMoviesMostAnticipatedRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
