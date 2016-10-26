@@ -41,7 +41,7 @@
 
         <uwpControls:ResponsiveGridView Margin="12"
                                         DesiredWidth="400"
-                                        ItemHeight="250"
+                                        ItemHeight="100"
                                         ItemsSource="{x:Bind ViewModel.BoxOfficeMovies, Mode=OneWay}"
                                         RelativePanel.AlignBottomWithPanel="True"
                                         RelativePanel.AlignLeftWithPanel="True"
@@ -49,25 +49,16 @@
                                         RelativePanel.Below="pageHeader">
             <uwpControls:ResponsiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:BoxOfficeMovie">
-                    <RelativePanel>
-                        <uwpControls:ImageEx Background="Black"
-                                             RelativePanel.AlignBottomWithPanel="True"
-                                             RelativePanel.AlignLeftWithPanel="True"
-                                             RelativePanel.AlignRightWithPanel="True"
-                                             RelativePanel.AlignTopWithPanel="True"
-                                             Source="{x:Bind Images.FanArt.Thumb}"
-                                             Stretch="UniformToFill" />
-
-                        <StackPanel Background="Black"
-                                    Opacity="0.8"
-                                    Orientation="Horizontal"
-                                    RelativePanel.AlignBottomWithPanel="True"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.AlignRightWithPanel="True">
+                    <RelativePanel Background="Black">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="12,0,0,0"
+                                    RelativePanel.AlignVerticalCenterWithPanel="True">
                             <StackPanel>
                                 <TextBlock Margin="12,4,4,4"
                                            Foreground="White"
                                            TextWrapping="WrapWholeWords">
+                                    <Run FontSize="16" Text="{x:Bind Nr}" />
+                                    <Run FontSize="16" Text="-" />
                                     <Run FontSize="16" Text="{x:Bind Title}" />
                                     <Run FontSize="12"
                                          Foreground="{ThemeResource CustomColorBrush}"

@@ -4,6 +4,8 @@
 
     public class BoxOfficeMovie : TraktMovie
     {
+        public int Nr { get; set; }
+
         public int? Revenue { get; set; }
     }
 }
