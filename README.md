@@ -14,10 +14,10 @@ TraktApiSharp
 
 ### Features
 | | |
-|:------:|:------:|
-| Full Trakt.tv API Coverage | Authentication Support (OAuth 2.0 and Device) |
-| Completely asynchronous | API Environments (Production and Sandbox) |
-| Serialization Service | Language Service |
+|------|------|
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/full-support.png) Full Trakt.tv API Coverage | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/authentication.png) Authentication Support (OAuth 2.0 and Device) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/async.png) Completely asynchronous | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/environments.png) API Environments (Production and Sandbox) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/serialization.png) Serialization Service | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/language-service.png) Language Service |
 
 ### Supported Platforms
 | | | |
