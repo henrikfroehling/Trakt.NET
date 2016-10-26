@@ -33,5 +33,12 @@
             var request = new TraktMoviesTrendingRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesTrendingRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesTrendingRequest(null);
+            request.UriTemplate.Should().Be("movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+        }
     }
 }
