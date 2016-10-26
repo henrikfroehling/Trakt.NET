@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
     using TraktApiSharp.Experimental.Requests.Comments.OAuth;
 
     [TestClass]
@@ -17,6 +18,12 @@
         public void TestTraktCommentLikeRequestIsSealed()
         {
             typeof(TraktCommentLikeRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentLikeRequestIsSubclassOfATraktNoContentBodylessPostByIdRequest()
+        {
+            typeof(TraktCommentLikeRequest).IsSubclassOf(typeof(ATraktNoContentBodylessPostByIdRequest)).Should().BeTrue();
         }
     }
 }
