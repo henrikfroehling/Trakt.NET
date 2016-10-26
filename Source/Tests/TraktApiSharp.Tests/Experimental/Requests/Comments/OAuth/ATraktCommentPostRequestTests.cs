@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
         public void TestATraktCommentPostRequestIsAbstract()
         {
-            typeof(ATraktCommentPostRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktCommentPostRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestATraktCommentPostRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktCommentPostRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktCommentPostRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
