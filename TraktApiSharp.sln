@@ -14,7 +14,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{10581989-9112-4BA6-8C4F-F2A2F1B8B1B5}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		async - Kopie.png = async - Kopie.png
+		authentication - Kopie.png = authentication - Kopie.png
+		authentication.png = authentication.png
 		Changelog.md = Changelog.md
+		environments.png = environments.png
+		full-support.png = full-support.png
+		language-service.png = language-service.png
 		LICENSE = LICENSE
 		PublishRelease.txt = PublishRelease.txt
 		README.md = README.md
