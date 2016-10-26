@@ -57,6 +57,8 @@
                                 <TextBlock Margin="12,4,4,4"
                                            Foreground="White"
                                            TextWrapping="WrapWholeWords">
+                                    <Run FontSize="16" Text="{x:Bind Nr}" />
+                                    <Run FontSize="16" Text="-" />
                                     <Run FontSize="16" Text="{x:Bind Title}" />
                                     <Run FontSize="12"
                                          Foreground="{ThemeResource CustomColorBrush}"

@@ -268,6 +268,7 @@
             var traktResults = await Client.Movies.GetBoxOfficeMoviesAsync(extendedInfo);
 
             var results = new ObservableCollection<BoxOfficeMovie>();
+            var count = 1;
 
             foreach (var traktBoxOfficeMovie in traktResults)
             {
@@ -275,6 +276,7 @@
 
                 if (boxOfficeMovie != null)
                 {
+                    boxOfficeMovie.Nr = count++;
                     boxOfficeMovie.Revenue = traktBoxOfficeMovie.Revenue.GetValueOrDefault();
                     results.Add(boxOfficeMovie);
                 }
