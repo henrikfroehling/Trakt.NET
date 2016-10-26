@@ -2,7 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post;
     using TraktApiSharp.Experimental.Requests.Comments.OAuth;
+    using TraktApiSharp.Objects.Post.Comments.Responses;
 
     [TestClass]
     public class ATraktCommentPostRequestTests
@@ -18,6 +20,12 @@
         {
             typeof(ATraktCommentPostRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktCommentPostRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestATraktCommentPostRequestIsSubclassOfATraktSingleItemPostRequest()
+        {
+            typeof(ATraktCommentPostRequest<int>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<TraktCommentPostResponse, int>)).Should().BeTrue();
         }
     }
 }

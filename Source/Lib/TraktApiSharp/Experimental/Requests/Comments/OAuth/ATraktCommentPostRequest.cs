@@ -1,7 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments.OAuth
 {
-    internal abstract class ATraktCommentPostRequest<TRequestBody>
-    {
+    using Base.Post;
+    using Objects.Post.Comments.Responses;
 
+    internal abstract class ATraktCommentPostRequest<TRequestBody> : ATraktSingleItemPostRequest<TraktCommentPostResponse, TRequestBody>
+    {
+        internal ATraktCommentPostRequest(TraktClient client) : base(client) { }
     }
 }
