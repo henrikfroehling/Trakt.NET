@@ -25,5 +25,12 @@
         {
             typeof(TraktSeasonCommentPostRequest).IsSubclassOf(typeof(ATraktCommentPostRequest<TraktSeasonCommentPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktSeasonCommentPostRequestHasValidUriTemplate()
+        {
+            var request = new TraktSeasonCommentPostRequest(null);
+            request.UriTemplate.Should().Be("comments");
+        }
     }
 }
