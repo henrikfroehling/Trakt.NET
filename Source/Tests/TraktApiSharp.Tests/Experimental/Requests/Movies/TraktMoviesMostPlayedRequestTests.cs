@@ -12,5 +12,11 @@
         {
             typeof(TraktMoviesMostPlayedRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostPlayedRequestIsSealed()
+        {
+            typeof(TraktMoviesMostPlayedRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
