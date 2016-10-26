@@ -13,14 +13,14 @@ TraktApiSharp
 ![Platforms](https://img.shields.io/badge/Platforms-%20.Net%20%3E=%204.5%20%7C%20ASP.Net%20Core%201.0%20%7C%20Win%208%20%7C%20Win%208.1%20%7C%20Win%2010%20%7C%20Win%2010%20UWP%20%7C%20Win%20Phone%208.1%20%7C%20Xamarin%20Android%20%7C%20Xamarin%20iOS%20-orange.svg)
 
 ### Features
-|
+| | |
 |:------:|:------:|
 | Full Trakt.tv API Coverage | Authentication Support (OAuth 2.0 and Device) |
 | Completely asynchronous | API Environments (Production and Sandbox) |
 | Serialization Service | Language Service |
 
 ### Supported Platforms
-|
+| | | |
 |:------:|:------:|:------:|
 | .Net Framework 4.5 | ASP.NET Core 1.0 | Windows 8 / 8.1 / 10 / UWP |
 | Windows Phone 8.1 | Xamarin Android | Xamarin iOS |
