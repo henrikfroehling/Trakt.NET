@@ -33,5 +33,11 @@
         {
             typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestATraktMoviesRequestImplementsITraktFilterableInterface()
+        {
+            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ITraktFilterable));
+        }
     }
 }
