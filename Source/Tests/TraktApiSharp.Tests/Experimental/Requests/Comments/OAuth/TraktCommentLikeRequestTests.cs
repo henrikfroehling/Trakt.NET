@@ -25,5 +25,12 @@
         {
             typeof(TraktCommentLikeRequest).IsSubclassOf(typeof(ATraktNoContentBodylessPostByIdRequest)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentLikeRequestHasValidUriTemplate()
+        {
+            var request = new TraktCommentLikeRequest(null);
+            request.UriTemplate.Should().Be("comments/{id}/like");
+        }
     }
 }
