@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Comments.OAuth;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class TraktCommentDeleteRequestTests
@@ -31,6 +32,12 @@
         {
             var request = new TraktCommentDeleteRequest(null);
             request.UriTemplate.Should().Be("comments/{id}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktCommentDeleteRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktCommentDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
