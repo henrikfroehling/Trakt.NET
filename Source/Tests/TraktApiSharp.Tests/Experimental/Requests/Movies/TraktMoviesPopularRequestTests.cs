@@ -33,5 +33,12 @@
             var request = new TraktMoviesPopularRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesPopularRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesPopularRequest(null);
+            request.UriTemplate.Should().Be("movies/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+        }
     }
 }
