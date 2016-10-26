@@ -180,6 +180,7 @@
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentReplyRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUnlikeRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUpdateRequest.cs" />
+    <Compile Include="Experimental\Requests\Comments\OAuth\TraktEpisodeCommentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktMovieCommentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktSeasonCommentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktShowCommentPostRequest.cs" />
