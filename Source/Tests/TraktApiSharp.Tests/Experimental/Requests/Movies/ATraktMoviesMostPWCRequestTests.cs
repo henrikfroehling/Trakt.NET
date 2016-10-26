@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
         public void TestATraktMoviesMostPWCRequestIsAbstract()
         {
-            typeof(ATraktMoviesMostPWCRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktMoviesMostPWCRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestATraktMoviesMostPWCRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktMoviesMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktMoviesMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
