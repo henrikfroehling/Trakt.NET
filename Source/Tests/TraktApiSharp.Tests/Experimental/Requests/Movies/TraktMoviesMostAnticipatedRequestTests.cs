@@ -33,5 +33,12 @@
             var request = new TraktMoviesMostAnticipatedRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostAnticipatedRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesMostAnticipatedRequest(null);
+            request.UriTemplate.Should().Be("movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+        }
     }
 }
