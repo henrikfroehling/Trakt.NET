@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    internal abstract class ATraktMoviesRequest
+    internal abstract class ATraktMoviesRequest<TItem>
     {
 
     }
