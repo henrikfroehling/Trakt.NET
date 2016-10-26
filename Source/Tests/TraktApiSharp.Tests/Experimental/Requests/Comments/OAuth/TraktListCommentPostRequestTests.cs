@@ -25,5 +25,12 @@
         {
             typeof(TraktListCommentPostRequest).IsSubclassOf(typeof(ATraktCommentPostRequest<TraktListCommentPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktListCommentPostRequestHasValidUriTemplate()
+        {
+            var request = new TraktListCommentPostRequest(null);
+            request.UriTemplate.Should().Be("comments");
+        }
     }
 }

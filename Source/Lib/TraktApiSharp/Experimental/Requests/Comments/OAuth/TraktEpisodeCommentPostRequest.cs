@@ -5,7 +5,5 @@
     internal sealed class TraktEpisodeCommentPostRequest : ATraktCommentPostRequest<TraktEpisodeCommentPost>
     {
         internal TraktEpisodeCommentPostRequest(TraktClient client) : base(client) { }
-
-        public override string UriTemplate => "comments";
     }
 }

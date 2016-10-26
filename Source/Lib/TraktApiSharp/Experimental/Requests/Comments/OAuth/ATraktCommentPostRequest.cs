@@ -6,5 +6,7 @@
     internal abstract class ATraktCommentPostRequest<TRequestBody> : ATraktSingleItemPostRequest<TraktCommentPostResponse, TRequestBody>
     {
         internal ATraktCommentPostRequest(TraktClient client) : base(client) { }
+
+        public override string UriTemplate => "comments";
     }
 }
