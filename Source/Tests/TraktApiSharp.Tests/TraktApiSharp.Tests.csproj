@@ -173,6 +173,7 @@
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUnlikeRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUpdateRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktEpisodeCommentPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Comments\OAuth\TraktListCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktMovieCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktSeasonCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktShowCommentPostRequestTests.cs" />
