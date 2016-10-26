@@ -25,5 +25,12 @@
         {
             typeof(TraktMovieCommentPostRequest).IsSubclassOf(typeof(ATraktCommentPostRequest<TraktMovieCommentPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Comments"), TestCategory("With OAuth")]
+        public void TestTraktMovieCommentPostRequestHasValidUriTemplate()
+        {
+            var request = new TraktMovieCommentPostRequest(null);
+            request.UriTemplate.Should().Be("comments");
+        }
     }
 }
