@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments.OAuth
 {
-    internal class TraktListCommentPostRequest
+    internal sealed class TraktListCommentPostRequest
     {
 
     }
