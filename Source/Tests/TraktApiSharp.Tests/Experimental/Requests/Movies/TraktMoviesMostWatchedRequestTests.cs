@@ -33,5 +33,12 @@
             var request = new TraktMoviesMostWatchedRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostWatchedRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesMostWatchedRequest(null);
+            request.UriTemplate.Should().Be("movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+        }
     }
 }
