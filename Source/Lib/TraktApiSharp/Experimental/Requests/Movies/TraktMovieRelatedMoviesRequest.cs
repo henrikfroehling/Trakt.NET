@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Movies;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktMovieRelatedMoviesRequest : ATraktPaginationGetByIdRequest<TraktMovie>
@@ -11,12 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "movies/{id}/related{?extended,page,limit}";
     }
 }
