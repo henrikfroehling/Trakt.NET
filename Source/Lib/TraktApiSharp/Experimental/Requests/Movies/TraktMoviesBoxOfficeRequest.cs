@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Movies.Common;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktMoviesBoxOfficeRequest : ATraktListGetRequest<TraktBoxOfficeMovie>
@@ -11,12 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "movies/boxoffice{?extended}";
     }
 }

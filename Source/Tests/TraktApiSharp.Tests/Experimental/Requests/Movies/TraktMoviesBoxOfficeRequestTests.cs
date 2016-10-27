@@ -34,5 +34,12 @@
             var request = new TraktMoviesBoxOfficeRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesBoxOfficeRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesBoxOfficeRequest(null);
+            request.UriTemplate.Should().Be("movies/boxoffice{?extended}");
+        }
     }
 }
