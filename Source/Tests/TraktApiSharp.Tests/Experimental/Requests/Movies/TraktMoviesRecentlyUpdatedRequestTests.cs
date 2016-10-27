@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Movies.Common;
@@ -45,6 +46,12 @@
         {
             var request = new TraktMoviesRecentlyUpdatedRequest(null);
             request.UriTemplate.Should().Be("movies/updates{/start_date}{?extended,page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesRecentlyUpdatedRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktMoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]

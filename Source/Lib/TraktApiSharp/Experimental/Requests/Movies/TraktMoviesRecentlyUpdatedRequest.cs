@@ -2,12 +2,14 @@
 {
     using Base.Get;
     using Extensions;
+    using Interfaces;
     using Objects.Get.Movies.Common;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedMovie>
+    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedMovie>, ITraktExtendedInfo
     {
         internal TraktMoviesRecentlyUpdatedRequest(TraktClient client) : base(client) { }
 
@@ -26,5 +28,7 @@
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public override string UriTemplate => "movies/updates{/start_date}{?extended,page,limit}";
+
+        public TraktExtendedInfo ExtendedInfo { get; set; }
     }
 }
