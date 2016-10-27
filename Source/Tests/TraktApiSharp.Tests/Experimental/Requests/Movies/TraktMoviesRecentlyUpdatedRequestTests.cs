@@ -8,6 +8,7 @@
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Movies;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Requests;
 
@@ -68,6 +69,31 @@
 
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesRecentlyUpdatedRequestUriParamsWithoutStartDate()
+        {
+            var request = new TraktMoviesRecentlyUpdatedRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesRecentlyUpdatedRequestUriParamsWithStartDate()
+        {
+            var startDate = DateTime.Now;
+
+            var request = new TraktMoviesRecentlyUpdatedRequest(null)
+            {
+                StartDate = startDate
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("start_date", startDate.ToTraktDateString());
         }
     }
 }

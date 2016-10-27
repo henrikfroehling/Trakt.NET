@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Base.Get;
+    using Extensions;
     using Objects.Get.Movies.Common;
     using System;
     using System.Collections.Generic;
@@ -14,7 +15,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (StartDate.HasValue)
+                uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
+
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
