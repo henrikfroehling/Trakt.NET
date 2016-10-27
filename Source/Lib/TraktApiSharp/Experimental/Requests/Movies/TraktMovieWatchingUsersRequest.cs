@@ -1,7 +1,28 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    internal sealed class TraktMovieWatchingUsersRequest
-    {
+    using Base.Get;
+    using Objects.Get.Users;
+    using System;
+    using TraktApiSharp.Requests;
 
+    internal sealed class TraktMovieWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>
+    {
+        internal TraktMovieWatchingUsersRequest(TraktClient client) : base(client) { }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string UriTemplate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
