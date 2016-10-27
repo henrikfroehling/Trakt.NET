@@ -207,6 +207,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostCollectedRequest.cs" />
