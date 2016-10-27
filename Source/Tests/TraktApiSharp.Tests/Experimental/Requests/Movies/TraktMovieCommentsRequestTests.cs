@@ -76,5 +76,45 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieCommentsRequestUriParamsWithoutSorting()
+        {
+            var request = new TraktMovieCommentsRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieCommentsRequestUriParamsWithUnspecifiedSorting()
+        {
+            var sorting = TraktCommentSortOrder.Unspecified;
+
+            var request = new TraktMovieCommentsRequest(null)
+            {
+                Sorting = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieCommentsRequestUriParamsWithSorting()
+        {
+            var sorting = TraktCommentSortOrder.Newest;
+
+            var request = new TraktMovieCommentsRequest(null)
+            {
+                Sorting = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("sorting", sorting.UriName);
+        }
     }
 }

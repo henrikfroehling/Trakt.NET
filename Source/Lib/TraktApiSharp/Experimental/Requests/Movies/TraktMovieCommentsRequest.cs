@@ -15,7 +15,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.UriName);
+
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
