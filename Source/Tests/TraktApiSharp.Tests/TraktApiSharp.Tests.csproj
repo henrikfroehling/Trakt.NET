@@ -217,6 +217,7 @@
     <Compile Include="Experimental\Requests\Movies\TraktMovieStatisticsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesTrendingRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieSummaryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMovieTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequestTests.cs" />
