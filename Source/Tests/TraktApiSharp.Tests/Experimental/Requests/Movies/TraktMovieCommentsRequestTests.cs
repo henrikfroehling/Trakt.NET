@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
@@ -40,6 +41,12 @@
         {
             var request = new TraktMovieCommentsRequest(null);
             request.UriTemplate.Should().Be("movies/{id}/comments{/sorting}{?page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieCommentsRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktMovieCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
