@@ -215,6 +215,7 @@
     <Compile Include="Experimental\Requests\Movies\TraktMovieReleasesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieSingleReleaseRequest.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMovieSingleTranslationRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostCollectedRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostPlayedRequest.cs" />
