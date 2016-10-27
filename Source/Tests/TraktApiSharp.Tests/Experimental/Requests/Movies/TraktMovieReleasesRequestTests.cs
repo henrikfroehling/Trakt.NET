@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktMovieReleasesRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktMovieReleasesRequestIsSubclassOfATraktListGetByIdRequest()
         {
             typeof(TraktMovieReleasesRequest).IsSubclassOf(typeof(ATraktListGetByIdRequest<TraktMovieRelease>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieReleasesRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktMovieReleasesRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
