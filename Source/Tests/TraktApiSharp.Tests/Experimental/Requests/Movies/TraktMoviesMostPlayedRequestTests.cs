@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Requests;
@@ -39,6 +40,46 @@
         {
             var request = new TraktMoviesMostPlayedRequest(null);
             request.UriTemplate.Should().Be("movies/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostPlayedRequestUriParamsWithoutPeriod()
+        {
+            var request = new TraktMoviesMostPlayedRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostPlayedRequestUriParamsWithUnspecifiedPeriod()
+        {
+            var period = TraktTimePeriod.Unspecified;
+
+            var request = new TraktMoviesMostPlayedRequest(null)
+            {
+                Period = period
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostPlayedRequestUriParamsWithPeriod()
+        {
+            var period = TraktTimePeriod.Monthly;
+
+            var request = new TraktMoviesMostPlayedRequest(null)
+            {
+                Period = period
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("period", period.UriName);
         }
     }
 }
