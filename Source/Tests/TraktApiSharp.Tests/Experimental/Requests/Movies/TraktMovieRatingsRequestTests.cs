@@ -12,5 +12,11 @@
         {
             typeof(TraktMovieRatingsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieRatingsRequestIsSealed()
+        {
+            typeof(TraktMovieRatingsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
