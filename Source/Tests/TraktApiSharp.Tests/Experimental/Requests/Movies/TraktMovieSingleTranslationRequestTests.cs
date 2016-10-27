@@ -34,5 +34,12 @@
             var request = new TraktMovieSingleTranslationRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieSingleTranslationRequestHasValidUriTemplate()
+        {
+            var request = new TraktMovieSingleTranslationRequest(null);
+            request.UriTemplate.Should().Be("movies/{id}/translations/{language}");
+        }
     }
 }
