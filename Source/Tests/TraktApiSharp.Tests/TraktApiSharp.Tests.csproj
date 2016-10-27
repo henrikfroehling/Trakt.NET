@@ -199,6 +199,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatableTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesBoxOfficeRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostCollectedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostPlayedRequestTests.cs" />
