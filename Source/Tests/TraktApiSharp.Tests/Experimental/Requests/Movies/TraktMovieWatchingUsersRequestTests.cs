@@ -48,5 +48,11 @@
         {
             typeof(TraktMovieWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieWatchingUsersRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktMovieWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
     }
 }
