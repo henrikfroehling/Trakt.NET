@@ -34,5 +34,12 @@
             var request = new TraktMoviesRecentlyUpdatedRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesRecentlyUpdatedRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviesRecentlyUpdatedRequest(null);
+            request.UriTemplate.Should().Be("movies/updates{/start_date}{?extended,page,limit}");
+        }
     }
 }
