@@ -34,5 +34,12 @@
             var request = new TraktMovieAliasesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieAliasesRequestHasValidUriTemplate()
+        {
+            var request = new TraktMovieAliasesRequest(null);
+            request.UriTemplate.Should().Be("movies/{id}/aliases");
+        }
     }
 }
