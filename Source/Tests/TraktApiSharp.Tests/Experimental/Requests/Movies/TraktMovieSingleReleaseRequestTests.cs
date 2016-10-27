@@ -34,5 +34,12 @@
             var request = new TraktMovieSingleReleaseRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieSingleReleaseRequestHasValidUriTemplate()
+        {
+            var request = new TraktMovieSingleReleaseRequest(null);
+            request.UriTemplate.Should().Be("movies/{id}/releases/{language}");
+        }
     }
 }
