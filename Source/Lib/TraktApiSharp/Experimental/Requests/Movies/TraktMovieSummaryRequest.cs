@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    internal class TraktMovieSummaryRequest
+    internal sealed class TraktMovieSummaryRequest
     {
 
     }
