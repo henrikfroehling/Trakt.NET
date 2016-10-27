@@ -197,6 +197,16 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatableTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesBoxOfficeRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesMostCollectedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesMostPlayedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesMostWatchedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesPopularRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesRecentlyUpdatedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMoviesTrendingRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequestTests.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequestTests.cs" />
