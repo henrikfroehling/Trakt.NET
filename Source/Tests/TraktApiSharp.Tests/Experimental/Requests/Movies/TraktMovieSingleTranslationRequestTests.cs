@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
@@ -47,6 +49,19 @@
         public void TestTraktMovieSingleTranslationRequestImplementsITraktObjectRequestInterface()
         {
             typeof(TraktMovieSingleTranslationRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieSingleTranslationRequestHasLanguageCodeProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktMovieSingleTranslationRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "LanguageCode")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }
