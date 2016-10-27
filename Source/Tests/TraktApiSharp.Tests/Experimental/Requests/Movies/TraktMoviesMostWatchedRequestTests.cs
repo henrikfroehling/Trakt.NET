@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Common;
 
     [TestClass]
     public class TraktMoviesMostWatchedRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktMoviesMostWatchedRequestIsSealed()
         {
             typeof(TraktMoviesMostWatchedRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostWatchedRequestIsSubclassOfATraktMoviesMostPWCRequest()
+        {
+            typeof(TraktMoviesMostWatchedRequest).IsSubclassOf(typeof(ATraktMoviesMostPWCRequest<TraktMostWatchedMovie>)).Should().BeTrue();
         }
     }
 }
