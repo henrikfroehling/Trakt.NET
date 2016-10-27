@@ -4,12 +4,15 @@
     using Interfaces;
     using Objects.Get.Movies;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMovieSummaryRequest : ATraktSingleItemGetByIdRequest<TraktMovie>, ITraktObjectRequest
+    internal sealed class TraktMovieSummaryRequest : ATraktSingleItemGetByIdRequest<TraktMovie>, ITraktObjectRequest, ITraktExtendedInfo
     {
         internal TraktMovieSummaryRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
