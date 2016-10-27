@@ -34,5 +34,12 @@
             var request = new TraktMovieCommentsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMovieCommentsRequestHasValidUriTemplate()
+        {
+            var request = new TraktMovieCommentsRequest(null);
+            request.UriTemplate.Should().Be("movies/{id}/comments{/sorting}{?page,limit}");
+        }
     }
 }
