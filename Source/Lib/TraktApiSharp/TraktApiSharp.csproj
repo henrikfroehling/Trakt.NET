@@ -222,6 +222,7 @@
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostWatchedRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesPopularRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesRecentlyUpdatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMovieStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesTrendingRequest.cs" />
     <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequest.cs" />
