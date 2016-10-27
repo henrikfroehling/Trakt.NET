@@ -12,5 +12,11 @@
         {
             typeof(TraktMoviesBoxOfficeRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesBoxOfficeRequestIsSealed()
+        {
+            typeof(TraktMoviesBoxOfficeRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
