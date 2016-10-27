@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktMoviesMostWatchedRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktMoviesMostWatchedRequestIsSubclassOfATraktMoviesMostPWCRequest()
         {
             typeof(TraktMoviesMostWatchedRequest).IsSubclassOf(typeof(ATraktMoviesMostPWCRequest<TraktMostWatchedMovie>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesMostWatchedRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktMoviesMostWatchedRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
