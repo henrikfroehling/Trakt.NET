@@ -203,6 +203,7 @@
     <Compile Include="Experimental\Requests\Movies\TraktMovieCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviePeopleRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieRatingsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Movies\TraktMovieRelatedMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesBoxOfficeRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostAnticipatedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviesMostCollectedRequestTests.cs" />
