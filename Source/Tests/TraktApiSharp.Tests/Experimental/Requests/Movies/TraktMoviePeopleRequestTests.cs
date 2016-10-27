@@ -34,5 +34,12 @@
             var request = new TraktMoviePeopleRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
+        public void TestTraktMoviePeopleRequestHasValidUriTemplate()
+        {
+            var request = new TraktMoviePeopleRequest(null);
+            request.UriTemplate.Should().Be("movies/{id}/people{?extended}");
+        }
     }
 }
