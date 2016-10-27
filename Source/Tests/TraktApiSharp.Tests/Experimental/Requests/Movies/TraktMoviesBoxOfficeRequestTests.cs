@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Requests;
@@ -40,6 +41,12 @@
         {
             var request = new TraktMoviesBoxOfficeRequest(null);
             request.UriTemplate.Should().Be("movies/boxoffice{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
+        public void TestTraktMoviesBoxOfficeRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktMoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
     }
 }
