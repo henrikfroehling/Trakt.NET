@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Objects.Get.Movies.Common;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktMoviesMostPlayedRequest : ATraktMoviesMostPWCRequest<TraktMostPlayedMovie>
@@ -10,12 +9,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "movies/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
     }
 }
