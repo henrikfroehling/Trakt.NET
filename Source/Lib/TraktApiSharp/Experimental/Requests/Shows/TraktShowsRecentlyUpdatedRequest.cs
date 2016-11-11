@@ -1,7 +1,28 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    internal sealed class TraktShowsRecentlyUpdatedRequest
-    {
+    using Base.Get;
+    using Objects.Get.Shows.Common;
+    using System;
+    using TraktApiSharp.Requests;
 
+    internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedShow>
+    {
+        public TraktShowsRecentlyUpdatedRequest(TraktClient client) : base(client) { }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string UriTemplate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

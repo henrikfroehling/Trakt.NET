@@ -2,7 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Common;
 
     [TestClass]
     public class TraktShowsRecentlyUpdatedRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktShowsRecentlyUpdatedRequestIsSealed()
         {
             typeof(TraktShowsRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsRecentlyUpdatedRequestIsSubclassOfATraktPaginationGetRequest()
+        {
+            typeof(TraktShowsRecentlyUpdatedRequest).IsSubclassOf(typeof(ATraktPaginationGetRequest<TraktRecentlyUpdatedShow>)).Should().BeTrue();
         }
     }
 }
