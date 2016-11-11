@@ -12,5 +12,11 @@
         {
             typeof(TraktShowsMostAnticipatedRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsMostAnticipatedRequestIsSealed()
+        {
+            typeof(TraktShowsMostAnticipatedRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
