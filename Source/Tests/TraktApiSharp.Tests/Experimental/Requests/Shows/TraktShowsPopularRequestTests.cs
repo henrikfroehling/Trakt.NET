@@ -33,5 +33,12 @@
             var request = new TraktShowsPopularRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsPopularRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowsPopularRequest(null);
+            request.UriTemplate.Should().Be("shows/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
+        }
     }
 }
