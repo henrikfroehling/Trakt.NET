@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktShowsMostAnticipatedRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktShowsMostAnticipatedRequestIsSubclassOfATraktMoviesRequest()
         {
             typeof(TraktShowsMostAnticipatedRequest).IsSubclassOf(typeof(ATraktMoviesRequest<TraktMostAnticipatedShow>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsMostAnticipatedRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktShowsMostAnticipatedRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
