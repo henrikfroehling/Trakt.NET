@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Requests;
@@ -23,9 +22,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
-        public void TestTraktShowsMostAnticipatedRequestIsSubclassOfATraktMoviesRequest()
+        public void TestTraktShowsMostAnticipatedRequestIsSubclassOfATraktShowsRequest()
         {
-            typeof(TraktShowsMostAnticipatedRequest).IsSubclassOf(typeof(ATraktMoviesRequest<TraktMostAnticipatedShow>)).Should().BeTrue();
+            typeof(TraktShowsMostAnticipatedRequest).IsSubclassOf(typeof(ATraktShowsRequest<TraktMostAnticipatedShow>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
