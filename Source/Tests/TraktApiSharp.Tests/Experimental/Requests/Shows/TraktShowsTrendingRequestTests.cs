@@ -33,5 +33,12 @@
             var request = new TraktShowsTrendingRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsTrendingRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowsTrendingRequest(null);
+            request.UriTemplate.Should().Be("shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
+        }
     }
 }
