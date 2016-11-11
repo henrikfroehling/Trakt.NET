@@ -244,6 +244,7 @@
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
