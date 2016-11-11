@@ -234,6 +234,7 @@
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
@@ -480,9 +481,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="TestData\Authentication\AccessToken.json" />
     <None Include="TestData\Authentication\Device.json" />
     <None Include="TestData\Objects\Basic\CastAndCrew.json" />
