@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Shows.Common;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedShow>
@@ -11,12 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "shows/updates{/start_date}{?extended,page,limit}";
     }
 }

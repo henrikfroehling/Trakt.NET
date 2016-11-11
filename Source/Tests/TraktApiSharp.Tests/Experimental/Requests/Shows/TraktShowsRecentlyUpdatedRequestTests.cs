@@ -34,5 +34,12 @@
             var request = new TraktShowsRecentlyUpdatedRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsRecentlyUpdatedRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowsRecentlyUpdatedRequest(null);
+            request.UriTemplate.Should().Be("shows/updates{/start_date}{?extended,page,limit}");
+        }
     }
 }
