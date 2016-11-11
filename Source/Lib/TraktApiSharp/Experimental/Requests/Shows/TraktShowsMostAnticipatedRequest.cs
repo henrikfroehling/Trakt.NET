@@ -1,7 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    internal sealed class TraktShowsMostAnticipatedRequest
-    {
+    using Movies;
+    using Objects.Get.Shows.Common;
+    using System;
 
+    internal sealed class TraktShowsMostAnticipatedRequest : ATraktMoviesRequest<TraktMostAnticipatedShow>
+    {
+        public TraktShowsMostAnticipatedRequest(TraktClient client) : base(client) { }
+
+        public override string UriTemplate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
