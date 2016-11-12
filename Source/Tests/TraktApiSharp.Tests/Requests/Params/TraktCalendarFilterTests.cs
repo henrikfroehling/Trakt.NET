@@ -166,6 +166,22 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarFilterClearRuntimes()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Runtimes.Should().BeNull();
+
+            filter.WithRuntimes(30, 180);
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
+
+            filter.ClearRuntimes();
+            filter.Runtimes.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktCalendarFilterClear()
         {
             var filter = new TraktCalendarFilter();
