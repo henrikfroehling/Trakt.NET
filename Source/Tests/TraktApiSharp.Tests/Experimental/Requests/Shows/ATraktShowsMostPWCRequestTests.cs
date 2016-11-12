@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Enums;
@@ -40,6 +41,17 @@
             periodPropertyInfo.CanRead.Should().BeTrue();
             periodPropertyInfo.CanWrite.Should().BeTrue();
             periodPropertyInfo.PropertyType.Should().Be(typeof(TraktTimePeriod));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestATraktShowsMostPWCRequestHasGetUriPathParametersMethod()
+        {
+            var methodInfo = typeof(ATraktShowsMostPWCRequest<>).GetMethods()
+                                                                .Where(m => m.Name == "GetUriPathParameters")
+                                                                .FirstOrDefault();
+
+            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
+            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }
