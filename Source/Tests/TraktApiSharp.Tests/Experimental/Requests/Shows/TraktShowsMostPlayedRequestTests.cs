@@ -33,5 +33,12 @@
             var request = new TraktShowsMostPlayedRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsMostPlayedRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowsMostPlayedRequest(null);
+            request.UriTemplate.Should().Be("shows/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
+        }
     }
 }
