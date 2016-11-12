@@ -203,6 +203,20 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearGenres()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Genres.Should().BeNull();
+
+            filter.WithGenres("action", "drama");
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearGenres();
+            filter.Genres.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();

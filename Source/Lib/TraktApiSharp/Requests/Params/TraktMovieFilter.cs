@@ -99,6 +99,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current genre values.</summary>
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktMovieFilter ClearGenres()
+        {
+            base.ClearGenres();
+            return this;
+        }
+
         /// <summary>Adds multiple language codes to the already existing language codes.</summary>
         /// <param name="language">A two letter language code.</param>
         /// <param name="languages">An optional array of two letter language codes.</param>
