@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    internal class TraktShowsMostPlayedRequest
+    internal sealed class TraktShowsMostPlayedRequest
     {
 
     }
