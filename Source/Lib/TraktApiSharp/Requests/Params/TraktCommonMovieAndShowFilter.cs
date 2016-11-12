@@ -107,6 +107,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter WithRuntimes(int begin, int end)
         {
             base.WithRuntimes(begin, end);
