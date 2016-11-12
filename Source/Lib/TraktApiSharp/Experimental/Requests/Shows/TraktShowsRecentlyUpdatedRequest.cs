@@ -4,6 +4,7 @@
     using Interfaces;
     using Objects.Get.Shows.Common;
     using System;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
@@ -12,6 +13,11 @@
         public TraktShowsRecentlyUpdatedRequest(TraktClient client) : base(client) { }
 
         internal DateTime? StartDate { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

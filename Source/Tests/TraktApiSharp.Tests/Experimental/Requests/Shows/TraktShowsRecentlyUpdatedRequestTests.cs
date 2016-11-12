@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
@@ -63,6 +64,17 @@
             startDatePropertyInfo.CanRead.Should().BeTrue();
             startDatePropertyInfo.CanWrite.Should().BeTrue();
             startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsRecentlyUpdatedRequestHasGetUriPathParametersMethod()
+        {
+            var methodInfo = typeof(TraktShowsRecentlyUpdatedRequest).GetMethods()
+                                                                     .Where(m => m.Name == "GetUriPathParameters")
+                                                                     .FirstOrDefault();
+
+            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
+            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }
