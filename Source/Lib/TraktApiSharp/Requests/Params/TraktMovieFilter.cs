@@ -53,6 +53,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current query value.</summary>
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktMovieFilter ClearQuery()
+        {
+            base.ClearQuery();
+            return this;
+        }
+
         /// <summary>Sets the years parameter value.</summary>
         /// <param name="years">A four digit year.</param>
         /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>

@@ -175,6 +175,20 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearQuery()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Query.Should().BeNull();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+
+            filter.ClearQuery();
+            filter.Query.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();
