@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Base.Get;
+    using Extensions;
     using Interfaces;
     using Objects.Get.Shows.Common;
     using System;
@@ -16,7 +17,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (StartDate.HasValue)
+                uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
+
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
