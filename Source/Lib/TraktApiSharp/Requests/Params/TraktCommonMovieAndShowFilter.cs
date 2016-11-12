@@ -89,6 +89,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter AddCountries(string country, params string[] countries)
         {
             base.AddCountries(country, countries);
