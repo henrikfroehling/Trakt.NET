@@ -234,6 +234,7 @@
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequestTests.cs" />
