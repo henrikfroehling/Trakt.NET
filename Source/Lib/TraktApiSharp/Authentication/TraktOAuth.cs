@@ -607,7 +607,7 @@
         private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
             var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
-            var isStagingUsed = Client.Configuration.UseStagingUrl;
+            var isStagingUsed = Client.Configuration.UseSandboxEnvironment;
             var baseUrl = isStagingUsed ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
             var authorizationUrl = $"{baseUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
             return authorizationUrl;

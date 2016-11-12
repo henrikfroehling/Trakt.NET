@@ -59,7 +59,7 @@
 
             Console.WriteLine($"API Version: {client.Configuration.ApiVersion}");
             Console.WriteLine($"API Base Url (UseStagingUrl == false): {client.Configuration.BaseUrl}");
-            client.Configuration.UseStagingUrl = true;
+            client.Configuration.UseSandboxEnvironment = true;
             Console.WriteLine($"API Base Url (UseStagingUrl == true): {client.Configuration.BaseUrl}");
 
             Console.ReadLine();
