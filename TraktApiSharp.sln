@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Changelog.md = Changelog.md
 		environments.png = environments.png
 		full-support.png = full-support.png
+		.github\ISSUE_TEMPLATE.md = .github\ISSUE_TEMPLATE.md
 		language-service.png = language-service.png
 		LICENSE = LICENSE
 		PublishRelease.txt = PublishRelease.txt
