@@ -189,6 +189,20 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearYears()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();
