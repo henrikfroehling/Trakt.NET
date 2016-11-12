@@ -210,6 +210,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
         public override void Clear()
         {
