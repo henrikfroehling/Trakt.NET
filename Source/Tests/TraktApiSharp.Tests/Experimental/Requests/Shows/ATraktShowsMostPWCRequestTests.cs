@@ -19,5 +19,11 @@
             typeof(ATraktShowsMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktShowsMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestATraktShowsMostPWCRequestIsSubclassOfATraktShowsRequest()
+        {
+            typeof(ATraktShowsMostPWCRequest<int>).IsSubclassOf(typeof(ATraktShowsRequest<int>)).Should().BeTrue();
+        }
     }
 }
