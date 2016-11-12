@@ -11,7 +11,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (Period != null && Period != TraktTimePeriod.Unspecified)
+                uriParams.Add("period", Period.UriName);
+
+            return uriParams;
         }
     }
 }
