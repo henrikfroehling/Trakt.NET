@@ -234,6 +234,15 @@
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequestTests.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostWatchedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
@@ -480,9 +489,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="TestData\Authentication\AccessToken.json" />
     <None Include="TestData\Authentication\Device.json" />
     <None Include="TestData\Objects\Basic\CastAndCrew.json" />

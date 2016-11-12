@@ -25,7 +25,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Movies"), TestCategory("Lists")]
-        public void TestATraktMoviesMostPWCRequestsSubclassOfATraktMoviesRequest()
+        public void TestATraktMoviesMostPWCRequestIsSubclassOfATraktMoviesRequest()
         {
             typeof(ATraktMoviesMostPWCRequest<int>).IsSubclassOf(typeof(ATraktMoviesRequest<int>)).Should().BeTrue();
         }

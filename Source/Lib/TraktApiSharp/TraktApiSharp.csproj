@@ -242,6 +242,15 @@
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostWatchedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
