@@ -144,6 +144,12 @@
             return this;
         }
 
+        public TraktCommonFilter ClearRatings()
+        {
+            Ratings = null;
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
         public virtual void Clear()
         {
