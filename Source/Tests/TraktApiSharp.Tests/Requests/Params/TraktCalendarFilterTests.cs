@@ -110,6 +110,20 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarFilterClearGenres()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Genres.Should().BeNull();
+
+            filter.WithGenres("action", "drama");
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearGenres();
+            filter.Genres.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktCalendarFilterClear()
         {
             var filter = new TraktCalendarFilter();
