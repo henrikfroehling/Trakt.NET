@@ -34,6 +34,13 @@ PM> Install-Package TraktApiSharp
 
 #### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues) or [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+### Branches
+| | |
+|---|---|
+| [master](https://github.com/henrikfroehling/TraktApiSharp/tree/master) | This branch tracks all stable releases. |
+| [dev](https://github.com/henrikfroehling/TraktApiSharp/tree/dev) | This branch tracks the current and possibly unstable development. |
+| [next-version](https://github.com/henrikfroehling/TraktApiSharp) | This branch tracks the current development of the next major (1.0.0) version. |
+
 ### Basic Usage or [more advanced usage guide](https://traktapisharp.net/guide)
 
 **Create a new TraktApiSharp Client**
