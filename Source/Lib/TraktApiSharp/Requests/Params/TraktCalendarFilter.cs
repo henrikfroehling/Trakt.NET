@@ -61,6 +61,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current query value.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public TraktCalendarFilter ClearQuery()
+        {
+            Query = null;
+            return this;
+        }
+
         /// <summary>Sets the years parameter value.</summary>
         /// <param name="years">A four digit year.</param>
         /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
