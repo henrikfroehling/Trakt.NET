@@ -15,9 +15,9 @@ TraktApiSharp
 ### Features
 | | |
 |------|------|
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/full-support.png) Full Trakt.tv API Coverage | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/authentication.png) Authentication Support (OAuth 2.0 and Device) |
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/async.png) Completely asynchronous | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/environments.png) API Environments (Production and Sandbox) |
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/serialization.png) Serialization Service | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/language-service.png) Language Service |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/full-support.png) Full Trakt.tv API Coverage | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/async.png) Completely asynchronous | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/environments.png) API Environments (Production and Sandbox) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/serialization.png) Serialization Service | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/language-service.png) Language Service |
 
 ### Supported Platforms
 | | | |
