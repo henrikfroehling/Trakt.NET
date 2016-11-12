@@ -94,6 +94,12 @@
 
         public TraktCommonFilter WithGenres(string genre, params string[] genres) => AddGenres(false, genre, genres);
 
+        public TraktCommonFilter ClearGenres()
+        {
+            Genres = null;
+            return this;
+        }
+
         public TraktCommonFilter AddLanguages(string language, params string[] languages) => AddLanguages(true, language, languages);
 
         public TraktCommonFilter WithLanguages(string language, params string[] languages) => AddLanguages(false, language, languages);
