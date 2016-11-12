@@ -99,7 +99,7 @@
             return this;
         }
 
-        /// <summary>Deletes the current genres value.</summary>
+        /// <summary>Deletes the current genre values.</summary>
         /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
         public new TraktCalendarFilter ClearGenres()
         {
@@ -130,6 +130,13 @@
         public new TraktCalendarFilter WithLanguages(string language, params string[] languages)
         {
             base.WithLanguages(language, languages);
+            return this;
+        }
+
+        /// <summary>Deletes the current language values.</summary>
+        public new TraktCalendarFilter ClearLanguages()
+        {
+            base.ClearLanguages();
             return this;
         }
 

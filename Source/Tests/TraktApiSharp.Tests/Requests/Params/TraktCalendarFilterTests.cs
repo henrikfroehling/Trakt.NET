@@ -138,6 +138,20 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarFilterClearLanguages()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktCalendarFilterClear()
         {
             var filter = new TraktCalendarFilter();
