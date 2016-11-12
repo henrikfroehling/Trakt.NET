@@ -104,6 +104,12 @@
 
         public TraktCommonFilter WithLanguages(string language, params string[] languages) => AddLanguages(false, language, languages);
 
+        public TraktCommonFilter ClearLanguages()
+        {
+            Languages = null;
+            return this;
+        }
+
         public TraktCommonFilter AddCountries(string country, params string[] countries) => AddCountries(true, country, countries);
 
         public TraktCommonFilter WithCountries(string country, params string[] countries) => AddCountries(false, country, countries);
