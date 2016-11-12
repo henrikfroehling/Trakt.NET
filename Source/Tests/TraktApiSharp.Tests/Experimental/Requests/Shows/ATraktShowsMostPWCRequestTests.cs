@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
         public void TestATraktShowsMostPWCRequestIsAbstract()
         {
-            typeof(ATraktShowsMostPWCRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktShowsMostPWCRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestATraktShowsMostPWCRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktShowsMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktShowsMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
