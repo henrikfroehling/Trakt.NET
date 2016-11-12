@@ -152,6 +152,20 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarFilterClearCountries()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Countries.Should().BeNull();
+
+            filter.WithCountries("gb", "us");
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCountries();
+            filter.Countries.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktCalendarFilterClear()
         {
             var filter = new TraktCalendarFilter();

@@ -166,6 +166,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current country values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         /// <summary>Sets the runtimes value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of the runtimes range.</param>
         /// <param name="end">The end value of the runtimes range.</param>
