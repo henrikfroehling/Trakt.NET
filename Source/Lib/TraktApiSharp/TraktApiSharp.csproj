@@ -245,6 +245,7 @@
     <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequest.cs" />
