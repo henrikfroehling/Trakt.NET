@@ -90,6 +90,12 @@
             return this;
         }
 
+        public TraktCommonFilter ClearYears()
+        {
+            Years = 0;
+            return this;
+        }
+
         public TraktCommonFilter AddGenres(string genre, params string[] genres) => AddGenres(true, genre, genres);
 
         public TraktCommonFilter WithGenres(string genre, params string[] genres) => AddGenres(false, genre, genres);
