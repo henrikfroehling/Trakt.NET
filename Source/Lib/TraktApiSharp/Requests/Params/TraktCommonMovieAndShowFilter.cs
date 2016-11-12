@@ -71,6 +71,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearGenres()
+        {
+            base.ClearGenres();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter AddLanguages(string language, params string[] languages)
         {
             base.AddLanguages(language, languages);
