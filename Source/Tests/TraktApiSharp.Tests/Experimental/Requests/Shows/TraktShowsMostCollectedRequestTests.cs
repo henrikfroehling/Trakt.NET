@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktShowsMostCollectedRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktShowsMostCollectedRequestIsSubclassOfATraktShowsMostPWCRequest()
         {
             typeof(TraktShowsMostCollectedRequest).IsSubclassOf(typeof(ATraktShowsMostPWCRequest<TraktMostCollectedShow>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestTraktShowsMostCollectedRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktShowsMostCollectedRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
