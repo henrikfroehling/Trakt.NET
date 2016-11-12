@@ -217,6 +217,20 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearLanguages()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();
