@@ -119,6 +119,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter WithRatings(int begin, int end)
         {
             base.WithRatings(begin, end);
