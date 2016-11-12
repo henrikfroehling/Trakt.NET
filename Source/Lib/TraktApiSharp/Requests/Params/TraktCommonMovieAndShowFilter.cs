@@ -41,6 +41,12 @@
             return this;
         }
 
+        public TraktCommonMovieAndShowFilter ClearQuery()
+        {
+            Query = null;
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter WithYears(int years)
         {
             base.WithYears(years);
