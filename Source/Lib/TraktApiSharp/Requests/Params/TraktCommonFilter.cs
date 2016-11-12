@@ -129,6 +129,12 @@
             return this;
         }
 
+        public TraktCommonFilter ClearRuntimes()
+        {
+            Runtimes = null;
+            return this;
+        }
+
         public TraktCommonFilter WithRatings(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin || end > 100)
