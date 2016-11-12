@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Shows;
 
     [TestClass]
@@ -24,6 +27,19 @@
         public void TestATraktShowsMostPWCRequestIsSubclassOfATraktShowsRequest()
         {
             typeof(ATraktShowsMostPWCRequest<int>).IsSubclassOf(typeof(ATraktShowsRequest<int>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
+        public void TestATraktShowsMostPWCRequestHasPeriodProperty()
+        {
+            var periodPropertyInfo = typeof(ATraktShowsMostPWCRequest<>)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Period")
+                    .FirstOrDefault();
+
+            periodPropertyInfo.CanRead.Should().BeTrue();
+            periodPropertyInfo.CanWrite.Should().BeTrue();
+            periodPropertyInfo.PropertyType.Should().Be(typeof(TraktTimePeriod));
         }
     }
 }
