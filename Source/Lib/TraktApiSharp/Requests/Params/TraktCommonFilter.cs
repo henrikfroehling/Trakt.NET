@@ -114,6 +114,12 @@
 
         public TraktCommonFilter WithCountries(string country, params string[] countries) => AddCountries(false, country, countries);
 
+        public TraktCommonFilter ClearCountries()
+        {
+            Countries = null;
+            return this;
+        }
+
         public TraktCommonFilter WithRuntimes(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin)
