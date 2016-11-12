@@ -131,6 +131,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
         public TraktCommonMovieAndShowFilter AddCertifications(string certification, params string[] certifications)
             => AddCertifications(true, certification, certifications);
 
