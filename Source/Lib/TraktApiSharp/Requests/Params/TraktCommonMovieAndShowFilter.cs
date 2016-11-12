@@ -53,6 +53,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearYears()
+        {
+            base.ClearYears();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter AddGenres(string genre, params string[] genres)
         {
             base.AddGenres(genre, genres);
