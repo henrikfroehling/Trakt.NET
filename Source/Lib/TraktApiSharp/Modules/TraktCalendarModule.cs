@@ -307,7 +307,7 @@
         {
             ValidateDays(days);
 
-            return await QueryAsync(new TraktCalendarAllDVDRequest(Client)
+            return await QueryAsync(new TraktCalendarAllDVDMoviesRequest(Client)
             {
                 StartDate = startDate,
                 Days = days,
