@@ -286,6 +286,14 @@
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         public TraktShowFilter WithNetworks(string network, params string[] networks) => AddNetworks(false, network, networks);
 
+        /// <summary>Deletes the current network values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public TraktShowFilter ClearNetworks()
+        {
+            Networks = null;
+            return this;
+        }
+
         /// <summary>Adds multiple show states to the already existing show states.</summary>
         /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
         /// <param name="states">An optional array of show states. See also <seealso cref="TraktShowStatus" />.</param>
