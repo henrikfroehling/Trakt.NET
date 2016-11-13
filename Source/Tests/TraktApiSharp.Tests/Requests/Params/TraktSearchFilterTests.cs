@@ -10,7 +10,7 @@
     public class TraktSearchFilterTests
     {
         [TestMethod]
-        public void TestTraktMovieFilterDefaultConstructor()
+        public void TestTraktSearchFilterDefaultConstructor()
         {
             var filter = new TraktSearchFilter();
 
@@ -24,7 +24,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterConstructor()
+        public void TestTraktSearchFilterConstructor()
         {
             var filter = new TraktSearchFilter(2016, new string[] { "action", "drama" },
                                                new string[] { "de", "en" },
@@ -47,7 +47,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterHasValues()
+        public void TestTraktSearchFilterHasValues()
         {
             var filter = new TraktSearchFilter();
 
@@ -101,7 +101,21 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterClear()
+        public void TestTraktSearchFilterClearYears()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClear()
         {
             var filter = new TraktSearchFilter();
 
@@ -139,7 +153,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterGetParameters()
+        public void TestTraktSearchFilterGetParameters()
         {
             var filter = new TraktSearchFilter();
 
