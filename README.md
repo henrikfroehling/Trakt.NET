@@ -15,9 +15,9 @@ TraktApiSharp
 ### Features
 | | |
 |------|------|
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/full-support.png) Full Trakt.tv API Coverage | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/authentication.png) Authentication Support (OAuth 2.0 and Device) |
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/async.png) Completely asynchronous | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/environments.png) API Environments (Production and Sandbox) |
-| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/serialization.png) Serialization Service | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/language-service.png) Language Service |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/full-support.png) Full Trakt.tv API Coverage | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/async.png) Completely asynchronous | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/environments.png) API Environments (Production and Sandbox) |
+| ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/serialization.png) Serialization Service | ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/language-service.png) Language Service |
 
 ### Supported Platforms
 | | | |
@@ -33,6 +33,13 @@ PM> Install-Package TraktApiSharp
 ```
 
 #### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues) or [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+### Branches
+| | |
+|---|---|
+| [master](https://github.com/henrikfroehling/TraktApiSharp/tree/master) | This branch tracks all stable releases. |
+| [dev](https://github.com/henrikfroehling/TraktApiSharp/tree/dev) | This branch tracks the current and possibly unstable development. |
+| [next-version](https://github.com/henrikfroehling/TraktApiSharp) | This branch tracks the current development of the next major (1.0.0) version. |
 
 ### Basic Usage or [more advanced usage guide](https://traktapisharp.net/guide)
 

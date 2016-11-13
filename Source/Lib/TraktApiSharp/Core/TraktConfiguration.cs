@@ -21,10 +21,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#introduction/api-url">"Trakt API Doc - API URL"</a> for more information.
         /// </para>
         /// </summary>
-        public bool UseStagingUrl { get; set; } = false;
+        public bool UseSandboxEnvironment { get; set; } = false;
 
-        /// <summary>Returns the Trakt API base URL based on, whether <see cref="UseStagingUrl" /> is false or true.</summary>
-        public string BaseUrl => UseStagingUrl ? TraktConstants.API_STAGING_URL : TraktConstants.API_URL;
+        /// <summary>Returns the Trakt API base URL based on, whether <see cref="UseSandboxEnvironment" /> is false or true.</summary>
+        public string BaseUrl => UseSandboxEnvironment ? TraktConstants.API_STAGING_URL : TraktConstants.API_URL;
 
         /// <summary>Gets or sets, whether authorization should be enforced, even if it is optional. This is disabled by default.</summary>
         public bool ForceAuthorization { get; set; } = false;

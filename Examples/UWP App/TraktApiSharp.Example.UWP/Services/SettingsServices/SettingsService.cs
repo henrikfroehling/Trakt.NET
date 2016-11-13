@@ -105,7 +105,7 @@ namespace TraktApiSharp.Example.UWP.Services.SettingsServices
             set
             {
                 _helper.Write(nameof(TraktUseStagingUrl), value);
-                TraktServiceProvider.Instance.Client.Configuration.UseStagingUrl = value;
+                TraktServiceProvider.Instance.Client.Configuration.UseSandboxEnvironment = value;
             }
         }
 

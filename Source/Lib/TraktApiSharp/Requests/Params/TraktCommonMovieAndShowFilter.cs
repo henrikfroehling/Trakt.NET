@@ -41,9 +41,21 @@
             return this;
         }
 
+        public TraktCommonMovieAndShowFilter ClearQuery()
+        {
+            Query = null;
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter WithYears(int years)
         {
             base.WithYears(years);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter ClearYears()
+        {
+            base.ClearYears();
             return this;
         }
 
@@ -59,6 +71,12 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearGenres()
+        {
+            base.ClearGenres();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter AddLanguages(string language, params string[] languages)
         {
             base.AddLanguages(language, languages);
@@ -68,6 +86,12 @@
         public new TraktCommonMovieAndShowFilter WithLanguages(string language, params string[] languages)
         {
             base.WithLanguages(language, languages);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter ClearLanguages()
+        {
+            base.ClearLanguages();
             return this;
         }
 
@@ -83,9 +107,21 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         public new TraktCommonMovieAndShowFilter WithRuntimes(int begin, int end)
         {
             base.WithRuntimes(begin, end);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
             return this;
         }
 
@@ -95,18 +131,30 @@
             return this;
         }
 
+        public new TraktCommonMovieAndShowFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
         public TraktCommonMovieAndShowFilter AddCertifications(string certification, params string[] certifications)
             => AddCertifications(true, certification, certifications);
 
         public TraktCommonMovieAndShowFilter WithCertifications(string certification, params string[] certifications)
             => AddCertifications(false, certification, certifications);
 
-        /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        public TraktCommonMovieAndShowFilter ClearCertifications()
+        {
+            Certifications = null;
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter Clear()
         {
             base.Clear();
             Query = null;
             Certifications = null;
+            return this;
         }
 
         /// <summary>

@@ -63,7 +63,7 @@
         /// <returns>Returns the created authorization URL.</returns>
         public string CreateAuthorizationUrl(string clientId, string redirectUri)
         {
-            ValidateAuthorizationUrlParameters(clientId, redirectUri);
+            ValidateAuthorizationUrlArguments(clientId, redirectUri);
             return BuildAuthorizationUrl(clientId, redirectUri);
         }
 
@@ -82,7 +82,7 @@
         /// <returns>Returns the created authorization URL.</returns>
         public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
         {
-            ValidateAuthorizationUrlParameters(clientId, redirectUri, state);
+            ValidateAuthorizationUrlArguments(clientId, redirectUri, state);
             return BuildAuthorizationUrl(clientId, redirectUri, state);
         }
 
@@ -607,13 +607,13 @@
         private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
             var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
-            var isStagingUsed = Client.Configuration.UseStagingUrl;
+            var isStagingUsed = Client.Configuration.UseSandboxEnvironment;
             var baseUrl = isStagingUsed ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
             var authorizationUrl = $"{baseUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
             return authorizationUrl;
         }
 
-        private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri)
+        private void ValidateAuthorizationUrlArguments(string clientId, string redirectUri)
         {
             if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
                 throw new ArgumentException("client id not valid", nameof(clientId));
@@ -622,9 +622,9 @@
                 throw new ArgumentException("redirect uri not valid", nameof(redirectUri));
         }
 
-        private void ValidateAuthorizationUrlParameters(string clientId, string redirectUri, string state)
+        private void ValidateAuthorizationUrlArguments(string clientId, string redirectUri, string state)
         {
-            ValidateAuthorizationUrlParameters(clientId, redirectUri);
+            ValidateAuthorizationUrlArguments(clientId, redirectUri);
 
             if (string.IsNullOrEmpty(state) || state.ContainsSpace())
                 throw new ArgumentException("state not valid", nameof(state));
@@ -635,7 +635,7 @@
             if (string.IsNullOrEmpty(code) || code.ContainsSpace())
                 throw new ArgumentException("code not valid", nameof(code));
 
-            ValidateAuthorizationUrlParameters(clientId, redirectUri);
+            ValidateAuthorizationUrlArguments(clientId, redirectUri);
 
             if (string.IsNullOrEmpty(clientSecret) || clientSecret.ContainsSpace())
                 throw new ArgumentException("client secret not valid", nameof(clientSecret));

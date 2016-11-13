@@ -10,7 +10,7 @@
     public class TraktSearchFilterTests
     {
         [TestMethod]
-        public void TestTraktMovieFilterDefaultConstructor()
+        public void TestTraktSearchFilterDefaultConstructor()
         {
             var filter = new TraktSearchFilter();
 
@@ -24,7 +24,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterConstructor()
+        public void TestTraktSearchFilterConstructor()
         {
             var filter = new TraktSearchFilter(2016, new string[] { "action", "drama" },
                                                new string[] { "de", "en" },
@@ -47,7 +47,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterHasValues()
+        public void TestTraktSearchFilterHasValues()
         {
             var filter = new TraktSearchFilter();
 
@@ -101,7 +101,95 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterClear()
+        public void TestTraktSearchFilterClearYears()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClearGenres()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Genres.Should().BeNull();
+
+            filter.WithGenres("action", "drama");
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearGenres();
+            filter.Genres.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClearLanguages()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClearCountries()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Countries.Should().BeNull();
+
+            filter.WithCountries("gb", "us");
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCountries();
+            filter.Countries.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClearRuntimes()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Runtimes.Should().BeNull();
+
+            filter.WithRuntimes(30, 180);
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
+
+            filter.ClearRuntimes();
+            filter.Runtimes.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClearRatings()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSearchFilterClear()
         {
             var filter = new TraktSearchFilter();
 
@@ -139,7 +227,7 @@
         }
 
         [TestMethod]
-        public void TestTraktMovieFilterGetParameters()
+        public void TestTraktSearchFilterGetParameters()
         {
             var filter = new TraktSearchFilter();
 

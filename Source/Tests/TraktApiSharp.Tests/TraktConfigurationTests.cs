@@ -12,7 +12,7 @@
             var client = new TraktClient();
 
             client.Configuration.ApiVersion.Should().Be(2);
-            client.Configuration.UseStagingUrl.Should().BeFalse();
+            client.Configuration.UseSandboxEnvironment.Should().BeFalse();
             client.Configuration.BaseUrl.Should().Be("https://api.trakt.tv/");
             client.Configuration.ForceAuthorization.Should().BeFalse();
         }
@@ -22,7 +22,7 @@
         {
             var client = new TraktClient();
 
-            client.Configuration.UseStagingUrl = true;
+            client.Configuration.UseSandboxEnvironment = true;
             client.Configuration.BaseUrl.Should().Be("https://api-staging.trakt.tv/");
         }
     }

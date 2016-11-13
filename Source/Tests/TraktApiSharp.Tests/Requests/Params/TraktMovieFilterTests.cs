@@ -175,6 +175,122 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearQuery()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Query.Should().BeNull();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+
+            filter.ClearQuery();
+            filter.Query.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearYears()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearGenres()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Genres.Should().BeNull();
+
+            filter.WithGenres("action", "drama");
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearGenres();
+            filter.Genres.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearLanguages()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearCountries()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Countries.Should().BeNull();
+
+            filter.WithCountries("gb", "us");
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCountries();
+            filter.Countries.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearRuntimes()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Runtimes.Should().BeNull();
+
+            filter.WithRuntimes(30, 180);
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
+
+            filter.ClearRuntimes();
+            filter.Runtimes.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearRatings()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktMovieFilterClearCertifications()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Certifications.Should().BeNull();
+
+            filter.WithCertifications("cert1", "cert2");
+            filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCertifications();
+            filter.Certifications.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();

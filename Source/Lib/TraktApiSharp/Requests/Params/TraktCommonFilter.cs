@@ -90,17 +90,41 @@
             return this;
         }
 
+        public TraktCommonFilter ClearYears()
+        {
+            Years = 0;
+            return this;
+        }
+
         public TraktCommonFilter AddGenres(string genre, params string[] genres) => AddGenres(true, genre, genres);
 
         public TraktCommonFilter WithGenres(string genre, params string[] genres) => AddGenres(false, genre, genres);
+
+        public TraktCommonFilter ClearGenres()
+        {
+            Genres = null;
+            return this;
+        }
 
         public TraktCommonFilter AddLanguages(string language, params string[] languages) => AddLanguages(true, language, languages);
 
         public TraktCommonFilter WithLanguages(string language, params string[] languages) => AddLanguages(false, language, languages);
 
+        public TraktCommonFilter ClearLanguages()
+        {
+            Languages = null;
+            return this;
+        }
+
         public TraktCommonFilter AddCountries(string country, params string[] countries) => AddCountries(true, country, countries);
 
         public TraktCommonFilter WithCountries(string country, params string[] countries) => AddCountries(false, country, countries);
+
+        public TraktCommonFilter ClearCountries()
+        {
+            Countries = null;
+            return this;
+        }
 
         public TraktCommonFilter WithRuntimes(int begin, int end)
         {
@@ -108,6 +132,12 @@
                 throw new ArgumentOutOfRangeException("runtimes not valid");
 
             Runtimes = new Range<int>(begin, end);
+            return this;
+        }
+
+        public TraktCommonFilter ClearRuntimes()
+        {
+            Runtimes = null;
             return this;
         }
 
@@ -120,8 +150,13 @@
             return this;
         }
 
-        /// <summary>Deletes all filter parameter values.</summary>
-        public virtual void Clear()
+        public TraktCommonFilter ClearRatings()
+        {
+            Ratings = null;
+            return this;
+        }
+
+        public TraktCommonFilter Clear()
         {
             Years = 0;
             Genres = null;
@@ -129,6 +164,7 @@
             Countries = null;
             Runtimes = null;
             Ratings = null;
+            return this;
         }
 
         /// <summary>

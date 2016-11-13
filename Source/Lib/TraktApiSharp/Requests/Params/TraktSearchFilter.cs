@@ -43,6 +43,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current years value.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearYears()
+        {
+            base.ClearYears();
+            return this;
+        }
+
         /// <summary>Adds multiple Trakt genre slugs to the already existing Trakt genre slugs.</summary>
         /// <param name="genre">A Trakt genre slug.</param>
         /// <param name="genres">An optional array of Trakt genre slugs.</param>
@@ -60,6 +68,14 @@
         public new TraktSearchFilter WithGenres(string genre, params string[] genres)
         {
             base.WithGenres(genre, genres);
+            return this;
+        }
+
+        /// <summary>Deletes the current genre values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearGenres()
+        {
+            base.ClearGenres();
             return this;
         }
 
@@ -89,6 +105,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
@@ -115,6 +139,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current country values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         /// <summary>Sets the runtimes value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of the runtimes range.</param>
         /// <param name="end">The end value of the runtimes range.</param>
@@ -129,6 +161,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current runtime values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
+            return this;
+        }
+
         /// <summary>Sets the ratings value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of ratings range.</param>
         /// <param name="end">The end value of the ratings range.</param>
@@ -140,6 +180,22 @@
         public new TraktSearchFilter WithRatings(int begin, int end)
         {
             base.WithRatings(begin, end);
+            return this;
+        }
+
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
+        /// <summary>Deletes all filter parameter values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter Clear()
+        {
+            base.Clear();
             return this;
         }
     }

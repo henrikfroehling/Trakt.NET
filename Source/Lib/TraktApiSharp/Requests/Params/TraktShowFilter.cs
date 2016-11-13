@@ -80,6 +80,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current query value.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearQuery()
+        {
+            base.ClearQuery();
+            return this;
+        }
+
         /// <summary>Sets the years parameter value.</summary>
         /// <param name="years">A four digit year.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
@@ -87,6 +95,14 @@
         public new TraktShowFilter WithYears(int years)
         {
             base.WithYears(years);
+            return this;
+        }
+
+        /// <summary>Deletes the current years value.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearYears()
+        {
+            base.ClearYears();
             return this;
         }
 
@@ -107,6 +123,14 @@
         public new TraktShowFilter WithGenres(string genre, params string[] genres)
         {
             base.WithGenres(genre, genres);
+            return this;
+        }
+
+        /// <summary>Deletes the current genre values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearGenres()
+        {
+            base.ClearGenres();
             return this;
         }
 
@@ -136,6 +160,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
@@ -162,6 +194,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current country values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         /// <summary>Sets the runtimes value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of the runtimes range.</param>
         /// <param name="end">The end value of the runtimes range.</param>
@@ -176,6 +216,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current runtime values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
+            return this;
+        }
+
         /// <summary>Sets the ratings value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of ratings range.</param>
         /// <param name="end">The end value of the ratings range.</param>
@@ -187,6 +235,14 @@
         public new TraktShowFilter WithRatings(int begin, int end)
         {
             base.WithRatings(begin, end);
+            return this;
+        }
+
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearRatings()
+        {
+            base.ClearRatings();
             return this;
         }
 
@@ -210,6 +266,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current certification values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearCertifications()
+        {
+            base.ClearCertifications();
+            return this;
+        }
+
         /// <summary>Adds multiple network names to the already existing network names.</summary>
         /// <param name="network">A network name.</param>
         /// <param name="networks">An optional array of network names.</param>
@@ -221,6 +285,14 @@
         /// <param name="networks">An optional array of network names.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         public TraktShowFilter WithNetworks(string network, params string[] networks) => AddNetworks(false, network, networks);
+
+        /// <summary>Deletes the current network values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public TraktShowFilter ClearNetworks()
+        {
+            Networks = null;
+            return this;
+        }
 
         /// <summary>Adds multiple show states to the already existing show states.</summary>
         /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
@@ -236,12 +308,22 @@
         /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
         public TraktShowFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(false, status, states);
 
+        /// <summary>Deletes the current state values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public TraktShowFilter ClearStates()
+        {
+            States = null;
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktShowFilter Clear()
         {
             base.Clear();
             Networks = null;
             States = null;
+            return this;
         }
 
         /// <summary>
