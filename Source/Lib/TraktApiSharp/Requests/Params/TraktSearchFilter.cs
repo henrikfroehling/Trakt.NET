@@ -71,6 +71,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current genre values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearGenres()
+        {
+            base.ClearGenres();
+            return this;
+        }
+
         /// <summary>Adds multiple language codes to the already existing language codes.</summary>
         /// <param name="language">A two letter language code.</param>
         /// <param name="languages">An optional array of two letter language codes.</param>
