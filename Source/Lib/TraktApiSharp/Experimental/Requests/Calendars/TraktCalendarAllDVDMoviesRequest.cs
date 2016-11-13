@@ -1,7 +1,18 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars
 {
-    internal sealed class TraktCalendarAllDVDMoviesRequest
-    {
+    using Objects.Get.Calendars;
+    using System;
 
+    internal sealed class TraktCalendarAllDVDMoviesRequest : ATraktCalendarAllRequest<TraktCalendarMovie>
+    {
+        public TraktCalendarAllDVDMoviesRequest(TraktClient client) : base(client) { }
+
+        public override string UriTemplate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
