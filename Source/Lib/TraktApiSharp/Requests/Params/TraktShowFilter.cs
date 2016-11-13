@@ -98,6 +98,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current years value.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearYears()
+        {
+            base.ClearYears();
+            return this;
+        }
+
         /// <summary>Adds multiple Trakt genre slugs to the already existing Trakt genre slugs.</summary>
         /// <param name="genre">A Trakt genre slug.</param>
         /// <param name="genres">An optional array of Trakt genre slugs.</param>

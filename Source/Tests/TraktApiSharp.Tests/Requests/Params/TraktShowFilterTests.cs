@@ -344,6 +344,20 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearYears()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();
