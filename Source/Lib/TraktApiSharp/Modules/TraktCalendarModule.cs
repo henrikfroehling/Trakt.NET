@@ -152,6 +152,39 @@
         }
 
         /// <summary>
+        /// Gets all users <see cref="TraktCalendarMovie" />s with a DVD release during the given time period.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-dvd/get-dvd-releases">"Trakt API Doc - Calendars: My DVD"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
+        /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the movies should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <returns>A list of <see cref="TraktCalendarMovie" /> instances.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
+        [OAuthAuthorizationRequired]
+        public async Task<IEnumerable<TraktCalendarMovie>> GetUserDVDMoviesAsync(DateTime? startDate = null, int? days = null,
+                                                                                 TraktExtendedInfo extendedInfo = null,
+                                                                                 TraktCalendarFilter filter = null)
+        {
+            ValidateDays(days);
+
+            return await QueryAsync(new TraktCalendarUserDVDMoviesRequest(Client)
+            {
+                StartDate = startDate,
+                Days = days,
+                ExtendedInfo = extendedInfo,
+                Filter = filter
+            });
+        }
+
+        /// <summary>
         /// Gets all <see cref="TraktCalendarShow" />s airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
@@ -307,7 +340,7 @@
         {
             ValidateDays(days);
 
-            return await QueryAsync(new TraktCalendarAllDVDRequest(Client)
+            return await QueryAsync(new TraktCalendarAllDVDMoviesRequest(Client)
             {
                 StartDate = startDate,
                 Days = days,

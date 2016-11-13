@@ -332,7 +332,8 @@
     <Compile Include="Requests\Base\ITraktRequest.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllDVDRequest.cs" />
+    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserDVDMoviesRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllDVDMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />
