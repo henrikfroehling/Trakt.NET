@@ -34,26 +34,6 @@
                 $"\"IgnoreExpiration\":{AUTHORIZATION.IgnoreExpiration.ToString().ToLower()}" +
             "}";
 
-        private static readonly TraktDevice DEVICE = new TraktDevice
-        {
-            UserCode = "5055CC52",
-            DeviceCode = "d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64",
-            VerificationUrl = "https://trakt.tv/activate",
-            ExpiresInSeconds = 600,
-            IntervalInSeconds = 5,
-            Created = CREATED_AT
-        };
-
-        private static readonly string DEVICE_JSON =
-            "{" +
-                $"\"UserCode\":\"{DEVICE.UserCode}\"," +
-                $"\"DeviceCode\":\"{DEVICE.DeviceCode}\"," +
-                $"\"VerificationUrl\":\"{DEVICE.VerificationUrl}\"," +
-                $"\"ExpiresInSeconds\":{DEVICE.ExpiresInSeconds}," +
-                $"\"IntervalInSeconds\":{DEVICE.IntervalInSeconds}," +
-                $"\"CreatedAtTicks\":{CREATED_AT.Ticks}" +
-            "}";
-
         [TestMethod]
         public void TestTraktSerializationServiceSerializeTraktAuthorization()
         {
@@ -96,46 +76,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktDevice()
-        {
-            var jsonDevice = TraktSerializationService.Serialize(DEVICE);
-
-            jsonDevice.Should().NotBeNullOrEmpty();
-            jsonDevice.Should().Be(DEVICE_JSON);
-        }
-
-        [TestMethod]
-        public void TestTraktSerializationServiceSerializeEmptyTraktDevice()
-        {
-            var emptyDevice = new TraktDevice();
-
-            string emptyDeviceJson =
-            "{" +
-                $"\"UserCode\":\"\"," +
-                $"\"DeviceCode\":\"\"," +
-                $"\"VerificationUrl\":\"\"," +
-                $"\"ExpiresInSeconds\":0," +
-                $"\"IntervalInSeconds\":0," +
-                $"\"CreatedAtTicks\":{emptyDevice.Created.Ticks}" +
-            "}";
-
-            Action act = () => TraktSerializationService.Serialize(emptyDevice);
-            act.ShouldNotThrow();
-
-            var jsonDevice = TraktSerializationService.Serialize(emptyDevice);
-
-            jsonDevice.Should().NotBeNullOrEmpty();
-            jsonDevice.Should().Be(emptyDeviceJson);
-        }
-
-        [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktDeviceArgumentExceptions()
-        {
-            Action act = () => TraktSerializationService.Serialize(default(TraktDevice));
-            act.ShouldThrow<ArgumentNullException>();
-        }
-
-        [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktAuthorization()
         {
             var authorization = TraktSerializationService.DeserializeAuthorization(AUTHORIZATION_JSON);
@@ -167,40 +107,6 @@
             act.ShouldNotThrow();
 
             var result = TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
-            result.Should().BeNull();
-        }
-
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktDevice()
-        {
-            var device = TraktSerializationService.DeserializeDevice(DEVICE_JSON);
-
-            device.Should().NotBeNull();
-            device.UserCode.Should().Be(DEVICE.UserCode);
-            device.DeviceCode.Should().Be(DEVICE.DeviceCode);
-            device.VerificationUrl.Should().Be(DEVICE.VerificationUrl);
-            device.ExpiresInSeconds.Should().Be(DEVICE.ExpiresInSeconds);
-            device.IntervalInSeconds.Should().Be(DEVICE.IntervalInSeconds);
-            device.Created.Should().Be(DEVICE.Created);
-        }
-
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktDeviceArgumentExceptions()
-        {
-            Action act = () => TraktSerializationService.DeserializeDevice(null);
-            act.ShouldThrow<ArgumentException>();
-
-            act = () => TraktSerializationService.DeserializeDevice(string.Empty);
-            act.ShouldThrow<ArgumentException>();
-        }
-
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktDeviceInvalidJson()
-        {
-            Action act = () => TraktSerializationService.DeserializeDevice("{ \"invalid\": \"json\" }");
-            act.ShouldNotThrow();
-
-            var result = TraktSerializationService.DeserializeDevice("{ \"invalid\": \"json\" }");
             result.Should().BeNull();
         }
     }
