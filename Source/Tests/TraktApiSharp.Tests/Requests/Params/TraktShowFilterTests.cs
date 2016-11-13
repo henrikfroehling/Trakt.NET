@@ -416,6 +416,22 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearRatings()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();

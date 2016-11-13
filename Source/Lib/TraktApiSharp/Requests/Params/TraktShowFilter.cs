@@ -238,6 +238,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
         /// <summary>Adds multiple content certifications to the already existing content certifications.</summary>
         /// <param name="certification">A content certification.</param>
         /// <param name="certifications">An optional array of content certifications.</param>
