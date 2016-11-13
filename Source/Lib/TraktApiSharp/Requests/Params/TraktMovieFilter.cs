@@ -246,5 +246,13 @@
             base.ClearCertifications();
             return this;
         }
+
+        /// <summary>Deletes all filter parameter values.</summary>
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktMovieFilter Clear()
+        {
+            base.Clear();
+            return this;
+        }
     }
 }

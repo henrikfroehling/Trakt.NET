@@ -190,5 +190,13 @@
             base.ClearRatings();
             return this;
         }
+
+        /// <summary>Deletes all filter parameter values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter Clear()
+        {
+            base.Clear();
+            return this;
+        }
     }
 }

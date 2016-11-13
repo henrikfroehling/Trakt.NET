@@ -149,12 +149,12 @@
             return this;
         }
 
-        /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        public new TraktCommonMovieAndShowFilter Clear()
         {
             base.Clear();
             Query = null;
             Certifications = null;
+            return this;
         }
 
         /// <summary>

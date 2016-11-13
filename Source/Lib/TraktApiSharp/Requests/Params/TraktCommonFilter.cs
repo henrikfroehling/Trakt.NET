@@ -156,8 +156,7 @@
             return this;
         }
 
-        /// <summary>Deletes all filter parameter values.</summary>
-        public virtual void Clear()
+        public TraktCommonFilter Clear()
         {
             Years = 0;
             Genres = null;
@@ -165,6 +164,7 @@
             Countries = null;
             Runtimes = null;
             Ratings = null;
+            return this;
         }
 
         /// <summary>

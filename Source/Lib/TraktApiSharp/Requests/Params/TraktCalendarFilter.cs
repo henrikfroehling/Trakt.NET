@@ -228,10 +228,12 @@
         }
 
         /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter Clear()
         {
             base.Clear();
             Query = null;
+            return this;
         }
 
         /// <summary>

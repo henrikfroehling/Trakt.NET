@@ -317,11 +317,13 @@
         }
 
         /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktShowFilter Clear()
         {
             base.Clear();
             Networks = null;
             States = null;
+            return this;
         }
 
         /// <summary>
