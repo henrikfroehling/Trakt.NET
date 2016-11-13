@@ -277,6 +277,20 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearCertifications()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Certifications.Should().BeNull();
+
+            filter.WithCertifications("cert1", "cert2");
+            filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCertifications();
+            filter.Certifications.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();

@@ -238,5 +238,13 @@
             base.WithCertifications(certification, certifications);
             return this;
         }
+
+        /// <summary>Deletes the current certification values.</summary>
+        /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
+        public new TraktMovieFilter ClearCertifications()
+        {
+            base.ClearCertifications();
+            return this;
+        }
     }
 }
