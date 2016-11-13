@@ -161,6 +161,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current runtime values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
+            return this;
+        }
+
         /// <summary>Sets the ratings value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of ratings range.</param>
         /// <param name="end">The end value of the ratings range.</param>
