@@ -266,6 +266,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current certification values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearCertifications()
+        {
+            base.ClearCertifications();
+            return this;
+        }
+
         /// <summary>Adds multiple network names to the already existing network names.</summary>
         /// <param name="network">A network name.</param>
         /// <param name="networks">An optional array of network names.</param>

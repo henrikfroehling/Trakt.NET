@@ -432,6 +432,20 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearCertifications()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Certifications.Should().BeNull();
+
+            filter.WithCertifications("cert1", "cert2");
+            filter.Certifications.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCertifications();
+            filter.Certifications.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();
