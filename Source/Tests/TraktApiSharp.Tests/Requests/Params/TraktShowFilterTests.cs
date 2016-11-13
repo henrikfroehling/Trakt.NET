@@ -400,6 +400,22 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearRuntimes()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Runtimes.Should().BeNull();
+
+            filter.WithRuntimes(30, 180);
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
+
+            filter.ClearRuntimes();
+            filter.Runtimes.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();
