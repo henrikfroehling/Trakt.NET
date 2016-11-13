@@ -372,6 +372,20 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearLanguages()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();

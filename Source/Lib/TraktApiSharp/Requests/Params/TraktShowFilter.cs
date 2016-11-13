@@ -160,6 +160,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
