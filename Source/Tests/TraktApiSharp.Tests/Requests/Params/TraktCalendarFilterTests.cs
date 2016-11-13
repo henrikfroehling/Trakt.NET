@@ -110,6 +110,108 @@
         }
 
         [TestMethod]
+        public void TestTraktCalendarFilterClearQuery()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Query.Should().BeNull();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+
+            filter.ClearQuery();
+            filter.Query.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearYears()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Years.Should().Be(0);
+
+            filter.WithYears(2016);
+            filter.Years.Should().Be(2016);
+
+            filter.ClearYears();
+            filter.Years.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearGenres()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Genres.Should().BeNull();
+
+            filter.WithGenres("action", "drama");
+            filter.Genres.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearGenres();
+            filter.Genres.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearLanguages()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Languages.Should().BeNull();
+
+            filter.WithLanguages("de", "en");
+            filter.Languages.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearLanguages();
+            filter.Languages.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearCountries()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Countries.Should().BeNull();
+
+            filter.WithCountries("gb", "us");
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCountries();
+            filter.Countries.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearRuntimes()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Runtimes.Should().BeNull();
+
+            filter.WithRuntimes(30, 180);
+            filter.Runtimes.Should().NotBeNull();
+            filter.Runtimes.Value.Begin.Should().Be(30);
+            filter.Runtimes.Value.End.Should().Be(180);
+
+            filter.ClearRuntimes();
+            filter.Runtimes.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktCalendarFilterClearRatings()
+        {
+            var filter = new TraktCalendarFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktCalendarFilterClear()
         {
             var filter = new TraktCalendarFilter();

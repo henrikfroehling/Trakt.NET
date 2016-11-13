@@ -61,6 +61,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current query value.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public TraktCalendarFilter ClearQuery()
+        {
+            Query = null;
+            return this;
+        }
+
         /// <summary>Sets the years parameter value.</summary>
         /// <param name="years">A four digit year.</param>
         /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
@@ -68,6 +76,14 @@
         public new TraktCalendarFilter WithYears(int years)
         {
             base.WithYears(years);
+            return this;
+        }
+
+        /// <summary>Deletes the current years value.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearYears()
+        {
+            base.ClearYears();
             return this;
         }
 
@@ -88,6 +104,14 @@
         public new TraktCalendarFilter WithGenres(string genre, params string[] genres)
         {
             base.WithGenres(genre, genres);
+            return this;
+        }
+
+        /// <summary>Deletes the current genre values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearGenres()
+        {
+            base.ClearGenres();
             return this;
         }
 
@@ -117,6 +141,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
@@ -143,6 +175,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current country values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearCountries()
+        {
+            base.ClearCountries();
+            return this;
+        }
+
         /// <summary>Sets the runtimes value parameter and overwrites already exisiting values with the given ones.</summary>
         /// <param name="begin">The begin value of the runtimes range.</param>
         /// <param name="end">The end value of the runtimes range.</param>
@@ -154,6 +194,14 @@
         public new TraktCalendarFilter WithRuntimes(int begin, int end)
         {
             base.WithRuntimes(begin, end);
+            return this;
+        }
+
+        /// <summary>Deletes the current runtime values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearRuntimes()
+        {
+            base.ClearRuntimes();
             return this;
         }
 
@@ -171,11 +219,21 @@
             return this;
         }
 
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
-        public override void Clear()
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
+        public new TraktCalendarFilter Clear()
         {
             base.Clear();
             Query = null;
+            return this;
         }
 
         /// <summary>
