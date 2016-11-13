@@ -35,28 +35,6 @@
             return Json.Serialize(authorizationWrapper);
         }
 
-        /// <summary>Serializes an <see cref="TraktDevice" /> instance to a JSON string.</summary>
-        /// <param name="device">The device information, which should be serialized.</param>
-        /// <returns>A Json string, containing all properties of the given device.</returns>
-        /// <exception cref="ArgumentNullException">Thrown, if the given device is null.</exception>
-        public static string Serialize(TraktDevice device)
-        {
-            if (device == null)
-                throw new ArgumentNullException(nameof(device), "device must not be null");
-
-            var deviceWrapper = new
-            {
-                UserCode = device.UserCode ?? string.Empty,
-                DeviceCode = device.DeviceCode ?? string.Empty,
-                VerificationUrl = device.VerificationUrl ?? string.Empty,
-                ExpiresInSeconds = device.ExpiresInSeconds,
-                IntervalInSeconds = device.IntervalInSeconds,
-                CreatedAtTicks = device.Created.Ticks
-            };
-
-            return Json.Serialize(deviceWrapper);
-        }
-
         /// <summary>Deserializes a JSON string to an <see cref="TraktAuthorization" /> instance.</summary>
         /// <param name="authorizationJson">The JSON string, which should be deserialized.</param>
         /// <returns>
@@ -114,60 +92,6 @@
             }
 
             return default(TraktAuthorization);
-        }
-
-        /// <summary>Deserializes a JSON string to an <see cref="TraktDevice" /> instance.</summary>
-        /// <param name="deviceJson">The JSON string, which should be deserialized.</param>
-        /// <returns>
-        /// An <see cref="TraktDevice" /> instance, containing the information from the JSON string, if successful.
-        /// If the JSON string could not be parsed, null will be returned.
-        /// </returns>
-        /// <exception cref="ArgumentException">Thrown, if the given deviceJson is null or empty.</exception>
-        public static TraktDevice DeserializeDevice(string deviceJson)
-        {
-            if (string.IsNullOrEmpty(deviceJson))
-                throw new ArgumentException("device JSON is invalid", nameof(deviceJson));
-
-            var deviceWrapper = new
-            {
-                UserCode = string.Empty,
-                DeviceCode = string.Empty,
-                VerificationUrl = string.Empty,
-                ExpiresInSeconds = 0,
-                IntervalInSeconds = 0,
-                CreatedAtTicks = 0L
-            };
-
-            var anonymousDevice = JsonConvert.DeserializeAnonymousType(deviceJson, deviceWrapper);
-
-            if (anonymousDevice != null)
-            {
-                var userCode = anonymousDevice.UserCode;
-                var deviceCode = anonymousDevice.DeviceCode;
-                var verificationUrl = anonymousDevice.VerificationUrl;
-                var expiresInSeconds = anonymousDevice.ExpiresInSeconds;
-                var intervalInSeconds = anonymousDevice.IntervalInSeconds;
-                var createdAtTicks = anonymousDevice.CreatedAtTicks;
-
-                if (userCode == null || deviceCode == null || verificationUrl == null)
-                    return default(TraktDevice);
-
-                var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
-
-                var device = new TraktDevice
-                {
-                    UserCode = userCode,
-                    DeviceCode = deviceCode,
-                    VerificationUrl = verificationUrl,
-                    ExpiresInSeconds = expiresInSeconds,
-                    IntervalInSeconds = intervalInSeconds,
-                    Created = createdDateTime
-                };
-
-                return device;
-            }
-
-            return default(TraktDevice);
         }
     }
 }
