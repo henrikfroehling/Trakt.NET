@@ -308,6 +308,14 @@
         /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
         public TraktShowFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(false, status, states);
 
+        /// <summary>Deletes the current state values.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public TraktShowFilter ClearStates()
+        {
+            States = null;
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
         public override void Clear()
         {

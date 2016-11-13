@@ -460,6 +460,23 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearStates()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.States.Should().BeNull();
+
+            var state1 = TraktShowStatus.ReturningSeries;
+            var state2 = TraktShowStatus.InProduction;
+
+            filter.WithStates(state1, state2);
+            filter.States.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearStates();
+            filter.States.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();
