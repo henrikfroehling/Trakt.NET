@@ -261,6 +261,22 @@
         }
 
         [TestMethod]
+        public void TestTraktMovieFilterClearRatings()
+        {
+            var filter = new TraktMovieFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktMovieFilterClear()
         {
             var filter = new TraktMovieFilter();
