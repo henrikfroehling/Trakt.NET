@@ -80,6 +80,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current query value.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        public new TraktShowFilter ClearQuery()
+        {
+            base.ClearQuery();
+            return this;
+        }
+
         /// <summary>Sets the years parameter value.</summary>
         /// <param name="years">A four digit year.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>

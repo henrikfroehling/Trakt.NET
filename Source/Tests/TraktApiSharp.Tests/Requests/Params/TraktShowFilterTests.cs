@@ -330,6 +330,20 @@
         }
 
         [TestMethod]
+        public void TestTraktShowFilterClearQuery()
+        {
+            var filter = new TraktShowFilter();
+
+            filter.Query.Should().BeNull();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+
+            filter.ClearQuery();
+            filter.Query.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktShowFilterClear()
         {
             var filter = new TraktShowFilter();
