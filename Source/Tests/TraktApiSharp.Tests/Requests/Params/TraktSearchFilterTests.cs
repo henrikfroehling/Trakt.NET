@@ -143,6 +143,20 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchFilterClearCountries()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Countries.Should().BeNull();
+
+            filter.WithCountries("gb", "us");
+            filter.Countries.Should().NotBeNull().And.HaveCount(2);
+
+            filter.ClearCountries();
+            filter.Countries.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktSearchFilterClear()
         {
             var filter = new TraktSearchFilter();
