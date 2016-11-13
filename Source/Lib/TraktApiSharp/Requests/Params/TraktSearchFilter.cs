@@ -182,5 +182,13 @@
             base.WithRatings(begin, end);
             return this;
         }
+
+        /// <summary>Deletes the current rating values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearRatings()
+        {
+            base.ClearRatings();
+            return this;
+        }
     }
 }

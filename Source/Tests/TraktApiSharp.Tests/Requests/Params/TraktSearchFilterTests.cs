@@ -173,6 +173,22 @@
         }
 
         [TestMethod]
+        public void TestTraktSearchFilterClearRatings()
+        {
+            var filter = new TraktSearchFilter();
+
+            filter.Ratings.Should().BeNull();
+
+            filter.WithRatings(60, 90);
+            filter.Ratings.Should().NotBeNull();
+            filter.Ratings.Value.Begin.Should().Be(60);
+            filter.Ratings.Value.End.Should().Be(90);
+
+            filter.ClearRatings();
+            filter.Ratings.Should().BeNull();
+        }
+
+        [TestMethod]
         public void TestTraktSearchFilterClear()
         {
             var filter = new TraktSearchFilter();
