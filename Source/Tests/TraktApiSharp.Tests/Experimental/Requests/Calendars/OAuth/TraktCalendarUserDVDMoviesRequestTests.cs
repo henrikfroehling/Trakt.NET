@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Calendars.OAuth;
+    using TraktApiSharp.Objects.Get.Calendars;
 
     [TestClass]
     public class TraktCalendarUserDVDMoviesRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktCalendarUserDVDMoviesRequestIsSealed()
         {
             typeof(TraktCalendarUserDVDMoviesRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Movies")]
+        public void TestTraktCalendarUserDVDMoviesRequestIsSubclassOfATraktCalendarUserRequest()
+        {
+            typeof(TraktCalendarUserDVDMoviesRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<TraktCalendarMovie>)).Should().BeTrue();
         }
     }
 }
