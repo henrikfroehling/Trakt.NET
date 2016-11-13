@@ -254,7 +254,7 @@
         /// Gets all <see cref="TraktCalendarMovie" />s airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-movies/get-movies">"Trakt API Doc - Calendars: My Movies"</a> for more information.
+        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-movies/get-movies">"Trakt API Doc - Calendars: All Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
