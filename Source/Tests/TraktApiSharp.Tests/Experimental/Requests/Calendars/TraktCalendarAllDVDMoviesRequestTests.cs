@@ -12,5 +12,11 @@
         {
             typeof(TraktCalendarAllDVDMoviesRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Movies")]
+        public void TestTraktCalendarAllDVDMoviesRequestIsSealed()
+        {
+            typeof(TraktCalendarAllDVDMoviesRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
