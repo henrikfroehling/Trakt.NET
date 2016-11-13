@@ -33,5 +33,12 @@
             var request = new TraktCalendarAllDVDMoviesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Movies")]
+        public void TestTraktCalendarAllDVDMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktCalendarAllDVDMoviesRequest(null);
+            request.UriTemplate.Should().Be("calendars/all/dvd{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
+        }
     }
 }
