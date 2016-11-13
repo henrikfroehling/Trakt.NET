@@ -142,6 +142,7 @@
         }
 
         /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
         public new TraktCalendarFilter ClearLanguages()
         {
             base.ClearLanguages();

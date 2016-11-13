@@ -105,6 +105,14 @@
             return this;
         }
 
+        /// <summary>Deletes the current language values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public new TraktSearchFilter ClearLanguages()
+        {
+            base.ClearLanguages();
+            return this;
+        }
+
         /// <summary>Adds multiple country codes to the already existing country codes.</summary>
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
