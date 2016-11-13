@@ -164,6 +164,7 @@
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequest.cs" />
+    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserDVDMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserNewShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserSeasonPremieresRequest.cs" />
