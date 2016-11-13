@@ -1,7 +1,34 @@
 Release notes
 =============
 ---
----
+
+Version 0.7.0
+===
+
+#### 0.7.0
+*(2016-11-13)*
+
+Added:
+
+- support for "calendars/all/dvd" request (TraktCalendarModule.GetAllDVDMoviesAsync())
+- support for "calendars/my/dvd" request (TraktCalendarModule.GetUserDVDMoviesAsync())
+- Clear*ParameterName*() method for each parameter in TraktCalendarFilter, TraktMovieFilter, TraktShowFilter and TraktSearchFilter
+
+Renamed:
+
+- UseStagingUrl (-> UseSandboxEnvironment) in TraktConfiguration
+
+Changed:
+
+- return type of Clear() method in TraktCalendarFilter to TraktCalendarFilter
+- return type of Clear() method in TraktMovieFilter to TraktMovieFilter
+- return type of Clear() method in TraktShowFilter to TraktShowFilter
+- return type of Clear() method in TraktSearchFilter to TraktSearchFilter
+
+Removed:
+
+- Serialize(TraktDevice) in TraktSerializationService
+- DeserializeDevice() in TraktSerializationService
 
 Version 0.6.0
 ===

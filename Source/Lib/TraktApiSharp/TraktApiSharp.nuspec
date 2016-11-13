@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.6.0</version>
+        <version>0.7.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
+        <projectUrl>https://traktapisharp.net</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>C# wrapper library for the Trakt.tv API.
 
@@ -21,18 +21,22 @@ Features
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>Added:
+- support for "calendars/all/dvd" request (TraktCalendarModule.GetAllDVDMoviesAsync())
+- support for "calendars/my/dvd" request (TraktCalendarModule.GetUserDVDMoviesAsync())
+- Clear[ParameterName]() method for each parameter in TraktCalendarFilter, TraktMovieFilter, TraktShowFilter and TraktSearchFilter
 
-- "HiddenAt" properties in response of TraktSyncModule.GetLastActivitiesAsync()
-- "Id" property (history id) in response of TraktCheckinsModule.CheckInto[Movie|Episode|EpisodeWithShow]Async()
-- "Id" property (history id) in response of TraktScrobbleModule.Start[Movie|Episode|EpisodeWithShow]Async()
-- "Id" property (history id) in response of TraktScrobbleModule.Pause[Movie|Episode|EpisodeWithShow]Async()
-- "Id" property (history id) in response of TraktScrobbleModule.Stop[Movie|Episode|EpisodeWithShow]Async()
-- support for "shows/id/next_episode" request (TraktShowsModule.GetShowNextEpisodeAsync())
-- support for "shows/id/last_episode" request (TraktShowsModule.GetShowLastEpisodeAsync())
+Renamed:
+- UseStagingUrl (-> UseSandboxEnvironment) in TraktConfiguration
 
-Fixed:
+Changed:
+- return type of Clear() method in TraktCalendarFilter to TraktCalendarFilter
+- return type of Clear() method in TraktMovieFilter to TraktMovieFilter
+- return type of Clear() method in TraktShowFilter to TraktShowFilter
+- return type of Clear() method in TraktSearchFilter to TraktSearchFilter
 
-- thrown exception for episode requests with season number 0
+Removed:
+- Serialize(TraktDevice) in TraktSerializationService
+- DeserializeDevice() in TraktSerializationService
         </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
