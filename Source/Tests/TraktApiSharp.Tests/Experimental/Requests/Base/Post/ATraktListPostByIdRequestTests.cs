@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
-        public void TestATraktListPostByIdRequestIsSubclassOfATraktListRequest()
+        public void TestATraktListPostByIdRequestIsSubclassOfATraktListPostRequest()
         {
-            typeof(ATraktListPostByIdRequest<int, float>).IsSubclassOf(typeof(ATraktListRequest<int>)).Should().BeTrue();
+            typeof(ATraktListPostByIdRequest<int, float>).IsSubclassOf(typeof(ATraktListPostRequest<int, float>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
