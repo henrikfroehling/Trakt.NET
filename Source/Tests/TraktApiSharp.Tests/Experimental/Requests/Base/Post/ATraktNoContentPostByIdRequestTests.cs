@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
-        public void TestATraktNoContentPostByIdRequestIsSubclassOfATraktNoContentRequest()
+        public void TestATraktNoContentPostByIdRequestIsSubclassOfATraktNoContentPostRequest()
         {
-            typeof(ATraktNoContentPostByIdRequest<float>).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
+            typeof(ATraktNoContentPostByIdRequest<float>).IsSubclassOf(typeof(ATraktNoContentPostRequest<float>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
