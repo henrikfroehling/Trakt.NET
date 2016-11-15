@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
-        public void TestATraktNoContentDeleteByIdRequestIsSubclassOfATraktNoContentRequest()
+        public void TestATraktNoContentDeleteByIdRequestIsSubclassOfATraktNoContentDeleteRequest()
         {
-            typeof(ATraktNoContentDeleteByIdRequest).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
+            typeof(ATraktNoContentDeleteByIdRequest).IsSubclassOf(typeof(ATraktNoContentDeleteRequest)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
