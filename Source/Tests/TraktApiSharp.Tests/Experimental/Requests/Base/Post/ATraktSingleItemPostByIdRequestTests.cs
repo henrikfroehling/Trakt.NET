@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
-        public void TestATraktSingleItemPostByIdRequestIsSubclassOfATraktSingleItemRequest()
+        public void TestATraktSingleItemPostByIdRequestIsSubclassOfATraktSingleItemPostRequest()
         {
-            typeof(ATraktSingleItemPostByIdRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
+            typeof(ATraktSingleItemPostByIdRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostRequest<int, float>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
