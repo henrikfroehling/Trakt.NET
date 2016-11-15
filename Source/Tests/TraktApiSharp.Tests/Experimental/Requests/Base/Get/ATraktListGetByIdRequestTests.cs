@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
-        public void TestATraktListGetByIdRequestIsSubclassOfATraktListRequest()
+        public void TestATraktListGetByIdRequestIsSubclassOfATraktListGetRequest()
         {
-            typeof(ATraktListGetByIdRequest<int>).IsSubclassOf(typeof(ATraktListRequest<int>)).Should().BeTrue();
+            typeof(ATraktListGetByIdRequest<int>).IsSubclassOf(typeof(ATraktListGetRequest<int>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
