@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
-        public void TestATraktNoContentPutByIdRequestIsSubclassOfATraktNoContentRequest()
+        public void TestATraktNoContentPutByIdRequestIsSubclassOfATraktNoContentPutRequest()
         {
-            typeof(ATraktNoContentPutByIdRequest<float>).IsSubclassOf(typeof(ATraktNoContentRequest)).Should().BeTrue();
+            typeof(ATraktNoContentPutByIdRequest<float>).IsSubclassOf(typeof(ATraktNoContentPutRequest<float>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
