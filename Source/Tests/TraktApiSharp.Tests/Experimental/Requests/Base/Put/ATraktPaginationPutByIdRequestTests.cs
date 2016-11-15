@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
-        public void TestATraktPaginationPutByIdRequestIsSubclassOfATraktPaginationRequest()
+        public void TestATraktPaginationPutByIdRequestIsSubclassOfATraktPaginationPutRequest()
         {
-            typeof(ATraktPaginationPutByIdRequest<int, float>).IsSubclassOf(typeof(ATraktPaginationRequest<int>)).Should().BeTrue();
+            typeof(ATraktPaginationPutByIdRequest<int, float>).IsSubclassOf(typeof(ATraktPaginationPutRequest<int, float>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
