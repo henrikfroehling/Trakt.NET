@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
-        public void TestATraktListBodylessPostByIdRequestIsSubclassOfATraktListRequest()
+        public void TestATraktListBodylessPostByIdRequestIsSubclassOfATraktListBodylessPostRequest()
         {
-            typeof(ATraktListBodylessPostByIdRequest<int>).IsSubclassOf(typeof(ATraktListRequest<int>)).Should().BeTrue();
+            typeof(ATraktListBodylessPostByIdRequest<int>).IsSubclassOf(typeof(ATraktListBodylessPostRequest<int>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
