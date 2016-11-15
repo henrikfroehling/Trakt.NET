@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
-        public void TestATraktSingleItemGetByIdRequestIsSubclassOfATraktSingleItemRequest()
+        public void TestATraktSingleItemGetByIdRequestIsSubclassOfATraktSingleItemGetRequest()
         {
-            typeof(ATraktSingleItemGetByIdRequest<int>).IsSubclassOf(typeof(ATraktSingleItemRequest<int>)).Should().BeTrue();
+            typeof(ATraktSingleItemGetByIdRequest<int>).IsSubclassOf(typeof(ATraktSingleItemGetRequest<int>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
