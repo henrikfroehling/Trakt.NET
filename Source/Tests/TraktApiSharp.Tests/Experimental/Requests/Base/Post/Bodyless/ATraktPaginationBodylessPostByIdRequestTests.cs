@@ -16,9 +16,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
-        public void TestATraktPaginationBodylessPostByIdRequestIsSubclassOfATraktPaginationRequestt()
+        public void TestATraktPaginationBodylessPostByIdRequestIsSubclassOfATraktPaginationBodylessPostRequest()
         {
-            typeof(ATraktPaginationBodylessPostByIdRequest<int>).IsSubclassOf(typeof(ATraktPaginationRequest<int>)).Should().BeTrue();
+            typeof(ATraktPaginationBodylessPostByIdRequest<int>).IsSubclassOf(typeof(ATraktPaginationBodylessPostRequest<int>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
