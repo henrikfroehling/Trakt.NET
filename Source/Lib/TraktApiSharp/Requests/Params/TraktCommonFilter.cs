@@ -9,25 +9,36 @@
         protected TraktCommonFilter(int? startYear = null, int? endYear = null, string[] genres = null, string[] languages = null,
                                     string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
-            StartYear = startYear;
-            EndYear = endYear;
+            if (startYear.HasValue)
+                WithStartYear(startYear.Value);
+
+            if (endYear.HasValue)
+                WithEndYear(endYear.Value);
+            
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
-            Runtimes = runtimes;
-            Ratings = ratings;
+
+            if (runtimes.HasValue)
+                WithRuntimes(runtimes.Value.Begin, runtimes.Value.End);
+
+            if (ratings.HasValue)
+                WithRatings(ratings.Value.Begin, ratings.Value.End);
         }
 
-        /// <summary>Returns the years parameter value.</summary>
+        /// <summary>Returns the start year of the years parameter value.</summary>
         public int? StartYear { get; protected set; }
 
+        /// <summary>Returns the end year of the years parameter value.</summary>
         public int? EndYear { get; protected set; }
 
-        /// <summary>Returns, whether the years parameter is set.</summary>
+        /// <summary>Returns, whether the years parameter has set a start year.</summary>
         public bool HasStartYearSet => StartYear.HasValue && StartYear > 0 && StartYear.ToString().Length == 4;
 
+        /// <summary>Returns, whether the years parameter has set an end year.</summary>
         public bool HasEndYearSet => EndYear.HasValue && EndYear > 0 && EndYear.ToString().Length == 4;
 
+        /// <summary>Returns, whether the years parameter has set a start and / or end year.</summary>
         public bool HasYearsSet => HasStartYearSet || HasEndYearSet;
 
         /// <summary>Returns the Trakt genre slugs parameter value.</summary>

@@ -20,23 +20,24 @@
     public class TraktShowFilter : TraktCommonMovieAndShowFilter
     {
         /// <summary>Initializes an <see cref="TraktShowFilter" /> instance with the given values.</summary>
-        /// <param name="query">Query string for titles and descriptions.</param>
-        /// <param name="startYear">Four digit year.</param>
-        /// <param name="endYear">Four digit year.</param>
-        /// <param name="genres">An array of Trakt genre slugs.</param>
-        /// <param name="languages">An array of two letter language codes.</param>
-        /// <param name="countries">An array of two letter country codes.</param>
-        /// <param name="runtimes">An <see cref="Range{T}" /> instance for minutes.</param>
-        /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
-        /// <param name="certifications">An array of content certificiations.</param>
-        /// <param name="networks">An array of network names.</param>
-        /// <param name="states">An array of show states. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <param name="query">An optional query string for titles and descriptions.</param>
+        /// <param name="startYear">An optional four digit start year for the years parameter.</param>
+        /// <param name="endYear">An optional four digit end year for the years parameter.</param>
+        /// <param name="genres">An optional array of Trakt genre slugs.</param>
+        /// <param name="languages">An optional array of two letter language codes.</param>
+        /// <param name="countries">An optional array of two letter country codes.</param>
+        /// <param name="runtimes">An optional <see cref="Range{T}" /> instance for minutes.</param>
+        /// <param name="ratings">An optional <see cref="Range{T}" /> instance for ratings.</param>
+        /// <param name="certifications">An optional array of content certificiations.</param>
+        /// <param name="networks">An optional aarray of network names.</param>
+        /// <param name="states">An optional aarray of show states. See also <seealso cref="TraktShowStatus" />.</param>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given query string is null or empty.
         /// Thrown, if one of the given states is unspecified.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
+        /// Thrown, if the given <paramref name="endYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
         /// if its end value is below its begin value.
         /// Thrown, if the begin value of the given ratings range is below zero or if its end value is below zero or
@@ -87,29 +88,38 @@
             return this;
         }
 
-        /// <summary>Sets the years parameter value.</summary>
+        /// <summary>Sets the start year for the years parameter value.</summary>
         /// <param name="startYear">A four digit year.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given years value does not have four digits.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given year does not have four digits.</exception>
         public new TraktShowFilter WithStartYear(int startYear)
         {
             base.WithStartYear(startYear);
             return this;
         }
 
+        /// <summary>Sets the end year for the years parameter value.</summary>
+        /// <param name="endYear">A four digit year.</param>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given year does not have four digits.</exception>
         public new TraktShowFilter WithEndYear(int endYear)
         {
             base.WithEndYear(endYear);
             return this;
         }
 
+        /// <summary>Sets the start and end year for the years parameter value.</summary>
+        /// <param name="startYear">A four digit year.</param>
+        /// <param name="endYear">A four digit year.</param>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least on of the given year values does not have four digits.</exception>
         public new TraktShowFilter WithYears(int startYear, int endYear)
         {
             base.WithYears(startYear, endYear);
             return this;
         }
 
-        /// <summary>Deletes the current years value.</summary>
+        /// <summary>Deletes the current start year of the years parameter.</summary>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         public new TraktShowFilter ClearStartYear()
         {
@@ -117,12 +127,16 @@
             return this;
         }
 
+        /// <summary>Deletes the current end year of the years parameter.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         public new TraktShowFilter ClearEndYear()
         {
             base.ClearEndYear();
             return this;
         }
 
+        /// <summary>Deletes the current years parameter.</summary>
+        /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         public new TraktShowFilter ClearYears()
         {
             base.ClearYears();

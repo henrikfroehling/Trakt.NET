@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Params
 {
+    using System;
     using Utils;
 
     /// <summary>
@@ -11,15 +12,16 @@
     public class TraktSearchFilter : TraktCommonFilter
     {
         /// <summary>Initializes an <see cref="TraktSearchFilter" /> instance with the given values.</summary>
-        /// <param name="startYear">Four digit year.</param>
-        /// <param name="endYear">Four digit year.</param>
-        /// <param name="genres">An array of Trakt genre slugs.</param>
-        /// <param name="languages">An array of two letter language codes.</param>
-        /// <param name="countries">An array of two letter country codes.</param>
-        /// <param name="runtimes">An <see cref="Range{T}" /> instance for minutes.</param>
-        /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
+        /// <param name="startYear">An optional four digit start year for the years parameter.</param>
+        /// <param name="endYear">An optional four digit end year for the years parameter.</param>
+        /// <param name="genres">An optional array of Trakt genre slugs.</param>
+        /// <param name="languages">An optional array of two letter language codes.</param>
+        /// <param name="countries">An optional array of two letter country codes.</param>
+        /// <param name="runtimes">An optional <see cref="Range{T}" /> instance for minutes.</param>
+        /// <param name="ratings">An optional <see cref="Range{T}" /> instance for ratings.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
+        /// Thrown, if the given <paramref name="endYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
         /// if its end value is below its begin value.
         /// Thrown, if the begin value of the given ratings range is below zero or if its end value is below zero or
@@ -31,29 +33,38 @@
                                  string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
             : base(startYear, endYear, genres, languages, countries, runtimes, ratings) { }
 
-        /// <summary>Sets the years parameter value.</summary>
+        /// <summary>Sets the start year for the years parameter value.</summary>
         /// <param name="startYear">A four digit year.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">Thrown, if the given years value does not have four digits.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given year does not have four digits.</exception>
         public new TraktSearchFilter WithStartYear(int startYear)
         {
             base.WithStartYear(startYear);
             return this;
         }
 
+        /// <summary>Sets the end year for the years parameter value.</summary>
+        /// <param name="endYear">A four digit year.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given year does not have four digits.</exception>
         public new TraktSearchFilter WithEndYear(int endYear)
         {
             base.WithEndYear(endYear);
             return this;
         }
 
+        /// <summary>Sets the start and end year for the years parameter value.</summary>
+        /// <param name="startYear">A four digit year.</param>
+        /// <param name="endYear">A four digit year.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least on of the given year values does not have four digits.</exception>
         public new TraktSearchFilter WithYears(int startYear, int endYear)
         {
             base.WithYears(startYear, endYear);
             return this;
         }
 
-        /// <summary>Deletes the current years value.</summary>
+        /// <summary>Deletes the current start year of the years parameter.</summary>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         public new TraktSearchFilter ClearStartYear()
         {
@@ -61,12 +72,16 @@
             return this;
         }
 
+        /// <summary>Deletes the current end year of the years parameter.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         public new TraktSearchFilter ClearEndYear()
         {
             base.ClearEndYear();
             return this;
         }
 
+        /// <summary>Deletes the current years parameter.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         public new TraktSearchFilter ClearYears()
         {
             base.ClearYears();
