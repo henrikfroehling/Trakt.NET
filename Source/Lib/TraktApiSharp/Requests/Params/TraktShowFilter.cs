@@ -21,7 +21,7 @@
     {
         /// <summary>Initializes an <see cref="TraktShowFilter" /> instance with the given values.</summary>
         /// <param name="query">Query string for titles and descriptions.</param>
-        /// <param name="years">Four digit year.</param>
+        /// <param name="startYear">Four digit year.</param>
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
@@ -35,7 +35,7 @@
         /// Thrown, if one of the given states is unspecified.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given <paramref name="years" /> value does not have four digits.
+        /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
         /// if its end value is below its begin value.
         /// Thrown, if the begin value of the given ratings range is below zero or if its end value is below zero or
@@ -43,10 +43,10 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktShowFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
+        public TraktShowFilter(string query = null, int? startYear = null, string[] genres = null, string[] languages = null,
                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
-            : base(query, years, genres, languages, countries, runtimes, ratings, certifications)
+            : base(query, startYear, genres, languages, countries, runtimes, ratings, certifications)
         {
             WithNetworks(null, networks);
             WithStates(TraktShowStatus.Unspecified, states);
@@ -86,20 +86,20 @@
         }
 
         /// <summary>Sets the years parameter value.</summary>
-        /// <param name="years">A four digit year.</param>
+        /// <param name="startYear">A four digit year.</param>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given years value does not have four digits.</exception>
-        public new TraktShowFilter WithYears(int years)
+        public new TraktShowFilter WithStartYear(int startYear)
         {
-            base.WithYears(years);
+            base.WithStartYear(startYear);
             return this;
         }
 
         /// <summary>Deletes the current years value.</summary>
         /// <returns>The current <see cref="TraktShowFilter" /> instance.</returns>
-        public new TraktShowFilter ClearYears()
+        public new TraktShowFilter ClearStartYear()
         {
-            base.ClearYears();
+            base.ClearStartYear();
             return this;
         }
 

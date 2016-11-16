@@ -11,14 +11,14 @@
     public class TraktSearchFilter : TraktCommonFilter
     {
         /// <summary>Initializes an <see cref="TraktSearchFilter" /> instance with the given values.</summary>
-        /// <param name="years">Four digit year.</param>
+        /// <param name="startYear">Four digit year.</param>
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
         /// <param name="runtimes">An <see cref="Range{T}" /> instance for minutes.</param>
         /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Thrown, if the given <paramref name="years" /> value does not have four digits.
+        /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
         /// if its end value is below its begin value.
         /// Thrown, if the begin value of the given ratings range is below zero or if its end value is below zero or
@@ -26,25 +26,25 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktSearchFilter(int? years = null, string[] genres = null, string[] languages = null,
+        public TraktSearchFilter(int? startYear = null, string[] genres = null, string[] languages = null,
                                  string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
-            : base(years, genres, languages, countries, runtimes, ratings) { }
+            : base(startYear, genres, languages, countries, runtimes, ratings) { }
 
         /// <summary>Sets the years parameter value.</summary>
-        /// <param name="years">A four digit year.</param>
+        /// <param name="startYear">A four digit year.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown, if the given years value does not have four digits.</exception>
-        public new TraktSearchFilter WithYears(int years)
+        public new TraktSearchFilter WithStartYear(int startYear)
         {
-            base.WithYears(years);
+            base.WithStartYear(startYear);
             return this;
         }
 
         /// <summary>Deletes the current years value.</summary>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        public new TraktSearchFilter ClearYears()
+        public new TraktSearchFilter ClearStartYear()
         {
-            base.ClearYears();
+            base.ClearStartYear();
             return this;
         }
 

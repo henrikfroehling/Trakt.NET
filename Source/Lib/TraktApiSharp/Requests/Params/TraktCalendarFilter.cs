@@ -13,7 +13,7 @@
     {
         /// <summary>Initializes an <see cref="TraktCalendarFilter" /> instance with the given values.</summary>
         /// <param name="query">Query string for titles and descriptions.</param>
-        /// <param name="years">Four digit year.</param>
+        /// <param name="startYear">Four digit year.</param>
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
@@ -21,7 +21,7 @@
         /// <param name="ratings">An <see cref="Range{T}" /> instance for ratings.</param>
         /// <exception cref="ArgumentException">Thrown, if the given query string is null or empty.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given <paramref name="years" /> value does not have four digits.
+        /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
         /// if its end value is below its begin value.
         /// Thrown, if the begin value of the given ratings range is below zero or if its end value is below zero or
@@ -29,9 +29,9 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktCalendarFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
+        public TraktCalendarFilter(string query = null, int? startYear = null, string[] genres = null, string[] languages = null,
                                    string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
-            : base(years, genres, languages, countries, runtimes, ratings)
+            : base(startYear, genres, languages, countries, runtimes, ratings)
         {
             WithQuery(query);
         }
@@ -67,20 +67,20 @@
         }
 
         /// <summary>Sets the years parameter value.</summary>
-        /// <param name="years">A four digit year.</param>
+        /// <param name="startYear">A four digit year.</param>
         /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given years value does not have four digits.</exception>
-        public new TraktCalendarFilter WithYears(int years)
+        public new TraktCalendarFilter WithStartYear(int startYear)
         {
-            base.WithYears(years);
+            base.WithStartYear(startYear);
             return this;
         }
 
         /// <summary>Deletes the current years value.</summary>
         /// <returns>The current <see cref="TraktCalendarFilter" /> instance.</returns>
-        public new TraktCalendarFilter ClearYears()
+        public new TraktCalendarFilter ClearStartYear()
         {
-            base.ClearYears();
+            base.ClearStartYear();
             return this;
         }
 

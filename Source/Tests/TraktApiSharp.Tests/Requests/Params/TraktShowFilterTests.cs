@@ -17,7 +17,7 @@
             var filter = new TraktShowFilter();
 
             filter.Query.Should().BeNull();
-            filter.Years.Should().NotHaveValue();
+            filter.StartYear.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
             filter.Languages.Should().BeNull();
             filter.Countries.Should().BeNull();
@@ -41,7 +41,7 @@
                                              new TraktShowStatus[] { TraktShowStatus.Ended, TraktShowStatus.InProduction });
 
             filter.Query.Should().Be("query");
-            filter.Years.Should().Be(2016);
+            filter.StartYear.Should().Be(2016);
 
             filter.Genres.Should().NotBeNull().And.HaveCount(2);
             filter.Languages.Should().NotBeNull().And.HaveCount(2);
@@ -258,8 +258,8 @@
             filter.Clear();
             filter.HasValues.Should().BeFalse();
 
-            filter.WithYears(2016);
-            filter.Years.Should().Be(2016);
+            filter.WithStartYear(2016);
+            filter.StartYear.Should().Be(2016);
             filter.HasValues.Should().BeTrue();
 
             filter.Clear();
@@ -348,13 +348,13 @@
         {
             var filter = new TraktShowFilter();
 
-            filter.Years.Should().NotHaveValue();
+            filter.StartYear.Should().NotHaveValue();
 
-            filter.WithYears(2016);
-            filter.Years.Should().Be(2016);
+            filter.WithStartYear(2016);
+            filter.StartYear.Should().Be(2016);
 
-            filter.ClearYears();
-            filter.Years.Should().NotHaveValue();
+            filter.ClearStartYear();
+            filter.StartYear.Should().NotHaveValue();
         }
 
         [TestMethod]
@@ -484,8 +484,8 @@
             filter.WithQuery("query");
             filter.Query.Should().Be("query");
 
-            filter.WithYears(2016);
-            filter.Years.Should().Be(2016);
+            filter.WithStartYear(2016);
+            filter.StartYear.Should().Be(2016);
 
             filter.WithGenres("action", "drama");
             filter.Genres.Should().NotBeNull().And.HaveCount(2);
@@ -521,7 +521,7 @@
             filter.Clear();
 
             filter.Query.Should().BeNull();
-            filter.Years.Should().NotHaveValue();
+            filter.StartYear.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
             filter.Languages.Should().BeNull();
             filter.Countries.Should().BeNull();
@@ -546,7 +546,7 @@
 
             var year = 2016;
 
-            filter.WithYears(year);
+            filter.WithStartYear(year);
             filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", "2016" } });
 
@@ -640,7 +640,7 @@
 
             var year = 2016;
 
-            filter.WithYears(year);
+            filter.WithStartYear(year);
             filter.ToString().Should().Be($"years={year}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");

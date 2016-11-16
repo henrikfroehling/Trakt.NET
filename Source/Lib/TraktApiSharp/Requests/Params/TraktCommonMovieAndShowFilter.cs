@@ -6,10 +6,10 @@
 
     public abstract class TraktCommonMovieAndShowFilter : TraktCommonFilter
     {
-        protected TraktCommonMovieAndShowFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
+        protected TraktCommonMovieAndShowFilter(string query = null, int? startYear = null, string[] genres = null, string[] languages = null,
                                                 string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                                 string[] certifications = null)
-            : base(years, genres, languages, countries, runtimes, ratings)
+            : base(startYear, genres, languages, countries, runtimes, ratings)
         {
             WithQuery(query);
             WithCertifications(null, certifications);
@@ -45,15 +45,15 @@
             return this;
         }
 
-        public new TraktCommonMovieAndShowFilter WithYears(int years)
+        public new TraktCommonMovieAndShowFilter WithStartYear(int startYear)
         {
-            base.WithYears(years);
+            base.WithStartYear(startYear);
             return this;
         }
 
-        public new TraktCommonMovieAndShowFilter ClearYears()
+        public new TraktCommonMovieAndShowFilter ClearStartYear()
         {
-            base.ClearYears();
+            base.ClearStartYear();
             return this;
         }
 
