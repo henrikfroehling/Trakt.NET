@@ -8,7 +8,7 @@
     {
         protected TraktCommonMovieAndShowFilter() : base() { }
 
-        protected TraktCommonMovieAndShowFilter(string query, int? years = null, string[] genres = null, string[] languages = null,
+        protected TraktCommonMovieAndShowFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
                                                 string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                                 string[] certifications = null)
             : base(years, genres, languages, countries, runtimes, ratings)
@@ -34,7 +34,7 @@
 
         public TraktCommonMovieAndShowFilter WithQuery(string query)
         {
-            if (string.IsNullOrEmpty(query))
+            if (query != null && query == string.Empty)
                 throw new ArgumentException("query not valid", nameof(query));
 
             Query = query;

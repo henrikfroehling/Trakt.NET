@@ -46,7 +46,7 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktShowFilter(string query, int? years = null, string[] genres = null, string[] languages = null,
+        public TraktShowFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
             : base(query, years, genres, languages, countries, runtimes, ratings, certifications)

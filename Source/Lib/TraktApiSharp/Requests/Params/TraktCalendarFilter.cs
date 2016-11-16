@@ -32,7 +32,7 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktCalendarFilter(string query, int? years = null, string[] genres = null, string[] languages = null,
+        public TraktCalendarFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
                                    string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
             : base(years, genres, languages, countries, runtimes, ratings)
         {
@@ -54,7 +54,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given query string is null or empty.</exception>
         public TraktCalendarFilter WithQuery(string query)
         {
-            if (string.IsNullOrEmpty(query))
+            if (query != null && query == string.Empty)
                 throw new ArgumentException("query not valid", nameof(query));
 
             Query = query;
