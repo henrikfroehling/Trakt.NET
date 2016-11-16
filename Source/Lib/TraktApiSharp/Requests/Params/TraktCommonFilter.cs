@@ -8,10 +8,10 @@
     {
         protected TraktCommonFilter() { }
 
-        protected TraktCommonFilter(int years, string[] genres = null, string[] languages = null,
+        protected TraktCommonFilter(int? years = null, string[] genres = null, string[] languages = null,
                                     string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
-            WithYears(years);
+            Years = years;
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
@@ -20,10 +20,10 @@
         }
 
         /// <summary>Returns the years parameter value.</summary>
-        public int Years { get; protected set; }
+        public int? Years { get; protected set; }
 
         /// <summary>Returns, whether the years parameter is set.</summary>
-        public bool HasYearsSet => Years > 0 && Years.ToString().Length == 4;
+        public bool HasYearsSet => Years.HasValue && Years > 0 && Years.ToString().Length == 4;
 
         /// <summary>Returns the Trakt genre slugs parameter value.</summary>
         public string[] Genres { get; protected set; }
@@ -92,7 +92,7 @@
 
         public TraktCommonFilter ClearYears()
         {
-            Years = 0;
+            Years = null;
             return this;
         }
 
@@ -158,7 +158,7 @@
 
         public TraktCommonFilter Clear()
         {
-            Years = 0;
+            Years = null;
             Genres = null;
             Languages = null;
             Countries = null;

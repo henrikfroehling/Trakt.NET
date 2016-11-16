@@ -17,7 +17,7 @@
             var filter = new TraktShowFilter();
 
             filter.Query.Should().BeNull();
-            filter.Years.Should().Be(0);
+            filter.Years.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
             filter.Languages.Should().BeNull();
             filter.Countries.Should().BeNull();
@@ -348,13 +348,13 @@
         {
             var filter = new TraktShowFilter();
 
-            filter.Years.Should().Be(0);
+            filter.Years.Should().NotHaveValue();
 
             filter.WithYears(2016);
             filter.Years.Should().Be(2016);
 
             filter.ClearYears();
-            filter.Years.Should().Be(0);
+            filter.Years.Should().NotHaveValue();
         }
 
         [TestMethod]
@@ -521,7 +521,7 @@
             filter.Clear();
 
             filter.Query.Should().BeNull();
-            filter.Years.Should().Be(0);
+            filter.Years.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
             filter.Languages.Should().BeNull();
             filter.Countries.Should().BeNull();

@@ -32,7 +32,7 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktCalendarFilter(string query, int years, string[] genres = null, string[] languages = null,
+        public TraktCalendarFilter(string query, int? years = null, string[] genres = null, string[] languages = null,
                                    string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
             : base(years, genres, languages, countries, runtimes, ratings)
         {
