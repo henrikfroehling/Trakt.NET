@@ -58,7 +58,7 @@
             var filter = new TraktMovieFilter();
 
             filter.AddCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.AddCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
@@ -82,7 +82,7 @@
             var filter = new TraktMovieFilter();
 
             filter.WithCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.WithCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
@@ -91,7 +91,7 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(3);
 
             filter.WithCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.WithCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);

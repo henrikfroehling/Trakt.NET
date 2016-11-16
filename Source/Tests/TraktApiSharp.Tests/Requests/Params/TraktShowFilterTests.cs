@@ -66,7 +66,7 @@
             var filter = new TraktShowFilter();
 
             filter.AddCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.AddCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
@@ -90,7 +90,7 @@
             var filter = new TraktShowFilter();
 
             filter.WithCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.WithCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
@@ -99,7 +99,7 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(3);
 
             filter.WithCertifications(null);
-            filter.Certifications.Should().NotBeNull().And.BeEmpty();
+            filter.Certifications.Should().BeNull();
 
             filter.WithCertifications(null, "cert1");
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
@@ -120,7 +120,7 @@
             var filter = new TraktShowFilter();
 
             filter.AddNetworks(null);
-            filter.Networks.Should().NotBeNull().And.BeEmpty();
+            filter.Networks.Should().BeNull();
 
             filter.AddNetworks(null, "network1");
             filter.Networks.Should().NotBeNull().And.HaveCount(1);
@@ -144,7 +144,7 @@
             var filter = new TraktShowFilter();
 
             filter.WithNetworks(null);
-            filter.Networks.Should().NotBeNull().And.BeEmpty();
+            filter.Networks.Should().BeNull();
 
             filter.WithNetworks(null, "network1");
             filter.Networks.Should().NotBeNull().And.HaveCount(1);
@@ -153,7 +153,7 @@
             filter.Networks.Should().NotBeNull().And.HaveCount(3);
 
             filter.WithNetworks(null);
-            filter.Networks.Should().NotBeNull().And.BeEmpty();
+            filter.Networks.Should().BeNull();
 
             filter.WithNetworks(null, "network1");
             filter.Networks.Should().NotBeNull().And.HaveCount(1);
@@ -174,7 +174,7 @@
             var filter = new TraktShowFilter();
 
             filter.AddStates(TraktShowStatus.Unspecified);
-            filter.States.Should().NotBeNull().And.BeEmpty();
+            filter.States.Should().BeNull();
 
             var state1 = TraktShowStatus.ReturningSeries;
             var state2 = TraktShowStatus.InProduction;
@@ -209,7 +209,7 @@
             var filter = new TraktShowFilter();
 
             filter.WithStates(TraktShowStatus.Unspecified);
-            filter.States.Should().NotBeNull().And.BeEmpty();
+            filter.States.Should().BeNull();
 
             var state1 = TraktShowStatus.ReturningSeries;
             var state2 = TraktShowStatus.InProduction;
@@ -229,7 +229,7 @@
             filter.States.Should().NotBeNull().And.HaveCount(3);
 
             filter.WithStates(TraktShowStatus.Unspecified);
-            filter.States.Should().NotBeNull().And.BeEmpty();
+            filter.States.Should().BeNull();
 
             filter.WithStates(TraktShowStatus.Unspecified, state3);
             filter.States.Should().NotBeNull().And.HaveCount(1);

@@ -10,9 +10,6 @@
     /// </summary>
     public class TraktSearchFilter : TraktCommonFilter
     {
-        /// <summary>Initializes an empty <see cref="TraktSearchFilter" /> instance.</summary>
-        public TraktSearchFilter() : base() { }
-
         /// <summary>Initializes an <see cref="TraktSearchFilter" /> instance with the given values.</summary>
         /// <param name="years">Four digit year.</param>
         /// <param name="genres">An array of Trakt genre slugs.</param>

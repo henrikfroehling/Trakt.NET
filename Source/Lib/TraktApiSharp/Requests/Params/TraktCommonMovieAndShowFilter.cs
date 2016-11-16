@@ -6,8 +6,6 @@
 
     public abstract class TraktCommonMovieAndShowFilter : TraktCommonFilter
     {
-        protected TraktCommonMovieAndShowFilter() : base() { }
-
         protected TraktCommonMovieAndShowFilter(string query = null, int? years = null, string[] genres = null, string[] languages = null,
                                                 string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
                                                 string[] certifications = null)
@@ -177,6 +175,14 @@
 
         private TraktCommonMovieAndShowFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
         {
+            if (string.IsNullOrEmpty(certification) && (certifications == null || certifications.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Certifications = null;
+
+                return this;
+            }
+
             var certificationsList = new List<string>();
 
             if (keepExisting && this.Certifications != null && this.Certifications.Length > 0)

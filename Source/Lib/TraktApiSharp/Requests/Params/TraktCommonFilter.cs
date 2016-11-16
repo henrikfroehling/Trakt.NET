@@ -6,8 +6,6 @@
 
     public abstract class TraktCommonFilter
     {
-        protected TraktCommonFilter() { }
-
         protected TraktCommonFilter(int? years = null, string[] genres = null, string[] languages = null,
                                     string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
@@ -224,6 +222,14 @@
 
         private TraktCommonFilter AddGenres(bool keepExisting, string genre, params string[] genres)
         {
+            if (string.IsNullOrEmpty(genre) && (genres == null || genres.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Genres = null;
+
+                return this;
+            }
+
             var genresList = new List<string>();
 
             if (keepExisting && this.Genres != null && this.Genres.Length > 0)
@@ -242,6 +248,14 @@
 
         private TraktCommonFilter AddLanguages(bool keepExisting, string language, params string[] languages)
         {
+            if (string.IsNullOrEmpty(language) && (languages == null || languages.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Languages = null;
+
+                return this;
+            }
+
             var languagesList = new List<string>();
 
             if (keepExisting && this.Languages != null && this.Languages.Length > 0)
@@ -273,6 +287,14 @@
 
         private TraktCommonFilter AddCountries(bool keepExisting, string country, params string[] countries)
         {
+            if (string.IsNullOrEmpty(country) && (countries == null || countries.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Countries = null;
+
+                return this;
+            }
+
             var countriesList = new List<string>();
 
             if (keepExisting && this.Countries != null && this.Countries.Length > 0)

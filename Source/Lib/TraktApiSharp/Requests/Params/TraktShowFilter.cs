@@ -19,9 +19,6 @@
     /// </summary>
     public class TraktShowFilter : TraktCommonMovieAndShowFilter
     {
-        /// <summary>Initializes an empty <see cref="TraktShowFilter" /> instance.</summary>
-        public TraktShowFilter() : base() { }
-
         /// <summary>Initializes an <see cref="TraktShowFilter" /> instance with the given values.</summary>
         /// <param name="query">Query string for titles and descriptions.</param>
         /// <param name="years">Four digit year.</param>
@@ -353,6 +350,14 @@
 
         private TraktShowFilter AddNetworks(bool keepExisting, string network, params string[] networks)
         {
+            if (string.IsNullOrEmpty(network) && (networks == null || networks.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Networks = null;
+
+                return this;
+            }
+
             var networksList = new List<string>();
 
             if (keepExisting && this.Networks != null && this.Networks.Length > 0)
@@ -371,6 +376,14 @@
 
         private TraktShowFilter AddStates(bool keepExisting, TraktShowStatus status, params TraktShowStatus[] states)
         {
+            if ((status == null || status == TraktShowStatus.Unspecified) && (states == null || states.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.States = null;
+
+                return this;
+            }
+
             var statesList = new List<TraktShowStatus>();
 
             if (keepExisting && this.States != null && this.States.Length > 0)

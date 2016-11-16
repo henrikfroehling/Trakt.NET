@@ -16,9 +16,6 @@
     /// </summary>
     public class TraktMovieFilter : TraktCommonMovieAndShowFilter
     {
-        /// <summary>Initializes an empty <see cref="TraktMovieFilter" /> instance.</summary>
-        public TraktMovieFilter() : base() { }
-
         /// <summary>Initializes an <see cref="TraktMovieFilter" /> instance with the given values.</summary>
         /// <param name="query">Query string for titles and descriptions.</param>
         /// <param name="years">Four digit year.</param>
