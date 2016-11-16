@@ -222,7 +222,12 @@
             else if (!HasStartYearSet && HasEndYearSet)
                 parameters.Add("years", $"{EndYear}");
             else if (HasStartYearSet && HasEndYearSet)
-                parameters.Add("years", $"{StartYear}-{EndYear}");
+            {
+                if (StartYear <= EndYear)
+                    parameters.Add("years", $"{StartYear}-{EndYear}");
+                else
+                    parameters.Add("years", $"{EndYear}-{StartYear}");
+            }
 
             if (HasGenresSet)
                 parameters.Add("genres", string.Join(",", Genres));
