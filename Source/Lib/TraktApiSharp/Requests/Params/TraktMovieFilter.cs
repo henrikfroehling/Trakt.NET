@@ -19,6 +19,7 @@
         /// <summary>Initializes an <see cref="TraktMovieFilter" /> instance with the given values.</summary>
         /// <param name="query">Query string for titles and descriptions.</param>
         /// <param name="startYear">Four digit year.</param>
+        /// <param name="endYear">Four digit year.</param>
         /// <param name="genres">An array of Trakt genre slugs.</param>
         /// <param name="languages">An array of two letter language codes.</param>
         /// <param name="countries">An array of two letter country codes.</param>
@@ -35,10 +36,10 @@
         /// Thrown, if the given language codes array contains a language code, which has more or less than two letters.
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
-        public TraktMovieFilter(string query = null, int? startYear = null, string[] genres = null, string[] languages = null,
-                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
-                                string[] certifications = null)
-            : base(query, startYear, genres, languages, countries, runtimes, ratings, certifications) { }
+        public TraktMovieFilter(string query = null, int? startYear = null, int? endYear = null, string[] genres = null,
+                                string[] languages = null, string[] countries = null, Range<int>? runtimes = null,
+                                Range<int>? ratings = null, string[] certifications = null)
+            : base(query, startYear, endYear, genres, languages, countries, runtimes, ratings, certifications) { }
 
         /// <summary>Sets the query string parameter value.</summary>
         /// <param name="query">The query string for titles and descriptions.</param>
@@ -68,11 +69,35 @@
             return this;
         }
 
+        public new TraktMovieFilter WithEndYear(int endYear)
+        {
+            base.WithEndYear(endYear);
+            return this;
+        }
+
+        public new TraktMovieFilter WithYears(int startYear, int endYear)
+        {
+            base.WithYears(startYear, endYear);
+            return this;
+        }
+
         /// <summary>Deletes the current years value.</summary>
         /// <returns>The current <see cref="TraktMovieFilter" /> instance.</returns>
         public new TraktMovieFilter ClearStartYear()
         {
             base.ClearStartYear();
+            return this;
+        }
+
+        public new TraktMovieFilter ClearEndYear()
+        {
+            base.ClearEndYear();
+            return this;
+        }
+
+        public new TraktMovieFilter ClearYears()
+        {
+            base.ClearYears();
             return this;
         }
 

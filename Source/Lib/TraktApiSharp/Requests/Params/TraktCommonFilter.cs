@@ -6,10 +6,11 @@
 
     public abstract class TraktCommonFilter
     {
-        protected TraktCommonFilter(int? startYear = null, string[] genres = null, string[] languages = null,
+        protected TraktCommonFilter(int? startYear = null, int? endYear = null, string[] genres = null, string[] languages = null,
                                     string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
             StartYear = startYear;
+            EndYear = endYear;
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
@@ -20,8 +21,14 @@
         /// <summary>Returns the years parameter value.</summary>
         public int? StartYear { get; protected set; }
 
+        public int? EndYear { get; protected set; }
+
         /// <summary>Returns, whether the years parameter is set.</summary>
         public bool HasStartYearSet => StartYear.HasValue && StartYear > 0 && StartYear.ToString().Length == 4;
+
+        public bool HasEndYearSet => EndYear.HasValue && EndYear > 0 && EndYear.ToString().Length == 4;
+
+        public bool HasYearsSet => HasStartYearSet || HasEndYearSet;
 
         /// <summary>Returns the Trakt genre slugs parameter value.</summary>
         public string[] Genres { get; protected set; }
@@ -77,20 +84,55 @@
             return false;
         }
 
-        public virtual bool HasValues => HasStartYearSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
+        public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
 
         public TraktCommonFilter WithStartYear(int startYear)
         {
             if (startYear < 0 || startYear.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(startYear), "years not valid");
+                throw new ArgumentOutOfRangeException(nameof(startYear), "year not valid");
 
             StartYear = startYear;
+            return this;
+        }
+
+        public TraktCommonFilter WithEndYear(int endYear)
+        {
+            if (endYear < 0 || endYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(endYear), "year not valid");
+
+            EndYear = endYear;
+            return this;
+        }
+
+        public TraktCommonFilter WithYears(int startYear, int endYear)
+        {
+            if (startYear < 0 || startYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(startYear), "year not valid");
+
+            if (endYear < 0 || endYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(endYear), "year not valid");
+
+            StartYear = startYear;
+            EndYear = endYear;
             return this;
         }
 
         public TraktCommonFilter ClearStartYear()
         {
             StartYear = null;
+            return this;
+        }
+
+        public TraktCommonFilter ClearEndYear()
+        {
+            EndYear = null;
+            return this;
+        }
+
+        public TraktCommonFilter ClearYears()
+        {
+            StartYear = null;
+            EndYear = null;
             return this;
         }
 
@@ -157,6 +199,7 @@
         public TraktCommonFilter Clear()
         {
             StartYear = null;
+            EndYear = null;
             Genres = null;
             Languages = null;
             Countries = null;
@@ -174,8 +217,12 @@
         {
             var parameters = new Dictionary<string, object>();
 
-            if (HasStartYearSet)
-                parameters.Add("years", StartYear.ToString());
+            if (HasStartYearSet && !HasEndYearSet)
+                parameters.Add("years", $"{StartYear}");
+            else if (!HasStartYearSet && HasEndYearSet)
+                parameters.Add("years", $"{EndYear}");
+            else if (HasStartYearSet && HasEndYearSet)
+                parameters.Add("years", $"{StartYear}-{EndYear}");
 
             if (HasGenresSet)
                 parameters.Add("genres", string.Join(",", Genres));

@@ -28,7 +28,7 @@
         [TestMethod]
         public void TestTraktMovieFilterConstructor()
         {
-            var filter = new TraktMovieFilter("query", 2016, new string[] { "action", "drama" },
+            var filter = new TraktMovieFilter("query", 2016, 2016, new string[] { "action", "drama" },
                                               new string[] { "de", "en" },
                                               new string[] { "gb", "us" },
                                               new Range<int>(40, 100), new Range<int>(70, 90),
