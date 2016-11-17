@@ -6,24 +6,40 @@
 
     public abstract class TraktCommonFilter
     {
-        protected TraktCommonFilter() { }
-
-        protected TraktCommonFilter(int years, string[] genres = null, string[] languages = null,
+        protected TraktCommonFilter(int? startYear = null, int? endYear = null, string[] genres = null, string[] languages = null,
                                     string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
         {
-            WithYears(years);
+            if (startYear.HasValue)
+                WithStartYear(startYear.Value);
+
+            if (endYear.HasValue)
+                WithEndYear(endYear.Value);
+            
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
-            Runtimes = runtimes;
-            Ratings = ratings;
+
+            if (runtimes.HasValue)
+                WithRuntimes(runtimes.Value.Begin, runtimes.Value.End);
+
+            if (ratings.HasValue)
+                WithRatings(ratings.Value.Begin, ratings.Value.End);
         }
 
-        /// <summary>Returns the years parameter value.</summary>
-        public int Years { get; protected set; }
+        /// <summary>Returns the start year of the years parameter value.</summary>
+        public int? StartYear { get; protected set; }
 
-        /// <summary>Returns, whether the years parameter is set.</summary>
-        public bool HasYearsSet => Years > 0 && Years.ToString().Length == 4;
+        /// <summary>Returns the end year of the years parameter value.</summary>
+        public int? EndYear { get; protected set; }
+
+        /// <summary>Returns, whether the years parameter has set a start year.</summary>
+        public bool HasStartYearSet => StartYear.HasValue && StartYear > 0 && StartYear.ToString().Length == 4;
+
+        /// <summary>Returns, whether the years parameter has set an end year.</summary>
+        public bool HasEndYearSet => EndYear.HasValue && EndYear > 0 && EndYear.ToString().Length == 4;
+
+        /// <summary>Returns, whether the years parameter has set a start and / or end year.</summary>
+        public bool HasYearsSet => HasStartYearSet || HasEndYearSet;
 
         /// <summary>Returns the Trakt genre slugs parameter value.</summary>
         public string[] Genres { get; protected set; }
@@ -81,18 +97,53 @@
 
         public virtual bool HasValues => HasYearsSet || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
 
-        public TraktCommonFilter WithYears(int years)
+        public TraktCommonFilter WithStartYear(int startYear)
         {
-            if (years < 0 || years.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(years), "years not valid");
+            if (startYear < 0 || startYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(startYear), "year not valid");
 
-            Years = years;
+            StartYear = startYear;
+            return this;
+        }
+
+        public TraktCommonFilter WithEndYear(int endYear)
+        {
+            if (endYear < 0 || endYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(endYear), "year not valid");
+
+            EndYear = endYear;
+            return this;
+        }
+
+        public TraktCommonFilter WithYears(int startYear, int endYear)
+        {
+            if (startYear < 0 || startYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(startYear), "year not valid");
+
+            if (endYear < 0 || endYear.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(endYear), "year not valid");
+
+            StartYear = startYear;
+            EndYear = endYear;
+            return this;
+        }
+
+        public TraktCommonFilter ClearStartYear()
+        {
+            StartYear = null;
+            return this;
+        }
+
+        public TraktCommonFilter ClearEndYear()
+        {
+            EndYear = null;
             return this;
         }
 
         public TraktCommonFilter ClearYears()
         {
-            Years = 0;
+            StartYear = null;
+            EndYear = null;
             return this;
         }
 
@@ -158,7 +209,8 @@
 
         public TraktCommonFilter Clear()
         {
-            Years = 0;
+            StartYear = null;
+            EndYear = null;
             Genres = null;
             Languages = null;
             Countries = null;
@@ -176,8 +228,17 @@
         {
             var parameters = new Dictionary<string, object>();
 
-            if (HasYearsSet)
-                parameters.Add("years", Years.ToString());
+            if (HasStartYearSet && !HasEndYearSet)
+                parameters.Add("years", $"{StartYear}");
+            else if (!HasStartYearSet && HasEndYearSet)
+                parameters.Add("years", $"{EndYear}");
+            else if (HasStartYearSet && HasEndYearSet)
+            {
+                if (StartYear <= EndYear)
+                    parameters.Add("years", $"{StartYear}-{EndYear}");
+                else
+                    parameters.Add("years", $"{EndYear}-{StartYear}");
+            }
 
             if (HasGenresSet)
                 parameters.Add("genres", string.Join(",", Genres));
@@ -224,6 +285,14 @@
 
         private TraktCommonFilter AddGenres(bool keepExisting, string genre, params string[] genres)
         {
+            if (string.IsNullOrEmpty(genre) && (genres == null || genres.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Genres = null;
+
+                return this;
+            }
+
             var genresList = new List<string>();
 
             if (keepExisting && this.Genres != null && this.Genres.Length > 0)
@@ -242,6 +311,14 @@
 
         private TraktCommonFilter AddLanguages(bool keepExisting, string language, params string[] languages)
         {
+            if (string.IsNullOrEmpty(language) && (languages == null || languages.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Languages = null;
+
+                return this;
+            }
+
             var languagesList = new List<string>();
 
             if (keepExisting && this.Languages != null && this.Languages.Length > 0)
@@ -273,6 +350,14 @@
 
         private TraktCommonFilter AddCountries(bool keepExisting, string country, params string[] countries)
         {
+            if (string.IsNullOrEmpty(country) && (countries == null || countries.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Countries = null;
+
+                return this;
+            }
+
             var countriesList = new List<string>();
 
             if (keepExisting && this.Countries != null && this.Countries.Length > 0)

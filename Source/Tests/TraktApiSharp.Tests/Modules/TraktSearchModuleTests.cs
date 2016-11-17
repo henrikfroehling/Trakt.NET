@@ -231,7 +231,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -268,7 +268,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -301,7 +301,7 @@
             var field = TraktSearchField.Tagline;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -340,7 +340,7 @@
             var field = TraktSearchField.Tagline;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -379,7 +379,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -423,7 +423,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -456,7 +456,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -501,7 +501,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -542,7 +542,7 @@
             var field = TraktSearchField.Overview;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -588,7 +588,7 @@
             var field = TraktSearchField.Overview;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -634,7 +634,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -685,7 +685,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -726,7 +726,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -772,7 +772,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -814,7 +814,7 @@
             var field = TraktSearchField.Translations;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -861,7 +861,7 @@
             var field = TraktSearchField.Translations;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -908,7 +908,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -960,7 +960,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1001,7 +1001,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1047,7 +1047,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1089,7 +1089,7 @@
             var field = TraktSearchField.Aliases;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1136,7 +1136,7 @@
             var field = TraktSearchField.Aliases;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1183,7 +1183,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1235,7 +1235,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1276,7 +1276,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1315,7 +1315,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1350,7 +1350,7 @@
             var field = TraktSearchField.People;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1391,7 +1391,7 @@
             var field = TraktSearchField.People;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1432,7 +1432,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1478,7 +1478,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1513,7 +1513,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1552,7 +1552,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1587,7 +1587,7 @@
             var field = TraktSearchField.Biography;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1628,7 +1628,7 @@
             var field = TraktSearchField.Biography;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1669,7 +1669,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1715,7 +1715,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1751,7 +1751,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1792,7 +1792,7 @@
             var query = "batman";
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1829,7 +1829,7 @@
             var field = TraktSearchField.Name;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1871,7 +1871,7 @@
             var field = TraktSearchField.Name;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1913,7 +1913,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1960,7 +1960,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3468,7 +3468,7 @@
             var field = TraktSearchField.Title;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3517,7 +3517,7 @@
             var field = TraktSearchField.Title;
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3566,7 +3566,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3620,7 +3620,7 @@
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
             var filter = new TraktSearchFilter()
-                .WithYears(2011)
+                .WithStartYear(2011)
                 .WithGenres("action", "thriller")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
