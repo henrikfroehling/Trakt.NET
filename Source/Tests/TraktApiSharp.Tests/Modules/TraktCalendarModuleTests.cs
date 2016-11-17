@@ -66,7 +66,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -105,7 +105,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -147,7 +147,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -189,7 +189,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -236,7 +236,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -288,7 +288,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -342,7 +342,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -395,7 +395,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -523,7 +523,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -562,7 +562,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -604,7 +604,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -646,7 +646,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -693,7 +693,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -744,7 +744,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -799,7 +799,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -852,7 +852,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -980,7 +980,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1021,7 +1021,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1065,7 +1065,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1109,7 +1109,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1157,7 +1157,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1209,7 +1209,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1265,7 +1265,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1319,7 +1319,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1447,7 +1447,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1486,7 +1486,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1528,7 +1528,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1571,7 +1571,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1619,7 +1619,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1671,7 +1671,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1727,7 +1727,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1781,7 +1781,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1909,7 +1909,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1948,7 +1948,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -1990,7 +1990,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2033,7 +2033,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2081,7 +2081,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2133,7 +2133,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2189,7 +2189,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2243,7 +2243,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2371,7 +2371,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2410,7 +2410,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2452,7 +2452,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2494,7 +2494,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2541,7 +2541,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2592,7 +2592,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2646,7 +2646,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2699,7 +2699,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2826,7 +2826,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2865,7 +2865,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2907,7 +2907,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2949,7 +2949,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -2996,7 +2996,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3047,7 +3047,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3101,7 +3101,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3154,7 +3154,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3282,7 +3282,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3322,7 +3322,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3365,7 +3365,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3407,7 +3407,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3454,7 +3454,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3505,7 +3505,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3560,7 +3560,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3613,7 +3613,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3741,7 +3741,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3780,7 +3780,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3822,7 +3822,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3864,7 +3864,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3911,7 +3911,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -3962,7 +3962,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4017,7 +4017,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4070,7 +4070,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4198,7 +4198,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4237,7 +4237,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4279,7 +4279,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4321,7 +4321,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4368,7 +4368,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4419,7 +4419,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4474,7 +4474,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
@@ -4527,7 +4527,7 @@
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
-                .WithYears(2016)
+                .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")

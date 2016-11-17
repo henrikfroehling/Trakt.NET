@@ -6,12 +6,10 @@
 
     public abstract class TraktCommonMovieAndShowFilter : TraktCommonFilter
     {
-        protected TraktCommonMovieAndShowFilter() : base() { }
-
-        protected TraktCommonMovieAndShowFilter(string query, int years, string[] genres = null, string[] languages = null,
-                                                string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
-                                                string[] certifications = null)
-            : base(years, genres, languages, countries, runtimes, ratings)
+        protected TraktCommonMovieAndShowFilter(string query = null, int? startYear = null, int? endYear = null, string[] genres = null,
+                                                string[] languages = null, string[] countries = null, Range<int>? runtimes = null,
+                                                Range<int>? ratings = null, string[] certifications = null)
+            : base(startYear, endYear, genres, languages, countries, runtimes, ratings)
         {
             WithQuery(query);
             WithCertifications(null, certifications);
@@ -34,7 +32,7 @@
 
         public TraktCommonMovieAndShowFilter WithQuery(string query)
         {
-            if (string.IsNullOrEmpty(query))
+            if (query != null && query == string.Empty)
                 throw new ArgumentException("query not valid", nameof(query));
 
             Query = query;
@@ -47,9 +45,33 @@
             return this;
         }
 
-        public new TraktCommonMovieAndShowFilter WithYears(int years)
+        public new TraktCommonMovieAndShowFilter WithStartYear(int startYear)
         {
-            base.WithYears(years);
+            base.WithStartYear(startYear);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter WithEndYear(int endYear)
+        {
+            base.WithEndYear(endYear);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter WithYears(int startYear, int endYear)
+        {
+            base.WithYears(startYear, endYear);
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter ClearStartYear()
+        {
+            base.ClearStartYear();
+            return this;
+        }
+
+        public new TraktCommonMovieAndShowFilter ClearEndYear()
+        {
+            base.ClearEndYear();
             return this;
         }
 
@@ -177,6 +199,14 @@
 
         private TraktCommonMovieAndShowFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
         {
+            if (string.IsNullOrEmpty(certification) && (certifications == null || certifications.Length <= 0))
+            {
+                if (!keepExisting)
+                    this.Certifications = null;
+
+                return this;
+            }
+
             var certificationsList = new List<string>();
 
             if (keepExisting && this.Certifications != null && this.Certifications.Length > 0)
