@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
@@ -40,6 +41,12 @@
         {
             var request = new TraktShowPeopleRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/people{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowPeopleRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktShowPeopleRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
