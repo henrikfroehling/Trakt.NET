@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktShowNextEpisodeRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktShowNextEpisodeRequestIsSubclassOfATraktSingleItemGetByIdRequest()
         {
             typeof(TraktShowNextEpisodeRequest).IsSubclassOf(typeof(ATraktSingleItemGetByIdRequest<TraktEpisode>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowNextEpisodeRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktShowNextEpisodeRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
