@@ -34,5 +34,12 @@
             var request = new TraktShowRatingsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowRatingsRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowRatingsRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/ratings");
+        }
     }
 }
