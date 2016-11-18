@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktShowCommentsRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktShowCommentsRequestIsSubclassOfATraktPaginationGetByIdRequest()
         {
             typeof(TraktShowCommentsRequest).IsSubclassOf(typeof(ATraktPaginationGetByIdRequest<TraktComment>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowCommentsRequestHasAuthorizationNotRequired()
+        {
+            var request = new TraktShowCommentsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
     }
 }
