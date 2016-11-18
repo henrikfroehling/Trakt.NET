@@ -48,5 +48,11 @@
         {
             typeof(TraktShowNextEpisodeRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowNextEpisodeRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktShowNextEpisodeRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
     }
 }
