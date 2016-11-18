@@ -12,5 +12,11 @@
         {
             typeof(TraktShowLastEpisodeRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowLastEpisodeRequestIsSealed()
+        {
+            typeof(TraktShowLastEpisodeRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
