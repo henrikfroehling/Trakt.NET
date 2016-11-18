@@ -34,5 +34,12 @@
             var request = new TraktShowCommentsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowCommentsRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowCommentsRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/comments{/sorting}{?page,limit}");
+        }
     }
 }
