@@ -34,5 +34,12 @@
             var request = new TraktShowRelatedShowsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowRelatedShowsRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowRelatedShowsRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/related{?extended,page,limit}");
+        }
     }
 }
