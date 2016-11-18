@@ -34,5 +34,12 @@
             var request = new TraktShowAliasesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowAliasesRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowAliasesRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/aliases");
+        }
     }
 }
