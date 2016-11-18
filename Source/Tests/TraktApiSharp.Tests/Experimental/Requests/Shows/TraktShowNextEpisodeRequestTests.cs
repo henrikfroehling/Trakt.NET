@@ -34,5 +34,12 @@
             var request = new TraktShowNextEpisodeRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowNextEpisodeRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowNextEpisodeRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/next_episode{?extended}");
+        }
     }
 }
