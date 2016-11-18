@@ -250,6 +250,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowNextEpisodeRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowPeopleRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequest.cs" />
