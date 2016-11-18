@@ -12,5 +12,11 @@
         {
             typeof(TraktShowRelatedShowsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowRelatedShowsRequestIsSealed()
+        {
+            typeof(TraktShowRelatedShowsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }

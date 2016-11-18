@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    internal class TraktShowRelatedShowsRequest
+    internal sealed class TraktShowRelatedShowsRequest
     {
 
     }
