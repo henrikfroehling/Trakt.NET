@@ -4,10 +4,13 @@
     using Interfaces;
     using Objects.Get.Shows.Episodes;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktEpisodeSummaryRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktObjectRequest
+    internal sealed class TraktEpisodeSummaryRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktObjectRequest, ITraktExtendedInfo
     {
         internal TraktEpisodeSummaryRequest(TraktClient client) : base(client) { }
+
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
