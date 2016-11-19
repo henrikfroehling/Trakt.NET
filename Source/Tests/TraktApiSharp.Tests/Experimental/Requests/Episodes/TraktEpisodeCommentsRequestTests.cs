@@ -12,5 +12,11 @@
         {
             typeof(TraktEpisodeCommentsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeCommentsRequestIsSealed()
+        {
+            typeof(TraktEpisodeCommentsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
