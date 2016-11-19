@@ -33,5 +33,12 @@
             var request = new TraktShowWatchedProgressRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestTraktShowWatchedProgressRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowWatchedProgressRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/progress/watched{?hidden,specials,count_specials}");
+        }
     }
 }
