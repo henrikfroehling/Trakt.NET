@@ -12,6 +12,8 @@
 
         internal uint SeasonNumber { get; set; }
 
+        internal uint EpisodeNumber { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
