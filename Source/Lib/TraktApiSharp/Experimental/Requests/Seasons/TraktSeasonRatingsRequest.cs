@@ -3,6 +3,7 @@
     using Base.Get;
     using Interfaces;
     using Objects.Basic;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktSeasonRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest
@@ -10,6 +11,11 @@
         internal TraktSeasonRatingsRequest(TraktClient client) : base(client) { }
 
         internal uint SeasonNumber { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
