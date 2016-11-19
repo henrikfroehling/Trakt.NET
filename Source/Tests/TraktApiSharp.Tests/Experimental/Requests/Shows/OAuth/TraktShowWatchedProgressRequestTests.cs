@@ -12,5 +12,11 @@
         {
             typeof(TraktShowWatchedProgressRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestTraktShowWatchedProgressRequestIsSealed()
+        {
+            typeof(TraktShowWatchedProgressRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
