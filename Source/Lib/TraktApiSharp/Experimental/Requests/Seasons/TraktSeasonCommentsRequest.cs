@@ -11,7 +11,7 @@
     {
         public TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
-        internal int SeasonNumber { get; set; }
+        internal uint SeasonNumber { get; set; }
 
         internal TraktCommentSortOrder Sorting { get; set; }
 
