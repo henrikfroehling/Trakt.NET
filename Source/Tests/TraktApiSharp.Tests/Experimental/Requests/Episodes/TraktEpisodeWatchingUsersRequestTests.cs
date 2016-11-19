@@ -69,5 +69,18 @@
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeWatchingUsersRequestHasEpisodeNumberProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktEpisodeWatchingUsersRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "EpisodeNumber")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
+        }
     }
 }
