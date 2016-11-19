@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Episodes;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
 
@@ -40,6 +41,12 @@
         {
             var request = new TraktEpisodeCommentsRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/comments{/sorting}{?page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeCommentsRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktEpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
