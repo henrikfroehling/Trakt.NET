@@ -34,5 +34,12 @@
             var request = new TraktSeasonsAllRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonsAllRequestHasValidUriTemplate()
+        {
+            var request = new TraktSeasonsAllRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/seasons{?extended}");
+        }
     }
 }

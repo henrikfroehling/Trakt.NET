@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Shows.Seasons;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktSeasonsAllRequest : ATraktListGetByIdRequest<TraktSeason>
@@ -11,12 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "shows/{id}/seasons{?extended}";
     }
 }
