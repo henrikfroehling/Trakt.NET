@@ -3,6 +3,7 @@
     using Base.Get;
     using Interfaces;
     using Objects.Get.Shows.Episodes;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
@@ -15,6 +16,11 @@
         internal uint EpisodeNumber { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
