@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Requests;
@@ -40,6 +41,12 @@
         {
             var request = new TraktSeasonSingleRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonSingleRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
