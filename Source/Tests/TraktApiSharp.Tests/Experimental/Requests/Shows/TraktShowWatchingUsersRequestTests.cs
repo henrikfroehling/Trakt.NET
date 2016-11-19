@@ -2,7 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows;
+    using TraktApiSharp.Objects.Get.Users;
 
     [TestClass]
     public class TraktShowWatchingUsersRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktShowWatchingUsersRequestIsSealed()
         {
             typeof(TraktShowWatchingUsersRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowWatchingUsersRequestIsSubclassOfATraktListGetByIdRequest()
+        {
+            typeof(TraktShowWatchingUsersRequest).IsSubclassOf(typeof(ATraktListGetByIdRequest<TraktUser>)).Should().BeTrue();
         }
     }
 }
