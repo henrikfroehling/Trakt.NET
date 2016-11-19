@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
@@ -73,6 +74,17 @@
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(bool?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestATraktShowProgressRequestHasGetUriPathParametersMethod()
+        {
+            var methodInfo = typeof(ATraktShowProgressRequest<>).GetMethods()
+                                                                .Where(m => m.Name == "GetUriPathParameters")
+                                                                .FirstOrDefault();
+
+            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
+            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }
