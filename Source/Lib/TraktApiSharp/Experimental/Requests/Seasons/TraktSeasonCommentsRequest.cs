@@ -9,6 +9,8 @@
     {
         public TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
+        internal int SeasonNumber { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
