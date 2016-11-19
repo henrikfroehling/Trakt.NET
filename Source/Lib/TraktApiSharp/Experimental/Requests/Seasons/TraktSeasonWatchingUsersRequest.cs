@@ -4,10 +4,13 @@
     using Interfaces;
     using Objects.Get.Users;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSeasonWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>, ITraktObjectRequest
+    internal sealed class TraktSeasonWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>, ITraktObjectRequest, ITraktExtendedInfo
     {
         public TraktSeasonWatchingUsersRequest(TraktClient client) : base(client) { }
+
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
