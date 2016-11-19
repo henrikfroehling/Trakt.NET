@@ -260,6 +260,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostWatchedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

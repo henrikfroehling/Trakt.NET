@@ -252,6 +252,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostWatchedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowStatisticsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
