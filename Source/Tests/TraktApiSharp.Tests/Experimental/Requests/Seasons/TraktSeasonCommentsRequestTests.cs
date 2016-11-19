@@ -34,5 +34,12 @@
             var request = new TraktSeasonCommentsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonCommentsRequestHasValidUriTemplate()
+        {
+            var request = new TraktSeasonCommentsRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/comments{/sorting}{?page,limit}");
+        }
     }
 }
