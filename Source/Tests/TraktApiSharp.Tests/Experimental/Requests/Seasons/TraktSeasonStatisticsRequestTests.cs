@@ -34,5 +34,12 @@
             var request = new TraktSeasonStatisticsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonStatisticsRequestHasValidUriTemplate()
+        {
+            var request = new TraktSeasonStatisticsRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/stats");
+        }
     }
 }
