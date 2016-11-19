@@ -20,6 +20,8 @@
             return base.GetUriPathParameters();
         }
 
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
