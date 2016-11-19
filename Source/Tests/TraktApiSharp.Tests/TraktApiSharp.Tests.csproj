@@ -240,6 +240,7 @@
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\TraktShowCollectionProgressRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\OAuth\TraktShowWatchedProgressRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowAliasesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowLastEpisodeRequestTests.cs" />
