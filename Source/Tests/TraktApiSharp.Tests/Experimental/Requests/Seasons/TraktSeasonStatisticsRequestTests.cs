@@ -75,5 +75,25 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonStatisticsRequestUriParamsWithoutSeasonNumber()
+        {
+            var request = new TraktSeasonStatisticsRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("season", $"{request.SeasonNumber}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonStatisticsRequestUriParamsWithSeasonNumber()
+        {
+            var request = new TraktSeasonStatisticsRequest(null) { SeasonNumber = 1 };
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("season", $"{request.SeasonNumber}");
+        }
     }
 }
