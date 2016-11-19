@@ -4,10 +4,11 @@
     using Enums;
     using Interfaces;
     using Objects.Basic;
+    using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
+    internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest, ITraktValidatable
     {
         internal TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
 
@@ -20,6 +21,12 @@
         public override IDictionary<string, object> GetUriPathParameters()
         {
             return base.GetUriPathParameters();
+        }
+
+        public void Validate()
+        {
+            if (EpisodeNumber == 0)
+                throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
