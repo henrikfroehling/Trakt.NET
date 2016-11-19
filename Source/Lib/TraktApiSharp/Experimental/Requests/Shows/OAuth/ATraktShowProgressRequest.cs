@@ -12,6 +12,8 @@
 
         internal bool? Specials { get; set; }
 
+        internal bool? CountSpecials { get; set; }
+
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
