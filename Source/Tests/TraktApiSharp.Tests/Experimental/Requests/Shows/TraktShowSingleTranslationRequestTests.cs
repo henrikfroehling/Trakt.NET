@@ -34,5 +34,12 @@
             var request = new TraktShowSingleTranslationRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowSingleTranslationRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowSingleTranslationRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/translations/{language}");
+        }
     }
 }
