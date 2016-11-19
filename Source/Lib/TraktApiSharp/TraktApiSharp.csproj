@@ -192,6 +192,7 @@
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeStatisticsRequest.cs" />
+    <Compile Include="Experimental\Requests\Episodes\TraktEpisodeSummaryRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
