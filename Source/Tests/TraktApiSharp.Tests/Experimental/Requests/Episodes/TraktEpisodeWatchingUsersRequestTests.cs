@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -56,6 +57,24 @@
         public void TestTraktEpisodeWatchingUsersRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeWatchingUsersRequestImplementsITraktValidatableInterface()
+        {
+            typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeWatchingUsersRequestValidation()
+        {
+            var request = new TraktEpisodeWatchingUsersRequest(null) { EpisodeNumber = 0 };
+
+            Action act = () => request.Validate();
+            act.ShouldThrow<ArgumentException>();
+
+            request.EpisodeNumber = 1;
+            act.ShouldNotThrow();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
