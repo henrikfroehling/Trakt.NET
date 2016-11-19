@@ -20,7 +20,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("season", SeasonNumber.ToString());
+            uriParams.Add("episode", EpisodeNumber.ToString());
+
+            return uriParams;
         }
 
         public void Validate()
