@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Episodes
 {
     using Base.Get;
+    using Enums;
     using Interfaces;
     using Objects.Basic;
     using TraktApiSharp.Requests;
@@ -12,6 +13,8 @@
         internal uint SeasonNumber { get; set; }
 
         internal uint EpisodeNumber { get; set; }
+
+        internal TraktCommentSortOrder Sorting { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
