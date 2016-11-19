@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
         public void TestATraktShowProgressRequestIsAbstract()
         {
-            typeof(ATraktShowProgressRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktShowProgressRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestATraktShowProgressRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktShowProgressRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktShowProgressRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
