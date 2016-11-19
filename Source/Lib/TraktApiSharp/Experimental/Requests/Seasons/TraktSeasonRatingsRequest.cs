@@ -7,7 +7,9 @@
 
     internal sealed class TraktSeasonRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest
     {
-        public TraktSeasonRatingsRequest(TraktClient client) : base(client) { }
+        internal TraktSeasonRatingsRequest(TraktClient client) : base(client) { }
+
+        internal uint SeasonNumber { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
