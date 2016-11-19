@@ -4,6 +4,7 @@
     using Interfaces;
     using Objects.Basic;
     using System;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktEpisodeStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktObjectRequest, ITraktValidatable
@@ -13,6 +14,11 @@
         internal uint SeasonNumber { get; set; }
 
         internal uint EpisodeNumber { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public void Validate()
         {
