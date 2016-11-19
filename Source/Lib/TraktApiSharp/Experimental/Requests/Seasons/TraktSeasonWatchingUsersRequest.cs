@@ -17,7 +17,9 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("season", SeasonNumber.ToString());
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
