@@ -34,5 +34,12 @@
             var request = new TraktEpisodeSummaryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeSummaryRequestHasValidUriTemplate()
+        {
+            var request = new TraktEpisodeSummaryRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}{?extended}");
+        }
     }
 }
