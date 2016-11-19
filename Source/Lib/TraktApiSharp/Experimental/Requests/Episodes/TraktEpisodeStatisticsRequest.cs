@@ -7,7 +7,9 @@
 
     internal sealed class TraktEpisodeStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktObjectRequest
     {
-        public TraktEpisodeStatisticsRequest(TraktClient client) : base(client) { }
+        internal TraktEpisodeStatisticsRequest(TraktClient client) : base(client) { }
+
+        internal uint SeasonNumber { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
