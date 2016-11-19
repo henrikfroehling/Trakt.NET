@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows.OAuth
 {
-    internal class TraktShowCollectionProgressRequest
+    internal sealed class TraktShowCollectionProgressRequest
     {
 
     }
