@@ -262,6 +262,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
