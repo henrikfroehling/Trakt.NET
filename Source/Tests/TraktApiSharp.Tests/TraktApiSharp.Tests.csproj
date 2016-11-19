@@ -185,6 +185,7 @@
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeStatisticsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeSummaryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Episodes\TraktEpisodeWatchingUsersRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequestTests.cs" />
