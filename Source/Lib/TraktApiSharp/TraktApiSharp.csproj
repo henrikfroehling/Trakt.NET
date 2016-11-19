@@ -189,6 +189,7 @@
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktShowCommentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\TraktCommentRepliesRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\TraktCommentSummaryRequest.cs" />
+    <Compile Include="Experimental\Requests\Episodes\TraktEpisodeCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
