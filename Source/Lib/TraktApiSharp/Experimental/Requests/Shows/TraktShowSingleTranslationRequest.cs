@@ -9,6 +9,8 @@
     {
         public TraktShowSingleTranslationRequest(TraktClient client) : base(client) { }
 
+        internal string LanguageCode { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
