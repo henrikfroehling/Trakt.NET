@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Episodes;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
 
@@ -40,6 +41,12 @@
         {
             var request = new TraktEpisodeWatchingUsersRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/watching{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeWatchingUsersRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
