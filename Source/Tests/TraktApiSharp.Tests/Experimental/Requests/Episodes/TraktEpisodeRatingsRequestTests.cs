@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
@@ -94,6 +95,17 @@
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeRatingsRequestHasGetUriPathParametersMethod()
+        {
+            var methodInfo = typeof(TraktEpisodeRatingsRequest).GetMethods()
+                                                               .Where(m => m.Name == "GetUriPathParameters")
+                                                               .FirstOrDefault();
+
+            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
+            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }
