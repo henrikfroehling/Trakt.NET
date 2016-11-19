@@ -10,6 +10,8 @@
 
         internal bool? Hidden { get; set; }
 
+        internal bool? Specials { get; set; }
+
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
