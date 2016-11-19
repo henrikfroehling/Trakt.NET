@@ -245,6 +245,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowPeopleRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowRelatedShowsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowSingleTranslationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequestTests.cs" />
