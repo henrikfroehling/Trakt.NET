@@ -7,7 +7,9 @@
 
     internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
     {
-        public TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
+        internal TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
+
+        internal uint SeasonNumber { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
