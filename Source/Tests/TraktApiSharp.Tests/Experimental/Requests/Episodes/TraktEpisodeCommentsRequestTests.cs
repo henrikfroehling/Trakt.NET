@@ -121,5 +121,97 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeCommentsRequestUriParamsWithoutSeasonNumberAndEpisodeNumberAndSorting()
+        {
+            var request = new TraktEpisodeCommentsRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>()
+            {
+                ["season"] = $"{request.SeasonNumber}",
+                ["episode"] = $"{request.EpisodeNumber}"
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeCommentsRequestUriParamsWithoutSeasonNumberAndSorting()
+        {
+            var request = new TraktEpisodeCommentsRequest(null) { EpisodeNumber = 1 };
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>()
+            {
+                ["season"] = $"{request.SeasonNumber}",
+                ["episode"] = $"{request.EpisodeNumber}"
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeCommentsRequestUriParamsWithoutSorting()
+        {
+            var request = new TraktEpisodeCommentsRequest(null)
+            {
+                SeasonNumber = 1,
+                EpisodeNumber = 1
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>()
+            {
+                ["season"] = $"{request.SeasonNumber}",
+                ["episode"] = $"{request.EpisodeNumber}"
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktEpisodeCommentsRequestUriParamsWithUnspecifiedSorting()
+        {
+            var sorting = TraktCommentSortOrder.Unspecified;
+
+            var request = new TraktEpisodeCommentsRequest(null)
+            {
+                SeasonNumber = 1,
+                EpisodeNumber = 1,
+                Sorting = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>()
+            {
+                ["season"] = $"{request.SeasonNumber}",
+                ["episode"] = $"{request.EpisodeNumber}"
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktEpisodeCommentsRequestUriParamsWithSorting()
+        {
+            var sorting = TraktCommentSortOrder.Newest;
+
+            var request = new TraktEpisodeCommentsRequest(null)
+            {
+                SeasonNumber = 1,
+                EpisodeNumber = 1,
+                Sorting = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>()
+            {
+                ["season"] = $"{request.SeasonNumber}",
+                ["episode"] = $"{request.EpisodeNumber}",
+                ["sorting"] = sorting.UriName
+            });
+        }
     }
 }

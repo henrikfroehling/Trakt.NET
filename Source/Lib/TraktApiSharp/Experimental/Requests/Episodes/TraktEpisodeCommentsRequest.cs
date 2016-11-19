@@ -20,7 +20,15 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("season", SeasonNumber.ToString());
+            uriParams.Add("episode", EpisodeNumber.ToString());
+
+            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sorting", Sorting.UriName);
+
+            return uriParams;
         }
 
         public void Validate()
