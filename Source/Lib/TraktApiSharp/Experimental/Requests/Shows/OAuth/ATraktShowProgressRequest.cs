@@ -17,7 +17,18 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (Hidden.HasValue)
+                uriParams.Add("hidden", Hidden.Value.ToString().ToLower());
+
+            if (Specials.HasValue)
+                uriParams.Add("specials", Specials.Value.ToString().ToLower());
+
+            if (CountSpecials.HasValue)
+                uriParams.Add("count_specials", CountSpecials.Value.ToString().ToLower());
+
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
