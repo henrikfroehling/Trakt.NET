@@ -9,7 +9,7 @@
 
     internal sealed class TraktSeasonCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
     {
-        public TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
+        internal TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
         internal uint SeasonNumber { get; set; }
 

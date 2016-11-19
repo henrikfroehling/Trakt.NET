@@ -8,7 +8,7 @@
 
     internal sealed class TraktShowNextEpisodeRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktObjectRequest, ITraktExtendedInfo
     {
-        public TraktShowNextEpisodeRequest(TraktClient client) : base(client) { }
+        internal TraktShowNextEpisodeRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

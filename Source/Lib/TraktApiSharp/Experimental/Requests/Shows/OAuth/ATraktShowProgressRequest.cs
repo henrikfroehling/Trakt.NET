@@ -7,7 +7,7 @@
 
     internal abstract class ATraktShowProgressRequest<TItem> : ATraktSingleItemGetByIdRequest<TItem>, ITraktObjectRequest
     {
-        public ATraktShowProgressRequest(TraktClient client) : base(client) { }
+        internal ATraktShowProgressRequest(TraktClient client) : base(client) { }
 
         internal bool? Hidden { get; set; }
 

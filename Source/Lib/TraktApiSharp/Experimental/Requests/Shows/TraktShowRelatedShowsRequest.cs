@@ -8,7 +8,7 @@
 
     internal sealed class TraktShowRelatedShowsRequest : ATraktPaginationGetByIdRequest<TraktShow>, ITraktObjectRequest, ITraktExtendedInfo
     {
-        public TraktShowRelatedShowsRequest(TraktClient client) : base(client) { }
+        internal TraktShowRelatedShowsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

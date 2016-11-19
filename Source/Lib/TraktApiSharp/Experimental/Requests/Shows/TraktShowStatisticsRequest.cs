@@ -7,7 +7,7 @@
 
     internal sealed class TraktShowStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktObjectRequest
     {
-        public TraktShowStatisticsRequest(TraktClient client) : base(client) { }
+        internal TraktShowStatisticsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

@@ -7,7 +7,7 @@
 
     internal sealed class TraktShowTranslationsRequest : ATraktListGetByIdRequest<TraktShowTranslation>, ITraktObjectRequest
     {
-        public TraktShowTranslationsRequest(TraktClient client) : base(client) { }
+        internal TraktShowTranslationsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

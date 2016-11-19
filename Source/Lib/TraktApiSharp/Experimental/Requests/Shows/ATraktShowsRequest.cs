@@ -7,7 +7,7 @@
 
     internal abstract class ATraktShowsRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo, ITraktFilterable
     {
-        public ATraktShowsRequest(TraktClient client) : base(client) { }
+        internal ATraktShowsRequest(TraktClient client) : base(client) { }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

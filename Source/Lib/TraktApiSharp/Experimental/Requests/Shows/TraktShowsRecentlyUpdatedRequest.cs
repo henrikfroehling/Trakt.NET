@@ -11,7 +11,7 @@
 
     internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedShow>, ITraktExtendedInfo
     {
-        public TraktShowsRecentlyUpdatedRequest(TraktClient client) : base(client) { }
+        internal TraktShowsRecentlyUpdatedRequest(TraktClient client) : base(client) { }
 
         internal DateTime? StartDate { get; set; }
 

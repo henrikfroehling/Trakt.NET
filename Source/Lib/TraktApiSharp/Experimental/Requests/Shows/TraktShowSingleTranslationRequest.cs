@@ -8,7 +8,7 @@
 
     internal sealed class TraktShowSingleTranslationRequest : ATraktSingleItemGetByIdRequest<TraktShowTranslation>, ITraktObjectRequest
     {
-        public TraktShowSingleTranslationRequest(TraktClient client) : base(client) { }
+        internal TraktShowSingleTranslationRequest(TraktClient client) : base(client) { }
 
         internal string LanguageCode { get; set; }
 

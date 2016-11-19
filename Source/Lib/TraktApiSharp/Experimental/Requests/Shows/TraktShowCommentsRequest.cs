@@ -9,7 +9,7 @@
 
     internal sealed class TraktShowCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
     {
-        public TraktShowCommentsRequest(TraktClient client) : base(client) { }
+        internal TraktShowCommentsRequest(TraktClient client) : base(client) { }
 
         internal TraktCommentSortOrder Sorting { get; set; }
 
