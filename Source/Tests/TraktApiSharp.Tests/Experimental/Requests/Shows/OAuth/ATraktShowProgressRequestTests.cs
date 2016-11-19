@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows.OAuth;
 
     [TestClass]
@@ -18,6 +19,12 @@
         {
             typeof(ATraktShowProgressRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktShowProgressRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestATraktShowProgressRequestIsSubclassOfATraktSingleItemGetByIdRequest()
+        {
+            typeof(ATraktShowProgressRequest<int>).IsSubclassOf(typeof(ATraktSingleItemGetByIdRequest<int>)).Should().BeTrue();
         }
     }
 }

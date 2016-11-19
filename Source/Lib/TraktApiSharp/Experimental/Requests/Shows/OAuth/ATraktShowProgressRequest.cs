@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows.OAuth
 {
-    internal abstract class ATraktShowProgressRequest<TItem>
-    {
+    using Base.Get;
 
+    internal abstract class ATraktShowProgressRequest<TItem> : ATraktSingleItemGetByIdRequest<TItem>
+    {
+        public ATraktShowProgressRequest(TraktClient client) : base(client) { }
     }
 }
