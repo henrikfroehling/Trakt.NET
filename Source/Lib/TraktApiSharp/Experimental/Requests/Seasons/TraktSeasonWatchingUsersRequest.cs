@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
-    internal class TraktSeasonWatchingUsersRequest
+    internal sealed class TraktSeasonWatchingUsersRequest
     {
 
     }
