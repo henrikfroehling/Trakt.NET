@@ -8,6 +8,8 @@
     {
         public ATraktShowProgressRequest(TraktClient client) : base(client) { }
 
+        internal bool? Hidden { get; set; }
+
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
