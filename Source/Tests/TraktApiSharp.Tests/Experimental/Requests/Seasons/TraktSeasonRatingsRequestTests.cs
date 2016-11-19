@@ -12,5 +12,11 @@
         {
             typeof(TraktSeasonRatingsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonRatingsRequestIsSealed()
+        {
+            typeof(TraktSeasonRatingsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
