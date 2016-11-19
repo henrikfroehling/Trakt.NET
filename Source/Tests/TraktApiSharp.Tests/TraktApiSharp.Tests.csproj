@@ -255,6 +255,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowStatisticsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowSummaryRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
