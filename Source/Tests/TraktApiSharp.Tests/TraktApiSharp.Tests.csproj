@@ -238,6 +238,7 @@
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonRatingsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Seasons\TraktSeasonsAllRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequestTests.cs" />

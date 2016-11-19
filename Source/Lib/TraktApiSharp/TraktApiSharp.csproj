@@ -246,6 +246,7 @@
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonRatingsRequest.cs" />
+    <Compile Include="Experimental\Requests\Seasons\TraktSeasonsAllRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequest.cs" />
