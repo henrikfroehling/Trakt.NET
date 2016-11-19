@@ -33,5 +33,12 @@
             var request = new TraktShowCollectionProgressRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("With OAuth")]
+        public void TestTraktShowCollectionProgressRequestHasValidUriTemplate()
+        {
+            var request = new TraktShowCollectionProgressRequest(null);
+            request.UriTemplate.Should().Be("shows/{id}/progress/collection{?hidden,specials,count_specials}");
+        }
     }
 }
