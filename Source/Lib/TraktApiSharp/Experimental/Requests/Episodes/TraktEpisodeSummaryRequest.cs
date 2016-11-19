@@ -3,11 +3,12 @@
     using Base.Get;
     using Interfaces;
     using Objects.Get.Shows.Episodes;
+    using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktEpisodeSummaryRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktObjectRequest, ITraktExtendedInfo
+    internal sealed class TraktEpisodeSummaryRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktObjectRequest, ITraktExtendedInfo, ITraktValidatable
     {
         internal TraktEpisodeSummaryRequest(TraktClient client) : base(client) { }
 
@@ -20,6 +21,12 @@
         public override IDictionary<string, object> GetUriPathParameters()
         {
             return base.GetUriPathParameters();
+        }
+
+        public void Validate()
+        {
+            if (EpisodeNumber == 0)
+                throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
