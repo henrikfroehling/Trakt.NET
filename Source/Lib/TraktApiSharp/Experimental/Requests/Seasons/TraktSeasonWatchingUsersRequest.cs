@@ -8,7 +8,9 @@
 
     internal sealed class TraktSeasonWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>, ITraktObjectRequest, ITraktExtendedInfo
     {
-        public TraktSeasonWatchingUsersRequest(TraktClient client) : base(client) { }
+        internal TraktSeasonWatchingUsersRequest(TraktClient client) : base(client) { }
+
+        internal uint SeasonNumber { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
