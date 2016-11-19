@@ -3,15 +3,22 @@
     using Base.Get;
     using Interfaces;
     using Objects.Basic;
+    using System;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest
+    internal sealed class TraktEpisodeRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest, ITraktValidatable
     {
         internal TraktEpisodeRatingsRequest(TraktClient client) : base(client) { }
 
         internal uint SeasonNumber { get; set; }
 
         internal uint EpisodeNumber { get; set; }
+
+        public void Validate()
+        {
+            if (EpisodeNumber == 0)
+                throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

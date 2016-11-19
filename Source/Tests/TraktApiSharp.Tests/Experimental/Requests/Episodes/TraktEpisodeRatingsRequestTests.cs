@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
@@ -49,6 +50,24 @@
         public void TestTraktEpisodeRatingsRequestImplementsITraktObjectRequestInterface()
         {
             typeof(TraktEpisodeRatingsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeRatingsRequestImplementsITraktValidatableInterface()
+        {
+            typeof(TraktEpisodeRatingsRequest).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
+        public void TestTraktEpisodeRatingsRequestValidation()
+        {
+            var request = new TraktEpisodeRatingsRequest(null) { EpisodeNumber = 0 };
+
+            Action act = () => request.Validate();
+            act.ShouldThrow<ArgumentException>();
+
+            request.EpisodeNumber = 1;
+            act.ShouldNotThrow();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
