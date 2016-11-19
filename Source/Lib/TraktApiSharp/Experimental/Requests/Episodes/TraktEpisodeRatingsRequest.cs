@@ -9,6 +9,8 @@
     {
         internal TraktEpisodeRatingsRequest(TraktClient client) : base(client) { }
 
+        internal uint SeasonNumber { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
