@@ -4,6 +4,7 @@
     using Enums;
     using Interfaces;
     using Objects.Basic;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
@@ -15,6 +16,11 @@
         internal uint EpisodeNumber { get; set; }
 
         internal TraktCommentSortOrder Sorting { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
