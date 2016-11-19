@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
@@ -53,6 +55,19 @@
         public void TestTraktSeasonSingleRequestImplementsITraktExtendedInfo()
         {
             typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonSingleRequestHasSeasonNumberProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSeasonSingleRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "SeasonNumber")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
         }
     }
 }

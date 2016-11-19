@@ -10,6 +10,8 @@
     {
         internal TraktSeasonSingleRequest(TraktClient client) : base(client) { }
 
+        internal uint SeasonNumber { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
