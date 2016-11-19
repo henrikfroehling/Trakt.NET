@@ -1,7 +1,28 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Episodes
 {
-    internal sealed class TraktEpisodeStatisticsRequest
-    {
+    using Base.Get;
+    using Objects.Basic;
+    using System;
+    using TraktApiSharp.Requests;
 
+    internal sealed class TraktEpisodeStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>
+    {
+        public TraktEpisodeStatisticsRequest(TraktClient client) : base(client) { }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string UriTemplate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
