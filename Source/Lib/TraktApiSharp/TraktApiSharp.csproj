@@ -247,6 +247,7 @@
     <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\OAuth\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowAliasesRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowLastEpisodeRequest.cs" />
