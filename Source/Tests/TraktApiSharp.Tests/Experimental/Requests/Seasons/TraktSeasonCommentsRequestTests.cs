@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
@@ -62,6 +63,19 @@
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(int));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
+        public void TestTraktSeasonCommentsRequestHasSortingProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSeasonCommentsRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Sorting")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
     }
 }

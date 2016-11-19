@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
     using Base.Get;
+    using Enums;
     using Interfaces;
     using Objects.Basic;
     using TraktApiSharp.Requests;
@@ -10,6 +11,8 @@
         public TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
         internal int SeasonNumber { get; set; }
+
+        internal TraktCommentSortOrder Sorting { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
