@@ -2,7 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Shows;
+    using TraktApiSharp.Objects.Basic;
 
     [TestClass]
     public class TraktShowStatisticsRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktShowStatisticsRequestIsSealed()
         {
             typeof(TraktShowStatisticsRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
+        public void TestTraktShowStatisticsRequestIsSubclassOfATraktSingleItemGetByIdRequest()
+        {
+            typeof(TraktShowStatisticsRequest).IsSubclassOf(typeof(ATraktSingleItemGetByIdRequest<TraktStatistics>)).Should().BeTrue();
         }
     }
 }
