@@ -252,6 +252,12 @@
 
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, int[] seasons)
         {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons);
+
             return this;
         }
 
@@ -779,6 +785,24 @@
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
+            }
+
+            return showSeasons;
+        }
+
+        private IEnumerable<TraktSyncCollectionPostShowSeason> CreateShowSeasons(int[] seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasons[i] });
             }
 
             return showSeasons;

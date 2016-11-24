@@ -3824,6 +3824,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -3859,6 +3862,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -3894,6 +3900,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -3930,6 +3939,9 @@
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
         }
 
         // ----------------------------------------------------------------------------------------
