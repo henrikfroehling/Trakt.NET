@@ -250,6 +250,11 @@
             return this;
         }
 
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
@@ -280,6 +285,11 @@
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
 
+            return this;
+        }
+
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, int[] seasons)
+        {
             return this;
         }
 
@@ -316,6 +326,11 @@
             return this;
         }
 
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
@@ -347,6 +362,11 @@
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
 
+            return this;
+        }
+
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, int[] seasons)
+        {
             return this;
         }
 
