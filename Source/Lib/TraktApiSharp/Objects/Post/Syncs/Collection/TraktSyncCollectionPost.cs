@@ -250,6 +250,25 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, int[] seasons)
         {
             ValidateShow(show);
@@ -294,6 +313,26 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, int[] seasons)
         {
             ValidateShow(show);
@@ -338,6 +377,26 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, int[] seasons)
         {
             ValidateShow(show);
@@ -383,6 +442,27 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
+        /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, int[] seasons)
         {
             ValidateShow(show);
