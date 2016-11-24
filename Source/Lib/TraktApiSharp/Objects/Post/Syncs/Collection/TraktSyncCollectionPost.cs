@@ -340,6 +340,12 @@
 
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, int[] seasons)
         {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons, metadata);
+
             return this;
         }
 
