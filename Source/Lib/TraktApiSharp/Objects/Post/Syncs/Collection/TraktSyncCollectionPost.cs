@@ -296,6 +296,12 @@
 
         public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, int[] seasons)
         {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons, null, collectedAt);
+
             return this;
         }
 
