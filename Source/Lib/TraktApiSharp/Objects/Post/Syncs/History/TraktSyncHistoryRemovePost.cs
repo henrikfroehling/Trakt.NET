@@ -110,6 +110,11 @@
             return this;
         }
 
+        public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
