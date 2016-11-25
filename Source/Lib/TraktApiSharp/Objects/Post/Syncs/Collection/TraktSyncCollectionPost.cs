@@ -185,6 +185,15 @@
 
         public TraktSyncCollectionPostBuilder AddShows(IEnumerable<TraktShow> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (shows.Count() == 0)
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
             return this;
         }
 
