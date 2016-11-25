@@ -215,6 +215,11 @@
             return this;
         }
 
+        /// <summary>Adds history ids, which will be added to the history remove post.</summary>
+        /// <param name="ids">An array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given ids array is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least one of the given history ids equals zero.</exception>
         public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] ids)
         {
             if (ids == null)
