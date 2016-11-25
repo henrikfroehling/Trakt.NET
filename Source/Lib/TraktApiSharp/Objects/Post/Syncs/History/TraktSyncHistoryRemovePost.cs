@@ -59,6 +59,11 @@
             return AddMovieOrIgnore(movie);
         }
 
+        public TraktSyncHistoryRemovePostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
