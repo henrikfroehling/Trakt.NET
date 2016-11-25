@@ -1767,7 +1767,7 @@
             var builder = TraktSyncHistoryRemovePost.Builder();
 
             Action act = () => builder.AddHistoryIds(default(ulong[]));
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             var historyIds = new ulong[] { 0, 2, 1, 4 };
 

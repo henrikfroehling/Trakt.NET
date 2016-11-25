@@ -217,6 +217,23 @@
 
         public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] ids)
         {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+
+            if (ids.Length == 0)
+                return this;
+
+            if (_historyPost.HistoryIds == null)
+                _historyPost.HistoryIds = new List<ulong>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                if (ids[i] == 0)
+                    throw new ArgumentOutOfRangeException("at least one history id is not valid");
+
+                (_historyPost.HistoryIds as List<ulong>).Add(ids[i]);
+            }
+
             return this;
         }
 
