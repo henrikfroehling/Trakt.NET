@@ -147,6 +147,148 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncHistoryRemovePostBuilderAddMoviesCollection()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Title = "movie2",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            var builder = TraktSyncHistoryRemovePost.Builder();
+
+            builder.AddMovies(movies);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            historyPost.HistoryIds.Should().BeNull();
+
+            builder.AddMovies(movies);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            historyPost.HistoryIds.Should().BeNull();
+
+            movie1.Ids.Trakt = 2;
+
+            movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            builder.AddMovies(movies);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+            historyPost.HistoryIds.Should().BeNull();
+
+            var historyMovies = historyPost.Movies.ToArray();
+
+            historyMovies[0].Should().NotBeNull();
+            historyMovies[0].Title.Should().Be("movie1");
+            historyMovies[0].Year.Should().Be(2016);
+            historyMovies[0].Ids.Should().NotBeNull();
+            historyMovies[0].Ids.Trakt.Should().Be(2U);
+            historyMovies[0].Ids.Slug.Should().Be("movie1");
+            historyMovies[0].Ids.Imdb.Should().Be("imdb1");
+            historyMovies[0].Ids.Tmdb.Should().Be(1234U);
+            historyMovies[0].WatchedAt.Should().NotHaveValue();
+
+            historyMovies[1].Should().NotBeNull();
+            historyMovies[1].Title.Should().Be("movie2");
+            historyMovies[1].Year.Should().Be(2016);
+            historyMovies[1].Ids.Should().NotBeNull();
+            historyMovies[1].Ids.Trakt.Should().Be(3U);
+            historyMovies[1].Ids.Slug.Should().Be("movie2");
+            historyMovies[1].Ids.Imdb.Should().Be("imdb2");
+            historyMovies[1].Ids.Tmdb.Should().Be(12345U);
+            historyMovies[1].WatchedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryRemovePostBuilderAddMoviesCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryRemovePost.Builder();
+
+            Action act = () => builder.AddMovies(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var movies = new List<TraktMovie>
+            {
+                new TraktMovie()
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentNullException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds() }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncHistoryRemovePostBuilderAddEpisode()
         {
             var episode1 = new TraktEpisode
