@@ -682,6 +682,11 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        public TraktSyncCollectionPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the collection post.</summary>
         /// <param name="episode">The Trakt episode, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given episode was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
