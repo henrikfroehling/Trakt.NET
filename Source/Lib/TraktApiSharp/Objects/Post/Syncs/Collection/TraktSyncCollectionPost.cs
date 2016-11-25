@@ -77,6 +77,11 @@
             return AddMovieOrIgnore(movie);
         }
 
+        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the collection post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given movie was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
