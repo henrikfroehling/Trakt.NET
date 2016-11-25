@@ -77,6 +77,32 @@
             return AddMovieOrIgnore(movie);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the collection post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (movies.Count() == 0)
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the collection post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given movie was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
@@ -155,6 +181,32 @@
             EnsureShowsListExists();
 
             return AddShowOrIgnore(show);
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the collection post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (shows.Count() == 0)
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
+            return this;
         }
 
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
@@ -252,6 +304,36 @@
 
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="season">
         /// A season number for a season in the given show. The complete season will be added to the collection.
@@ -278,6 +360,37 @@
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
+            CreateOrSetShow(show, showSeasons, null, collectedAt);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, DateTime collectedAt, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
 
             return this;
@@ -319,6 +432,37 @@
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons, metadata);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="season">
         /// A season number for a season in the given show. The complete season will be added to the collection.
@@ -345,6 +489,38 @@
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
+            CreateOrSetShow(show, showSeasons, metadata, collectedAt);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given show.</param>
+        /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the collection.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShow(TraktShow show, TraktMetadata metadata, DateTime collectedAt, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
 
             return this;
@@ -504,6 +680,29 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode);
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktEpisode" />s, which will be added to the collection post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
+        public TraktSyncCollectionPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (episodes.Count() == 0)
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
+
+            return this;
         }
 
         /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the collection post.</summary>
@@ -759,6 +958,24 @@
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
+            }
+
+            return showSeasons;
+        }
+
+        private IEnumerable<TraktSyncCollectionPostShowSeason> CreateShowSeasons(int[] seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncCollectionPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasons[i] });
             }
 
             return showSeasons;
