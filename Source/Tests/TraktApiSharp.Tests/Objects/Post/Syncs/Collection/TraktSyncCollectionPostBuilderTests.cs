@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Basic;
@@ -553,6 +554,147 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderAddMovieCollection()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Title = "movie2",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            var builder = TraktSyncCollectionPost.Builder();
+
+            builder.AddMovies(movies);
+
+            var collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().BeNull();
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            builder.AddMovies(movies);
+
+            collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().BeNull();
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            movie1.Ids.Trakt = 2;
+
+            movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            builder.AddMovies(movies);
+
+            collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().BeNull();
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            var collectionMovies = collectionPost.Movies.ToArray();
+
+            collectionMovies[0].Should().NotBeNull();
+            collectionMovies[0].Title.Should().Be("movie1");
+            collectionMovies[0].Year.Should().Be(2016);
+            collectionMovies[0].Ids.Should().NotBeNull();
+            collectionMovies[0].Ids.Trakt.Should().Be(2U);
+            collectionMovies[0].Ids.Slug.Should().Be("movie1");
+            collectionMovies[0].Ids.Imdb.Should().Be("imdb1");
+            collectionMovies[0].Ids.Tmdb.Should().Be(1234U);
+            collectionMovies[0].CollectedAt.Should().NotHaveValue();
+            collectionMovies[0].Metadata.Should().BeNull();
+
+            collectionMovies[1].Should().NotBeNull();
+            collectionMovies[1].Title.Should().Be("movie2");
+            collectionMovies[1].Year.Should().Be(2016);
+            collectionMovies[1].Ids.Should().NotBeNull();
+            collectionMovies[1].Ids.Trakt.Should().Be(3U);
+            collectionMovies[1].Ids.Slug.Should().Be("movie2");
+            collectionMovies[1].Ids.Imdb.Should().Be("imdb2");
+            collectionMovies[1].Ids.Tmdb.Should().Be(12345U);
+            collectionMovies[1].CollectedAt.Should().NotHaveValue();
+            collectionMovies[1].Metadata.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderAddMovieCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncCollectionPost.Builder();
+
+            Action act = () => builder.AddMovies(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var movies = new List<TraktMovie>
+            {
+                new TraktMovie()
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentNullException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds() }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddMovies(movies);
             act.ShouldThrow<ArgumentException>();
         }
 
