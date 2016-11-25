@@ -215,6 +215,11 @@
             return this;
         }
 
+        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] ids)
+        {
+            return this;
+        }
+
         /// <summary>Removes all already added movies, shows, seasons, episodes and history ids from the builder.</summary>
         public void Reset()
         {
