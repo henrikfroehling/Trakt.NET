@@ -32,7 +32,7 @@
     /// </summary>
     public class TraktSyncHistoryRemovePostBuilder
     {
-        protected TraktSyncHistoryRemovePost _historyPost;
+        private TraktSyncHistoryRemovePost _historyPost;
 
         /// <summary>Initializes a new instance of the <see cref="TraktSyncHistoryRemovePostBuilder" /> class.</summary>
         public TraktSyncHistoryRemovePostBuilder()
@@ -290,7 +290,7 @@
                 _historyPost.Episodes = new List<TraktSyncHistoryPostEpisode>();
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddMovieOrIgnore(TraktMovie movie, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddMovieOrIgnore(TraktMovie movie)
         {
             if (ContainsMovie(movie))
                 return this;
@@ -300,15 +300,12 @@
             historyMovie.Title = movie.Title;
             historyMovie.Year = movie.Year;
 
-            if (watchedAt.HasValue)
-                historyMovie.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Movies as List<TraktSyncHistoryPostMovie>).Add(historyMovie);
 
             return this;
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddShowOrIgnore(TraktShow show, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddShowOrIgnore(TraktShow show)
         {
             if (ContainsShow(show))
                 return this;
@@ -318,15 +315,12 @@
             historyShow.Title = show.Title;
             historyShow.Year = show.Year;
 
-            if (watchedAt.HasValue)
-                historyShow.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Shows as List<TraktSyncHistoryPostShow>).Add(historyShow);
 
             return this;
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddEpisodeOrIgnore(TraktEpisode episode, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddEpisodeOrIgnore(TraktEpisode episode)
         {
             if (ContainsEpisode(episode))
                 return this;
@@ -334,16 +328,12 @@
             var historyEpisode = new TraktSyncHistoryPostEpisode();
             historyEpisode.Ids = episode.Ids;
 
-            if (watchedAt.HasValue)
-                historyEpisode.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Episodes as List<TraktSyncHistoryPostEpisode>).Add(historyEpisode);
 
             return this;
         }
 
-        protected void CreateOrSetShow(TraktShow show, IEnumerable<TraktSyncHistoryPostShowSeason> showSeasons,
-                                       DateTime? watchedAt = null)
+        protected void CreateOrSetShow(TraktShow show, IEnumerable<TraktSyncHistoryPostShowSeason> showSeasons)
         {
             var existingShow = _historyPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
@@ -355,9 +345,6 @@
                 historyShow.Ids = show.Ids;
                 historyShow.Title = show.Title;
                 historyShow.Year = show.Year;
-
-                if (watchedAt.HasValue)
-                    historyShow.WatchedAt = watchedAt.Value.ToUniversalTime();
 
                 historyShow.Seasons = showSeasons;
                 (_historyPost.Shows as List<TraktSyncHistoryPostShow>).Add(historyShow);
@@ -394,9 +381,6 @@
 
                 var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = season.Number };
 
-                if (season.WatchedAt.HasValue)
-                    showSingleSeason.WatchedAt = season.WatchedAt.Value.ToUniversalTime();
-
                 if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
                     var showEpisodes = new List<TraktSyncHistoryPostShowEpisode>();
@@ -407,9 +391,6 @@
                             throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
                         var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
-
-                        if (episode.WatchedAt.HasValue)
-                            showEpisode.WatchedAt = episode.WatchedAt.Value.ToUniversalTime();
 
                         showEpisodes.Add(showEpisode);
                     }
