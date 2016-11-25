@@ -1202,6 +1202,127 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderAddEpisodeCollection()
+        {
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var episode2 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 3,
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            var builder = TraktSyncCollectionPost.Builder();
+
+            builder.AddEpisodes(episodes);
+
+            var collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().BeNull();
+
+            builder.AddEpisodes(episodes);
+
+            collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().BeNull();
+
+            episode1.Ids.Trakt = 2;
+
+            episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            builder.AddEpisodes(episodes);
+
+            collectionPost = builder.Build();
+
+            collectionPost.Should().NotBeNull();
+            collectionPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            collectionPost.Shows.Should().BeNull();
+            collectionPost.Movies.Should().BeNull();
+
+            var collectionEpisodes = collectionPost.Episodes.ToArray();
+
+            collectionEpisodes[0].Should().NotBeNull();
+            collectionEpisodes[0].Ids.Should().NotBeNull();
+            collectionEpisodes[0].Ids.Trakt.Should().Be(2U);
+            collectionEpisodes[0].Ids.Imdb.Should().Be("imdb1");
+            collectionEpisodes[0].Ids.Tmdb.Should().Be(1234U);
+            collectionEpisodes[0].Ids.Tvdb.Should().Be(12345U);
+            collectionEpisodes[0].Ids.TvRage.Should().Be(123456U);
+            collectionEpisodes[0].CollectedAt.Should().NotHaveValue();
+            collectionEpisodes[0].Metadata.Should().BeNull();
+
+            collectionEpisodes[1].Should().NotBeNull();
+            collectionEpisodes[1].Ids.Should().NotBeNull();
+            collectionEpisodes[1].Ids.Trakt.Should().Be(3U);
+            collectionEpisodes[1].Ids.Imdb.Should().Be("imdb2");
+            collectionEpisodes[1].Ids.Tmdb.Should().Be(12345U);
+            collectionEpisodes[1].Ids.Tvdb.Should().Be(123456U);
+            collectionEpisodes[1].Ids.TvRage.Should().Be(1234567U);
+            collectionEpisodes[1].CollectedAt.Should().NotHaveValue();
+            collectionEpisodes[1].Metadata.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncCollectionPostBuilderAddEpisodeCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncCollectionPost.Builder();
+
+            Action act = () => builder.AddEpisodes(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode()
+            };
+
+            act = () => builder.AddEpisodes(episodes);
+            act.ShouldThrow<ArgumentNullException>();
+
+            episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode { Ids = new TraktEpisodeIds() }
+            };
+
+            act = () => builder.AddEpisodes(episodes);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncCollectionPostBuilderAddShow()
         {
             var show1 = new TraktShow
