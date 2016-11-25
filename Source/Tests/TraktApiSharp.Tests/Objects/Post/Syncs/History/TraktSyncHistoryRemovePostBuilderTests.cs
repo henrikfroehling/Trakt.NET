@@ -1722,7 +1722,66 @@
             act = () => builder.AddHistoryIds(1, 2, 0, 4);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddHistoryIds(1, 2, 0, 4);
+            act = () => builder.AddHistoryIds(1, 2, 4, 0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncHistoryRemovePostBuilderAddHistoryIdsArray()
+        {
+            var historyIds = new ulong[] { 1, 2, 3, 4 };
+
+            var builder = TraktSyncHistoryRemovePost.Builder();
+
+            builder.AddHistoryIds(historyIds);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().BeNull();
+            historyPost.HistoryIds.Should().NotBeNull().And.HaveCount(4);
+            historyPost.HistoryIds.Should().Contain(new List<ulong> { 1, 2, 3, 4 });
+
+            historyIds = new ulong[] { 5, 6, 7, 8 };
+
+            builder.AddHistoryIds(historyIds);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().BeNull();
+            historyPost.HistoryIds.Should().NotBeNull().And.HaveCount(8);
+            historyPost.HistoryIds.Should().Contain(new List<ulong> { 1, 2, 3, 4, 5, 6, 7, 8 });
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryRemovePostBuilderAddHistoryIdsArrayArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryRemovePost.Builder();
+
+            Action act = () => builder.AddHistoryIds(default(ulong[]));
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            var historyIds = new ulong[] { 0, 2, 1, 4 };
+
+            act = () => builder.AddHistoryIds(historyIds);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            historyIds = new ulong[] { 1, 2, 0, 4 };
+
+            act = () => builder.AddHistoryIds(historyIds);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            historyIds = new ulong[] { 1, 2, 4, 0 };
+
+            act = () => builder.AddHistoryIds(historyIds);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
