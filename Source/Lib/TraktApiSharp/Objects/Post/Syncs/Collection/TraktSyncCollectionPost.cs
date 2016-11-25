@@ -183,6 +183,11 @@
             return AddShowOrIgnore(show);
         }
 
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given show was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
