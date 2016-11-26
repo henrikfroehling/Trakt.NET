@@ -76,6 +76,11 @@
             return AddMovieOrIgnore(movie);
         }
 
+        public TraktSyncHistoryPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the history post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="watchedAt">The datetime, when the given movie was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
