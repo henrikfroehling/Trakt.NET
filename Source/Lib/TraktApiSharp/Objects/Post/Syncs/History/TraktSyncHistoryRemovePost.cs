@@ -104,6 +104,11 @@
             return AddShowOrIgnore(show);
         }
 
+        public TraktSyncHistoryRemovePostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
