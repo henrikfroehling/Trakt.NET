@@ -398,6 +398,11 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        public TraktSyncHistoryPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the history post.</summary>
         /// <param name="episode">The Trakt episode, which will be added.</param>
         /// <param name="watchedAt">The datetime, when the given episode was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
