@@ -104,6 +104,18 @@
             return AddShowOrIgnore(show);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the history remove post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktSyncHistoryRemovePostBuilder AddShows(IEnumerable<TraktShow> shows)
         {
             if (shows == null)
