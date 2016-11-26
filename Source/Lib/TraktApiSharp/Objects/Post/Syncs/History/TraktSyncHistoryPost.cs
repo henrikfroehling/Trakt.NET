@@ -400,6 +400,15 @@
 
         public TraktSyncHistoryPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (episodes.Count() == 0)
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
+
             return this;
         }
 
