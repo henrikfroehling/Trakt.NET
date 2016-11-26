@@ -32,7 +32,7 @@
     /// </summary>
     public class TraktSyncHistoryRemovePostBuilder
     {
-        protected TraktSyncHistoryRemovePost _historyPost;
+        private TraktSyncHistoryRemovePost _historyPost;
 
         /// <summary>Initializes a new instance of the <see cref="TraktSyncHistoryRemovePostBuilder" /> class.</summary>
         public TraktSyncHistoryRemovePostBuilder()
@@ -59,6 +59,32 @@
             return AddMovieOrIgnore(movie);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the history remove post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncHistoryRemovePostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (movies.Count() == 0)
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
@@ -76,6 +102,32 @@
             EnsureShowsListExists();
 
             return AddShowOrIgnore(show);
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the history remove post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncHistoryRemovePostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (shows.Count() == 0)
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
+            return this;
         }
 
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
@@ -105,6 +157,36 @@
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
+            CreateOrSetShow(show, showSeasons);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history remove post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be removed from the history.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncHistoryRemovePostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
 
             return this;
@@ -160,6 +242,29 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktEpisode" />s, which will be added to the history remove post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
+        public TraktSyncHistoryRemovePostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (episodes.Count() == 0)
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
+
+            return this;
+        }
+
         /// <summary>Adds history ids, which will be added to the history remove post.</summary>
         /// <param name="id">A history item id. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
         /// <param name="ids">An optional array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
@@ -180,6 +285,33 @@
                     throw new ArgumentOutOfRangeException("at least one history id is not valid");
 
                 (_historyPost.HistoryIds as List<ulong>).Add(idsToAdd[i]);
+            }
+
+            return this;
+        }
+
+        /// <summary>Adds history ids, which will be added to the history remove post.</summary>
+        /// <param name="ids">An array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given ids array is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least one of the given history ids equals zero.</exception>
+        public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+
+            if (ids.Length == 0)
+                return this;
+
+            if (_historyPost.HistoryIds == null)
+                _historyPost.HistoryIds = new List<ulong>();
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                if (ids[i] == 0)
+                    throw new ArgumentOutOfRangeException("at least one history id is not valid");
+
+                (_historyPost.HistoryIds as List<ulong>).Add(ids[i]);
             }
 
             return this;
@@ -290,7 +422,7 @@
                 _historyPost.Episodes = new List<TraktSyncHistoryPostEpisode>();
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddMovieOrIgnore(TraktMovie movie, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddMovieOrIgnore(TraktMovie movie)
         {
             if (ContainsMovie(movie))
                 return this;
@@ -300,15 +432,12 @@
             historyMovie.Title = movie.Title;
             historyMovie.Year = movie.Year;
 
-            if (watchedAt.HasValue)
-                historyMovie.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Movies as List<TraktSyncHistoryPostMovie>).Add(historyMovie);
 
             return this;
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddShowOrIgnore(TraktShow show, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddShowOrIgnore(TraktShow show)
         {
             if (ContainsShow(show))
                 return this;
@@ -318,15 +447,12 @@
             historyShow.Title = show.Title;
             historyShow.Year = show.Year;
 
-            if (watchedAt.HasValue)
-                historyShow.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Shows as List<TraktSyncHistoryPostShow>).Add(historyShow);
 
             return this;
         }
 
-        protected TraktSyncHistoryRemovePostBuilder AddEpisodeOrIgnore(TraktEpisode episode, DateTime? watchedAt = null)
+        protected TraktSyncHistoryRemovePostBuilder AddEpisodeOrIgnore(TraktEpisode episode)
         {
             if (ContainsEpisode(episode))
                 return this;
@@ -334,16 +460,12 @@
             var historyEpisode = new TraktSyncHistoryPostEpisode();
             historyEpisode.Ids = episode.Ids;
 
-            if (watchedAt.HasValue)
-                historyEpisode.WatchedAt = watchedAt.Value.ToUniversalTime();
-
             (_historyPost.Episodes as List<TraktSyncHistoryPostEpisode>).Add(historyEpisode);
 
             return this;
         }
 
-        protected void CreateOrSetShow(TraktShow show, IEnumerable<TraktSyncHistoryPostShowSeason> showSeasons,
-                                       DateTime? watchedAt = null)
+        protected void CreateOrSetShow(TraktShow show, IEnumerable<TraktSyncHistoryPostShowSeason> showSeasons)
         {
             var existingShow = _historyPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
 
@@ -355,9 +477,6 @@
                 historyShow.Ids = show.Ids;
                 historyShow.Title = show.Title;
                 historyShow.Year = show.Year;
-
-                if (watchedAt.HasValue)
-                    historyShow.WatchedAt = watchedAt.Value.ToUniversalTime();
 
                 historyShow.Seasons = showSeasons;
                 (_historyPost.Shows as List<TraktSyncHistoryPostShow>).Add(historyShow);
@@ -383,6 +502,24 @@
             return showSeasons;
         }
 
+        protected IEnumerable<TraktSyncHistoryPostShowSeason> CreateShowSeasons(int[] seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncHistoryPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncHistoryPostShowSeason { Number = seasons[i] });
+            }
+
+            return showSeasons;
+        }
+
         protected IEnumerable<TraktSyncHistoryPostShowSeason> CreateShowSeasons(PostHistorySeasons seasons)
         {
             var showSeasons = new List<TraktSyncHistoryPostShowSeason>();
@@ -394,9 +531,6 @@
 
                 var showSingleSeason = new TraktSyncHistoryPostShowSeason { Number = season.Number };
 
-                if (season.WatchedAt.HasValue)
-                    showSingleSeason.WatchedAt = season.WatchedAt.Value.ToUniversalTime();
-
                 if (season.Episodes != null && season.Episodes.Count() > 0)
                 {
                     var showEpisodes = new List<TraktSyncHistoryPostShowEpisode>();
@@ -407,9 +541,6 @@
                             throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
                         var showEpisode = new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
-
-                        if (episode.WatchedAt.HasValue)
-                            showEpisode.WatchedAt = episode.WatchedAt.Value.ToUniversalTime();
 
                         showEpisodes.Add(showEpisode);
                     }
