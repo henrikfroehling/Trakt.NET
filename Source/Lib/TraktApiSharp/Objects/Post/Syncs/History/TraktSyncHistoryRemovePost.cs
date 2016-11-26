@@ -242,6 +242,15 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktEpisode" />s, which will be added to the history remove post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
         public TraktSyncHistoryRemovePostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
         {
             if (episodes == null)
