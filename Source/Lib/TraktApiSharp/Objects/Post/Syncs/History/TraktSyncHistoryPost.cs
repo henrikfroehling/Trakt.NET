@@ -167,6 +167,11 @@
             return this;
         }
 
+        public TraktSyncHistoryPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="watchedAt">The datetime, when the given show was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
@@ -197,6 +202,11 @@
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, watchedAt);
 
+            return this;
+        }
+
+        public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, int[] seasons)
+        {
             return this;
         }
 
