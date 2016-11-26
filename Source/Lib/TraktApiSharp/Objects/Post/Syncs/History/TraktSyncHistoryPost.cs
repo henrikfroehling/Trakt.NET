@@ -167,6 +167,25 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// The complete seasons will be added to the history.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncHistoryPostBuilder AddShow(TraktShow show, int[] seasons)
         {
             ValidateShow(show);
@@ -211,6 +230,26 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the history post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="watchedAt">The datetime, when the given show was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// The complete seasons will be added to the history.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncHistoryPostBuilder AddShow(TraktShow show, DateTime watchedAt, int[] seasons)
         {
             ValidateShow(show);
