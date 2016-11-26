@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
@@ -271,6 +272,145 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddMoviesCollection()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Title = "movie2",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            var builder = TraktSyncHistoryPost.Builder();
+
+            builder.AddMovies(movies);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            builder.AddMovies(movies);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            movie1.Ids.Trakt = 2;
+
+            movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            builder.AddMovies(movies);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            var historyMovies = historyPost.Movies.ToArray();
+
+            historyMovies[0].Should().NotBeNull();
+            historyMovies[0].Title.Should().Be("movie1");
+            historyMovies[0].Year.Should().Be(2016);
+            historyMovies[0].Ids.Should().NotBeNull();
+            historyMovies[0].Ids.Trakt.Should().Be(2U);
+            historyMovies[0].Ids.Slug.Should().Be("movie1");
+            historyMovies[0].Ids.Imdb.Should().Be("imdb1");
+            historyMovies[0].Ids.Tmdb.Should().Be(1234U);
+            historyMovies[0].WatchedAt.Should().NotHaveValue();
+
+            historyMovies[1].Should().NotBeNull();
+            historyMovies[1].Title.Should().Be("movie2");
+            historyMovies[1].Year.Should().Be(2016);
+            historyMovies[1].Ids.Should().NotBeNull();
+            historyMovies[1].Ids.Trakt.Should().Be(3U);
+            historyMovies[1].Ids.Slug.Should().Be("movie2");
+            historyMovies[1].Ids.Imdb.Should().Be("imdb2");
+            historyMovies[1].Ids.Tmdb.Should().Be(12345U);
+            historyMovies[1].WatchedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddMoviesCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryPost.Builder();
+
+            Action act = () => builder.AddMovies(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var movies = new List<TraktMovie>
+            {
+                new TraktMovie()
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentNullException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds() }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncHistoryPostBuilderAddEpisode()
         {
             var episode1 = new TraktEpisode
@@ -499,6 +639,125 @@
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() }, watchedAt);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddEpisodesCollection()
+        {
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var episode2 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 3,
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            var builder = TraktSyncHistoryPost.Builder();
+
+            builder.AddEpisodes(episodes);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().BeNull();
+
+            builder.AddEpisodes(episodes);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().BeNull();
+
+            episode1.Ids.Trakt = 2;
+
+            episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            builder.AddEpisodes(episodes);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Shows.Should().BeNull();
+            historyPost.Movies.Should().BeNull();
+
+            var historyEpisodes = historyPost.Episodes.ToArray();
+
+            historyEpisodes[0].Should().NotBeNull();
+            historyEpisodes[0].Ids.Should().NotBeNull();
+            historyEpisodes[0].Ids.Trakt.Should().Be(2U);
+            historyEpisodes[0].Ids.Imdb.Should().Be("imdb1");
+            historyEpisodes[0].Ids.Tmdb.Should().Be(1234U);
+            historyEpisodes[0].Ids.Tvdb.Should().Be(12345U);
+            historyEpisodes[0].Ids.TvRage.Should().Be(123456U);
+            historyEpisodes[0].WatchedAt.Should().NotHaveValue();
+
+            historyEpisodes[1].Should().NotBeNull();
+            historyEpisodes[1].Ids.Should().NotBeNull();
+            historyEpisodes[1].Ids.Trakt.Should().Be(3U);
+            historyEpisodes[1].Ids.Imdb.Should().Be("imdb2");
+            historyEpisodes[1].Ids.Tmdb.Should().Be(12345U);
+            historyEpisodes[1].Ids.Tvdb.Should().Be(123456U);
+            historyEpisodes[1].Ids.TvRage.Should().Be(1234567U);
+            historyEpisodes[1].WatchedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddEpisodesCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryPost.Builder();
+
+            Action act = () => builder.AddEpisodes(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode()
+            };
+
+            act = () => builder.AddEpisodes(episodes);
+            act.ShouldThrow<ArgumentNullException>();
+
+            episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode { Ids = new TraktEpisodeIds() }
+            };
+
+            act = () => builder.AddEpisodes(episodes);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -782,6 +1041,155 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, watchedAt);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowsCollection()
+        {
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show2 = new TraktShow
+            {
+                Title = "show2",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 3,
+                    Slug = "show2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var shows = new List<TraktShow>
+            {
+                show1,
+                show2
+            };
+
+            var builder = TraktSyncHistoryPost.Builder();
+
+            builder.AddShows(shows);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Movies.Should().BeNull();
+
+            builder.AddShows(shows);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Movies.Should().BeNull();
+
+            show1.Ids.Trakt = 2;
+
+            shows = new List<TraktShow>
+            {
+                show1,
+                show2
+            };
+
+            builder.AddShows(shows);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Movies.Should().BeNull();
+
+            var historyShows = historyPost.Shows.ToArray();
+
+            historyShows[0].Should().NotBeNull();
+            historyShows[0].Title.Should().Be("show1");
+            historyShows[0].Year.Should().Be(2016);
+            historyShows[0].Ids.Should().NotBeNull();
+            historyShows[0].Ids.Trakt.Should().Be(2U);
+            historyShows[0].Ids.Slug.Should().Be("show1");
+            historyShows[0].Ids.Imdb.Should().Be("imdb1");
+            historyShows[0].Ids.Tmdb.Should().Be(1234U);
+            historyShows[0].Ids.Tvdb.Should().Be(12345U);
+            historyShows[0].Ids.TvRage.Should().Be(123456U);
+            historyShows[0].WatchedAt.Should().NotHaveValue();
+            historyShows[0].Seasons.Should().BeNull();
+
+            historyShows[1].Should().NotBeNull();
+            historyShows[1].Title.Should().Be("show2");
+            historyShows[1].Year.Should().Be(2016);
+            historyShows[1].Ids.Should().NotBeNull();
+            historyShows[1].Ids.Trakt.Should().Be(3U);
+            historyShows[1].Ids.Slug.Should().Be("show2");
+            historyShows[1].Ids.Imdb.Should().Be("imdb2");
+            historyShows[1].Ids.Tmdb.Should().Be(12345U);
+            historyShows[1].Ids.Tvdb.Should().Be(123456U);
+            historyShows[1].Ids.TvRage.Should().Be(1234567U);
+            historyShows[1].WatchedAt.Should().NotHaveValue();
+            historyShows[1].Seasons.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowsCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryPost.Builder();
+
+            Action act = () => builder.AddShows(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var shows = new List<TraktShow>
+            {
+                new TraktShow()
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentNullException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds() }
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddShows(shows);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1351,6 +1759,619 @@
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, 1, 2, -1);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, new PostHistorySeasons { -1 });
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, new PostHistorySeasons { 1, -1 });
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowWithSeasonsArray()
+        {
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var seasons = new int[] { 1 };
+
+            var builder = TraktSyncHistoryPost.Builder();
+
+            builder.AddShow(show1, seasons);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            var shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().NotHaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
+
+            var show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            seasons = new int[] { 1, 2 };
+
+            builder.AddShow(show1, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().NotHaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show1, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().NotHaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            show1.Ids.Trakt = 2;
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show1, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(2U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().NotHaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            var show2 = new TraktShow
+            {
+                Title = "show2",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 3,
+                    Slug = "show2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show2, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(2U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().NotHaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            shows[1].Should().NotBeNull();
+            shows[1].Title.Should().Be("show2");
+            shows[1].Year.Should().Be(2016);
+            shows[1].Ids.Should().NotBeNull();
+            shows[1].Ids.Trakt.Should().Be(3U);
+            shows[1].Ids.Slug.Should().Be("show2");
+            shows[1].Ids.Imdb.Should().Be("imdb2");
+            shows[1].Ids.Tmdb.Should().Be(12345U);
+            shows[1].Ids.Tvdb.Should().Be(123456U);
+            shows[1].Ids.TvRage.Should().Be(1234567U);
+            shows[1].WatchedAt.Should().NotHaveValue();
+            shows[1].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            var show2Seasons = shows[1].Seasons.ToArray();
+
+            show2Seasons[0].Number.Should().Be(1);
+            show2Seasons[0].Episodes.Should().BeNull();
+            show2Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show2Seasons[1].Number.Should().Be(2);
+            show2Seasons[1].Episodes.Should().BeNull();
+            show2Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show2Seasons[2].Number.Should().Be(3);
+            show2Seasons[2].Episodes.Should().BeNull();
+            show2Seasons[2].WatchedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowWithSeasonsArrayAndWatchedAt()
+        {
+            var show1 = new TraktShow
+            {
+                Title = "show1",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var watchedAt = DateTime.Now;
+
+            var seasons = new int[] { 1 };
+
+            var builder = TraktSyncHistoryPost.Builder();
+
+            builder.AddShow(show1, watchedAt, seasons);
+
+            var historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            var shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().HaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(1);
+
+            var show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            seasons = new int[] { 1, 2 };
+
+            builder.AddShow(show1, watchedAt, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().HaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(2);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show1, watchedAt, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(1U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().HaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            show1.Ids.Trakt = 2;
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show1, watchedAt, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(2U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().HaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            // ---------------------------------------------------------
+
+            var show2 = new TraktShow
+            {
+                Title = "show2",
+                Year = 2016,
+                Ids = new TraktShowIds
+                {
+                    Trakt = 3,
+                    Slug = "show2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            seasons = new int[] { 1, 2, 3 };
+
+            builder.AddShow(show2, watchedAt, seasons);
+
+            historyPost = builder.Build();
+
+            historyPost.Should().NotBeNull();
+            historyPost.Episodes.Should().BeNull();
+            historyPost.Shows.Should().NotBeNull().And.HaveCount(2);
+            historyPost.Movies.Should().BeNull();
+
+            shows = historyPost.Shows.ToArray();
+
+            shows[0].Should().NotBeNull();
+            shows[0].Title.Should().Be("show1");
+            shows[0].Year.Should().Be(2016);
+            shows[0].Ids.Should().NotBeNull();
+            shows[0].Ids.Trakt.Should().Be(2U);
+            shows[0].Ids.Slug.Should().Be("show1");
+            shows[0].Ids.Imdb.Should().Be("imdb1");
+            shows[0].Ids.Tmdb.Should().Be(1234U);
+            shows[0].Ids.Tvdb.Should().Be(12345U);
+            shows[0].Ids.TvRage.Should().Be(123456U);
+            shows[0].WatchedAt.Should().HaveValue();
+            shows[0].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            shows[1].Should().NotBeNull();
+            shows[1].Title.Should().Be("show2");
+            shows[1].Year.Should().Be(2016);
+            shows[1].Ids.Should().NotBeNull();
+            shows[1].Ids.Trakt.Should().Be(3U);
+            shows[1].Ids.Slug.Should().Be("show2");
+            shows[1].Ids.Imdb.Should().Be("imdb2");
+            shows[1].Ids.Tmdb.Should().Be(12345U);
+            shows[1].Ids.Tvdb.Should().Be(123456U);
+            shows[1].Ids.TvRage.Should().Be(1234567U);
+            shows[1].WatchedAt.Should().HaveValue();
+            shows[1].Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            show1Seasons = shows[0].Seasons.ToArray();
+
+            show1Seasons[0].Number.Should().Be(1);
+            show1Seasons[0].Episodes.Should().BeNull();
+            show1Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[1].Number.Should().Be(2);
+            show1Seasons[1].Episodes.Should().BeNull();
+            show1Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show1Seasons[2].Number.Should().Be(3);
+            show1Seasons[2].Episodes.Should().BeNull();
+            show1Seasons[2].WatchedAt.Should().NotHaveValue();
+
+            var show2Seasons = shows[1].Seasons.ToArray();
+
+            show2Seasons[0].Number.Should().Be(1);
+            show2Seasons[0].Episodes.Should().BeNull();
+            show2Seasons[0].WatchedAt.Should().NotHaveValue();
+
+            show2Seasons[1].Number.Should().Be(2);
+            show2Seasons[1].Episodes.Should().BeNull();
+            show2Seasons[1].WatchedAt.Should().NotHaveValue();
+
+            show2Seasons[2].Number.Should().Be(3);
+            show2Seasons[2].Episodes.Should().BeNull();
+            show2Seasons[2].WatchedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowWithSeasonsArrayArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryPost.Builder();
+
+            var seasons = new int[] { 1, 2, 3, 4 };
+
+            Action act = () => builder.AddShow(null, seasons);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow(), seasons);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
+
+            seasons = new int[] { -1 };
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, seasons);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            seasons = new int[] { 1, 2, -1 };
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, seasons);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { -1 });
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostHistorySeasons { 1, -1 });
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncHistoryPostBuilderAddShowWithWatchedAtAndSeasonsArrayArgumentExceptions()
+        {
+            var builder = TraktSyncHistoryPost.Builder();
+
+            var watchedAt = DateTime.UtcNow;
+
+            var seasons = new int[] { 1, 2, 3, 4 };
+
+            Action act = () => builder.AddShow(null, watchedAt, seasons);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow(), watchedAt, seasons);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, watchedAt, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, watchedAt, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, watchedAt, seasons);
+            act.ShouldThrow<ArgumentException>();
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
+
+            seasons = new int[] { -1 };
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, seasons);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            seasons = new int[] { 1, 2, -1 };
+
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, watchedAt, new PostHistorySeasons { -1 });
