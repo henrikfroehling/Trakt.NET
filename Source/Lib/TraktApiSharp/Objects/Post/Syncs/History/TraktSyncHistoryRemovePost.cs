@@ -242,6 +242,11 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        public TraktSyncHistoryRemovePostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            return this;
+        }
+
         /// <summary>Adds history ids, which will be added to the history remove post.</summary>
         /// <param name="id">A history item id. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
         /// <param name="ids">An optional array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
