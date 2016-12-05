@@ -409,6 +409,11 @@
             return this;
         }
 
+        public TraktSyncWatchlistPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            return this;
+        }
+
         /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>
         public void Reset()
         {
