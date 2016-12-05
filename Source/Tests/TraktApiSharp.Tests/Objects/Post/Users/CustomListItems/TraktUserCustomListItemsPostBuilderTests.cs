@@ -166,7 +166,7 @@
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
             listItemsPost.Shows.Should().BeNull();
-            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             builder.AddMovies(movies);
 
@@ -175,7 +175,7 @@
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
             listItemsPost.Shows.Should().BeNull();
-            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             movie1.Ids.Trakt = 2;
 
@@ -192,7 +192,7 @@
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
             listItemsPost.Shows.Should().BeNull();
-            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             var customListMovies = listItemsPost.Movies.ToArray();
 

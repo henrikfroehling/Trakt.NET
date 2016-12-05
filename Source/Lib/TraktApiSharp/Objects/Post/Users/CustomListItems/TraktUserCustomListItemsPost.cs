@@ -100,6 +100,15 @@
 
         public TraktUserCustomListItemsPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (movies.Count() == 0)
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
             return this;
         }
 
