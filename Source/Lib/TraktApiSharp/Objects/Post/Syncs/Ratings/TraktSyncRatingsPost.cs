@@ -76,6 +76,11 @@
             return AddMovieOrIgnore(movie);
         }
 
+        public TraktSyncRatingsPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the ratings post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="rating">A rating from 1 to 10 for the given movie.</param>
