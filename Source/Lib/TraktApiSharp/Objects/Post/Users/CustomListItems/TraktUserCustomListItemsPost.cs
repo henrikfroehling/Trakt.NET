@@ -399,6 +399,15 @@
 
         public TraktUserCustomListItemsPostBuilder AddPersons(IEnumerable<TraktPerson> persons)
         {
+            if (persons == null)
+                throw new ArgumentNullException(nameof(persons));
+
+            if (persons.Count() == 0)
+                return this;
+
+            foreach (var person in persons)
+                AddPerson(person);
+
             return this;
         }
 
