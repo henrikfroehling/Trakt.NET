@@ -166,6 +166,11 @@
             return AddShowOrIgnore(show);
         }
 
+        public TraktSyncRatingsPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
