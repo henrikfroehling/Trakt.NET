@@ -397,6 +397,11 @@
             return this;
         }
 
+        public TraktUserCustomListItemsPostBuilder AddPersons(IEnumerable<TraktPerson> persons)
+        {
+            return this;
+        }
+
         /// <summary>Removes all already added movies, shows, seasons, episodes and people.</summary>
         public void Reset()
         {
