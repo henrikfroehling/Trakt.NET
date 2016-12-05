@@ -935,6 +935,126 @@
         // ----------------------------------------------------------------------------------------
 
         [TestMethod]
+        public void TestTraktSyncRatingsPostBuilderAddEpisodeCollection()
+        {
+            var episode1 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 1,
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var episode2 = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 3,
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            var builder = TraktSyncRatingsPost.Builder();
+
+            builder.AddEpisodes(episodes);
+
+            var ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Movies.Should().BeNull();
+
+            builder.AddEpisodes(episodes);
+
+            ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Movies.Should().BeNull();
+
+            episode1.Ids.Trakt = 2;
+
+            episodes = new List<TraktEpisode>
+            {
+                episode1,
+                episode2
+            };
+
+            builder.AddEpisodes(episodes);
+
+            ratingsPost = builder.Build();
+
+            ratingsPost.Should().NotBeNull();
+            ratingsPost.Episodes.Should().NotBeNull().And.HaveCount(2);
+            ratingsPost.Shows.Should().BeNull();
+            ratingsPost.Movies.Should().BeNull();
+
+            var ratingsEpisodes = ratingsPost.Episodes.ToArray();
+
+            ratingsEpisodes[0].Should().NotBeNull();
+            ratingsEpisodes[0].Ids.Should().NotBeNull();
+            ratingsEpisodes[0].Ids.Trakt.Should().Be(2U);
+            ratingsEpisodes[0].Ids.Imdb.Should().Be("imdb1");
+            ratingsEpisodes[0].Ids.Tmdb.Should().Be(1234U);
+            ratingsEpisodes[0].Ids.Tvdb.Should().Be(12345U);
+            ratingsEpisodes[0].Ids.TvRage.Should().Be(123456U);
+            ratingsEpisodes[0].Rating.Should().NotHaveValue();
+            ratingsEpisodes[0].RatedAt.Should().NotHaveValue();
+
+            ratingsEpisodes[1].Should().NotBeNull();
+            ratingsEpisodes[1].Ids.Should().NotBeNull();
+            ratingsEpisodes[1].Ids.Trakt.Should().Be(3U);
+            ratingsEpisodes[1].Ids.Imdb.Should().Be("imdb2");
+            ratingsEpisodes[1].Ids.Tmdb.Should().Be(12345U);
+            ratingsEpisodes[1].Ids.Tvdb.Should().Be(123456U);
+            ratingsEpisodes[1].Rating.Should().NotHaveValue();
+            ratingsEpisodes[1].RatedAt.Should().NotHaveValue();
+        }
+
+        [TestMethod]
+        public void TestTraktSyncRatingsPostBuilderAddEpisodeCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncRatingsPost.Builder();
+
+            Action act = () => builder.AddEpisodes(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode()
+            };
+
+            act = () => builder.AddEpisodes(episodes);
+            act.ShouldThrow<ArgumentNullException>();
+
+            episodes = new List<TraktEpisode>
+            {
+                new TraktEpisode { Ids = new TraktEpisodeIds() }
+            };
+
+            act = () => builder.AddEpisodes(episodes);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
         public void TestTraktSyncRatingsPostBuilderAddShow()
         {
             var show1 = new TraktShow
