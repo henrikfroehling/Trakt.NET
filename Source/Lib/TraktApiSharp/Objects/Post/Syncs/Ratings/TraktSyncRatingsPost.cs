@@ -76,6 +76,32 @@
             return AddMovieOrIgnore(movie);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the ratings post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (movies.Count() == 0)
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the ratings post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="rating">A rating from 1 to 10 for the given movie.</param>
@@ -140,6 +166,32 @@
             return AddShowOrIgnore(show);
         }
 
+        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the ratings post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (shows.Count() == 0)
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
@@ -167,6 +219,36 @@
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
+            CreateOrSetShow(show, showSeasons);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
 
             return this;
@@ -258,6 +340,39 @@
             EnsureShowsListExists();
 
             var showSeasons = CreateShowSeasons(season, seasons);
+            CreateOrSetShow(show, showSeasons, rating);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="rating">A rating from 1 to 10 for the given show.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// Thrown, if the given rating is not between 1 and 10.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, int[] seasons)
+        {
+            ValidateShow(show);
+            ValidateRating(rating);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, rating);
 
             return this;
@@ -365,6 +480,40 @@
         /// <param name="rating">A rating from 1 to 10 for the given show.</param>
         /// <param name="ratedAt">The datetime, when the given show was rated. Will be converted to the Trakt UTC-datetime and -format.</param>
         /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// Thrown, if the given rating is not between 1 and 10.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, DateTime ratedAt, int[] seasons)
+        {
+            ValidateShow(show);
+            ValidateRating(rating);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons, rating, ratedAt);
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="rating">A rating from 1 to 10 for the given show.</param>
+        /// <param name="ratedAt">The datetime, when the given show was rated. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
         /// An <see cref="PostRatingsSeasons" /> instance, containing season and episode numbers.<para />
         /// If it contains episode numbers, only the episodes with the given episode numbers will be added to the ratings.
         /// </param>
@@ -413,6 +562,29 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode);
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktEpisode" />s, which will be added to the ratings post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
+        public TraktSyncRatingsPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (episodes.Count() == 0)
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
+
+            return this;
         }
 
         /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the ratings post.</summary>
@@ -655,6 +827,24 @@
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncRatingsPostShowSeason { Number = seasonsToAdd[i] });
+            }
+
+            return showSeasons;
+        }
+
+        private IEnumerable<TraktSyncRatingsPostShowSeason> CreateShowSeasons(int[] seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncRatingsPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncRatingsPostShowSeason { Number = seasons[i] });
             }
 
             return showSeasons;
