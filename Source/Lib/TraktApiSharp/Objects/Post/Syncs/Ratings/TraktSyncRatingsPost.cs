@@ -276,6 +276,13 @@
 
         public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, int[] seasons)
         {
+            ValidateShow(show);
+            ValidateRating(rating);
+            EnsureShowsListExists();
+
+            var showSeasons = CreateShowSeasons(seasons);
+            CreateOrSetShow(show, showSeasons, rating);
+
             return this;
         }
 
