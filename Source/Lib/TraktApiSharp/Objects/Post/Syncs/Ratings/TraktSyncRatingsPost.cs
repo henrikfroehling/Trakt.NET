@@ -172,6 +172,11 @@
             return this;
         }
 
+        public TraktSyncRatingsPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
@@ -260,6 +265,11 @@
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, rating);
 
+            return this;
+        }
+
+        public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, int[] seasons)
+        {
             return this;
         }
 
@@ -357,6 +367,11 @@
             var showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, rating, ratedAt);
 
+            return this;
+        }
+
+        public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, DateTime ratedAt, int[] seasons)
+        {
             return this;
         }
 
