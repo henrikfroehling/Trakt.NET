@@ -3063,6 +3063,9 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
+
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { -1 });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -3109,6 +3112,9 @@
 
             act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { -1 });
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -3157,6 +3163,9 @@
 
             act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, ratedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, ratedAt, default(int[]));
+            act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShowWithRating(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { -1 });
             act.ShouldThrow<ArgumentOutOfRangeException>();
