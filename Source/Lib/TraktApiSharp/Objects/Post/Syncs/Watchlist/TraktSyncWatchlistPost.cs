@@ -140,7 +140,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
@@ -156,6 +155,11 @@
                     Year = show.Year
                 });
 
+            return this;
+        }
+
+        public TraktSyncWatchlistPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
             return this;
         }
 
@@ -183,7 +187,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var seasonsToAdd = new int[seasons.Length + 1];
@@ -295,7 +298,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, PostSeasons seasons)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             if (_watchlistPost.Shows == null)
