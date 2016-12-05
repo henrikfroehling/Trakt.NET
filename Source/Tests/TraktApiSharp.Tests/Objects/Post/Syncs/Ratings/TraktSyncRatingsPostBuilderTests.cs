@@ -467,7 +467,7 @@
             ratingsPost.Should().NotBeNull();
             ratingsPost.Episodes.Should().BeNull();
             ratingsPost.Shows.Should().BeNull();
-            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             builder.AddMovies(movies);
 
@@ -476,7 +476,7 @@
             ratingsPost.Should().NotBeNull();
             ratingsPost.Episodes.Should().BeNull();
             ratingsPost.Shows.Should().BeNull();
-            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             movie1.Ids.Trakt = 2;
 
@@ -493,7 +493,7 @@
             ratingsPost.Should().NotBeNull();
             ratingsPost.Episodes.Should().BeNull();
             ratingsPost.Shows.Should().BeNull();
-            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+            ratingsPost.Movies.Should().NotBeNull().And.HaveCount(2);
 
             var ratingsMovies = ratingsPost.Movies.ToArray();
 
