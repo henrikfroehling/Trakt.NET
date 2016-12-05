@@ -112,7 +112,6 @@
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
@@ -153,7 +152,6 @@
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var seasonsToAdd = new int[seasons.Length + 1];
@@ -188,6 +186,35 @@
 
         public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int[] seasons)
         {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktUserCustomListItemsPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktUserCustomListItemsPostShowSeason { Number = seasons[i] });
+            }
+
+            var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+
+            if (existingShow != null)
+                existingShow.Seasons = showSeasons;
+            else
+            {
+                var listItemsShow = new TraktUserCustomListItemsPostShow();
+                listItemsShow.Ids = show.Ids;
+
+                listItemsShow.Seasons = showSeasons;
+                (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
+            }
+
             return this;
         }
 
