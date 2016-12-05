@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
@@ -132,6 +133,143 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 });
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------------------
+
+        [TestMethod]
+        public void TestTraktSyncWatchlistPostBuilderAddMovieCollection()
+        {
+            var movie1 = new TraktMovie
+            {
+                Title = "movie1",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Title = "movie2",
+                Year = 2016,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            var builder = TraktSyncWatchlistPost.Builder();
+
+            builder.AddMovies(movies);
+
+            var watchlistPost = builder.Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Episodes.Should().BeNull();
+            watchlistPost.Shows.Should().BeNull();
+            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            builder.AddMovies(movies);
+
+            watchlistPost = builder.Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Episodes.Should().BeNull();
+            watchlistPost.Shows.Should().BeNull();
+            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            movie1.Ids.Trakt = 2;
+
+            movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            builder.AddMovies(movies);
+
+            watchlistPost = builder.Build();
+
+            watchlistPost.Should().NotBeNull();
+            watchlistPost.Episodes.Should().BeNull();
+            watchlistPost.Shows.Should().BeNull();
+            watchlistPost.Movies.Should().NotBeNull().And.HaveCount(2);
+
+            var watchlistMovies = watchlistPost.Movies.ToArray();
+
+            watchlistMovies[0].Should().NotBeNull();
+            watchlistMovies[0].Title.Should().Be("movie1");
+            watchlistMovies[0].Year.Should().Be(2016);
+            watchlistMovies[0].Ids.Should().NotBeNull();
+            watchlistMovies[0].Ids.Trakt.Should().Be(2U);
+            watchlistMovies[0].Ids.Slug.Should().Be("movie1");
+            watchlistMovies[0].Ids.Imdb.Should().Be("imdb1");
+            watchlistMovies[0].Ids.Tmdb.Should().Be(1234U);
+
+            watchlistMovies[1].Should().NotBeNull();
+            watchlistMovies[1].Title.Should().Be("movie2");
+            watchlistMovies[1].Year.Should().Be(2016);
+            watchlistMovies[1].Ids.Should().NotBeNull();
+            watchlistMovies[1].Ids.Trakt.Should().Be(3U);
+            watchlistMovies[1].Ids.Slug.Should().Be("movie2");
+            watchlistMovies[1].Ids.Imdb.Should().Be("imdb2");
+            watchlistMovies[1].Ids.Tmdb.Should().Be(12345U);
+        }
+
+        [TestMethod]
+        public void TestTraktSyncWatchlistPostBuilderAddMovieCollectionArgumentExceptions()
+        {
+            var builder = TraktSyncWatchlistPost.Builder();
+
+            Action act = () => builder.AddMovies(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var movies = new List<TraktMovie>
+            {
+                new TraktMovie()
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentNullException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds() }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddMovies(movies);
             act.ShouldThrow<ArgumentException>();
         }
 
