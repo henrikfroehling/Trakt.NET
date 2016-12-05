@@ -154,6 +154,11 @@
             return this;
         }
 
+        public TraktUserCustomListItemsPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the user custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
