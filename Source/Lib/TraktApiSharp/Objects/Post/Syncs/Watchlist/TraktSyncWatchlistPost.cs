@@ -100,6 +100,32 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the watchlist post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncWatchlistPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (movies.Count() == 0)
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the watchlist post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
@@ -114,7 +140,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
@@ -129,6 +154,32 @@
                     Title = show.Title,
                     Year = show.Year
                 });
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the watchlist post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncWatchlistPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (shows.Count() == 0)
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
 
             return this;
         }
@@ -157,7 +208,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             var seasonsToAdd = new int[seasons.Length + 1];
@@ -172,6 +222,61 @@
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
                 showSeasons.Add(new TraktSyncWatchlistPostShowSeason { Number = seasonsToAdd[i] });
+            }
+
+            var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+
+            if (existingShow != null)
+                existingShow.Seasons = showSeasons;
+            else
+            {
+                var watchlistShow = new TraktSyncWatchlistPostShow();
+                watchlistShow.Ids = show.Ids;
+                watchlistShow.Title = show.Title;
+                watchlistShow.Year = show.Year;
+
+                watchlistShow.Seasons = showSeasons;
+                (_watchlistPost.Shows as List<TraktSyncWatchlistPostShow>).Add(watchlistShow);
+            }
+
+            return this;
+        }
+
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the watchlist post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
+        public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncWatchlistPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncWatchlistPostShowSeason { Number = seasons[i] });
             }
 
             var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
@@ -214,7 +319,6 @@
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, PostSeasons seasons)
         {
             ValidateShow(show);
-
             EnsureShowsListExists();
 
             if (_watchlistPost.Shows == null)
@@ -301,6 +405,29 @@
                 {
                     Ids = episode.Ids
                 });
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="TraktEpisode" />s, which will be added to the watchlist post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
+        public TraktSyncWatchlistPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (episodes.Count() == 0)
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
 
             return this;
         }
