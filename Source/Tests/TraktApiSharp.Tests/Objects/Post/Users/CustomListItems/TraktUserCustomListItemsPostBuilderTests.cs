@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
@@ -122,6 +123,132 @@
             act.ShouldThrow<ArgumentException>();
 
             act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 });
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddMovieCollection()
+        {
+            var movie1 = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 1,
+                    Slug = "movie1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234
+                }
+            };
+
+            var movie2 = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 3,
+                    Slug = "movie2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345
+                }
+            };
+
+            var movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddMovies(movies);
+
+            var listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            builder.AddMovies(movies);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            movie1.Ids.Trakt = 2;
+
+            movies = new List<TraktMovie>
+            {
+                movie1,
+                movie2
+            };
+
+            builder.AddMovies(movies);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var customListMovies = listItemsPost.Movies.ToArray();
+
+            customListMovies[0].Should().NotBeNull();
+            customListMovies[0].Ids.Should().NotBeNull();
+            customListMovies[0].Ids.Trakt.Should().Be(2U);
+            customListMovies[0].Ids.Slug.Should().Be("movie1");
+            customListMovies[0].Ids.Imdb.Should().Be("imdb1");
+            customListMovies[0].Ids.Tmdb.Should().Be(1234U);
+
+            customListMovies[1].Should().NotBeNull();
+            customListMovies[1].Ids.Should().NotBeNull();
+            customListMovies[1].Ids.Trakt.Should().Be(3U);
+            customListMovies[1].Ids.Slug.Should().Be("movie2");
+            customListMovies[1].Ids.Imdb.Should().Be("imdb2");
+            customListMovies[1].Ids.Tmdb.Should().Be(12345U);
+        }
+
+        [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddMovieCollectionArgumentExceptions()
+        {
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            Action act = () => builder.AddMovies(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var movies = new List<TraktMovie>
+            {
+                new TraktMovie()
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentNullException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds() }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddMovies(movies);
+            act.ShouldThrow<ArgumentException>();
+
+            movies = new List<TraktMovie>
+            {
+                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddMovies(movies);
             act.ShouldThrow<ArgumentException>();
         }
 
