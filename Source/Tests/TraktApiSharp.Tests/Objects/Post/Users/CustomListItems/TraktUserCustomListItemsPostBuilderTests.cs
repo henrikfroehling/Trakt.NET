@@ -498,6 +498,140 @@
         }
 
         [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddShowCollection()
+        {
+            var show1 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 1,
+                    Slug = "show1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    Tvdb = 12345,
+                    TvRage = 123456
+                }
+            };
+
+            var show2 = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = 3,
+                    Slug = "show2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    Tvdb = 123456,
+                    TvRage = 1234567
+                }
+            };
+
+            var shows = new List<TraktShow>
+            {
+                show1,
+                show2
+            };
+
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddShows(shows);
+
+            var listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            builder.AddShows(shows);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            show1.Ids.Trakt = 2;
+
+            shows = new List<TraktShow>
+            {
+                show1,
+                show2
+            };
+
+            builder.AddShows(shows);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().BeNull();
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Movies.Should().BeNull();
+
+            var customListShows = listItemsPost.Shows.ToArray();
+
+            customListShows[0].Should().NotBeNull();
+            customListShows[0].Ids.Should().NotBeNull();
+            customListShows[0].Ids.Trakt.Should().Be(2U);
+            customListShows[0].Ids.Slug.Should().Be("show1");
+            customListShows[0].Ids.Imdb.Should().Be("imdb1");
+            customListShows[0].Ids.Tmdb.Should().Be(1234U);
+            customListShows[0].Ids.Tvdb.Should().Be(12345U);
+            customListShows[0].Ids.TvRage.Should().Be(123456U);
+
+            customListShows[1].Should().NotBeNull();
+            customListShows[1].Ids.Should().NotBeNull();
+            customListShows[1].Ids.Trakt.Should().Be(3U);
+            customListShows[1].Ids.Slug.Should().Be("show2");
+            customListShows[1].Ids.Imdb.Should().Be("imdb2");
+            customListShows[1].Ids.Tmdb.Should().Be(12345U);
+            customListShows[1].Ids.Tvdb.Should().Be(123456U);
+            customListShows[1].Ids.TvRage.Should().Be(1234567U);
+        }
+
+        [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddShowCollectionArgumentExceptions()
+        {
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            Action act = () => builder.AddShows(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var shows = new List<TraktShow>
+            {
+                new TraktShow()
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentNullException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds() }
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentException>();
+
+            shows = new List<TraktShow>
+            {
+                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }
+            };
+
+            act = () => builder.AddShows(shows);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddShowWithSeasons()
         {
             var show1 = new TraktShow
