@@ -397,6 +397,18 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="TraktPerson" />s, which will be added to the custom list items post.</summary>
+        /// <param name="persons">A collection of Trakt persons, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given persons collection is null.
+        /// Thrown, if one of the given persons is null.
+        /// Thrown, if one of the given persons' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given persons has no valid ids set.
+        /// Thrown, if one of the given persons has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktUserCustomListItemsPostBuilder AddPersons(IEnumerable<TraktPerson> persons)
         {
             if (persons == null)
