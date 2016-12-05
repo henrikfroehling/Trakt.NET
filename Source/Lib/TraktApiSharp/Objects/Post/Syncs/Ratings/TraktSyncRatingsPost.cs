@@ -564,6 +564,11 @@
             return AddEpisodeOrIgnore(episode);
         }
 
+        public TraktSyncRatingsPostBuilder AddEpisodes(IEnumerable<TraktEpisode> episodes)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktEpisode" />, which will be added to the ratings post.</summary>
         /// <param name="episode">The Trakt episode, which will be added.</param>
         /// <param name="rating">A rating from 1 to 10 for the given episode.</param>
