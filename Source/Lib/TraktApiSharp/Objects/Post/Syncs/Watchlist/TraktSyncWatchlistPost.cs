@@ -100,6 +100,18 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the watchlist post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktSyncWatchlistPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
         {
             if (movies == null)
