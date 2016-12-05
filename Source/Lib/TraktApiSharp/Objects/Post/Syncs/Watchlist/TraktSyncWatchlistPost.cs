@@ -194,6 +194,37 @@
 
         public TraktSyncWatchlistPostBuilder AddShow(TraktShow show, int[] seasons)
         {
+            ValidateShow(show);
+            EnsureShowsListExists();
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            var showSeasons = new List<TraktSyncWatchlistPostShowSeason>();
+
+            for (int i = 0; i < seasons.Length; i++)
+            {
+                if (seasons[i] < 0)
+                    throw new ArgumentOutOfRangeException("at least one season number not valid");
+
+                showSeasons.Add(new TraktSyncWatchlistPostShowSeason { Number = seasons[i] });
+            }
+
+            var existingShow = _watchlistPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+
+            if (existingShow != null)
+                existingShow.Seasons = showSeasons;
+            else
+            {
+                var watchlistShow = new TraktSyncWatchlistPostShow();
+                watchlistShow.Ids = show.Ids;
+                watchlistShow.Title = show.Title;
+                watchlistShow.Year = show.Year;
+
+                watchlistShow.Seasons = showSeasons;
+                (_watchlistPost.Shows as List<TraktSyncWatchlistPostShow>).Add(watchlistShow);
+            }
+
             return this;
         }
 
