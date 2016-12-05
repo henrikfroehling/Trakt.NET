@@ -540,7 +540,7 @@
 
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
-            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(2);
             listItemsPost.Movies.Should().BeNull();
 
             builder.AddShows(shows);
@@ -549,7 +549,7 @@
 
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
-            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(2);
             listItemsPost.Movies.Should().BeNull();
 
             show1.Ids.Trakt = 2;
@@ -566,7 +566,7 @@
 
             listItemsPost.Should().NotBeNull();
             listItemsPost.People.Should().BeNull();
-            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(1);
+            listItemsPost.Shows.Should().NotBeNull().And.HaveCount(2);
             listItemsPost.Movies.Should().BeNull();
 
             var customListShows = listItemsPost.Shows.ToArray();
