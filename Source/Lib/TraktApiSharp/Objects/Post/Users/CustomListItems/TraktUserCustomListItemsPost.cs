@@ -186,6 +186,11 @@
             return this;
         }
 
+        public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int[] seasons)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the user custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">

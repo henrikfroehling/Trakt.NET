@@ -1345,7 +1345,7 @@
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, null);
+            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, default(PostSeasons));
             act.ShouldThrow<ArgumentNullException>();
 
             act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
