@@ -100,6 +100,11 @@
             return this;
         }
 
+        public TraktSyncWatchlistPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        {
+            return this;
+        }
+
         /// <summary>Adds a <see cref="TraktShow" />, which will be added to the watchlist post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
