@@ -172,6 +172,25 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktSyncRatingsPostBuilder AddShow(TraktShow show, int[] seasons)
         {
             ValidateShow(show);
@@ -274,6 +293,27 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="rating">A rating from 1 to 10 for the given show.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// Thrown, if the given rating is not between 1 and 10.
+        /// </exception>
         public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, int[] seasons)
         {
             ValidateShow(show);
@@ -383,6 +423,28 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the ratings post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="rating">A rating from 1 to 10 for the given show.</param>
+        /// <param name="ratedAt">The datetime, when the given show was rated. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the ratings.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// Thrown, if the given rating is not between 1 and 10.
+        /// </exception>
         public TraktSyncRatingsPostBuilder AddShowWithRating(TraktShow show, int rating, DateTime ratedAt, int[] seasons)
         {
             ValidateShow(show);
