@@ -376,6 +376,142 @@
         }
 
         [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddPersonCollection()
+        {
+            var person1 = new TraktPerson
+            {
+                Name = "Person 1 Name",
+                Ids = new TraktPersonIds
+                {
+                    Trakt = 1,
+                    Slug = "person1",
+                    Imdb = "imdb1",
+                    Tmdb = 1234,
+                    TvRage = 123456
+                }
+            };
+
+            var person2 = new TraktPerson
+            {
+                Name = "Person 2 Name",
+                Ids = new TraktPersonIds
+                {
+                    Trakt = 2,
+                    Slug = "person2",
+                    Imdb = "imdb2",
+                    Tmdb = 12345,
+                    TvRage = 1234567
+                }
+            };
+
+            var persons = new List<TraktPerson>
+            {
+                person1,
+                person2
+            };
+
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            builder.AddPersons(persons);
+
+            var listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(2);
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().BeNull();
+
+            builder.AddPersons(persons);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(2);
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().BeNull();
+
+            person1.Name = "New Person Name";
+
+            persons = new List<TraktPerson>
+            {
+                person1,
+                person2
+            };
+
+            builder.AddPersons(persons);
+
+            listItemsPost = builder.Build();
+
+            listItemsPost.Should().NotBeNull();
+            listItemsPost.People.Should().NotBeNull().And.HaveCount(2);
+            listItemsPost.Shows.Should().BeNull();
+            listItemsPost.Movies.Should().BeNull();
+
+            var customListPersons = listItemsPost.People.ToArray();
+
+            customListPersons[0].Should().NotBeNull();
+            customListPersons[0].Name.Should().Be("New Person Name");
+            customListPersons[0].Ids.Should().NotBeNull();
+            customListPersons[0].Ids.Trakt.Should().Be(1U);
+            customListPersons[0].Ids.Slug.Should().Be("person1");
+            customListPersons[0].Ids.Imdb.Should().Be("imdb1");
+            customListPersons[0].Ids.Tmdb.Should().Be(1234U);
+            customListPersons[0].Ids.TvRage.Should().Be(123456U);
+
+            customListPersons[1].Should().NotBeNull();
+            customListPersons[1].Name.Should().Be("Person 2 Name");
+            customListPersons[1].Ids.Should().NotBeNull();
+            customListPersons[1].Ids.Trakt.Should().Be(2U);
+            customListPersons[1].Ids.Slug.Should().Be("person2");
+            customListPersons[1].Ids.Imdb.Should().Be("imdb2");
+            customListPersons[1].Ids.Tmdb.Should().Be(12345U);
+            customListPersons[1].Ids.TvRage.Should().Be(1234567U);
+        }
+
+        [TestMethod]
+        public void TestTraktUserCustomListItemsPostBuilderAddPersonCollectionArgumentExceptions()
+        {
+            var builder = TraktUserCustomListItemsPost.Builder();
+
+            Action act = () => builder.AddPersons(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            var persons = new List<TraktPerson>
+            {
+                new TraktPerson()
+            };
+
+            act = () => builder.AddPersons(persons);
+            act.ShouldThrow<ArgumentNullException>();
+
+            persons = new List<TraktPerson>
+            {
+                new TraktPerson { Ids = new TraktPersonIds(), Name = "Person Name" }
+            };
+
+            act = () => builder.AddPersons(persons);
+            act.ShouldThrow<ArgumentException>();
+
+            var ids = new TraktPersonIds { Trakt = 1, Slug = "person" };
+
+            persons = new List<TraktPerson>
+            {
+                new TraktPerson { Ids = ids, Name = null }
+            };
+
+            act = () => builder.AddPersons(persons);
+            act.ShouldThrow<ArgumentException>();
+
+            persons = new List<TraktPerson>
+            {
+                new TraktPerson { Ids = ids, Name = string.Empty }
+            };
+
+            act = () => builder.AddPersons(persons);
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        [TestMethod]
         public void TestTraktUserCustomListItemsPostBuilderAddShow()
         {
             var show1 = new TraktShow
