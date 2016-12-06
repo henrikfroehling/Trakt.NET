@@ -25,5 +25,12 @@
         {
             typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackDeleteRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncPlaybackDeleteRequest(null);
+            request.UriTemplate.Should().Be("sync/playback/{id}");
+        }
     }
 }
