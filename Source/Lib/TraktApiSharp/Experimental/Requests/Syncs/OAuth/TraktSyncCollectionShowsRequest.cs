@@ -1,10 +1,12 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
+    using Interfaces;
     using Objects.Get.Collection;
     using System;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncCollectionShowsRequest : ATraktSyncListRequest<TraktCollectionShow>
+    internal sealed class TraktSyncCollectionShowsRequest : ATraktSyncListRequest<TraktCollectionShow>, ITraktExtendedInfo
     {
         internal TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
 
@@ -15,6 +17,8 @@
                 throw new NotImplementedException();
             }
         }
+
+        public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override string UriTemplate
         {
