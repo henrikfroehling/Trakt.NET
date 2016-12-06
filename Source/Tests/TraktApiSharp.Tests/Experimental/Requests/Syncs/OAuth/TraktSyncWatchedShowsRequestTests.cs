@@ -40,5 +40,12 @@
             var request = new TraktSyncWatchedShowsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedShowsRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchedShowsRequest(null);
+            request.UriTemplate.Should().Be("sync/watched/shows{?extended}");
+        }
     }
 }
