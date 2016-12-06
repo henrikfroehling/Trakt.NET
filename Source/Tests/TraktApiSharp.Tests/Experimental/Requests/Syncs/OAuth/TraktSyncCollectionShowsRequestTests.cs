@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktSyncCollectionShowsRequestTests
@@ -31,6 +32,13 @@
         public void TestTraktSyncCollectionShowsRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionShowsRequestHasAuthorizationRequired()
+        {
+            var request = new TraktSyncCollectionShowsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
