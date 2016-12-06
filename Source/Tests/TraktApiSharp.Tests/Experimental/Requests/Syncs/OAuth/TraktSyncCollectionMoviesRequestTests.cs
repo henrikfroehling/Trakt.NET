@@ -33,5 +33,12 @@
             var request = new TraktSyncCollectionMoviesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncCollectionMoviesRequest(null);
+            request.UriTemplate.Should().Be("sync/collection/movies{?extended}");
+        }
     }
 }
