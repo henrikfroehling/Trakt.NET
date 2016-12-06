@@ -14,6 +14,8 @@
 
         internal TraktRatingsItemType Type { get; set; }
 
+        internal int[] Rating { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
