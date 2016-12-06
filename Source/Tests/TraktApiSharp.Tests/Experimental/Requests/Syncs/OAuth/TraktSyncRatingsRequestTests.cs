@@ -66,11 +66,11 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncRatingsRequestHasRatingProperty()
+        public void TestTraktSyncRatingsRequestHasRatingsProperty()
         {
             var sortingPropertyInfo = typeof(TraktSyncRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Rating")
+                    .Where(p => p.Name == "Ratings")
                     .FirstOrDefault();
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
@@ -87,6 +87,85 @@
 
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestUriParamsWithoutTypeAndRatings()
+        {
+            var request = new TraktSyncRatingsRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestUriParamsWithUnspecifiedType()
+        {
+            var type = TraktRatingsItemType.Unspecified;
+
+            var request = new TraktSyncRatingsRequest(null)
+            {
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestUriParamsWithUnspecifiedTypeAndValidRatings()
+        {
+            var type = TraktRatingsItemType.Unspecified;
+            var ratings = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            var request = new TraktSyncRatingsRequest(null)
+            {
+                Type = type,
+                Ratings = ratings
+            };
+
+            var uriParams = request.GetUriPathParameters();
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestUriParamsWithTypeAndInvalidRatings()
+        {
+            var type = TraktRatingsItemType.Episode;
+            var ratings = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+            var request = new TraktSyncRatingsRequest(null)
+            {
+                Type = type,
+                Ratings = ratings
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("type", type.UriName);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestUriParamsWithTypeAndValidRatings()
+        {
+            var type = TraktRatingsItemType.Episode;
+            var ratings = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            var request = new TraktSyncRatingsRequest(null)
+            {
+                Type = type,
+                Ratings = ratings
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["type"] = type.UriName,
+                ["rating"] = string.Join(",", ratings)
+            });
         }
     }
 }
