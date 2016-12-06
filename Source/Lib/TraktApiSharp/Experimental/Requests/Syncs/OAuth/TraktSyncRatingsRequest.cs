@@ -3,6 +3,7 @@
     using Enums;
     using Interfaces;
     using Objects.Get.Ratings;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
@@ -17,6 +18,11 @@
         internal int[] Rating { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
     }
