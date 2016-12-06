@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktSyncPlaybackProgressRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktSyncPlaybackProgressRequestIsSubclassOfATraktSyncListRequest()
         {
             typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktSyncPlaybackProgressItem>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestHasAuthorizationRequired()
+        {
+            var request = new TraktSyncPlaybackProgressRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
