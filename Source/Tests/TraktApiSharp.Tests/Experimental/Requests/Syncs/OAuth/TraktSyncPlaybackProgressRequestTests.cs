@@ -68,5 +68,44 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithoutType()
+        {
+            var request = new TraktSyncPlaybackProgressRequest(null);
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithUnspecifiedType()
+        {
+            var sorting = TraktSyncType.Unspecified;
+
+            var request = new TraktSyncPlaybackProgressRequest(null)
+            {
+                Type = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithType()
+        {
+            var sorting = TraktSyncType.Episode;
+
+            var request = new TraktSyncPlaybackProgressRequest(null)
+            {
+                Type = sorting
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("type", sorting.UriName);
+        }
     }
 }

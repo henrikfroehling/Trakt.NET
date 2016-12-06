@@ -15,7 +15,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (Type != null && Type != TraktSyncType.Unspecified)
+                uriParams.Add("type", Type.UriName);
+
+            return uriParams;
         }
 
         public override string UriTemplate => "sync/playback{/type}{?limit}";
