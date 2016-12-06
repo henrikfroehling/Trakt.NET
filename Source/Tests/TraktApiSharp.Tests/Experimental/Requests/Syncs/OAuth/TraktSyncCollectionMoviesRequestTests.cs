@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Requests;
@@ -25,6 +26,12 @@
         public void TestTraktSyncCollectionMoviesRequestIsSubclassOfATraktSyncListRequest()
         {
             typeof(TraktSyncCollectionMoviesRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktCollectionMovie>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionMoviesRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktSyncCollectionMoviesRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
