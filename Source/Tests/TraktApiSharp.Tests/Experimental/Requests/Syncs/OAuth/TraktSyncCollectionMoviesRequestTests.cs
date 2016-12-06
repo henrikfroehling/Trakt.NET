@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktSyncCollectionMoviesRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktSyncCollectionMoviesRequestIsSubclassOfATraktSyncListRequest()
         {
             typeof(TraktSyncCollectionMoviesRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktCollectionMovie>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionMoviesRequestHasAuthorizationRequired()
+        {
+            var request = new TraktSyncCollectionMoviesRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
