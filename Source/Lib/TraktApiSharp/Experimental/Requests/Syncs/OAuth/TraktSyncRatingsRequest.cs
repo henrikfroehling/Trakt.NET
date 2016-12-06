@@ -5,14 +5,11 @@
     using Objects.Get.Ratings;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
     internal sealed class TraktSyncRatingsRequest : ATraktSyncListRequest<TraktRatingsItem>, ITraktExtendedInfo
     {
         internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktRatingsItemType Type { get; set; }
 

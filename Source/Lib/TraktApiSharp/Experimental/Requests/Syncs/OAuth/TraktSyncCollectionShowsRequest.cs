@@ -2,14 +2,11 @@
 {
     using Interfaces;
     using Objects.Get.Collection;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
     internal sealed class TraktSyncCollectionShowsRequest : ATraktSyncListRequest<TraktCollectionShow>, ITraktExtendedInfo
     {
         internal TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
