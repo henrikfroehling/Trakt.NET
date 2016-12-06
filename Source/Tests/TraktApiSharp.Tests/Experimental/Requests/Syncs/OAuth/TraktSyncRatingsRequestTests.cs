@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Ratings;
@@ -46,6 +49,19 @@
         {
             var request = new TraktSyncRatingsRequest(null);
             request.UriTemplate.Should().Be("sync/ratings{/type}{/rating}{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestHasTypeProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSyncRatingsRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Type")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktRatingsItemType));
         }
     }
 }

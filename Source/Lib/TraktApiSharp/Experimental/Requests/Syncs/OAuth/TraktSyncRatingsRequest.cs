@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
+    using Enums;
     using Interfaces;
     using Objects.Get.Ratings;
     using TraktApiSharp.Requests;
@@ -10,6 +11,8 @@
         internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
+        internal TraktRatingsItemType Type { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
