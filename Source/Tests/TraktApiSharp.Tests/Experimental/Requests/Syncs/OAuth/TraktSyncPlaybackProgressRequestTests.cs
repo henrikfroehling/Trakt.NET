@@ -33,5 +33,12 @@
             var request = new TraktSyncPlaybackProgressRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncPlaybackProgressRequest(null);
+            request.UriTemplate.Should().Be("sync/playback{/type}{?limit}");
+        }
     }
 }
