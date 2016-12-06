@@ -2,7 +2,6 @@
 {
     using Interfaces;
     using Objects.Get.Watched;
-    using System;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
@@ -14,12 +13,6 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "sync/watched/movies{?extended}";
     }
 }

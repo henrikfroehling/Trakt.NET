@@ -40,5 +40,12 @@
             var request = new TraktSyncWatchedMoviesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchedMoviesRequest(null);
+            request.UriTemplate.Should().Be("sync/watched/movies{?extended}");
+        }
     }
 }
