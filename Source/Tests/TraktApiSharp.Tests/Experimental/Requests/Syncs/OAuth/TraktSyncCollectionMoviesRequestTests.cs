@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncCollectionMoviesRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionMoviesRequestIsSealed()
+        {
+            typeof(TraktSyncCollectionMoviesRequest).IsSealed.Should().BeTrue();
+        }
     }
 }

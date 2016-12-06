@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    internal class TraktSyncCollectionMoviesRequest
+    internal sealed class TraktSyncCollectionMoviesRequest
     {
 
     }
