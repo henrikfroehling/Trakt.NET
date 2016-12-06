@@ -81,11 +81,11 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestTraktSyncPlaybackProgressRequestUriParamsWithUnspecifiedType()
         {
-            var sorting = TraktSyncType.Unspecified;
+            var type = TraktSyncType.Unspecified;
 
             var request = new TraktSyncPlaybackProgressRequest(null)
             {
-                Type = sorting
+                Type = type
             };
 
             var uriParams = request.GetUriPathParameters();
@@ -95,17 +95,17 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestTraktSyncPlaybackProgressRequestUriParamsWithType()
         {
-            var sorting = TraktSyncType.Episode;
+            var type = TraktSyncType.Episode;
 
             var request = new TraktSyncPlaybackProgressRequest(null)
             {
-                Type = sorting
+                Type = type
             };
 
             var uriParams = request.GetUriPathParameters();
 
             uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
-            uriParams.Should().Contain("type", sorting.UriName);
+            uriParams.Should().Contain("type", type.UriName);
         }
     }
 }
