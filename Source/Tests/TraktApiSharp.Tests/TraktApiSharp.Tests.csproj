@@ -274,6 +274,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncListRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionShowsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncPlaybackProgressRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
