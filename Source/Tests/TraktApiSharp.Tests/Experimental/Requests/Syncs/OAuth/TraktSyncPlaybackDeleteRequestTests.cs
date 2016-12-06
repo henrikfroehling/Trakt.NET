@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Delete;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
 
     [TestClass]
@@ -24,6 +25,12 @@
         public void TestTraktSyncPlaybackDeleteRequestIsSubclassOfATraktNoContentDeleteByIdRequest()
         {
             typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackDeleteRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(TraktSyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
