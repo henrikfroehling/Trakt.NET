@@ -285,6 +285,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncPlaybackProgressRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedMoviesRequest.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedShowsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
