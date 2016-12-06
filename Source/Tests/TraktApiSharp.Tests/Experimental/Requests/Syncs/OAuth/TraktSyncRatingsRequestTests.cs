@@ -40,5 +40,12 @@
             var request = new TraktSyncRatingsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncRatingsRequest(null);
+            request.UriTemplate.Should().Be("sync/ratings{/type}{/rating}{?extended}");
+        }
     }
 }
