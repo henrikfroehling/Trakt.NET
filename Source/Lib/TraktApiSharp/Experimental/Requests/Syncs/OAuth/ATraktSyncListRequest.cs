@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    internal abstract class ATraktSyncListRequest<TItem>
-    {
+    using Base.Get;
 
+    internal abstract class ATraktSyncListRequest<TItem> : ATraktListGetRequest<TItem>
+    {
+        internal ATraktSyncListRequest(TraktClient client) : base(client) { }
     }
 }
