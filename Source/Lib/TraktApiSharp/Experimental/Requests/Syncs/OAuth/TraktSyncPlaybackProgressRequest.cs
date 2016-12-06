@@ -10,12 +10,17 @@
 
         internal TraktSyncType Type { get; set; }
 
+        internal int? Limit { get; set; }
+
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
 
             if (Type != null && Type != TraktSyncType.Unspecified)
                 uriParams.Add("type", Type.UriName);
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.ToString());
 
             return uriParams;
         }

@@ -59,6 +59,19 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestHasLimitProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSyncPlaybackProgressRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Limit")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestTraktSyncPlaybackProgressRequestHasGetUriPathParametersMethod()
         {
             var methodInfo = typeof(TraktSyncPlaybackProgressRequest).GetMethods()
@@ -70,7 +83,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncPlaybackProgressRequestUriParamsWithoutType()
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithoutTypeAndLimit()
         {
             var request = new TraktSyncPlaybackProgressRequest(null);
             var uriParams = request.GetUriPathParameters();
@@ -106,6 +119,44 @@
 
             uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
             uriParams.Should().Contain("type", type.UriName);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithLimit()
+        {
+            var limit = 4;
+
+            var request = new TraktSyncPlaybackProgressRequest(null)
+            {
+                Limit = limit
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("limit", limit.ToString());
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestUriParamsWithTypeAndLimit()
+        {
+            var type = TraktSyncType.Episode;
+            var limit = 4;
+
+            var request = new TraktSyncPlaybackProgressRequest(null)
+            {
+                Type = type,
+                Limit = limit
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["type"] = type.UriName,
+                ["limit"] = limit.ToString()
+            });
         }
     }
 }
