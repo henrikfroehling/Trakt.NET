@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncPlaybackDeleteRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackDeleteRequestIsSealed()
+        {
+            typeof(TraktSyncPlaybackDeleteRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
