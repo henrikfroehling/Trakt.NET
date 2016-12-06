@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
 
     [TestClass]
@@ -17,6 +18,12 @@
         public void TestTraktSyncPlaybackDeleteRequestIsSealed()
         {
             typeof(TraktSyncPlaybackDeleteRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackDeleteRequestIsSubclassOfATraktNoContentDeleteByIdRequest()
+        {
+            typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
     }
 }
