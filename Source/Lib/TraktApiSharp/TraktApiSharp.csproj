@@ -280,6 +280,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowTranslationsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowWatchingUsersRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncListRequest.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
