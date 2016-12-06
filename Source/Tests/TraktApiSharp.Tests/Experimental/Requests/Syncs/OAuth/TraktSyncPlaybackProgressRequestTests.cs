@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncPlaybackProgressRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncPlaybackProgressRequestIsSealed()
+        {
+            typeof(TraktSyncPlaybackProgressRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
