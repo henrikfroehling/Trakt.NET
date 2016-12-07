@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestATraktSyncPaginationRequestIsAbstract()
         {
-            typeof(ATraktSyncPaginationRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktSyncPaginationRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestATraktSyncPaginationRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktSyncPaginationRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktSyncPaginationRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
