@@ -33,5 +33,12 @@
             var request = new TraktSyncWatchedHistoryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchedHistoryRequest(null);
+            request.UriTemplate.Should().Be("sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
+        }
     }
 }
