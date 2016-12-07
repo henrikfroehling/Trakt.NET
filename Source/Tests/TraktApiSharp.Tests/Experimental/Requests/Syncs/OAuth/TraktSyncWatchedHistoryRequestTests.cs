@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.History;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktSyncWatchedHistoryRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktSyncWatchedHistoryRequestIsSubclassOfATraktSyncPaginationRequest()
         {
             typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ATraktSyncPaginationRequest<TraktHistoryItem>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestHasAuthorizationRequired()
+        {
+            var request = new TraktSyncWatchedHistoryRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
