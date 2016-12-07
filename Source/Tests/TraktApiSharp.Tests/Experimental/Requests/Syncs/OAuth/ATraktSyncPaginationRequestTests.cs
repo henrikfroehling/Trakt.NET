@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
 
     [TestClass]
@@ -25,6 +26,12 @@
         public void TestATraktSyncPaginationRequestIsSubclassOfATraktPaginationGetRequest()
         {
             typeof(ATraktSyncPaginationRequest<int>).IsSubclassOf(typeof(ATraktPaginationGetRequest<int>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestATraktSyncPaginationRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(ATraktSyncPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
     }
 }
