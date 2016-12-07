@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    internal abstract class ATraktSyncPaginationRequest<TItem>
-    {
+    using Base.Get;
 
+    internal abstract class ATraktSyncPaginationRequest<TItem> : ATraktPaginationGetRequest<TItem>
+    {
+        internal ATraktSyncPaginationRequest(TraktClient client) : base(client) { }
     }
 }
