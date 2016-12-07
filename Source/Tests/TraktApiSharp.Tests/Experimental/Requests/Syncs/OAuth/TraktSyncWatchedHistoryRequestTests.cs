@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
+    using TraktApiSharp.Objects.Get.History;
 
     [TestClass]
     public class TraktSyncWatchedHistoryRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktSyncWatchedHistoryRequestIsSealed()
         {
             typeof(TraktSyncWatchedHistoryRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestIsSubclassOfATraktSyncPaginationRequest()
+        {
+            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ATraktSyncPaginationRequest<TraktHistoryItem>)).Should().BeTrue();
         }
     }
 }
