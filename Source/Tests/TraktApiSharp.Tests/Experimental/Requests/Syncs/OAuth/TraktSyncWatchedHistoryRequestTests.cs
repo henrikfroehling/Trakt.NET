@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Requests;
@@ -39,6 +42,19 @@
         {
             var request = new TraktSyncWatchedHistoryRequest(null);
             request.UriTemplate.Should().Be("sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestHasTypeProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Type")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
     }
 }
