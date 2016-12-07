@@ -83,5 +83,18 @@
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestHasEndAtProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "EndAt")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+        }
     }
 }
