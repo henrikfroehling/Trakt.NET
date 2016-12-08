@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Syncs.Activities;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktSyncLastActivitiesRequest : ATraktSingleItemGetRequest<TraktSyncLastActivities>
@@ -11,12 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string UriTemplate => "sync/last_activities";
     }
 }

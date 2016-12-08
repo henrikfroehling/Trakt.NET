@@ -34,5 +34,12 @@
             var request = new TraktSyncLastActivitiesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncLastActivitiesRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncLastActivitiesRequest(null);
+            request.UriTemplate.Should().Be("sync/last_activities");
+        }
     }
 }
