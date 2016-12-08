@@ -33,5 +33,12 @@
             var request = new TraktSyncWatchlistRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchlistRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchlistRequest(null);
+            request.UriTemplate.Should().Be("sync/watchlist{/type}{?extended,page,limit}");
+        }
     }
 }
