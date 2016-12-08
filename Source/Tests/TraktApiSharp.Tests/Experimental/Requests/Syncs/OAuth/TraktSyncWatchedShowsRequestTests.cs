@@ -23,9 +23,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncWatchedShowsRequestIsSubclassOfATraktSyncListRequest()
+        public void TestTraktSyncWatchedShowsRequestIsSubclassOfATraktSyncListGetRequest()
         {
-            typeof(TraktSyncWatchedShowsRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktWatchedShow>)).Should().BeTrue();
+            typeof(TraktSyncWatchedShowsRequest).IsSubclassOf(typeof(ATraktSyncListGetRequest<TraktWatchedShow>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]

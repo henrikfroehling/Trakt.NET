@@ -3,9 +3,9 @@
     using Base.Get;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktSyncListRequest<TItem> : ATraktListGetRequest<TItem>
+    internal abstract class ATraktSyncListGetRequest<TItem> : ATraktListGetRequest<TItem>
     {
-        internal ATraktSyncListRequest(TraktClient client) : base(client) { }
+        internal ATraktSyncListGetRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }

@@ -23,9 +23,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncCollectionShowsRequestIsSubclassOfATraktSyncListRequest()
+        public void TestTraktSyncCollectionShowsRequestIsSubclassOfATraktSyncListGetRequest()
         {
-            typeof(TraktSyncCollectionShowsRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktCollectionShow>)).Should().BeTrue();
+            typeof(TraktSyncCollectionShowsRequest).IsSubclassOf(typeof(ATraktSyncListGetRequest<TraktCollectionShow>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]

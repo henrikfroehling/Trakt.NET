@@ -279,7 +279,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowTranslationsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowWatchingUsersRequest.cs" />
-    <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncListRequest.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncListGetRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionShowsRequest.cs" />

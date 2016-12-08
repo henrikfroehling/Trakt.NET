@@ -26,9 +26,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncPlaybackProgressRequestIsSubclassOfATraktSyncListRequest()
+        public void TestTraktSyncPlaybackProgressRequestIsSubclassOfATraktSyncListGetRequest()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncListRequest<TraktSyncPlaybackProgressItem>)).Should().BeTrue();
+            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncListGetRequest<TraktSyncPlaybackProgressItem>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]

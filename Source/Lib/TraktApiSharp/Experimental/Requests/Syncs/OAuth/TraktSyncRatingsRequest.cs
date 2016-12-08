@@ -7,7 +7,7 @@
     using System.Linq;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncRatingsRequest : ATraktSyncListRequest<TraktRatingsItem>, ITraktExtendedInfo
+    internal sealed class TraktSyncRatingsRequest : ATraktSyncListGetRequest<TraktRatingsItem>, ITraktExtendedInfo
     {
         internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
 
