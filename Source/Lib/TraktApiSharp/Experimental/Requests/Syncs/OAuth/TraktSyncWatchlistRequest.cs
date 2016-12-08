@@ -12,7 +12,12 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            if (Type != null && Type != TraktSyncItemType.Unspecified)
+                uriParams.Add("type", Type.UriName);
+
+            return uriParams;
         }
 
         public override string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";

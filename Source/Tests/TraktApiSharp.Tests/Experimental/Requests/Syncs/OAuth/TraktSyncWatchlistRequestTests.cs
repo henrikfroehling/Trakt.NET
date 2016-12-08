@@ -68,5 +68,43 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryRequestUriParamsWithoutType()
+        {
+            var request = new TraktSyncWatchlistRequest(null);
+            var uriParams = request.GetUriPathParameters();
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchlistRequestUriParamsWithUnspecifiedType()
+        {
+            var type = TraktSyncItemType.Unspecified;
+
+            var request = new TraktSyncWatchlistRequest(null)
+            {
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+            uriParams.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchlistRequestUriParamsWithType()
+        {
+            var type = TraktSyncItemType.Episode;
+
+            var request = new TraktSyncWatchlistRequest(null)
+            {
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("type", type.UriName);
+        }
     }
 }
