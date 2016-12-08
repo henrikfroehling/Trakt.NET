@@ -4,7 +4,7 @@
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchlistRequest : ATraktSyncPaginationRequest<TraktWatchlistItem>
+    internal sealed class TraktSyncWatchlistRequest : ATraktSyncPaginationGetRequest<TraktWatchlistItem>
     {
         internal TraktSyncWatchlistRequest(TraktClient client) : base(client) { }
 

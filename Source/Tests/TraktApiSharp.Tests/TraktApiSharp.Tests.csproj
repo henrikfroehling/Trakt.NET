@@ -272,7 +272,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowWatchingUsersRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncListGetRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncPaginationRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\ATraktSyncPaginationGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncCollectionShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncLastActivitiesRequestTests.cs" />

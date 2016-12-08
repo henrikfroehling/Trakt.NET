@@ -5,9 +5,9 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktSyncPaginationRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo
+    internal abstract class ATraktSyncPaginationGetRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo
     {
-        internal ATraktSyncPaginationRequest(TraktClient client) : base(client) { }
+        internal ATraktSyncPaginationGetRequest(TraktClient client) : base(client) { }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

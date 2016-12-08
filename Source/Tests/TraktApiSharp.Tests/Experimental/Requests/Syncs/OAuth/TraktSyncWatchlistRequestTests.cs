@@ -26,9 +26,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncWatchlistRequestIsSubclassOfATraktSyncPaginationRequest()
+        public void TestTraktSyncWatchlistRequestIsSubclassOfATraktSyncPaginationGetRequest()
         {
-            typeof(TraktSyncWatchlistRequest).IsSubclassOf(typeof(ATraktSyncPaginationRequest<TraktWatchlistItem>)).Should().BeTrue();
+            typeof(TraktSyncWatchlistRequest).IsSubclassOf(typeof(ATraktSyncPaginationGetRequest<TraktWatchlistItem>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]

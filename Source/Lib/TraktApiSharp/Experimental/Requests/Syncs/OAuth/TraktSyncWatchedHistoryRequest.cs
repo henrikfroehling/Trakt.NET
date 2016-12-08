@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncPaginationRequest<TraktHistoryItem>
+    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncPaginationGetRequest<TraktHistoryItem>
     {
         internal TraktSyncWatchedHistoryRequest(TraktClient client) : base(client) { }
 
