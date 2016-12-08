@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncLastActivitiesRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncLastActivitiesRequestIsSealed()
+        {
+            typeof(TraktSyncLastActivitiesRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
