@@ -2,11 +2,14 @@
 {
     using Base.Get;
     using Interfaces;
+    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
     internal abstract class ATraktSyncPaginationRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo
     {
         internal ATraktSyncPaginationRequest(TraktClient client) : base(client) { }
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
     }

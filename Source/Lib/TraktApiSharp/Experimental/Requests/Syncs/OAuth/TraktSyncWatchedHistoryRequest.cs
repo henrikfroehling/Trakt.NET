@@ -5,13 +5,10 @@
     using Objects.Get.History;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncPaginationRequest<TraktHistoryItem>
     {
         internal TraktSyncWatchedHistoryRequest(TraktClient client) : base(client) { }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         internal TraktSyncItemType Type { get; set; }
 
