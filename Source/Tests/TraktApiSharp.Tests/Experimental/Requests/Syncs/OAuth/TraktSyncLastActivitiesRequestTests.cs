@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktSyncLastActivitiesRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktSyncLastActivitiesRequestIsSubclassOfATraktSingleItemGetRequest()
         {
             typeof(TraktSyncLastActivitiesRequest).IsSubclassOf(typeof(ATraktSingleItemGetRequest<TraktSyncLastActivities>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncLastActivitiesRequestHasAuthorizationRequired()
+        {
+            var request = new TraktSyncLastActivitiesRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
