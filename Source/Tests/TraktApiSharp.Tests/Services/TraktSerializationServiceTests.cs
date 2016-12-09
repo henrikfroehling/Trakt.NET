@@ -108,6 +108,37 @@
 
             var result = TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
             result.Should().BeNull();
+
+            act = () => TraktSerializationService.DeserializeAuthorization("invalid\": \"json\" }");
+            act.ShouldThrow<ArgumentException>();
+
+            string invalidAuthorizationJson =
+            "{" +
+                $"\"AccessToken\":\"\"," +
+                $"\"RefreshToken\":\"\"," +
+                $"\"ExpiresIn\":\"stringvalue\"," +
+                $"\"Scope\":\"public\"," +
+                $"\"TokenType\":\"bearer\"," +
+                $"\"CreatedAtTicks\":0," +
+                $"\"IgnoreExpiration\":false" +
+            "}";
+
+            act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);
+            act.ShouldThrow<ArgumentException>();
+
+            invalidAuthorizationJson =
+            "{" +
+                $"\"AccessToken\":\"\"," +
+                $"\"RefreshToken\":\"\"," +
+                $"\"ExpiresIn\":0," +
+                $"\"Scope\":\"public\"," +
+                $"\"TokenType\":\"bearer\"," +
+                $"\"CreatedAtTicks\":\"stringvalue\"," +
+                $"\"IgnoreExpiration\":false" +
+            "}";
+
+            act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);
+            act.ShouldThrow<ArgumentException>();
         }
     }
 }

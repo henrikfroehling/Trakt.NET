@@ -10,6 +10,14 @@
     /// <summary>Provides helper methods for serializing and deserializing Trakt objects.</summary>
     public static class TraktSerializationService
     {
+        private const string propertyAccessToken = "AccessToken";
+        private const string propertyRefreshToken = "RefreshToken";
+        private const string propertyExpiresIn = "ExpiresIn";
+        private const string propertyScope = "Scope";
+        private const string propertyTokenType = "TokenType";
+        private const string propertyCreatedAtTicks = "CreatedAtTicks";
+        private const string propertyIgnoreExpiration = "IgnoreExpiration";
+
         /// <summary>Serializes an <see cref="TraktAuthorization" /> instance to a JSON string.</summary>
         /// <param name="authorization">The authorization information, which should be serialized.</param>
         /// <returns>A Json string, containing all properties of the given authorization.</returns>
@@ -32,28 +40,20 @@
                 writer.Formatting = Formatting.None;
 
                 writer.WriteStartObject();
-
-                writer.WritePropertyName("AccessToken");
+                writer.WritePropertyName(propertyAccessToken);
                 writer.WriteValue(accessToken);
-
-                writer.WritePropertyName("RefreshToken");
+                writer.WritePropertyName(propertyRefreshToken);
                 writer.WriteValue(refreshToken);
-
-                writer.WritePropertyName("ExpiresIn");
+                writer.WritePropertyName(propertyExpiresIn);
                 writer.WriteValue(authorization.ExpiresInSeconds);
-
-                writer.WritePropertyName("Scope");
+                writer.WritePropertyName(propertyScope);
                 writer.WriteValue(scope.ObjectName);
-
-                writer.WritePropertyName("TokenType");
+                writer.WritePropertyName(propertyTokenType);
                 writer.WriteValue(tokenType.ObjectName);
-
-                writer.WritePropertyName("CreatedAtTicks");
+                writer.WritePropertyName(propertyCreatedAtTicks);
                 writer.WriteValue(authorization.Created.Ticks);
-
-                writer.WritePropertyName("IgnoreExpiration");
+                writer.WritePropertyName(propertyIgnoreExpiration);
                 writer.WriteValue(authorization.IgnoreExpiration);
-
                 writer.WriteEndObject();
             }
 
@@ -66,57 +66,127 @@
         /// An <see cref="TraktAuthorization" /> instance, containing the information from the JSON string, if successful.
         /// If the JSON string could not be parsed, null will be returned.
         /// </returns>
-        /// <exception cref="ArgumentException">Thrown, if the given authorizationJson is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given authorizationJson is null, empty or invalid.</exception>
         public static TraktAuthorization DeserializeAuthorization(string authorizationJson)
         {
             if (string.IsNullOrEmpty(authorizationJson))
                 throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
 
-            var authorizationWrapper = new
+            var accessToken = string.Empty;
+            var refreshToken = string.Empty;
+            var expiresIn = 0;
+            var scope = string.Empty;
+            var tokenType = string.Empty;
+            var createdAtTicks = 0L;
+            var ignoreExpiration = false;
+
+            var stringReader = new StringReader(authorizationJson);
+
+            try
             {
-                AccessToken = string.Empty,
-                RefreshToken = string.Empty,
-                ExpiresIn = 0,
-                Scope = string.Empty,
-                TokenType = string.Empty,
-                CreatedAtTicks = 0L,
-                IgnoreExpiration = false
-            };
-
-            var anonymousAuthorization = JsonConvert.DeserializeAnonymousType(authorizationJson, authorizationWrapper);
-
-            if (anonymousAuthorization != null)
-            {
-                var accessToken = anonymousAuthorization.AccessToken;
-                var refreshToken = anonymousAuthorization.RefreshToken;
-                var expiresIn = anonymousAuthorization.ExpiresIn;
-                var scope = anonymousAuthorization.Scope;
-                var tokenType = anonymousAuthorization.TokenType;
-                var createdAtTicks = anonymousAuthorization.CreatedAtTicks;
-                var ignoreExpiration = anonymousAuthorization.IgnoreExpiration;
-
-                if (accessToken == null || refreshToken == null || scope == null || tokenType == null)
-                    return default(TraktAuthorization);
-
-                var accessScope = scope != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
-                var accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
-                var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
-
-                var authorization = new TraktAuthorization
+                using (var reader = new JsonTextReader(stringReader))
                 {
-                    AccessToken = accessToken,
-                    RefreshToken = refreshToken,
-                    ExpiresInSeconds = expiresIn,
-                    AccessScope = accessScope,
-                    TokenType = accessTokenType,
-                    IgnoreExpiration = ignoreExpiration,
-                    Created = createdDateTime
-                };
+                    if (reader.Read() && reader.TokenType != JsonToken.StartObject)
+                        return default(TraktAuthorization);
 
-                return authorization;
+                    while (reader.Read() && reader.TokenType == JsonToken.PropertyName)
+                    {
+                        var propertyName = (string)reader.Value;
+
+                        if (string.IsNullOrEmpty(propertyName))
+                            throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+
+                        if (propertyName == propertyAccessToken)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.String)
+                                accessToken = (string)reader.Value;
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyRefreshToken)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.String)
+                                refreshToken = (string)reader.Value;
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyExpiresIn)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.Integer)
+                            {
+                                var value = reader.Value.ToString();
+
+                                if (!string.IsNullOrEmpty(value))
+                                    expiresIn = int.Parse(value);
+                            }
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyScope)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.String)
+                                scope = (string)reader.Value;
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyTokenType)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.String)
+                                tokenType = (string)reader.Value;
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyCreatedAtTicks)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.Integer)
+                            {
+                                var value = reader.Value.ToString();
+
+                                if (!string.IsNullOrEmpty(value))
+                                    createdAtTicks = long.Parse(value);
+                            }
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else if (propertyName == propertyIgnoreExpiration)
+                        {
+                            if (reader.Read() && reader.TokenType == JsonToken.Boolean)
+                                ignoreExpiration = (bool)reader.Value;
+                            else
+                                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                        }
+                        else
+                            return default(TraktAuthorization);
+                    }
+                }
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson), ex);
             }
 
-            return default(TraktAuthorization);
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken)
+                    || string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(tokenType))
+            {
+                return default(TraktAuthorization);
+            }
+
+            var accessScope = scope != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
+            var accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
+            var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
+
+            var authorization = new TraktAuthorization
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken,
+                ExpiresInSeconds = expiresIn,
+                AccessScope = accessScope,
+                TokenType = accessTokenType,
+                IgnoreExpiration = ignoreExpiration,
+                Created = createdDateTime
+            };
+
+            return authorization;
         }
     }
 }
