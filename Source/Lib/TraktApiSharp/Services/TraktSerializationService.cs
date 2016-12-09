@@ -4,7 +4,8 @@
     using Enums;
     using Newtonsoft.Json;
     using System;
-    using Utils;
+    using System.IO;
+    using System.Text;
 
     /// <summary>Provides helper methods for serializing and deserializing Trakt objects.</summary>
     public static class TraktSerializationService
@@ -20,19 +21,43 @@
 
             var scope = authorization.AccessScope ?? TraktAccessScope.Public;
             var tokenType = authorization.TokenType ?? TraktAccessTokenType.Bearer;
+            var accessToken = authorization.AccessToken ?? string.Empty;
+            var refreshToken = authorization.RefreshToken ?? string.Empty;
 
-            var authorizationWrapper = new
+            var stringBuilder = new StringBuilder();
+            var stringWriter = new StringWriter(stringBuilder);
+
+            using (var writer = new JsonTextWriter(stringWriter))
             {
-                AccessToken = authorization.AccessToken ?? string.Empty,
-                RefreshToken = authorization.RefreshToken ?? string.Empty,
-                ExpiresIn = authorization.ExpiresInSeconds,
-                Scope = scope.ObjectName,
-                TokenType = tokenType.ObjectName,
-                CreatedAtTicks = authorization.Created.Ticks,
-                IgnoreExpiration = authorization.IgnoreExpiration
-            };
+                writer.Formatting = Formatting.None;
 
-            return Json.Serialize(authorizationWrapper);
+                writer.WriteStartObject();
+
+                writer.WritePropertyName("AccessToken");
+                writer.WriteValue(accessToken);
+
+                writer.WritePropertyName("RefreshToken");
+                writer.WriteValue(refreshToken);
+
+                writer.WritePropertyName("ExpiresIn");
+                writer.WriteValue(authorization.ExpiresInSeconds);
+
+                writer.WritePropertyName("Scope");
+                writer.WriteValue(scope.ObjectName);
+
+                writer.WritePropertyName("TokenType");
+                writer.WriteValue(tokenType.ObjectName);
+
+                writer.WritePropertyName("CreatedAtTicks");
+                writer.WriteValue(authorization.Created.Ticks);
+
+                writer.WritePropertyName("IgnoreExpiration");
+                writer.WriteValue(authorization.IgnoreExpiration);
+
+                writer.WriteEndObject();
+            }
+
+            return stringBuilder.ToString();
         }
 
         /// <summary>Deserializes a JSON string to an <see cref="TraktAuthorization" /> instance.</summary>
