@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
-    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListGetRequest<TItem> : ATraktListRequest<TItem>, ITraktRequest
+    internal abstract class ATraktListGetRequest<TItem> : ATraktListRequest<TItem>
     {
         internal ATraktListGetRequest(TraktClient client) : base(client) { }
 
