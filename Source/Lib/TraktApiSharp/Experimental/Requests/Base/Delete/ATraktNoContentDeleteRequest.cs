@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Delete
 {
-    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktNoContentDeleteRequest : ATraktNoContentRequest, ITraktRequest
+    internal abstract class ATraktNoContentDeleteRequest : ATraktNoContentRequest
     {
         internal ATraktNoContentDeleteRequest(TraktClient client) : base(client) { }
 

@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Delete;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class ATraktNoContentDeleteByIdRequestTests
@@ -19,12 +18,6 @@
         public void TestATraktNoContentDeleteByIdRequestIsSubclassOfATraktNoContentDeleteRequest()
         {
             typeof(ATraktNoContentDeleteByIdRequest).IsSubclassOf(typeof(ATraktNoContentDeleteRequest)).Should().BeTrue();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
-        public void TestATraktNoContentDeleteByIdRequestImplementsITraktRequestInterface()
-        {
-            typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
