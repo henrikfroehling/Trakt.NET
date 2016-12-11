@@ -26,5 +26,12 @@
         {
             typeof(TraktSyncRatingsRemoveRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRemoveRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncRatingsRemoveRequest(null);
+            request.UriTemplate.Should().Be("sync/ratings/remove");
+        }
     }
 }
