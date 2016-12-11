@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncCollectionRemoveRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncCollectionRemoveRequestIsSealed()
+        {
+            typeof(TraktSyncCollectionRemoveRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
