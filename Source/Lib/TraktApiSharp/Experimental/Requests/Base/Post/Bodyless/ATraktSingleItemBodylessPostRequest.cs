@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post.Bodyless
 {
-    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktSingleItemBodylessPostRequest<TItem> : ATraktSingleItemRequest<TItem>, ITraktRequest
+    internal abstract class ATraktSingleItemBodylessPostRequest<TItem> : ATraktSingleItemRequest<TItem>
     {
         internal ATraktSingleItemBodylessPostRequest(TraktClient client) : base(client) { }
 
