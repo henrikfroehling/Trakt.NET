@@ -298,6 +298,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistAddRequest.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
