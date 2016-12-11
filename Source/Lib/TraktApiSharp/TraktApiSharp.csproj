@@ -290,6 +290,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncPlaybackDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncPlaybackProgressRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncRatingsAddRequest.cs" />
+    <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncRatingsRemoveRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedHistoryRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchedMoviesRequest.cs" />
