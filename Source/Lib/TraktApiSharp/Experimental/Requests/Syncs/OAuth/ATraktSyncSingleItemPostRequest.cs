@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    internal abstract class ATraktSyncSingleItemPostRequest<TItem, TRequestBody>
-    {
+    using Base.Post;
 
+    internal abstract class ATraktSyncSingleItemPostRequest<TItem, TRequestBody> : ATraktSingleItemPostRequest<TItem, TRequestBody>
+    {
+        internal ATraktSyncSingleItemPostRequest(TraktClient client) : base(client) { }
     }
 }
