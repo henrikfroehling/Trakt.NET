@@ -26,5 +26,12 @@
         {
             typeof(TraktSyncWatchlistAddRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchlistAddRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchlistAddRequest(null);
+            request.UriTemplate.Should().Be("sync/watchlist");
+        }
     }
 }
