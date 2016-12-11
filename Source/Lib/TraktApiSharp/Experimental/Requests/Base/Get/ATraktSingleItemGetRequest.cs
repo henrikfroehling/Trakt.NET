@@ -8,8 +8,8 @@
     {
         internal ATraktSingleItemGetRequest(TraktClient client) : base(client) { }
 
-        public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
+        public override TraktAuthorizationRequirement AuthorizationRequirement { get; }
 
-        public HttpMethod Method => HttpMethod.Get;
+        public override HttpMethod Method => HttpMethod.Get;
     }
 }

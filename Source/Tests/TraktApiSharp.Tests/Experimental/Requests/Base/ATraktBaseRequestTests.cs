@@ -17,9 +17,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]
-        public void TestATraktBaseRequestImplementsITraktUriBuildableInterface()
+        public void TestATraktBaseRequestImplementsITraktRequestInterface()
         {
-            typeof(ATraktBaseRequest).GetInterfaces().Should().Contain(typeof(ITraktUriBuildable));
+            typeof(ATraktBaseRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Abstract Base Classes")]

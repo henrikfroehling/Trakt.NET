@@ -8,8 +8,8 @@
     {
         internal ATraktNoContentDeleteRequest(TraktClient client) : base(client) { }
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public HttpMethod Method => HttpMethod.Delete;
+        public override HttpMethod Method => HttpMethod.Delete;
     }
 }

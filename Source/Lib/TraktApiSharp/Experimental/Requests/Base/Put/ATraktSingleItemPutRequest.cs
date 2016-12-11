@@ -11,9 +11,9 @@
             RequestBody = new TraktRequestBody<TRequestBody>();
         }
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public HttpMethod Method => HttpMethod.Put;
+        public override HttpMethod Method => HttpMethod.Put;
 
         public TraktRequestBody<TRequestBody> RequestBody { get; set; }
 
