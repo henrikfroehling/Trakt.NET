@@ -3,6 +3,8 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
+    using TraktApiSharp.Objects.Post.Syncs.Ratings;
+    using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
 
     [TestClass]
     public class TraktSyncRatingsRemoveRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktSyncRatingsRemoveRequestIsSealed()
         {
             typeof(TraktSyncRatingsRemoveRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsRemoveRequestIsSubclassOfATraktSyncSingleItemPostRequest()
+        {
+            typeof(TraktSyncRatingsRemoveRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }
     }
 }
