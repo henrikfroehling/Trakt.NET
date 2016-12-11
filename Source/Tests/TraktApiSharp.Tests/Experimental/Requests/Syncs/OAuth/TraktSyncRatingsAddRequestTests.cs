@@ -26,5 +26,12 @@
         {
             typeof(TraktSyncRatingsAddRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncRatingsPostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncRatingsAddRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncRatingsAddRequest(null);
+            request.UriTemplate.Should().Be("sync/ratings");
+        }
     }
 }
