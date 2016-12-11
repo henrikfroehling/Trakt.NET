@@ -10,6 +10,8 @@
     {
         internal ATraktPaginationRequest(TraktClient client) : base(client) { }
 
+        public int? Page { get; set; }
+
         public TraktPaginationOptions PaginationOptions { get; set; }
 
         public virtual bool SupportsOnlyPaginationParameters => false;

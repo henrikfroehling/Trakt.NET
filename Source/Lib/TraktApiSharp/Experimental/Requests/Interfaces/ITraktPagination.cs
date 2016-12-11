@@ -4,6 +4,8 @@
 
     internal interface ITraktPagination
     {
+        int? Page { get; set; }
+
         TraktPaginationOptions PaginationOptions { get; set; }
 
         bool SupportsOnlyPaginationParameters { get; }
