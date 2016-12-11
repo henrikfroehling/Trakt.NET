@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class ATraktNoContentGetByIdRequestTests
@@ -19,12 +18,6 @@
         public void TestATraktNoContentGetByIdRequestIsSubclassOfATraktNoContentGetRequest()
         {
             typeof(ATraktNoContentGetByIdRequest).IsSubclassOf(typeof(ATraktNoContentGetRequest)).Should().BeTrue();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
-        public void TestATraktNoContentGetByIdRequestImplementsITraktRequestInterface()
-        {
-            typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
