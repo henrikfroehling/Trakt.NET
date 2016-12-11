@@ -2,11 +2,11 @@
 # build in Release mode
 -
   environment:
-    packageVersion: 0.7.0
+    packageVersion: 0.8.0
 
-  version: '{branch}-v0.7.0-{build}'
+  version: '{branch}-v0.8.0-{build}'
   image: Visual Studio 2015
-  
+
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
@@ -20,7 +20,7 @@
 
   before_build:
     - cmd: nuget restore
-    
+
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
@@ -100,7 +100,7 @@
 -
   version: '{branch}-{build}'
   image: Visual Studio 2015
-  
+
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
@@ -119,7 +119,7 @@
     verbosity: minimal
 
   configuration: Debug
-  
+
   artifacts:
     - path: Build\Lib\Debug\TraktApiSharp.dll
       name: DebugAssembly

@@ -2,6 +2,45 @@ Release notes
 =============
 ---
 
+Version 0.8.0
+===
+
+#### 0.8.0
+*(2016-12-11)*
+
+Added:
+
+- range support for years parameter in filters
+- AddMovies(IEnumerable< TraktMovie >) in TraktSyncCollectionPostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktSyncCollectionPostBuilder
+- AddEpisodes(IEnumerable< TraktEpisode >) in TraktSyncCollectionPostBuilder
+- more overloads for AddShow() in TraktSyncCollectionPostBuilder
+- AddMovies(IEnumerable< TraktMovie >) in TraktSyncRatingsPostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktSyncRatingsPostBuilder
+- AddEpisodes(IEnumerable< TraktEpisode >) in TraktSyncRatingsPostBuilder
+- more overloads for AddShow() and AddShowWithRating() in TraktSyncRatingsPostBuilder
+- AddMovies(IEnumerable< TraktMovie >) in TraktSyncWatchlistPostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktSyncWatchlistPostBuilder
+- AddEpisodes(IEnumerable< TraktEpisode >) in TraktSyncWatchlistPostBuilder
+- more overloads for AddShow() in TraktSyncWatchlistPostBuilder
+- AddMovies(IEnumerable< TraktMovie >) in TraktSyncHistoryPostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktSyncHistoryPostBuilder
+- AddEpisodes(IEnumerable< TraktEpisode >) in TraktSyncHistoryPostBuilder
+- more overloads for AddShow() in TraktSyncHistoryPostBuilder
+- AddMovies(IEnumerable< TraktMovie >) in TraktSyncHistoryRemovePostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktSyncHistoryRemovePostBuilder
+- AddEpisodes(IEnumerable< TraktEpisode >) in TraktSyncHistoryRemovePostBuilder
+- more overloads for AddShow() and AddHistoryIds() in TraktSyncHistoryRemovePostBuilder
+- AddMovies(IEnumerable< TraktMovie >) in TraktUserCustomListItemsPostBuilder
+- AddShows(IEnumerable< TraktShow >) in TraktUserCustomListItemsPostBuilder
+- AddPersons(IEnumerable< TraktPerson >) in TraktUserCustomListItemsPostBuilder
+- more overloads for AddShow() in TraktUserCustomListItemsPostBuilder
+
+Improved:
+
+- performance of Serialize(TraktAuthorization) in TraktSerializationService
+- performance of DeserializeAuthorization() in TraktSerializationService
+
 Version 0.7.0
 ===
 
