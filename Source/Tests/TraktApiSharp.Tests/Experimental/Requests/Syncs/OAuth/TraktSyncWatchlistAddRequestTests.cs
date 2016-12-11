@@ -12,5 +12,11 @@
         {
             typeof(TraktSyncWatchlistAddRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchlistAddRequestIsSealed()
+        {
+            typeof(TraktSyncWatchlistAddRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
