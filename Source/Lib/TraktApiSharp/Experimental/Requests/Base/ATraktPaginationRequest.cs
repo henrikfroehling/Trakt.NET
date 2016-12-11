@@ -4,7 +4,6 @@
     using Responses;
     using System;
     using System.Threading.Tasks;
-    using TraktApiSharp.Requests;
 
     internal abstract class ATraktPaginationRequest<TItem> : ATraktBaseRequest, ITraktPaginationRequest<TItem>
     {
@@ -13,8 +12,6 @@
         public int? Page { get; set; }
 
         public int? Limit { get; set; }
-
-        public TraktPaginationOptions PaginationOptions { get; set; }
 
         public Task<TraktPaginationResponse<TItem>> QueryAsync()
         {
