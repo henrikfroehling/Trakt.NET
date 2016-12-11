@@ -16,8 +16,6 @@
 
         public TraktPaginationOptions PaginationOptions { get; set; }
 
-        public virtual bool SupportsOnlyPaginationParameters => false;
-
         public Task<TraktPaginationResponse<TItem>> QueryAsync()
         {
             throw new NotImplementedException();

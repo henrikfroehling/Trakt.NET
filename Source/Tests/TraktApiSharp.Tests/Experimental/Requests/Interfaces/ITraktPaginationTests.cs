@@ -50,17 +50,5 @@
             paginationOptionsPropertyInfo.CanWrite.Should().BeTrue();
             paginationOptionsPropertyInfo.PropertyType.Should().Be(typeof(TraktPaginationOptions));
         }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktPaginationHasSupportsOnlyPaginationParametersProperty()
-        {
-            var supportsOnlyPaginationParametersPropertyInfo = typeof(ITraktPagination).GetProperties()
-                                                                                       .Where(p => p.Name == "SupportsOnlyPaginationParameters")
-                                                                                       .FirstOrDefault();
-
-            supportsOnlyPaginationParametersPropertyInfo.CanRead.Should().BeTrue();
-            supportsOnlyPaginationParametersPropertyInfo.CanWrite.Should().BeFalse();
-            supportsOnlyPaginationParametersPropertyInfo.PropertyType.Should().Be(typeof(bool));
-        }
     }
 }
