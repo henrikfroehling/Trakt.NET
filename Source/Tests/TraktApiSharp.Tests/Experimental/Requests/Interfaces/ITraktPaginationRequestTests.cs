@@ -33,5 +33,17 @@
             methodInfo.ReturnType.Should().Be(typeof(Task<TraktPaginationResponse<int>>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktPaginationRequestDerivesFromITraktPaginationInterface()
+        {
+            typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktPagination));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktPaginationRequestDerivesFromITraktRequestInterface()
+        {
+            typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+        }
     }
 }
