@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
 {
-    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktNoContentPostRequest<TRequestBody> : ATraktNoContentRequest, ITraktRequest, ITraktHasRequestBody<TRequestBody>
+    internal abstract class ATraktNoContentPostRequest<TRequestBody> : ATraktNoContentRequest, ITraktHasRequestBody<TRequestBody>
     {
         internal ATraktNoContentPostRequest(TraktClient client) : base(client)
         {

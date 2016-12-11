@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Post;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class ATraktNoContentPostByIdRequestTests
@@ -26,12 +25,6 @@
         {
             typeof(ATraktNoContentPostByIdRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktNoContentPostByIdRequest<float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
-        public void TestATraktNoContentPostByIdRequestImplementsITraktRequestInterface()
-        {
-            typeof(ATraktNoContentPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
