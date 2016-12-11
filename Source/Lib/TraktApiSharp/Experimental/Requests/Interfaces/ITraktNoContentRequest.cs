@@ -3,7 +3,7 @@
     using Responses;
     using System.Threading.Tasks;
 
-    internal interface ITraktNoContentRequest
+    internal interface ITraktNoContentRequest : ITraktRequest
     {
         Task<TraktNoContentResponse> QueryAsync();
     }

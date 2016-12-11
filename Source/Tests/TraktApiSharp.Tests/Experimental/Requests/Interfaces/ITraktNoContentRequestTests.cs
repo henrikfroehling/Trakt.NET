@@ -26,5 +26,11 @@
             methodInfo.ReturnType.Should().Be(typeof(Task<TraktNoContentResponse>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktNoContentRequestDerivesFromITraktRequestInterface()
+        {
+            typeof(ITraktNoContentRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+        }
     }
 }
