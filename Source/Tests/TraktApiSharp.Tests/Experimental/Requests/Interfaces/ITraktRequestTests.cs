@@ -14,15 +14,21 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktRequestImplementsITraktHttpRequestInterface()
+        public void TestITraktRequestDerivesFromITraktHttpRequestInterface()
         {
             typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHttpRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktRequestImplementsITraktRequestAuthorizationInterface()
+        public void TestITraktRequestDerivesFromITraktRequestAuthorizationInterface()
         {
             typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktRequestAuthorization));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktRequestDerivesFromITraktUriBuildableInterface()
+        {
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktUriBuildable));
         }
     }
 }
