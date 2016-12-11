@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.7.0</version>
+        <version>0.8.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
-        <projectUrl>https://traktapisharp.net</projectUrl>
+        <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>C# wrapper library for the Trakt.tv API.
 
@@ -21,22 +21,35 @@ Features
         </description>
         <summary>C# wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>Added:
-- support for "calendars/all/dvd" request (TraktCalendarModule.GetAllDVDMoviesAsync())
-- support for "calendars/my/dvd" request (TraktCalendarModule.GetUserDVDMoviesAsync())
-- Clear[ParameterName]() method for each parameter in TraktCalendarFilter, TraktMovieFilter, TraktShowFilter and TraktSearchFilter
+- range support for years parameter in filters
+- AddMovies(IEnumerable(TraktMovie)) in TraktSyncCollectionPostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktSyncCollectionPostBuilder
+- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncCollectionPostBuilder
+- more overloads for AddShow() in TraktSyncCollectionPostBuilder
+- AddMovies(IEnumerable(TraktMovie)) in TraktSyncRatingsPostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktSyncRatingsPostBuilder
+- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncRatingsPostBuilder
+- more overloads for AddShow() and AddShowWithRating() in TraktSyncRatingsPostBuilder
+- AddMovies(IEnumerable(TraktMovie)) in TraktSyncWatchlistPostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktSyncWatchlistPostBuilder
+- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncWatchlistPostBuilder
+- more overloads for AddShow() in TraktSyncWatchlistPostBuilder
+- AddMovies(IEnumerable(TraktMovie)) in TraktSyncHistoryPostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktSyncHistoryPostBuilder
+- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncHistoryPostBuilder
+- more overloads for AddShow() in TraktSyncHistoryPostBuilder
+- AddMovies(IEnumerable(TraktMovie)) in TraktSyncHistoryRemovePostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktSyncHistoryRemovePostBuilder
+- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncHistoryRemovePostBuilder
+- more overloads for AddShow() and AddHistoryIds() in TraktSyncHistoryRemovePostBuilder
+- AddMovies(IEnumerable(TraktMovie)) in TraktUserCustomListItemsPostBuilder
+- AddShows(IEnumerable(TraktShow)) in TraktUserCustomListItemsPostBuilder
+- AddPersons(IEnumerable(TraktPerson)) in TraktUserCustomListItemsPostBuilder
+- more overloads for AddShow() in TraktUserCustomListItemsPostBuilder
 
-Renamed:
-- UseStagingUrl (-> UseSandboxEnvironment) in TraktConfiguration
-
-Changed:
-- return type of Clear() method in TraktCalendarFilter to TraktCalendarFilter
-- return type of Clear() method in TraktMovieFilter to TraktMovieFilter
-- return type of Clear() method in TraktShowFilter to TraktShowFilter
-- return type of Clear() method in TraktSearchFilter to TraktSearchFilter
-
-Removed:
-- Serialize(TraktDevice) in TraktSerializationService
-- DeserializeDevice() in TraktSerializationService
+Improved:
+- performance of Serialize(TraktAuthorization) in TraktSerializationService
+- performance of DeserializeAuthorization() in TraktSerializationService
         </releaseNotes>
         <copyright>Henrik Fröhling © 2016</copyright>
         <language>en-US</language>
