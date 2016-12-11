@@ -6,6 +6,8 @@
     {
         int? Page { get; set; }
 
+        int? Limit { get; set; }
+
         TraktPaginationOptions PaginationOptions { get; set; }
 
         bool SupportsOnlyPaginationParameters { get; }

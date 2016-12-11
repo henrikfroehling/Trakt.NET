@@ -12,6 +12,8 @@
 
         public int? Page { get; set; }
 
+        public int? Limit { get; set; }
+
         public TraktPaginationOptions PaginationOptions { get; set; }
 
         public virtual bool SupportsOnlyPaginationParameters => false;

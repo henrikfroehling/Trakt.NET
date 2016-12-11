@@ -28,6 +28,18 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktPaginationHasLimitProperty()
+        {
+            var paginationOptionsPropertyInfo = typeof(ITraktPagination).GetProperties()
+                                                                        .Where(p => p.Name == "Limit")
+                                                                        .FirstOrDefault();
+
+            paginationOptionsPropertyInfo.CanRead.Should().BeTrue();
+            paginationOptionsPropertyInfo.CanWrite.Should().BeTrue();
+            paginationOptionsPropertyInfo.PropertyType.Should().Be(typeof(int?));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationHasPaginationOptionsProperty()
         {
             var paginationOptionsPropertyInfo = typeof(ITraktPagination).GetProperties()
