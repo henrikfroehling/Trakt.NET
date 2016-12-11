@@ -26,5 +26,12 @@
         {
             typeof(TraktSyncWatchedHistoryAddRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncHistoryPostResponse, TraktSyncHistoryPost>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        public void TestTraktSyncWatchedHistoryAddRequestHasValidUriTemplate()
+        {
+            var request = new TraktSyncWatchedHistoryAddRequest(null);
+            request.UriTemplate.Should().Be("sync/history");
+        }
     }
 }
