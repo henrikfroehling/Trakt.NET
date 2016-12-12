@@ -32,7 +32,7 @@ TraktApiSharp
 PM> Install-Package TraktApiSharp
 ```
 
-#### Library API Documentation
+### Library API Documentation
 - [Latest Version](https://traktapisharp.net/apidoc/v0.8.0)
 - [All Versions](https://traktapisharp.net/apidoc)
 
