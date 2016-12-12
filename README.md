@@ -32,6 +32,10 @@ TraktApiSharp
 PM> Install-Package TraktApiSharp
 ```
 
+#### Library API Documentation
+- [Latest Version](https://traktapisharp.net/apidoc/v0.8.0)
+- [All Versions](https://traktapisharp.net/apidoc)
+
 #### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues) or [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ### Branches
