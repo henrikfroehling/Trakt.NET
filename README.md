@@ -27,14 +27,10 @@ TraktApiSharp
 
 ### Where to get
 - Available on [Nuget.org](https://www.nuget.org/packages/TraktApiSharp)
-- Each release will also be published on [traktapisharp.net](https://traktapisharp.net/downloads) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
+- Each release will also be published [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 ```
 PM> Install-Package TraktApiSharp
 ```
-
-### Library API Documentation
-- [Latest Version](https://traktapisharp.net/apidoc/v0.8.0)
-- [All Versions](https://traktapisharp.net/apidoc)
 
 #### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues) or [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -45,7 +41,7 @@ PM> Install-Package TraktApiSharp
 | [dev](https://github.com/henrikfroehling/TraktApiSharp/tree/dev) | This branch tracks the current and possibly unstable development. |
 | [next-version](https://github.com/henrikfroehling/TraktApiSharp) | This branch tracks the current and possibly unstable development of the next major (1.0.0) version. |
 
-### Basic Usage or [more advanced usage guide](https://traktapisharp.net/guide)
+### Basic Usage or [more advanced usage guide](https://github.com/henrikfroehling/TraktApiSharp/wiki)
 
 **Create a new TraktApiSharp Client**
 ```csharp
@@ -97,7 +93,7 @@ client.Configuration.ApiVersion = 2; // Set by default
 
 // Set this to true, to use Trakt API staging environment
 // This is disabled by default
-client.Configuration.UseStagingUrl = true;
+client.Configuration.UseSandboxEnvironment = true;
 
 // Force authorization for requests, where authorization is optional
 // This is disabled by default
@@ -174,4 +170,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-**Copyright &copy; 2016 [Henrik Fröhling](mailto:support@traktapisharp.net)**
+**Copyright &copy; 2016 Henrik Fröhling**
