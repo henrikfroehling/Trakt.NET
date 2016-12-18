@@ -27,10 +27,13 @@ TraktApiSharp
 
 ### Where to get
 - Available on [Nuget.org](https://www.nuget.org/packages/TraktApiSharp)
-- Each release will also be published [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
+- Each release will also be published [here](https://henrikfroehling.github.io/TraktApiSharp/downloads/) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 ```
 PM> Install-Package TraktApiSharp
 ```
+### Library API Documentation
+- [Latest Version](https://henrikfroehling.github.io/TraktApiSharp/apidoc/v0.8.0/)
+- [All Versions](https://henrikfroehling.github.io/TraktApiSharp/apidoc/)
 
 #### [Report a bug](https://github.com/henrikfroehling/TraktApiSharp/issues) or [Ask a question](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -41,7 +44,7 @@ PM> Install-Package TraktApiSharp
 | [dev](https://github.com/henrikfroehling/TraktApiSharp/tree/dev) | This branch tracks the current and possibly unstable development. |
 | [next-version](https://github.com/henrikfroehling/TraktApiSharp) | This branch tracks the current and possibly unstable development of the next major (1.0.0) version. |
 
-### Basic Usage or [more advanced usage guide](https://github.com/henrikfroehling/TraktApiSharp/wiki)
+### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/TraktApiSharp/guide/)
 
 **Create a new TraktApiSharp Client**
 ```csharp

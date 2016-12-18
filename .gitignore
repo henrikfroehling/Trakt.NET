@@ -247,3 +247,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 NugetPackage
+
+# Github Pages
+_site/
