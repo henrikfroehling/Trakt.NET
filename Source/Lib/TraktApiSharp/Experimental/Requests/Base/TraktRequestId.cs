@@ -10,7 +10,7 @@
 
         public IDictionary<string, object> GetIdPathParameters() => new Dictionary<string, object> { ["id"] = Id };
 
-        public void ValidateId()
+        public void Validate()
         {
             if (string.IsNullOrEmpty(Id))
                 throw new ArgumentException("id not set");

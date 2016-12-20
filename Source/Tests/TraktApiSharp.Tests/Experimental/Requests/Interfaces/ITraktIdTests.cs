@@ -16,6 +16,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktIdDerivesFromITraktValidatableInterface()
+        {
+            typeof(ITraktId).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdHasIdProperty()
         {
             var idPropertyInfo = typeof(ITraktId).GetProperties()
@@ -35,17 +41,6 @@
                                              .FirstOrDefault();
 
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
-            methodInfo.GetParameters().Should().BeEmpty();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktIdHasValidateIdMethod()
-        {
-            var methodInfo = typeof(ITraktId).GetMethods()
-                                             .Where(m => m.Name == "ValidateId")
-                                             .FirstOrDefault();
-
-            methodInfo.ReturnType.Should().Be(typeof(void));
             methodInfo.GetParameters().Should().BeEmpty();
         }
     }
