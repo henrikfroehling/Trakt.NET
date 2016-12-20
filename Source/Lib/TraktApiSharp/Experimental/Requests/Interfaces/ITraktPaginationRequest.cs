@@ -3,7 +3,7 @@
     using Responses;
     using System.Threading.Tasks;
 
-    internal interface ITraktPaginationRequest<TItem> : ITraktPagination, ITraktRequest
+    internal interface ITraktPaginationRequest<TItem> : ITraktPagination
     {
         Task<TraktPaginationResponse<TItem>> QueryAsync();
     }
