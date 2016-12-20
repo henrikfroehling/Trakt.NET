@@ -89,5 +89,61 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestUriParamsWithUsernameAndWithoutType()
+        {
+            var username = "username";
+
+            var request = new TraktUserCustomListItemsRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestUriParamsWithUsernameAndUnspecifiedType()
+        {
+            var username = "username";
+            var type = TraktListItemType.Unspecified;
+
+            var request = new TraktUserCustomListItemsRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestUriParamsWithUsernameAndType()
+        {
+            var username = "username";
+            var type = TraktListItemType.Person;
+
+            var request = new TraktUserCustomListItemsRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName
+            });
+        }
     }
 }
