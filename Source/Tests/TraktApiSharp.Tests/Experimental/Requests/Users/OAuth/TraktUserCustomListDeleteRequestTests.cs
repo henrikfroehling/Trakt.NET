@@ -68,7 +68,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserCustomListDeleteRequestUriParamsWithType()
+        public void TestTraktUserCustomListDeleteRequestUriParamsWithUsername()
         {
             var username = "username";
 

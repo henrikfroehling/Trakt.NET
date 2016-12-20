@@ -68,7 +68,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserListUnlikeRequestUriParamsWithType()
+        public void TestTraktUserListUnlikeRequestUriParamsWithUsername()
         {
             var username = "username";
 
