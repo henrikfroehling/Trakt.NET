@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests;
@@ -41,12 +40,6 @@
         {
             var request = new TraktMovieTranslationsRequest(null);
             request.UriTemplate.Should().Be("movies/{id}/translations");
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
-        public void TestTraktMovieTranslationsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktMovieTranslationsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }
