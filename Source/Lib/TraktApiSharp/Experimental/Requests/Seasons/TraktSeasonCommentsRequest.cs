@@ -2,12 +2,11 @@
 {
     using Base.Get;
     using Enums;
-    using Interfaces;
     using Objects.Basic;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktSeasonCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
+    internal sealed class TraktSeasonCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>
     {
         internal TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
 
