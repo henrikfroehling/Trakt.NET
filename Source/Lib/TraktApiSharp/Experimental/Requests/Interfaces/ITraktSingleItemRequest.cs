@@ -3,7 +3,7 @@
     using Responses;
     using System.Threading.Tasks;
 
-    internal interface ITraktSingleItemRequest<TItem> : ITraktRequest
+    internal interface ITraktSingleItemRequest<TItem>
     {
         Task<TraktResponse<TItem>> QueryAsync();
     }

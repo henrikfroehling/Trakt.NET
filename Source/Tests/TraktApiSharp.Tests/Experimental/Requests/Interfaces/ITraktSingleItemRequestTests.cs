@@ -33,11 +33,5 @@
             methodInfo.ReturnType.Should().Be(typeof(Task<TraktResponse<int>>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktSingleItemRequestDerivesFromITraktRequestInterface()
-        {
-            typeof(ITraktSingleItemRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
-        }
     }
 }
