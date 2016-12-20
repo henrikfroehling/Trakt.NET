@@ -32,5 +32,11 @@
         {
             typeof(ATraktPaginationGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
+        public void TestATraktPaginationGetByIdRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(ATraktPaginationGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
     }
 }

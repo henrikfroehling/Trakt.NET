@@ -14,7 +14,7 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
         public override string UriTemplate => "movies/{id}/related{?extended,page,limit}";
     }
