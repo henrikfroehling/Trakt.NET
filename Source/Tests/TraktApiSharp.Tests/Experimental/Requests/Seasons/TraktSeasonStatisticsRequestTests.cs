@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
@@ -44,12 +43,6 @@
         {
             var request = new TraktSeasonStatisticsRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/stats");
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
-        public void TestTraktSeasonStatisticsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktSeasonStatisticsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
