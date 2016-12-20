@@ -44,12 +44,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
-        public void TestTraktShowRelatedShowsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
         public void TestTraktShowRelatedShowsRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
