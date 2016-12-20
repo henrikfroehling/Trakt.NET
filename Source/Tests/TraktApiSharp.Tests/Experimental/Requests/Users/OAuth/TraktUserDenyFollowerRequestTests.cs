@@ -32,5 +32,12 @@
             var request = new TraktUserDenyFollowerRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Unspecified);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserDenyFollowerRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserDenyFollowerRequest(null);
+            request.UriTemplate.Should().Be("users/requests/{id}");
+        }
     }
 }
