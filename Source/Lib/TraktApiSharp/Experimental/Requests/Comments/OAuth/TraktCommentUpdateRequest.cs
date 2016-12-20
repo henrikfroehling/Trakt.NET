@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments.OAuth
 {
     using Base.Put;
-    using Interfaces;
     using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktCommentUpdateRequest : ATraktSingleItemPutByIdRequest<TraktCommentPostResponse, TraktCommentUpdatePost>, ITraktObjectRequest
+    internal sealed class TraktCommentUpdateRequest : ATraktSingleItemPutByIdRequest<TraktCommentPostResponse, TraktCommentUpdatePost>
     {
         internal TraktCommentUpdateRequest(TraktClient client) : base(client) { }
 
