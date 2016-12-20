@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktMovieRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest
+    internal sealed class TraktMovieRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>
     {
         internal TraktMovieRatingsRequest(TraktClient client) : base(client) { }
 
