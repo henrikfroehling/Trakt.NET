@@ -7,7 +7,6 @@
     using System.Reflection;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
@@ -45,12 +44,6 @@
         {
             var request = new TraktShowCommentsRequest(null);
             request.UriTemplate.Should().Be("shows/{id}/comments{/sorting}{?page,limit}");
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
-        public void TestTraktShowCommentsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktShowCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
