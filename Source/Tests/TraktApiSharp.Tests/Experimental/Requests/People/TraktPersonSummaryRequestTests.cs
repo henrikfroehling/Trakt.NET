@@ -30,12 +30,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("People")]
-        public void TestTraktPersonSummaryRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktPersonSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("People")]
         public void TestTraktPersonSummaryRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktPersonSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
