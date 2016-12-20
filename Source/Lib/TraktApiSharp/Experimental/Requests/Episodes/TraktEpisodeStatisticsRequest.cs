@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktObjectRequest, ITraktValidatable
+    internal sealed class TraktEpisodeStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktValidatable
     {
         internal TraktEpisodeStatisticsRequest(TraktClient client) : base(client) { }
 
