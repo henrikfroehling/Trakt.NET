@@ -29,12 +29,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits")]
-        public void TestATraktPersonCreditsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(ATraktPersonCreditsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits")]
         public void TestATraktPersonCreditsRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(ATraktPersonCreditsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
