@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktShowStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>, ITraktObjectRequest
+    internal sealed class TraktShowStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>
     {
         internal TraktShowStatisticsRequest(TraktClient client) : base(client) { }
 
