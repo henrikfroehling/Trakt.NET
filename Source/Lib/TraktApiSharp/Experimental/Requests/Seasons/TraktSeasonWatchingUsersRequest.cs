@@ -24,7 +24,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
 
         public override string UriTemplate => "shows/{id}/seasons/{season}/watching{?extended}";
     }
