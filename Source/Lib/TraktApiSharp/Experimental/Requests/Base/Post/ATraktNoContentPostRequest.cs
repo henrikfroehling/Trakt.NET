@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
 {
+    using Interfaces;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 

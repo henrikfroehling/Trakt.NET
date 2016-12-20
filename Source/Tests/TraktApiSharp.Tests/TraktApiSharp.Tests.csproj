@@ -126,7 +126,7 @@
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasIdTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ITraktHasRequestBodyTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktHasRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktNoContentPostByIdRequestTests.cs" />
