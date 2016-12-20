@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserListUnlikeRequestTests
@@ -23,6 +24,13 @@
         public void TestTraktUserListUnlikeRequestIsSubclassOfATraktUsersDeleteByIdRequest()
         {
             typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListUnlikeRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserListUnlikeRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
         }
     }
 }
