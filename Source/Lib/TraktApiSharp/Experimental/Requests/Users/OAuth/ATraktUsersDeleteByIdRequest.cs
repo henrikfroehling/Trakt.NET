@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    internal abstract class ATraktUsersDeleteByIdRequest
-    {
+    using Base.Delete;
 
+    internal abstract class ATraktUsersDeleteByIdRequest : ATraktNoContentDeleteByIdRequest
+    {
+        internal ATraktUsersDeleteByIdRequest(TraktClient client) : base(client) { }
     }
 }
