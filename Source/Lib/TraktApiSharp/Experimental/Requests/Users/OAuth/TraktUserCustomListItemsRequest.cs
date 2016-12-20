@@ -15,6 +15,8 @@
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+
         public override string UriTemplate => "users/{username}/lists/{id}/items{/type}{?extended}";
     }
 }

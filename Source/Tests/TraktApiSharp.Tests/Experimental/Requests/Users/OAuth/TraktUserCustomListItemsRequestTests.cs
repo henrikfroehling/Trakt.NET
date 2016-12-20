@@ -39,6 +39,13 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestHasAuthorizationOptional()
+        {
+            var request = new TraktUserCustomListItemsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserCustomListItemsRequestHasValidUriTemplate()
         {
             var request = new TraktUserCustomListItemsRequest(null);
