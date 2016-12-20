@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
     using Base.Delete;
-    using Interfaces;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktSyncPlaybackDeleteRequest : ATraktNoContentDeleteByIdRequest, ITraktObjectRequest
+    internal sealed class TraktSyncPlaybackDeleteRequest : ATraktNoContentDeleteByIdRequest
     {
         internal TraktSyncPlaybackDeleteRequest(TraktClient client) : base(client) { }
 
