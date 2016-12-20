@@ -304,6 +304,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />

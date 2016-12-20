@@ -296,6 +296,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
