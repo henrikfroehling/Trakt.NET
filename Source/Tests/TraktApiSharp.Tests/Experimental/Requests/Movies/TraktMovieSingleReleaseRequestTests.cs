@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests;
@@ -44,12 +43,6 @@
         {
             var request = new TraktMovieSingleReleaseRequest(null);
             request.UriTemplate.Should().Be("movies/{id}/releases/{language}");
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
-        public void TestTraktMovieSingleReleaseRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktMovieSingleReleaseRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
