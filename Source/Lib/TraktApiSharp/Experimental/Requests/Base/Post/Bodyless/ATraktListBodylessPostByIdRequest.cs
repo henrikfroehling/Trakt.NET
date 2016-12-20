@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post.Bodyless
 {
     using Interfaces;
+    using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListBodylessPostByIdRequest<TItem> : ATraktListBodylessPostRequest<TItem>, ITraktHasId
+    internal abstract class ATraktListBodylessPostByIdRequest<TItem> : ATraktListBodylessPostRequest<TItem>, ITraktHasId, ITraktObjectRequest
     {
         internal ATraktListBodylessPostByIdRequest(TraktClient client) : base(client)
         {
@@ -16,5 +17,7 @@
         }
 
         public TraktRequestId RequestId { get; set; }
+
+        public abstract TraktRequestObjectType RequestObjectType { get; }
     }
 }
