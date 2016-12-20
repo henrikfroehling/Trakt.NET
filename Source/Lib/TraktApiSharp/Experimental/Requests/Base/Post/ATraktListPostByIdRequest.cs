@@ -1,5 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post
 {
+    using Interfaces;
+
     internal abstract class ATraktListPostByIdRequest<TItem, TRequestBody> : ATraktListPostRequest<TItem, TRequestBody>, ITraktHasId
     {
         internal ATraktListPostByIdRequest(TraktClient client) : base(client)

@@ -1,5 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
+    using Interfaces;
+
     internal abstract class ATraktListGetByIdRequest<TItem> : ATraktListGetRequest<TItem>, ITraktHasId
     {
         internal ATraktListGetByIdRequest(TraktClient client) : base(client)

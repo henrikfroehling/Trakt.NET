@@ -1,9 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Base
+﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
 
     [TestClass]
     public class ITraktHasIdTests

@@ -133,7 +133,7 @@
     <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ITraktHasId.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Base\ITraktHasRequestBody.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostRequest.cs" />

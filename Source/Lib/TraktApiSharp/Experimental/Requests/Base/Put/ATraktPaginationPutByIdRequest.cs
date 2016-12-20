@@ -1,5 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Put
 {
+    using Interfaces;
+
     internal abstract class ATraktPaginationPutByIdRequest<TItem, TRequestBody> : ATraktPaginationPutRequest<TItem, TRequestBody>, ITraktHasId
     {
         internal ATraktPaginationPutByIdRequest(TraktClient client) : base(client)
