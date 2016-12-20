@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Get.Movies;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktMovieSingleTranslationRequest : ATraktSingleItemGetByIdRequest<TraktMovieTranslation>, ITraktObjectRequest
+    internal sealed class TraktMovieSingleTranslationRequest : ATraktSingleItemGetByIdRequest<TraktMovieTranslation>
     {
         internal TraktMovieSingleTranslationRequest(TraktClient client) : base(client) { }
 
