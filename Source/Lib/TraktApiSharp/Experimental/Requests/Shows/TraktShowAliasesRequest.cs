@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Get.Shows;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktShowAliasesRequest : ATraktListGetByIdRequest<TraktShowAlias>, ITraktObjectRequest
+    internal sealed class TraktShowAliasesRequest : ATraktListGetByIdRequest<TraktShowAlias>
     {
         internal TraktShowAliasesRequest(TraktClient client) : base(client) { }
 
