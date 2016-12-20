@@ -32,5 +32,12 @@
             var request = new TraktUserCustomListDeleteRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListDeleteRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserCustomListDeleteRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/lists/{id}");
+        }
     }
 }
