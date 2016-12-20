@@ -12,5 +12,11 @@
         {
             typeof(TraktUserCustomListDeleteRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListDeleteRequestIsSealed()
+        {
+            typeof(TraktUserCustomListDeleteRequest).IsSealed.Should().BeTrue();
+        }
     }
 }

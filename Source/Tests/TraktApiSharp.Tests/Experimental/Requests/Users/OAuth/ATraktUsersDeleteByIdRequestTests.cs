@@ -15,7 +15,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestATraktUsersDeleteByIdRequestIsSubclassOfATraktNoContentDeleteByIdRequestRequest()
+        public void TestATraktUsersDeleteByIdRequestIsSubclassOfATraktNoContentDeleteByIdRequest()
         {
             typeof(ATraktUsersDeleteByIdRequest).IsSubclassOf(typeof(ATraktNoContentDeleteByIdRequest)).Should().BeTrue();
         }
