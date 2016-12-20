@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Base.Get;
+    using Enums;
     using Objects.Get.Users.Lists;
     using TraktApiSharp.Requests;
 
@@ -9,6 +10,8 @@
         internal TraktUserCustomListItemsRequest(TraktClient client) : base(client) { }
 
         internal string Username { get; set; }
+
+        internal TraktListItemType Type { get; set; }
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
