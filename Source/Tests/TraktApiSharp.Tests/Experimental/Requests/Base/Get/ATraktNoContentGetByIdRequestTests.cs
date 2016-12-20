@@ -25,5 +25,11 @@
         {
             typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
+        public void TestATraktNoContentGetByIdRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
     }
 }
