@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces;
 
@@ -22,6 +21,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktIdDerivesFromITraktPathParametersInterface()
+        {
+            typeof(ITraktId).GetInterfaces().Should().Contain(typeof(ITraktPathParameters));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktIdHasIdProperty()
         {
             var idPropertyInfo = typeof(ITraktId).GetProperties()
@@ -31,17 +36,6 @@
             idPropertyInfo.CanRead.Should().BeTrue();
             idPropertyInfo.CanWrite.Should().BeTrue();
             idPropertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktIdHasGetIdPathParametersMethod()
-        {
-            var methodInfo = typeof(ITraktId).GetMethods()
-                                             .Where(m => m.Name == "GetIdPathParameters")
-                                             .FirstOrDefault();
-
-            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
-            methodInfo.GetParameters().Should().BeEmpty();
         }
     }
 }

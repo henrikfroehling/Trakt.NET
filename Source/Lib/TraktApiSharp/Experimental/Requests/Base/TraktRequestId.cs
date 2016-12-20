@@ -8,7 +8,7 @@
     {
         public string Id { get; set; }
 
-        public IDictionary<string, object> GetIdPathParameters() => new Dictionary<string, object> { ["id"] = Id };
+        public IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object> { ["id"] = Id };
 
         public void Validate()
         {

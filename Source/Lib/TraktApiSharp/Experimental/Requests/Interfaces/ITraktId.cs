@@ -1,11 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
-    using System.Collections.Generic;
-
-    internal interface ITraktId : ITraktValidatable
+    internal interface ITraktId : ITraktValidatable, ITraktPathParameters
     {
         string Id { get; set; }
-
-        IDictionary<string, object> GetIdPathParameters();
     }
 }
