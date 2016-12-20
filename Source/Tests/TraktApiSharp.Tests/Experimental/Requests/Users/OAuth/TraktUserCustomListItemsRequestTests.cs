@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserCustomListItemsRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktUserCustomListItemsRequestIsSubclassOfATraktListGetByIdRequest()
         {
             typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(ATraktListGetByIdRequest<TraktListItem>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserCustomListItemsRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
         }
     }
 }
