@@ -44,12 +44,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
-        public void TestTraktMovieRelatedMoviesRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
         public void TestTraktMovieRelatedMoviesRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
