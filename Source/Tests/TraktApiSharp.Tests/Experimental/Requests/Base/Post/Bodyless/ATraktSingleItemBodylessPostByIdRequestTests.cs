@@ -32,5 +32,11 @@
         {
             typeof(ATraktSingleItemBodylessPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
+        public void TestATraktSingleItemBodylessPostByIdRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(ATraktSingleItemBodylessPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
     }
 }
