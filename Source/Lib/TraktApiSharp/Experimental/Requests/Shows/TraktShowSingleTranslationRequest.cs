@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Get.Shows;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktShowSingleTranslationRequest : ATraktSingleItemGetByIdRequest<TraktShowTranslation>, ITraktObjectRequest
+    internal sealed class TraktShowSingleTranslationRequest : ATraktSingleItemGetByIdRequest<TraktShowTranslation>
     {
         internal TraktShowSingleTranslationRequest(TraktClient client) : base(client) { }
 
