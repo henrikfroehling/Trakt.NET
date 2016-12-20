@@ -8,7 +8,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest, ITraktValidatable
+    internal sealed class TraktEpisodeCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktValidatable
     {
         internal TraktEpisodeCommentsRequest(TraktClient client) : base(client) { }
 

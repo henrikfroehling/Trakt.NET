@@ -49,12 +49,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
-        public void TestTraktEpisodeCommentsRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktEpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
         public void TestTraktEpisodeCommentsRequestImplementsITraktValidatableInterface()
         {
             typeof(TraktEpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
