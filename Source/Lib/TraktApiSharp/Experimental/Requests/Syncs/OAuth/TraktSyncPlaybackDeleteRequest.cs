@@ -8,7 +8,7 @@
     {
         internal TraktSyncPlaybackDeleteRequest(TraktClient client) : base(client) { }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
         public override string UriTemplate => "sync/playback/{id}";
     }

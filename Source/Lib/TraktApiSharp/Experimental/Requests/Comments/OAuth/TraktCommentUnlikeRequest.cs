@@ -8,7 +8,7 @@
     {
         internal TraktCommentUnlikeRequest(TraktClient client) : base(client) { }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
         public override string UriTemplate => "comments/{id}/like";
     }

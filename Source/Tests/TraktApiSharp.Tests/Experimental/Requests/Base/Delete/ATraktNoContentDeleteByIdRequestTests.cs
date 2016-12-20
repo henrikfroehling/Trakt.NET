@@ -25,5 +25,11 @@
         {
             typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
+        public void TestATraktNoContentDeleteByIdRequestImplementsITraktObjectRequestInterface()
+        {
+            typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
     }
 }
