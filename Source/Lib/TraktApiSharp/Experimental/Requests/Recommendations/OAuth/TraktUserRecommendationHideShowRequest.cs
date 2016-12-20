@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Recommendations.OAuth
 {
     using Base.Delete;
-    using Interfaces;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserRecommendationHideShowRequest : ATraktNoContentDeleteByIdRequest, ITraktObjectRequest
+    internal sealed class TraktUserRecommendationHideShowRequest : ATraktNoContentDeleteByIdRequest
     {
         internal TraktUserRecommendationHideShowRequest(TraktClient client) : base(client) { }
 
