@@ -21,7 +21,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
         public override string UriTemplate => "movies/{id}/releases/{language}";
     }

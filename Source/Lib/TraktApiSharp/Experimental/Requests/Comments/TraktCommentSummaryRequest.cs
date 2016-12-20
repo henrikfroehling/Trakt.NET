@@ -11,7 +11,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
         public override string UriTemplate => "comments/{id}";
     }

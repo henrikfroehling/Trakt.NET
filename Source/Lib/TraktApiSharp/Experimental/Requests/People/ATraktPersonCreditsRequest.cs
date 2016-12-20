@@ -13,6 +13,6 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
     }
 }

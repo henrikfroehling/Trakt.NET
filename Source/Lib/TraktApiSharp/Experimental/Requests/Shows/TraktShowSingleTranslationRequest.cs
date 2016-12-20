@@ -21,7 +21,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
         public override string UriTemplate => "shows/{id}/translations/{language}";
     }

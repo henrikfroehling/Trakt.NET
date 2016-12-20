@@ -33,6 +33,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }
