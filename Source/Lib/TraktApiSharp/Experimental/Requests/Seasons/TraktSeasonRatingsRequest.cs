@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Basic;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktSeasonRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktObjectRequest
+    internal sealed class TraktSeasonRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>
     {
         internal TraktSeasonRatingsRequest(TraktClient client) : base(client) { }
 
