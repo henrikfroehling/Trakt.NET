@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    internal class TraktUserDenyFollowerRequest
+    internal sealed class TraktUserDenyFollowerRequest
     {
 
     }

@@ -12,5 +12,11 @@
         {
             typeof(TraktUserDenyFollowerRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserDenyFollowerRequestIsSealed()
+        {
+            typeof(TraktUserDenyFollowerRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
