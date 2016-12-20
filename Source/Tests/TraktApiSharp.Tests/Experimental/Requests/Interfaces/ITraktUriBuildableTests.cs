@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces;
 
@@ -13,6 +12,12 @@
         public void TestITraktUriBuildableIsInterface()
         {
             typeof(ITraktUriBuildable).IsInterface.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktUriBuildableDerivesFromITraktPathParametersInterface()
+        {
+            typeof(ITraktUriBuildable).GetInterfaces().Should().Contain(typeof(ITraktPathParameters));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
@@ -47,17 +52,6 @@
                                                        .FirstOrDefault();
 
             methodInfo.ReturnType.Should().Be(typeof(string));
-            methodInfo.GetParameters().Should().BeEmpty();
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktUriBuildableHasGetUriPathParametersMethod()
-        {
-            var methodInfo = typeof(ITraktUriBuildable).GetMethods()
-                                                       .Where(m => m.Name == "GetUriPathParameters")
-                                                       .FirstOrDefault();
-
-            methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
     }

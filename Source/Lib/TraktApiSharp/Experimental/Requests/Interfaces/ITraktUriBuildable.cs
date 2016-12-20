@@ -1,15 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
-    using System.Collections.Generic;
-
-    internal interface ITraktUriBuildable
+    internal interface ITraktUriBuildable : ITraktPathParameters
     {
         string UriTemplate { get; }
 
         string Url { get; }
 
         string BuildUrl();
-
-        IDictionary<string, object> GetUriPathParameters();
     }
 }
