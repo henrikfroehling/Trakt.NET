@@ -47,12 +47,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
-        public void TestTraktSeasonSingleRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
         public void TestTraktSeasonSingleRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
