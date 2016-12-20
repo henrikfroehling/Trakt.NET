@@ -302,6 +302,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListDeleteRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
