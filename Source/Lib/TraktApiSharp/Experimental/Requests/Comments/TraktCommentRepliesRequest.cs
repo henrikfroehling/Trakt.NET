@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments
 {
     using Base.Get;
-    using Interfaces;
     using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktCommentRepliesRequest : ATraktPaginationGetByIdRequest<TraktComment>, ITraktObjectRequest
+    internal sealed class TraktCommentRepliesRequest : ATraktPaginationGetByIdRequest<TraktComment>
     {
         internal TraktCommentRepliesRequest(TraktClient client) : base(client) { }
 
