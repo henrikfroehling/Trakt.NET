@@ -12,5 +12,11 @@
         {
             typeof(TraktUserListUnlikeRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListUnlikeRequestIsSealed()
+        {
+            typeof(TraktUserListUnlikeRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
