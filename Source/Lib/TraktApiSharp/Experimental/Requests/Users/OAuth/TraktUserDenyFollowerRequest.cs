@@ -7,13 +7,7 @@
     {
         internal TraktUserDenyFollowerRequest(TraktClient client) : base(client) { }
 
-        public override TraktRequestObjectType RequestObjectType
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
         public override string UriTemplate
         {
