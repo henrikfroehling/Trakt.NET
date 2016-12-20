@@ -48,12 +48,6 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
-        public void TestTraktEpisodeSummaryRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(TraktEpisodeSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
         public void TestTraktEpisodeSummaryRequestImplementsITraktExtendedInfoInterface()
         {
             typeof(TraktEpisodeSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
