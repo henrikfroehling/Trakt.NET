@@ -12,5 +12,11 @@
         {
             typeof(TraktUserCustomListItemsRequest).IsAbstract.Should().BeFalse();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRequestIsSealed()
+        {
+            typeof(TraktUserCustomListItemsRequest).IsSealed.Should().BeTrue();
+        }
     }
 }
