@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über folgende 
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TraktApiSharp.Tests")]
-[assembly: AssemblyCopyright("Copyright © Henrik Fröhling 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016 - 2017 Henrik Fröhling")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

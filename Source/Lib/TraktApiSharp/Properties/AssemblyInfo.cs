@@ -9,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Henrik Fröhling")]
 [assembly: AssemblyProduct("TraktApiSharp")]
-[assembly: AssemblyCopyright("Copyright © 2016 Henrik Fröhling")]
+[assembly: AssemblyCopyright("Copyright © 2016 - 2017 Henrik Fröhling")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]

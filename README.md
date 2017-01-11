@@ -152,7 +152,7 @@ Console.WriteLine(theMartian.Overview);
 ```
 The MIT License (MIT)
 
-Copyright (c) 2016 Henrik Fröhling
+Copyright (c) 2016 - 2017 Henrik Fröhling
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

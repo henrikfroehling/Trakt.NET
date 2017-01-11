@@ -51,7 +51,7 @@ Improved:
 - performance of Serialize(TraktAuthorization) in TraktSerializationService
 - performance of DeserializeAuthorization() in TraktSerializationService
         </releaseNotes>
-        <copyright>Henrik Fröhling © 2016</copyright>
+        <copyright>Copyright (c) 2016 - 2017 Henrik Fröhling</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
         <dependencies>
