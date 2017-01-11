@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
-
-namespace TraktApiSharp
+﻿namespace TraktApiSharp
 {
     using Authentication;
     using Core;
