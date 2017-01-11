@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
-
-namespace TraktApiSharp.Requests
+﻿namespace TraktApiSharp.Requests
 {
     internal enum TraktRequestObjectType
     {
