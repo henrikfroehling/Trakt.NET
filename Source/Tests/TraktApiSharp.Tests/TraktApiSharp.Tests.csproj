@@ -308,11 +308,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Requests\Base\ITraktRequestTests.cs" />
     <Compile Include="Requests\Base\TraktPaginationOptionsTests.cs" />
     <Compile Include="Requests\Base\TraktRequestTests.cs" />
@@ -340,12 +335,6 @@
       <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
       <Name>TraktApiSharp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
