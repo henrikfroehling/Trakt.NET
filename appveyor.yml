@@ -39,7 +39,7 @@
       name: Assembly
     - path: Build\Lib\Release\TraktApiSharp.pdb
       name: AssemblyPDB
-    - path: Build\Lib\Release\TraktApiSharp.XML
+    - path: Build\Lib\Release\TraktApiSharp.xml
       name: DocumentationXML
 
   deploy:
@@ -91,7 +91,7 @@
       name: DebugAssembly
     - path: Build\Lib\Debug\TraktApiSharp.pdb
       name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\TraktApiSharp.XML
+    - path: Build\Lib\Debug\TraktApiSharp.xml
       name: DebugDocumentationXML
 
 # "fall back" configuration for all other branches
@@ -125,5 +125,5 @@
       name: DebugAssembly
     - path: Build\Lib\Debug\TraktApiSharp.pdb
       name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\TraktApiSharp.XML
+    - path: Build\Lib\Debug\TraktApiSharp.xml
       name: DebugDocumentationXML
