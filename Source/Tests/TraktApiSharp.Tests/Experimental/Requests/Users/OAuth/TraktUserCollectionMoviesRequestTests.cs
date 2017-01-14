@@ -25,5 +25,12 @@
         {
             typeof(TraktUserCollectionMoviesRequest).IsSubclassOf(typeof(ATraktUsersListGetRequest<TraktCollectionMovie>)).Should().BeTrue();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCollectionMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserCollectionMoviesRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/collection/movies{?extended}");
+        }
     }
 }
