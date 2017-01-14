@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserCollectionShowsRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktUserCollectionShowsRequestIsSubclassOfATraktUsersListGetRequest()
         {
             typeof(TraktUserCollectionShowsRequest).IsSubclassOf(typeof(ATraktUsersListGetRequest<TraktCollectionShow>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCollectionShowsRequestHasAuthorizationOptional()
+        {
+            var request = new TraktUserCollectionShowsRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
     }
 }
