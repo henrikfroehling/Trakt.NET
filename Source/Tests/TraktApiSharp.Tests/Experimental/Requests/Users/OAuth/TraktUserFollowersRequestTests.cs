@@ -33,5 +33,12 @@
             var request = new TraktUserFollowersRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserFollowersRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserFollowersRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/followers{?extended}");
+        }
     }
 }
