@@ -309,6 +309,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListItemsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserRatingsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
