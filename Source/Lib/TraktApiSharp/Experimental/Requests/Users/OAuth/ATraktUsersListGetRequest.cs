@@ -6,7 +6,7 @@
 
     internal abstract class ATraktUsersListGetRequest<TItem> : ATraktListGetRequest<TItem>, ITraktExtendedInfo
     {
-        internal ATraktUsersListGetRequest(TraktClient client) : base(client){}
+        internal ATraktUsersListGetRequest(TraktClient client) : base(client) {}
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
     }
