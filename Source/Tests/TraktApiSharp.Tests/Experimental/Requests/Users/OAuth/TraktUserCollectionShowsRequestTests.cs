@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Requests;
@@ -39,6 +41,19 @@
         {
             var request = new TraktUserCollectionShowsRequest(null);
             request.UriTemplate.Should().Be("users/{username}/collection/shows{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCollectionShowsRequestHasUsernameProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserCollectionShowsRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Username")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }
