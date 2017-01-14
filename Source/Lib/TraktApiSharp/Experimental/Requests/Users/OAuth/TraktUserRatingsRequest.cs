@@ -12,6 +12,8 @@
 
         internal TraktRatingsItemType Type { get; set; }
 
+        internal int[] RatingFilter { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
