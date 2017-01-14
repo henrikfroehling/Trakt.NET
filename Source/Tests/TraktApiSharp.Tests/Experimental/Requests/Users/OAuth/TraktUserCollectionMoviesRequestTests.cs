@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserCollectionMoviesRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktUserCollectionMoviesRequestIsSubclassOfATraktUsersListGetRequest()
         {
             typeof(TraktUserCollectionMoviesRequest).IsSubclassOf(typeof(ATraktUsersListGetRequest<TraktCollectionMovie>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCollectionMoviesRequestHasAuthorizationOptional()
+        {
+            var request = new TraktUserCollectionMoviesRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
