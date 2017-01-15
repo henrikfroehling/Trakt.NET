@@ -295,6 +295,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListDeleteRequestTests.cs" />
