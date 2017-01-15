@@ -323,6 +323,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserProfileRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserSettingsRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedHistoryRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedShowsRequest.cs" />
