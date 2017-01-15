@@ -69,5 +69,36 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserLikesRequestUriParamsWithType()
+        {
+            var type = TraktUserLikeType.Comment;
+
+            var request = new TraktUserLikesRequest(null)
+            {
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("type", type.UriName);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserLikesRequestUriParamsWithUnspecifiedType()
+        {
+            var type = TraktUserLikeType.Unspecified;
+
+            var request = new TraktUserLikesRequest(null)
+            {
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.BeEmpty().And.HaveCount(0);
+        }
     }
 }
