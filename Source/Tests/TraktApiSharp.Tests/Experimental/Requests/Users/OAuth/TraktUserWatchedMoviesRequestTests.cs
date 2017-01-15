@@ -33,5 +33,12 @@
             var request = new TraktUserWatchedMoviesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedMoviesRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserWatchedMoviesRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/watched/movies{?extended}");
+        }
     }
 }
