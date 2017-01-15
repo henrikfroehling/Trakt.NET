@@ -2,6 +2,7 @@
 {
     using Enums;
     using Objects.Get.Users;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCommentsRequest : ATraktUsersPaginationGetRequest<TraktUserComment>
@@ -13,6 +14,11 @@
         internal TraktCommentType CommentType { get; set; }
 
         internal TraktObjectType ObjectType { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
