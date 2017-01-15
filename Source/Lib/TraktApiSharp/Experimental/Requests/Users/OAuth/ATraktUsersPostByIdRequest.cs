@@ -1,7 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    internal abstract class ATraktUsersPostByIdRequest<TItem, TRequestBody>
+    using Base.Post;
+
+    internal abstract class ATraktUsersPostByIdRequest<TItem, TRequestBody> : ATraktSingleItemPostByIdRequest<TItem, TRequestBody>
     {
-        
+        internal ATraktUsersPostByIdRequest(TraktClient client) : base(client) {}
     }
 }

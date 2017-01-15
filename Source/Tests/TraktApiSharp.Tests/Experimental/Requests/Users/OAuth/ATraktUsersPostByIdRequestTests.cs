@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
 
     [TestClass]
@@ -18,6 +19,12 @@
         {
             typeof(ATraktUsersPostByIdRequest<,>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktUsersPostByIdRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestATraktUsersPostByIdRequestIsSubclassOfATraktSingleItemPostByIdRequest()
+        {
+            typeof(ATraktUsersPostByIdRequest<int, float>).IsSubclassOf(typeof(ATraktSingleItemPostByIdRequest<int, float>)).Should().BeTrue();
         }
     }
 }
