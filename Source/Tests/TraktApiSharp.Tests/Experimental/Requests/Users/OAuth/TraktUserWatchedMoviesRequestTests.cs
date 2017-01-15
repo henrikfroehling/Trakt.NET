@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Requests;
@@ -39,6 +41,19 @@
         {
             var request = new TraktUserWatchedMoviesRequest(null);
             request.UriTemplate.Should().Be("users/{username}/watched/movies{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedMoviesRequestHasUsernameProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserWatchedMoviesRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Username")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }
