@@ -3,10 +3,13 @@
     using Base.Get;
     using Objects.Get.Users;
     using System;
+    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserLikesRequest : ATraktPaginationGetRequest<TraktUserLikeItem>
     {
         internal TraktUserLikesRequest(TraktClient client) : base(client) {}
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public override string UriTemplate => throw new NotImplementedException();
     }
