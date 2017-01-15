@@ -310,6 +310,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFollowersRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFollowingRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserRatingsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
