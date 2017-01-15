@@ -4,7 +4,6 @@
     using Objects.Get.Ratings;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserRatingsRequest : ATraktUsersListGetRequest<TraktRatingsItem>
     {
@@ -40,9 +39,7 @@
 
             return uriParams;
         }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
-
+        
         public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
     }
 }

@@ -2,7 +2,6 @@
 {
     using Objects.Get.Watched;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchedShowsRequest : ATraktUsersListGetRequest<TraktWatchedShow>
     {
@@ -16,8 +15,6 @@
             uriParams.Add("username", Username);
             return uriParams;
         }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/watched/shows{?extended}";
     }

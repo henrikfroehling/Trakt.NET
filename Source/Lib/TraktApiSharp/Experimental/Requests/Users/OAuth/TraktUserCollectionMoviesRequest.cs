@@ -2,7 +2,6 @@
 {
     using Objects.Get.Collection;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCollectionMoviesRequest : ATraktUsersListGetRequest<TraktCollectionMovie>
     {
@@ -16,9 +15,7 @@
             uriParams.Add("username", Username);
             return uriParams;
         }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
-
+        
         public override string UriTemplate => "users/{username}/collection/movies{?extended}";
     }
 }
