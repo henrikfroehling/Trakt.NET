@@ -7,6 +7,8 @@
     {
         internal TraktUserCommentsRequest(TraktClient client) : base(client) {}
 
+        internal string Username { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/comments{/comment_type}{/type}{?extended,page,limit}";
