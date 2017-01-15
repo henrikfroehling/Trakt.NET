@@ -33,5 +33,12 @@
             var request = new TraktUserUnfollowUserRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserUnfollowUserRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserUnfollowUserRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/follow");
+        }
     }
 }
