@@ -318,6 +318,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserSettingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserStatisticsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserUnfollowUserRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedHistoryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedShowsRequestTests.cs" />
