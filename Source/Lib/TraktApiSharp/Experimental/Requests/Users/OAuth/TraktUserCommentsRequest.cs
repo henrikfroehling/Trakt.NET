@@ -12,6 +12,8 @@
 
         internal TraktCommentType CommentType { get; set; }
 
+        internal TraktObjectType ObjectType { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/comments{/comment_type}{/type}{?extended,page,limit}";
