@@ -9,6 +9,8 @@
     {
         internal TraktUserProfileRequest(TraktClient client) : base(client) {}
 
+        internal string Username { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
