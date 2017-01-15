@@ -11,6 +11,8 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
+        internal string Username { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public override string UriTemplate => "users/{username}/watching{?extended}";
