@@ -40,5 +40,12 @@
             var request = new TraktUserListLikeRequest(null);
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/like");
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListLikeRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserListLikeRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+        }
     }
 }
