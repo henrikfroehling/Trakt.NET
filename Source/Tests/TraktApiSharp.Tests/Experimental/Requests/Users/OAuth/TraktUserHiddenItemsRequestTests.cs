@@ -33,5 +33,12 @@
             var request = new TraktUserHiddenItemsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserHiddenItemsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserHiddenItemsRequest(null);
+            request.UriTemplate.Should().Be("users/hidden/{section}{?type,extended,page,limit}");
+        }
     }
 }
