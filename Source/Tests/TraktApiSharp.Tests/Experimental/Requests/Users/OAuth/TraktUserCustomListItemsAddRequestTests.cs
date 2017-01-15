@@ -89,5 +89,61 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsAddRequestUriParamsWithUsername()
+        {
+            var username = "username";
+
+            var request = new TraktUserCustomListItemsAddRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsAddRequestUriParamsWithUsernameAndType()
+        {
+            var username = "username";
+            var type = TraktListItemType.Episode;
+
+            var request = new TraktUserCustomListItemsAddRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsAddRequestUriParamsWithUsernameAndUnspecifiedType()
+        {
+            var username = "username";
+            var type = TraktListItemType.Unspecified;
+
+            var request = new TraktUserCustomListItemsAddRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
     }
 }
