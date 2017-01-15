@@ -315,6 +315,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedMoviesRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedShowsRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
