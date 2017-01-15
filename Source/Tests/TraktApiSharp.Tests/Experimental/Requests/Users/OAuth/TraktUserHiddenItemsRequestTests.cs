@@ -81,5 +81,61 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserHiddenItemsRequestUriParamsWithSection()
+        {
+            var section = TraktHiddenItemsSection.Calendar;
+
+            var request = new TraktUserHiddenItemsRequest(null)
+            {
+                Section = section
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("section", section.UriName);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserHiddenItemsRequestUriParamsWithSectionAndType()
+        {
+            var section = TraktHiddenItemsSection.Calendar;
+            var type = TraktHiddenItemType.Movie;
+
+            var request = new TraktUserHiddenItemsRequest(null)
+            {
+                Section = section,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["section"] = section.UriName,
+                ["type"] = type.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserHiddenItemsRequestUriParamsWithSectionAndUnspecifiedType()
+        {
+            var section = TraktHiddenItemsSection.Calendar;
+            var type = TraktHiddenItemType.Unspecified;
+
+            var request = new TraktUserHiddenItemsRequest(null)
+            {
+                Section = section,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("section", section.UriName);
+        }
     }
 }
