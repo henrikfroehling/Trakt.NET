@@ -2,7 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Objects.Post.Users.Responses;
 
     [TestClass]
     public class TraktUserFollowUserRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktUserFollowUserRequestIsSealed()
         {
             typeof(TraktUserFollowUserRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserFollowUserRequestIsSubclassOfATraktSingleItemBodylessPostRequest()
+        {
+            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ATraktSingleItemBodylessPostRequest<TraktUserFollowUserPostResponse>)).Should().BeTrue();
         }
     }
 }
