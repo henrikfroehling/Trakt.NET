@@ -34,5 +34,12 @@
             var request = new TraktUserCustomListsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserCustomListsRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/lists");
+        }
     }
 }
