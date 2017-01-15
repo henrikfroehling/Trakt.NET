@@ -33,5 +33,12 @@
             var request = new TraktUserCommentsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserCommentsRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/type}{?extended,page,limit}");
+        }
     }
 }

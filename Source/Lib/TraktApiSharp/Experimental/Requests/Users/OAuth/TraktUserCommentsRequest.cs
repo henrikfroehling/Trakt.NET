@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Objects.Get.Users;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCommentsRequest : ATraktUsersPaginationGetRequest<TraktUserComment>
@@ -10,6 +9,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/{username}/comments{/comment_type}{/type}{?extended,page,limit}";
     }
 }
