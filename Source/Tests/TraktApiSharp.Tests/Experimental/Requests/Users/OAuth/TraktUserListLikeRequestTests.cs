@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserListLikeRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktUserListLikeRequestIsSubclassOfATraktNoContentBodylessPostByIdRequest()
         {
             typeof(TraktUserListLikeRequest).IsSubclassOf(typeof(ATraktNoContentBodylessPostByIdRequest)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListLikeRequestHasAuthorizationRequired()
+        {
+            var request = new TraktUserListLikeRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
