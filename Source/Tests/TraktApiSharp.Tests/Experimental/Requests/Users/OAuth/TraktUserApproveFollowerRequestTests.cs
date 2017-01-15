@@ -41,5 +41,12 @@
             var request = new TraktUserApproveFollowerRequest(null);
             request.UriTemplate.Should().Be("users/requests/{id}");
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserApproveFollowerRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserApproveFollowerRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Unspecified);
+        }
     }
 }
