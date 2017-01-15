@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
@@ -62,6 +63,19 @@
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsAddRequestHasTypeProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserCustomListItemsAddRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Type")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktListItemType));
         }
     }
 }
