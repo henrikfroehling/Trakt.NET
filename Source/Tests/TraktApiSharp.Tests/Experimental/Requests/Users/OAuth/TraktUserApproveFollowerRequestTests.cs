@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserApproveFollowerRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktUserApproveFollowerRequestIsSubclassOfATraktSingleItemBodylessPostByIdRequest()
         {
             typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ATraktSingleItemBodylessPostByIdRequest<TraktUserFollower>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserApproveFollowerRequestHasAuthorizationRequired()
+        {
+            var request = new TraktUserApproveFollowerRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
