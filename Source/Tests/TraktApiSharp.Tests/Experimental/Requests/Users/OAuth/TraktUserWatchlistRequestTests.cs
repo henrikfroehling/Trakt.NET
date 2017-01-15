@@ -81,5 +81,61 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchlistRequestUriParamsWithUsername()
+        {
+            var username = "username";
+
+            var request = new TraktUserWatchlistRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchlistRequestUriParamsWithUsernameAndType()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+
+            var request = new TraktUserWatchlistRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchlistRequestUriParamsWithUsernameAndUnspecifiedType()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Unspecified;
+
+            var request = new TraktUserWatchlistRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
     }
 }
