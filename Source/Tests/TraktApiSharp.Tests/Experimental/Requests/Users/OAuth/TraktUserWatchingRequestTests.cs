@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
@@ -39,6 +40,12 @@
         {
             var request = new TraktUserWatchingRequest(null);
             request.UriTemplate.Should().Be("users/{username}/watching{?extended}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchingRequestImplementsITraktExtendedInfoInterface()
+        {
+            typeof(TraktUserWatchingRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
         }
     }
 }
