@@ -12,6 +12,8 @@
 
         internal TraktSyncItemType Type { get; set; }
 
+        internal uint? ItemId { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";

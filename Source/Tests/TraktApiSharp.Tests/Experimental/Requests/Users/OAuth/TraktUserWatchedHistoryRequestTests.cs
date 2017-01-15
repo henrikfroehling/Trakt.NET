@@ -69,5 +69,18 @@
             sortingPropertyInfo.CanWrite.Should().BeTrue();
             sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestHasItemIdProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "ItemId")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+        }
     }
 }
