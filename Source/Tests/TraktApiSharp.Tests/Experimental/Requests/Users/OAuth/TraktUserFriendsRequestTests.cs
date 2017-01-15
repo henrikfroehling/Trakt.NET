@@ -33,5 +33,12 @@
             var request = new TraktUserFriendsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserFriendsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserFriendsRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/friends{?extended}");
+        }
     }
 }
