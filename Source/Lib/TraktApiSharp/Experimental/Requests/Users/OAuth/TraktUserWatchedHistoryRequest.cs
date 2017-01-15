@@ -2,6 +2,7 @@
 {
     using Enums;
     using Objects.Get.History;
+    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPaginationGetRequest<TraktHistoryItem>
@@ -13,6 +14,8 @@
         internal TraktSyncItemType Type { get; set; }
 
         internal uint? ItemId { get; set; }
+
+        internal DateTime? StartAt { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
