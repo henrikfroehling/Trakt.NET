@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    internal abstract class ATraktUsersSingleItemGetRequest
+    internal abstract class ATraktUsersSingleItemGetRequest<TItem>
     {
 
     }

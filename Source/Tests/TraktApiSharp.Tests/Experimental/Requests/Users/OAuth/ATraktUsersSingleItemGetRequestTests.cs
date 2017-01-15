@@ -10,7 +10,14 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestATraktUsersSingleItemGetRequestIsAbstract()
         {
-            typeof(ATraktUsersSingleItemGetRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktUsersSingleItemGetRequest<>).IsAbstract.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestATraktUsersSingleItemGetRequestHasGenericTypeParameter()
+        {
+            typeof(ATraktUsersSingleItemGetRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ATraktUsersSingleItemGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
     }
 }
