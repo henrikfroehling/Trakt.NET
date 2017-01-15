@@ -3,6 +3,7 @@
     using Enums;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCustomListItemsAddRequest : ATraktUsersPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>
@@ -12,6 +13,11 @@
         internal string Username { get; set; }
 
         internal TraktListItemType Type { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
