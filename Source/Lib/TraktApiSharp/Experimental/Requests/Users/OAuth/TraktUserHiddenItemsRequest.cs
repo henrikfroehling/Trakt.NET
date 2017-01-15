@@ -10,6 +10,8 @@
 
         internal TraktHiddenItemsSection Section { get; set; }
 
+        internal TraktHiddenItemType Type { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public override string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
