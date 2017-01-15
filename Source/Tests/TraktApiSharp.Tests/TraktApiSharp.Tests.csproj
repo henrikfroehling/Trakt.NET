@@ -308,6 +308,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListItemsRemoveRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListItemsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListsRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListUpdateRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomSingleListRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFollowersRequestTests.cs" />
