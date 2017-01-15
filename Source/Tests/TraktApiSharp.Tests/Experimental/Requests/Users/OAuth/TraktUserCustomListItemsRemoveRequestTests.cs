@@ -34,5 +34,12 @@
             var request = new TraktUserCustomListItemsRemoveRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRemoveRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserCustomListItemsRemoveRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/lists/{id}/items/remove");
+        }
     }
 }
