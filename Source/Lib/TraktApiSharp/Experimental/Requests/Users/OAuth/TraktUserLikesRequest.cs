@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Users;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserLikesRequest : ATraktPaginationGetRequest<TraktUserLikeItem>
@@ -11,6 +10,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/likes{/type}{?page,limit}";
     }
 }

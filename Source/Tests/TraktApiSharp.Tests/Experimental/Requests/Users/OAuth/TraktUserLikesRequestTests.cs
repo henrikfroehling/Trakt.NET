@@ -34,5 +34,12 @@
             var request = new TraktUserLikesRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserLikesRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserLikesRequest(null);
+            request.UriTemplate.Should().Be("users/likes{/type}{?page,limit}");
+        }
     }
 }
