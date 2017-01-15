@@ -74,5 +74,21 @@
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListLikeRequestUriParamsWithUsername()
+        {
+            var username = "username";
+
+            var request = new TraktUserListLikeRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
     }
 }
