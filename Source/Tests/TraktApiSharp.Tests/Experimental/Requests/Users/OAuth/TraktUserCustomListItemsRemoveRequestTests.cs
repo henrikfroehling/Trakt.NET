@@ -5,6 +5,7 @@
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserCustomListItemsRemoveRequestTests
@@ -25,6 +26,13 @@
         public void TestTraktUserCustomListItemsRemoveRequestIsSubclassOfATraktUsersPostByIdRequest()
         {
             typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsRemoveRequestHasAuthorizationRequired()
+        {
+            var request = new TraktUserCustomListItemsRemoveRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
     }
 }
