@@ -8,6 +8,7 @@
     using System.Reflection;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Requests;
 
@@ -120,6 +121,383 @@
 
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsername()
+        {
+            var username = "username";
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndType()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Episode;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndUnspecifiedType()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Unspecified;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndItemId()
+        {
+            var username = "username";
+            var itemId = 123U;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                ItemId = itemId
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndValidItemId()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Episode;
+            var itemId = 123U;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["item_id"] = itemId.ToString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndUnspecifiedTypeAndValidItemId()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Unspecified;
+            var itemId = 123U;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndInvalidItemId()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Episode;
+            var itemId = 0U;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndStartAt()
+        {
+            var username = "username";
+            var startAt = DateTime.Now.AddDays(-2);
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                StartAt = startAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["start_at"] = startAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndEndAt()
+        {
+            var username = "username";
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndStartAtAndEndAt()
+        {
+            var username = "username";
+            var startAt = DateTime.Now.AddDays(-2);
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                StartAt = startAt,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["start_at"] = startAt.ToTraktLongDateTimeString(),
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndStartAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var startAt = DateTime.Now.AddDays(-2);
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                StartAt = startAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["start_at"] = startAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndEndAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndStartAtAndEndAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var startAt = DateTime.Now.AddDays(-2);
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                StartAt = startAt,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(4);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["start_at"] = startAt.ToTraktLongDateTimeString(),
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndItemIdAndStartAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var itemId = 123U;
+            var startAt = DateTime.Now.AddDays(-2);
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId,
+                StartAt = startAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(4);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["item_id"] = itemId.ToString(),
+                ["start_at"] = startAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndItemIdAndEndAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var itemId = 123U;
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(4);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["item_id"] = itemId.ToString(),
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestUriParamsWithUsernameAndTypeAndItemIdAndStartAtAndEndAt()
+        {
+            var username = "username";
+            var type = TraktSyncItemType.Movie;
+            var itemId = 123U;
+            var startAt = DateTime.Now.AddDays(-2);
+            var endAt = DateTime.Now;
+
+            var request = new TraktUserWatchedHistoryRequest(null)
+            {
+                Username = username,
+                Type = type,
+                ItemId = itemId,
+                StartAt = startAt,
+                EndAt = endAt
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(5);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["type"] = type.UriName,
+                ["item_id"] = itemId.ToString(),
+                ["start_at"] = startAt.ToTraktLongDateTimeString(),
+                ["end_at"] = endAt.ToTraktLongDateTimeString()
+            });
         }
     }
 }
