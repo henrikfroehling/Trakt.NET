@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Objects.Get.Watched;
 
     [TestClass]
     public class TraktUserWatchedShowsRequestTests
@@ -17,6 +18,12 @@
         public void TestTraktUserWatchedShowsRequestIsSealed()
         {
             typeof(TraktUserWatchedShowsRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedShowsRequestIsSubclassOfATraktUsersListGetRequest()
+        {
+            typeof(TraktUserWatchedShowsRequest).IsSubclassOf(typeof(ATraktUsersListGetRequest<TraktWatchedShow>)).Should().BeTrue();
         }
     }
 }
