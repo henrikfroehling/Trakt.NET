@@ -2,10 +2,13 @@
 {
     using Objects.Get.Watchlist;
     using System;
+    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchlistRequest : ATraktUsersPaginationGetRequest<TraktWatchlistItem>
     {
         internal TraktUserWatchlistRequest(TraktClient client) : base(client) {}
+
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => throw new NotImplementedException();
     }

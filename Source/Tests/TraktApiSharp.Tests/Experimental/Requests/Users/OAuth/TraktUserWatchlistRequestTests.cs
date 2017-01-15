@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Watchlist;
+    using TraktApiSharp.Requests;
 
     [TestClass]
     public class TraktUserWatchlistRequestTests
@@ -24,6 +25,13 @@
         public void TestTraktUserWatchlistRequestIsSubclassOfATraktUsersPaginationGetRequest()
         {
             typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(ATraktUsersPaginationGetRequest<TraktWatchlistItem>)).Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchlistRequestHasAuthorizationOptional()
+        {
+            var request = new TraktUserWatchlistRequest(null);
+            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
     }
 }
