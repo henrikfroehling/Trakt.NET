@@ -320,6 +320,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedHistoryRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequest.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
