@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Objects.Get.History;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPaginationGetRequest<TraktHistoryItem>
@@ -10,6 +9,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
     }
 }

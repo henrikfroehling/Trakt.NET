@@ -33,5 +33,12 @@
             var request = new TraktUserWatchedHistoryRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserWatchedHistoryRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserWatchedHistoryRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
+        }
     }
 }
