@@ -17,11 +17,21 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+
+            uriParams.Add("username", Username);
+
+            if (CommentType != null && CommentType != TraktCommentType.Unspecified)
+                uriParams.Add("comment_type", CommentType.UriName);
+
+            if (ObjectType != null && ObjectType != TraktObjectType.Unspecified)
+                uriParams.Add("object_type", ObjectType.UriName);
+
+            return uriParams;
         }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
-        public override string UriTemplate => "users/{username}/comments{/comment_type}{/type}{?extended,page,limit}";
+        public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}";
     }
 }

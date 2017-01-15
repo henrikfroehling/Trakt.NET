@@ -42,7 +42,7 @@
         public void TestTraktUserCommentsRequestHasValidUriTemplate()
         {
             var request = new TraktUserCommentsRequest(null);
-            request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/type}{?extended,page,limit}");
+            request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}");
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
@@ -93,6 +93,127 @@
 
             methodInfo.ReturnType.Should().Be(typeof(IDictionary<string, object>));
             methodInfo.GetParameters().Should().BeEmpty();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsername()
+        {
+            var username = "username";
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsernameAndCommentType()
+        {
+            var username = "username";
+            var commentType = TraktCommentType.Review;
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username,
+                CommentType = commentType
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["comment_type"] = commentType.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsernameAndUnspecifiedCommentType()
+        {
+            var username = "username";
+            var commentType = TraktCommentType.Unspecified;
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username,
+                CommentType = commentType
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsernameAndObjectType()
+        {
+            var username = "username";
+            var objectType = TraktObjectType.Season;
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username,
+                ObjectType = objectType
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["object_type"] = objectType.UriName
+            });
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsernameAndUnspecifiedObjectType()
+        {
+            var username = "username";
+            var objectType = TraktObjectType.Unspecified;
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username,
+                ObjectType = objectType
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+            uriParams.Should().Contain("username", username);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCommentsRequestUriParamsWithUsernameAndCommentTypeAndObjectType()
+        {
+            var username = "username";
+            var commentType = TraktCommentType.Review;
+            var objectType = TraktObjectType.Season;
+
+            var request = new TraktUserCommentsRequest(null)
+            {
+                Username = username,
+                CommentType = commentType,
+                ObjectType = objectType
+            };
+
+            var uriParams = request.GetUriPathParameters();
+
+            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
+            uriParams.Should().Contain(new Dictionary<string, object>
+            {
+                ["username"] = username,
+                ["comment_type"] = commentType.UriName,
+                ["object_type"] = objectType.UriName
+            });
         }
     }
 }
