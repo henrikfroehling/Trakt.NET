@@ -5,7 +5,6 @@
     using Objects.Get.History;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPaginationGetRequest<TraktHistoryItem>
     {
@@ -49,8 +48,6 @@
 
             return uriParams;
         }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
     }

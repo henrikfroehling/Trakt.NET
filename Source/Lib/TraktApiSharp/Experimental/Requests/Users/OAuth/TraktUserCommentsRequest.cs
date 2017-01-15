@@ -3,7 +3,6 @@
     using Enums;
     using Objects.Get.Users;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCommentsRequest : ATraktUsersPaginationGetRequest<TraktUserComment>
     {
@@ -29,8 +28,6 @@
 
             return uriParams;
         }
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}";
     }
