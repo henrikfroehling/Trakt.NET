@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Requests;
@@ -46,6 +48,19 @@
         {
             var request = new TraktUserListLikeRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListLikeRequestHasUsernameProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserListLikeRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Username")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }
