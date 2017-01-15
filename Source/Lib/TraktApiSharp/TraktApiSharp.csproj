@@ -306,6 +306,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersSingleItemGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserApproveFollowerRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCommentsRequest.cs" />
