@@ -304,6 +304,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCommentsRequest.cs" />
