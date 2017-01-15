@@ -320,6 +320,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFollowRequestsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserFriendsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserHiddenItemsRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserLikesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListLikeRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserProfileRequest.cs" />
