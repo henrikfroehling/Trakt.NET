@@ -3,6 +3,8 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
 
     [TestClass]
     public class TraktUserCustomListItemsAddRequestTests
@@ -17,6 +19,12 @@
         public void TestTraktUserCustomListItemsAddRequestIsSealed()
         {
             typeof(TraktUserCustomListItemsAddRequest).IsSealed.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListItemsAddRequestIsSubclassOfATraktUsersPostByIdRequest()
+        {
+            typeof(TraktUserCustomListItemsAddRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
     }
 }
