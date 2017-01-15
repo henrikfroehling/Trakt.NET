@@ -2,6 +2,7 @@
 {
     using Enums;
     using Objects.Get.Users;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPaginationGetRequest<TraktUserHiddenItem>
@@ -11,6 +12,11 @@
         internal TraktHiddenItemsSection Section { get; set; }
 
         internal TraktHiddenItemType Type { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
