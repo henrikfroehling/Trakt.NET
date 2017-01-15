@@ -2,6 +2,9 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
@@ -39,6 +42,19 @@
         {
             var request = new TraktUserHiddenItemsRequest(null);
             request.UriTemplate.Should().Be("users/hidden/{section}{?type,extended,page,limit}");
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserHiddenItemsRequestHasSectionProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserHiddenItemsRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Section")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemsSection));
         }
     }
 }
