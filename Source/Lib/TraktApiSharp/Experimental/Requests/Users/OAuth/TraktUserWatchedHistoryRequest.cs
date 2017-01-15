@@ -3,6 +3,7 @@
     using Enums;
     using Objects.Get.History;
     using System;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPaginationGetRequest<TraktHistoryItem>
@@ -18,6 +19,11 @@
         internal DateTime? StartAt { get; set; }
 
         internal DateTime? EndAt { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
