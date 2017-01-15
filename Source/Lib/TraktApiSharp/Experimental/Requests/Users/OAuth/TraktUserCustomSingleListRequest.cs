@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Get.Users.Lists;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCustomSingleListRequest : ATraktSingleItemGetByIdRequest<TraktList>
@@ -11,7 +10,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
-        public override TraktRequestObjectType RequestObjectType => throw new NotImplementedException();
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
         public override string UriTemplate => "users/{username}/lists/{id}";
     }
