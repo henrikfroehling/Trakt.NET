@@ -2,6 +2,7 @@
 {
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserCustomListItemsRemoveRequest : ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>
@@ -9,6 +10,11 @@
         internal TraktUserCustomListItemsRemoveRequest(TraktClient client) : base(client) {}
 
         internal string Username { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
