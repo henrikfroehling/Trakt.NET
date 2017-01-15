@@ -306,6 +306,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCustomListItemsRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserDenyFollowerRequest.cs" />
