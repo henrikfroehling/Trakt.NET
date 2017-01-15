@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Objects.Get.Users;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserSettingsRequest : ATraktUsersSingleItemGetRequest<TraktUserSettings>
@@ -10,6 +9,6 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/settings";
     }
 }

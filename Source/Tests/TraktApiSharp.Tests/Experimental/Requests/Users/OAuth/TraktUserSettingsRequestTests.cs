@@ -33,5 +33,12 @@
             var request = new TraktUserSettingsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserSettingsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserSettingsRequest(null);
+            request.UriTemplate.Should().Be("users/settings");
+        }
     }
 }
