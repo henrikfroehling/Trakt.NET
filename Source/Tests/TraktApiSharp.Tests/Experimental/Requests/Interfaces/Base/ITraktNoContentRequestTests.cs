@@ -17,6 +17,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktNoContentRequestDerivesFromITraktRequestInterface()
+        {
+            typeof(ITraktNoContentRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktNoContentRequestHasQueryAsyncMethod()
         {
             var methodInfo = typeof(ITraktNoContentRequest).GetMethods()
