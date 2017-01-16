@@ -199,7 +199,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPathParametersTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktPostableTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorizationTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequestTests.cs" />
