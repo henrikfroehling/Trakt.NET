@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
     using TraktApiSharp.Experimental.Responses;
 
@@ -39,6 +38,12 @@
         public void TestITraktPaginationRequestDerivesFromITraktPaginationInterface()
         {
             typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktPagination));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktPaginationRequestDerivesFromITraktRequestInterface()
+        {
+            typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
         }
     }
 }
