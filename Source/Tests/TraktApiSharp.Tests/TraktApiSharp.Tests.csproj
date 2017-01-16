@@ -200,6 +200,7 @@
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktNoContentBodylessPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktNoContentPutByIdRequestTests.cs" />
