@@ -212,7 +212,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktUriBuildable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequest.cs" />
