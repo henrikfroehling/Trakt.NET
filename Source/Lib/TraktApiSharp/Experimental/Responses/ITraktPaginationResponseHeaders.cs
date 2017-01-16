@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
-    internal interface ITraktPaginationResponseHeaders
+    public interface ITraktPaginationResponseHeaders
     {
         int? Page { get; set; }
 
