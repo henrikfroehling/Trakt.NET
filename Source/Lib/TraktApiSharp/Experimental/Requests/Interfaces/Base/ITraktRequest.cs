@@ -2,6 +2,6 @@
 {
     internal interface ITraktRequest : ITraktHttpRequest, ITraktRequestAuthorization, ITraktUriBuildable
     {
-
+        TraktClient Client { get; }
     }
 }

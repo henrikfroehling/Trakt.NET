@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
@@ -29,6 +30,18 @@
         public void TestITraktRequestDerivesFromITraktUriBuildableInterface()
         {
             typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktUriBuildable));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktRequestHasClientProperty()
+        {
+            var clientPropertyInfo = typeof(ITraktRequest).GetProperties()
+                                                          .Where(p => p.Name == "Client")
+                                                          .FirstOrDefault();
+
+            clientPropertyInfo.CanRead.Should().BeTrue();
+            clientPropertyInfo.CanWrite.Should().BeFalse();
+            clientPropertyInfo.PropertyType.Should().Be(typeof(TraktClient));
         }
     }
 }

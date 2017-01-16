@@ -21,7 +21,7 @@
 
         public string Url => BuildUrl();
 
-        internal TraktClient Client { get; }
+        public TraktClient Client { get; }
 
         public string BuildUrl()
         {
