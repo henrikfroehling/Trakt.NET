@@ -209,7 +209,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPostable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildable.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktUriBuildable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequest.cs" />

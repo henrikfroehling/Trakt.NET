@@ -203,7 +203,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorizationTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildableTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktUriBuildableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatableTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
