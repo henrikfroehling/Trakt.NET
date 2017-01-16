@@ -218,6 +218,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktSingleItemBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktListPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktListPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktNoContentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktNoContentPutByIdRequest.cs" />
