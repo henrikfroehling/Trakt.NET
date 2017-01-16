@@ -8,6 +8,8 @@
     {
         internal TraktUserListCommentsRequest(TraktClient client) : base(client) {}
 
+        internal string Username { get; set; }
+
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
