@@ -42,5 +42,12 @@
             var request = new TraktUserCustomListUpdateRequest(null);
             request.UriTemplate.Should().Be("users/{username}/lists/{id}");
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListUpdateRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserCustomListUpdateRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+        }
     }
 }
