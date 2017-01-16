@@ -212,6 +212,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktNoContentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktPaginationPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktPaginationPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktSingleItemPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktSingleItemPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequestTests.cs" />
