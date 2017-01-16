@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
-    using Base;
+    using Requests.Base;
 
     internal interface ITraktHasId
     {

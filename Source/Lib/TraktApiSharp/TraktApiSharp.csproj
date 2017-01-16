@@ -208,7 +208,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktObjectRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPostable.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktHttpRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktUriBuildable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequest.cs" />
