@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users
 {
     using Base.Get;
+    using Enums;
     using Objects.Basic;
     using TraktApiSharp.Requests;
 
@@ -9,6 +10,8 @@
         internal TraktUserListCommentsRequest(TraktClient client) : base(client) {}
 
         internal string Username { get; set; }
+
+        internal TraktCommentSortOrder Sorting { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
