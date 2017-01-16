@@ -210,6 +210,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktNoContentPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPagination.cs" />
