@@ -12,6 +12,6 @@
 
         public override TraktRequestObjectType RequestObjectType => throw new NotImplementedException();
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/{username}/lists/{id}";
     }
 }
