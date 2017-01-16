@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
@@ -19,6 +20,12 @@
         public void TestITraktHasIdDerivesFromITraktObjectRequestInterface()
         {
             typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktHasIdDerivesFromITraktValidatableInterface()
+        {
+            typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]

@@ -28,7 +28,7 @@
             return uriParams;
         }
 
-        public void Validate()
+        public override void Validate()
         {
             if (EpisodeNumber == 0)
                 throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));

@@ -2,7 +2,7 @@
 {
     using Requests.Base;
 
-    internal interface ITraktHasId : ITraktObjectRequest
+    internal interface ITraktHasId : ITraktObjectRequest, ITraktValidatable
     {
         string Id { get; set; }
 

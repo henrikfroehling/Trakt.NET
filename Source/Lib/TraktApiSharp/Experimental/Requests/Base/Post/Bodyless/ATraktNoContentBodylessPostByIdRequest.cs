@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Post.Bodyless
 {
     using Interfaces.Base;
+    using System;
     using TraktApiSharp.Requests;
 
     internal abstract class ATraktNoContentBodylessPostByIdRequest : ATraktNoContentBodylessPostRequest, ITraktHasId
@@ -19,5 +20,10 @@
         public TraktRequestId RequestId { get; set; }
 
         public abstract TraktRequestObjectType RequestObjectType { get; }
+
+        public void Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

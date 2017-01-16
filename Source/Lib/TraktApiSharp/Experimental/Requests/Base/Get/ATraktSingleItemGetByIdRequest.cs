@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
     using Interfaces.Base;
+    using System;
     using TraktApiSharp.Requests;
 
     internal abstract class ATraktSingleItemGetByIdRequest<TItem> : ATraktSingleItemGetRequest<TItem>, ITraktHasId
@@ -19,5 +20,10 @@
         public TraktRequestId RequestId { get; set; }
 
         public abstract TraktRequestObjectType RequestObjectType { get; }
+
+        public virtual void Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
