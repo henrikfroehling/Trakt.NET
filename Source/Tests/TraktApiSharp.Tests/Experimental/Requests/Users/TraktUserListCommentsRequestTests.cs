@@ -41,5 +41,12 @@
             var request = new TraktUserListCommentsRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListCommentsRequestHasValidUriTemplate()
+        {
+            var request = new TraktUserListCommentsRequest(null);
+            request.UriTemplate.Should().Be("users/{username}/lists/{id}/comments{/sorting}{?page,limit}");
+        }
     }
 }

@@ -2,7 +2,6 @@
 {
     using Base.Get;
     using Objects.Basic;
-    using System;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserListCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>
@@ -13,6 +12,6 @@
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => throw new NotImplementedException();
+        public override string UriTemplate => "users/{username}/lists/{id}/comments{/sorting}{?page,limit}";
     }
 }
