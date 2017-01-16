@@ -202,6 +202,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktNoContentBodylessPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktNoContentBodylessPostRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktPaginationBodylessPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktPaginationBodylessPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequestTests.cs" />
