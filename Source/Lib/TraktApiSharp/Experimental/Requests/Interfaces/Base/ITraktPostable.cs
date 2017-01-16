@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal interface ITraktPostable<TRequestBody>
+    internal interface ITraktPostable<TRequestBody> : ITraktValidatable
     {
         TRequestBody RequestBody { get; set; }
 

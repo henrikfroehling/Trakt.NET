@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using System.Net.Http;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
@@ -13,6 +14,12 @@
         public void TestITraktPostableIsInterface()
         {
             typeof(ITraktPostable<>).IsInterface.Should().BeTrue();
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktPostableDerivesFromITraktValidatableInterface()
+        {
+            typeof(ITraktPostable<>).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]

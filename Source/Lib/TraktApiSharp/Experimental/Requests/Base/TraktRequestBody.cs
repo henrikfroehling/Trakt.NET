@@ -1,13 +1,12 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
-    using Interfaces;
     using Interfaces.Base;
     using System;
     using System.Net.Http;
     using System.Text;
     using Utils;
 
-    internal sealed class TraktRequestBody<TRequestBody> : ITraktPostable<TRequestBody>, ITraktValidatable
+    internal sealed class TraktRequestBody<TRequestBody> : ITraktPostable<TRequestBody>
     {
         public TRequestBody RequestBody { get; set; }
 

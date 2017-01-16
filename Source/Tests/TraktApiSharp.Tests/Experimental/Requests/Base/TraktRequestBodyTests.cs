@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
@@ -25,12 +24,6 @@
         public void TestTraktRequestBodyImplementsITraktPostableInterface()
         {
             typeof(TraktRequestBody<int>).GetInterfaces().Should().Contain(typeof(ITraktPostable<int>));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base")]
-        public void TestTraktRequestBodyImplementsITraktValidatableInterface()
-        {
-            typeof(TraktRequestBody<>).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
         }
     }
 }
