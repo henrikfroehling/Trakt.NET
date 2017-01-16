@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
     using Interfaces.Base;
-    using Responses;
+    using Responses.Interfaces.Base;
     using System;
     using System.Threading.Tasks;
 
@@ -13,7 +13,7 @@
 
         public int? Limit { get; set; }
 
-        public Task<TraktPaginationResponse<TItem>> QueryAsync()
+        public Task<ITraktPaginationResponse<TItem>> QueryAsync()
         {
             throw new NotImplementedException();
         }
