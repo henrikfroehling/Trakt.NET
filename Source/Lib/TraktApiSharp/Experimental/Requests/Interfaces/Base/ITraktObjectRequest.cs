@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
+﻿namespace TraktApiSharp.Experimental.Requests.Interfaces.Base
 {
     using TraktApiSharp.Requests;
 
