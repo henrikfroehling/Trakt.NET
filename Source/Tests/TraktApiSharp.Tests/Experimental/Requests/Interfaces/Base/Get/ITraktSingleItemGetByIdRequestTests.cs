@@ -30,7 +30,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktSingleItemGetByIdRequestDerivesFromITraktHasIdInterface()
         {
-            typeof(ITraktSingleItemGetByIdRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ITraktSingleItemGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
     }
 }

@@ -30,7 +30,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationPutByIdRequestDerivesFromITraktHasIdInterface()
         {
-            typeof(ITraktPaginationPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ITraktPaginationPutByIdRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
     }
 }
