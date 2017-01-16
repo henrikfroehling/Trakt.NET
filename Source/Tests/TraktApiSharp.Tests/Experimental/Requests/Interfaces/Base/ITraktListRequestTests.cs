@@ -17,6 +17,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktListRequestDerivesFromITraktRequestInterface()
+        {
+            typeof(ITraktListRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktListRequestHasGenericTypeParameter()
         {
             typeof(ITraktListRequest<>).ContainsGenericParameters.Should().BeTrue();
