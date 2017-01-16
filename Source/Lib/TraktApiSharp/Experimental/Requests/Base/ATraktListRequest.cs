@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
     using Interfaces.Base;
-    using Responses;
+    using Responses.Interfaces.Base;
     using System;
     using System.Threading.Tasks;
 
@@ -9,7 +9,7 @@
     {
         internal ATraktListRequest(TraktClient client) : base(client) { }
 
-        public Task<TraktListResponse<TItem>> QueryAsync()
+        public Task<ITraktListResponse<TItem>> QueryAsync()
         {
             throw new NotImplementedException();
         }
