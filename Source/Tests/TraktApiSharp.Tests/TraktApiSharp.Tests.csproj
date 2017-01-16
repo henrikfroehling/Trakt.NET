@@ -330,6 +330,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchedShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchingRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeadersTests.cs" />
     <Compile Include="Experimental\Responses\ITraktResponseHeadersTests.cs" />
