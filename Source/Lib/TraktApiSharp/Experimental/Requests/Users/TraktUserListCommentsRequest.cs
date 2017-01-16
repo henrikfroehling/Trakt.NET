@@ -11,7 +11,7 @@
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => throw new NotImplementedException();
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
         public override string UriTemplate => throw new NotImplementedException();
     }

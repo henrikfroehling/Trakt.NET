@@ -34,5 +34,12 @@
             var request = new TraktUserListCommentsRequest(null);
             request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
         }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserListCommentsRequestHasValidRequestObjectType()
+        {
+            var request = new TraktUserListCommentsRequest(null);
+            request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+        }
     }
 }
