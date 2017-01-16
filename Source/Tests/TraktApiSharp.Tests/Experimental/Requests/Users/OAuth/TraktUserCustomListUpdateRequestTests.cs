@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base.Put;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Objects.Get.Users.Lists;
@@ -48,6 +50,19 @@
         {
             var request = new TraktUserCustomListUpdateRequest(null);
             request.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        public void TestTraktUserCustomListUpdateRequestHasUsernameProperty()
+        {
+            var sortingPropertyInfo = typeof(TraktUserCustomListUpdateRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Username")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }
