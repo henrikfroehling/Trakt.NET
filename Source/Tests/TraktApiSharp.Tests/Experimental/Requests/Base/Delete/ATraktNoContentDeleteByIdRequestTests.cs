@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Delete;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Delete;
 
     [TestClass]
     public class ATraktNoContentDeleteByIdRequestTests
@@ -21,9 +21,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
-        public void TestATraktNoContentDeleteByIdRequestImplementsITraktHasIdInterface()
+        public void TestATraktNoContentDeleteByIdRequestImplementsITraktNoContentDeleteByIdRequestInterface()
         {
-            typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktNoContentDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktNoContentDeleteByIdRequest));
         }
     }
 }
