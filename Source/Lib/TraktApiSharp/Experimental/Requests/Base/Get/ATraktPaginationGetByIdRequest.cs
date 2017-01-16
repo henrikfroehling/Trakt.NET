@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Get
 {
-    using Interfaces;
     using Interfaces.Base;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktPaginationGetByIdRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktHasId, ITraktObjectRequest
+    internal abstract class ATraktPaginationGetByIdRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktHasId
     {
         internal ATraktPaginationGetByIdRequest(TraktClient client) : base(client)
         {

@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
@@ -32,12 +31,6 @@
         public void TestATraktListGetByIdRequestImplementsITraktHasIdInterface()
         {
             typeof(ATraktListGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
-        public void TestATraktListGetByIdRequestImplementsITraktObjectRequestInterface()
-        {
-            typeof(ATraktListGetByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
     }
 }

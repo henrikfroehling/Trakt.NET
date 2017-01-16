@@ -16,6 +16,12 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
+        public void TestITraktHasIdDerivesFromITraktObjectRequestInterface()
+        {
+            typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktHasIdHasIdProperty()
         {
             var idPropertyInfo = typeof(ITraktHasId).GetProperties()
