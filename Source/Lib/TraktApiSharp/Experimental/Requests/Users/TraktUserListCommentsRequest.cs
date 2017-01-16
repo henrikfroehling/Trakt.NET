@@ -12,7 +12,7 @@
 
         internal string Username { get; set; }
 
-        internal TraktCommentSortOrder Sorting { get; set; }
+        internal TraktCommentSortOrder SortOrder { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -20,8 +20,8 @@
 
             uriParams.Add("username", Username);
 
-            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
-                uriParams.Add("sorting", Sorting.UriName);
+            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sort_order", SortOrder.UriName);
 
             return uriParams;
         }
@@ -30,6 +30,6 @@
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}/comments{/sorting}{?page,limit}";
+        public override string UriTemplate => "users/{username}/lists/{id}/comments{/sort_order}{?page,limit}";
     }
 }

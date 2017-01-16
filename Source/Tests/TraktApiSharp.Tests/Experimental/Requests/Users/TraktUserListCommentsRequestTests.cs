@@ -50,7 +50,7 @@
         public void TestTraktUserListCommentsRequestHasValidUriTemplate()
         {
             var request = new TraktUserListCommentsRequest(null);
-            request.UriTemplate.Should().Be("users/{username}/lists/{id}/comments{/sorting}{?page,limit}");
+            request.UriTemplate.Should().Be("users/{username}/lists/{id}/comments{/sort_order}{?page,limit}");
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
@@ -67,11 +67,11 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserListCommentsRequestHasSortingProperty()
+        public void TestTraktUserListCommentsRequestHasSortOrderProperty()
         {
             var sortingPropertyInfo = typeof(TraktUserListCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Sorting")
+                    .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
@@ -110,12 +110,12 @@
         public void TestTraktUserListCommentsRequestUriParamsWithUsernameAndSorting()
         {
             var username = "username";
-            var sorting = TraktCommentSortOrder.Likes;
+            var sortOrder = TraktCommentSortOrder.Likes;
 
             var request = new TraktUserListCommentsRequest(null)
             {
                 Username = username,
-                Sorting = sorting
+                SortOrder = sortOrder
             };
 
             var uriParams = request.GetUriPathParameters();
@@ -124,7 +124,7 @@
             uriParams.Should().Contain(new Dictionary<string, object>
             {
                 ["username"] = username,
-                ["sorting"] = sorting.UriName
+                ["sort_order"] = sortOrder.UriName
             });
         }
 
@@ -132,12 +132,12 @@
         public void TestTraktUserListCommentsRequestUriParamsWithUsernameAndUnspecifiedSorting()
         {
             var username = "username";
-            var sorting = TraktCommentSortOrder.Unspecified;
+            var sortOrder = TraktCommentSortOrder.Unspecified;
 
             var request = new TraktUserListCommentsRequest(null)
             {
                 Username = username,
-                Sorting = sorting
+                SortOrder = sortOrder
             };
 
             var uriParams = request.GetUriPathParameters();
