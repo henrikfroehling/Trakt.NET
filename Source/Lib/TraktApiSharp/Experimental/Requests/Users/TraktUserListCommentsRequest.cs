@@ -9,6 +9,8 @@
     {
         internal TraktUserListCommentsRequest(TraktClient client) : base(client) {}
 
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+
         public override TraktRequestObjectType RequestObjectType => throw new NotImplementedException();
 
         public override string UriTemplate => throw new NotImplementedException();
