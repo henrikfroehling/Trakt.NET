@@ -160,7 +160,6 @@
     <Compile Include="Experimental\Requests\Base\Put\ATraktSingleItemPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Base\Put\ATraktSingleItemPutRequest.cs" />
     <Compile Include="Experimental\Requests\Base\TraktRequestBody.cs" />
-    <Compile Include="Experimental\Requests\Base\TraktRequestId.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequest.cs" />
@@ -197,7 +196,6 @@
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPathParameters.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />

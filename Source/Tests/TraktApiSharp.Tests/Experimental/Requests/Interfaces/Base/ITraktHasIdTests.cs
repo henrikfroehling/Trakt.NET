@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
-    using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
@@ -38,18 +37,6 @@
             idPropertyInfo.CanRead.Should().BeTrue();
             idPropertyInfo.CanWrite.Should().BeTrue();
             idPropertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasIdHasRequestIdProperty()
-        {
-            var requestIdPropertyInfo = typeof(ITraktHasId).GetProperties()
-                                                           .Where(p => p.Name == "RequestId")
-                                                           .FirstOrDefault();
-
-            requestIdPropertyInfo.CanRead.Should().BeTrue();
-            requestIdPropertyInfo.CanWrite.Should().BeTrue();
-            requestIdPropertyInfo.PropertyType.Should().Be(typeof(TraktRequestId));
         }
     }
 }

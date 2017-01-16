@@ -6,22 +6,13 @@
 
     internal abstract class ATraktSingleItemBodylessPostByIdRequest<TItem> : ATraktSingleItemBodylessPostRequest<TItem>, ITraktHasId
     {
-        internal ATraktSingleItemBodylessPostByIdRequest(TraktClient client) : base(client)
-        {
-            RequestId = new TraktRequestId();
-        }
+        internal ATraktSingleItemBodylessPostByIdRequest(TraktClient client) : base(client) { }
 
-        public string Id
-        {
-            get { return RequestId.Id; }
-            set { RequestId.Id = value; }
-        }
-
-        public TraktRequestId RequestId { get; set; }
+        public string Id { get; set; }
 
         public abstract TraktRequestObjectType RequestObjectType { get; }
 
-        public void Validate()
+        public virtual void Validate()
         {
             throw new NotImplementedException();
         }
