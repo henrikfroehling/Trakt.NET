@@ -589,7 +589,7 @@
     <Compile Include="Experimental\Responses\ATraktResponse.cs" />
     <Compile Include="Experimental\Responses\ITraktPaginationResponseHeaders.cs" />
     <Compile Include="Requests\Base\ITraktRequest.cs" />
-    <Compile Include="Experimental\Responses\ITraktResponseHeaders.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\ITraktResponseHeaders.cs" />
     <Compile Include="Experimental\Responses\TraktListResponse.cs" />
     <Compile Include="Experimental\Responses\TraktNoContentResponse.cs" />
     <Compile Include="Experimental\Responses\TraktPaginationResponse.cs" />

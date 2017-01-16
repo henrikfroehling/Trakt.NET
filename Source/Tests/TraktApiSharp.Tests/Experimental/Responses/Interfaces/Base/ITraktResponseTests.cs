@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Experimental.Responses.Interfaces.Base;
 
     [TestClass]

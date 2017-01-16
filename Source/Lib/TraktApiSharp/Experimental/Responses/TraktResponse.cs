@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Exceptions;
+    using Interfaces.Base;
 
     public sealed class TraktResponse<TContentType> : ATraktResponse<TContentType>, ITraktResponseHeaders
     {

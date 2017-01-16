@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
     using TraktApiSharp.Experimental.Responses;
+    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
 
     [TestClass]
     public class TraktListResponseTests
