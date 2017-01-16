@@ -1,7 +1,5 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
+﻿namespace TraktApiSharp.Experimental.Requests.Interfaces.Base
 {
-    using Base;
-
     internal interface ITraktId : ITraktValidatable, ITraktPathParameters
     {
         string Id { get; set; }

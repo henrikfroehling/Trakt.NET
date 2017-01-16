@@ -192,7 +192,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfoTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktIdTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktIdTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktListRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktNoContentRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktObjectRequestTests.cs" />
