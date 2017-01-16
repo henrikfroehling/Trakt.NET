@@ -127,6 +127,7 @@
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Delete\ITraktNoContentDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Delete\ITraktNoContentDeleteRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasIdTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBodyTests.cs" />
