@@ -14,7 +14,9 @@
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            return base.GetUriPathParameters();
+            var uriParams = base.GetUriPathParameters();
+            uriParams.Add("username", Username);
+            return uriParams;
         }
 
         public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
