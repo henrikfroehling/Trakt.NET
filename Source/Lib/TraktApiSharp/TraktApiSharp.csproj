@@ -141,6 +141,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktNoContentGetRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktPaginationGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktPaginationGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktSingleItemGetRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostByIdRequest.cs" />
