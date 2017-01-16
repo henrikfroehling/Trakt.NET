@@ -222,6 +222,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktNoContentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktPaginationPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktPaginationPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\ITraktSingleItemPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktNoContentPutByIdRequest.cs" />
