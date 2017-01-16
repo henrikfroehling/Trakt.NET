@@ -15,7 +15,7 @@
 
         public override HttpMethod Method => HttpMethod.Put;
 
-        public TraktRequestBody<TRequestBody> RequestBody { get; set; }
+        public ITraktPostable<TRequestBody> RequestBody { get; set; }
 
         public TRequestBody RequestBodyContent
         {

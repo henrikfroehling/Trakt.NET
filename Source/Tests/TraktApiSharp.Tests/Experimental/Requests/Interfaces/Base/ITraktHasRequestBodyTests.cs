@@ -36,7 +36,7 @@
 
             requestBodyPropertyInfo.CanRead.Should().BeTrue();
             requestBodyPropertyInfo.CanWrite.Should().BeTrue();
-            requestBodyPropertyInfo.PropertyType.Should().Be(typeof(TraktRequestBody<int>));
+            requestBodyPropertyInfo.PropertyType.Should().Be(typeof(ITraktPostable<int>));
         }
     }
 }
