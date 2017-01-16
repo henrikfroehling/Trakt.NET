@@ -198,7 +198,7 @@
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktId.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktPathParameters.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPathParameters.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktExtendedInfo.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktFilterable.cs" />
