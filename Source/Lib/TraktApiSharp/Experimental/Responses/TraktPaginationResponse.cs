@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Exceptions;
+    using Interfaces.Base;
     using System.Collections.Generic;
 
     public sealed class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponseHeaders

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Experimental.Responses
+﻿namespace TraktApiSharp.Experimental.Responses.Interfaces.Base
 {
     public interface ITraktPaginationResponseHeaders
     {

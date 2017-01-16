@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Responses
+﻿namespace TraktApiSharp.Tests.Experimental.Responses.Interfaces.Base
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
-    using TraktApiSharp.Experimental.Responses;
+    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
 
     [TestClass]
     public class ITraktPaginationResponseHeadersTests
