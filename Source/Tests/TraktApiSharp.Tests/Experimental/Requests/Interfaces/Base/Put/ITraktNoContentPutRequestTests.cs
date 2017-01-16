@@ -28,7 +28,7 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktNoContentPutRequesterivesFromITraktHasRequestBodyInterface()
+        public void TestITraktNoContentPutRequestDerivesFromITraktHasRequestBodyInterface()
         {
             typeof(ITraktNoContentPutRequest<float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
         }
