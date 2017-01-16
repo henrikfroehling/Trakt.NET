@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Put;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
     public class ATraktNoContentPutRequestTests

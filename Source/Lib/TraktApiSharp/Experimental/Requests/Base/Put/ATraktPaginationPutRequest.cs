@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Put
 {
-    using Interfaces;
+    using Interfaces.Base;
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
