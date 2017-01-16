@@ -1,8 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces
+﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]

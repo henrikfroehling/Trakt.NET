@@ -201,7 +201,7 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktPathParametersTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktPostableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorizationTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktRequestTests.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSingleItemRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktUriBuildableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatableTests.cs" />

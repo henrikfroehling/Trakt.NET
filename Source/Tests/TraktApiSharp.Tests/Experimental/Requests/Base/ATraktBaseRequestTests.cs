@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
     public class ATraktBaseRequestTests
