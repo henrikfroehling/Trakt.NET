@@ -372,6 +372,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequest.cs" />
     <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequest.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktNoContentResponse.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponse.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
-    internal interface ITraktResponseHeaders
+    public interface ITraktResponseHeaders
     {
         int? UserCount { get; set; }
 
