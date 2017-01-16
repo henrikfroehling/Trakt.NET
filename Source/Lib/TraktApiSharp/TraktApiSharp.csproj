@@ -137,6 +137,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Delete\ITraktNoContentDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktNoContentGetByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktNoContentGetRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody.cs" />
