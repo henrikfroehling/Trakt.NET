@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
-    using TraktApiSharp.Experimental.Responses;
+    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
 
     [TestClass]
     public class ITraktNoContentRequestTests
@@ -29,7 +29,7 @@
                                                            .Where(m => m.Name == "QueryAsync")
                                                            .FirstOrDefault();
 
-            methodInfo.ReturnType.Should().Be(typeof(Task<TraktNoContentResponse>));
+            methodInfo.ReturnType.Should().Be(typeof(Task<ITraktNoContentResponse>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
     }

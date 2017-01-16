@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base
 {
     using Interfaces.Base;
-    using Responses;
+    using Responses.Interfaces.Base;
     using System;
     using System.Threading.Tasks;
 
@@ -9,7 +9,7 @@
     {
         internal ATraktNoContentRequest(TraktClient client) : base(client) { }
 
-        public Task<TraktNoContentResponse> QueryAsync()
+        public Task<ITraktNoContentResponse> QueryAsync()
         {
             throw new NotImplementedException();
         }
