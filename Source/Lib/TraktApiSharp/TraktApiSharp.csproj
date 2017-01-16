@@ -210,6 +210,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktNoContentBodylessPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktNoContentBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequest.cs" />
