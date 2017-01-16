@@ -208,6 +208,7 @@
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPathParameters.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestAuthorization.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktListPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktNoContentPutByIdRequest.cs" />
