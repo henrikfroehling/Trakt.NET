@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Delete;
     using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
 
     [TestClass]
     public class ATraktNoContentDeleteByIdRequestTests
