@@ -3,6 +3,7 @@
     using Base.Get;
     using Enums;
     using Objects.Basic;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
     internal sealed class TraktUserListCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>
@@ -12,6 +13,11 @@
         internal string Username { get; set; }
 
         internal TraktCommentSortOrder Sorting { get; set; }
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            return base.GetUriPathParameters();
+        }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
