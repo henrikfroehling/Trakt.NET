@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Post;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Post;
 
     [TestClass]
     public class ATraktPaginationPostRequestTests
@@ -29,9 +29,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post")]
-        public void TestATraktPaginationPostRequestImplementsITraktHasRequestBodyInterface()
+        public void TestATraktPaginationPostRequestImplementsITraktPaginationPostRequestInterface()
         {
-            typeof(ATraktPaginationPostRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
+            typeof(ATraktPaginationPostRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktPaginationPostRequest<int, float>));
         }
     }
 }
