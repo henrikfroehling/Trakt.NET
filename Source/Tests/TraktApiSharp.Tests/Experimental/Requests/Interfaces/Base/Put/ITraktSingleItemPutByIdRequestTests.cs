@@ -11,26 +11,26 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktSingleItemPutByIdRequestIsInterface()
         {
-            typeof(ITraktSingleItemPutByIdRequest<>).IsInterface.Should().BeTrue();
+            typeof(ITraktSingleItemPutByIdRequest<,>).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktSingleItemPutByIdRequestHasGenericTypeParameter()
         {
-            typeof(ITraktSingleItemPutByIdRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ITraktSingleItemPutByIdRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(ITraktSingleItemPutByIdRequest<,>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ITraktSingleItemPutByIdRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktSingleItemPutByIdRequestDerivesFromITraktSingleItemPutRequestInterface()
         {
-            typeof(ITraktSingleItemPutByIdRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktSingleItemPutRequest<int>));
+            typeof(ITraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktSingleItemPutRequest<int, float>));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktSingleItemPutByIdRequestDerivesFromITraktHasIdInterface()
         {
-            typeof(ITraktSingleItemPutByIdRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ITraktSingleItemPutByIdRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
     }
 }
