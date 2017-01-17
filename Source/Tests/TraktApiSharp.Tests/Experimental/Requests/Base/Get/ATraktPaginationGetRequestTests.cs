@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Get;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Get;
 
     [TestClass]
     public class ATraktPaginationGetRequestTests
@@ -25,6 +26,12 @@
         {
             typeof(ATraktPaginationGetRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktPaginationGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
+        public void TestATraktPaginationGetRequestImplementsITraktPaginationGetRequestInterface()
+        {
+            typeof(ATraktPaginationGetRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktPaginationGetRequest<int>));
         }
     }
 }
