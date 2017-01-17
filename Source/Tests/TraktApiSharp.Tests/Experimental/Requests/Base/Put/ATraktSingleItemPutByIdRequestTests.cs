@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Put;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Put;
 
     [TestClass]
     public class ATraktSingleItemPutByIdRequestTests
@@ -28,15 +28,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
-        public void TestATraktSingleItemPutByIdRequestImplementsITraktHasRequestBodyInterface()
+        public void TestATraktSingleItemPutByIdRequestImplementsITraktSingleItemPutByIdRequestInterface()
         {
-            typeof(ATraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
-        }
-
-        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Put")]
-        public void TestATraktSingleItemPutByIdRequestImplementsITraktHasIdInterface()
-        {
-            typeof(ATraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktSingleItemPutByIdRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktSingleItemPutByIdRequest<int, float>));
         }
     }
 }
