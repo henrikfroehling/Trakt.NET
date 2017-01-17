@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Get;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Get;
 
     [TestClass]
     public class ATraktNoContentGetByIdRequestTests
@@ -21,9 +21,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Get")]
-        public void TestATraktNoContentGetByIdRequestImplementsITraktHasIdInterface()
+        public void TestATraktNoContentGetByIdRequestImplementsITraktNoContentGetByIdRequestInterface()
         {
-            typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktNoContentGetByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktNoContentGetByIdRequest));
         }
     }
 }
