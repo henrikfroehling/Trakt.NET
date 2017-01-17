@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Post.Bodyless;
 
     [TestClass]
     public class ATraktListBodylessPostRequestTests
@@ -25,6 +26,12 @@
         {
             typeof(ATraktListBodylessPostRequest<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ATraktListBodylessPostRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Delete")]
+        public void TestATraktListBodylessPostRequestImplementsITraktListBodylessPostRequestInterface()
+        {
+            typeof(ATraktListBodylessPostRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktListBodylessPostRequest<int>));
         }
     }
 }
