@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Base.Put
 {
-    using Interfaces.Base;
+    using Interfaces.Base.Put;
     using System;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktListPutByIdRequest<TItem, TRequestBody> : ATraktListPutRequest<TItem, TRequestBody>, ITraktHasId
+    internal abstract class ATraktListPutByIdRequest<TItem, TRequestBody> : ATraktListPutRequest<TItem, TRequestBody>, ITraktListPutByIdRequest<TItem, TRequestBody>
     {
         internal ATraktListPutByIdRequest(TraktClient client) : base(client) { }
 
