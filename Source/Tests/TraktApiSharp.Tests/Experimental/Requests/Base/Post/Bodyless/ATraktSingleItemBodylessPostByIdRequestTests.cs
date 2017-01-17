@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TraktApiSharp.Experimental.Requests.Base.Post.Bodyless;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Experimental.Requests.Interfaces.Base.Post.Bodyless;
 
     [TestClass]
     public class ATraktSingleItemBodylessPostByIdRequestTests
@@ -28,9 +28,9 @@
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Base"), TestCategory("Post"), TestCategory("Bodyless")]
-        public void TestATraktSingleItemBodylessPostByIdRequestImplementsITraktHasIdInterface()
+        public void TestATraktSingleItemBodylessPostByIdRequestImplementsITraktSingleItemBodylessPostByIdRequestInterface()
         {
-            typeof(ATraktSingleItemBodylessPostByIdRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktSingleItemBodylessPostByIdRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktSingleItemBodylessPostByIdRequest<int>));
         }
     }
 }
