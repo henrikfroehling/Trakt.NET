@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPerformanceTests", "Sou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.PreNextVersion.Tests", "Source\Tests\TraktApiSharp.PreNextVersion.Tests\TraktApiSharp.PreNextVersion.Tests.csproj", "{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.Tests", "Source\Tests\TraktApiSharp.Tests\TraktApiSharp.Tests.csproj", "{9226CF4C-D607-420E-B675-02F27EFD17E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,22 @@ Global
 		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x64.Build.0 = Release|Any CPU
 		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x86.ActiveCfg = Release|Any CPU
 		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x86.Build.0 = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|ARM.Build.0 = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|x64.Build.0 = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|ARM.Build.0 = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|x64.ActiveCfg = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|x64.Build.0 = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,5 +273,6 @@ Global
 		{C0B9321F-5E41-4D08-B7BB-A041E10AA8E0} = {8CDD4A4D-986A-4422-BEEC-6C67F6AD4A27}
 		{5DE2CB79-B310-4A94-BC66-69DEB6C95C69} = {F1B29462-75DC-4226-8333-CABECAE02934}
 		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572} = {F1B29462-75DC-4226-8333-CABECAE02934}
+		{9226CF4C-D607-420E-B675-02F27EFD17E9} = {F1B29462-75DC-4226-8333-CABECAE02934}
 	EndGlobalSection
 EndGlobal
