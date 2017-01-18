@@ -1,22 +1,23 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces.Base
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using System.Net.Http;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktHttpRequestTests
+    public class ITraktHttpRequest_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHttpRequestIsInterface()
+        [Fact]
+        [Trait("Category", "Requests.Interfaces.Base")]
+        public void Test_ITraktHttpRequest_IsInterface()
         {
             typeof(ITraktHttpRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHttpRequestHasMethodProperty()
+        [Fact]
+        [Trait("Category", "Requests.Interfaces.Base")]
+        public void Test_ITraktHttpRequest_Has_Method_Property()
         {
             var methodPropertyInfo = typeof(ITraktHttpRequest).GetProperties()
                                                               .Where(p => p.Name == "Method")
