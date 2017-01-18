@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TraktApiSharp.Tests")]
+[assembly: AssemblyTitle("TraktApiSharp.PreNextVersion.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TraktApiSharp.Tests")]
+[assembly: AssemblyProduct("TraktApiSharp.PreNextVersion.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2016 - 2017 Henrik Fröhling")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

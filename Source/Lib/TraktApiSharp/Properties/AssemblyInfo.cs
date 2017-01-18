@@ -2,7 +2,7 @@
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("TraktApiSharp.Tests")]
+[assembly: InternalsVisibleTo("TraktApiSharp.PreNextVersion.Tests")]
 
 [assembly: AssemblyTitle("TraktApiSharp")]
 [assembly: AssemblyDescription("C# wrapper library for the Trakt.tv API.")]
