@@ -16,9 +16,9 @@
 
         internal string Query { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (ResultTypes == null)
                 throw new ArgumentNullException(nameof(ResultTypes));
@@ -35,6 +35,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
+        public string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
     }
 }

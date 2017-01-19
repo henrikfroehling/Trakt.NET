@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.Shows.Seasons;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSeasonsAllRequest : ATraktListGetByIdRequest<TraktSeason>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonsAllRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktSeasonsAllRequest(TraktClient client) : base(client) { }
+        internal TraktSeasonsAllRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public override string UriTemplate => "shows/{id}/seasons{?extended}";
+        public string UriTemplate => "shows/{id}/seasons{?extended}";
     }
 }

@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.Movies;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMovieSummaryRequest : ATraktSingleItemGetByIdRequest<TraktMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktMovieSummaryRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktMovieSummaryRequest(TraktClient client) : base(client) { }
+        internal TraktMovieSummaryRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
-        public override string UriTemplate => "movies/{id}{?extended}";
+        public string UriTemplate => "movies/{id}{?extended}";
     }
 }

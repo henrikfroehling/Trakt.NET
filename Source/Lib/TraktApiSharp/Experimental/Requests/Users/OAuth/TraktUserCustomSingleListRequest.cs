@@ -1,27 +1,25 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    using Base.Get;
-    using Objects.Get.Users.Lists;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserCustomSingleListRequest : ATraktSingleItemGetByIdRequest<TraktList>
+    internal sealed class TraktUserCustomSingleListRequest
     {
-        internal TraktUserCustomSingleListRequest(TraktClient client) : base(client) {}
+        internal TraktUserCustomSingleListRequest(TraktClient client) {}
 
         internal string Username { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
             uriParams.Add("username", Username);
             return uriParams;
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}";
+        public string UriTemplate => "users/{username}/lists/{id}";
     }
 }

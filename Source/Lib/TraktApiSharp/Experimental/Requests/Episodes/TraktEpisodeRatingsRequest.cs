@@ -1,23 +1,21 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Episodes
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Basic;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>, ITraktValidatable
+    internal sealed class TraktEpisodeRatingsRequest : ITraktValidatable
     {
-        internal TraktEpisodeRatingsRequest(TraktClient client) : base(client) { }
+        internal TraktEpisodeRatingsRequest(TraktClient client)  { }
 
         internal uint SeasonNumber { get; set; }
 
         internal uint EpisodeNumber { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             uriParams.Add("season", SeasonNumber.ToString());
             uriParams.Add("episode", EpisodeNumber.ToString());
@@ -25,16 +23,16 @@
             return uriParams;
         }
 
-        public override void Validate()
+        public void Validate()
         {
             if (EpisodeNumber == 0)
                 throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
 
-        public override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/ratings";
+        public string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/ratings";
     }
 }

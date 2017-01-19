@@ -6,6 +6,6 @@
     {
         internal TraktPersonShowCreditsRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "people/{id}/shows{?extended}";
+        public string UriTemplate => "people/{id}/shows{?extended}";
     }
 }

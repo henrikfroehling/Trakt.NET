@@ -10,6 +10,6 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override string UriTemplate => "sync/collection/shows{?extended}";
+        public string UriTemplate => "sync/collection/shows{?extended}";
     }
 }

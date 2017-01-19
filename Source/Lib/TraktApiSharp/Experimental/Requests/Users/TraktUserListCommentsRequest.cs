@@ -1,22 +1,20 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users
 {
-    using Base.Get;
     using Enums;
-    using Objects.Basic;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserListCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>
+    internal sealed class TraktUserListCommentsRequest
     {
-        internal TraktUserListCommentsRequest(TraktClient client) : base(client) {}
+        internal TraktUserListCommentsRequest(TraktClient client) {}
 
         internal string Username { get; set; }
 
         internal TraktCommentSortOrder SortOrder { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             uriParams.Add("username", Username);
 
@@ -26,10 +24,10 @@
             return uriParams;
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}/comments{/sort_order}{?page,limit}";
+        public string UriTemplate => "users/{username}/lists/{id}/comments{/sort_order}{?page,limit}";
     }
 }

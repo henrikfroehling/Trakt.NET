@@ -12,9 +12,9 @@
 
         internal int? Limit { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (Type != null && Type != TraktSyncType.Unspecified)
                 uriParams.Add("type", Type.UriName);
@@ -25,6 +25,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "sync/playback{/type}{?limit}";
+        public string UriTemplate => "sync/playback{/type}{?limit}";
     }
 }

@@ -44,74 +44,74 @@
             request.UriTemplate.Should().Be("calendars/my/shows/new{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
-        public void TestTraktCalendarUserNewShowsRequestUriParamsWithoutStartDateAndDays()
-        {
-            var request = new TraktCalendarUserNewShowsRequest(null);
-            var uriParams = request.GetUriPathParameters();
+        //[TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
+        //public void TestTraktCalendarUserNewShowsRequestUriParamsWithoutStartDateAndDays()
+        //{
+        //    var request = new TraktCalendarUserNewShowsRequest(null);
+        //    var uriParams = request.GetUriPathParameters();
 
-            uriParams.Should().NotBeNull().And.BeEmpty();
-        }
+        //    uriParams.Should().NotBeNull().And.BeEmpty();
+        //}
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
-        public void TestTraktCalendarUserNewShowsRequestUriParamsWithStartDate()
-        {
-            var startDate = DateTime.Now;
+        //[TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
+        //public void TestTraktCalendarUserNewShowsRequestUriParamsWithStartDate()
+        //{
+        //    var startDate = DateTime.Now;
 
-            var request = new TraktCalendarUserNewShowsRequest(null)
-            {
-                StartDate = startDate
-            };
+        //    var request = new TraktCalendarUserNewShowsRequest(null)
+        //    {
+        //        StartDate = startDate
+        //    };
 
-            var uriParams = request.GetUriPathParameters();
+        //    var uriParams = request.GetUriPathParameters();
 
-            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
-            uriParams.Should().Contain("start_date", startDate.ToTraktDateString());
-        }
+        //    uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(1);
+        //    uriParams.Should().Contain("start_date", startDate.ToTraktDateString());
+        //}
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
-        public void TestTraktCalendarUserNewShowsRequestUriParamsWithStartDateAndDays()
-        {
-            var startDate = DateTime.Now;
-            var days = 14;
+        //[TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
+        //public void TestTraktCalendarUserNewShowsRequestUriParamsWithStartDateAndDays()
+        //{
+        //    var startDate = DateTime.Now;
+        //    var days = 14;
 
-            var request = new TraktCalendarUserNewShowsRequest(null)
-            {
-                StartDate = startDate,
-                Days = days
-            };
+        //    var request = new TraktCalendarUserNewShowsRequest(null)
+        //    {
+        //        StartDate = startDate,
+        //        Days = days
+        //    };
 
-            var uriParams = request.GetUriPathParameters();
+        //    var uriParams = request.GetUriPathParameters();
 
-            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+        //    uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
-            uriParams.Should().Contain(new Dictionary<string, object>
-            {
-                ["start_date"] = startDate.ToTraktDateString(),
-                ["days"] = days
-            });
-        }
+        //    uriParams.Should().Contain(new Dictionary<string, object>
+        //    {
+        //        ["start_date"] = startDate.ToTraktDateString(),
+        //        ["days"] = days
+        //    });
+        //}
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
-        public void TestTraktCalendarUserNewShowsRequestUriParamsWithDays()
-        {
-            var startDate = DateTime.Now;
-            var days = 14;
+        //[TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("With OAuth"), TestCategory("Shows")]
+        //public void TestTraktCalendarUserNewShowsRequestUriParamsWithDays()
+        //{
+        //    var startDate = DateTime.Now;
+        //    var days = 14;
 
-            var request = new TraktCalendarUserNewShowsRequest(null)
-            {
-                Days = days
-            };
+        //    var request = new TraktCalendarUserNewShowsRequest(null)
+        //    {
+        //        Days = days
+        //    };
 
-            var uriParams = request.GetUriPathParameters();
+        //    var uriParams = request.GetUriPathParameters();
 
-            uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+        //    uriParams.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
-            uriParams.Should().Contain(new Dictionary<string, object>
-            {
-                ["start_date"] = startDate.ToTraktDateString(),
-                ["days"] = days
-            });
-        }
+        //    uriParams.Should().Contain(new Dictionary<string, object>
+        //    {
+        //        ["start_date"] = startDate.ToTraktDateString(),
+        //        ["days"] = days
+        //    });
+        //}
     }
 }

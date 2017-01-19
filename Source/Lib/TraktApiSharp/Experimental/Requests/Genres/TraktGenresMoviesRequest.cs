@@ -4,6 +4,6 @@
     {
         internal TraktGenresMoviesRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "genres/movies";
+        public string UriTemplate => "genres/movies";
     }
 }

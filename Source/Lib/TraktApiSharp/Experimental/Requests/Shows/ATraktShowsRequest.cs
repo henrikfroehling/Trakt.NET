@@ -1,18 +1,17 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using Base.Get;
     using Interfaces;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktShowsRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktSupportsExtendedInfo, ITraktSupportsFilter
+    internal abstract class ATraktShowsRequest<TItem> : ITraktSupportsExtendedInfo, ITraktSupportsFilter
     {
-        internal ATraktShowsRequest(TraktClient client) : base(client) { }
+        internal ATraktShowsRequest(TraktClient client) { }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public TraktCommonFilter Filter { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
     }
 }

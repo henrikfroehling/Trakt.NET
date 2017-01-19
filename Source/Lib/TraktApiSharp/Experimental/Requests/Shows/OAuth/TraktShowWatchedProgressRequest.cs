@@ -6,6 +6,6 @@
     {
         internal TraktShowWatchedProgressRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "shows/{id}/progress/watched{?hidden,specials,count_specials}";
+        public string UriTemplate => "shows/{id}/progress/watched{?hidden,specials,count_specials}";
     }
 }

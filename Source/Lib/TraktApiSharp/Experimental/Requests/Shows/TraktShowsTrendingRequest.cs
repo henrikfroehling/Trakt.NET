@@ -6,6 +6,6 @@
     {
         internal TraktShowsTrendingRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
+        public string UriTemplate => "shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
     }
 }

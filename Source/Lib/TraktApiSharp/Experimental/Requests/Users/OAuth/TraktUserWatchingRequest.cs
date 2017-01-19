@@ -10,19 +10,19 @@
     {
         internal TraktUserWatchingRequest(TraktClient client) : base(client) {}
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
         internal string Username { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
             uriParams.Add("username", Username);
             return uriParams;
         }
 
-        public override string UriTemplate => "users/{username}/watching{?extended}";
+        public string UriTemplate => "users/{username}/watching{?extended}";
     }
 }

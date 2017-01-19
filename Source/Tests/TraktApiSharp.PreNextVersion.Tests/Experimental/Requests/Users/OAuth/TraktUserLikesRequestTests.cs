@@ -6,9 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
 
     [TestClass]
@@ -29,7 +27,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserLikesRequestIsSubclassOfATraktPaginationGetRequest()
         {
-            typeof(TraktUserLikesRequest).IsSubclassOf(typeof(ATraktPaginationGetRequest<TraktUserLikeItem>)).Should().BeTrue();
+            //typeof(TraktUserLikesRequest).IsSubclassOf(typeof(ATraktPaginationGetRequest<TraktUserLikeItem>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]

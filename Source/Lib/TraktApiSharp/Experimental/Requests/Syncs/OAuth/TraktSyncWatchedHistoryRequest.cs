@@ -18,9 +18,9 @@
 
         internal DateTime? EndAt { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             var isTypeSetAndValid = Type != null && Type != TraktSyncItemType.Unspecified;
 
@@ -45,6 +45,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
+        public string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
     }
 }

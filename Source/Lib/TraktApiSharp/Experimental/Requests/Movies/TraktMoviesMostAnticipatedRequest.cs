@@ -6,6 +6,6 @@
     {
         internal TraktMoviesMostAnticipatedRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public string UriTemplate => "movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
     }
 }

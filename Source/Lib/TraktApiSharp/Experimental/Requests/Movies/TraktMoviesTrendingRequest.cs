@@ -6,6 +6,6 @@
     {
         internal TraktMoviesTrendingRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
     }
 }

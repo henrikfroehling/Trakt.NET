@@ -17,9 +17,9 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             var isTypeSetAndValid = Type != null && Type != TraktRatingsItemType.Unspecified;
 
@@ -40,6 +40,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
+        public string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
     }
 }

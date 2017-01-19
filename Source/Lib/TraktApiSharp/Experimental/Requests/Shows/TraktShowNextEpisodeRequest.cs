@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.Shows.Episodes;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowNextEpisodeRequest : ATraktSingleItemGetByIdRequest<TraktEpisode>, ITraktSupportsExtendedInfo
+    internal sealed class TraktShowNextEpisodeRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktShowNextEpisodeRequest(TraktClient client) : base(client) { }
+        internal TraktShowNextEpisodeRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public override string UriTemplate => "shows/{id}/next_episode{?extended}";
+        public string UriTemplate => "shows/{id}/next_episode{?extended}";
     }
 }

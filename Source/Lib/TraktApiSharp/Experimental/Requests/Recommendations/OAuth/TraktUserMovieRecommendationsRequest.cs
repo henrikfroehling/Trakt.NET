@@ -6,6 +6,6 @@
     {
         internal TraktUserMovieRecommendationsRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "recommendations/movies{?extended,limit}";
+        public string UriTemplate => "recommendations/movies{?extended,limit}";
     }
 }

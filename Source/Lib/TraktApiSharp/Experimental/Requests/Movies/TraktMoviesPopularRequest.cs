@@ -6,6 +6,6 @@
     {
         internal TraktMoviesPopularRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "movies/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public string UriTemplate => "movies/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
     }
 }

@@ -12,9 +12,9 @@
 
         internal string LookupId { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (IdType == null)
                 throw new ArgumentNullException(nameof(IdType));
@@ -31,6 +31,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
+        public string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows.OAuth
 {
-    using Base.Get;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktShowProgressRequest<TItem> : ATraktSingleItemGetByIdRequest<TItem>
+    internal abstract class ATraktShowProgressRequest<TItem>
     {
-        internal ATraktShowProgressRequest(TraktClient client) : base(client) { }
+        internal ATraktShowProgressRequest(TraktClient client) { }
 
         internal bool? Hidden { get; set; }
 
@@ -14,9 +13,9 @@
 
         internal bool? CountSpecials { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (Hidden.HasValue)
                 uriParams.Add("hidden", Hidden.Value.ToString().ToLower());
@@ -30,8 +29,8 @@
             return uriParams;
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
     }
 }

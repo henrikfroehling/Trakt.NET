@@ -6,6 +6,6 @@
     {
         internal TraktCalendarAllMoviesRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "calendars/all/movies{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
+        public string UriTemplate => "calendars/all/movies{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
     }
 }

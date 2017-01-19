@@ -7,10 +7,8 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Episodes;
     using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests;
 
     [TestClass]
@@ -31,7 +29,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
         public void TestTraktEpisodeCommentsRequestIsSubclassOfATraktPaginationGetByIdRequest()
         {
-            typeof(TraktEpisodeCommentsRequest).IsSubclassOf(typeof(ATraktPaginationGetByIdRequest<TraktComment>)).Should().BeTrue();
+            //typeof(TraktEpisodeCommentsRequest).IsSubclassOf(typeof(ATraktPaginationGetByIdRequest<TraktComment>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]

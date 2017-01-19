@@ -1,17 +1,15 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    using Base.Get;
-    using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktMovieRatingsRequest : ATraktSingleItemGetByIdRequest<TraktRating>
+    internal sealed class TraktMovieRatingsRequest
     {
-        internal TraktMovieRatingsRequest(TraktClient client) : base(client) { }
+        internal TraktMovieRatingsRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
-        public override string UriTemplate => "movies/{id}/ratings";
+        public string UriTemplate => "movies/{id}/ratings";
     }
 }

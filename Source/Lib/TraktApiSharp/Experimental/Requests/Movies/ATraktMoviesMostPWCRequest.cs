@@ -9,9 +9,9 @@
 
         internal TraktTimePeriod Period { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (Period != null && Period != TraktTimePeriod.Unspecified)
                 uriParams.Add("period", Period.UriName);

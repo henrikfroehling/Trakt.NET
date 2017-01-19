@@ -1,15 +1,14 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Calendars
 {
-    using Base.Get;
     using Extensions;
     using Interfaces;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktSupportsExtendedInfo, ITraktSupportsFilter
+    internal abstract class ATraktCalendarRequest<TITem> : ITraktSupportsExtendedInfo, ITraktSupportsFilter
     {
-        internal ATraktCalendarRequest(TraktClient client) : base(client) { }
+        internal ATraktCalendarRequest(TraktClient client) { }
 
         internal DateTime? StartDate { get; set; }
 
@@ -19,9 +18,9 @@
 
         public TraktCommonFilter Filter { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (StartDate.HasValue)
                 uriParams.Add("start_date", StartDate.Value.ToTraktDateString());

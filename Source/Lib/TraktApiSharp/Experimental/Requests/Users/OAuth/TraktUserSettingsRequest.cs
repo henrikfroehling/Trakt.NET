@@ -7,8 +7,8 @@
     {
         internal TraktUserSettingsRequest(TraktClient client) : base(client) {}
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate => "users/settings";
+        public string UriTemplate => "users/settings";
     }
 }

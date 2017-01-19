@@ -15,9 +15,9 @@
 
         internal int[] RatingFilter { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             uriParams.Add("username", Username);
 
@@ -40,6 +40,6 @@
             return uriParams;
         }
         
-        public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
+        public string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
     }
 }

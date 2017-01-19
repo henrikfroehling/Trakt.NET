@@ -10,9 +10,9 @@
 
         internal TraktSyncItemType Type { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             if (Type != null && Type != TraktSyncItemType.Unspecified)
                 uriParams.Add("type", Type.UriName);
@@ -20,6 +20,6 @@
             return uriParams;
         }
 
-        public override string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
+        public string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
     }
 }

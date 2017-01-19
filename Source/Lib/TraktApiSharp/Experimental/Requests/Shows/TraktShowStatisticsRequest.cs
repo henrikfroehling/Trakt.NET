@@ -1,17 +1,15 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using Base.Get;
-    using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktShowStatisticsRequest : ATraktSingleItemGetByIdRequest<TraktStatistics>
+    internal sealed class TraktShowStatisticsRequest
     {
-        internal TraktShowStatisticsRequest(TraktClient client) : base(client) { }
+        internal TraktShowStatisticsRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public override string UriTemplate => "shows/{id}/stats";
+        public string UriTemplate => "shows/{id}/stats";
     }
 }

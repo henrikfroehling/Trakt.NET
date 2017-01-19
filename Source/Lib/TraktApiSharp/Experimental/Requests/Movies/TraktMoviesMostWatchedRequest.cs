@@ -6,6 +6,6 @@
     {
         internal TraktMoviesMostWatchedRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public string UriTemplate => "movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
     }
 }

@@ -2,10 +2,10 @@
 {
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktCalendarUserRequest<TITem> : ATraktCalendarRequest<TITem>
+    internal abstract class ATraktCalendarUserRequest<TITem>
     {
-        internal ATraktCalendarUserRequest(TraktClient client) : base(client) { }
+        internal ATraktCalendarUserRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }
 }

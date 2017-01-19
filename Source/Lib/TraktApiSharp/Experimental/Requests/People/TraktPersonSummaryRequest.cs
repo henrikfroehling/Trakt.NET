@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.People
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.People;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktPersonSummaryRequest : ATraktSingleItemGetByIdRequest<TraktPerson>, ITraktSupportsExtendedInfo
+    internal sealed class TraktPersonSummaryRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktPersonSummaryRequest(TraktClient client) : base(client) { }
+        internal TraktPersonSummaryRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
 
-        public override string UriTemplate => "people/{id}{?extended}";
+        public string UriTemplate => "people/{id}{?extended}";
     }
 }

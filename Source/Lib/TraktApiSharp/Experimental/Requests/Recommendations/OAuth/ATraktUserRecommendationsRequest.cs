@@ -1,15 +1,14 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Recommendations.OAuth
 {
-    using Base.Get;
     using Interfaces;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktUserRecommendationsRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktSupportsExtendedInfo
+    internal abstract class ATraktUserRecommendationsRequest<TItem> : ITraktSupportsExtendedInfo
     {
-        internal ATraktUserRecommendationsRequest(TraktClient client) : base(client) { }
+        internal ATraktUserRecommendationsRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
     }

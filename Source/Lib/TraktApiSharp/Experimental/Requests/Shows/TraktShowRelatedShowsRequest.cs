@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.Shows;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowRelatedShowsRequest : ATraktPaginationGetByIdRequest<TraktShow>, ITraktSupportsExtendedInfo
+    internal sealed class TraktShowRelatedShowsRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktShowRelatedShowsRequest(TraktClient client) : base(client) { }
+        internal TraktShowRelatedShowsRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public override string UriTemplate => "shows/{id}/related{?extended,page,limit}";
+        public string UriTemplate => "shows/{id}/related{?extended,page,limit}";
     }
 }

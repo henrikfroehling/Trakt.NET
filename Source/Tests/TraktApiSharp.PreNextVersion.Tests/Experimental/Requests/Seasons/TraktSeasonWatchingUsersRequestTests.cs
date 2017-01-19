@@ -5,10 +5,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Base.Get;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests;
 
     [TestClass]
@@ -29,7 +27,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
         public void TestTraktSeasonWatchingUsersRequestIsSubclassOfATraktListGetByIdRequest()
         {
-            typeof(TraktSeasonWatchingUsersRequest).IsSubclassOf(typeof(ATraktListGetByIdRequest<TraktUser>)).Should().BeTrue();
+            //typeof(TraktSeasonWatchingUsersRequest).IsSubclassOf(typeof(ATraktListGetByIdRequest<TraktUser>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]

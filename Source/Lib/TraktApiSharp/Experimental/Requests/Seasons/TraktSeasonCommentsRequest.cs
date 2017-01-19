@@ -1,22 +1,20 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
-    using Base.Get;
     using Enums;
-    using Objects.Basic;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktSeasonCommentsRequest : ATraktPaginationGetByIdRequest<TraktComment>
+    internal sealed class TraktSeasonCommentsRequest
     {
-        internal TraktSeasonCommentsRequest(TraktClient client) : base(client) { }
+        internal TraktSeasonCommentsRequest(TraktClient client) { }
 
         internal uint SeasonNumber { get; set; }
 
         internal TraktCommentSortOrder Sorting { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             uriParams.Add("season", SeasonNumber.ToString());
 
@@ -26,10 +24,10 @@
             return uriParams;
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
 
-        public override string UriTemplate => "shows/{id}/seasons/{season}/comments{/sorting}{?page,limit}";
+        public string UriTemplate => "shows/{id}/seasons/{season}/comments{/sorting}{?page,limit}";
     }
 }

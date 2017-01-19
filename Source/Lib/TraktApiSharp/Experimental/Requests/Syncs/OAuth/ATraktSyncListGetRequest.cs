@@ -1,12 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    using Base.Get;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktSyncListGetRequest<TItem> : ATraktListGetRequest<TItem>
+    internal abstract class ATraktSyncListGetRequest<TItem>
     {
-        internal ATraktSyncListGetRequest(TraktClient client) : base(client) { }
+        internal ATraktSyncListGetRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }
 }

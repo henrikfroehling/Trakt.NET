@@ -1,17 +1,15 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments
 {
-    using Base.Get;
-    using Objects.Basic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktCommentSummaryRequest : ATraktSingleItemGetByIdRequest<TraktComment>
+    internal sealed class TraktCommentSummaryRequest
     {
-        internal TraktCommentSummaryRequest(TraktClient client) : base(client) { }
+        internal TraktCommentSummaryRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
-        public override string UriTemplate => "comments/{id}";
+        public string UriTemplate => "comments/{id}";
     }
 }

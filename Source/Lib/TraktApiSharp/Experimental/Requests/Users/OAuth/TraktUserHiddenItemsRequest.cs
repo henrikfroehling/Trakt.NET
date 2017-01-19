@@ -13,9 +13,9 @@
 
         internal TraktHiddenItemType Type { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
 
             uriParams.Add("section", Section.UriName);
 
@@ -25,8 +25,8 @@
             return uriParams;
         }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public override string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
+        public string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
     }
 }

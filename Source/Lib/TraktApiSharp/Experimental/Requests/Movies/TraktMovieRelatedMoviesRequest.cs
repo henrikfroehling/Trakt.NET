@@ -1,21 +1,19 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    using Base.Get;
     using Interfaces;
-    using Objects.Get.Movies;
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMovieRelatedMoviesRequest : ATraktPaginationGetByIdRequest<TraktMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktMovieRelatedMoviesRequest : ITraktSupportsExtendedInfo
     {
-        internal TraktMovieRelatedMoviesRequest(TraktClient client) : base(client) { }
+        internal TraktMovieRelatedMoviesRequest(TraktClient client) { }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
-        public override string UriTemplate => "movies/{id}/related{?extended,page,limit}";
+        public string UriTemplate => "movies/{id}/related{?extended,page,limit}";
     }
 }
