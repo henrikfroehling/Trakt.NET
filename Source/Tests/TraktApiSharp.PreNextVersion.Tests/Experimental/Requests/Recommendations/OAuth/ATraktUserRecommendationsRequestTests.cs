@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Recommendations"), TestCategory("With OAuth")]
         public void TestATraktUserRecommendationsRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktUserRecommendationsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktUserRecommendationsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

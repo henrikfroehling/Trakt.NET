@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMoviesBoxOfficeRequest : ATraktListGetRequest<TraktBoxOfficeMovie>, ITraktExtendedInfo
+    internal sealed class TraktMoviesBoxOfficeRequest : ATraktListGetRequest<TraktBoxOfficeMovie>, ITraktSupportsExtendedInfo
     {
         internal TraktMoviesBoxOfficeRequest(TraktClient client) : base(client) { }
 

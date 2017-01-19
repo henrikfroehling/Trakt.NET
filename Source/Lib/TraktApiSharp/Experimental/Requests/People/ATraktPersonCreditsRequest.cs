@@ -5,7 +5,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktPersonCreditsRequest<TITem> : ATraktSingleItemGetByIdRequest<TITem>, ITraktExtendedInfo
+    internal abstract class ATraktPersonCreditsRequest<TITem> : ATraktSingleItemGetByIdRequest<TITem>, ITraktSupportsExtendedInfo
     {
         internal ATraktPersonCreditsRequest(TraktClient client) : base(client) { }
 

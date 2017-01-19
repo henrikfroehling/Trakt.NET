@@ -12,13 +12,13 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktExtendedInfoIsInterface()
         {
-            typeof(ITraktExtendedInfo).IsInterface.Should().BeTrue();
+            typeof(ITraktSupportsExtendedInfo).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktExtendedInfoHasExtendedOptionProperty()
         {
-            var extendedOptionPropertyInfo = typeof(ITraktExtendedInfo).GetProperties()
+            var extendedOptionPropertyInfo = typeof(ITraktSupportsExtendedInfo).GetProperties()
                                                                        .Where(p => p.Name == "ExtendedInfo")
                                                                        .FirstOrDefault();
 

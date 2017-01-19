@@ -5,7 +5,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktMoviesRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo, ITraktFilterable
+    internal abstract class ATraktMoviesRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktSupportsExtendedInfo, ITraktFilterable
     {
         internal ATraktMoviesRequest(TraktClient client) : base(client) { }
 

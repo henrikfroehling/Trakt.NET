@@ -46,7 +46,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Movies")]
         public void TestTraktMovieRelatedMoviesRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

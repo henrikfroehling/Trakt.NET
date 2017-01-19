@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktUserProfileRequest : ATraktUsersSingleItemGetRequest<TraktUser>, ITraktExtendedInfo
+    internal sealed class TraktUserProfileRequest : ATraktUsersSingleItemGetRequest<TraktUser>, ITraktSupportsExtendedInfo
     {
         internal TraktUserProfileRequest(TraktClient client) : base(client) {}
 

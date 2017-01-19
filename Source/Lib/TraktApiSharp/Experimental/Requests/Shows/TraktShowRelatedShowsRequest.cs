@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowRelatedShowsRequest : ATraktPaginationGetByIdRequest<TraktShow>, ITraktExtendedInfo
+    internal sealed class TraktShowRelatedShowsRequest : ATraktPaginationGetByIdRequest<TraktShow>, ITraktSupportsExtendedInfo
     {
         internal TraktShowRelatedShowsRequest(TraktClient client) : base(client) { }
 

@@ -5,7 +5,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktSyncPaginationGetRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktExtendedInfo
+    internal abstract class ATraktSyncPaginationGetRequest<TItem> : ATraktPaginationGetRequest<TItem>, ITraktSupportsExtendedInfo
     {
         internal ATraktSyncPaginationGetRequest(TraktClient client) : base(client) { }
 

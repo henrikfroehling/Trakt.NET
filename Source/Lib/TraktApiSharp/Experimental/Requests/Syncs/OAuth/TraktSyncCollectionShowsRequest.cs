@@ -4,7 +4,7 @@
     using Objects.Get.Collection;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncCollectionShowsRequest : ATraktSyncListGetRequest<TraktCollectionShow>, ITraktExtendedInfo
+    internal sealed class TraktSyncCollectionShowsRequest : ATraktSyncListGetRequest<TraktCollectionShow>, ITraktSupportsExtendedInfo
     {
         internal TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
 

@@ -50,7 +50,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]
         public void TestTraktEpisodeWatchingUsersRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Episodes")]

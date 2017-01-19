@@ -51,7 +51,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
         public void TestTraktShowsRecentlyUpdatedRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]

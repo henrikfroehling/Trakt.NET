@@ -5,7 +5,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktUsersListGetRequest<TItem> : ATraktListGetRequest<TItem>, ITraktExtendedInfo
+    internal abstract class ATraktUsersListGetRequest<TItem> : ATraktListGetRequest<TItem>, ITraktSupportsExtendedInfo
     {
         internal ATraktUsersListGetRequest(TraktClient client) : base(client) {}
 

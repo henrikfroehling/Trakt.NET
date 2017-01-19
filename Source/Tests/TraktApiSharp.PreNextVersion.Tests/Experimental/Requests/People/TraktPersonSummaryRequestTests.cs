@@ -32,7 +32,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("People")]
         public void TestTraktPersonSummaryRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktPersonSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktPersonSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("People")]

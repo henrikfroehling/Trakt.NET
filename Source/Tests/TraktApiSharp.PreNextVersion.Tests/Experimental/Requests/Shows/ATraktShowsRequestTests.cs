@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
         public void TestATraktShowsRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]

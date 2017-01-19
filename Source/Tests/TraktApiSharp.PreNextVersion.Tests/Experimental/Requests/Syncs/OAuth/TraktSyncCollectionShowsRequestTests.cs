@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestTraktSyncCollectionShowsRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]

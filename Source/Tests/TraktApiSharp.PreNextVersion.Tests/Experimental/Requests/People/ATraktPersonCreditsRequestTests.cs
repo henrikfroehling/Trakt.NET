@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("People"), TestCategory("Credits")]
         public void TestATraktPersonCreditsRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktPersonCreditsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktPersonCreditsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

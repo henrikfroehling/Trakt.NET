@@ -35,7 +35,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
         public void TestATraktCalendarRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]

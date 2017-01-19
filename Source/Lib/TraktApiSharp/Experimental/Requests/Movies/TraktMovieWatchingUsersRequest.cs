@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMovieWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>, ITraktExtendedInfo
+    internal sealed class TraktMovieWatchingUsersRequest : ATraktListGetByIdRequest<TraktUser>, ITraktSupportsExtendedInfo
     {
         internal TraktMovieWatchingUsersRequest(TraktClient client) : base(client) { }
 

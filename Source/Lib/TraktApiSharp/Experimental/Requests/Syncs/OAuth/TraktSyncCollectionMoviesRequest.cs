@@ -4,7 +4,7 @@
     using Objects.Get.Collection;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncListGetRequest<TraktCollectionMovie>, ITraktExtendedInfo
+    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncListGetRequest<TraktCollectionMovie>, ITraktSupportsExtendedInfo
     {
         internal TraktSyncCollectionMoviesRequest(TraktClient client) : base(client) { }
 

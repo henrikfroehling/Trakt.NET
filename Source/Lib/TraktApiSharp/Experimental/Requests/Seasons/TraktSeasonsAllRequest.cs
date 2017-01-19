@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSeasonsAllRequest : ATraktListGetByIdRequest<TraktSeason>, ITraktExtendedInfo
+    internal sealed class TraktSeasonsAllRequest : ATraktListGetByIdRequest<TraktSeason>, ITraktSupportsExtendedInfo
     {
         internal TraktSeasonsAllRequest(TraktClient client) : base(client) { }
 

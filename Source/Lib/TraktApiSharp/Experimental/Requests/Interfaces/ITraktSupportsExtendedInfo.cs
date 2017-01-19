@@ -2,7 +2,7 @@
 {
     using TraktApiSharp.Requests.Params;
 
-    internal interface ITraktExtendedInfo
+    internal interface ITraktSupportsExtendedInfo
     {
         TraktExtendedInfo ExtendedInfo { get; set; }
     }

@@ -49,7 +49,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]
         public void TestTraktSeasonSingleRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Seasons")]

@@ -28,7 +28,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth")]
         public void TestATraktSearchRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth")]

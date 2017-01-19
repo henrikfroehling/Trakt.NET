@@ -6,7 +6,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowSummaryRequest : ATraktSingleItemGetByIdRequest<TraktShow>, ITraktExtendedInfo
+    internal sealed class TraktShowSummaryRequest : ATraktSingleItemGetByIdRequest<TraktShow>, ITraktSupportsExtendedInfo
     {
         internal TraktShowSummaryRequest(TraktClient client) : base(client) { }
 

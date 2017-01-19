@@ -9,7 +9,7 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedMovie>, ITraktExtendedInfo
+    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktPaginationGetRequest<TraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo
     {
         internal TraktMoviesRecentlyUpdatedRequest(TraktClient client) : base(client) { }
 

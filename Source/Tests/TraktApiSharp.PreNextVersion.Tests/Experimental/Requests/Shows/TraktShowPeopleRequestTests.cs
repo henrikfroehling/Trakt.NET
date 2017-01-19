@@ -46,7 +46,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows")]
         public void TestTraktShowPeopleRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktShowPeopleRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktShowPeopleRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

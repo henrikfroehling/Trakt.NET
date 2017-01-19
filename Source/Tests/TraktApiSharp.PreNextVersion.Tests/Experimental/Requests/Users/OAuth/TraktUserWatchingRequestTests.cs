@@ -48,7 +48,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserWatchingRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(TraktUserWatchingRequest).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(TraktUserWatchingRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]

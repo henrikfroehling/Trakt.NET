@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestATraktUsersPaginationGetRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktUsersPaginationGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktUsersPaginationGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

@@ -31,7 +31,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestATraktSyncPaginationGetRequestImplementsITraktExtendedInfoInterface()
         {
-            typeof(ATraktSyncPaginationGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktExtendedInfo));
+            typeof(ATraktSyncPaginationGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
     }
 }

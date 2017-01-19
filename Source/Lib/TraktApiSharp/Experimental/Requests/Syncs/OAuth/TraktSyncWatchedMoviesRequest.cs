@@ -4,7 +4,7 @@
     using Objects.Get.Watched;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncWatchedMoviesRequest : ATraktSyncListGetRequest<TraktWatchedMovie>, ITraktExtendedInfo
+    internal sealed class TraktSyncWatchedMoviesRequest : ATraktSyncListGetRequest<TraktWatchedMovie>, ITraktSupportsExtendedInfo
     {
         internal TraktSyncWatchedMoviesRequest(TraktClient client) : base(client) { }
 
