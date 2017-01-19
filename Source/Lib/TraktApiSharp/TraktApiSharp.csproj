@@ -206,7 +206,7 @@
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPathParameters.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasUriPathParameters.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestAuthorization.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Post\Bodyless\ITraktListBodylessPostRequest.cs" />

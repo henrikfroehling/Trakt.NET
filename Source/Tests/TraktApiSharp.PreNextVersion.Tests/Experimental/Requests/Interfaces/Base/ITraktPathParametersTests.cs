@@ -12,13 +12,13 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPathParametersIsInterface()
         {
-            typeof(ITraktPathParameters).IsInterface.Should().BeTrue();
+            typeof(ITraktHasUriPathParameters).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPathParametersHasGetUriPathParametersMethod()
         {
-            var methodInfo = typeof(ITraktPathParameters).GetMethods()
+            var methodInfo = typeof(ITraktHasUriPathParameters).GetMethods()
                                                          .Where(m => m.Name == "GetUriPathParameters")
                                                          .FirstOrDefault();
 

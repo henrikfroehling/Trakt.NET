@@ -18,7 +18,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableDerivesFromITraktPathParametersInterface()
         {
-            typeof(ITraktUriBuildable).GetInterfaces().Should().Contain(typeof(ITraktPathParameters));
+            typeof(ITraktUriBuildable).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
