@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
     internal interface ITraktHasId : ITraktObjectRequest, ITraktValidatable
     {
