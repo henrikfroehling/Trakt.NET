@@ -12,19 +12,19 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableIsInterface()
         {
-            typeof(ITraktUriBuildable).IsInterface.Should().BeTrue();
+            typeof(ITraktHasUri).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableDerivesFromITraktPathParametersInterface()
         {
-            typeof(ITraktUriBuildable).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
+            typeof(ITraktHasUri).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasUriTemplateProperty()
         {
-            var uriTemplatePropertyInfo = typeof(ITraktUriBuildable).GetProperties()
+            var uriTemplatePropertyInfo = typeof(ITraktHasUri).GetProperties()
                                                                     .Where(p => p.Name == "UriTemplate")
                                                                     .FirstOrDefault();
 
@@ -36,7 +36,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasUrlProperty()
         {
-            var urlPropertyInfo = typeof(ITraktUriBuildable).GetProperties()
+            var urlPropertyInfo = typeof(ITraktHasUri).GetProperties()
                                                             .Where(p => p.Name == "Url")
                                                             .FirstOrDefault();
 
@@ -48,7 +48,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktUriBuildableHasBuildUrlMethod()
         {
-            var methodInfo = typeof(ITraktUriBuildable).GetMethods()
+            var methodInfo = typeof(ITraktHasUri).GetMethods()
                                                        .Where(m => m.Name == "BuildUrl")
                                                        .FirstOrDefault();
 

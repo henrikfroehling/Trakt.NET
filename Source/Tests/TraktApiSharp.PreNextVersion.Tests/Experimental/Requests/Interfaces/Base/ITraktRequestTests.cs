@@ -29,7 +29,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestDerivesFromITraktUriBuildableInterface()
         {
-            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktUriBuildable));
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHasUri));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
