@@ -110,13 +110,7 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktBaseRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktListRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktNoContentRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktPaginationRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBodyTests.cs" />
-    <Compile Include="Experimental\Requests\Base\TraktRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequestTests.cs" />
@@ -153,12 +147,7 @@
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktListRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktNoContentRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostableTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktSingleItemRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequestTests.cs" />
@@ -722,7 +711,9 @@
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Experimental\Requests\Base\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

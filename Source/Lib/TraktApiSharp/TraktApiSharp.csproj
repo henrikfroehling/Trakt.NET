@@ -118,14 +118,8 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktBaseRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktListRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktNoContentRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktPaginationRequest.cs" />
-    <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody.cs" />
-    <Compile Include="Experimental\Requests\Base\TraktRequestBody.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequest.cs" />
@@ -167,16 +161,11 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsExtendedInfo.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsFilter.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsPagination.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktListRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktNoContentRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktObjectRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasUri.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktSingleItemRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequest.cs" />
@@ -706,7 +695,9 @@
     <Compile Include="Services\TraktLanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Experimental\Requests\Base\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
