@@ -226,7 +226,6 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktNoContentRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktObjectRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPaginationTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostableTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktSingleItemRequestTests.cs" />
