@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest_Tests.cs" />
+    <Compile Include="Requests\Base\ATraktGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
