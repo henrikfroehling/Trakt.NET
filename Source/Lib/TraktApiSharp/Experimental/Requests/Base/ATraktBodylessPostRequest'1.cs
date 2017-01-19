@@ -4,7 +4,7 @@
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
     using TraktApiSharp.Requests;
 
-    internal abstract class TraktBodylessPostRequest<TContentType> : TraktRequest<TContentType>, ITraktBodylessPostRequest<TContentType>
+    internal abstract class ATraktBodylessPostRequest<TContentType> : ATraktRequest<TContentType>, ITraktBodylessPostRequest<TContentType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

@@ -5,7 +5,7 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class TraktRequest : ITraktRequest
+    internal abstract class ATraktRequest<TContentType> : ITraktRequest<TContentType>
     {
         public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 

@@ -12,9 +12,9 @@
     using Xunit;
 
     [Category("Requests.Base")]
-    public class TraktDeleteRequest_Tests
+    public class ATraktDeleteRequest_Tests
     {
-        internal class TraktDeleteRequestMock : TraktDeleteRequest
+        internal class TraktDeleteRequestMock : ATraktDeleteRequest
         {
             public override string UriTemplate => throw new NotImplementedException();
 
@@ -30,43 +30,43 @@
         };
 
         [Fact]
-        public void Test_TraktDeleteRequest_Is_AbstractClass()
+        public void Test_ATraktDeleteRequest_Is_AbstractClass()
         {
-            typeof(TraktDeleteRequest).IsAbstract.Should().BeTrue();
+            typeof(ATraktDeleteRequest).IsAbstract.Should().BeTrue();
         }
         
         [Fact]
-        public void Test_TraktDeleteRequest_Inherits_TraktRequest()
+        public void Test_ATraktDeleteRequest_Inherits_ATraktRequest()
         {
-            typeof(TraktDeleteRequest).IsSubclassOf(typeof(TraktRequest)).Should().BeTrue();
+            typeof(ATraktDeleteRequest).IsSubclassOf(typeof(ATraktRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktDeleteRequest_Implements_ITraktDeleteRequest_Interface()
+        public void Test_ATraktDeleteRequest_Implements_ITraktDeleteRequest_Interface()
         {
-            typeof(TraktDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktDeleteRequest));
+            typeof(ATraktDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktDeleteRequest));
         }
 
         [Fact]
-        public void Test_TraktDeleteRequest_Returns_Valid_AuthorizationRequirement()
+        public void Test_ATraktDeleteRequest_Returns_Valid_AuthorizationRequirement()
         {
             var requestMock = new TraktDeleteRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktDeleteRequest_Returns_Valid_Method()
+        public void Test_ATraktDeleteRequest_Returns_Valid_Method()
         {
             var requestMock = new TraktDeleteRequestMock();
             requestMock.Method.Should().Be(HttpMethod.Delete);
         }
 
         [Fact]
-        public void Test_TraktDeleteRequest_Has_Sealed_Method_Property()
+        public void Test_ATraktDeleteRequest_Has_Sealed_Method_Property()
         {
-            var propertyInfo = typeof(TraktDeleteRequest).GetProperties()
-                                                         .Where(p => p.Name == "Method")
-                                                         .FirstOrDefault();
+            var propertyInfo = typeof(ATraktDeleteRequest).GetProperties()
+                                                          .Where(p => p.Name == "Method")
+                                                          .FirstOrDefault();
 
             propertyInfo.GetMethod.IsFinal.Should().BeTrue();
         }
