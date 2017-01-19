@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHttpRequest_Tests.cs" />
+    <Compile Include="Traits\CategoryAttribute.cs" />
+    <Compile Include="Traits\CategoryDiscoverer.cs" />
+    <Compile Include="Traits\DiscovererUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Lib\TraktApiSharp\TraktApiSharp.csproj">

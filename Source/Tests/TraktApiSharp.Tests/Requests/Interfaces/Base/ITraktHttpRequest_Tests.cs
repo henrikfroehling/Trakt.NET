@@ -4,19 +4,19 @@
     using System.Linq;
     using System.Net.Http;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Tests.Traits;
     using Xunit;
 
+    [Category("Requests.Interfaces.Base")]
     public class ITraktHttpRequest_Tests
     {
         [Fact]
-        [Trait("Category", "Requests.Interfaces.Base")]
         public void Test_ITraktHttpRequest_IsInterface()
         {
             typeof(ITraktHttpRequest).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        [Trait("Category", "Requests.Interfaces.Base")]
         public void Test_ITraktHttpRequest_Has_Method_Property()
         {
             var methodPropertyInfo = typeof(ITraktHttpRequest).GetProperties()
