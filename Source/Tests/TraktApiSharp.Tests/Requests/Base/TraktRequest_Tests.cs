@@ -29,7 +29,7 @@
                                                    .Where(p => p.Name == "AuthorizationRequirement")
                                                    .FirstOrDefault();
 
-            propertyInfo.GetGetMethod().IsAbstract.Should().BeTrue();
+            propertyInfo.GetMethod.IsAbstract.Should().BeTrue();
         }
 
         [Fact]
@@ -39,7 +39,7 @@
                                                    .Where(p => p.Name == "Method")
                                                    .FirstOrDefault();
 
-            propertyInfo.GetGetMethod().IsAbstract.Should().BeTrue();
+            propertyInfo.GetMethod.IsAbstract.Should().BeTrue();
         }
 
         [Fact]
@@ -49,7 +49,7 @@
                                                    .Where(p => p.Name == "UriTemplate")
                                                    .FirstOrDefault();
 
-            propertyInfo.GetGetMethod().IsAbstract.Should().BeTrue();
+            propertyInfo.GetMethod.IsAbstract.Should().BeTrue();
         }
 
         [Fact]
