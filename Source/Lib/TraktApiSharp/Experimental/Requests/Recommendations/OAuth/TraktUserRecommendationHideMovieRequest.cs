@@ -1,14 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Recommendations.OAuth
 {
-    using Base.Delete;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserRecommendationHideMovieRequest : ATraktNoContentDeleteByIdRequest
+    internal sealed class TraktUserRecommendationHideMovieRequest
     {
-        internal TraktUserRecommendationHideMovieRequest(TraktClient client) : base(client) { }
+        internal TraktUserRecommendationHideMovieRequest(TraktClient client) { }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
 
-        public override string UriTemplate => "recommendations/movies/{id}";
+        public string UriTemplate => "recommendations/movies/{id}";
     }
 }

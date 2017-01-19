@@ -3,21 +3,21 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserCustomListDeleteRequest : ATraktUsersDeleteByIdRequest
+    internal sealed class TraktUserCustomListDeleteRequest
     {
-        internal TraktUserCustomListDeleteRequest(TraktClient client) : base(client) { }
+        internal TraktUserCustomListDeleteRequest(TraktClient client) { }
 
         internal string Username { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters()
+        public IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = base.GetUriPathParameters();
+            var uriParams = new Dictionary<string, object>();
             uriParams.Add("username", Username);
             return uriParams;
         }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}";
+        public string UriTemplate => "users/{username}/lists/{id}";
     }
 }

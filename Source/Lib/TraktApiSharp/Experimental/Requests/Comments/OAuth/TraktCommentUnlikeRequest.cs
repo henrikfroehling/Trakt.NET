@@ -1,14 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments.OAuth
 {
-    using Base.Delete;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktCommentUnlikeRequest : ATraktNoContentDeleteByIdRequest
+    internal sealed class TraktCommentUnlikeRequest
     {
-        internal TraktCommentUnlikeRequest(TraktClient client) : base(client) { }
+        internal TraktCommentUnlikeRequest(TraktClient client) { }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
-        public override string UriTemplate => "comments/{id}/like";
+        public string UriTemplate => "comments/{id}/like";
     }
 }

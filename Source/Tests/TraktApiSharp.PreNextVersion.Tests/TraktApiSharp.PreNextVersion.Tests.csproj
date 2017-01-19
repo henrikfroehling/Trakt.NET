@@ -115,7 +115,6 @@
     <Compile Include="Experimental\Requests\Base\ATraktNoContentRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktPaginationRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktSingleItemRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Delete\ATraktNoContentDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktListGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktListGetRequestTests.cs" />
@@ -125,7 +124,6 @@
     <Compile Include="Experimental\Requests\Base\Get\ATraktPaginationGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Get\ATraktSingleItemGetRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\Delete\ITraktNoContentDeleteByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Delete\ITraktNoContentDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktListGetRequestTests.cs" />
