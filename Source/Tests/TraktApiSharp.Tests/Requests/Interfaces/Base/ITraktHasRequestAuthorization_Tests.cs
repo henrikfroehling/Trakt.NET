@@ -20,8 +20,8 @@
         public void Test_ITraktHasRequestAuthorization_Has_AuthorizationRequirement_Property()
         {
             var authorizationRequirementPropertyInfo = typeof(ITraktHasRequestAuthorization).GetProperties()
-                                                                                         .Where(p => p.Name == "AuthorizationRequirement")
-                                                                                         .FirstOrDefault();
+                                                                                            .Where(p => p.Name == "AuthorizationRequirement")
+                                                                                            .FirstOrDefault();
 
             authorizationRequirementPropertyInfo.CanRead.Should().BeTrue();
             authorizationRequirementPropertyInfo.CanWrite.Should().BeFalse();
