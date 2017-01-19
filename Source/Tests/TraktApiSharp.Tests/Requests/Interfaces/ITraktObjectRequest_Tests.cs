@@ -11,7 +11,7 @@
     public class ITraktObjectRequest_Tests
     {
         [Fact]
-        public void Test_ITraktObjectRequest_IsInterface()
+        public void Test_ITraktObjectRequest_Is_Interface()
         {
             typeof(ITraktObjectRequest).IsInterface.Should().BeTrue();
         }

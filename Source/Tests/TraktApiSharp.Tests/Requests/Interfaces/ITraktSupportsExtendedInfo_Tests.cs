@@ -11,7 +11,7 @@
     public class ITraktSupportsExtendedInfo_Tests
     {
         [Fact]
-        public void Test_ITraktSupportsExtendedInfo_IsInterface()
+        public void Test_ITraktSupportsExtendedInfo_Is_Interface()
         {
             typeof(ITraktSupportsExtendedInfo).IsInterface.Should().BeTrue();
         }

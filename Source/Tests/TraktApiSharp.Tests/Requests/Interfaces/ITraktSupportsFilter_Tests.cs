@@ -11,7 +11,7 @@
     public class ITraktSupportsFilter_Tests
     {
         [Fact]
-        public void Test_ITraktSupportsFilter_IsInterface()
+        public void Test_ITraktSupportsFilter_Is_Interface()
         {
             typeof(ITraktSupportsFilter).IsInterface.Should().BeTrue();
         }

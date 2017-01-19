@@ -1,21 +1,29 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces.Base
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktHasRequestBodyTests
+    [Category("Requests.Interfaces.Base")]
+    public class ITraktHasRequestBody_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasRequestBodyIsInterface()
+        [Fact]
+        public void Test_ITraktHasRequestBody_Is_Interface()
         {
             typeof(ITraktHasRequestBody<>).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasRequestBodyHasRequestBodyContentProperty()
+        [Fact]
+        public void Test_ITraktHasRequestBody_Has_GenericTypeParameter()
+        {
+            typeof(ITraktHasRequestBody<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ITraktHasRequestBody<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [Fact]
+        public void Test_ITraktHasRequestBody_Has_RequestBodyContent_Property()
         {
             var requestBodyContentPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
                                                                                   .Where(p => p.Name == "RequestBodyContent")
@@ -26,8 +34,8 @@
             requestBodyContentPropertyInfo.PropertyType.Should().Be(typeof(int));
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasRequestBodyHasRequestBodyProperty()
+        [Fact]
+        public void Test_ITraktHasRequestBody_Has_RequestBody_Property()
         {
             var requestBodyPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
                                                                            .Where(p => p.Name == "RequestBody")

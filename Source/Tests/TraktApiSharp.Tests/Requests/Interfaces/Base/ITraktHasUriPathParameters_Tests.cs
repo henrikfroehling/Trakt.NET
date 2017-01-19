@@ -11,7 +11,7 @@
     public class ITraktHasUriPathParameters_Tests
     {
         [Fact]
-        public void Test_ITraktHasUriPathParameters_IsInterface()
+        public void Test_ITraktHasUriPathParameters_Is_Interface()
         {
             typeof(ITraktHasUriPathParameters).IsInterface.Should().BeTrue();
         }

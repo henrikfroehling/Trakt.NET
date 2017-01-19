@@ -10,7 +10,7 @@
     public class ITraktSupportsPagination_Tests
     {
         [Fact]
-        public void Test_ITraktSupportsPagination_IsInterface()
+        public void Test_ITraktSupportsPagination_Is_Interface()
         {
             typeof(ITraktSupportsPagination).IsInterface.Should().BeTrue();
         }

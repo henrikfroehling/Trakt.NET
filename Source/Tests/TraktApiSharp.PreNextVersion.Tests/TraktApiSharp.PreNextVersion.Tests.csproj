@@ -110,7 +110,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequestTests.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequestTests.cs" />

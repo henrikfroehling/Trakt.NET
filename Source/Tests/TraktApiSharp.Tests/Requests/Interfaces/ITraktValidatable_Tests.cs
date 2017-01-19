@@ -10,7 +10,7 @@
     public class ITraktValidatable_Tests
     {
         [Fact]
-        public void Test_ITraktValidatable_IsInterface()
+        public void Test_ITraktValidatable_Is_Interface()
         {
             typeof(ITraktValidatable).IsInterface.Should().BeTrue();
         }

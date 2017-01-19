@@ -11,7 +11,7 @@
     public class ITraktHttpRequest_Tests
     {
         [Fact]
-        public void Test_ITraktHttpRequest_IsInterface()
+        public void Test_ITraktHttpRequest_Is_Interface()
         {
             typeof(ITraktHttpRequest).IsInterface.Should().BeTrue();
         }

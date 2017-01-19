@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasRequestAuthorization_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\ITraktHasRequestBody_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUriPathParameters_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUri_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHttpRequest_Tests.cs" />

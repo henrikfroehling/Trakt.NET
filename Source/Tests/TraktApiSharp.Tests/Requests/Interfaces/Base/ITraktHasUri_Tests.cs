@@ -10,7 +10,7 @@
     public class ITraktHasUri_Tests
     {
         [Fact]
-        public void Test_ITraktHasUri_IsInterface()
+        public void Test_ITraktHasUri_Is_Interface()
         {
             typeof(ITraktHasUri).IsInterface.Should().BeTrue();
         }

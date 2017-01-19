@@ -11,7 +11,7 @@
     public class ITraktHasRequestAuthorization_Tests
     {
         [Fact]
-        public void Test_ITraktHasRequestAuthorization_IsInterface()
+        public void Test_ITraktHasRequestAuthorization_Is_Interface()
         {
             typeof(ITraktHasRequestAuthorization).IsInterface.Should().BeTrue();
         }
