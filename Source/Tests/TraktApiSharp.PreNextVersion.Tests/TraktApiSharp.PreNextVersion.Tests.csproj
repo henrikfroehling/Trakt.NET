@@ -135,7 +135,6 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktPaginationGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktSingleItemGetByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Get\ITraktSingleItemGetRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasIdTests.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBodyTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostByIdRequestTests.cs" />
     <Compile Include="Experimental\Requests\Base\Post\ATraktListPostRequestTests.cs" />

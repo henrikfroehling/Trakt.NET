@@ -1,33 +1,34 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktHasIdTests
+    [Category("Requests.Interfaces")]
+    public class ITraktHasId_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasIdIsInterface()
+        [Fact]
+        public void Test_ITraktHasId_IsInterface()
         {
             typeof(ITraktHasId).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasIdDerivesFromITraktObjectRequestInterface()
+        [Fact]
+        public void Test_ITraktHasId_Inherits_ITraktObjectRequest_Interface()
         {
             typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasIdDerivesFromITraktValidatableInterface()
+        [Fact]
+        public void Test_ITraktHasId_Inherits_ITraktValidatable_Interface()
         {
             typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktHasIdHasIdProperty()
+        [Fact]
+        public void Test_ITraktHasId_Has_Id_Property()
         {
             var idPropertyInfo = typeof(ITraktHasId).GetProperties()
                                                     .Where(p => p.Name == "Id")
