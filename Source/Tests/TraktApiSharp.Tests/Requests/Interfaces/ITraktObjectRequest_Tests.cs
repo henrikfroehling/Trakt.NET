@@ -1,22 +1,23 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktObjectRequestTests
+    [Category("Requests.Interfaces")]
+    public class ITraktObjectRequest_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktObjectRequestIsInterface()
+        [Fact]
+        public void Test_ITraktObjectRequest_IsInterface()
         {
             typeof(ITraktObjectRequest).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktObjectRequestHasRequestObjectTypeProperty()
+        [Fact]
+        public void Test_ITraktObjectRequest_Has_RequestObjectType_Property()
         {
             var requestObjectTypePropertyInfo = typeof(ITraktObjectRequest).GetProperties()
                                                                            .Where(p => p.Name == "RequestObjectType")
