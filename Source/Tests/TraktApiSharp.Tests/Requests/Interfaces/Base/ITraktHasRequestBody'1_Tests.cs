@@ -10,20 +10,20 @@
     public class ITraktHasRequestBody_Tests
     {
         [Fact]
-        public void Test_ITraktHasRequestBody_Is_Interface()
+        public void Test_ITraktHasRequestBody_1_Is_Interface()
         {
             typeof(ITraktHasRequestBody<>).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasRequestBody_Has_GenericTypeParameter()
+        public void Test_ITraktHasRequestBody_1_Has_GenericTypeParameter()
         {
             typeof(ITraktHasRequestBody<>).ContainsGenericParameters.Should().BeTrue();
             typeof(ITraktHasRequestBody<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ITraktHasRequestBody_Has_RequestBody_Property()
+        public void Test_ITraktHasRequestBody_1_Has_RequestBody_Property()
         {
             var requestBodyContentPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
                                                                                   .Where(p => p.Name == "RequestBody")

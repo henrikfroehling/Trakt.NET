@@ -124,7 +124,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody%271.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarAllRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequest.cs" />

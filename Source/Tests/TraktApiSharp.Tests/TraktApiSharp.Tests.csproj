@@ -66,7 +66,7 @@
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasRequestAuthorization_Tests.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktHasRequestBody_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\ITraktHasRequestBody%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUriPathParameters_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUri_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHttpRequest_Tests.cs" />
