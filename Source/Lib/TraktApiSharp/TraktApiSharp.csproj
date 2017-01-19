@@ -121,6 +121,8 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktGetRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostRequest%272.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
