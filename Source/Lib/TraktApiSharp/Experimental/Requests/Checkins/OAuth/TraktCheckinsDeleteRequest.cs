@@ -1,11 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Checkins.OAuth
 {
-    using Base.Delete;
-
-    internal sealed class TraktCheckinsDeleteRequest : ATraktNoContentDeleteRequest
+    internal sealed class TraktCheckinsDeleteRequest
     {
-        internal TraktCheckinsDeleteRequest(TraktClient client) : base(client) { }
+        internal TraktCheckinsDeleteRequest(TraktClient client) { }
 
-        public override string UriTemplate => "checkin";
+        public string UriTemplate => "checkin";
     }
 }
