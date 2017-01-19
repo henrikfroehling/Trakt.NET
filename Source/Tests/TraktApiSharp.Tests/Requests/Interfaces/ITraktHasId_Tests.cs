@@ -22,12 +22,6 @@
         }
 
         [Fact]
-        public void Test_ITraktHasId_Inherits_ITraktValidatable_Interface()
-        {
-            typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
-        }
-
-        [Fact]
         public void Test_ITraktHasId_Has_Id_Property()
         {
             var idPropertyInfo = typeof(ITraktHasId).GetProperties()
