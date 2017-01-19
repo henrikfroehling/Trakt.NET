@@ -31,12 +31,12 @@
             typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserCustomListItemsRemoveRequestHasAuthorizationRequired()
-        {
-            var request = new TraktUserCustomListItemsRemoveRequest(null);
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
-        }
+        //[TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        //public void TestTraktUserCustomListItemsRemoveRequestHasAuthorizationRequired()
+        //{
+        //    var request = new TraktUserCustomListItemsRemoveRequest(null);
+        //    request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+        //}
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserCustomListItemsRemoveRequestHasValidUriTemplate()

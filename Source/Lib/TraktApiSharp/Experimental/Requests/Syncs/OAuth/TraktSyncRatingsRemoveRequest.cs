@@ -7,6 +7,6 @@
     {
         internal TraktSyncRatingsRemoveRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/ratings/remove";
+        public string UriTemplate => "sync/ratings/remove";
     }
 }

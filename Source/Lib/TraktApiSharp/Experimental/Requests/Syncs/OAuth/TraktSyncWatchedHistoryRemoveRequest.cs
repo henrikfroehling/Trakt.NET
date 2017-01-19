@@ -7,6 +7,6 @@
     {
         internal TraktSyncWatchedHistoryRemoveRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/history/remove";
+        public string UriTemplate => "sync/history/remove";
     }
 }

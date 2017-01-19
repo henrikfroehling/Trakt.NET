@@ -7,6 +7,6 @@
     {
         internal TraktSyncWatchlistRemoveRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/watchlist/remove";
+        public string UriTemplate => "sync/watchlist/remove";
     }
 }

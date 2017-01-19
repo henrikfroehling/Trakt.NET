@@ -7,6 +7,6 @@
     {
         internal TraktSyncCollectionRemoveRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/collection/remove";
+        public string UriTemplate => "sync/collection/remove";
     }
 }

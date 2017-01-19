@@ -1,12 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
-    using Objects.Post.Syncs.Collection;
-    using Objects.Post.Syncs.Collection.Responses;
-
-    internal sealed class TraktSyncCollectionAddRequest : ATraktSyncSingleItemPostRequest<TraktSyncCollectionPostResponse, TraktSyncCollectionPost>
+    internal sealed class TraktSyncCollectionAddRequest
     {
-        internal TraktSyncCollectionAddRequest(TraktClient client) : base(client) { }
+        internal TraktSyncCollectionAddRequest(TraktClient client) { }
 
-        public override string UriTemplate => "sync/collection";
+        public string UriTemplate => "sync/collection";
     }
 }

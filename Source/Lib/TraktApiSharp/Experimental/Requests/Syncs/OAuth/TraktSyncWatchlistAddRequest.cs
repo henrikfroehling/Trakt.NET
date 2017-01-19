@@ -7,6 +7,6 @@
     {
         internal TraktSyncWatchlistAddRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/watchlist";
+        public string UriTemplate => "sync/watchlist";
     }
 }

@@ -1,14 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Comments.OAuth
 {
-    using Base.Post.Bodyless;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktCommentLikeRequest : ATraktNoContentBodylessPostByIdRequest
+    internal sealed class TraktCommentLikeRequest
     {
-        internal TraktCommentLikeRequest(TraktClient client) : base(client) { }
+        internal TraktCommentLikeRequest(TraktClient client) { }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
-        public override string UriTemplate => "comments/{id}/like";
+        public string UriTemplate => "comments/{id}/like";
     }
 }

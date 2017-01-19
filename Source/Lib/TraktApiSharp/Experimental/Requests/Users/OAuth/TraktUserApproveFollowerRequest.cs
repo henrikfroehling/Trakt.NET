@@ -1,15 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    using Base.Post.Bodyless;
-    using Objects.Get.Users;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserApproveFollowerRequest : ATraktSingleItemBodylessPostByIdRequest<TraktUserFollower>
+    internal sealed class TraktUserApproveFollowerRequest
     {
-        internal TraktUserApproveFollowerRequest(TraktClient client) : base(client) {}
+        internal TraktUserApproveFollowerRequest(TraktClient client) {}
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
-        public override string UriTemplate => "users/requests/{id}";
+        public string UriTemplate => "users/requests/{id}";
     }
 }

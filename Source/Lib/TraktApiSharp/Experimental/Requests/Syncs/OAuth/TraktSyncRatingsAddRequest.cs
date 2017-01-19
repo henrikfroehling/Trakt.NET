@@ -7,6 +7,6 @@
     {
         internal TraktSyncRatingsAddRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/ratings";
+        public string UriTemplate => "sync/ratings";
     }
 }

@@ -1,11 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Scrobbles.OAuth
 {
-    using Base.Post;
-
-    internal sealed class TraktScrobblePauseRequest<TItem, TRequestBody> : ATraktSingleItemPostRequest<TItem, TRequestBody>
+    internal sealed class TraktScrobblePauseRequest<TItem, TRequestBody>
     {
-        internal TraktScrobblePauseRequest(TraktClient client) : base(client) { }
+        internal TraktScrobblePauseRequest(TraktClient client) { }
 
-        public override string UriTemplate => "scrobble/pause";
+        public string UriTemplate => "scrobble/pause";
     }
 }

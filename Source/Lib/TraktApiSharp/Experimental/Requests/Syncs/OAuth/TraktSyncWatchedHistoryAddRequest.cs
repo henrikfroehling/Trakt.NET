@@ -7,6 +7,6 @@
     {
         internal TraktSyncWatchedHistoryAddRequest(TraktClient client) : base(client) { }
 
-        public override string UriTemplate => "sync/history";
+        public string UriTemplate => "sync/history";
     }
 }
