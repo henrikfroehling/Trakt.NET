@@ -2,7 +2,7 @@
 {
     using TraktApiSharp.Requests.Params;
 
-    internal interface ITraktFilterable
+    internal interface ITraktSupportsFilter
     {
         TraktCommonFilter Filter { get; set; }
     }

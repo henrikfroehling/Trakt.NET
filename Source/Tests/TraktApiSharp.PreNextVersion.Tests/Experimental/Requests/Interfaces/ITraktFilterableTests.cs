@@ -12,13 +12,13 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktFilterableIsInterface()
         {
-            typeof(ITraktFilterable).IsInterface.Should().BeTrue();
+            typeof(ITraktSupportsFilter).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktFilterableHasFilterProperty()
         {
-            var filterPropertyInfo = typeof(ITraktFilterable).GetProperties()
+            var filterPropertyInfo = typeof(ITraktSupportsFilter).GetProperties()
                                                              .Where(p => p.Name == "Filter")
                                                              .FirstOrDefault();
 

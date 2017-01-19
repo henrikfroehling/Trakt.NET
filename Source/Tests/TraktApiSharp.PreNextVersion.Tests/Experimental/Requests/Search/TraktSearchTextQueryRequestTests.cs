@@ -35,7 +35,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]
         public void TestTraktSearchTextQueryRequestImplementsITraktFilterableInterface()
         {
-            typeof(TraktSearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ITraktFilterable));
+            typeof(TraktSearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Search Text Query")]

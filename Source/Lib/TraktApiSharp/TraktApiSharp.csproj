@@ -233,7 +233,7 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktSingleItemPutByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\Put\ITraktSingleItemPutRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsExtendedInfo.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\ITraktFilterable.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsFilter.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPagination.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktListRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktNoContentRequest.cs" />

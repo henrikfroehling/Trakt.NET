@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktSupportsExtendedInfo, ITraktFilterable
+    internal abstract class ATraktCalendarRequest<TITem> : ATraktListGetRequest<TITem>, ITraktSupportsExtendedInfo, ITraktSupportsFilter
     {
         internal ATraktCalendarRequest(TraktClient client) : base(client) { }
 

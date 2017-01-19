@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest, ITraktFilterable
+    internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest, ITraktSupportsFilter
     {
         internal TraktSearchTextQueryRequest(TraktClient client) : base(client) { }
 

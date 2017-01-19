@@ -41,7 +41,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]
         public void TestATraktCalendarRequestImplementsITraktFilterableInterface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktFilterable));
+            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Calendars")]

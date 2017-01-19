@@ -37,7 +37,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Shows"), TestCategory("Lists")]
         public void TestATraktShowsRequestImplementsITraktFilterableInterface()
         {
-            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktFilterable));
+            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
         }
     }
 }
