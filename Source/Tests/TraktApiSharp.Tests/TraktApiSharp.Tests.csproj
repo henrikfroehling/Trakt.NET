@@ -67,6 +67,7 @@
     <Compile Include="Requests\Interfaces\Base\ITraktHasUriPathParameters_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUri_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHttpRequest_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\ITraktRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktHasId_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktObjectRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsExtendedInfo_Tests.cs" />
