@@ -32,28 +32,5 @@
             uriTemplatePropertyInfo.CanWrite.Should().BeFalse();
             uriTemplatePropertyInfo.PropertyType.Should().Be(typeof(string));
         }
-
-        [Fact]
-        public void Test_ITraktHasUri_Has_Url_Property()
-        {
-            var urlPropertyInfo = typeof(ITraktHasUri).GetProperties()
-                                                      .Where(p => p.Name == "Url")
-                                                      .FirstOrDefault();
-
-            urlPropertyInfo.CanRead.Should().BeTrue();
-            urlPropertyInfo.CanWrite.Should().BeFalse();
-            urlPropertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_ITraktHasUri_Has_BuildUrl_Method()
-        {
-            var methodInfo = typeof(ITraktHasUri).GetMethods()
-                                                 .Where(m => m.Name == "BuildUrl")
-                                                 .FirstOrDefault();
-
-            methodInfo.ReturnType.Should().Be(typeof(string));
-            methodInfo.GetParameters().Should().BeEmpty();
-        }
     }
 }
