@@ -1,22 +1,23 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces.Base
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces.Base;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktRequestAuthorizationTests
+    [Category("Requests.Interfaces.Base")]
+    public class ITraktHasRequestAuthorization_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktRequestAuthorizationIsInterface()
+        [Fact]
+        public void Test_ITraktHasRequestAuthorization_IsInterface()
         {
             typeof(ITraktHasRequestAuthorization).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktRequestAuthorizationHasAuthorizationRequirementProperty()
+        [Fact]
+        public void Test_ITraktHasRequestAuthorization_Has_AuthorizationRequirement_Property()
         {
             var authorizationRequirementPropertyInfo = typeof(ITraktHasRequestAuthorization).GetProperties()
                                                                                          .Where(p => p.Name == "AuthorizationRequirement")
