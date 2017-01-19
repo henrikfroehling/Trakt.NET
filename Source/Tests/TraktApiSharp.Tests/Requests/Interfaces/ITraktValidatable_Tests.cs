@@ -1,21 +1,22 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Requests.Interfaces
+﻿namespace TraktApiSharp.Tests.Requests.Interfaces
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktValidatableTests
+    [Category("Requests.Interfaces")]
+    public class ITraktValidatable_Tests
     {
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktValidatableIsInterface()
+        [Fact]
+        public void Test_ITraktValidatable_IsInterface()
         {
             typeof(ITraktValidatable).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
-        public void TestITraktValidatableHasValidateMethod()
+        [Fact]
+        public void Test_ITraktValidatable_Has_Validate_Method()
         {
             var methodInfo = typeof(ITraktValidatable).GetMethods()
                                                       .Where(m => m.Name == "Validate")
