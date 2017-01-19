@@ -162,7 +162,6 @@
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsFilter.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktSupportsPagination.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktObjectRequest.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostable.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasUri.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />

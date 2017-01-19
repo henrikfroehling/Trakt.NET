@@ -146,7 +146,6 @@
     <Compile Include="Experimental\Requests\Genres\ATraktGenresRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPostableTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequestTests.cs" />
@@ -710,9 +709,7 @@
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Experimental\Requests\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
