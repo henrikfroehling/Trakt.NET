@@ -67,6 +67,8 @@
     <Compile Include="Requests\Base\ATraktGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktPostRequest%272_Tests.cs" />
+    <Compile Include="Requests\Base\ATraktPutRequest%271_Tests.cs" />
+    <Compile Include="Requests\Base\ATraktPutRequest%272_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
