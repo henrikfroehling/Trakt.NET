@@ -12,13 +12,13 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestAuthorizationIsInterface()
         {
-            typeof(ITraktRequestAuthorization).IsInterface.Should().BeTrue();
+            typeof(ITraktHasRequestAuthorization).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestAuthorizationHasAuthorizationRequirementProperty()
         {
-            var authorizationRequirementPropertyInfo = typeof(ITraktRequestAuthorization).GetProperties()
+            var authorizationRequirementPropertyInfo = typeof(ITraktHasRequestAuthorization).GetProperties()
                                                                                          .Where(p => p.Name == "AuthorizationRequirement")
                                                                                          .FirstOrDefault();
 

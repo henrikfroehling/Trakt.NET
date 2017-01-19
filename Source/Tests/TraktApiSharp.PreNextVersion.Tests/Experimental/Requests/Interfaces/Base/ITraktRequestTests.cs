@@ -23,7 +23,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktRequestDerivesFromITraktRequestAuthorizationInterface()
         {
-            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktRequestAuthorization));
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHasRequestAuthorization));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]

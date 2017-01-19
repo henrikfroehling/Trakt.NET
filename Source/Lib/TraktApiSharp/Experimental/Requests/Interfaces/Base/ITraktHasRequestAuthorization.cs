@@ -2,7 +2,7 @@
 {
     using TraktApiSharp.Requests;
 
-    internal interface ITraktRequestAuthorization
+    internal interface ITraktHasRequestAuthorization
     {
         TraktAuthorizationRequirement AuthorizationRequirement { get; }
     }
