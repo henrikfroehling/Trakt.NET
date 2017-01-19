@@ -2,8 +2,6 @@
 {
     internal interface ITraktHasRequestBody<TRequestBody>
     {
-        TRequestBody RequestBodyContent { get; set; }
-
-        ITraktPostable<TRequestBody> RequestBody { get; set; }
+        TRequestBody RequestBody { get; set; }
     }
 }
