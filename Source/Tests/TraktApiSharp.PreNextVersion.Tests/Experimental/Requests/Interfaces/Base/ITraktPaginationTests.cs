@@ -11,13 +11,13 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationIsInterface()
         {
-            typeof(ITraktPagination).IsInterface.Should().BeTrue();
+            typeof(ITraktSupportsPagination).IsInterface.Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationHasPageProperty()
         {
-            var paginationOptionsPropertyInfo = typeof(ITraktPagination).GetProperties()
+            var paginationOptionsPropertyInfo = typeof(ITraktSupportsPagination).GetProperties()
                                                                         .Where(p => p.Name == "Page")
                                                                         .FirstOrDefault();
 
@@ -29,7 +29,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationHasLimitProperty()
         {
-            var paginationOptionsPropertyInfo = typeof(ITraktPagination).GetProperties()
+            var paginationOptionsPropertyInfo = typeof(ITraktSupportsPagination).GetProperties()
                                                                         .Where(p => p.Name == "Limit")
                                                                         .FirstOrDefault();
 

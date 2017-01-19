@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
-    internal interface ITraktPagination
+    internal interface ITraktSupportsPagination
     {
         int? Page { get; set; }
 

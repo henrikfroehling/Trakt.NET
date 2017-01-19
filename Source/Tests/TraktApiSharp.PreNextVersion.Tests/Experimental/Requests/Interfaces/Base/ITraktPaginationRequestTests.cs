@@ -38,7 +38,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
         public void TestITraktPaginationRequestDerivesFromITraktPaginationInterface()
         {
-            typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktPagination));
+            typeof(ITraktPaginationRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Interfaces")]
