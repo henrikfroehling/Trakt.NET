@@ -150,10 +150,6 @@
     <Compile Include="Experimental\Requests\Movies\TraktMovieSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieWatchingUsersRequestTests.cs" />
-    <Compile Include="Experimental\Requests\People\ATraktPersonCreditsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\People\TraktPersonSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequestTests.cs" />

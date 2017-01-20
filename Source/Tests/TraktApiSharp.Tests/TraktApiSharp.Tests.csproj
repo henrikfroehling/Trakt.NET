@@ -107,6 +107,10 @@
     <Compile Include="Requests\Interfaces\ITraktSupportsFilter_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsPagination_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktValidatable_Tests.cs" />
+    <Compile Include="Requests\People\ATraktPersonRequest%271_Tests.cs" />
+    <Compile Include="Requests\People\TraktPersonMovieCreditsRequest_Tests.cs" />
+    <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />
+    <Compile Include="Requests\People\TraktPersonSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272_Tests.cs" />
