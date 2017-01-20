@@ -2,10 +2,8 @@
 {
     using Objects.Get.Calendars;
 
-    internal sealed class TraktCalendarAllShowsRequest : ATraktCalendarAllRequest<TraktCalendarShow>
+    internal sealed class TraktCalendarAllShowsRequest : ATraktCalendarRequest<TraktCalendarShow>
     {
-        internal TraktCalendarAllShowsRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "calendars/all/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
+        public override string UriTemplate => "calendars/all/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
     }
 }

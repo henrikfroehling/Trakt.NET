@@ -71,6 +71,12 @@
     <Compile Include="Requests\Base\ATraktPutRequest%272_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\ATraktCalendarRequest%271_Tests.cs" />
+    <Compile Include="Requests\Calendars\TraktCalendarAllDVDMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\TraktCalendarAllMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\TraktCalendarAllNewShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\TraktCalendarAllSeasonPremieresRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\TraktCalendarAllShowsRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271_Tests.cs" />
@@ -103,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
