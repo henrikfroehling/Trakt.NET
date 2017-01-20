@@ -39,13 +39,13 @@
         }
 
         [Fact]
-        public void Test_ATraktPersonRequest_1_Implements_ITraktHasId()
+        public void Test_ATraktPersonRequest_1_Implements_ITraktHasId_Interface()
         {
             typeof(ATraktPersonRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
 
         [Fact]
-        public void Test_ATraktPersonRequest_1_Implements_ITraktSupportsExtendedInfo()
+        public void Test_ATraktPersonRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
             typeof(ATraktPersonRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
         }
@@ -91,11 +91,18 @@
         }
 
         [Fact]
-        public void Test_ATraktPersonRequest_1_Validate_Throws_ArgumentException_If_Id_NotSet()
+        public void Test_ATraktPersonRequest_1_Validate_Throws_Exceptions()
         {
+            // id is null
             var requestMock = new TraktPersonRequestMock();
 
             Action act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentNullException>();
+
+            // empty id
+            requestMock = new TraktPersonRequestMock { Id = string.Empty };
+
+            act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
         }
     }

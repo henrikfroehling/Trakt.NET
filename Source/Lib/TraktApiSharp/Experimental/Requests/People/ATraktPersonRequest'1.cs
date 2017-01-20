@@ -31,7 +31,10 @@
 
         public override void Validate()
         {
-            if (string.IsNullOrEmpty(Id) || Id.ContainsSpace())
+            if (Id == null)
+                throw new ArgumentNullException(nameof(Id));
+
+            if (Id == string.Empty || Id.ContainsSpace())
                 throw new ArgumentException("person id or slug not valid", nameof(Id));
         }
     }

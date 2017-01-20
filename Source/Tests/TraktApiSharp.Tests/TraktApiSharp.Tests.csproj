@@ -114,6 +114,9 @@
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272_Tests.cs" />
+    <Compile Include="Requests\Search\ATraktSearchRequest_Tests.cs" />
+    <Compile Include="Requests\Search\TraktSearchIdLookupRequest_Tests.cs" />
+    <Compile Include="Requests\Search\TraktSearchTextQueryRequest_Tests.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />

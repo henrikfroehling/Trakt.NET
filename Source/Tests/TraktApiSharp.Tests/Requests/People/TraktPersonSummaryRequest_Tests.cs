@@ -79,11 +79,18 @@
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Validate_Throws_ArgumentException_If_Id_NotSet()
+        public void Test_TraktPersonSummaryRequest_Validate_Throws_Exceptions()
         {
-            var request = new TraktPersonSummaryRequest();
+            // id is null
+            var requestMock = new TraktPersonSummaryRequest();
 
-            Action act = () => request.Validate();
+            Action act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentNullException>();
+
+            // empty id
+            requestMock = new TraktPersonSummaryRequest { Id = string.Empty };
+
+            act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
         }
     }

@@ -79,11 +79,18 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Validate_Throws_ArgumentException_If_Id_NotSet()
+        public void Test_TraktPersonMovieCreditsRequest_Validate_Throws_Exceptions()
         {
-            var request = new TraktPersonMovieCreditsRequest();
+            // id is null
+            var requestMock = new TraktPersonMovieCreditsRequest();
 
-            Action act = () => request.Validate();
+            Action act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentNullException>();
+
+            // empty id
+            requestMock = new TraktPersonMovieCreditsRequest { Id = string.Empty };
+
+            act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
         }
     }

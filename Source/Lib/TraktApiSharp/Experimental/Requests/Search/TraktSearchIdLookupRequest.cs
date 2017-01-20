@@ -3,24 +3,19 @@
     using Enums;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Extensions;
 
     internal sealed class TraktSearchIdLookupRequest : ATraktSearchRequest
     {
-        internal TraktSearchIdLookupRequest(TraktClient client) : base(client) { }
-
         internal TraktSearchIdType IdType { get; set; }
 
         internal string LookupId { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
-
-            if (IdType == null)
-                throw new ArgumentNullException(nameof(IdType));
-
-            if (string.IsNullOrEmpty(LookupId))
-                throw new ArgumentException("lookup id must not be empty", nameof(LookupId));
+            var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("id_type", IdType.UriName);
             uriParams.Add("id", LookupId);
@@ -31,6 +26,19 @@
             return uriParams;
         }
 
-        public string UriTemplate => "search/{id_type}/{id}{?type,extended,page,limit}";
+        public override void Validate()
+        {
+            if (IdType == null)
+                throw new ArgumentNullException(nameof(IdType));
+
+            if (IdType == TraktSearchIdType.Unspecified)
+                throw new ArgumentException($"{nameof(IdType)} must not be unspecified", nameof(IdType));
+
+            if (LookupId == null)
+                throw new ArgumentNullException(nameof(LookupId));
+
+            if (LookupId == string.Empty || LookupId.ContainsSpace())
+                throw new ArgumentException($"{nameof(LookupId)} is not valid", nameof(LookupId));
+        }
     }
 }

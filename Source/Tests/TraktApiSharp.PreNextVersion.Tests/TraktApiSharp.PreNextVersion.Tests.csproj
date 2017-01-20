@@ -155,9 +155,6 @@
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequestTests.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Search\ATraktSearchRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonsAllRequestTests.cs" />
