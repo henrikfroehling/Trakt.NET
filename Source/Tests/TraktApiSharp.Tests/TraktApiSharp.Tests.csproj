@@ -85,6 +85,8 @@
     <Compile Include="Requests\Calendars\TraktCalendarAllShowsRequest_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\TraktCheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\TraktCheckinsDeleteRequest_Tests.cs" />
+    <Compile Include="Requests\Genres\TraktGenresMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Genres\TraktGenresShowsRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271_Tests.cs" />

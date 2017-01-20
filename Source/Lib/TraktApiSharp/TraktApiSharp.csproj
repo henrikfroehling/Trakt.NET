@@ -170,7 +170,6 @@
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeSummaryRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeWatchingUsersRequest.cs" />
-    <Compile Include="Experimental\Requests\Genres\ATraktGenresRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasUriPathParameters.cs" />

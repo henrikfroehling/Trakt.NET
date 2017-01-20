@@ -1,9 +1,15 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Genres
 {
-    internal sealed class TraktGenresShowsRequest : ATraktGenresRequest
-    {
-        internal TraktGenresShowsRequest(TraktClient client) : base(client) { }
+    using Base;
+    using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic;
 
-        public string UriTemplate => "genres/shows";
+    internal sealed class TraktGenresShowsRequest : ATraktGetRequest<TraktGenre>
+    {
+        public override string UriTemplate => "genres/shows";
+
+        public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
+
+        public override void Validate() { }
     }
 }
