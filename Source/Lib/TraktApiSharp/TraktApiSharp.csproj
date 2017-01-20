@@ -150,7 +150,7 @@
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
     <Compile Include="Experimental\Requests\Calendars\TraktCalendarAllShowsRequest.cs" />
-    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequest.cs" />
+    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequest%272.cs" />
     <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\ATraktCommentPostRequest.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentDeleteRequest.cs" />

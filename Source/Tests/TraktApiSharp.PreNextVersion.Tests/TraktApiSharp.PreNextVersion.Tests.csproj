@@ -110,8 +110,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinsDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\ATraktCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentLikeRequestTests.cs" />
