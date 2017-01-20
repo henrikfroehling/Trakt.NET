@@ -212,9 +212,9 @@
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest.cs" />
-    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobblePauseRequest.cs" />
-    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStartRequest.cs" />
-    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStopRequest.cs" />
+    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272.cs" />
+    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272.cs" />
+    <Compile Include="Experimental\Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272.cs" />
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
