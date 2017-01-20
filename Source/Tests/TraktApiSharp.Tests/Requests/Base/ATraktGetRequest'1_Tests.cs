@@ -16,7 +16,7 @@
     {
         internal class TraktGetRequestMock : ATraktGetRequest<int>
         {
-            public override string UriTemplate => throw new NotImplementedException();
+            public override string UriTemplate { get { throw new NotImplementedException(); } }
 
             public override IDictionary<string, object> GetUriPathParameters()
             {

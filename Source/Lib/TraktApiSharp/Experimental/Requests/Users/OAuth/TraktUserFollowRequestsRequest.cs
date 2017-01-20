@@ -7,7 +7,7 @@
     {
         internal TraktUserFollowRequestsRequest(TraktClient client) : base(client) {}
 
-        public  TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public new TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public string UriTemplate => "users/requests{?extended}";
     }

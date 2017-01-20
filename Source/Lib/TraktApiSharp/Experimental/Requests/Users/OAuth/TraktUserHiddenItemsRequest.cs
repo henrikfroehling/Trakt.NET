@@ -25,7 +25,7 @@
             return uriParams;
         }
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public new TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
     }
