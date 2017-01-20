@@ -110,12 +110,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\ATraktCalendarUserRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserDVDMoviesRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserMoviesRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserNewShowsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserSeasonPremieresRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Calendars\OAuth\TraktCalendarUserShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinRequestTests.cs" />
     <Compile Include="Experimental\Requests\Checkins\OAuth\TraktCheckinsDeleteRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\ATraktCommentPostRequestTests.cs" />

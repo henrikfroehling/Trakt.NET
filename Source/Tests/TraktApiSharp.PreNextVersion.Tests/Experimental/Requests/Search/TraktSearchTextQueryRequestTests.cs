@@ -123,7 +123,7 @@
             act.ShouldThrow<ArgumentException>();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Calendars"), TestCategory("Without OAuth"), TestCategory("Movies")]
+        [TestMethod, TestCategory("Requests"), TestCategory("Search"), TestCategory("Without OAuth"), TestCategory("Movies")]
         public void TestTraktSearchTextQueryRequestUriParamsWithSearchFields()
         {
             var resultTypes = TraktSearchResultType.Movie | TraktSearchResultType.Show;
