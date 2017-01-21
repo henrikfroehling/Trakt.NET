@@ -121,8 +121,6 @@
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktMovieCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktSeasonCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Comments\OAuth\TraktShowCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\TraktCommentRepliesRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\TraktCommentSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeStatisticsRequestTests.cs" />
