@@ -125,7 +125,7 @@
         public class TraktSearchIdLookupRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSearchIdType _idType = TraktSearchIdType.Trakt;
-            private static readonly string _lookupId = "searchQuery";
+            private const string _lookupId = "searchQuery";
             private static readonly TraktSearchResultType _resultTypes = TraktSearchResultType.Movie | TraktSearchResultType.Show;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktSearchField _searchFields = TraktSearchField.Description | TraktSearchField.Title;

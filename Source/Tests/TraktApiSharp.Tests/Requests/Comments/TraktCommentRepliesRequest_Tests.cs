@@ -100,7 +100,7 @@
 
         public class TraktCommentRepliesRequest_TestData : IEnumerable<object[]>
         {
-            private static readonly string _id = "123";
+            private const string _id = "123";
             private const int _page = 5;
             private const int _limit = 20;
 

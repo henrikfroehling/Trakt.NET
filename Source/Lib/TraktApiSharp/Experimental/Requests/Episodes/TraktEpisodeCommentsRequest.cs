@@ -2,43 +2,33 @@
 {
     using Enums;
     using Interfaces;
-    using System;
+    using Objects.Basic;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
-    internal sealed class TraktEpisodeCommentsRequest : ITraktValidatable
+    internal sealed class TraktEpisodeCommentsRequest : ATraktEpisodeRequest<TraktComment>, ITraktSupportsPagination
     {
-        internal TraktEpisodeCommentsRequest(TraktClient client) { }
+        internal TraktCommentSortOrder SortOrder { get; set; }
 
-        internal uint SeasonNumber { get; set; }
+        public int? Page { get; set; }
 
-        internal uint EpisodeNumber { get; set; }
+        public int? Limit { get; set; }
+        
+        public override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments{/sort_order}{?page,limit}";
 
-        internal TraktCommentSortOrder Sorting { get; set; }
-
-        public IDictionary<string, object> GetUriPathParameters()
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("season", SeasonNumber.ToString());
-            uriParams.Add("episode", EpisodeNumber.ToString());
+            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sort_order", SortOrder.UriName);
 
-            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
-                uriParams.Add("sorting", Sorting.UriName);
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }
-
-        public void Validate()
-        {
-            if (EpisodeNumber == 0)
-                throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
-        }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
-
-        public string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments{/sorting}{?page,limit}";
     }
 }

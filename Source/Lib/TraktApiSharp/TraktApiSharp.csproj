@@ -128,6 +128,7 @@
     <Compile Include="Experimental\Requests\Base\ATraktPutRequest%272.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktRequest.cs" />
+    <Compile Include="Experimental\Requests\Episodes\ATraktEpisodeRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktDeleteRequest.cs" />

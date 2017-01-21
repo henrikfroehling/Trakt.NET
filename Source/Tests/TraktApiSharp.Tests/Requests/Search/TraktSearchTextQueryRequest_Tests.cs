@@ -126,7 +126,7 @@
         public class TraktSearchTextQueryRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSearchResultType _resultTypes = TraktSearchResultType.Movie | TraktSearchResultType.Show;
-            private static readonly string _query = "searchQuery";
+            private const string _query = "searchQuery";
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktSearchFilter _filter = new TraktSearchFilter().WithYears(2005, 2016);
             private static readonly TraktSearchField _searchFields = TraktSearchField.Description | TraktSearchField.Title;
