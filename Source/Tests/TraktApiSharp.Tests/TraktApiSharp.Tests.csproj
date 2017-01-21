@@ -111,6 +111,12 @@
     <Compile Include="Requests\People\TraktPersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonSummaryRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest%271_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272_Tests.cs" />

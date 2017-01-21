@@ -104,6 +104,12 @@
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
+
+            // id with spaces
+            requestMock = new TraktPersonRequestMock { Id = "invalid id" };
+
+            act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentException>();
         }
     }
 }

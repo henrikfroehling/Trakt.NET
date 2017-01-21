@@ -2,12 +2,10 @@
 {
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserRecommendationHideShowRequest
+    internal sealed class TraktUserRecommendationHideShowRequest : ATraktUserRecommendationHideRequest
     {
-        internal TraktUserRecommendationHideShowRequest(TraktClient client) { }
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
-
-        public string UriTemplate => "recommendations/shows/{id}";
+        public override string UriTemplate => "recommendations/shows/{id}";
     }
 }

@@ -82,15 +82,21 @@
         public void Test_TraktPersonMovieCreditsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktPersonMovieCreditsRequest();
+            var request = new TraktPersonMovieCreditsRequest();
 
-            Action act = () => requestMock.Validate();
+            Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktPersonMovieCreditsRequest { Id = string.Empty };
+            request = new TraktPersonMovieCreditsRequest { Id = string.Empty };
 
-            act = () => requestMock.Validate();
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentException>();
+
+            // id with spaces
+            request = new TraktPersonMovieCreditsRequest { Id = "invalid id" };
+
+            act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
     }

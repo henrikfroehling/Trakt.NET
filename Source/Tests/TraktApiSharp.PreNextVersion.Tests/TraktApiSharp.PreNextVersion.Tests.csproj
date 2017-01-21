@@ -150,11 +150,6 @@
     <Compile Include="Experimental\Requests\Movies\TraktMovieSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieWatchingUsersRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonsAllRequestTests.cs" />

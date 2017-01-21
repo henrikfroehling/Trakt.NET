@@ -207,7 +207,8 @@
     <Compile Include="Experimental\Requests\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonShowCreditsRequest.cs" />
     <Compile Include="Experimental\Requests\People\TraktPersonSummaryRequest.cs" />
-    <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest.cs" />
+    <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest.cs" />
+    <Compile Include="Experimental\Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest%271.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest.cs" />
     <Compile Include="Experimental\Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest.cs" />

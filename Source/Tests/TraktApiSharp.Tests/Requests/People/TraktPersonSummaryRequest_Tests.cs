@@ -82,15 +82,21 @@
         public void Test_TraktPersonSummaryRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktPersonSummaryRequest();
+            var request = new TraktPersonSummaryRequest();
 
-            Action act = () => requestMock.Validate();
+            Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktPersonSummaryRequest { Id = string.Empty };
+            request = new TraktPersonSummaryRequest { Id = string.Empty };
 
-            act = () => requestMock.Validate();
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentException>();
+
+            // id with spaces
+            request = new TraktPersonSummaryRequest { Id = "invalid id" };
+
+            act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
     }

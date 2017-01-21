@@ -4,8 +4,8 @@
 
     internal sealed class TraktUserShowRecommendationsRequest : ATraktUserRecommendationsRequest<TraktShow>
     {
-        internal TraktUserShowRecommendationsRequest(TraktClient client) : base(client) { }
+        public override string UriTemplate => "recommendations/shows{?extended,limit}";
 
-        public string UriTemplate => "recommendations/shows{?extended,limit}";
+        public override void Validate() { }
     }
 }
