@@ -4,7 +4,7 @@
     using System.Net.Http;
     using TraktApiSharp.Requests;
 
-    internal abstract class ATraktBodylessPostRequest<TContentType> : ATraktRequest<TContentType>, ITraktBodylessPostRequest<TContentType>
+    internal abstract class ATraktBodylessPostRequest : ATraktRequest, ITraktBodylessPostRequest
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

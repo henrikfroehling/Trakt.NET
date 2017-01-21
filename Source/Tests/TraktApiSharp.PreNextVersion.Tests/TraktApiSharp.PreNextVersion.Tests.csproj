@@ -110,17 +110,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\ATraktCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentDeleteRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentLikeRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentReplyRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUnlikeRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktCommentUpdateRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktEpisodeCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktListCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktMovieCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktSeasonCommentPostRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Comments\OAuth\TraktShowCommentPostRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeStatisticsRequestTests.cs" />
