@@ -125,6 +125,14 @@
     <Compile Include="Requests\Interfaces\ITraktValidatable_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesMostPWCRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesRequest%271_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesBoxOfficeRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesMostAnticipatedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesMostCollectedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesMostPlayedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesMostWatchedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesPopularRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesRecentlyUpdatedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\TraktMoviesTrendingRequest_Tests.cs" />
     <Compile Include="Requests\People\ATraktPersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />

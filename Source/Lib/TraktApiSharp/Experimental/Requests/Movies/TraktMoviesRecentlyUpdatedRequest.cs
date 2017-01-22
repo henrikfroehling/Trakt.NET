@@ -1,32 +1,44 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
+    using Base;
     using Extensions;
     using Interfaces;
+    using Objects.Get.Movies.Common;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktMoviesRecentlyUpdatedRequest : ITraktSupportsExtendedInfo
+    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
-        internal TraktMoviesRecentlyUpdatedRequest(TraktClient client) { }
-
         internal DateTime? StartDate { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public int? Page { get; set; }
+
+        public int? Limit { get; set; }
+
+        public override string UriTemplate => "movies/updates{/start_date}{?extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
             if (StartDate.HasValue)
                 uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
 
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
+
             return uriParams;
         }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public string UriTemplate => "movies/updates{/start_date}{?extended,page,limit}";
-
-        public TraktExtendedInfo ExtendedInfo { get; set; }
+        
+        public override void Validate() { }
     }
 }

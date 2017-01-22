@@ -2,10 +2,10 @@
 {
     using Objects.Get.Movies.Common;
 
-    internal sealed class TraktMoviesMostWatchedRequest// : ATraktMoviesMostPWCRequest<TraktMostWatchedMovie>
+    internal sealed class TraktMoviesMostWatchedRequest : ATraktMoviesMostPWCRequest<TraktMostWatchedMovie>
     {
-        internal TraktMoviesMostWatchedRequest(TraktClient client)  { }
+        public override string UriTemplate => "movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 
-        public string UriTemplate => "movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public override void Validate() { }
     }
 }

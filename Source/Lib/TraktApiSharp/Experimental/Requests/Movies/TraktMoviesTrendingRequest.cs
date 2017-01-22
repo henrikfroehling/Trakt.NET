@@ -2,10 +2,10 @@
 {
     using Objects.Get.Movies.Common;
 
-    internal sealed class TraktMoviesTrendingRequest// : ATraktMoviesRequest<TraktTrendingMovie>
+    internal sealed class TraktMoviesTrendingRequest : ATraktMoviesRequest<TraktTrendingMovie>
     {
-        internal TraktMoviesTrendingRequest(TraktClient client)  { }
+        public override string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 
-        public string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
+        public override void Validate() { }
     }
 }
