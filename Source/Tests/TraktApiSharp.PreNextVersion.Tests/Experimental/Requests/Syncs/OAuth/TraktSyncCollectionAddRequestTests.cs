@@ -21,11 +21,11 @@
             typeof(TraktSyncCollectionAddRequest).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
-        public void TestTraktSyncCollectionAddRequestIsSubclassOfATraktSyncSingleItemPostRequest()
-        {
-            typeof(TraktSyncCollectionAddRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncCollectionPostResponse, TraktSyncCollectionPost>)).Should().BeTrue();
-        }
+        //[TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
+        //public void TestTraktSyncCollectionAddRequestIsSubclassOfATraktSyncSingleItemPostRequest()
+        //{
+        //    typeof(TraktSyncCollectionAddRequest).IsSubclassOf(typeof(ATraktSyncSingleItemPostRequest<TraktSyncCollectionPostResponse, TraktSyncCollectionPost>)).Should().BeTrue();
+        //}
 
         [TestMethod, TestCategory("Requests"), TestCategory("Syncs")]
         public void TestTraktSyncCollectionAddRequestHasValidUriTemplate()

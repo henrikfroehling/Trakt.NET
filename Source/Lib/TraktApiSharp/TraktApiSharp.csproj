@@ -179,8 +179,8 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHttpRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasUri.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktValidatable.cs" />
-    <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequest.cs" />
-    <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest.cs" />
+    <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequest%271.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviePeopleRequest.cs" />

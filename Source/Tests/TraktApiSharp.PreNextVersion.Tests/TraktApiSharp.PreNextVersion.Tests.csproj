@@ -110,8 +110,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Movies\ATraktMoviesMostPWCRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Movies\ATraktMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieAliasesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMovieCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Movies\TraktMoviePeopleRequestTests.cs" />

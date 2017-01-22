@@ -23,11 +23,11 @@
             typeof(TraktUserListUnlikeRequest).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserListUnlikeRequestIsSubclassOfATraktUsersDeleteByIdRequest()
-        {
-            typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
-        }
+        //[TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        //public void TestTraktUserListUnlikeRequestIsSubclassOfATraktUsersDeleteByIdRequest()
+        //{
+        //    typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
+        //}
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserListUnlikeRequestHasValidRequestObjectType()

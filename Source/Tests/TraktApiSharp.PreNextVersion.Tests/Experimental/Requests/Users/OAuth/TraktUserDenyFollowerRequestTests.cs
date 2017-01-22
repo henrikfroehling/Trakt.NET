@@ -20,11 +20,11 @@
             typeof(TraktUserDenyFollowerRequest).IsSealed.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Requests"), TestCategory("Users")]
-        public void TestTraktUserDenyFollowerRequestIsSubclassOfATraktUsersDeleteByIdRequest()
-        {
-            typeof(TraktUserDenyFollowerRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
-        }
+        //[TestMethod, TestCategory("Requests"), TestCategory("Users")]
+        //public void TestTraktUserDenyFollowerRequestIsSubclassOfATraktUsersDeleteByIdRequest()
+        //{
+        //    typeof(TraktUserDenyFollowerRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
+        //}
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserDenyFollowerRequestHasValidRequestObjectType()
