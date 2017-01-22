@@ -1,33 +1,34 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
     using Enums;
+    using Interfaces;
+    using Objects.Basic;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
-    internal sealed class TraktSeasonCommentsRequest
+    internal sealed class TraktSeasonCommentsRequest : ATraktSeasonRequest<TraktComment>, ITraktSupportsPagination
     {
-        internal TraktSeasonCommentsRequest(TraktClient client) { }
+        internal TraktCommentSortOrder SortOrder { get; set; }
 
-        internal uint SeasonNumber { get; set; }
+        public int? Page { get; set; }
 
-        internal TraktCommentSortOrder Sorting { get; set; }
+        public int? Limit { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "shows/{id}/seasons/{season}/comments{/sort_order}{?page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
-            uriParams.Add("season", SeasonNumber.ToString());
+            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sort_order", SortOrder.UriName);
 
-            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
-                uriParams.Add("sorting", Sorting.UriName);
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
-
-        public string UriTemplate => "shows/{id}/seasons/{season}/comments{/sorting}{?page,limit}";
     }
 }

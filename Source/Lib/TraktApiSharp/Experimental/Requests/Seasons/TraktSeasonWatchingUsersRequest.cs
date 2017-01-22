@@ -1,29 +1,24 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Seasons
 {
     using Interfaces;
+    using Objects.Get.Users;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSeasonWatchingUsersRequest : ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonWatchingUsersRequest : ATraktSeasonRequest<TraktUser>, ITraktSupportsExtendedInfo
     {
-        internal TraktSeasonWatchingUsersRequest(TraktClient client) { }
-
-        internal uint SeasonNumber { get; set; }
-
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "shows/{id}/seasons/{season}/watching{?extended}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
-            uriParams.Add("season", SeasonNumber.ToString());
+            var uriParams = base.GetUriPathParameters();
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
             return uriParams;
         }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
-
-        public string UriTemplate => "shows/{id}/seasons/{season}/watching{?extended}";
     }
 }

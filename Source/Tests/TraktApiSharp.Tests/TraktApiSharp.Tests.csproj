@@ -139,6 +139,13 @@
     <Compile Include="Requests\Search\ATraktSearchRequest_Tests.cs" />
     <Compile Include="Requests\Search\TraktSearchIdLookupRequest_Tests.cs" />
     <Compile Include="Requests\Search\TraktSearchTextQueryRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\ATraktSeasonRequest%271_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonRatingsRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonsAllRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonSingleRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonStatisticsRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest_Tests.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />

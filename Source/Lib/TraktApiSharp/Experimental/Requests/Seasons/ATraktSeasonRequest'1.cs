@@ -3,26 +3,23 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Shows.Seasons;
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSeasonsAllRequest : ATraktGetRequest<TraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
+    internal abstract class ATraktSeasonRequest<TContentType> : ATraktGetRequest<TContentType>, ITraktHasId
     {
         public string Id { get; set; }
 
-        public TraktExtendedInfo ExtendedInfo { get; set; }
-        
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        internal uint SeasonNumber { get; set; }
 
-        public override string UriTemplate => "shows/{id}/seasons{?extended}";
+        public virtual TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
 
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>
             {
-                { "id", Id }
+                { "id", Id },
+                { "season", SeasonNumber.ToString() }
             };
 
         public override void Validate()

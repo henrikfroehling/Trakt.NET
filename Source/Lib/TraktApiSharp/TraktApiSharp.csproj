@@ -217,6 +217,7 @@
     <Compile Include="Experimental\Requests\Search\ATraktSearchRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchIdLookupRequest.cs" />
     <Compile Include="Experimental\Requests\Search\TraktSearchTextQueryRequest.cs" />
+    <Compile Include="Experimental\Requests\Seasons\ATraktSeasonRequest%271.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonsAllRequest.cs" />
