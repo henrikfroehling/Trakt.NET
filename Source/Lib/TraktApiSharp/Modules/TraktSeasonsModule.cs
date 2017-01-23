@@ -37,18 +37,31 @@
         /// The extended info, which determines how much data about the seasons should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="translationLanguageCode">
+        /// An optional two letter language code to query a specific translation for the returned episodes.
+        /// <para>Set this to "all" to get all available translations.</para>
+        /// </param>
         /// <returns>A list of <see cref="TraktSeason" /> instances with the data of each queried season.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug,
+                                                                       TraktExtendedInfo extendedInfo = null,
+                                                                       string translationLanguageCode = null)
         {
             Validate(showIdOrSlug);
+
+            if (translationLanguageCode != null && translationLanguageCode != "all" && translationLanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(translationLanguageCode), "translation language code has wrong length");
 
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showIdOrSlug,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                TranslationLanguageCode = translationLanguageCode
             });
         }
 

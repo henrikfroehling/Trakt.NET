@@ -82,11 +82,11 @@
         /// This property is set automatically if this episode is in a
         /// <see cref="TraktSeason.Episodes" /> collection and the episode's season
         /// is in a collection of seasons returned by
-        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo)" />
-        /// and a translation language was specified.
+        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />
+        /// and a translation language code was specified.
         /// This property is also set automatically if this episode is in
-        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, int, TraktExtendedInfo)" />
-        /// and a translation language was specified.
+        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, int, TraktExtendedInfo, string)" />
+        /// and a translation language code was specified.
         /// </remarks>
         [JsonProperty(PropertyName = "translations")]
         [Nullable]
