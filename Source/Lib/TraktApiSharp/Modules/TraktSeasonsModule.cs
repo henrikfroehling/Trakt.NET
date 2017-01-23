@@ -120,7 +120,8 @@
             foreach (var queryParam in seasonsQueryParams)
             {
                 Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
-                                                                      queryParam.ExtendedInfo);
+                                                                      queryParam.ExtendedInfo,
+                                                                      queryParam.TranslationLanguageCode);
 
                 tasks.Add(task);
             }
