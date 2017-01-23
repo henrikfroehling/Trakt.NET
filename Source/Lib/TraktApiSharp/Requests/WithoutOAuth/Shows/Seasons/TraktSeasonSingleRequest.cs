@@ -7,7 +7,19 @@
     {
         internal TraktSeasonSingleRequest(TraktClient client) : base(client) { }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}{?extended}";
+        internal string TranslationLanguageCode { get; set; }
+
+        protected override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = base.GetUriPathParameters();
+
+            if (!string.IsNullOrEmpty(TranslationLanguageCode))
+                uriParams.Add("translations", TranslationLanguageCode);
+
+            return uriParams;
+        }
+
+        protected override string UriTemplate => "shows/{id}/seasons/{season}{?extended,translations}";
 
         protected override bool IsListResult => true;
     }

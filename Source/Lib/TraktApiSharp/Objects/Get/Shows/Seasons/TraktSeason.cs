@@ -2,7 +2,9 @@
 {
     using Attributes;
     using Episodes;
+    using Modules;
     using Newtonsoft.Json;
+    using Requests.Params;
     using System;
     using System.Collections.Generic;
 
@@ -57,6 +59,13 @@
         public DateTime? FirstAired { get; set; }
 
         /// <summary>Gets or sets the collection of Trakt episodes in the season. See also <seealso cref="TraktEpisode" />.<para>Nullable</para></summary>
+        /// <remarks>
+        /// This property is set automatically if this season is in a collection
+        /// of seasons and this collection was returned by
+        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />
+        /// and the optional <see cref="TraktExtendedInfo" /> has
+        /// <see cref="TraktExtendedInfo.Episodes" /> set to true.
+        /// </remarks>
         [JsonProperty(PropertyName = "episodes")]
         [Nullable]
         public IEnumerable<TraktEpisode> Episodes { get; set; }

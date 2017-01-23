@@ -85,6 +85,90 @@
         }
 
         [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "en";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "en";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
+                                                                                   translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithAllTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "all";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndAllTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "all";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
+                                                                                   translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsExceptions()
         {
             var showId = "1390";
@@ -176,6 +260,15 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync("show id");
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "all");
+            act.ShouldNotThrow();
         }
 
         #endregion
@@ -219,6 +312,100 @@
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}?extended={extendedInfo.ToString()}", season);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, extendedInfo).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "en";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithExtendedInfoAndTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "en";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true,
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               extendedInfo, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithAllTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "all";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithExtendedInfoAndAllTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "all";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true,
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               extendedInfo, translationLanguageCode).Result;
 
             response.Should().NotBeNull().And.HaveCount(10);
         }
@@ -320,6 +507,15 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "all");
+            act.ShouldNotThrow();
         }
 
         #endregion
@@ -339,25 +535,42 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams());
+            var queryParams = new TraktMultipleSeasonsQueryParams();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { null, seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { null, seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { string.Empty, seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { string.Empty, seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { "show id", seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { "show id", seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { showId, -1 } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, -1 } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "eng" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "e" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}?translations=all", season);
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "all" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldNotThrow();
         }
 
         #endregion

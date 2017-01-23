@@ -428,6 +428,7 @@
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json" />
+    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimalWithTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json" />
@@ -438,6 +439,7 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Images\SeasonsAllImagesWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodes.json" />
+    <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodesTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonComments.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonRatings.json" />
@@ -450,6 +452,7 @@
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimal.json" />
+    <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonSummaryWithEpisodesMinimalTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\Single\SeasonWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\ShowAliases.json" />
     <None Include="TestData\Objects\Get\Shows\ShowCollectionProgress.json" />

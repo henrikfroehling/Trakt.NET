@@ -37,18 +37,31 @@
         /// The extended info, which determines how much data about the seasons should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="translationLanguageCode">
+        /// An optional two letter language code to query a specific translation for the returned episodes.
+        /// <para>Set this to "all" to get all available translations.</para>
+        /// </param>
         /// <returns>A list of <see cref="TraktSeason" /> instances with the data of each queried season.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<IEnumerable<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug,
+                                                                       TraktExtendedInfo extendedInfo = null,
+                                                                       string translationLanguageCode = null)
         {
             Validate(showIdOrSlug);
+
+            if (translationLanguageCode != null && translationLanguageCode != "all" && translationLanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(translationLanguageCode), "translation language code has wrong length");
 
             return await QueryAsync(new TraktSeasonsAllRequest(Client)
             {
                 Id = showIdOrSlug,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                TranslationLanguageCode = translationLanguageCode
             });
         }
 
@@ -66,21 +79,33 @@
         /// The extended info, which determines how much data about the season's episodes should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="translationLanguageCode">
+        /// An optional two letter language code to query a specific translation for the returned episodes.
+        /// <para>Set this to "all" to get all available translations.</para>
+        /// </param>
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each episode in the queried season.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season number is below zero.
+        /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktEpisode>> GetSeasonAsync([NotNull] string showIdOrSlug, int seasonNumber,
-                                                                    TraktExtendedInfo extendedInfo = null)
+                                                                    TraktExtendedInfo extendedInfo = null,
+                                                                    string translationLanguageCode = null)
         {
             Validate(showIdOrSlug, seasonNumber);
+
+            if (translationLanguageCode != null && translationLanguageCode != "all" && translationLanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(translationLanguageCode), "translation language code has wrong length");
 
             return await QueryAsync(new TraktSeasonSingleRequest(Client)
             {
                 Id = showIdOrSlug,
                 Season = seasonNumber,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                TranslationLanguageCode = translationLanguageCode
             });
         }
 
@@ -90,7 +115,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/season/get-single-season-for-a-show">"Trakt API Doc - Seasons: Season"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetSeasonAsync(string, int, TraktExtendedInfo)" />.</para>
+        /// <para>See also <seealso cref="GetSeasonAsync(string, int, TraktExtendedInfo, string)" />.</para>
         /// </summary>
         /// <param name="seasonsQueryParams">A list of show ids, season numbers and optional extended infos. See also <seealso cref="TraktMultipleSeasonsQueryParams" />.</param>
         /// <returns>A list of lists, each containing <see cref="TraktEpisode" /> instances with the data of each episode in the queried seasons.</returns>
@@ -108,7 +133,8 @@
             foreach (var queryParam in seasonsQueryParams)
             {
                 Task<IEnumerable<TraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
-                                                                      queryParam.ExtendedInfo);
+                                                                      queryParam.ExtendedInfo,
+                                                                      queryParam.TranslationLanguageCode);
 
                 tasks.Add(task);
             }
