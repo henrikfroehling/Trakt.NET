@@ -144,6 +144,7 @@
     <Compile Include="Objects\Basic\ITraktPaginationResultHeaders.cs" />
     <Compile Include="Objects\Basic\ITraktResultHeaders.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
+    <Compile Include="Objects\Basic\TraktTranslation.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
