@@ -113,7 +113,7 @@
         /// </para>
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <param name="languageCode">An optional language code to query a specific translation language.</param>
+        /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
         /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>

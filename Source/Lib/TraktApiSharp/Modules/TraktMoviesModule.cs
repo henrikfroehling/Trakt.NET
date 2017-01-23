@@ -111,45 +111,20 @@
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="countryCode">An optional two letter country code to query a specific release.</param>
         /// <returns>A list of <see cref="TraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given countryCode is shorter or longer than two characters.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync([NotNull] string movieIdOrSlug)
+        public async Task<IEnumerable<TraktMovieRelease>> GetMovieReleasesAsync([NotNull] string movieIdOrSlug, string countryCode = null)
         {
             Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = movieIdOrSlug });
-        }
+            if (countryCode != null && countryCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(countryCode), "country code has wrong length");
 
-        /// <summary>
-        /// Gets a single release for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug and the given country code.
-        /// <para>OAuth authorization not required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <param name="countryCode">The 2 letter country code, for which a translation should be queried.</param>
-        /// <returns>
-        /// An <see cref="TraktMovieTranslation" /> instance, containing a country code, certification, release date and a note
-        /// for the movie with the given movieIdOrSlug.
-        /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movieIdOrSlug is null, empty or contains spaces.
-        /// Thronw, if the given country code is null, empty, contains spaces or doesn't have the length 2.
-        /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovieRelease> GetMovieSingleReleaseAsync([NotNull] string movieIdOrSlug, [NotNull] string countryCode)
-        {
-            Validate(movieIdOrSlug, countryCode);
-
-            return await QueryAsync(new TraktMovieSingleReleaseRequest(Client)
-            {
-                Id = movieIdOrSlug,
-                LanguageCode = countryCode
-            });
+            return await QueryAsync(new TraktMovieReleasesRequest(Client) { Id = movieIdOrSlug, CountryCode = countryCode });
         }
 
         /// <summary>
@@ -160,10 +135,11 @@
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <param name="languageCode">An optional language code to query a specific translation language.</param>
+        /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
         /// <returns>A list of <see cref="TraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug, string languageCode = null)
         {

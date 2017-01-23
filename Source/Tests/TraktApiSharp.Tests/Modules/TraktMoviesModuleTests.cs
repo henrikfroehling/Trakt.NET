@@ -490,22 +490,17 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleRelease()
         {
-            var movieRelease = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleRelease.json");
-            movieRelease.Should().NotBeNullOrEmpty();
+            var movieReleases = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieReleases.json");
+            movieReleases.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
             var countryCode = "us";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieRelease);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieReleases);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, countryCode).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(movieId, countryCode).Result;
 
-            response.Should().NotBeNull();
-            response.CountryCode.Should().Be(countryCode);
-            response.Certification.Should().Be("PG-13");
-            response.ReleaseDate.Should().Be(DateTime.Parse("2015-12-14"));
-            response.ReleaseType.Should().Be(TraktReleaseType.Premiere);
-            response.Note.Should().Be("Los Angeles, California");
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -517,8 +512,8 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMovieRelease>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, countryCode);
+            Func<Task<IEnumerable<TraktMovieRelease>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(movieId, countryCode);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
@@ -585,35 +580,29 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleReleaseArgumentExceptions()
         {
-            var movieRelease = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleRelease.json");
-            movieRelease.Should().NotBeNullOrEmpty();
+            var movieReleases = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieReleases.json");
+            movieReleases.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
             var countryCode = "us";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieRelease);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/releases/{countryCode}", movieReleases);
 
-            Func<Task<TraktMovieRelease>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(null, countryCode);
+            Func<Task<IEnumerable<TraktMovieRelease>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(string.Empty, countryCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync("movie id", countryCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync("movie id");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, null);
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(movieId, "usa");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, "u");
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleReleaseAsync(movieId, "usa");
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieReleasesAsync(movieId, "u");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
