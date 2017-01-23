@@ -28,6 +28,7 @@
             episode.Ids.Should().BeNull();
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
+            episode.Translations.Should().BeNull();
         }
 
         [TestMethod]
@@ -58,6 +59,7 @@
             episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
+            episode.Translations.Should().BeNull();
         }
 
         [TestMethod]
@@ -92,6 +94,7 @@
             episode.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
             episode.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             episode.AvailableTranslationLanguageCodes.Should().BeNull();
+            episode.Translations.Should().BeNull();
         }
 
         [TestMethod]
@@ -122,6 +125,7 @@
             episode.Ids.TvRage.Should().Be(1065008299U);
             episode.Images.Should().BeNull();
             episode.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
+            episode.Translations.Should().BeNull();
         }
 
         [TestMethod]
@@ -156,6 +160,38 @@
             episode.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
             episode.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             episode.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
+            episode.Translations.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void TestTraktEpisodeReadFromJsonMinimalWithTranslations()
+        {
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryMinimalWithTranslations.json");
+
+            jsonFile.Should().NotBeNullOrEmpty();
+
+            var episode = JsonConvert.DeserializeObject<TraktEpisode>(jsonFile);
+
+            episode.Should().NotBeNull();
+            episode.Title.Should().Be("Winter Is Coming");
+            episode.SeasonNumber.Should().Be(1);
+            episode.Number.Should().Be(1);
+            episode.NumberAbsolute.Should().NotHaveValue();
+            episode.Overview.Should().BeNullOrEmpty();
+            episode.FirstAired.Should().NotHaveValue();
+            episode.UpdatedAt.Should().NotHaveValue();
+            episode.Runtime.Should().NotHaveValue();
+            episode.Rating.Should().NotHaveValue();
+            episode.Votes.Should().NotHaveValue();
+            episode.Ids.Should().NotBeNull();
+            episode.Ids.Trakt.Should().Be(73640U);
+            episode.Ids.Tvdb.Should().Be(3254641U);
+            episode.Ids.Imdb.Should().Be("tt1480055");
+            episode.Ids.Tmdb.Should().Be(63056U);
+            episode.Ids.TvRage.Should().Be(1065008299U);
+            episode.Images.Should().BeNull();
+            episode.AvailableTranslationLanguageCodes.Should().BeNull();
+            episode.Translations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
         }
     }
 }

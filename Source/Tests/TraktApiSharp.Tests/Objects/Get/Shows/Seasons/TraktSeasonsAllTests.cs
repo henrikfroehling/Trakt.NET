@@ -127,6 +127,89 @@
         }
 
         [TestMethod]
+        public void TestTraktSeasonsAllReadFromJsonMinimalWithEpisodesTranslations()
+        {
+            var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimalWithEpisodesTranslations.json");
+
+            jsonFile.Should().NotBeNullOrEmpty();
+
+            var seasons = JsonConvert.DeserializeObject<IEnumerable<TraktSeason>>(jsonFile);
+
+            seasons.Should().NotBeNull();
+            seasons.Should().HaveCount(2);
+
+            var seasonsArray = seasons.ToArray();
+
+            // season 1
+            seasonsArray[0].Number.Should().Be(1);
+            seasonsArray[0].Ids.Should().NotBeNull();
+            seasonsArray[0].Ids.Trakt.Should().Be(61430U);
+            seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
+            seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
+            seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+
+            seasonsArray[0].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            var season1Episodes = seasonsArray[0].Episodes.ToArray();
+
+            season1Episodes[0].SeasonNumber.Should().Be(1);
+            season1Episodes[0].Number.Should().Be(1);
+            season1Episodes[0].Title.Should().Be("City of Heroes");
+            season1Episodes[0].Ids.Should().NotBeNull();
+            season1Episodes[0].Ids.Trakt.Should().Be(962074U);
+            season1Episodes[0].Ids.Tvdb.Should().Be(4812524U);
+            season1Episodes[0].Ids.Imdb.Should().Be("tt3187092");
+            season1Episodes[0].Ids.Tmdb.Should().Be(977122U);
+            season1Episodes[0].Ids.TvRage.Should().Be(1065564472U);
+            season1Episodes[0].Translations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+
+            season1Episodes[1].SeasonNumber.Should().Be(1);
+            season1Episodes[1].Number.Should().Be(2);
+            season1Episodes[1].Title.Should().Be("Fastest Man Alive");
+            season1Episodes[1].Ids.Should().NotBeNull();
+            season1Episodes[1].Ids.Trakt.Should().Be(962075U);
+            season1Episodes[1].Ids.Tvdb.Should().Be(4929322U);
+            season1Episodes[1].Ids.Imdb.Should().Be("tt3819518");
+            season1Episodes[1].Ids.Tmdb.Should().Be(1005650U);
+            season1Episodes[1].Ids.TvRage.Should().Be(1065603573U);
+            season1Episodes[1].Translations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+
+            // season 2
+            seasonsArray[1].Number.Should().Be(2);
+            seasonsArray[1].Ids.Should().NotBeNull();
+            seasonsArray[1].Ids.Trakt.Should().Be(110984U);
+            seasonsArray[1].Ids.Tvdb.Should().BeNull();
+            seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
+            seasonsArray[1].Ids.TvRage.Should().BeNull();
+
+            seasonsArray[1].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            var season2Episodes = seasonsArray[1].Episodes.ToArray();
+
+            season2Episodes[0].SeasonNumber.Should().Be(2);
+            season2Episodes[0].Number.Should().Be(1);
+            season2Episodes[0].Title.Should().Be("The Man Who Saved Central City");
+            season2Episodes[0].Ids.Should().NotBeNull();
+            season2Episodes[0].Ids.Trakt.Should().Be(1866102U);
+            season2Episodes[0].Ids.Tvdb.Should().Be(5260562U);
+            season2Episodes[0].Ids.Imdb.Should().BeNull();
+            season2Episodes[0].Ids.Tmdb.Should().Be(1063859U);
+            season2Episodes[0].Ids.TvRage.Should().Be(0U);
+            season2Episodes[0].Translations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+
+            season2Episodes[1].SeasonNumber.Should().Be(2);
+            season2Episodes[1].Number.Should().Be(2);
+            season2Episodes[1].Title.Should().Be("Flash of Two Worlds");
+            season2Episodes[1].Ids.Should().NotBeNull();
+            season2Episodes[1].Ids.Trakt.Should().Be(1933746U);
+            season2Episodes[1].Ids.Tvdb.Should().Be(5280328U);
+            season2Episodes[1].Ids.Imdb.Should().BeNull();
+            season2Episodes[1].Ids.Tmdb.Should().Be(1063860U);
+            season2Episodes[1].Ids.TvRage.Should().Be(0U);
+            season2Episodes[1].Translations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
+        }
+
+        [TestMethod]
         public void TestTraktSeasonsAllReadFromJsonImages()
         {
             var jsonFile = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Images\SeasonsAllImages.json");
