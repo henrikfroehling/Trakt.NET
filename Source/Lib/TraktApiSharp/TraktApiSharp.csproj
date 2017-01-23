@@ -455,7 +455,6 @@
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieRelatedMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieReleasesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieSingleReleaseRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieSingleTranslationRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieStatisticsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieTranslationsRequest.cs" />

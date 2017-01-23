@@ -160,47 +160,21 @@
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
+        /// <param name="languageCode">An optional language code to query a specific translation language.</param>
         /// <returns>A list of <see cref="TraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug)
+        public async Task<IEnumerable<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug, string languageCode = null)
         {
             Validate(movieIdOrSlug);
 
-            return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = movieIdOrSlug });
+            if (languageCode != null && languageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(languageCode), "language code has wrong length");
+
+            return await QueryAsync(new TraktMovieTranslationsRequest(Client) { Id = movieIdOrSlug, LanguageCode = languageCode });
         }
-
-        /// <summary>
-        /// Gets a single translation for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug and the given language code.
-        /// <para>OAuth authorization not required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
-        /// <returns>
-        /// An <see cref="TraktMovieTranslation" /> instance, containing a translated title, tagline, overview and language code
-        /// for the movie with the given movieIdOrSlug.
-        /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movieIdOrSlug is null, empty or contains spaces.
-        /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
-        /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktMovieTranslation> GetMovieSingleTranslationAsync([NotNull] string movieIdOrSlug, [NotNull] string languageCode)
-        {
-            Validate(movieIdOrSlug, languageCode);
-
-            return await QueryAsync(new TraktMovieSingleTranslationRequest(Client)
-            {
-                Id = movieIdOrSlug,
-                LanguageCode = languageCode
-            });
-        }
-
+        
         /// <summary>
         /// Gets top level comments for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>

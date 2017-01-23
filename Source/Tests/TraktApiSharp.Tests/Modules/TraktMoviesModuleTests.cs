@@ -742,34 +742,30 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleTranslation()
         {
-            var movieTranslation = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleTranslation.json");
-            movieTranslation.Should().NotBeNullOrEmpty();
+            var movieTranslations = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieTranslations.json");
+            movieTranslations.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
-            var languageCode = "en";
+            var languagecode = "en";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/translations/{languageCode}", movieTranslation);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/translations/{languagecode}", movieTranslations);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, languageCode).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(movieId, languagecode).Result;
 
-            response.Should().NotBeNull();
-            response.Title.Should().Be("Star Wars: Episode VII - The Force Awakens");
-            response.Overview.Should().Be("A continuation of the saga created by George Lucas, set thirty years after Star Wars: Episode VI – Return of the Jedi.");
-            response.Tagline.Should().Be("The Force Lives On...");
-            response.LanguageCode.Should().Be(languageCode);
+            response.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleTranslationExceptions()
         {
             var movieId = "94024";
-            var languageCode = "us";
-            var uri = $"movies/{movieId}/translations/{languageCode}";
+            var languagecode = "en";
+            var uri = $"movies/{movieId}/translations/{languagecode}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktMovieTranslation>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, languageCode);
+            Func<Task<IEnumerable<TraktMovieTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(movieId, languagecode);
             act.ShouldThrow<TraktMovieNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
@@ -836,35 +832,29 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieSingleTranslationArgumentExceptions()
         {
-            var movieTranslation = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSingleTranslation.json");
-            movieTranslation.Should().NotBeNullOrEmpty();
+            var movieTranslations = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieTranslations.json");
+            movieTranslations.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
-            var languageCode = "en";
+            var languagecode = "en";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/translations/{languageCode}", movieTranslation);
+            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/translations/{languagecode}", movieTranslations);
 
-            Func<Task<TraktMovieTranslation>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(null, languageCode);
+            Func<Task<IEnumerable<TraktMovieTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(string.Empty, languageCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync("movie id", languageCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync("movie id");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, null);
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(movieId, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, "u");
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieSingleTranslationAsync(movieId, "usa");
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieTranslationsAsync(movieId, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
