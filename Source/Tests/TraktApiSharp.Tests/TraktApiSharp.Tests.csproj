@@ -127,6 +127,8 @@
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
     <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeSingleTranslationTests.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTranslationsTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePostBuilderTests.cs" />
@@ -420,12 +422,14 @@
     <None Include="TestData\Objects\Get\Shows\Common\ShowsTrending.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeComments.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeRatings.json" />
+    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSingleTranslation.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeWatchingUsers.json" />
+    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImagesWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json" />

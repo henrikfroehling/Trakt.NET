@@ -157,6 +157,7 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCredits.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTranslation.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchedProgress.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonProgress.cs" />
