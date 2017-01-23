@@ -19,7 +19,7 @@
             return uriParams;
         }
 
-        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/translations/{language}";
+        protected override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/translations{/language}";
 
         protected override bool IsListResult => true;
     }
