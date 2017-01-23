@@ -144,6 +144,7 @@
     <Compile Include="Objects\Basic\ITraktPaginationResultHeaders.cs" />
     <Compile Include="Objects\Basic\ITraktResultHeaders.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
+    <Compile Include="Objects\Basic\TraktTranslation.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCredits.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeProgress.cs" />
+    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTranslation.cs" />
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeWatchedProgress.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonProgress.cs" />
@@ -336,6 +338,7 @@
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
     <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserDVDMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllDVDMoviesRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeTranslationsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />

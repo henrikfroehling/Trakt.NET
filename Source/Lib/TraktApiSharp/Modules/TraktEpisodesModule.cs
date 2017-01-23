@@ -42,7 +42,10 @@
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktEpisode> GetEpisodeAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                         TraktExtendedInfo extendedInfo = null)
@@ -70,7 +73,10 @@
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each queried episode.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if one of the given season- or episode-numbers is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktEpisode>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams)
         {
@@ -112,7 +118,10 @@
         /// </returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                            TraktCommentSortOrder commentSortOrder = null,
@@ -143,7 +152,10 @@
         /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktRating> GetEpisodeRatingsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
@@ -170,7 +182,10 @@
         /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktStatistics> GetEpisodeStatisticsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
         {
@@ -181,6 +196,43 @@
                 Id = showIdOrSlug,
                 Season = seasonNumber,
                 Episode = episodeNumber
+            });
+        }
+
+        /// <summary>
+        /// Gets all translations for a <see cref="TraktEpisode" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="Objects.Get.Shows.TraktShowIds" />.</param>
+        /// <param name="seasonNumber">The number of the season containing the episode, for which the translations should be queried.</param>
+        /// <param name="episodeNumber">The number of the episode, for which the translations should be queried.</param>
+        /// <param name="languageCode">An optional language code to query a specific translation language.</param>
+        /// <returns>A list of <see cref="TraktEpisodeTranslation" /> instances, each containing a title, overview and language code.</returns>
+        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// Thrown, if the given languageCode is shorter or longer than two characters.
+        /// </exception>
+        [OAuthAuthorizationRequired(false)]
+        public async Task<IEnumerable<TraktEpisodeTranslation>> GetEpisodeTranslationsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
+                                                                                            string languageCode = null)
+        {
+            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+
+            if (languageCode != null && languageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(languageCode), "language code has wrong length");
+
+            return await QueryAsync(new TraktEpisodeTranslationsRequest(Client)
+            {
+                Id = showIdOrSlug,
+                Season = seasonNumber,
+                Episode = episodeNumber,
+                LanguageCode = languageCode
             });
         }
 
@@ -201,7 +253,10 @@
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season- or episode-number is below zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given season-number is below zero.
+        /// Thrown, if the given episode-number is below one.
+        /// </exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
                                                                                TraktExtendedInfo extendedInfo = null)
@@ -225,7 +280,7 @@
             if (seasonNumber < 0)
                 throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season number not valid");
 
-            if (episodeNumber < 0)
+            if (episodeNumber < 1)
                 throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode number not valid");
         }
     }
