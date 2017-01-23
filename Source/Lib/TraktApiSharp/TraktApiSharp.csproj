@@ -68,6 +68,7 @@
     <Compile Include="Enums\TraktEnumeration.cs" />
     <Compile Include="Enums\TraktHiddenItemsSection.cs" />
     <Compile Include="Enums\TraktListItemType.cs" />
+    <Compile Include="Enums\TraktListType.cs" />
     <Compile Include="Enums\TraktMediaAudio.cs" />
     <Compile Include="Enums\TraktMediaAudioChannel.cs" />
     <Compile Include="Enums\TraktMediaResolution.cs" />
