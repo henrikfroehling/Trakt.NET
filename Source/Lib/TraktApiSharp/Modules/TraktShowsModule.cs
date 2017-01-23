@@ -113,47 +113,22 @@
         /// </para>
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
+        /// <param name="languageCode">An optional language code to query a specific translation language.</param>
         /// <returns>A list of <see cref="TraktShowTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync([NotNull] string showIdOrSlug)
+        public async Task<IEnumerable<TraktShowTranslation>> GetShowTranslationsAsync([NotNull] string showIdOrSlug, string languageCode = null)
         {
             Validate(showIdOrSlug);
 
-            return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = showIdOrSlug });
+            if (languageCode != null && languageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(languageCode), "language code has wrong length");
+
+            return await QueryAsync(new TraktShowTranslationsRequest(Client) { Id = showIdOrSlug, LanguageCode = languageCode });
         }
-
-        /// <summary>
-        /// Gets a single translation for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug and the given language code.
-        /// <para>OAuth authorization not required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/translations/get-all-show-translations">"Trakt API Doc - Shows: Translations"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
-        /// <param name="languageCode">The 2 letter language code, for which a translation should be queried.</param>
-        /// <returns>
-        /// An <see cref="TraktShowTranslation" /> instance, containing a translated title, overview and language code
-        /// for the show with the given showIdOrSlug.
-        /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given showIdOrSlug is null, empty or contains spaces.
-        /// Thronw, if the given language code is null, empty, contains spaces or doesn't have the length 2.
-        /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktShowTranslation> GetShowSingleTranslationAsync([NotNull] string showIdOrSlug, [NotNull] string languageCode)
-        {
-            Validate(showIdOrSlug, languageCode);
-
-            return await QueryAsync(new TraktShowSingleTranslationRequest(Client)
-            {
-                Id = showIdOrSlug,
-                LanguageCode = languageCode
-            });
-        }
-
+        
         /// <summary>
         /// Gets top level comments for a <see cref="TraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>

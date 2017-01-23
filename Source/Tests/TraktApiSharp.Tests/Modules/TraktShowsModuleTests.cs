@@ -504,33 +504,30 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowSingleTranslation()
         {
-            var showTranslation = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSingleTranslation.json");
-            showTranslation.Should().NotBeNullOrEmpty();
+            var showTranslations = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowTranslations.json");
+            showTranslations.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var languageCode = "de";
+            var languageCode = "en";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", showTranslation);
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", showTranslations);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, languageCode).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, languageCode).Result;
 
-            response.Should().NotBeNull();
-            response.Title.Should().Be("Game of Thrones");
-            response.Overview.Should().Be("Die Handlung ist in einer fiktiven Welt angesiedelt und spielt auf den Kontinenten Westeros (den Sieben Königreichen sowie im Gebiet der „Mauer“ und jenseits davon im Norden) und Essos. In dieser Welt ist die Länge der Sommer und Winter unvorhersehbar und variabel; eine Jahreszeit kann Jahre oder sogar Jahrzehnte dauern. Der Handlungsort auf dem Kontinent Westeros in den Sieben Königreichen ähnelt dabei stark dem mittelalterlichen Europa. Die Geschichte spielt am Ende eines langen Sommers und wird in drei Handlungssträngen weitgehend parallel erzählt. In den Sieben Königreichen bauen sich zwischen den mächtigsten Adelshäusern des Reiches Spannungen auf, die schließlich zum offenen Thronkampf führen. Gleichzeitig droht der Wintereinbruch und es zeichnet sich eine Gefahr durch eine fremde Rasse im hohen Norden von Westeros ab. Der dritte Handlungsstrang spielt auf dem Kontinent Essos, wo Daenerys Targaryen, Mitglied der vor Jahren abgesetzten Königsfamilie, bestrebt ist, wieder an die Macht zu gelangen. Die komplexe Handlung umfasst zahlreiche Figuren und thematisiert unter anderem Politik und Machtkämpfe, Gesellschaftsverhältnisse und Religion.");
-            response.LanguageCode.Should().Be("de");
+            response.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
         public void TestTraktShowsModuleGetShowSingleTranslationExceptions()
         {
             var showId = "1390";
-            var languageCode = "de";
+            var languageCode = "en";
             var uri = $"shows/{showId}/translations/{languageCode}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktShowTranslation>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, languageCode);
+            Func<Task<IEnumerable<TraktShowTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, languageCode);
             act.ShouldThrow<TraktShowNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
@@ -597,35 +594,29 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowSingleTranslationArgumentExceptions()
         {
-            var showTranslation = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSingleTranslation.json");
-            showTranslation.Should().NotBeNullOrEmpty();
+            var showTranslations = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowTranslations.json");
+            showTranslations.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var languageCode = "de";
+            var languageCode = "en";
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", showTranslation);
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", showTranslations);
 
-            Func<Task<TraktShowTranslation>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(null, languageCode);
+            Func<Task<IEnumerable<TraktShowTranslation>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(string.Empty, languageCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync("show id", languageCode);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync("show id");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, null);
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, "d");
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowSingleTranslationAsync(showId, "deu");
-            act.ShouldThrow<ArgumentException>();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion

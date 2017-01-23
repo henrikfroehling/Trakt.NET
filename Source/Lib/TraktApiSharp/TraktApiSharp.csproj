@@ -491,7 +491,6 @@
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowPeopleRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowRatingsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowRelatedShowsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\TraktShowSingleTranslationRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowStatisticsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowTranslationsRequest.cs" />
