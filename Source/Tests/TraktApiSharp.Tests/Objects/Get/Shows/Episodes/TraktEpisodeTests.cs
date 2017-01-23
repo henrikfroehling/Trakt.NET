@@ -22,6 +22,7 @@
             episode.Overview.Should().BeNullOrEmpty();
             episode.FirstAired.Should().NotHaveValue();
             episode.UpdatedAt.Should().NotHaveValue();
+            episode.Runtime.Should().NotHaveValue();
             episode.Rating.Should().NotHaveValue();
             episode.Votes.Should().NotHaveValue();
             episode.Ids.Should().BeNull();
@@ -46,6 +47,7 @@
             episode.Overview.Should().BeNullOrEmpty();
             episode.FirstAired.Should().NotHaveValue();
             episode.UpdatedAt.Should().NotHaveValue();
+            episode.Runtime.Should().NotHaveValue();
             episode.Rating.Should().NotHaveValue();
             episode.Votes.Should().NotHaveValue();
             episode.Ids.Should().NotBeNull();
@@ -75,6 +77,7 @@
             episode.Overview.Should().BeNullOrEmpty();
             episode.FirstAired.Should().NotHaveValue();
             episode.UpdatedAt.Should().NotHaveValue();
+            episode.Runtime.Should().NotHaveValue();
             episode.Rating.Should().NotHaveValue();
             episode.Votes.Should().NotHaveValue();
             episode.Ids.Should().NotBeNull();
@@ -108,6 +111,7 @@
             episode.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
             episode.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             episode.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
+            episode.Runtime.Should().Be(55);
             episode.Rating.Should().Be(9.0f);
             episode.Votes.Should().Be(111);
             episode.Ids.Should().NotBeNull();
@@ -137,6 +141,7 @@
             episode.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
             episode.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             episode.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
+            episode.Runtime.Should().Be(55);
             episode.Rating.Should().Be(9.0f);
             episode.Votes.Should().Be(111);
             episode.Ids.Should().NotBeNull();

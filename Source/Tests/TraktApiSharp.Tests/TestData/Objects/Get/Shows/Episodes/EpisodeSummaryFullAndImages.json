@@ -18,6 +18,7 @@
   "available_translations": [
     "en"
   ],
+  "runtime": 55,
   "images": {
     "screenshot": {
       "full": "https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg",

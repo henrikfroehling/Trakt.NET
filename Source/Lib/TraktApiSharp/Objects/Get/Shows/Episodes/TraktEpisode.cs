@@ -48,6 +48,10 @@
         [Nullable]
         public string Overview { get; set; }
 
+        /// <summary>Gets or sets the runtime of the episode.</summary>
+        [JsonProperty(PropertyName = "runtime")]
+        public int? Runtime { get; set; }
+
         /// <summary>Gets or sets the average user rating of the episode.</summary>
         [JsonProperty(PropertyName = "rating")]
         public float? Rating { get; set; }
