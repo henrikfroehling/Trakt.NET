@@ -164,7 +164,6 @@
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
     <Compile Include="Requests\Base\TraktRequestObjectTypeTests.cs" />
     <Compile Include="Enums\TraktScrobbleActionTypeTests.cs" />
-    <Compile Include="Enums\TraktSearchIdLookupTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
     <Compile Include="Enums\TraktHistoryActionTypeTests.cs" />

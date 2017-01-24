@@ -77,7 +77,6 @@
     <Compile Include="Enums\TraktObjectType.cs" />
     <Compile Include="Enums\TraktScrobbleActionType.cs" />
     <Compile Include="Enums\TraktSearchField.cs" />
-    <Compile Include="Enums\TraktSearchIdLookupType.cs" />
     <Compile Include="Enums\TraktAccessScope.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType.cs" />
     <Compile Include="Enums\TraktAccessTokenType.cs" />
@@ -465,7 +464,6 @@
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonMovieCreditsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonShowCreditsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\People\TraktPersonSummaryRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Search\TraktSearchOldIdLookupRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostCollectedRequest.cs" />
