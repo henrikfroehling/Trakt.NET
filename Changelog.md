@@ -2,6 +2,38 @@ Release notes
 =============
 ---
 
+Version 0.9.0
+===
+
+#### 0.9.0
+*(2017-01-24)*
+
+Fixed:
+
+- GetMovieReleasesAsync() in TraktMoviesModule
+- GetMovieTranslationsAsync() in TraktMoviesModule
+- GetShowTranslationsAsync() in TraktShowsModule
+
+Added:
+
+- GetEpisodeListsAsync() in TraktEpisodesModule
+- GetEpisodeTranslationsAsync() in TraktEpisodesModule
+- GetMovieListsAsync() in TraktMoviesModule
+- GetSeasonListsAsync() in TraktSeasonsModule
+- GetShowListsAsync() in TraktShowsModule
+- "Runtime" property in TraktEpisode
+- "Translations" property in TraktEpisode
+- support for episode translations in GetAllSeasonsAsync() in TraktSeasonsModule
+- support for episode translations in GetSeasonAsync() in TraktSeasonsModule
+
+Removed:
+
+- GetMovieSingleReleaseAsync() in TraktMoviesModule (use GetMovieReleasesAsync() instead)
+- GetMovieSingleTranslationAsync() in TraktMoviesModule (use GetMovieTranslationsAsync() instead)
+- GetShowSingleTranslationAsync() in TraktShowsModule (use GetShowTranslationsAsync() instead
+- deprecated version of GetTextQueryResultsAsync() in TraktSearchModule
+- deprecated version of GetIdLookupResultsAsync() in TraktSearchModule
+
 Version 0.8.0
 ===
 
