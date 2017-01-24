@@ -31,7 +31,7 @@
 
         protected override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 
-        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Shows;
+        protected override TraktRequestObjectType? RequestObjectType => TraktRequestObjectType.Movies;
 
         protected override string UriTemplate => "movies/{id}/lists{/type}{/sorting}{?page,limit}";
 

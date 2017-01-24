@@ -14,6 +14,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Params;
     using Utils;
 
@@ -1132,6 +1133,416 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync("movie id");
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        #region MovieLists
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieLists()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists", movieLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithType()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}",
+                                                                movieLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithSortOrderAndWithoutType()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists",
+                                                                movieLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithPage()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}",
+                                                                movieLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithLimit()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?limit={limit}",
+                                                                movieLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithPageAndLimit()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}&limit={limit}",
+                                                                movieLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndSortOrder()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}",
+                                                                movieLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndPage()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}",
+                                                                movieLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndLimit()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?limit={limit}",
+                                                                movieLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndPageAndLimit()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}&limit={limit}",
+                                                                movieLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndSortOrderAndPage()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
+                                                                movieLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsWithTypeAndSortOrderAndLimit()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
+                movieLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsComplete()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}" +
+                                                                $"?page={page}&limit={limit}",
+                                                                movieLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsExceptions()
+        {
+            var movieId = "94024";
+            var uri = $"movies/{movieId}/lists";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId);
+            act.ShouldThrow<TraktMovieNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktMoviesModuleGetMovieListsArgumentsExceptions()
+        {
+            var movieLists = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieLists.json");
+            movieLists.Should().NotBeNullOrEmpty();
+
+            var movieId = "94024";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists", movieLists);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync("movie id");
             act.ShouldThrow<ArgumentException>();
         }
 

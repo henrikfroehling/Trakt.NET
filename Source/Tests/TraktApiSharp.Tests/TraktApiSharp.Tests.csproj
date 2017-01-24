@@ -386,6 +386,7 @@
     <None Include="TestData\Objects\Get\Movies\Common\MoviesRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesTrending.json" />
     <None Include="TestData\Objects\Get\Movies\MovieAliases.json" />
+    <None Include="TestData\Objects\Get\Movies\MovieLists.json" />
     <None Include="TestData\Objects\Get\Movies\MoviePeople.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRatings.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
