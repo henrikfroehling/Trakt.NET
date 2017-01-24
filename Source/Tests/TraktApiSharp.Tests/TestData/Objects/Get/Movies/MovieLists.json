@@ -1,0 +1,282 @@
+﻿[
+  {
+    "name": "Underground Network",
+    "description": "Underground network, alternative communication.",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2015-07-31T16:28:39.000Z",
+    "updated_at": "2017-01-22T00:32:40.000Z",
+    "item_count": 29,
+    "comment_count": 5,
+    "likes": 197,
+    "ids": {
+      "trakt": 1289835,
+      "slug": "underground-network"
+    },
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": true,
+      "vip_ep": true,
+      "ids": {
+        "slug": "justin"
+      }
+    }
+  },
+  {
+    "name": "All-Time Worldwide Box office (update 10/10/2016)",
+    "description": "The All-Time Worldwide Box office list includes movies that have grossed over $200,000,000 at the box office during their theatrical runs. Only theatrical box office receipts (movie ticket sales) are included, video rentals, television rights and other revenues are thus ignored. The total may include theatrical re-release receipts. Figures are not adjusted for inflation.",
+    "privacy": "public",
+    "display_numbers": true,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-04-23T12:09:34.000Z",
+    "updated_at": "2017-01-19T13:09:04.000Z",
+    "item_count": 660,
+    "comment_count": 0,
+    "likes": 59,
+    "ids": {
+      "trakt": 2183985,
+      "slug": "all-time-worldwide-box-office-update-10-10-2016"
+    },
+    "user": {
+      "username": "dc921",
+      "private": false,
+      "name": "dc921",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "dc921"
+      }
+    }
+  },
+  {
+    "name": "Movies",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "title",
+    "sort_how": "asc",
+    "created_at": "2016-07-13T03:50:20.000Z",
+    "updated_at": "2017-01-10T01:39:56.000Z",
+    "item_count": 3323,
+    "comment_count": 0,
+    "likes": 9,
+    "ids": {
+      "trakt": 2465950,
+      "slug": "movies"
+    },
+    "user": {
+      "username": "KodiMasterAccount",
+      "private": false,
+      "name": "",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "kodimasteraccount"
+      }
+    }
+  },
+  {
+    "name": "Sci-Fi 1970-2013",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": true,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2014-04-28T13:12:38.000Z",
+    "updated_at": "2017-01-08T10:20:44.000Z",
+    "item_count": 1293,
+    "comment_count": 1,
+    "likes": 31,
+    "ids": {
+      "trakt": 840022,
+      "slug": "sci-fi-1970-2013"
+    },
+    "user": {
+      "username": "batarela",
+      "private": false,
+      "name": null,
+      "vip": true,
+      "vip_ep": false,
+      "ids": {
+        "slug": "batarela"
+      }
+    }
+  },
+  {
+    "name": "Movies",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-01-26T20:23:30.000Z",
+    "updated_at": "2016-12-13T23:42:49.000Z",
+    "item_count": 2182,
+    "comment_count": 0,
+    "likes": 14,
+    "ids": {
+      "trakt": 1789302,
+      "slug": "movies"
+    },
+    "user": {
+      "username": "estrobien",
+      "private": false,
+      "name": null,
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "estrobien"
+      }
+    }
+  },
+  {
+    "name": "Hacker Movies",
+    "description": "Hack the Planet!\r\n\r\nAll the hacking movies and related.",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-05-12T19:39:07.000Z",
+    "updated_at": "2016-10-05T18:58:03.000Z",
+    "item_count": 39,
+    "comment_count": 0,
+    "likes": 3,
+    "ids": {
+      "trakt": 2259437,
+      "slug": "hacker-movies"
+    },
+    "user": {
+      "username": "garyalexza",
+      "private": false,
+      "name": "Gary Alexander",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "garyalexza"
+      }
+    }
+  },
+  {
+    "name": "Movies ",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "title",
+    "sort_how": "asc",
+    "created_at": "2016-03-16T00:06:52.000Z",
+    "updated_at": "2016-08-13T03:39:13.000Z",
+    "item_count": 5619,
+    "comment_count": 0,
+    "likes": 3,
+    "ids": {
+      "trakt": 2026667,
+      "slug": "movies"
+    },
+    "user": {
+      "username": "Jayseal01 ",
+      "private": false,
+      "name": null,
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "jayseal01"
+      }
+    }
+  },
+  {
+    "name": "All Time Favorite Movies",
+    "description": "My favorite movies throughout my entire movie watching career.",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2015-12-11T06:06:57.000Z",
+    "updated_at": "2016-09-16T04:52:57.000Z",
+    "item_count": 33,
+    "comment_count": 0,
+    "likes": 11,
+    "ids": {
+      "trakt": 1625180,
+      "slug": "all-time-favorite-movies"
+    },
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": true,
+      "vip_ep": true,
+      "ids": {
+        "slug": "justin"
+      }
+    }
+  },
+  {
+    "name": "Cyberpunk",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2015-10-30T17:23:29.000Z",
+    "updated_at": "2016-09-16T04:55:33.000Z",
+    "item_count": 181,
+    "comment_count": 0,
+    "likes": 5,
+    "ids": {
+      "trakt": 1528948,
+      "slug": "cyberpunk"
+    },
+    "user": {
+      "username": "Oya Kesh",
+      "private": false,
+      "name": "",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "oya-kesh"
+      }
+    }
+  },
+  {
+    "name": "Underground",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2015-10-30T17:19:02.000Z",
+    "updated_at": "2016-12-30T19:27:28.000Z",
+    "item_count": 47,
+    "comment_count": 0,
+    "likes": 1,
+    "ids": {
+      "trakt": 1528944,
+      "slug": "underground"
+    },
+    "user": {
+      "username": "Oya Kesh",
+      "private": false,
+      "name": "",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "oya-kesh"
+      }
+    }
+  }
+]
