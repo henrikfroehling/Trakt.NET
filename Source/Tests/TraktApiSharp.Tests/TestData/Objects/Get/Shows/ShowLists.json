@@ -1,0 +1,282 @@
+﻿[
+  {
+    "name": "Binge Tee Vee",
+    "description": "Lists will be updated with new series  and episodes or movies or suggested by anyone as they are released or if you have an idea for a list email me at: bingeflixs@gmail.com",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "title",
+    "sort_how": "asc",
+    "created_at": "2016-09-24T14:22:34.000Z",
+    "updated_at": "2017-01-23T06:06:43.000Z",
+    "item_count": 983,
+    "comment_count": 0,
+    "likes": 31,
+    "ids": {
+      "trakt": 2708842,
+      "slug": "binge-tee-vee"
+    },
+    "user": {
+      "username": "Binge Flixs",
+      "private": false,
+      "name": "Binge Flixs",
+      "vip": true,
+      "vip_ep": false,
+      "ids": {
+        "slug": "binge-flixs"
+      }
+    }
+  },
+  {
+    "name": "IMDB: Popular TV Shows",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": true,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-04-11T23:10:32.000Z",
+    "updated_at": "2017-01-23T09:40:27.000Z",
+    "item_count": 100,
+    "comment_count": 1,
+    "likes": 43,
+    "ids": {
+      "trakt": 2143362,
+      "slug": "imdb-popular-tv-shows"
+    },
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": true,
+      "vip_ep": true,
+      "ids": {
+        "slug": "justin"
+      }
+    }
+  },
+  {
+    "name": "MARVEL'S CINEMATIC UNIVERSE - TV Series",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-07-07T21:42:48.000Z",
+    "updated_at": "2017-01-07T05:52:38.000Z",
+    "item_count": 9,
+    "comment_count": 0,
+    "likes": 6,
+    "ids": {
+      "trakt": 2447176,
+      "slug": "marvel-s-cinematic-universe-tv-series"
+    },
+    "user": {
+      "username": "TheObscureKing",
+      "private": false,
+      "name": "",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "theobscureking"
+      }
+    }
+  },
+  {
+    "name": "TVShows",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-01-26T20:23:19.000Z",
+    "updated_at": "2016-12-27T12:00:08.000Z",
+    "item_count": 762,
+    "comment_count": 0,
+    "likes": 18,
+    "ids": {
+      "trakt": 1789300,
+      "slug": "tvshows"
+    },
+    "user": {
+      "username": "estrobien",
+      "private": false,
+      "name": null,
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "estrobien"
+      }
+    }
+  },
+  {
+    "name": "Movies",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "title",
+    "sort_how": "asc",
+    "created_at": "2016-07-13T03:50:20.000Z",
+    "updated_at": "2017-01-10T01:39:56.000Z",
+    "item_count": 3323,
+    "comment_count": 0,
+    "likes": 9,
+    "ids": {
+      "trakt": 2465950,
+      "slug": "movies"
+    },
+    "user": {
+      "username": "KodiMasterAccount",
+      "private": false,
+      "name": "",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "kodimasteraccount"
+      }
+    }
+  },
+  {
+    "name": "My Tv shows",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": true,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-12-21T00:44:51.000Z",
+    "updated_at": "2017-01-19T03:19:11.000Z",
+    "item_count": 81,
+    "comment_count": 0,
+    "likes": 3,
+    "ids": {
+      "trakt": 3046866,
+      "slug": "my-tv-shows"
+    },
+    "user": {
+      "username": "0541415141m7md",
+      "private": false,
+      "name": "Mohammed Qahtanie",
+      "vip": true,
+      "vip_ep": true,
+      "ids": {
+        "slug": "0541415141m7md"
+      }
+    }
+  },
+  {
+    "name": "Popular TV",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2016-01-25T19:04:51.000Z",
+    "updated_at": "2016-12-28T01:34:39.000Z",
+    "item_count": 522,
+    "comment_count": 0,
+    "likes": 7,
+    "ids": {
+      "trakt": 1785272,
+      "slug": "popular-tv"
+    },
+    "user": {
+      "username": "deegan000",
+      "private": false,
+      "name": null,
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "deegan000"
+      }
+    }
+  },
+  {
+    "name": "Marvel/DC/Comic Adaptations",
+    "description": "Marvel rocks!!!",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2012-05-03T10:35:30.000Z",
+    "updated_at": "2017-01-22T00:32:13.000Z",
+    "item_count": 88,
+    "comment_count": 14,
+    "likes": 233,
+    "ids": {
+      "trakt": 799403,
+      "slug": "marvel-dc-comic-adaptations"
+    },
+    "user": {
+      "username": "BenFranklin",
+      "private": false,
+      "name": "Ben",
+      "vip": true,
+      "vip_ep": false,
+      "ids": {
+        "slug": "benfranklin"
+      }
+    }
+  },
+  {
+    "name": "TV Shows",
+    "description": "",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": true,
+    "sort_by": "title",
+    "sort_how": "asc",
+    "created_at": "2016-10-07T17:27:41.000Z",
+    "updated_at": "2017-01-05T03:35:24.000Z",
+    "item_count": 2220,
+    "comment_count": 0,
+    "likes": 3,
+    "ids": {
+      "trakt": 2759844,
+      "slug": "tv-shows"
+    },
+    "user": {
+      "username": "pizzaguy300",
+      "private": false,
+      "name": null,
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "pizzaguy300"
+      }
+    }
+  },
+  {
+    "name": "Marvel Cinematic Universe",
+    "description": "Marvel Cinematic Universe films & television series",
+    "privacy": "public",
+    "display_numbers": false,
+    "allow_comments": false,
+    "sort_by": "rank",
+    "sort_how": "asc",
+    "created_at": "2015-08-17T01:22:23.000Z",
+    "updated_at": "2017-01-19T23:22:06.000Z",
+    "item_count": 28,
+    "comment_count": 0,
+    "likes": 3,
+    "ids": {
+      "trakt": 1325765,
+      "slug": "marvel-cinematic-universe"
+    },
+    "user": {
+      "username": "_nto1ne",
+      "private": false,
+      "name": "Antoine Boulanger",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "_nto1ne"
+      }
+    }
+  }
+]

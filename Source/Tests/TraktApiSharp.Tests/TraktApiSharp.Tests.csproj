@@ -460,6 +460,7 @@
     <None Include="TestData\Objects\Get\Shows\ShowCollectionProgress.json" />
     <None Include="TestData\Objects\Get\Shows\ShowCollectionProgressComplete.json" />
     <None Include="TestData\Objects\Get\Shows\ShowComments.json" />
+    <None Include="TestData\Objects\Get\Shows\ShowLists.json" />
     <None Include="TestData\Objects\Get\Shows\ShowPeople.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRatings.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFull.json" />
