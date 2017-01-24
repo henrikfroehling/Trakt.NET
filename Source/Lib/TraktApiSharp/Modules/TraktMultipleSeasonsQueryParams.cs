@@ -84,18 +84,4 @@
         /// </summary>
         public string TranslationLanguageCode { get; }
     }
-
-    public class Foo
-    {
-        public Foo()
-        {
-            var values = new TraktMultipleSeasonsQueryParams
-            {
-                { "id", 1 },
-                { "id", 2, "en" },
-                { "id", 3, new TraktExtendedInfo { Full = true } },
-                { "id", 4, new TraktExtendedInfo { Full = true }, "en" }
-            };
-        }
-    }
 }
