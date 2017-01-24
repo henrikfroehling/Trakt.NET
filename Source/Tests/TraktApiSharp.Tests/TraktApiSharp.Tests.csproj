@@ -421,6 +421,7 @@
     <None Include="TestData\Objects\Get\Shows\Common\ShowsRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsTrending.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeComments.json" />
+    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeLists.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeRatings.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSingleTranslation.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
