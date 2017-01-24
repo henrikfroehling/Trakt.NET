@@ -62,7 +62,7 @@
         /// <summary>
         /// Gets or sets, whether episodes information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo)" />.
+        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetEpisodes()" /> and <see cref="ResetEpisodes()" />.</para>
