@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.8.0</version>
+        <version>0.9.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
         <licenseUrl>https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/henrikfroehling/TraktApiSharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>C# wrapper library for the Trakt.tv API.
+        <description>.NET wrapper library for the Trakt.tv API.
 
 Features
 - Full Trakt.tv API Coverage
@@ -19,37 +19,29 @@ Features
 - Serialization Service
 - Language Service
         </description>
-        <summary>C# wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes>Added:
-- range support for years parameter in filters
-- AddMovies(IEnumerable(TraktMovie)) in TraktSyncCollectionPostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktSyncCollectionPostBuilder
-- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncCollectionPostBuilder
-- more overloads for AddShow() in TraktSyncCollectionPostBuilder
-- AddMovies(IEnumerable(TraktMovie)) in TraktSyncRatingsPostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktSyncRatingsPostBuilder
-- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncRatingsPostBuilder
-- more overloads for AddShow() and AddShowWithRating() in TraktSyncRatingsPostBuilder
-- AddMovies(IEnumerable(TraktMovie)) in TraktSyncWatchlistPostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktSyncWatchlistPostBuilder
-- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncWatchlistPostBuilder
-- more overloads for AddShow() in TraktSyncWatchlistPostBuilder
-- AddMovies(IEnumerable(TraktMovie)) in TraktSyncHistoryPostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktSyncHistoryPostBuilder
-- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncHistoryPostBuilder
-- more overloads for AddShow() in TraktSyncHistoryPostBuilder
-- AddMovies(IEnumerable(TraktMovie)) in TraktSyncHistoryRemovePostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktSyncHistoryRemovePostBuilder
-- AddEpisodes(IEnumerable(TraktEpisode)) in TraktSyncHistoryRemovePostBuilder
-- more overloads for AddShow() and AddHistoryIds() in TraktSyncHistoryRemovePostBuilder
-- AddMovies(IEnumerable(TraktMovie)) in TraktUserCustomListItemsPostBuilder
-- AddShows(IEnumerable(TraktShow)) in TraktUserCustomListItemsPostBuilder
-- AddPersons(IEnumerable(TraktPerson)) in TraktUserCustomListItemsPostBuilder
-- more overloads for AddShow() in TraktUserCustomListItemsPostBuilder
+        <summary>.NET wrapper library for the Trakt.tv API.</summary>
+        <releaseNotes>Fixed:
+- GetMovieReleasesAsync() in TraktMoviesModule
+- GetMovieTranslationsAsync() in TraktMoviesModule
+- GetShowTranslationsAsync() in TraktShowsModule
 
-Improved:
-- performance of Serialize(TraktAuthorization) in TraktSerializationService
-- performance of DeserializeAuthorization() in TraktSerializationService
+Added:
+- GetEpisodeListsAsync() in TraktEpisodesModule
+- GetEpisodeTranslationsAsync() in TraktEpisodesModule
+- GetMovieListsAsync() in TraktMoviesModule
+- GetSeasonListsAsync() in TraktSeasonsModule
+- GetShowListsAsync() in TraktShowsModule
+- "Runtime" property in TraktEpisode
+- "Translations" property in TraktEpisode
+- support for episode translations in GetAllSeasonsAsync() in TraktSeasonsModule
+- support for episode translations in GetSeasonAsync() in TraktSeasonsModule
+
+Removed:
+- GetMovieSingleReleaseAsync() in TraktMoviesModule (use GetMovieReleasesAsync() instead)
+- GetMovieSingleTranslationAsync() in TraktMoviesModule (use GetMovieTranslationsAsync() instead)
+- GetShowSingleTranslationAsync() in TraktShowsModule (use GetShowTranslationsAsync() instead
+- deprecated version of GetTextQueryResultsAsync() in TraktSearchModule
+- deprecated version of GetIdLookupResultsAsync() in TraktSearchModule
         </releaseNotes>
         <copyright>Copyright (c) 2016 - 2017 Henrik Fröhling</copyright>
         <language>en-US</language>
