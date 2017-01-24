@@ -340,6 +340,7 @@
     <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllDVDMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeListsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeTranslationsRequest.cs" />
+    <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonListsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />
