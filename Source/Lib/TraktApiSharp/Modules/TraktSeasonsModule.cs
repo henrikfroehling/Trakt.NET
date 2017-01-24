@@ -2,6 +2,7 @@
 {
     using Attributes;
     using Enums;
+    using Exceptions;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Shows;
@@ -44,7 +45,7 @@
         /// <para>Set this to "all" to get all available translations.</para>
         /// </param>
         /// <returns>A list of <see cref="TraktSeason" /> instances with the data of each queried season.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
@@ -86,7 +87,7 @@
         /// <para>Set this to "all" to get all available translations.</para>
         /// </param>
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each episode in the queried season.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given season number is below zero.
@@ -121,7 +122,7 @@
         /// </summary>
         /// <param name="seasonsQueryParams">A list of show ids, season numbers and optional extended infos. See also <seealso cref="TraktMultipleSeasonsQueryParams" />.</param>
         /// <returns>A list of lists, each containing <see cref="TraktEpisode" /> instances with the data of each episode in the queried seasons.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if one of the given season numbers is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
@@ -164,7 +165,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
@@ -203,7 +204,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktList" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
@@ -233,7 +234,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season, for which the ratings should be queried.</param>
         /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a season with the given showIdOrSlug and the given season number.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
@@ -258,7 +259,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="TraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season, for which the statistics should be queried.</param>
         /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a season with the given showIdOrSlug and the given season number.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]
@@ -287,7 +288,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         [OAuthAuthorizationRequired(false)]

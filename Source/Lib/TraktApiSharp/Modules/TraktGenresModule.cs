@@ -2,6 +2,7 @@
 {
     using Attributes;
     using Enums;
+    using Exceptions;
     using Objects.Basic;
     using Requests.WithoutOAuth.Genres;
     using System.Collections.Generic;
@@ -25,7 +26,7 @@
         /// </para>
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktGenre>> GetMovieGenresAsync()
         {
@@ -45,7 +46,7 @@
         /// </para>
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktGenre>> GetShowGenresAsync()
         {
