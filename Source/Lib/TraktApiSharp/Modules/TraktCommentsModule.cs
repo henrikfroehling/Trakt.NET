@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Attributes;
+    using Exceptions;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -38,7 +39,7 @@
         /// </summary>
         /// <param name="commentId">The comment's id.</param>
         /// <returns>An <see cref="TraktComment" /> instance with the queried comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktComment> GetCommentAsync(uint commentId)
@@ -58,7 +59,7 @@
         /// </summary>
         /// <param name="commentIds">An array of comment ids.</param>
         /// <returns>A list of <see cref="TraktComment" /> instances with the data of each queried comment.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktComment>> GetMutlipleCommentsAsync(uint[] commentIds)
@@ -90,7 +91,7 @@
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given movie's title is null, empty or contains spaces.
         /// Thrown, if the given movie has no valid ids. See also <seealso cref="TraktMovieIds" />.
@@ -137,7 +138,7 @@
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given show's title is null, empty or contains spaces.
         /// Thrown, if the given show has no valid ids. See also <seealso cref="TraktShowIds" />.
@@ -180,7 +181,7 @@
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given season has no valid ids. See also <seealso cref="TraktSeasonIds" />.
         /// Thrown, if the given comment is null or empty.
@@ -218,7 +219,7 @@
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given episode has no valid ids. See also <seealso cref="TraktEpisodeIds" />.
         /// Thrown, if the given comment is null or empty.
@@ -256,7 +257,7 @@
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given list has no valid ids. See also <seealso cref="TraktListIds" />.
         /// Thrown, if the given comment is null or empty.
@@ -293,7 +294,7 @@
         /// <param name="comment">The new comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given comment id is null, empty or contains spaces.
         /// Thrown, if the given comment is null or empty.
@@ -327,7 +328,7 @@
         /// <param name="comment">The comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <returns>An <see cref="TraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given comment id is null, empty or contains spaces.
         /// Thrown, if the given comment is null or empty.
@@ -358,7 +359,7 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be deleted.</param>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
         public async Task DeleteCommentAsync(uint commentId)
@@ -376,7 +377,7 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be liked.</param>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
         public async Task LikeCommentAsync(uint commentId)
@@ -394,7 +395,7 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be unliked.</param>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
         public async Task UnlikeCommentAsync(uint commentId)
@@ -421,7 +422,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
         public async Task<TraktPaginationListResult<TraktComment>> GetCommentRepliesAsync(uint commentId, int? page = null, int? limitPerPage = null)

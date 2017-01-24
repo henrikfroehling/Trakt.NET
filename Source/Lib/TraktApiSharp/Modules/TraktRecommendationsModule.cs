@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Attributes;
+    using Exceptions;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -40,7 +41,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMovie" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
                                                                                   TraktExtendedInfo extendedInfo = null)
@@ -58,7 +59,7 @@
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
         public async Task HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
@@ -87,7 +88,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
         public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
                                                                                 TraktExtendedInfo extendedInfo = null)
@@ -105,7 +106,7 @@
         /// </para>
         /// </summary>
         /// <param name="showIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the show, which should be hidden from recommendations.</param>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
         public async Task HideShowRecommendationAsync([NotNull] string showIdOrSlug)

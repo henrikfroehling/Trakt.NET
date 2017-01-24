@@ -13,6 +13,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Shows.Seasons;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Params;
     using Utils;
 
@@ -80,6 +81,90 @@
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?extended={extendedInfo.ToString()}", seasons);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "en";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "en";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
+                                                                                   translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithAllTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "all";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndAllTranslations()
+        {
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            seasons.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var translationLanguageCode = "all";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      seasons);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
+                                                                                   translationLanguageCode).Result;
 
             response.Should().NotBeNull().And.HaveCount(2);
         }
@@ -176,6 +261,15 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync("show id");
             act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "all");
+            act.ShouldNotThrow();
         }
 
         #endregion
@@ -219,6 +313,100 @@
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}?extended={extendedInfo.ToString()}", season);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, extendedInfo).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "en";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithExtendedInfoAndTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "en";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true,
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               extendedInfo, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithAllTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "all";
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               null, translationLanguageCode).Result;
+
+            response.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonWithExtendedInfoAndAllTranslations()
+        {
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var translationLanguageCode = "all";
+
+            var extendedInfo = new TraktExtendedInfo
+            {
+                Full = true,
+                Images = true,
+            };
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
+                                                      $"?extended={extendedInfo.ToString()}" +
+                                                      $"&translations={translationLanguageCode}",
+                                                      season);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr,
+                                                                               extendedInfo, translationLanguageCode).Result;
 
             response.Should().NotBeNull().And.HaveCount(10);
         }
@@ -320,6 +508,15 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "eng");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "e");
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonAsync(showId, seasonNr, null, "all");
+            act.ShouldNotThrow();
         }
 
         #endregion
@@ -339,25 +536,42 @@
                 async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(null);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams());
+            var queryParams = new TraktMultipleSeasonsQueryParams();
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldNotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { null, seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { null, seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { string.Empty, seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { string.Empty, seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { "show id", seasonNr } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { "show id", seasonNr } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(
-                new TraktMultipleSeasonsQueryParams { { showId, -1 } });
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, -1 } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
             act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "eng" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "e" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            var season = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonEpisodes.json");
+            season.Should().NotBeNullOrEmpty();
+
+            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}?translations=all", season);
+
+            queryParams = new TraktMultipleSeasonsQueryParams { { showId, seasonNr, "all" } };
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetMultipleSeasonsAsync(queryParams);
+            act.ShouldNotThrow();
         }
 
         #endregion
@@ -659,6 +873,453 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, -1);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region SeasonLists
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonLists()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists",
+                                                                seasonLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithType()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}",
+                                                                seasonLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithSortOrderAndWithoutType()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists",
+                                                                seasonLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithPage()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists?page={page}",
+                                                                seasonLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithLimit()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists?limit={limit}",
+                                                                seasonLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null,
+                                                                                    null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithPageAndLimit()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists?page={page}&limit={limit}",
+                seasonLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr,
+                                                                                    null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndSortOrder()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}",
+                seasonLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndPage()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?page={page}",
+                seasonLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndLimit()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?limit={limit}",
+                seasonLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndPageAndLimit()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?page={page}&limit={limit}",
+                seasonLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndSortOrderAndPage()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
+                seasonLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsWithTypeAndSortOrderAndLimit()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
+                seasonLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsComplete()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 1;
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}" +
+                $"?page={page}&limit={limit}",
+                seasonLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
+                                                                                    sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsExceptions()
+        {
+            var showId = "1390";
+            var seasonNr = 0;
+            var uri = $"shows/{showId}/seasons/{seasonNr}/lists";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr);
+            act.ShouldThrow<TraktSeasonNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktSeasonsModuleGetSeasonListsArgumentsExceptions()
+        {
+            var seasonLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\Single\SeasonLists.json");
+            seasonLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var seasonNr = 0;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists", seasonLists);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(null, seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(string.Empty, seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync("show id", seasonNr);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 

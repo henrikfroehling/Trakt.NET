@@ -2,6 +2,7 @@
 {
     using Attributes;
     using Enums;
+    using Exceptions;
     using Extensions;
     using Objects.Basic;
     using Requests;
@@ -47,7 +48,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given searchQuery is null, empty or contains spaces.
         /// Thrown, if the given searchResultType is unspecified.
@@ -96,7 +97,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdType is unspecified.
@@ -140,7 +141,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given searchQuery is null, empty or contains spaces.
         /// Thrown, if the given searchResultType has an unspecified value.
@@ -180,7 +181,7 @@
         /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
-        /// <exception cref="Exceptions.TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given lookupId is null, empty or contains spaces.
         /// Thrown, if the given searchIdLookupType is unspecified.

@@ -10,9 +10,11 @@
     /// <code>
     /// new TraktMultipleSeasonsQueryParams
     /// {
-    ///     // { show-id, seasonnumber[, extended info] }
+    ///     // { show-id, seasonnumber[, extended info][, language code] }
     ///     { "show-id-1", 1 },
+    ///     { "show-id-1", 1, "en" },
     ///     { "show-id-2", 3, new TraktExtendedInfo { Full = true } },
+    ///     { "show-id-2", 3, new TraktExtendedInfo { Full = true }, "en" },
     ///     { "show-id-3", 2 }
     /// };
     /// </code>
@@ -23,9 +25,25 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
-        public void Add(string showId, int seasonNumber, TraktExtendedInfo extendedInfo = null)
+        /// <param name="translationLanguageCode">
+        /// An optional two letter language code to query a specific translation for the returned episodes.
+        /// <para>Set this to "all" to get all available translations.</para>
+        /// </param>
+        public void Add(string showId, int seasonNumber, TraktExtendedInfo extendedInfo = null, string translationLanguageCode = null)
         {
-            Add(new TraktSeasonsQueryParams(showId, seasonNumber, extendedInfo));
+            Add(new TraktSeasonsQueryParams(showId, seasonNumber, extendedInfo, translationLanguageCode));
+        }
+
+        /// <summary>Adds a new season query parameter pack to the collection.</summary>
+        /// <param name="showId">A Trakt show id or slug.</param>
+        /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
+        /// <param name="translationLanguageCode">
+        /// An two letter language code to query a specific translation for the returned episodes.
+        /// <para>Set this to "all" to get all available translations.</para>
+        /// </param>
+        public void Add(string showId, int seasonNumber, string translationLanguageCode)
+        {
+            Add(new TraktSeasonsQueryParams(showId, seasonNumber, null, translationLanguageCode));
         }
     }
 
@@ -39,11 +57,13 @@
         /// <param name="showId">A Trakt show id or slug.</param>
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
-        public TraktSeasonsQueryParams(string showId, int seasonNumber, TraktExtendedInfo extendedInfo)
+        /// <param name="translationLanguageCode"></param>
+        public TraktSeasonsQueryParams(string showId, int seasonNumber, TraktExtendedInfo extendedInfo, string translationLanguageCode)
         {
             ShowId = showId;
             Season = seasonNumber;
             ExtendedInfo = extendedInfo;
+            TranslationLanguageCode = translationLanguageCode;
         }
 
         /// <summary>Returns the show id or slug.</summary>
@@ -57,5 +77,25 @@
         /// <para>Nullable.</para>
         /// </summary>
         public TraktExtendedInfo ExtendedInfo { get; }
+
+        /// <summary>
+        /// Returns the optional translation language code.
+        /// <para>Nullable</para>
+        /// </summary>
+        public string TranslationLanguageCode { get; }
+    }
+
+    public class Foo
+    {
+        public Foo()
+        {
+            var values = new TraktMultipleSeasonsQueryParams
+            {
+                { "id", 1 },
+                { "id", 2, "en" },
+                { "id", 3, new TraktExtendedInfo { Full = true } },
+                { "id", 4, new TraktExtendedInfo { Full = true }, "en" }
+            };
+        }
     }
 }
