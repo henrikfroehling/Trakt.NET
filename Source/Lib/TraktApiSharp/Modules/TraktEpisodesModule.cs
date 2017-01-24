@@ -142,7 +142,7 @@
         }
 
         /// <summary>
-        /// Gets <see cref="TraktList" />s for a <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
+        /// Gets all <see cref="TraktList" />s containing the given <see cref="TraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
