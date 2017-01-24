@@ -16,6 +16,7 @@
     using TraktApiSharp.Objects.Get.Shows.Common;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Params;
     using Utils;
 
@@ -905,6 +906,419 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync("show id");
+            act.ShouldThrow<ArgumentException>();
+        }
+
+        #endregion
+
+        // -----------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------
+
+        #region SeasonLists
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowLists()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists", showLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithType()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}",
+                                                                showLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithSortOrderAndWithoutType()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists",
+                                                                showLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, null, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithPage()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists?page={page}",
+                                                                showLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, null, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithLimit()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists?limit={limit}",
+                                                                showLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, null, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithPageAndLimit()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists?page={page}&limit={limit}",
+                                                                showLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, null, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndSortOrder()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}/{sortOrder.UriName}",
+                                                                showLists, 1, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, sortOrder).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndPage()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}?page={page}",
+                                                                showLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, null, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndLimit()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}?limit={limit}",
+                                                                showLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, null, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndPageAndLimit()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}?page={page}&limit={limit}",
+                                                                showLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, null, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndSortOrderAndPage()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
+                                                                showLists, page, 10, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, sortOrder, page).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsWithTypeAndSortOrderAndLimit()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth(
+                $"shows/{showId}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
+                showLists, 1, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, sortOrder, null, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsComplete()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+            var itemCount = 10;
+            var type = TraktListType.Official;
+            var sortOrder = TraktListSortOrder.Comments;
+            var page = 2;
+            var limit = 4;
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists/{type.UriName}/{sortOrder.UriName}" +
+                                                                $"?page={page}&limit={limit}",
+                                                                showLists, page, limit, 1, itemCount);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId, type, sortOrder, page, limit).Result;
+
+            response.Should().NotBeNull();
+            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Page.Should().HaveValue().And.Be(page);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsExceptions()
+        {
+            var showId = "1390";
+            var uri = $"shows/{showId}/lists";
+
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId);
+            act.ShouldThrow<TraktShowNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.ShouldThrow<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            act.ShouldThrow<TraktBadRequestException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            act.ShouldThrow<TraktForbiddenException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            act.ShouldThrow<TraktMethodNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            act.ShouldThrow<TraktConflictException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            act.ShouldThrow<TraktServerException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            act.ShouldThrow<TraktBadGatewayException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            act.ShouldThrow<TraktPreconditionFailedException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            act.ShouldThrow<TraktValidationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            act.ShouldThrow<TraktRateLimitException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            act.ShouldThrow<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            act.ShouldThrow<TraktServerUnavailableException>();
+        }
+
+        [TestMethod]
+        public void TestTraktShowsModuleGetShowListsArgumentsExceptions()
+        {
+            var showLists = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowLists.json");
+            showLists.Should().NotBeNullOrEmpty();
+
+            var showId = "1390";
+
+            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists", showLists);
+
+            Func<Task<TraktPaginationListResult<TraktList>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(null);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(string.Empty);
+            act.ShouldThrow<ArgumentException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync("show id");
             act.ShouldThrow<ArgumentException>();
         }
 
