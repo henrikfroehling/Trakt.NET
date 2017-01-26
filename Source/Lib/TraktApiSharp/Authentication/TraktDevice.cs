@@ -11,7 +11,7 @@
     /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
     /// </para>
     /// </summary>
-    public class TraktDevice
+    public class TraktDevice : IEquatable<TraktDevice>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktDevice" /> class.
@@ -61,5 +61,24 @@
         /// <summary>Gets, whether this device is expired without actually using it for polling for an access token.</summary>
         [JsonIgnore]
         public bool IsExpiredUnused => Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow;
+
+        public override string ToString() => IsValid ? DeviceCode : "no valid device code";
+
+        public bool Equals(TraktDevice other)
+        {
+            if (other == null
+                || other.IsExpiredUnused != IsExpiredUnused
+                || other.IsValid != IsValid
+                || other.IntervalInSeconds != IntervalInSeconds
+                || other.Created != Created
+                || other.DeviceCode != DeviceCode
+                || other.UserCode != UserCode
+                || other.VerificationUrl != VerificationUrl)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
