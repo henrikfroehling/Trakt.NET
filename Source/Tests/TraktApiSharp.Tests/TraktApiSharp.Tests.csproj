@@ -165,6 +165,7 @@
     <Compile Include="Requests\Search\TraktSearchTextQueryRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\ATraktSeasonRequest%271_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\TraktSeasonListsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonsAllRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonSingleRequest_Tests.cs" />
