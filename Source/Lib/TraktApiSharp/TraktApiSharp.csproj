@@ -130,6 +130,7 @@
     <Compile Include="Experimental\Requests\Base\ATraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Base\ATraktRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\ATraktEpisodeRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Episodes\TraktEpisodeListsRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeTranslationsRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest.cs" />
