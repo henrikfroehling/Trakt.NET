@@ -202,15 +202,15 @@
             if (string.IsNullOrEmpty(certification) && (certifications == null || certifications.Length <= 0))
             {
                 if (!keepExisting)
-                    this.Certifications = null;
+                    Certifications = null;
 
                 return this;
             }
 
             var certificationsList = new List<string>();
 
-            if (keepExisting && this.Certifications != null && this.Certifications.Length > 0)
-                certificationsList.AddRange(this.Certifications);
+            if (keepExisting && Certifications != null && Certifications.Length > 0)
+                certificationsList.AddRange(Certifications);
 
             if (!string.IsNullOrEmpty(certification))
                 certificationsList.Add(certification);
@@ -218,7 +218,7 @@
             if (certifications != null && certifications.Length > 0)
                 certificationsList.AddRange(certifications);
 
-            this.Certifications = certificationsList.ToArray();
+            Certifications = certificationsList.ToArray();
 
             return this;
         }

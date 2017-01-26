@@ -277,11 +277,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
@@ -323,7 +319,7 @@
                 };
             }
 
-            await ErrorHandling(response, tokenUrl, postContent);
+            await ErrorHandlingAsync(response, tokenUrl, postContent);
             return default(TraktAuthorization);
         }
 
@@ -586,11 +582,12 @@
 
         private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
         {
-            var uriParams = new Dictionary<string, string>();
-
-            uriParams["response_type"] = "code";
-            uriParams["client_id"] = clientId;
-            uriParams["redirect_uri"] = redirectUri;
+            var uriParams = new Dictionary<string, string>
+            {
+                ["response_type"] = "code",
+                ["client_id"] = clientId,
+                ["redirect_uri"] = redirectUri
+            };
 
             if (!string.IsNullOrEmpty(state))
                 uriParams["state"] = state;
@@ -609,8 +606,7 @@
             var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
             var isStagingUsed = Client.Configuration.UseSandboxEnvironment;
             var baseUrl = isStagingUsed ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
-            var authorizationUrl = $"{baseUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
-            return authorizationUrl;
+            return $"{baseUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
         }
 
         private void ValidateAuthorizationUrlArguments(string clientId, string redirectUri)
@@ -644,7 +640,7 @@
                 throw new ArgumentException("grant type not valid", nameof(grantType));
         }
 
-        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, string requestUrl, string requestContent)
         {
             var responseContent = string.Empty;
 

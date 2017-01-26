@@ -14,7 +14,7 @@
 
             if (endYear.HasValue)
                 WithEndYear(endYear.Value);
-            
+
             WithGenres(null, genres);
             WithLanguages(null, languages);
             WithCountries(null, countries);
@@ -71,7 +71,7 @@
             if (Runtimes.HasValue)
             {
                 var runtimes = Runtimes.Value;
-                return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin; ;
+                return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin;
             }
 
             return false;
@@ -229,9 +229,13 @@
             var parameters = new Dictionary<string, object>();
 
             if (HasStartYearSet && !HasEndYearSet)
+            {
                 parameters.Add("years", $"{StartYear}");
+            }
             else if (!HasStartYearSet && HasEndYearSet)
+            {
                 parameters.Add("years", $"{EndYear}");
+            }
             else if (HasStartYearSet && HasEndYearSet)
             {
                 if (StartYear <= EndYear)
@@ -252,13 +256,13 @@
             if (HasRuntimesSet())
             {
                 var runtimes = Runtimes.Value;
-                parameters.Add("runtimes", $"{runtimes.Begin.ToString()}-{runtimes.End.ToString()}");
+                parameters.Add("runtimes", $"{runtimes.Begin}-{runtimes.End}");
             }
 
             if (HasRatingsSet())
             {
                 var ratings = Ratings.Value;
-                parameters.Add("ratings", $"{ratings.Begin.ToString()}-{ratings.End.ToString()}");
+                parameters.Add("ratings", $"{ratings.Begin}-{ratings.End}");
             }
 
             return parameters;
@@ -288,15 +292,15 @@
             if (string.IsNullOrEmpty(genre) && (genres == null || genres.Length <= 0))
             {
                 if (!keepExisting)
-                    this.Genres = null;
+                    Genres = null;
 
                 return this;
             }
 
             var genresList = new List<string>();
 
-            if (keepExisting && this.Genres != null && this.Genres.Length > 0)
-                genresList.AddRange(this.Genres);
+            if (keepExisting && Genres != null && Genres.Length > 0)
+                genresList.AddRange(Genres);
 
             if (!string.IsNullOrEmpty(genre))
                 genresList.Add(genre);
@@ -304,7 +308,7 @@
             if (genres != null && genres.Length > 0)
                 genresList.AddRange(genres);
 
-            this.Genres = genresList.ToArray();
+            Genres = genresList.ToArray();
 
             return this;
         }
@@ -314,15 +318,15 @@
             if (string.IsNullOrEmpty(language) && (languages == null || languages.Length <= 0))
             {
                 if (!keepExisting)
-                    this.Languages = null;
+                    Languages = null;
 
                 return this;
             }
 
             var languagesList = new List<string>();
 
-            if (keepExisting && this.Languages != null && this.Languages.Length > 0)
-                languagesList.AddRange(this.Languages);
+            if (keepExisting && Languages != null && Languages.Length > 0)
+                languagesList.AddRange(Languages);
 
             if (!string.IsNullOrEmpty(language))
             {
@@ -343,7 +347,7 @@
                 languagesList.AddRange(languages);
             }
 
-            this.Languages = languagesList.ToArray();
+            Languages = languagesList.ToArray();
 
             return this;
         }
@@ -353,15 +357,15 @@
             if (string.IsNullOrEmpty(country) && (countries == null || countries.Length <= 0))
             {
                 if (!keepExisting)
-                    this.Countries = null;
+                    Countries = null;
 
                 return this;
             }
 
             var countriesList = new List<string>();
 
-            if (keepExisting && this.Countries != null && this.Countries.Length > 0)
-                countriesList.AddRange(this.Countries);
+            if (keepExisting && Countries != null && Countries.Length > 0)
+                countriesList.AddRange(Countries);
 
             if (!string.IsNullOrEmpty(country))
             {
@@ -382,7 +386,7 @@
                 countriesList.AddRange(countries);
             }
 
-            this.Countries = countriesList.ToArray();
+            Countries = countriesList.ToArray();
 
             return this;
         }

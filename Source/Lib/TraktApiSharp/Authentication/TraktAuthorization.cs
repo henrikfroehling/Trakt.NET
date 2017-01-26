@@ -23,7 +23,7 @@
     /// <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Device: Get Token"</a> for more information.
     /// </para>
     /// </summary>
-    public class TraktAuthorization
+    public class TraktAuthorization : IEquatable<TraktAuthorization>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktAuthorization" /> class.
@@ -148,5 +148,31 @@
                 AccessToken = accessToken ?? string.Empty,
                 RefreshToken = refreshToken ?? string.Empty
             };
+
+        public override string ToString()
+        {
+            var validUntil = Created.AddSeconds(ExpiresInSeconds);
+            var strIsExpired = IsExpired ? "(expired)" : $"(valid until {validUntil})";
+            return IsValid ? $"{AccessToken} {strIsExpired}" : $"no valid access token {strIsExpired}";
+        }
+
+        public bool Equals(TraktAuthorization other)
+        {
+            if (other == null || other.IsValid != IsValid
+                || other.IsExpired != IsExpired
+                || other.IsRefreshPossible != IsRefreshPossible
+                || other.IgnoreExpiration != IgnoreExpiration
+                || other.ExpiresInSeconds != ExpiresInSeconds
+                || other.Created != Created
+                || other.AccessToken != AccessToken
+                || other.RefreshToken != RefreshToken
+                || other.AccessScope != AccessScope
+                || other.TokenType != TokenType)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -19,5 +19,7 @@
         [JsonProperty(PropertyName = "language")]
         [Nullable]
         public string LanguageCode { get; set; }
+
+        public override string ToString() => !string.IsNullOrEmpty(Title) ? Title : "no title set";
     }
 }

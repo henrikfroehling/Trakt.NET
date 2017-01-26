@@ -21,5 +21,12 @@
         [JsonIgnore]
         [Nullable]
         public TraktGenreType Type { get; set; }
+
+        public override string ToString()
+        {
+            var name = !string.IsNullOrEmpty(Name) ? Name : "name not set";
+            var slug = !string.IsNullOrEmpty(Slug) ? Slug : "slug not set";
+            return $"{name}, {slug}";
+        }
     }
 }

@@ -16,5 +16,12 @@
         [JsonProperty(PropertyName = "person")]
         [Nullable]
         public TraktPerson Person { get; set; }
+
+        public override string ToString()
+        {
+            var character = !string.IsNullOrEmpty(Character) ? Character : "charactor not set";
+            var person = Person != null ? Person.ToString() : "no person set";
+            return $"{character}, {person}";
+        }
     }
 }

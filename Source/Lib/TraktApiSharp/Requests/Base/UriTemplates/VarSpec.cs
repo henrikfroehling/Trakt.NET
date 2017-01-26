@@ -7,21 +7,20 @@ namespace UriTemplates
     /// </summary>
     internal class VarSpec
     {
-        private readonly OperatorInfo _operatorInfo;
         internal StringBuilder VarName = new StringBuilder();
-        internal bool Explode = false;
-        internal int PrefixLength = 0;
+        internal bool Explode;
+        internal int PrefixLength;
         internal bool First = true;
 
         internal VarSpec(OperatorInfo operatorInfo)
         {
-            _operatorInfo = operatorInfo;
+            OperatorInfo = operatorInfo;
         }
 
-        internal OperatorInfo OperatorInfo => _operatorInfo;
+        internal OperatorInfo OperatorInfo { get; }
 
         public override string ToString()
-            => (First ? _operatorInfo.First : "") +
+            => (First ? OperatorInfo.First : "") +
                    VarName.ToString()
                    + (Explode ? "*" : "")
                    + (PrefixLength > 0 ? ":" + PrefixLength : "");

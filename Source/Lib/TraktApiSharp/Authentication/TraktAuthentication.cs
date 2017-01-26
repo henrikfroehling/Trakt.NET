@@ -387,11 +387,7 @@
                               $" \"client_secret\": \"{clientSecret}\", \"redirect_uri\": \"{redirectUri}\"," +
                               $" \"grant_type\": \"{grantType}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
@@ -433,7 +429,7 @@
                 };
             }
 
-            await ErrorHandling(response, tokenUrl, postContent);
+            await ErrorHandlingAsync(response, tokenUrl, postContent);
             return default(TraktAuthorization);
         }
 
@@ -528,10 +524,7 @@
 
             var postContent = $"token={accessToken}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
 
             SetDefaultRequestHeaders(httpClient);
             SetAuthorizationRequestHeaders(httpClient, accessToken, clientId);
@@ -556,7 +549,7 @@
                     };
                 }
 
-                await ErrorHandling(response, tokenUrl, postContent);
+                await ErrorHandlingAsync(response, tokenUrl, postContent);
             }
             else
             {
@@ -598,7 +591,7 @@
                 throw new ArgumentException("grant type not valid", nameof(grantType));
         }
 
-        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent)
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, string requestUrl, string requestContent)
         {
             var responseContent = string.Empty;
 
