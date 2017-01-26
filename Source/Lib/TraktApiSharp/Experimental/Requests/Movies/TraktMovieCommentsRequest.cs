@@ -1,29 +1,34 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Enums;
+    using Interfaces;
+    using Objects.Basic;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
 
-    internal sealed class TraktMovieCommentsRequest
+    internal sealed class TraktMovieCommentsRequest : ATraktMovieRequest<TraktComment>, ITraktSupportsPagination
     {
-        internal TraktMovieCommentsRequest(TraktClient client) { }
+        internal TraktCommentSortOrder SortOrder { get; set; }
 
-        internal TraktCommentSortOrder Sorting { get; set; }
+        public int? Page { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public int? Limit { get; set; }
+
+        public override string UriTemplate => "movies/{id}/comments{/sort_order}{?page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
-            if (Sorting != null && Sorting != TraktCommentSortOrder.Unspecified)
-                uriParams.Add("sorting", Sorting.UriName);
+            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+                uriParams.Add("sort_order", SortOrder.UriName);
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
-
-        public string UriTemplate => "movies/{id}/comments{/sorting}{?page,limit}";
     }
 }

@@ -1,15 +1,22 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    using TraktApiSharp.Requests;
+    using Objects.Get.Movies;
+    using System.Collections.Generic;
 
-    internal sealed class TraktMovieTranslationsRequest
+    internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<TraktMovieTranslation>
     {
-        internal TraktMovieTranslationsRequest(TraktClient client) { }
+        internal string LanguageCode { get; set; }
+        
+        public override string UriTemplate => "movies/{id}/translations{/language}";
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = base.GetUriPathParameters();
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+            if (!string.IsNullOrEmpty(LanguageCode))
+                uriParams.Add("language", LanguageCode);
 
-        public string UriTemplate => "movies/{id}/translations";
+            return uriParams;
+        }
     }
 }

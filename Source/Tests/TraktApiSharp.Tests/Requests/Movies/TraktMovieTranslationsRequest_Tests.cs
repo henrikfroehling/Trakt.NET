@@ -1,0 +1,99 @@
+﻿namespace TraktApiSharp.Tests.Requests.Movies
+{
+    using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using TraktApiSharp.Experimental.Requests.Movies;
+    using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
+
+    [Category("Requests.Movie")]
+    public class TraktMovieTranslationsRequest_Tests
+    {
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_IsNotAbstract()
+        {
+            typeof(TraktMovieTranslationsRequest).IsAbstract.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_IsSealed()
+        {
+            typeof(TraktMovieTranslationsRequest).IsSealed.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_Inherits_ATraktMovieRequest_1()
+        {
+            typeof(TraktMovieTranslationsRequest).IsSubclassOf(typeof(ATraktMovieRequest<TraktMovieTranslation>)).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_Has_Valid_UriTemplate()
+        {
+            var request = new TraktMovieTranslationsRequest();
+            request.UriTemplate.Should().Be("movies/{id}/translations{/language}");
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_Has_LanguageCode_Property()
+        {
+            var sortingPropertyInfo = typeof(TraktMovieTranslationsRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "LanguageCode")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_Returns_Valid_UriPathParameters()
+        {
+            // without language code
+            var request = new TraktMovieTranslationsRequest { Id = "123" };
+
+            request.GetUriPathParameters().Should().NotBeNull()
+                                                   .And.HaveCount(1)
+                                                   .And.Contain(new Dictionary<string, object>
+                                                   {
+                                                       ["id"] = "123"
+                                                   });
+
+            // with language code
+            request = new TraktMovieTranslationsRequest { Id = "123", LanguageCode = "en" };
+
+            request.GetUriPathParameters().Should().NotBeNull()
+                                                   .And.HaveCount(2)
+                                                   .And.Contain(new Dictionary<string, object>
+                                                   {
+                                                       ["id"] = "123",
+                                                       ["language"] = "en"
+                                                   });
+        }
+
+        [Fact]
+        public void Test_TraktMovieTranslationsRequest_Validate_Throws_Exceptions()
+        {
+            // id is null
+            var request = new TraktMovieTranslationsRequest();
+
+            Action act = () => request.Validate();
+            act.ShouldThrow<ArgumentNullException>();
+
+            // empty id
+            request = new TraktMovieTranslationsRequest { Id = string.Empty };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentException>();
+
+            // id with spaces
+            request = new TraktMovieTranslationsRequest { Id = "invalid id" };
+            act.ShouldThrow<ArgumentException>();
+        }
+    }
+}

@@ -1,15 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
-    using TraktApiSharp.Requests;
+    using Objects.Get.Movies;
 
-    internal sealed class TraktMovieAliasesRequest
+    internal sealed class TraktMovieAliasesRequest : ATraktMovieRequest<TraktMovieAlias>
     {
-        internal TraktMovieAliasesRequest(TraktClient client) { }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
-
-        public string UriTemplate => "movies/{id}/aliases";
+        public override string UriTemplate => "movies/{id}/aliases";
     }
 }
