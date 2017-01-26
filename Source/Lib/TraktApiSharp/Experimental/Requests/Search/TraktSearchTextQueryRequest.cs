@@ -43,13 +43,13 @@
                 throw new ArgumentNullException(nameof(ResultTypes));
 
             if (ResultTypes == TraktSearchResultType.Unspecified)
-                throw new ArgumentException($"{nameof(ResultTypes)} must not be unspecified", nameof(ResultTypes));
+                throw new ArgumentException("result type must not be unspecified", nameof(ResultTypes));
 
             if (Query == null)
                 throw new ArgumentNullException(nameof(Query));
             
             if (Query == string.Empty)
-                throw new ArgumentException($"{nameof(Query)} must not be empty", nameof(Query));
+                throw new ArgumentException("query must not be empty", nameof(Query));
         }
     }
 }

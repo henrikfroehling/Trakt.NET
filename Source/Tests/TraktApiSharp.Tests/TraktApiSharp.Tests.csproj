@@ -123,6 +123,7 @@
     <Compile Include="Requests\Interfaces\ITraktSupportsFilter_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsPagination_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktValidatable_Tests.cs" />
+    <Compile Include="Requests\Movies\ATraktMovieRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesMostPWCRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesBoxOfficeRequest_Tests.cs" />

@@ -21,7 +21,7 @@
                 throw new ArgumentNullException(nameof(Id));
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("movie id or slug not valid", nameof(Id));
+                throw new ArgumentException("id or slug not valid", nameof(Id));
         }
     }
 }
