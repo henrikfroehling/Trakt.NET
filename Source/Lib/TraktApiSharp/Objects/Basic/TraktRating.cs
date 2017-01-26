@@ -19,5 +19,12 @@
         [JsonProperty(PropertyName = "distribution")]
         [Nullable]
         public Dictionary<string, int> Distribution { get; set; }
+
+        public override string ToString()
+        {
+            var rating = Rating.HasValue ? Rating.Value.ToString() : default(float).ToString();
+            var votes = Votes.HasValue ? Votes.Value.ToString() : default(int).ToString();
+            return $"{rating}, {votes}";
+        }
     }
 }
