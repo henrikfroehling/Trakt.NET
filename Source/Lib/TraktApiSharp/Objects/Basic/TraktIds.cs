@@ -60,5 +60,11 @@
 
             return string.Empty;
         }
+
+        public override string ToString()
+        {
+            var bestId = GetBestId();
+            return !string.IsNullOrEmpty(bestId) ? bestId : "no valid id";
+        }
     }
 }
