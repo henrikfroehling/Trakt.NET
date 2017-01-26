@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
 
-    public abstract class TraktEnumeration : IComparable
+    public abstract class TraktEnumeration : IComparable<TraktEnumeration>, IEquatable<TraktEnumeration>
     {
         protected const string DISPLAY_NAME_UNSPECIFIED = "Unspecified";
 
@@ -47,20 +47,18 @@
         /// </summary>
         /// <param name="other">The other enumeration to compare with.</param>
         /// <returns>An indication of their relative values.</returns>
-        public int CompareTo(object other) => Value.CompareTo(((TraktEnumeration)other).Value);
+        public int CompareTo(TraktEnumeration other) => Value.CompareTo(other.Value);
 
         /// <summary>Returns, whether this enumeration instance is equal to another enumeration instance.</summary>
-        /// <param name="obj">The other enumeration instance to compare with.</param>
+        /// <param name="other">The other enumeration instance to compare with.</param>
         /// <returns>True, if both enumeration instances are equal, otherwise false.</returns>
-        public override bool Equals(object obj)
+        public bool Equals(TraktEnumeration other)
         {
-            var otherValue = obj as TraktEnumeration;
-
-            if (otherValue == null)
+            if (other == null)
                 return false;
 
-            var typeMatches = GetType().Equals(obj.GetType());
-            var valueMatches = Value.Equals(otherValue.Value);
+            var typeMatches = GetType().Equals(other.GetType());
+            var valueMatches = Value.Equals(other.Value);
 
             return typeMatches && valueMatches;
         }
