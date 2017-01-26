@@ -8,7 +8,7 @@
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Requests.Movie")]
+    [Category("Requests.Movies")]
     public class TraktMovieRatingsRequest_Tests
     {
         [Fact]

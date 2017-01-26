@@ -13,7 +13,7 @@
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Requests.Movies")]
+    [Category("Requests.Movies.Lists")]
     public class ATraktMoviesMostPWCRequest_1_Tests
     {
         internal class TraktMoviesMostPWCRequestMock : ATraktMoviesMostPWCRequest<int>
