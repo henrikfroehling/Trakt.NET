@@ -96,9 +96,13 @@
                             currentExpression = new StringBuilder();
                         }
                         else if (character == '}')
+                        {
                             throw new ArgumentException("Malformed template, unexpected } : " + result.ToString());
+                        }
                         else
+                        {
                             result.Append(character);
+                        }
 
                         break;
                     case States.ParsingExpression:
@@ -108,7 +112,9 @@
                             currentState = States.CopyingLiterals;
                         }
                         else
+                        {
                             currentExpression.Append(character);
+                        }
 
                         break;
                 }
@@ -211,7 +217,7 @@
                 || (_Parameters[varname] is IList && ((IList)_Parameters[varname]).Count == 0)
                 || (_Parameters[varname] is IDictionary && ((IDictionary)_Parameters[varname]).Count == 0))
             {
-                if (_resolvePartially == true)
+                if (_resolvePartially)
                 {
                     if (multiVariableExpression)
                     {
@@ -273,7 +279,7 @@
                     if (dictionary != null)
                     {
                         if (varSpec.OperatorInfo.Named && !varSpec.Explode)  // exploding will prefix with list name
-                            result.AppendName(varname, varSpec.OperatorInfo, dictionary.Count() == 0);
+                            result.AppendName(varname, varSpec.OperatorInfo, dictionary.Count == 0);
 
                         result.AppendDictionary(varSpec.OperatorInfo, varSpec.Explode, dictionary);
                     }
@@ -294,11 +300,11 @@
         }
 
         private static bool IsVarNameChar(char c)
-            => ((c >= 'A' && c <= 'z') //Alpha
+            => (c >= 'A' && c <= 'z') //Alpha
                 || (c >= '0' && c <= '9') // Digit
                 || c == '_'
                 || c == '%'
-                || c == '.');
+                || c == '.';
 
         private static OperatorInfo GetOperator(char operatorIndicator)
         {
@@ -330,7 +336,7 @@
 
         // (?<varspec>{(?<op>[+#./;?&]?)(?<var>[a-zA-Z0-9_]*[*]?|(?:(?<lvar>[a-zA-Z0-9_]*[*]?),?)*)})
 
-        private Regex _ParameterRegex = null;
+        private Regex _ParameterRegex;
 
         internal IDictionary<string, object> GetParameters(Uri uri)
         {
@@ -367,7 +373,7 @@
 
             var template = new Regex(@"([^{]|^)\?").Replace(uriTemplate, @"$+\?"); ;//.Replace("?",@"\?");
 
-            var regex = findParam.Replace(template, delegate (Match m)
+            var regex = findParam.Replace(template, (m) =>
             {
                 var paramNames = m.Groups["lvar"].Captures.Cast<Capture>().Where(c => !string.IsNullOrEmpty(c.Value)).Select(c => c.Value).ToList();
                 var op = m.Groups["op"].Value;
@@ -394,7 +400,7 @@
 
         private static string GetQueryExpression(List<String> paramNames, string prefix)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             foreach (var paramname in paramNames)
             {
@@ -418,7 +424,7 @@
 
         private static string GetExpression(List<String> paramNames, string prefix = null)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             foreach (var paramname in paramNames)
             {

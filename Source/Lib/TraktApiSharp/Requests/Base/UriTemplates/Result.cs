@@ -76,16 +76,14 @@ namespace UriTemplates
                     _Result.Append(',');
             }
 
-            if (dictionary.Count() > 0)
+            if (dictionary.Count > 0)
                 _Result.Remove(_Result.Length - 1, 1);
         }
 
         internal void AppendValue(string value, int prefixLength, bool allowReserved)
         {
-
-            if (prefixLength != 0)
-                if (prefixLength < value.Length)
-                    value = value.Substring(0, prefixLength);
+            if (prefixLength != 0 && prefixLength < value.Length)
+                value = value.Substring(0, prefixLength);
 
             _Result.Append(Encode(value, allowReserved));
         }

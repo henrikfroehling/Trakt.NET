@@ -393,15 +393,15 @@
             if (string.IsNullOrEmpty(network) && (networks == null || networks.Length <= 0))
             {
                 if (!keepExisting)
-                    this.Networks = null;
+                    Networks = null;
 
                 return this;
             }
 
             var networksList = new List<string>();
 
-            if (keepExisting && this.Networks != null && this.Networks.Length > 0)
-                networksList.AddRange(this.Networks);
+            if (keepExisting && Networks != null && Networks.Length > 0)
+                networksList.AddRange(Networks);
 
             if (!string.IsNullOrEmpty(network))
                 networksList.Add(network);
@@ -409,7 +409,7 @@
             if (networks != null && networks.Length > 0)
                 networksList.AddRange(networks);
 
-            this.Networks = networksList.ToArray();
+            Networks = networksList.ToArray();
 
             return this;
         }
@@ -419,15 +419,15 @@
             if ((status == null || status == TraktShowStatus.Unspecified) && (states == null || states.Length <= 0))
             {
                 if (!keepExisting)
-                    this.States = null;
+                    States = null;
 
                 return this;
             }
 
             var statesList = new List<TraktShowStatus>();
 
-            if (keepExisting && this.States != null && this.States.Length > 0)
-                statesList.AddRange(this.States);
+            if (keepExisting && States != null && States.Length > 0)
+                statesList.AddRange(States);
 
             if (status != null && status != TraktShowStatus.Unspecified)
                 statesList.Add(status);
@@ -443,7 +443,7 @@
                 statesList.AddRange(states);
             }
 
-            this.States = statesList.ToArray();
+            States = statesList.ToArray();
 
             return this;
         }

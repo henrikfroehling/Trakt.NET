@@ -18,13 +18,13 @@
 
     internal abstract class TraktRequest<TResult, TItem, TRequestBody> : ITraktRequest<TResult, TItem>
     {
-        private static string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
-        private static string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
-        private static string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
-        private static string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
-        private static string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
-        private static string HEADER_SORT_BY = "X-Sort-By";
-        private static string HEADER_SORT_HOW = "X-Sort-How";
+        private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
+        private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
+        private const string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
+        private const string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+        private const string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
+        private const string HEADER_SORT_BY = "X-Sort-By";
+        private const string HEADER_SORT_HOW = "X-Sort-How";
 
         protected TraktRequest(TraktClient client)
         {
@@ -36,22 +36,19 @@
         {
             Validate();
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
             var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
             SetRequestHeadersForAuthorization(request);
 
-            var response = await httpClient.SendAsync(request).ConfigureAwait(false);
+            var response = await httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
-                await ErrorHandling(response);
+                await ErrorHandlingAsync(response).ConfigureAwait(false);
 
-            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+            var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync()
+                                                           : string.Empty;
 
             // No content
             if (string.IsNullOrEmpty(responseContent) || response.StatusCode == HttpStatusCode.NoContent)
@@ -185,7 +182,7 @@
             if (SupportsPagination)
             {
                 if (typeof(TResult) != typeof(TraktPaginationListResult<TItem>))
-                    throw new InvalidCastException($"{typeof(TResult).ToString()} cannot be converted to TraktPaginationListResult<{typeof(TItem).ToString()}>");
+                    throw new InvalidCastException($"{typeof(TResult)} cannot be converted to TraktPaginationListResult<{typeof(TItem)}>");
 
                 var typePaginationElement = typeof(TResult).GenericTypeArguments[0];
                 var typePaginationList = typeof(TraktPaginationListResult<>).MakeGenericType(typePaginationElement);
@@ -265,7 +262,7 @@
             }
         }
 
-        private async Task ErrorHandling(HttpResponseMessage response)
+        private async Task ErrorHandlingAsync(HttpResponseMessage response)
         {
             var responseContent = string.Empty;
 
@@ -338,7 +335,6 @@
                                         Response = responseContent,
                                         ServerReasonPhrase = response.ReasonPhrase
                                     };
-                                case TraktRequestObjectType.Unspecified:
                                 default:
                                     throw new TraktObjectNotFoundException(Id)
                                     {

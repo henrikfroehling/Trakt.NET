@@ -148,10 +148,7 @@
             var enumString = reader.Value as string;
 
             if (string.IsNullOrEmpty(enumString))
-            {
-                var derivedEnum = Activator.CreateInstance(typeof(T));
-                return derivedEnum;
-            }
+                return Activator.CreateInstance(typeof(T));
 
             return TraktEnumeration.FromObjectName<T>(enumString);
         }

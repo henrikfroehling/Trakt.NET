@@ -6,7 +6,7 @@
     /// <summary>Provides helper methods for strings.</summary>
     public static class StringExtensions
     {
-        private static readonly char[] DelimiterChars = { ' ', ',', '.', ':', ';', '\n', '\t' };
+        private static readonly char[] s_delimiterChars = { ' ', ',', '.', ':', ';', '\n', '\t' };
 
         /// <summary>Converts the given string to a string, in which only the first letter is capitalized.</summary>
         /// <param name="value">The string, in which only the first letter should be capitalized.</param>
@@ -33,7 +33,7 @@
             if (string.IsNullOrEmpty(value))
                 return 0;
 
-            var words = value.Split(DelimiterChars);
+            var words = value.Split(s_delimiterChars);
             var filteredWords = words.Where(s => !string.IsNullOrEmpty(s));
             return filteredWords.Count();
         }

@@ -55,11 +55,7 @@
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
@@ -68,7 +64,7 @@
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
-                await ErrorHandling(response, tokenUrl, postContent, true);
+                await ErrorHandlingAsync(response, tokenUrl, postContent, true);
 
             var responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
 
@@ -205,11 +201,7 @@
 
             var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT;
-
-            if (httpClient == null)
-                httpClient = new HttpClient();
-
+            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
             var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
@@ -289,7 +281,7 @@
                         };
                 }
 
-                await ErrorHandling(response, tokenUrl, postContent, true);
+                await ErrorHandlingAsync(response, tokenUrl, postContent, true);
                 break;
             }
 
@@ -574,7 +566,7 @@
                 throw new ArgumentException("client secret not valid", nameof(clientSecret));
         }
 
-        private async Task ErrorHandling(HttpResponseMessage response, string requestUrl, string requestContent, bool handleAdditionalCodes)
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, string requestUrl, string requestContent, bool handleAdditionalCodes)
         {
             var responseContent = string.Empty;
 

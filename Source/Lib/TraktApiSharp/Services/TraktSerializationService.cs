@@ -120,7 +120,9 @@
                                     expiresIn = int.Parse(value);
                             }
                             else
+                            {
                                 throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                            }
                         }
                         else if (propertyName == propertyScope)
                         {
@@ -146,7 +148,9 @@
                                     createdAtTicks = long.Parse(value);
                             }
                             else
+                            {
                                 throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
+                            }
                         }
                         else if (propertyName == propertyIgnoreExpiration)
                         {
@@ -156,7 +160,9 @@
                                 throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson));
                         }
                         else
+                        {
                             return default(TraktAuthorization);
+                        }
                     }
                 }
             }
@@ -175,7 +181,7 @@
             var accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
             var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
 
-            var authorization = new TraktAuthorization
+            return new TraktAuthorization
             {
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
@@ -185,8 +191,6 @@
                 IgnoreExpiration = ignoreExpiration,
                 Created = createdDateTime
             };
-
-            return authorization;
         }
     }
 }
