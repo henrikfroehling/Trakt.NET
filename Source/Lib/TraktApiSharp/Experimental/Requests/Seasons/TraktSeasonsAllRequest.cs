@@ -13,17 +13,29 @@
     {
         public string Id { get; set; }
 
+        internal string TranslationLanguageCode { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
         
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
-        public override string UriTemplate => "shows/{id}/seasons{?extended}";
-
+        public override string UriTemplate => "shows/{id}/seasons{?extended,translations}";
+        
         public override IDictionary<string, object> GetUriPathParameters()
-            => new Dictionary<string, object>
+        {
+            var uriParams = new Dictionary<string, object>
             {
                 { "id", Id }
             };
+
+            if (!string.IsNullOrEmpty(TranslationLanguageCode))
+                uriParams.Add("translations", TranslationLanguageCode);
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            return uriParams;
+        }
 
         public override void Validate()
         {

@@ -2,12 +2,16 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     using TraktApiSharp.Experimental.Requests.Base;
     using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Seasons;
     using TraktApiSharp.Objects.Get.Shows.Seasons;
     using TraktApiSharp.Requests;
+    using TraktApiSharp.Requests.Params;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
@@ -48,7 +52,20 @@
         public void Test_TraktSeasonsAllRequest_Has_Valid_UriTemplate()
         {
             var request = new TraktSeasonsAllRequest();
-            request.UriTemplate.Should().Be("shows/{id}/seasons{?extended}");
+            request.UriTemplate.Should().Be("shows/{id}/seasons{?extended,translations}");
+        }
+
+        [Fact]
+        public void Test_TraktSeasonsAllRequest_Has_TranslationLanguageCode_Property()
+        {
+            var sortingPropertyInfo = typeof(TraktSeasonsAllRequest)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "TranslationLanguageCode")
+                    .FirstOrDefault();
+
+            sortingPropertyInfo.CanRead.Should().BeTrue();
+            sortingPropertyInfo.CanWrite.Should().BeTrue();
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]
@@ -63,19 +80,6 @@
         {
             var requestMock = new TraktSeasonsAllRequest();
             requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
-        }
-
-        [Fact]
-        public void Test_TraktSeasonsAllRequest_Returns_Valid_UriPathParameters()
-        {
-            var request = new TraktSeasonsAllRequest { Id = "123" };
-
-            request.GetUriPathParameters().Should().NotBeNull()
-                                                   .And.HaveCount(1)
-                                                   .And.Contain(new Dictionary<string, object>
-                                                   {
-                                                       ["id"] = "123"
-                                                   });
         }
 
         [Fact]
@@ -98,6 +102,87 @@
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
+        }
+
+        [Theory, ClassData(typeof(TraktSeasonsAllRequest_TestData))]
+        public void Test_TraktSeasonsAllRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                                IDictionary<string, object> expected)
+        {
+            values.Should().NotBeNull().And.HaveCount(expected.Count);
+
+            if (expected.Count > 0)
+                values.Should().Contain(expected);
+        }
+
+        public class TraktSeasonsAllRequest_TestData : IEnumerable<object[]>
+        {
+            private const string _id = "123";
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
+            private const string _languageCode = "en";
+
+            private static readonly TraktSeasonsAllRequest _request1 = new TraktSeasonsAllRequest
+            {
+                Id = _id
+            };
+
+            private static readonly TraktSeasonsAllRequest _request2 = new TraktSeasonsAllRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo
+            };
+
+            private static readonly TraktSeasonsAllRequest _request3 = new TraktSeasonsAllRequest
+            {
+                Id = _id,
+                TranslationLanguageCode = _languageCode
+            };
+
+            private static readonly TraktSeasonsAllRequest _request4 = new TraktSeasonsAllRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                TranslationLanguageCode = _languageCode
+            };
+
+            private static readonly List<object[]> _data = new List<object[]>();
+
+            public TraktSeasonsAllRequest_TestData()
+            {
+                SetupPathParamters();
+            }
+
+            private void SetupPathParamters()
+            {
+                var strExtendedInfo = _extendedInfo.ToString();
+
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id
+                    }});
+
+                _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo
+                    }});
+
+                _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["translations"] = _languageCode
+                    }});
+
+                _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["translations"] = _languageCode
+                    }});
+            }
+
+            public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
     }
 }
