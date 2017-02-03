@@ -1,22 +1,23 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Responses.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktNoContentResponseTests
+    [Category("Responses.Interfaces.Base")]
+    public class ITraktNoContentResponse_Tests
     {
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktNoContentResponseIsInterface()
+        [Fact]
+        public void Test_ITraktNoContentResponse_Is_Interface()
         {
             typeof(ITraktNoContentResponse).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktNoContentResponseHasIsSuccessProperty()
+        [Fact]
+        public void Test_ITraktNoContentResponse_Has_IsSuccess_Property()
         {
             var isSuccessPropertyInfo = typeof(ITraktNoContentResponse).GetProperties()
                                                                        .Where(p => p.Name == "IsSuccess")
@@ -27,8 +28,8 @@
             isSuccessPropertyInfo.PropertyType.Should().Be(typeof(bool));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktNoContentResponseHasExceptionProperty()
+        [Fact]
+        public void Test_ITraktNoContentResponse_Has_Exception_Property()
         {
             var exceptionPropertyInfo = typeof(ITraktNoContentResponse).GetProperties()
                                                                        .Where(p => p.Name == "Exception")

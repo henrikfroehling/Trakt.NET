@@ -197,7 +197,6 @@
     <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktListResponseTests.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktNoContentResponseTests.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktPaginationResponseTests.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\TraktListResponseTests.cs" />
