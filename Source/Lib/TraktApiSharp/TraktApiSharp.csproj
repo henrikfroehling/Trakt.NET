@@ -312,7 +312,7 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchingRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequest.cs" />
     <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequest.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktListResponse.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktListResponse%271.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktNoContentResponse.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktPaginationResponse.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponse%271.cs" />

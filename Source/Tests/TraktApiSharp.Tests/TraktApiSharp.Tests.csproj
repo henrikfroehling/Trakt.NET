@@ -171,6 +171,7 @@
     <Compile Include="Requests\Seasons\TraktSeasonSingleRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Responses\Interfaces\Base\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktNoContentResponse_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktPaginationResponseHeaders_Tests.cs" />
