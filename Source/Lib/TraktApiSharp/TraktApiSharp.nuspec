@@ -51,8 +51,8 @@ Removed:
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.dll" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.dll" />
-        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.pdb" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.pdb" />
-        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.xml" target="lib\portable-net45+netcore45+wpa81\TraktApiSharp.xml" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.dll" target="lib\netstandard1.2\TraktApiSharp.dll" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.pdb" target="lib\netstandard1.2\TraktApiSharp.pdb" />
+        <file src="..\..\..\Build\Lib\$buildConfig$\TraktApiSharp.xml" target="lib\netstandard1.2\TraktApiSharp.xml" />
     </files>
 </package>
