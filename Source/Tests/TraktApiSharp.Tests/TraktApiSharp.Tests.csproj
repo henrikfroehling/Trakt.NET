@@ -199,6 +199,7 @@
     <Compile Include="Requests\Shows\TraktShowSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Requests\TraktRequestHandler_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktNoContentResponse_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktPagedResponse%271_Tests.cs" />

@@ -278,6 +278,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistAddRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequest.cs" />
+    <Compile Include="Experimental\Requests\TraktRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
