@@ -28,9 +28,9 @@
         }
 
         [Fact]
-        public void Test_ITraktPaginationResponse_1_Inherits_ITraktPaginationResponseHeaders_Interface()
+        public void Test_ITraktPaginationResponse_1_Inherits_ITraktPagedResponseHeaders_Interface()
         {
-            typeof(ITraktPaginationResponse<>).GetInterfaces().Should().Contain(typeof(ITraktPaginationResponseHeaders));
+            typeof(ITraktPaginationResponse<>).GetInterfaces().Should().Contain(typeof(ITraktPagedResponseHeaders));
         }
     }
 }
