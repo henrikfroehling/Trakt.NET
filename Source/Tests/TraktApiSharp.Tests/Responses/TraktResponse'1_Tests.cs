@@ -15,18 +15,18 @@
         {
             typeof(TraktResponse<>).IsAbstract.Should().BeFalse();
         }
-        
-        [Fact]
-        public void Test_TraktResponse_1_Inherits_TraktNoContentResponse()
-        {
-            typeof(TraktResponse<>).IsSubclassOf(typeof(TraktNoContentResponse)).Should().BeTrue();
-        }
 
         [Fact]
         public void Test_TraktResponse_1_Has_GenericTypeParameter()
         {
             typeof(TraktResponse<>).ContainsGenericParameters.Should().BeTrue();
             typeof(TraktResponse<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+        }
+
+        [Fact]
+        public void Test_TraktResponse_1_Inherits_TraktNoContentResponse()
+        {
+            typeof(TraktResponse<>).IsSubclassOf(typeof(TraktNoContentResponse)).Should().BeTrue();
         }
 
         [Fact]

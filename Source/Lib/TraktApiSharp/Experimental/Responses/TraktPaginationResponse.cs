@@ -3,6 +3,7 @@
     using Exceptions;
     using Interfaces.Base;
     using System.Collections.Generic;
+    using System.Linq;
 
     public sealed class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponseHeaders
     {
@@ -16,11 +17,11 @@
 
         internal TraktPaginationResponse() : base() { }
 
-        internal TraktPaginationResponse(List<TContentType> value) : base(value) { }
+        internal TraktPaginationResponse(List<TContentType> value) { }
 
-        internal TraktPaginationResponse(TraktException exception) : base(exception) { }
+        internal TraktPaginationResponse(TraktException exception)  { }
 
-        public static explicit operator List<TContentType>(TraktPaginationResponse<TContentType> response) => response.Value;
+        public static explicit operator List<TContentType>(TraktPaginationResponse<TContentType> response) => response.Value.ToList();
 
         public static implicit operator TraktPaginationResponse<TContentType>(List<TContentType> value) => new TraktPaginationResponse<TContentType>(value);
     }
