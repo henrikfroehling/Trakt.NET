@@ -315,7 +315,7 @@
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktListResponse.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktNoContentResponse.cs" />
     <Compile Include="Experimental\Responses\Interfaces\Base\ITraktPaginationResponse.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponse.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponse%271.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
