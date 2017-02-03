@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktPaginationResponse_1_Implements_ITraktPaginationResponse_1_Interface()
         {
-            typeof(TraktPaginationResponse<int>).GetInterfaces().Should().Contain(typeof(ITraktPaginationResponse<int>));
+            typeof(TraktPaginationResponse<int>).GetInterfaces().Should().Contain(typeof(ITraktPagedResponse<int>));
         }
 
         [Fact]

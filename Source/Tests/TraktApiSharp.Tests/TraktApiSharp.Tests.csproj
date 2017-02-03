@@ -173,7 +173,7 @@
     <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktNoContentResponse_Tests.cs" />
-    <Compile Include="Responses\Interfaces\Base\ITraktPaginationResponse%271_Tests.cs" />
+    <Compile Include="Responses\Interfaces\Base\ITraktPagedResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktPagedResponseHeaders_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktResponseHeaders_Tests.cs" />

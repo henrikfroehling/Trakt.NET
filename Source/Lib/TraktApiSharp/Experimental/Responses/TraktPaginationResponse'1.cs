@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPaginationResponse<TContentType>, IEquatable<TraktPaginationResponse<TContentType>>
+    public class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>, IEquatable<TraktPaginationResponse<TContentType>>
     {
         public int? Page { get; set; }
 
