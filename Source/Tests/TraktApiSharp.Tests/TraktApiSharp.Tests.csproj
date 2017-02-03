@@ -171,6 +171,9 @@
     <Compile Include="Requests\Seasons\TraktSeasonSingleRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Requests\Shows\OAuth\ATraktShowProgressRequest%271_Tests.cs" />
+    <Compile Include="Requests\Shows\OAuth\TraktShowCollectionProgressRequest_Tests.cs" />
+    <Compile Include="Requests\Shows\OAuth\TraktShowWatchedProgressRequest_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktNoContentResponse_Tests.cs" />
     <Compile Include="Responses\Interfaces\Base\ITraktPagedResponse%271_Tests.cs" />

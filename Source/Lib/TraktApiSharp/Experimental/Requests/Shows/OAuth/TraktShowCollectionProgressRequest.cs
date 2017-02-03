@@ -4,8 +4,6 @@
 
     internal sealed class TraktShowCollectionProgressRequest : ATraktShowProgressRequest<TraktShowCollectionProgress>
     {
-        internal TraktShowCollectionProgressRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "shows/{id}/progress/collection{?hidden,specials,count_specials}";
+        public override string UriTemplate => "shows/{id}/progress/collection{?hidden,specials,count_specials}";
     }
 }
