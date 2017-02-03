@@ -15,9 +15,9 @@ TraktApiSharp
 - ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/language-service.png) Language Service
 
 ### Supported Platforms
-- .Net Framework >= 4.5
+- .Net Framework >= 4.5.1
 - ASP.NET Core >= 1.0
-- Windows 8 / 8.1 / 10 / UWP
+- Windows 8.1 / 10 / UWP
 - Windows Phone 8.1
 - Xamarin Android / Xamarin iOS
 
