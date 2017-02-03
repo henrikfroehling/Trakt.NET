@@ -196,7 +196,6 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequestTests.cs" />
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
-    <Compile Include="Experimental\Responses\TraktPaginationResponseTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />

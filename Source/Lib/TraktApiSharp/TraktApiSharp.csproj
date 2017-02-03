@@ -535,7 +535,7 @@
     <Compile Include="Experimental\Responses\Interfaces\ITraktResponseHeaders.cs" />
     <Compile Include="Experimental\Responses\TraktListResponse%271.cs" />
     <Compile Include="Experimental\Responses\TraktNoContentResponse.cs" />
-    <Compile Include="Experimental\Responses\TraktPaginationResponse.cs" />
+    <Compile Include="Experimental\Responses\TraktPaginationResponse%271.cs" />
     <Compile Include="Experimental\Responses\TraktResponse%271.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
