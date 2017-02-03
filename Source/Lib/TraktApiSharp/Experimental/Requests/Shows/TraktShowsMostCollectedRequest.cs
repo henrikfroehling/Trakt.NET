@@ -4,8 +4,8 @@
 
     internal sealed class TraktShowsMostCollectedRequest : ATraktShowsMostPWCRequest<TraktMostCollectedShow>
     {
-        internal TraktShowsMostCollectedRequest(TraktClient client) : base(client) { }
+        public override string UriTemplate => "shows/collected{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
-        public string UriTemplate => "shows/collected{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
+        public override void Validate() { }
     }
 }

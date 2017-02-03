@@ -229,8 +229,8 @@
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonSingleRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonWatchingUsersRequest.cs" />
-    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest.cs" />
-    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest%271.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequest%271.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\TraktShowWatchedProgressRequest.cs" />

@@ -4,8 +4,8 @@
 
     internal sealed class TraktShowsTrendingRequest : ATraktShowsRequest<TraktTrendingShow>
     {
-        internal TraktShowsTrendingRequest(TraktClient client) : base(client) { }
+        public override string UriTemplate => "shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
-        public string UriTemplate => "shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
+        public override void Validate() { }
     }
 }

@@ -4,8 +4,8 @@
 
     internal sealed class TraktShowsMostPlayedRequest : ATraktShowsMostPWCRequest<TraktMostPlayedShow>
     {
-        internal TraktShowsMostPlayedRequest(TraktClient client) : base(client) { }
+        public override string UriTemplate => "shows/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
-        public string UriTemplate => "shows/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
+        public override void Validate() { }
     }
 }

@@ -1,37 +1,34 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Base;
-    using Extensions;
     using Interfaces;
-    using Objects.Get.Shows.Common;
-    using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal abstract class ATraktShowsRequest<TContentType> : ATraktGetRequest<TContentType>, ITraktSupportsExtendedInfo, ITraktSupportsFilter, ITraktSupportsPagination
     {
-        internal DateTime? StartDate { get; set; }
-
         public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public TraktCommonFilter Filter { get; set; }
 
         public int? Page { get; set; }
 
         public int? Limit { get; set; }
 
-        public override string UriTemplate => "shows/updates{/start_date}{?extended,page,limit}";
-
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
-            if (StartDate.HasValue)
-                uriParams.Add("start_date", StartDate.Value.ToTraktDateString());
-
             if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
                 uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Filter != null && Filter.HasValues)
+            {
+                var filterParameters = Filter.GetParameters();
+
+                foreach (var param in filterParameters)
+                    uriParams.Add(param.Key, param.Value);
+            }
 
             if (Page.HasValue)
                 uriParams.Add("page", Page.Value.ToString());
@@ -41,7 +38,5 @@
 
             return uriParams;
         }
-
-        public override void Validate() { }
     }
 }

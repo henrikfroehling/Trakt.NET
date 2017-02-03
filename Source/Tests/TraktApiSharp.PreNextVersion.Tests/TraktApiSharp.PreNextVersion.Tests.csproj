@@ -112,8 +112,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\ATraktShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowAliasesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowCommentsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowLastEpisodeRequestTests.cs" />
@@ -122,14 +120,7 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowRatingsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowRelatedShowsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowSingleTranslationRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsMostWatchedRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsPopularRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsRecentlyUpdatedRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowStatisticsRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowsTrendingRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowSummaryRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowTranslationsRequestTests.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowWatchingUsersRequestTests.cs" />
