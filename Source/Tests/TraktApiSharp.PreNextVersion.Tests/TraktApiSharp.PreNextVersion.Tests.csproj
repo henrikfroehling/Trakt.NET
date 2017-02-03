@@ -198,7 +198,6 @@
     <Compile Include="Experimental\Responses\ATraktResponseTests.cs" />
     <Compile Include="Experimental\Responses\TraktListResponseTests.cs" />
     <Compile Include="Experimental\Responses\TraktPaginationResponseTests.cs" />
-    <Compile Include="Experimental\Responses\TraktResponseTests.cs" />
     <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />

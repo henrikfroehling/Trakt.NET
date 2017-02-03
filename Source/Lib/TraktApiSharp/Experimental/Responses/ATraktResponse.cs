@@ -32,7 +32,7 @@
             IsSuccess = value != null;
         }
 
-        protected ATraktResponse(TraktException exception) : base(exception)
+        protected ATraktResponse(TraktException exception)
         {
             HasValue = false;
         }

@@ -178,6 +178,7 @@
     <Compile Include="Responses\Interfaces\ITraktPaginationResponseHeaders_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktResponseHeaders_Tests.cs" />
     <Compile Include="Responses\TraktNoContentResponse_Tests.cs" />
+    <Compile Include="Responses\TraktResponse%271_Tests.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />
