@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TraktPaginationResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>, IEquatable<TraktPaginationResponse<TContentType>>
+    public class TraktPagedResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>, IEquatable<TraktPagedResponse<TContentType>>
     {
         public int? Page { get; set; }
 
@@ -15,7 +15,7 @@
 
         public int? ItemCount { get; set; }
 
-        public bool Equals(TraktPaginationResponse<TContentType> other)
+        public bool Equals(TraktPagedResponse<TContentType> other)
         {
             if (other == null)
                 return false;
@@ -26,8 +26,8 @@
                 && other.ItemCount == ItemCount;
         }
 
-        public static explicit operator List<TContentType>(TraktPaginationResponse<TContentType> response) => response.Value.ToList();
+        public static explicit operator List<TContentType>(TraktPagedResponse<TContentType> response) => response.Value.ToList();
 
-        public static implicit operator TraktPaginationResponse<TContentType>(List<TContentType> value) => new TraktPaginationResponse<TContentType> { Value = value };
+        public static implicit operator TraktPagedResponse<TContentType>(List<TContentType> value) => new TraktPagedResponse<TContentType> { Value = value };
     }
 }

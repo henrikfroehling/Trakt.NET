@@ -179,7 +179,7 @@
     <Compile Include="Responses\Interfaces\ITraktResponseHeaders_Tests.cs" />
     <Compile Include="Responses\TraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\TraktNoContentResponse_Tests.cs" />
-    <Compile Include="Responses\TraktPaginationResponse%271_Tests.cs" />
+    <Compile Include="Responses\TraktPagedResponse%271_Tests.cs" />
     <Compile Include="Responses\TraktResponse%271_Tests.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
