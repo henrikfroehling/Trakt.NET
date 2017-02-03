@@ -1,45 +1,16 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Exceptions;
+    using Interfaces.Base;
+    using System;
 
-    public class TraktNoContentResponse
+    public class TraktNoContentResponse : ITraktNoContentResponse, IEquatable<TraktNoContentResponse>
     {
-        public bool IsSuccess { get; protected set; }
+        public bool IsSuccess { get; set; }
 
-        public TraktException Exception { get; protected set; }
+        public TraktException Exception { get; set; }
 
-        internal TraktNoContentResponse()
-        {
-            IsSuccess = false;
-        }
-
-        internal TraktNoContentResponse(TraktException exception)
-        {
-            Exception = exception;
-            IsSuccess = exception == null;
-        }
-
-        internal TraktNoContentResponse(bool success)
-        {
-            IsSuccess = success;
-        }
-
-        internal TraktNoContentResponse(bool success, TraktException exception)
-        {
-            Exception = exception;
-            IsSuccess = success;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is TraktNoContentResponse)
-                return Equals((TraktNoContentResponse)obj);
-
-            return false;
-        }
-
-        public bool Equals(TraktNoContentResponse other) => IsSuccess == other.IsSuccess && Exception == other.Exception;
-
-        public override int GetHashCode() => base.GetHashCode();
+        public bool Equals(TraktNoContentResponse other)
+            => other != null && IsSuccess == other.IsSuccess && Exception == other.Exception;
     }
 }
