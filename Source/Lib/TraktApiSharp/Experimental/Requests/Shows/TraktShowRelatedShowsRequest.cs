@@ -1,19 +1,34 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Interfaces;
-    using TraktApiSharp.Requests;
+    using Objects.Get.Shows;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowRelatedShowsRequest : ITraktSupportsExtendedInfo
+    internal sealed class TraktShowRelatedShowsRequest : ATraktShowRequest<TraktShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
-        internal TraktShowRelatedShowsRequest(TraktClient client) { }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public int? Page { get; set; }
 
-        public string UriTemplate => "shows/{id}/related{?extended,page,limit}";
+        public int? Limit { get; set; }
+
+        public override string UriTemplate => "shows/{id}/related{?extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = base.GetUriPathParameters();
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
+
+            return uriParams;
+        }
     }
 }

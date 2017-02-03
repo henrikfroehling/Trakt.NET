@@ -12,7 +12,7 @@
     public class TraktShowCollectionProgressRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowCollectionProgressRequest_Is_NotAbstract()
+        public void Test_TraktShowCollectionProgressRequest_Is_Not_Abstract()
         {
             typeof(TraktShowCollectionProgressRequest).IsAbstract.Should().BeFalse();
         }

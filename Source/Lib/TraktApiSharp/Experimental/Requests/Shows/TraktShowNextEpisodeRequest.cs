@@ -1,19 +1,24 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
     using Interfaces;
-    using TraktApiSharp.Requests;
+    using Objects.Get.Shows.Episodes;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktShowNextEpisodeRequest : ITraktSupportsExtendedInfo
+    internal sealed class TraktShowNextEpisodeRequest : ATraktShowRequest<TraktEpisode>, ITraktSupportsExtendedInfo
     {
-        internal TraktShowNextEpisodeRequest(TraktClient client) { }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public override string UriTemplate => "shows/{id}/next_episode{?extended}";
 
-        public string UriTemplate => "shows/{id}/next_episode{?extended}";
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = base.GetUriPathParameters();
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            return uriParams;
+        }
     }
 }

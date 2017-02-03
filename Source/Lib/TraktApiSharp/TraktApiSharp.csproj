@@ -229,6 +229,7 @@
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonSingleRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonStatisticsRequest.cs" />
     <Compile Include="Experimental\Requests\Seasons\TraktSeasonWatchingUsersRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\ATraktShowRequest%271.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsMostPWCRequest%271.cs" />
     <Compile Include="Experimental\Requests\Shows\ATraktShowsRequest%271.cs" />
     <Compile Include="Experimental\Requests\Shows\OAuth\ATraktShowProgressRequest%271.cs" />
@@ -237,11 +238,11 @@
     <Compile Include="Experimental\Requests\Shows\TraktShowAliasesRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowCommentsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowLastEpisodeRequest.cs" />
+    <Compile Include="Experimental\Requests\Shows\TraktShowListsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowPeopleRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowRatingsRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowRelatedShowsRequest.cs" />
-    <Compile Include="Experimental\Requests\Shows\TraktShowSingleTranslationRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostCollectedRequest.cs" />
     <Compile Include="Experimental\Requests\Shows\TraktShowsMostPlayedRequest.cs" />

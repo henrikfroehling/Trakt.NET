@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        public void Test_ATraktShowProgressRequest_1_IsAbstract()
+        public void Test_ATraktShowProgressRequest_1_Is_Abstract()
         {
             typeof(ATraktShowProgressRequest<>).IsAbstract.Should().BeTrue();
         }

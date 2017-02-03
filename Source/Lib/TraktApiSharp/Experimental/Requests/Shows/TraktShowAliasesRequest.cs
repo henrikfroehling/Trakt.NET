@@ -1,15 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using TraktApiSharp.Requests;
+    using Objects.Get.Shows;
 
-    internal sealed class TraktShowAliasesRequest
+    internal sealed class TraktShowAliasesRequest : ATraktShowRequest<TraktShowAlias>
     {
-        internal TraktShowAliasesRequest(TraktClient client) { }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
-
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
-
-        public string UriTemplate => "shows/{id}/aliases";
+        public override string UriTemplate => "shows/{id}/aliases";
     }
 }

@@ -1,15 +1,22 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Shows
 {
-    using TraktApiSharp.Requests;
+    using Objects.Get.Shows;
+    using System.Collections.Generic;
 
-    internal sealed class TraktShowTranslationsRequest
+    internal sealed class TraktShowTranslationsRequest : ATraktShowRequest<TraktShowTranslation>
     {
-        internal TraktShowTranslationsRequest(TraktClient client) { }
+        internal string LanguageCode { get; set; }
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public override string UriTemplate => "shows/{id}/translations{/language}";
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = base.GetUriPathParameters();
 
-        public string UriTemplate => "shows/{id}/translations";
+            if (!string.IsNullOrEmpty(LanguageCode))
+                uriParams.Add("language", LanguageCode);
+
+            return uriParams;
+        }
     }
 }
