@@ -1,21 +1,22 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Responses.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Responses.Interfaces
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktResponseHeadersTests
+    [Category("Responses.Interfaces")]
+    public class ITraktResponseHeaders_Tests
     {
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktResponseHeadersIsInterface()
+        [Fact]
+        public void Test_ITraktResponseHeaders_Is_Interface()
         {
             typeof(ITraktResponseHeaders).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktResponseHeadersHasUserCountProperty()
+        [Fact]
+        public void Test_ITraktResponseHeaders_Has_UserCount_Property()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
                                                                      .Where(p => p.Name == "UserCount")
@@ -26,8 +27,8 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktResponseHeadersHasSortByProperty()
+        [Fact]
+        public void Test_ITraktResponseHeaders_Has_SortBy_Property()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
                                                                      .Where(p => p.Name == "SortBy")
@@ -38,8 +39,8 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktResponseHeadersHasSortHowProperty()
+        [Fact]
+        public void Test_ITraktResponseHeaders_Has_SortHow_Property()
         {
             var userCountPropertyInfo = typeof(ITraktResponseHeaders).GetProperties()
                                                                      .Where(p => p.Name == "SortHow")
