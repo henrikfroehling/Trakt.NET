@@ -1,21 +1,22 @@
-﻿namespace TraktApiSharp.Tests.Experimental.Responses.Interfaces.Base
+﻿namespace TraktApiSharp.Tests.Responses.Interfaces
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Tests.Traits;
+    using Xunit;
 
-    [TestClass]
-    public class ITraktPaginationResponseHeadersTests
+    [Category("Responses.Interfaces")]
+    public class ITraktPaginationResponseHeaders_Tests
     {
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktPaginationResponseHeadersIsInterface()
+        [Fact]
+        public void Test_ITraktPaginationResponseHeaders_Is_Interface()
         {
             typeof(ITraktPaginationResponseHeaders).IsInterface.Should().BeTrue();
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktPaginationResponseHeadersHasPageProperty()
+        [Fact]
+        public void Test_ITraktPaginationResponseHeaders_Has_Page_Property()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
                                                                                .Where(p => p.Name == "Page")
@@ -26,8 +27,8 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktPaginationResponseHeadersHasLimitProperty()
+        [Fact]
+        public void Test_ITraktPaginationResponseHeaders_Has_Limit_Property()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
                                                                                .Where(p => p.Name == "Limit")
@@ -38,8 +39,8 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktPaginationResponseHeadersHasPageCountProperty()
+        [Fact]
+        public void Test_ITraktPaginationResponseHeaders_Has_PageCount_Property()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
                                                                                .Where(p => p.Name == "PageCount")
@@ -50,8 +51,8 @@
             userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
-        [TestMethod, TestCategory("Responses"), TestCategory("Interfaces")]
-        public void TestITraktPaginationResponseHeadersHasItemCountProperty()
+        [Fact]
+        public void Test_ITraktPaginationResponseHeaders_Has_ItemCount_Property()
         {
             var userCountPropertyInfo = typeof(ITraktPaginationResponseHeaders).GetProperties()
                                                                                .Where(p => p.Name == "ItemCount")
