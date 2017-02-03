@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
-    using Interfaces.Base;
+    using Interfaces;
     using System;
 
     public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>, IEquatable<TraktResponse<TContentType>>

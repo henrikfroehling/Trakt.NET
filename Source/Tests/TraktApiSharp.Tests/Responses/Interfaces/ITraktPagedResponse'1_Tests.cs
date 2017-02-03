@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Responses.Interfaces.Base")]
+    [Category("Responses.Interfaces")]
     public class ITraktPagedResponse_1_Tests
     {
         [Fact]

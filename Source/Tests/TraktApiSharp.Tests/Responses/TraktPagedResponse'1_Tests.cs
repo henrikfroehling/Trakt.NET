@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System;
     using TraktApiSharp.Experimental.Responses;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 

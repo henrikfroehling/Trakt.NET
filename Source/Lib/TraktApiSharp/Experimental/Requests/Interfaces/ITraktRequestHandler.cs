@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Interfaces
 {
     using Interfaces.Base;
-    using Responses.Interfaces.Base;
+    using Responses.Interfaces;
     using System.Threading.Tasks;
 
     internal interface ITraktRequestHandler

@@ -2,11 +2,11 @@
 {
     using FluentAssertions;
     using System.Linq;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Responses.Interfaces.Base")]
+    [Category("Responses.Interfaces")]
     public class ITraktResponse_1_Tests
     {
         [Fact]

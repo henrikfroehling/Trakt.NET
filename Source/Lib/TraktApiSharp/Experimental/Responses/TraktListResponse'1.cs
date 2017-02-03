@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
-    using Interfaces.Base;
+    using Interfaces;
     using System;
     using System.Collections;
     using System.Collections.Generic;

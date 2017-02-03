@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Exceptions;
-    using Interfaces.Base;
+    using Interfaces;
     using System;
 
     public class TraktNoContentResponse : ITraktNoContentResponse, IEquatable<TraktNoContentResponse>
