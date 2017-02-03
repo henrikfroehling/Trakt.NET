@@ -143,6 +143,8 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPutRequest%272.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktPostRequestHandler.cs" />
+    <Compile Include="Experimental\Requests\Interfaces\ITraktPutRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody%271.cs" />

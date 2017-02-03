@@ -13,5 +13,17 @@
         {
             typeof(ITraktRequestHandler).IsInterface.Should().BeTrue();
         }
+
+        [Fact]
+        public void Test_ITraktRequestHandler_Inherits_ITraktPostRequestHandler_Interface()
+        {
+            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(ITraktPostRequestHandler));
+        }
+
+        [Fact]
+        public void Test_ITraktRequestHandler_Inherits_ITraktPutRequestHandler_Interface()
+        {
+            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(ITraktPutRequestHandler));
+        }
     }
 }
