@@ -12,6 +12,7 @@
     using System.Reflection;
     using System.Text;
     using TraktApiSharp.Authentication;
+    using TraktApiSharp.Experimental.Requests.Handler;
 
     public static class TestUtility
     {
@@ -45,6 +46,15 @@
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Add("trakt-api-version", "2");
 
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // ------------------------------------------------------
+
+            TraktRequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
+
+            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-key", $"{TRAKT_CLIENT_ID}");
+            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-version", "2");
+
+            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public static void SetupMockAuthenticationHttpClient()
@@ -53,12 +63,21 @@
             MOCK_HTTP = new MockHttpMessageHandler();
             TraktConfiguration.HTTP_CLIENT = new HttpClient(MOCK_HTTP);
             TraktConfiguration.HTTP_CLIENT.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // ------------------------------------------------------
+
+            TraktRequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
+            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public static void ResetMockHttpClient()
         {
             MOCK_TEST_CLIENT.Configuration.ForceAuthorization = false;
             TraktConfiguration.HTTP_CLIENT = null;
+
+            // ------------------------------------------------------
+
+            TraktRequestHandler.s_httpClient = null;
         }
 
         public static void ClearMockHttpClient()
