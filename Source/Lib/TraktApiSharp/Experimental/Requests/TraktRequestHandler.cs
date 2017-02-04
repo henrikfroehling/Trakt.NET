@@ -7,6 +7,9 @@
     using Responses;
     using Responses.Interfaces;
     using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -106,29 +109,60 @@
 
         private async Task<ITraktNoContentResponse> QueryNoContentAsync(HttpRequestMessage requestMessage)
         {
-            var responseContent = await ExecuteRequestAsync(requestMessage);
-            return await Task.FromResult(new TraktNoContentResponse());
+            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+
+            Debug.Assert(response != null && response.StatusCode == HttpStatusCode.NoContent,
+                         "precondition for generating no content response failed");
+
+            return new TraktNoContentResponse { IsSuccess = true };
         }
 
         private async Task<ITraktResponse<TContentType>> QuerySingleItemAsync<TContentType>(HttpRequestMessage requestMessage)
         {
-            var responseContent = await ExecuteRequestAsync(requestMessage);
-            return await Task.FromResult(new TraktResponse<TContentType>());
+            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+
+            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                         "precondition for generating single item response failed");
+
+            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+            var contentObject = Json.Deserialize<TContentType>(responseContent);
+            return new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
         }
 
         private async Task<ITraktListResponse<TContentType>> QueryListAsync<TContentType>(HttpRequestMessage requestMessage)
         {
-            var responseContent = await ExecuteRequestAsync(requestMessage);
-            return await Task.FromResult(new TraktListResponse<TContentType>());
+            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+
+            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                         "precondition for generating list response failed");
+
+            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+            var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+            return new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
         }
 
         private async Task<ITraktPagedResponse<TContentType>> QueryPagedListAsync<TContentType>(HttpRequestMessage requestMessage)
         {
-            var responseContent = await ExecuteRequestAsync(requestMessage);
-            return await Task.FromResult(new TraktPagedResponse<TContentType>());
+            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+
+            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                         "precondition for generating paged list response failed");
+
+            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+            var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+            return new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
         }
-        
-        private async Task<string> ExecuteRequestAsync(HttpRequestMessage requestMessage)
+
+        private async Task<string> GetResponseContentAsync(HttpResponseMessage response)
+            => response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+
+        private async Task<HttpResponseMessage> ExecuteRequestAsync(HttpRequestMessage requestMessage)
         {
             var response = await s_httpClient.SendAsync(requestMessage).ConfigureAwait(false);
 
@@ -137,9 +171,7 @@
                 // error handling
             }
 
-            return response.Content != null
-                ? await response.Content.ReadAsStringAsync().ConfigureAwait(false)
-                : string.Empty;
+            return response;
         }
 
         private void PreExecuteRequest(ITraktRequest request)
