@@ -544,8 +544,6 @@
     <Compile Include="Experimental\Responses\TraktResponse%271.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserDVDMoviesRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllDVDMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieListsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeListsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeTranslationsRequest.cs" />
@@ -570,11 +568,6 @@
     <Compile Include="Requests\Base\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\Base\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinRequest.cs" />
     <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentDeleteRequest.cs" />
@@ -643,11 +636,6 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchlistRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentRepliesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresMoviesRequest.cs" />
