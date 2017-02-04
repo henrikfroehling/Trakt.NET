@@ -17,12 +17,6 @@
         }
 
         [Fact]
-        public void Test_ITraktNoContentResponse_Inherits_IEquatable_Interface()
-        {
-            typeof(ITraktNoContentResponse).GetInterfaces().Should().Contain(typeof(IEquatable<ITraktNoContentResponse>));
-        }
-
-        [Fact]
         public void Test_ITraktNoContentResponse_Has_IsSuccess_Property()
         {
             var isSuccessPropertyInfo = typeof(ITraktNoContentResponse).GetProperties()

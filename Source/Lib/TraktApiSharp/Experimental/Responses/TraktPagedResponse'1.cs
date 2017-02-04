@@ -1,16 +1,17 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Interfaces;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TraktPagedResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>
+    public class TraktPagedResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>, IEquatable<TraktPagedResponse<TContentType>>
     {
         public int? PageCount { get; set; }
 
         public int? ItemCount { get; set; }
 
-        public bool Equals(ITraktPagedResponse<TContentType> other)
+        public bool Equals(TraktPagedResponse<TContentType> other)
         {
             if (other == null)
                 return false;

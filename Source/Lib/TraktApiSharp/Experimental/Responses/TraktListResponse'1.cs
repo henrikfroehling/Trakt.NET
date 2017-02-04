@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Interfaces;
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TraktListResponse<TContentType> : TraktResponse<IEnumerable<TContentType>>, ITraktListResponse<TContentType>
+    public class TraktListResponse<TContentType> : TraktResponse<IEnumerable<TContentType>>, ITraktListResponse<TContentType>, IEquatable<TraktListResponse<TContentType>>
     {
-        public bool Equals(ITraktListResponse<TContentType> other)
+        public bool Equals(TraktListResponse<TContentType> other)
         {
             if (other == null)
                 return false;

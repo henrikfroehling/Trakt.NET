@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Responses
 {
     using FluentAssertions;
+    using System;
     using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
@@ -32,6 +33,12 @@
         public void Test_TraktResponse_1_Implements_ITraktResponse_1_Interface()
         {
             typeof(TraktResponse<int>).GetInterfaces().Should().Contain(typeof(ITraktResponse<int>));
+        }
+
+        [Fact]
+        public void Test_TraktResponse_1_Implements_IEquatable_Interface()
+        {
+            typeof(TraktResponse<int>).GetInterfaces().Should().Contain(typeof(IEquatable<TraktResponse<int>>));
         }
     }
 }

@@ -3,7 +3,7 @@
     using Interfaces;
     using System;
 
-    public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>
+    public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>, IEquatable<TraktResponse<TContentType>>
     {
         public bool HasValue { get; set; }
 
@@ -25,7 +25,7 @@
 
         public bool? IsPrivateUser { get; set; }
 
-        public bool Equals(ITraktResponse<TContentType> other)
+        public bool Equals(TraktResponse<TContentType> other)
         {
             if (other == null)
                 return false;
