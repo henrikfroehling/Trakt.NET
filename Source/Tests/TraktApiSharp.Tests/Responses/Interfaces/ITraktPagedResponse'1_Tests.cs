@@ -33,11 +33,5 @@
         {
             typeof(ITraktPagedResponse<>).GetInterfaces().Should().Contain(typeof(ITraktPagedResponseHeaders));
         }
-
-        [Fact]
-        public void Test_ITraktPagedResponse_1_Inherits_IEquatable_Interface()
-        {
-            typeof(ITraktPagedResponse<int>).GetInterfaces().Should().Contain(typeof(IEquatable<ITraktPagedResponse<int>>));
-        }
     }
 }

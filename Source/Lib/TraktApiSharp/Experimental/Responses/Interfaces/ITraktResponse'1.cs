@@ -1,8 +1,6 @@
 ﻿namespace TraktApiSharp.Experimental.Responses.Interfaces
 {
-    using System;
-
-    public interface ITraktResponse<TContentType> : ITraktNoContentResponse, ITraktResponseHeaders, IEquatable<ITraktResponse<TContentType>>
+    public interface ITraktResponse<TContentType> : ITraktNoContentResponse, ITraktResponseHeaders
     {
         bool HasValue { get; }
 

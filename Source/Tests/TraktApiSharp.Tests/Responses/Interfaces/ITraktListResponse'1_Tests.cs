@@ -34,11 +34,5 @@
         {
             typeof(ITraktListResponse<int>).GetInterfaces().Should().Contain(typeof(IEnumerable<int>));
         }
-
-        [Fact]
-        public void Test_ITraktListResponse_1_Inherits_IEquatable_Interface()
-        {
-            typeof(ITraktListResponse<int>).GetInterfaces().Should().Contain(typeof(IEquatable<ITraktListResponse<int>>));
-        }
     }
 }

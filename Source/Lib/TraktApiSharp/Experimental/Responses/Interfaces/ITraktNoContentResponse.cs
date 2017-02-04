@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface ITraktNoContentResponse : IEquatable<ITraktNoContentResponse>
+    public interface ITraktNoContentResponse
     {
         bool IsSuccess { get; set; }
 

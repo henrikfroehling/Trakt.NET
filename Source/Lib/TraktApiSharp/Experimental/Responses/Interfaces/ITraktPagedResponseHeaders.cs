@@ -1,11 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Responses.Interfaces
 {
-    public interface ITraktPagedResponseHeaders
+    public interface ITraktPagedResponseHeaders : ITraktResponseHeaders
     {
-        int? Page { get; set; }
-
-        int? Limit { get; set; }
-
         int? PageCount { get; set; }
 
         int? ItemCount { get; set; }
