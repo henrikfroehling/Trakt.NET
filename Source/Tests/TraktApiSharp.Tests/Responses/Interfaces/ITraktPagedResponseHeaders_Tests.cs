@@ -16,29 +16,11 @@
         }
 
         [Fact]
-        public void Test_ITraktPagedResponseHeaders_Has_Page_Property()
+        public void Test_ITraktPagedResponseHeaders_Inherits_ITraktResponseHeaders_Interface()
         {
-            var userCountPropertyInfo = typeof(ITraktPagedResponseHeaders).GetProperties()
-                                                                          .Where(p => p.Name == "Page")
-                                                                          .FirstOrDefault();
-
-            userCountPropertyInfo.CanRead.Should().BeTrue();
-            userCountPropertyInfo.CanWrite.Should().BeTrue();
-            userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            typeof(ITraktPagedResponseHeaders).GetInterfaces().Should().Contain(typeof(ITraktResponseHeaders));
         }
-
-        [Fact]
-        public void Test_ITraktPagedResponseHeaders_Has_Limit_Property()
-        {
-            var userCountPropertyInfo = typeof(ITraktPagedResponseHeaders).GetProperties()
-                                                                          .Where(p => p.Name == "Limit")
-                                                                          .FirstOrDefault();
-
-            userCountPropertyInfo.CanRead.Should().BeTrue();
-            userCountPropertyInfo.CanWrite.Should().BeTrue();
-            userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
-        }
-
+        
         [Fact]
         public void Test_ITraktPagedResponseHeaders_Has_PageCount_Property()
         {

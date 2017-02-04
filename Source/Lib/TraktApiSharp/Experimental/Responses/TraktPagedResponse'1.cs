@@ -6,10 +6,6 @@
 
     public class TraktPagedResponse<TContentType> : TraktListResponse<TContentType>, ITraktPagedResponse<TContentType>
     {
-        public int? Page { get; set; }
-
-        public int? Limit { get; set; }
-
         public int? PageCount { get; set; }
 
         public int? ItemCount { get; set; }
