@@ -12,6 +12,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -23,6 +24,17 @@
 
     internal sealed class TraktRequestHandler : ITraktRequestHandler
     {
+        private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
+        private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
+        private const string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
+        private const string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+        private const string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
+        private const string HEADER_SORT_BY_KEY = "X-Sort-By";
+        private const string HEADER_SORT_HOW_KEY = "X-Sort-How";
+        private const string HEADER_STARTDATE_KEY = "X-Start-Date";
+        private const string HEADER_ENDDATE_KEY = "X-End-Date";
+        private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
+
         internal static HttpClient s_httpClient;
 
         private TraktClient _client;
@@ -113,14 +125,12 @@
 
         private async Task<ITraktNoContentResponse> QueryNoContentAsync(TraktHttpRequestMessage requestMessage)
         {
-            HttpResponseMessage response = null;
+            HttpResponseMessage responseMessage = null;
 
             try
             {
-                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
-
-                Debug.Assert(response != null && response.StatusCode == HttpStatusCode.NoContent,
-                             "precondition for generating no content response failed");
+                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed");
 
                 return new TraktNoContentResponse { IsSuccess = true };
             }
@@ -133,26 +143,29 @@
             }
             finally
             {
-                response?.Dispose();
+                responseMessage?.Dispose();
             }
         }
 
         private async Task<ITraktResponse<TContentType>> QuerySingleItemAsync<TContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
         {
-            HttpResponseMessage response = null;
+            HttpResponseMessage responseMessage = null;
 
             try
             {
-                response = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed");
 
-                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                             "precondition for generating single item response failed");
-
-                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<TContentType>(responseContent);
-                return new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var response = new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                if (responseMessage.Headers != null)
+                    ParseResponseHeaderValues(response, responseMessage.Headers);
+
+                return response;
             }
             catch (Exception ex)
             {
@@ -163,26 +176,29 @@
             }
             finally
             {
-                response?.Dispose();
+                responseMessage?.Dispose();
             }
         }
 
         private async Task<ITraktListResponse<TContentType>> QueryListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
         {
-            HttpResponseMessage response = null;
+            HttpResponseMessage responseMessage = null;
 
             try
             {
-                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed");
 
-                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                             "precondition for generating list response failed");
-
-                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                return new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var response = new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                if (responseMessage.Headers != null)
+                    ParseResponseHeaderValues(response, responseMessage.Headers);
+
+                return response;
             }
             catch (Exception ex)
             {
@@ -193,26 +209,32 @@
             }
             finally
             {
-                response?.Dispose();
+                responseMessage?.Dispose();
             }
         }
 
         private async Task<ITraktPagedResponse<TContentType>> QueryPagedListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
         {
-            HttpResponseMessage response = null;
+            HttpResponseMessage responseMessage = null;
 
             try
             {
-                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed");
 
-                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                             "precondition for generating paged list response failed");
-
-                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                return new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var response = new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                if (responseMessage.Headers != null)
+                {
+                    ParseResponseHeaderValues(response, responseMessage.Headers);
+                    ParsePagedResponseHeaderValues(response, responseMessage.Headers);
+                }
+
+                return response;
             }
             catch (Exception ex)
             {
@@ -223,7 +245,7 @@
             }
             finally
             {
-                response?.Dispose();
+                responseMessage?.Dispose();
             }
         }
 
@@ -395,6 +417,94 @@
 
             if (authorizationRequirement == TraktAuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization && _client.Authentication.IsAuthorized)
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.Authorization.AccessToken);
+        }
+
+        private void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
+        {
+            IEnumerable<string> values;
+
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
+            {
+                var strPage = values.First();
+                int page;
+
+                if (int.TryParse(strPage, out page))
+                    headerResults.Page = page;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
+            {
+                var strLimit = values.First();
+                int limit;
+
+                if (int.TryParse(strLimit, out limit))
+                    headerResults.Limit = limit;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
+            {
+                var strTrendingUserCount = values.First();
+                int userCount;
+
+                if (int.TryParse(strTrendingUserCount, out userCount))
+                    headerResults.TrendingUserCount = userCount;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_SORT_BY_KEY, out values))
+                headerResults.SortBy = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_SORT_HOW_KEY, out values))
+                headerResults.SortHow = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
+            {
+                var strIsPrivateUser = values.First();
+                bool isPrivateUser;
+
+                if (bool.TryParse(strIsPrivateUser, out isPrivateUser))
+                    headerResults.IsPrivateUser = isPrivateUser;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_STARTDATE_KEY, out values))
+            {
+                var strStartDate = values.First();
+                DateTime startDate;
+
+                if (DateTime.TryParse(strStartDate, out startDate))
+                    headerResults.StartDate = startDate;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_ENDDATE_KEY, out values))
+            {
+                var strEndDate = values.First();
+                DateTime endDate;
+
+                if (DateTime.TryParse(strEndDate, out endDate))
+                    headerResults.EndDate = endDate;
+            }
+        }
+
+        private void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
+        {
+            IEnumerable<string> values;
+
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
+            {
+                var strPageCount = values.First();
+                int pageCount;
+
+                if (int.TryParse(strPageCount, out pageCount))
+                    headerResults.PageCount = pageCount;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
+            {
+                var strItemCount = values.First();
+                int itemCount;
+
+                if (int.TryParse(strItemCount, out itemCount))
+                    headerResults.ItemCount = itemCount;
+            }
         }
 
         private async Task ErrorHandlingAsync(HttpResponseMessage response, TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
