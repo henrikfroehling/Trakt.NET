@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Experimental.Responses
 {
     using Interfaces;
-    using System;
 
-    public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>, IEquatable<TraktResponse<TContentType>>
+    public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>
     {
         public bool HasValue { get; set; }
 
@@ -15,7 +14,7 @@
 
         public int? UserCount { get; set; }
 
-        public bool Equals(TraktResponse<TContentType> other)
+        public bool Equals(ITraktResponse<TContentType> other)
         {
             if (other == null)
                 return false;

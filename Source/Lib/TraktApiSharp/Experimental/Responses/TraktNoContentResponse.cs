@@ -3,13 +3,13 @@
     using Interfaces;
     using System;
 
-    public class TraktNoContentResponse : ITraktNoContentResponse, IEquatable<TraktNoContentResponse>
+    public class TraktNoContentResponse : ITraktNoContentResponse
     {
         public bool IsSuccess { get; set; }
 
         public Exception Exception { get; set; }
 
-        public bool Equals(TraktNoContentResponse other)
+        public bool Equals(ITraktNoContentResponse other)
             => other != null && IsSuccess == other.IsSuccess && Exception == other.Exception;
     }
 }

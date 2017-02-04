@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Experimental.Responses.Interfaces
 {
-    public interface ITraktPagedResponse<TContentType> : ITraktListResponse<TContentType>, ITraktPagedResponseHeaders
+    using System;
+
+    public interface ITraktPagedResponse<TContentType> : ITraktListResponse<TContentType>, ITraktPagedResponseHeaders, IEquatable<ITraktPagedResponse<TContentType>>
     {
 
     }
