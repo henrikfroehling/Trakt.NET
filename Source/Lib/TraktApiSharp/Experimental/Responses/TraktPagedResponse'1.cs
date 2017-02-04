@@ -25,5 +25,7 @@
         public static explicit operator List<TContentType>(TraktPagedResponse<TContentType> response) => response.Value.ToList();
 
         public static implicit operator TraktPagedResponse<TContentType>(List<TContentType> value) => new TraktPagedResponse<TContentType> { Value = value };
+
+        public static implicit operator bool(TraktPagedResponse<TContentType> response) => response.IsSuccess && response.HasValue;
     }
 }

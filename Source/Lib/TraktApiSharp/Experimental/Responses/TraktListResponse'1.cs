@@ -23,5 +23,7 @@
         public static implicit operator List<TContentType>(TraktListResponse<TContentType> response) => response.Value.ToList();
 
         public static implicit operator TraktListResponse<TContentType>(List<TContentType> value) => new TraktListResponse<TContentType> { Value = value };
+
+        public static implicit operator bool(TraktListResponse<TContentType> response) => response.IsSuccess && response.HasValue;
     }
 }

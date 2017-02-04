@@ -11,5 +11,7 @@
 
         public bool Equals(TraktNoContentResponse other)
             => other != null && IsSuccess == other.IsSuccess && Exception == other.Exception;
+
+        public static implicit operator bool(TraktNoContentResponse response) => response.IsSuccess;
     }
 }
