@@ -32,10 +32,10 @@
                     uriParams.Add("start_date", DateTime.UtcNow.ToTraktDateString());
             }
 
-            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+            if (ExtendedInfo?.HasAnySet == true)
                 uriParams.Add("extended", ExtendedInfo.ToString());
 
-            if (Filter != null && Filter.HasValues)
+            if (Filter?.HasValues == true)
             {
                 var filterParameters = Filter.GetParameters();
 
@@ -46,6 +46,10 @@
             return uriParams;
         }
 
-        public override void Validate() { }
+        public override void Validate()
+        {
+            if (Days.HasValue && (Days.Value < 1 || Days.Value > 31))
+                throw new ArgumentOutOfRangeException(nameof(Days), "days must have a value between 1 and 31");
+        }
     }
 }
