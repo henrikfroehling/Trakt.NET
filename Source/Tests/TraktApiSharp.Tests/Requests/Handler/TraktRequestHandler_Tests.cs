@@ -1,12 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests
+﻿namespace TraktApiSharp.Tests.Requests.Handler
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Experimental.Requests.Handler;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Requests")]
+    [Category("Requests.Handler")]
     public class TraktRequestHandler_Tests
     {
         [Fact]

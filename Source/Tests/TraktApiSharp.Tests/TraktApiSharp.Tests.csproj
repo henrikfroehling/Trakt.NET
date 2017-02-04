@@ -104,6 +104,7 @@
     <Compile Include="Requests\Episodes\TraktEpisodeWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Handler\TraktHttpRequestMessage_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest_Tests.cs" />
@@ -119,9 +120,9 @@
     <Compile Include="Requests\Interfaces\Base\ITraktPutRequest%272_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktRequest_Tests.cs" />
-    <Compile Include="Requests\Interfaces\ITraktPostRequestHandler_Tests.cs" />
-    <Compile Include="Requests\Interfaces\ITraktPutRequestHandler_Tests.cs" />
-    <Compile Include="Requests\Interfaces\ITraktRequestHandler_Tests.cs" />
+    <Compile Include="Requests\Handler\ITraktPostRequestHandler_Tests.cs" />
+    <Compile Include="Requests\Handler\ITraktPutRequestHandler_Tests.cs" />
+    <Compile Include="Requests\Handler\ITraktRequestHandler_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktHasId_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktObjectRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsExtendedInfo_Tests.cs" />
@@ -199,7 +200,7 @@
     <Compile Include="Requests\Shows\TraktShowSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowWatchingUsersRequest_Tests.cs" />
-    <Compile Include="Requests\TraktRequestHandler_Tests.cs" />
+    <Compile Include="Requests\Handler\TraktRequestHandler_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktNoContentResponse_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktPagedResponse%271_Tests.cs" />
