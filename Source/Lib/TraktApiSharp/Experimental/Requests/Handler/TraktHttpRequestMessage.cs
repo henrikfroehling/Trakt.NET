@@ -12,11 +12,11 @@
 
         internal TraktHttpRequestMessage(HttpMethod method, Uri requestUri) : base(method, requestUri) { }
 
-        public string Id { get; set; }
+        public string ObjectId { get; set; }
 
-        internal uint? SeasonNumber { get; set; }
+        internal int? SeasonNumber { get; set; }
 
-        internal uint? EpisodeNumber { get; set; }
+        internal int? EpisodeNumber { get; set; }
 
         public string Url { get; set; }
 

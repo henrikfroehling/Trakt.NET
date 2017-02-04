@@ -28,5 +28,7 @@
 
         /// <summary>Gets or sets, whether authorization should be enforced, even if it is optional. This is disabled by default.</summary>
         public bool ForceAuthorization { get; set; } = false;
+
+        public bool ThrowResponseExceptions { get; set; } = true;
     }
 }

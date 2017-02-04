@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
+    using System;
     using System.Linq;
-    using TraktApiSharp.Exceptions;
     using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
@@ -37,7 +37,7 @@
 
             exceptionPropertyInfo.CanRead.Should().BeTrue();
             exceptionPropertyInfo.CanWrite.Should().BeTrue();
-            exceptionPropertyInfo.PropertyType.Should().Be(typeof(TraktException));
+            exceptionPropertyInfo.PropertyType.Should().Be(typeof(Exception));
         }
     }
 }

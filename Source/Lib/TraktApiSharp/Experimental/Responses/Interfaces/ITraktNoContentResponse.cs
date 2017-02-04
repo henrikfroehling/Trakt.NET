@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Experimental.Responses.Interfaces
 {
-    using Exceptions;
+    using System;
 
     public interface ITraktNoContentResponse
     {
         bool IsSuccess { get; set; }
 
-        TraktException Exception { get; set; }
+        Exception Exception { get; set; }
     }
 }

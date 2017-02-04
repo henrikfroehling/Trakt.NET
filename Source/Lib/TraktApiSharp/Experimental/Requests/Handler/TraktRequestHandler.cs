@@ -3,7 +3,10 @@
     using Checkins.OAuth;
     using Core;
     using Exceptions;
+    using Interfaces;
     using Interfaces.Base;
+    using Objects.Basic;
+    using Objects.Post.Checkins.Responses;
     using Responses;
     using Responses.Interfaces;
     using System;
@@ -14,7 +17,6 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Requests;
     using UriTemplates;
     using Utils;
@@ -111,54 +113,118 @@
 
         private async Task<ITraktNoContentResponse> QueryNoContentAsync(TraktHttpRequestMessage requestMessage)
         {
-            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+            HttpResponseMessage response = null;
 
-            Debug.Assert(response != null && response.StatusCode == HttpStatusCode.NoContent,
-                         "precondition for generating no content response failed");
+            try
+            {
+                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
 
-            return new TraktNoContentResponse { IsSuccess = true };
+                Debug.Assert(response != null && response.StatusCode == HttpStatusCode.NoContent,
+                             "precondition for generating no content response failed");
+
+                return new TraktNoContentResponse { IsSuccess = true };
+            }
+            catch (Exception ex)
+            {
+                if (_client.Configuration.ThrowResponseExceptions)
+                    throw;
+
+                return new TraktNoContentResponse { IsSuccess = false, Exception = ex };
+            }
+            finally
+            {
+                response?.Dispose();
+            }
         }
 
         private async Task<ITraktResponse<TContentType>> QuerySingleItemAsync<TContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
         {
-            var response = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
+            HttpResponseMessage response = null;
 
-            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                         "precondition for generating single item response failed");
+            try
+            {
+                response = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
 
-            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
-            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                             "precondition for generating single item response failed");
 
-            var contentObject = Json.Deserialize<TContentType>(responseContent);
-            return new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+                var contentObject = Json.Deserialize<TContentType>(responseContent);
+                return new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+            }
+            catch (Exception ex)
+            {
+                if (_client.Configuration.ThrowResponseExceptions)
+                    throw;
+
+                return new TraktResponse<TContentType> { IsSuccess = false, Exception = ex };
+            }
+            finally
+            {
+                response?.Dispose();
+            }
         }
 
         private async Task<ITraktListResponse<TContentType>> QueryListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
         {
-            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+            HttpResponseMessage response = null;
 
-            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                         "precondition for generating list response failed");
+            try
+            {
+                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
 
-            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
-            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                             "precondition for generating list response failed");
 
-            var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-            return new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+                var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+                return new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+            }
+            catch (Exception ex)
+            {
+                if (_client.Configuration.ThrowResponseExceptions)
+                    throw;
+
+                return new TraktListResponse<TContentType> { IsSuccess = false, Exception = ex };
+            }
+            finally
+            {
+                response?.Dispose();
+            }
         }
 
         private async Task<ITraktPagedResponse<TContentType>> QueryPagedListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
         {
-            var response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+            HttpResponseMessage response = null;
 
-            Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
-                         "precondition for generating paged list response failed");
+            try
+            {
+                response = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
 
-            var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
-            Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Debug.Assert(response != null && response.StatusCode != HttpStatusCode.NoContent,
+                             "precondition for generating paged list response failed");
 
-            var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-            return new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var responseContent = await GetResponseContentAsync(response).ConfigureAwait(false);
+                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+
+                var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+                return new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+            }
+            catch (Exception ex)
+            {
+                if (_client.Configuration.ThrowResponseExceptions)
+                    throw;
+
+                return new TraktPagedResponse<TContentType> { IsSuccess = false, Exception = ex };
+            }
+            finally
+            {
+                response?.Dispose();
+            }
         }
 
         private async Task<HttpResponseMessage> ExecuteRequestAsync(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
@@ -257,7 +323,7 @@
             {
                 var idRequest = request as ITraktHasId;
 
-                requestMessage.Id = idRequest?.Id;
+                requestMessage.ObjectId = idRequest?.Id;
                 requestMessage.RequestObjectType = idRequest?.RequestObjectType;
             }
 
@@ -266,10 +332,10 @@
             if (parameters.Count != 0)
             {
                 if (parameters.ContainsKey(seasonKey))
-                    requestMessage.SeasonNumber = (uint)parameters[seasonKey];
+                    requestMessage.SeasonNumber = (int)parameters[seasonKey];
 
                 if (parameters.ContainsKey(episodeKey))
-                    requestMessage.EpisodeNumber = (uint)parameters[episodeKey];
+                    requestMessage.EpisodeNumber = (int)parameters[episodeKey];
             }
 
             return requestMessage;
@@ -339,226 +405,234 @@
                 responseContent = await response.Content.ReadAsStringAsync();
 
             var code = response.StatusCode;
+            var url = requestMessage.Url;
+            var requestBodyJson = requestMessage.RequestBodyJson;
 
-            //switch (code)
-            //{
-            //    case HttpStatusCode.NotFound:
-            //        {
-            //            if (RequestObjectType.HasValue)
-            //            {
-            //                switch (RequestObjectType.Value)
-            //                {
-            //                    case TraktRequestObjectType.Episodes:
-            //                        throw new TraktEpisodeNotFoundException(Id, Season, Episode)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.Seasons:
-            //                        throw new TraktSeasonNotFoundException(Id, Season)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.Shows:
-            //                        throw new TraktShowNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.Movies:
-            //                        throw new TraktMovieNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.People:
-            //                        throw new TraktPersonNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.Comments:
-            //                        throw new TraktCommentNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    case TraktRequestObjectType.Lists:
-            //                        throw new TraktListNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                    default:
-            //                        throw new TraktObjectNotFoundException(Id)
-            //                        {
-            //                            RequestUrl = Url,
-            //                            RequestBody = RequestBodyJson,
-            //                            Response = responseContent,
-            //                            ServerReasonPhrase = response.ReasonPhrase
-            //                        };
-            //                }
-            //            }
+            var objectId = requestMessage.ObjectId;
+            var seasonNr = requestMessage.SeasonNumber ?? -1;
+            var episodeNr = requestMessage.EpisodeNumber ?? -1;
 
-            //            throw new TraktNotFoundException($"Resource not found - Reason Phrase: {response.ReasonPhrase}");
-            //        }
-            //    case HttpStatusCode.BadRequest:
-            //        throw new TraktBadRequestException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.Unauthorized:
-            //        throw new TraktAuthorizationException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.Forbidden:
-            //        throw new TraktForbiddenException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.MethodNotAllowed:
-            //        throw new TraktMethodNotFoundException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.Conflict:
-            //        if (isCheckinRequest)
-            //        {
-            //            TraktCheckinPostErrorResponse errorResponse = null;
+            switch (code)
+            {
+                case HttpStatusCode.NotFound:
+                    {
+                        var requestObjectType = requestMessage.RequestObjectType;
 
-            //            if (!string.IsNullOrEmpty(responseContent))
-            //                errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
+                        if (requestObjectType.HasValue)
+                        {
+                            switch (requestObjectType.Value)
+                            {
+                                case TraktRequestObjectType.Episodes:
+                                    throw new TraktEpisodeNotFoundException(objectId, seasonNr, episodeNr)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.Seasons:
+                                    throw new TraktSeasonNotFoundException(objectId, seasonNr)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.Shows:
+                                    throw new TraktShowNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.Movies:
+                                    throw new TraktMovieNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.People:
+                                    throw new TraktPersonNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.Comments:
+                                    throw new TraktCommentNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                case TraktRequestObjectType.Lists:
+                                    throw new TraktListNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                                default:
+                                    throw new TraktObjectNotFoundException(objectId)
+                                    {
+                                        RequestUrl = url,
+                                        RequestBody = requestBodyJson,
+                                        Response = responseContent,
+                                        ServerReasonPhrase = response.ReasonPhrase
+                                    };
+                            }
+                        }
 
-            //            throw new TraktCheckinException("checkin is already in progress")
-            //            {
-            //                RequestUrl = Url,
-            //                RequestBody = RequestBodyJson,
-            //                Response = responseContent,
-            //                ServerReasonPhrase = response.ReasonPhrase,
-            //                ExpiresAt = errorResponse?.ExpiresAt
-            //            };
-            //        }
+                        throw new TraktNotFoundException($"Resource not found - Reason Phrase: {response.ReasonPhrase}");
+                    }
+                case HttpStatusCode.BadRequest:
+                    throw new TraktBadRequestException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.Unauthorized:
+                    throw new TraktAuthorizationException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.Forbidden:
+                    throw new TraktForbiddenException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.MethodNotAllowed:
+                    throw new TraktMethodNotFoundException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.Conflict:
+                    if (isCheckinRequest)
+                    {
+                        TraktCheckinPostErrorResponse errorResponse = null;
 
-            //        throw new TraktConflictException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.InternalServerError:
-            //        throw new TraktServerException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case HttpStatusCode.BadGateway:
-            //        throw new TraktBadGatewayException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case (HttpStatusCode)412:
-            //        throw new TraktPreconditionFailedException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case (HttpStatusCode)422:
-            //        throw new TraktValidationException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case (HttpStatusCode)429:
-            //        throw new TraktRateLimitException()
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case (HttpStatusCode)503:
-            //    case (HttpStatusCode)504:
-            //        throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            StatusCode = HttpStatusCode.ServiceUnavailable,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //    case (HttpStatusCode)520:
-            //    case (HttpStatusCode)521:
-            //    case (HttpStatusCode)522:
-            //        throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
-            //        {
-            //            RequestUrl = Url,
-            //            RequestBody = RequestBodyJson,
-            //            StatusCode = HttpStatusCode.ServiceUnavailable,
-            //            Response = responseContent,
-            //            ServerReasonPhrase = response.ReasonPhrase
-            //        };
-            //}
+                        if (!string.IsNullOrEmpty(responseContent))
+                            errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
 
-            //TraktError error = null;
+                        throw new TraktCheckinException("checkin is already in progress")
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = response.ReasonPhrase,
+                            ExpiresAt = errorResponse?.ExpiresAt
+                        };
+                    }
 
-            //try
-            //{
-            //    error = Json.Deserialize<TraktError>(responseContent);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new TraktException("json convert exception", ex);
-            //}
+                    throw new TraktConflictException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.InternalServerError:
+                    throw new TraktServerException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case HttpStatusCode.BadGateway:
+                    throw new TraktBadGatewayException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)412:
+                    throw new TraktPreconditionFailedException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)422:
+                    throw new TraktValidationException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)429:
+                    throw new TraktRateLimitException()
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)503:
+                case (HttpStatusCode)504:
+                    throw new TraktServerUnavailableException("Service Unavailable - server overloaded (try again in 30s)")
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+                case (HttpStatusCode)520:
+                case (HttpStatusCode)521:
+                case (HttpStatusCode)522:
+                    throw new TraktServerUnavailableException("Service Unavailable - Cloudflare error")
+                    {
+                        RequestUrl = url,
+                        RequestBody = requestBodyJson,
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        Response = responseContent,
+                        ServerReasonPhrase = response.ReasonPhrase
+                    };
+            }
 
-            //var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
-            //                        ? $"Trakt API error without content. Response status code was {(int)code}"
-            //                        : error.Description;
+            TraktError error = null;
 
-            //throw new TraktException(errorMessage)
-            //{
-            //    RequestUrl = Url,
-            //    RequestBody = RequestBodyJson,
-            //    Response = responseContent,
-            //    ServerReasonPhrase = response.ReasonPhrase
-            //};
+            try
+            {
+                error = Json.Deserialize<TraktError>(responseContent);
+            }
+            catch (Exception ex)
+            {
+                throw new TraktException("json convert exception", ex);
+            }
+
+            var errorMessage = (error == null || string.IsNullOrEmpty(error.Description))
+                                    ? $"Trakt API error without content. Response status code was {(int)code}"
+                                    : error.Description;
+
+            throw new TraktException(errorMessage)
+            {
+                RequestUrl = url,
+                RequestBody = requestBodyJson,
+                Response = responseContent,
+                ServerReasonPhrase = response.ReasonPhrase
+            };
         }
     }
 }

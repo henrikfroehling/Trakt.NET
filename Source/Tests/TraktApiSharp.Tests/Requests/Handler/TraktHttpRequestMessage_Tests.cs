@@ -31,11 +31,11 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_Id_Property()
+        public void Test_TraktHttpRequestMessage_Has_ObjectId_Property()
         {
             var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Id")
+                    .Where(p => p.Name == "ObjectId")
                     .FirstOrDefault();
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
@@ -53,7 +53,7 @@
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]
@@ -66,7 +66,7 @@
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]
