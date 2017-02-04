@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Responses
 {
     using FluentAssertions;
-    using System;
     using System.Collections.Generic;
     using TraktApiSharp.Experimental.Responses;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
@@ -34,12 +33,6 @@
         public void Test_TraktListResponse_1_Implements_ITraktListResponse_1_Interface()
         {
             typeof(TraktListResponse<int>).GetInterfaces().Should().Contain(typeof(ITraktListResponse<int>));
-        }
-
-        [Fact]
-        public void Test_TraktListResponse_1_Implements_IEquatable_Interface()
-        {
-            typeof(TraktListResponse<int>).GetInterfaces().Should().Contain(typeof(IEquatable<TraktListResponse<int>>));
         }
     }
 }

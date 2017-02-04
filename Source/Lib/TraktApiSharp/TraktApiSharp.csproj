@@ -133,6 +133,7 @@
     <Compile Include="Experimental\Requests\Episodes\ATraktEpisodeRequest%271.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeListsRequest.cs" />
     <Compile Include="Experimental\Requests\Episodes\TraktEpisodeTranslationsRequest.cs" />
+    <Compile Include="Experimental\Requests\Handler\TraktHttpRequestMessage.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktBodylessPostRequest.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktDeleteRequest.cs" />
@@ -143,6 +144,9 @@
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktPutRequest%272.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest%271.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktRequest.cs" />
+    <Compile Include="Experimental\Requests\Handler\ITraktPostRequestHandler.cs" />
+    <Compile Include="Experimental\Requests\Handler\ITraktPutRequestHandler.cs" />
+    <Compile Include="Experimental\Requests\Handler\ITraktRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Interfaces\ITraktHasId.cs" />
     <Compile Include="Experimental\Requests\Interfaces\Base\ITraktHasRequestBody%271.cs" />
     <Compile Include="Experimental\Requests\Calendars\ATraktCalendarRequest%271.cs" />
@@ -275,6 +279,7 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistAddRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest.cs" />
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequest.cs" />
+    <Compile Include="Experimental\Requests\Handler\TraktRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
@@ -313,10 +318,10 @@
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchingRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserWatchlistRequest.cs" />
     <Compile Include="Experimental\Requests\Users\TraktUserListCommentsRequest.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktListResponse%271.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktNoContentResponse.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktPagedResponse%271.cs" />
-    <Compile Include="Experimental\Responses\Interfaces\Base\ITraktResponse%271.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\ITraktListResponse%271.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\ITraktNoContentResponse.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\ITraktPagedResponse%271.cs" />
+    <Compile Include="Experimental\Responses\Interfaces\ITraktResponse%271.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />

@@ -1,19 +1,25 @@
 ﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
+    using System;
     using System.Linq;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Responses.Interfaces.Base")]
+    [Category("Responses.Interfaces")]
     public class ITraktNoContentResponse_Tests
     {
         [Fact]
         public void Test_ITraktNoContentResponse_Is_Interface()
         {
             typeof(ITraktNoContentResponse).IsInterface.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_ITraktNoContentResponse_Inherits_IEquatable_Interface()
+        {
+            typeof(ITraktNoContentResponse).GetInterfaces().Should().Contain(typeof(IEquatable<ITraktNoContentResponse>));
         }
 
         [Fact]
@@ -37,7 +43,7 @@
 
             exceptionPropertyInfo.CanRead.Should().BeTrue();
             exceptionPropertyInfo.CanWrite.Should().BeTrue();
-            exceptionPropertyInfo.PropertyType.Should().Be(typeof(TraktException));
+            exceptionPropertyInfo.PropertyType.Should().Be(typeof(Exception));
         }
     }
 }

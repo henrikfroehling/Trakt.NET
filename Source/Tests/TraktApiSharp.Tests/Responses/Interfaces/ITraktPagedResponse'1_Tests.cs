@@ -1,11 +1,12 @@
 ﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Responses.Interfaces.Base;
+    using System;
+    using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;
 
-    [Category("Responses.Interfaces.Base")]
+    [Category("Responses.Interfaces")]
     public class ITraktPagedResponse_1_Tests
     {
         [Fact]
@@ -31,6 +32,12 @@
         public void Test_ITraktPagedResponse_1_Inherits_ITraktPagedResponseHeaders_Interface()
         {
             typeof(ITraktPagedResponse<>).GetInterfaces().Should().Contain(typeof(ITraktPagedResponseHeaders));
+        }
+
+        [Fact]
+        public void Test_ITraktPagedResponse_1_Inherits_IEquatable_Interface()
+        {
+            typeof(ITraktPagedResponse<int>).GetInterfaces().Should().Contain(typeof(IEquatable<ITraktPagedResponse<int>>));
         }
     }
 }
