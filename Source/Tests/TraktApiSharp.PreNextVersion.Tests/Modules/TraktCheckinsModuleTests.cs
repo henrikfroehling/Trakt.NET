@@ -6,6 +6,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -80,21 +81,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -132,21 +136,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -186,21 +193,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -240,21 +250,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -300,21 +313,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -355,21 +371,24 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -410,21 +429,24 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -462,21 +484,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -516,21 +541,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -576,21 +604,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -631,21 +662,24 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -686,21 +720,24 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -738,21 +775,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -798,21 +838,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -853,21 +896,24 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -908,21 +954,24 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -965,21 +1014,24 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1026,21 +1078,24 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1087,21 +1142,24 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1140,21 +1198,24 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1195,21 +1256,24 @@
                                                                                    foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1248,21 +1312,24 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1318,21 +1385,24 @@
                                                                                      foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536619);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536619);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1355,7 +1425,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktMovieCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1449,7 +1519,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            Func<Task<TraktMovieCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1526,23 +1596,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1581,23 +1654,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1638,23 +1714,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1695,23 +1774,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1758,23 +1840,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1816,23 +1901,26 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1874,23 +1962,26 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1929,23 +2020,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1986,23 +2080,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2049,23 +2146,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2107,23 +2207,26 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2165,23 +2268,26 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2220,23 +2326,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2283,23 +2392,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2341,23 +2453,26 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2399,23 +2514,26 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2459,23 +2577,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2523,23 +2644,26 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2587,23 +2711,26 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2643,23 +2770,26 @@
                                                                                      null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2701,23 +2831,26 @@
                                                                                      foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2757,23 +2890,26 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2830,23 +2966,26 @@
                                                                                        foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2870,7 +3009,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2965,7 +3104,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            Func<Task<TraktEpisodeCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -3025,33 +3164,36 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3093,33 +3235,36 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3164,33 +3309,36 @@
                                                                                              appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3235,33 +3383,36 @@
                                                                                              null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3312,33 +3463,36 @@
                                                                                              null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3384,33 +3538,36 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3456,33 +3613,36 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3524,33 +3684,36 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3595,33 +3758,36 @@
                                                                                              appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3672,33 +3838,36 @@
                                                                                              appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3744,33 +3913,36 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3816,33 +3988,36 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3884,33 +4059,36 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3961,33 +4139,36 @@
                                                                                              null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4033,33 +4214,36 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4105,33 +4289,36 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4178,33 +4365,36 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4256,33 +4446,36 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4334,33 +4527,36 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4403,33 +4599,36 @@
                                                                                              null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4475,33 +4674,36 @@
                                                                                              foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4544,33 +4746,36 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4630,33 +4835,36 @@
                                                                                                foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.HasValue.Should().BeTrue();
 
-            response.Id.Should().Be(3373536620);
-            response.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536620);
+            responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -4682,7 +4890,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4772,7 +4980,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            Func<Task<TraktEpisodeCheckinPostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -4810,8 +5018,8 @@
         public void TestTraktCheckinsModuleDeleteCheckins()
         {
             TestUtility.SetupMockResponseWithOAuth("checkin", HttpStatusCode.NoContent);
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync().Result;
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -4821,7 +5029,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
