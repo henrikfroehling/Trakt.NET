@@ -55,7 +55,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -77,7 +80,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -92,7 +98,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -117,7 +126,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -133,7 +145,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -159,7 +174,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -175,7 +193,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -202,7 +223,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -220,7 +244,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -249,7 +276,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -270,7 +300,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -301,7 +334,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -323,7 +359,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -355,7 +394,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -376,7 +418,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -409,7 +454,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -512,7 +560,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -534,7 +585,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -549,7 +603,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -574,7 +631,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -590,7 +650,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -616,7 +679,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -632,7 +698,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -659,7 +728,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -677,7 +749,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -706,7 +781,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -726,7 +804,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -758,7 +839,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -780,7 +864,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -812,7 +899,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -833,7 +923,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -866,7 +959,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -969,7 +1065,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -992,7 +1091,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1008,7 +1110,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1034,7 +1139,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1051,7 +1159,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1078,7 +1189,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1095,7 +1209,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1122,7 +1239,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1141,7 +1261,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1170,7 +1293,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1191,7 +1317,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1223,7 +1352,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1246,7 +1378,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1278,7 +1413,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1300,7 +1438,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1333,7 +1474,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1436,7 +1580,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1458,7 +1605,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1473,7 +1623,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1498,7 +1651,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1514,7 +1670,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1540,7 +1699,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1557,7 +1719,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1584,7 +1749,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1603,7 +1771,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1632,7 +1803,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1653,7 +1827,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1685,7 +1862,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1708,7 +1888,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1740,7 +1923,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1762,7 +1948,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1795,7 +1984,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1898,7 +2090,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1920,7 +2115,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1935,7 +2133,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1960,7 +2161,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1976,7 +2180,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2002,7 +2209,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2019,7 +2229,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2046,7 +2259,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2065,7 +2281,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2094,7 +2313,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2115,7 +2337,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2147,7 +2372,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2170,7 +2398,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2202,7 +2433,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2224,7 +2458,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2257,7 +2494,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -2360,7 +2600,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2382,7 +2625,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2397,7 +2643,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2422,7 +2671,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2438,7 +2690,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2464,7 +2719,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2480,7 +2738,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2507,7 +2768,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2525,7 +2789,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2554,7 +2821,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2574,7 +2844,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2605,7 +2878,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2627,7 +2903,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2659,7 +2938,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2680,7 +2962,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2712,7 +2997,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2815,7 +3103,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2837,7 +3128,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2852,7 +3146,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2877,7 +3174,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2893,7 +3193,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2919,7 +3222,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2935,7 +3241,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2962,7 +3271,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2980,7 +3292,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3009,7 +3324,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3029,7 +3347,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3060,7 +3381,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3082,7 +3406,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3114,7 +3441,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3135,7 +3465,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3168,7 +3501,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3271,7 +3607,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3294,7 +3633,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3309,7 +3651,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3334,7 +3679,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3351,7 +3699,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3377,7 +3728,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3393,7 +3747,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3420,7 +3777,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3438,7 +3798,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3467,7 +3830,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3487,7 +3853,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3519,7 +3888,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3541,7 +3913,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3573,7 +3948,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3594,7 +3972,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3627,7 +4008,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -3730,7 +4114,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3752,7 +4139,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3767,7 +4157,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3792,7 +4185,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3808,7 +4204,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3834,7 +4233,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3850,7 +4252,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3877,7 +4282,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3895,7 +4303,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3924,7 +4335,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3944,7 +4358,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3976,7 +4393,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -3998,7 +4418,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4030,7 +4453,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4051,7 +4477,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4084,7 +4513,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4187,7 +4619,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4209,7 +4644,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4224,7 +4662,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4249,7 +4690,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4265,7 +4709,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4291,7 +4738,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4307,7 +4757,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4334,7 +4787,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4352,7 +4808,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4381,7 +4840,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4401,7 +4863,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4433,7 +4898,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4455,7 +4923,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4487,7 +4958,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4508,7 +4982,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -4541,7 +5018,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]

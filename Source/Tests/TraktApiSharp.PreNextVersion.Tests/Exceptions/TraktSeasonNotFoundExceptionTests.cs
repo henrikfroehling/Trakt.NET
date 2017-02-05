@@ -21,7 +21,7 @@
         public void TestTraktSeasonNotFoundExceptionDefaultConstructor()
         {
             var showId = "show id";
-            var seasonNr = 1;
+            var seasonNr = 1U;
 
             var exception = new TraktSeasonNotFoundException(showId, seasonNr);
 
@@ -39,7 +39,7 @@
         {
             var message = "exception message";
             var showId = "show id";
-            var seasonNr = 1;
+            var seasonNr = 1U;
 
             var exception = new TraktSeasonNotFoundException(message, showId, seasonNr);
 

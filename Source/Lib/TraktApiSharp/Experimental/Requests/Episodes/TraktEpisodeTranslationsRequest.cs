@@ -24,7 +24,7 @@
         {
             base.Validate();
 
-            if (LanguageCode?.Length != 2)
+            if (LanguageCode != null && LanguageCode.Length != 2)
                 throw new ArgumentOutOfRangeException(nameof(LanguageCode), "language code has wrong length");
         }
     }

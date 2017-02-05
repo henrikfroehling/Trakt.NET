@@ -354,10 +354,22 @@
             if (parameters.Count != 0)
             {
                 if (parameters.ContainsKey(seasonKey))
-                    requestMessage.SeasonNumber = (int)parameters[seasonKey];
+                {
+                    var strSeasonNumber = (string)parameters[seasonKey];
+                    uint seasonNumber;
+
+                    if (uint.TryParse(strSeasonNumber, out seasonNumber))
+                        requestMessage.SeasonNumber = seasonNumber;
+                }
 
                 if (parameters.ContainsKey(episodeKey))
-                    requestMessage.EpisodeNumber = (int)parameters[episodeKey];
+                {
+                    var strEpisodeNumber = (string)parameters[episodeKey];
+                    uint episodeNumber;
+
+                    if (uint.TryParse(strEpisodeNumber, out episodeNumber))
+                        requestMessage.EpisodeNumber = episodeNumber;
+                }
             }
 
             return requestMessage;
@@ -518,10 +530,6 @@
             var url = requestMessage.Url;
             var requestBodyJson = requestMessage.RequestBodyJson;
 
-            var objectId = requestMessage.ObjectId;
-            var seasonNr = requestMessage.SeasonNumber ?? -1;
-            var episodeNr = requestMessage.EpisodeNumber ?? -1;
-
             switch (code)
             {
                 case HttpStatusCode.NotFound:
@@ -530,6 +538,10 @@
 
                         if (requestObjectType.HasValue)
                         {
+                            var objectId = requestMessage.ObjectId;
+                            uint seasonNr = requestMessage.SeasonNumber ?? 0;
+                            uint episodeNr = requestMessage.EpisodeNumber ?? 0;
+
                             switch (requestObjectType.Value)
                             {
                                 case TraktRequestObjectType.Episodes:

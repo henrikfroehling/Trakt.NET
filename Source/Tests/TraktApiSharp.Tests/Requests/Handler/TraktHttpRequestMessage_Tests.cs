@@ -53,7 +53,7 @@
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
@@ -66,7 +66,7 @@
 
             sortingPropertyInfo.CanRead.Should().BeTrue();
             sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]

@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
@@ -55,35 +56,41 @@
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}", episode);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr).Result;
 
             response.Should().NotBeNull();
-            response.Title.Should().Be("Winter Is Coming");
-            response.SeasonNumber.Should().Be(1);
-            response.Number.Should().Be(1);
-            response.NumberAbsolute.Should().Be(50);
-            response.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
-            response.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
-            response.Rating.Should().Be(9.0f);
-            response.Votes.Should().Be(111);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(73640U);
-            response.Ids.Tvdb.Should().Be(3254641U);
-            response.Ids.Imdb.Should().Be("tt1480055");
-            response.Ids.Tmdb.Should().Be(63056U);
-            response.Ids.TvRage.Should().Be(1065008299U);
-            response.Images.Should().NotBeNull();
-            response.Images.Screenshot.Should().NotBeNull();
-            response.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            response.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            response.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
-            response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Title.Should().Be("Winter Is Coming");
+            responseValue.SeasonNumber.Should().Be(1);
+            responseValue.Number.Should().Be(1);
+            responseValue.NumberAbsolute.Should().Be(50);
+            responseValue.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
+            responseValue.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
+            responseValue.Rating.Should().Be(9.0f);
+            responseValue.Votes.Should().Be(111);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(73640U);
+            responseValue.Ids.Tvdb.Should().Be(3254641U);
+            responseValue.Ids.Imdb.Should().Be("tt1480055");
+            responseValue.Ids.Tmdb.Should().Be(63056U);
+            responseValue.Ids.TvRage.Should().Be(1065008299U);
+            responseValue.Images.Should().NotBeNull();
+            responseValue.Images.Screenshot.Should().NotBeNull();
+            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
+            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
+            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
+            responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
         [TestMethod]
@@ -93,8 +100,8 @@
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             var extendedInfo = new TraktExtendedInfo
             {
@@ -108,40 +115,46 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Title.Should().Be("Winter Is Coming");
-            response.SeasonNumber.Should().Be(1);
-            response.Number.Should().Be(1);
-            response.NumberAbsolute.Should().Be(50);
-            response.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
-            response.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
-            response.Rating.Should().Be(9.0f);
-            response.Votes.Should().Be(111);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(73640U);
-            response.Ids.Tvdb.Should().Be(3254641U);
-            response.Ids.Imdb.Should().Be("tt1480055");
-            response.Ids.Tmdb.Should().Be(63056U);
-            response.Ids.TvRage.Should().Be(1065008299U);
-            response.Images.Should().NotBeNull();
-            response.Images.Screenshot.Should().NotBeNull();
-            response.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            response.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            response.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
-            response.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Title.Should().Be("Winter Is Coming");
+            responseValue.SeasonNumber.Should().Be(1);
+            responseValue.Number.Should().Be(1);
+            responseValue.NumberAbsolute.Should().Be(50);
+            responseValue.Overview.Should().Be("Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.");
+            responseValue.FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
+            responseValue.Rating.Should().Be(9.0f);
+            responseValue.Votes.Should().Be(111);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(73640U);
+            responseValue.Ids.Tvdb.Should().Be(3254641U);
+            responseValue.Ids.Imdb.Should().Be("tt1480055");
+            responseValue.Ids.Tmdb.Should().Be(63056U);
+            responseValue.Ids.TvRage.Should().Be(1065008299U);
+            responseValue.Images.Should().NotBeNull();
+            responseValue.Images.Screenshot.Should().NotBeNull();
+            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
+            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
+            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
+            responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktEpisode>> act =
+            Func<Task<TraktResponse<TraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -213,12 +226,12 @@
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}", episode);
 
-            Func<Task<TraktEpisode>> act =
+            Func<Task<TraktResponse<TraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -227,9 +240,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -246,10 +256,10 @@
         public void TestTraktEpisodesModuleGetEpisodesArgumentExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
-            Func<Task<IEnumerable<TraktEpisode>>> act =
+            Func<Task<IEnumerable<TraktResponse<TraktEpisode>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(null);
             act.ShouldNotThrow();
 
@@ -270,10 +280,6 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
-                new TraktMultipleEpisodesQueryParams { { showId, -1, episodeNr } });
-            act.ShouldThrow<ArgumentOutOfRangeException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetMultipleEpisodesAsync(
                 new TraktMultipleEpisodesQueryParams { { showId, seasonNr, 0 } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
@@ -292,8 +298,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments",
@@ -302,7 +308,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -316,8 +324,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
 
@@ -327,7 +335,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -341,8 +351,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var page = 2;
 
@@ -352,7 +362,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -366,8 +378,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
             var page = 2;
@@ -378,7 +390,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -392,8 +406,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var limit = 4;
 
@@ -403,7 +417,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -417,8 +433,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
             var limit = 4;
@@ -429,7 +445,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -443,8 +461,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var page = 2;
             var limit = 20;
@@ -455,7 +473,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -469,8 +489,8 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 4;
             var sortOrder = TraktCommentSortOrder.Likes;
             var page = 2;
@@ -482,7 +502,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr, sortOrder, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -493,13 +515,13 @@
         public void TestTraktEpisodesModuleGetEpisodeCommmentsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -571,12 +593,12 @@
             episodeComments.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/comments", episodeComments);
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -585,9 +607,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeCommentsAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -607,8 +626,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists",
@@ -617,7 +636,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -631,8 +652,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
 
@@ -643,7 +664,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -657,8 +680,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var sortOrder = TraktListSortOrder.Comments;
 
@@ -670,7 +693,9 @@
                                                                                       null, sortOrder).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -684,8 +709,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var page = 2;
 
@@ -697,7 +722,9 @@
                                                                                       null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -711,8 +738,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var limit = 4;
 
@@ -724,7 +751,9 @@
                                                                                       null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -738,8 +767,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var page = 2;
             var limit = 4;
@@ -752,7 +781,9 @@
                                                                                       null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -766,8 +797,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
@@ -780,7 +811,9 @@
                                                                                       type, sortOrder).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -794,8 +827,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var page = 2;
@@ -808,7 +841,9 @@
                                                                                       null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -822,8 +857,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var limit = 4;
@@ -836,7 +871,9 @@
                                                                                       null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -850,8 +887,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var page = 2;
@@ -865,7 +902,9 @@
                                                                                       null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -879,8 +918,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
@@ -894,7 +933,9 @@
                                                                                       sortOrder, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -908,8 +949,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
@@ -923,7 +964,9 @@
                                                                                       sortOrder, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -937,8 +980,8 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
@@ -954,7 +997,9 @@
                                                                                       sortOrder, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -965,13 +1010,13 @@
         public void TestTraktEpisodesModuleGetEpisodeListsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktList>>> act =
+            Func<Task<TraktPagedResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1043,12 +1088,12 @@
             episodeLists.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists", episodeLists);
 
-            Func<Task<TraktPaginationListResult<TraktList>>> act =
+            Func<Task<TraktPagedResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -1057,9 +1102,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -1079,16 +1121,22 @@
             episodeRatings.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/ratings", episodeRatings);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(showId, seasonNr, episodeNr).Result;
 
             response.Should().NotBeNull();
-            response.Rating.Should().Be(8.54044f);
-            response.Votes.Should().Be(3919);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Rating.Should().Be(8.54044f);
+            responseValue.Votes.Should().Be(3919);
 
             var distribution = new Dictionary<string, int>()
             {
@@ -1096,20 +1144,20 @@
                 { "6",  233 }, { "7", 492 }, { "8", 835 }, { "9", 635 }, { "10", 1580 }
             };
 
-            response.Distribution.Should().HaveCount(10).And.Contain(distribution);
+            responseValue.Distribution.Should().HaveCount(10).And.Contain(distribution);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeRatingsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/ratings";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktRating>> act =
+            Func<Task<TraktResponse<TraktRating>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1181,12 +1229,12 @@
             episodeRatings.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/ratings", episodeRatings);
 
-            Func<Task<TraktRating>> act =
+            Func<Task<TraktResponse<TraktRating>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -1195,9 +1243,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeRatingsAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -1217,34 +1262,40 @@
             episodeStatistics.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/stats", episodeStatistics);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(showId, seasonNr, episodeNr).Result;
 
             response.Should().NotBeNull();
-            response.Watchers.Should().Be(233273);
-            response.Plays.Should().Be(303464);
-            response.Collectors.Should().Be(92759);
-            response.CollectedEpisodes.Should().NotHaveValue();
-            response.Comments.Should().Be(4);
-            response.Lists.Should().Be(418);
-            response.Votes.Should().Be(3919);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Watchers.Should().Be(233273);
+            responseValue.Plays.Should().Be(303464);
+            responseValue.Collectors.Should().Be(92759);
+            responseValue.CollectedEpisodes.Should().NotHaveValue();
+            responseValue.Comments.Should().Be(4);
+            responseValue.Lists.Should().Be(418);
+            responseValue.Votes.Should().Be(3919);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeStatisticsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/stats";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktStatistics>> act =
+            Func<Task<TraktResponse<TraktStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1316,12 +1367,12 @@
             episodeStatistics.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/stats", episodeStatistics);
 
-            Func<Task<TraktStatistics>> act =
+            Func<Task<TraktResponse<TraktStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -1330,9 +1381,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeStatisticsAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -1352,28 +1400,31 @@
             episodeTranslations.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations",
                 episodeTranslations);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeTranslationsExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktEpisodeTranslation>>> act =
+            Func<Task<TraktListResponse<TraktEpisodeTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1445,13 +1496,13 @@
             episodeTranslations.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations",
                                                       episodeTranslations);
 
-            Func<Task<IEnumerable<TraktEpisodeTranslation>>> act =
+            Func<Task<TraktListResponse<TraktEpisodeTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -1460,9 +1511,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -1482,8 +1530,8 @@
             episodeSingleTranslation.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var languageCode = "en";
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations/{languageCode}",
@@ -1491,21 +1539,24 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr, languageCode).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeSingleTranslationExceptions()
         {
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
             var languageCode = "en";
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations/{languageCode}";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktEpisodeTranslation>>> act =
+            Func<Task<TraktListResponse<TraktEpisodeTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr, languageCode);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1577,14 +1628,14 @@
             episodeSingleTranslation.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var languageCode = "en";
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations/{languageCode}",
                                                       episodeSingleTranslation);
 
-            Func<Task<IEnumerable<TraktEpisodeTranslation>>> act =
+            Func<Task<TraktListResponse<TraktEpisodeTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(null, seasonNr, episodeNr, languageCode);
             act.ShouldThrow<ArgumentException>();
 
@@ -1593,9 +1644,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync("show id", seasonNr, episodeNr, languageCode);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, -1, episodeNr, languageCode);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, 0, languageCode);
             act.ShouldThrow<ArgumentOutOfRangeException>();
@@ -1621,14 +1669,17 @@
             episodeWatchingUsers.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching", episodeWatchingUsers);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1638,8 +1689,8 @@
             episodeWatchingUsers.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 1;
-            var episodeNr = 1;
+            var seasonNr = 1U;
+            var episodeNr = 1U;
 
             var extendedInfo = new TraktExtendedInfo
             {
@@ -1652,20 +1703,23 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeWatchingUsersExceptions()
         {
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
             var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktUser>>> act =
+            Func<Task<TraktListResponse<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, episodeNr);
             act.ShouldThrow<TraktEpisodeNotFoundException>();
 
@@ -1737,12 +1791,12 @@
             episodeWatchingUsers.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
-            var seasonNr = 0;
-            var episodeNr = 1;
+            var seasonNr = 0U;
+            var episodeNr = 1U;
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching", episodeWatchingUsers);
 
-            Func<Task<IEnumerable<TraktUser>>> act =
+            Func<Task<TraktListResponse<TraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(null, seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
 
@@ -1751,9 +1805,6 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync("show id", seasonNr, episodeNr);
             act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, -1, episodeNr);
-            act.ShouldThrow<ArgumentOutOfRangeException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeWatchingUsersAsync(showId, seasonNr, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();

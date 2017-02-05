@@ -280,7 +280,7 @@
                             switch (RequestObjectType.Value)
                             {
                                 case TraktRequestObjectType.Episodes:
-                                    throw new TraktEpisodeNotFoundException(Id, Season, Episode)
+                                    throw new TraktEpisodeNotFoundException(Id, (uint)Season, (uint)Episode)
                                     {
                                         RequestUrl = Url,
                                         RequestBody = RequestBodyJson,
@@ -288,7 +288,7 @@
                                         ServerReasonPhrase = response.ReasonPhrase
                                     };
                                 case TraktRequestObjectType.Seasons:
-                                    throw new TraktSeasonNotFoundException(Id, Season)
+                                    throw new TraktSeasonNotFoundException(Id, (uint)Season)
                                     {
                                         RequestUrl = Url,
                                         RequestBody = RequestBodyJson,

@@ -81,7 +81,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -136,7 +138,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -193,7 +197,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -250,7 +256,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -313,7 +321,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -371,7 +381,9 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -429,7 +441,9 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -484,7 +498,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -541,7 +557,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -604,7 +622,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -662,7 +682,9 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -720,7 +742,9 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -775,7 +799,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -838,7 +864,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -896,7 +924,9 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -954,7 +984,9 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1014,7 +1046,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1078,7 +1112,9 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1142,7 +1178,9 @@
                                                                                    null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1198,7 +1236,9 @@
                                                                                    foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1256,7 +1296,9 @@
                                                                                    foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1312,7 +1354,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1385,7 +1429,9 @@
                                                                                      foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1596,7 +1642,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1654,7 +1702,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1714,7 +1764,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1774,7 +1826,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1840,7 +1894,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, appVersion, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1901,7 +1957,9 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1962,7 +2020,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2020,7 +2080,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2080,7 +2142,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2146,7 +2210,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2207,7 +2273,9 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2268,7 +2336,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2326,7 +2396,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2392,7 +2464,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2453,7 +2527,9 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2514,7 +2590,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2577,7 +2655,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2644,7 +2724,9 @@
                                                                                      foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2711,7 +2793,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2770,7 +2854,9 @@
                                                                                      null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2831,7 +2917,9 @@
                                                                                      foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2890,7 +2978,9 @@
                                                                                      null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2966,7 +3056,9 @@
                                                                                        foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3164,7 +3256,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3235,7 +3329,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, appVersion).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3309,7 +3405,9 @@
                                                                                              appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3383,7 +3481,9 @@
                                                                                              null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3463,7 +3563,9 @@
                                                                                              null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3538,7 +3640,9 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3613,7 +3717,9 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3684,7 +3790,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3758,7 +3866,9 @@
                                                                                              appBuildDate, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3838,7 +3948,9 @@
                                                                                              appBuildDate, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3913,7 +4025,9 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3988,7 +4102,9 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4059,7 +4175,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, message).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4139,7 +4257,9 @@
                                                                                              null, message, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4214,7 +4334,9 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4289,7 +4411,9 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4365,7 +4489,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show, null, null, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4446,7 +4572,9 @@
                                                                                              foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4527,7 +4655,9 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4599,7 +4729,9 @@
                                                                                              null, null, foursquareVenueId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4674,7 +4806,9 @@
                                                                                              foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4746,7 +4880,9 @@
                                                                                              null, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -4835,7 +4971,9 @@
                                                                                                foursquareVenueId, foursquareVenueName).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 

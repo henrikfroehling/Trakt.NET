@@ -135,10 +135,10 @@
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            requestMock = new TraktEpisodeRequestMock { EpisodeNumber = 0 };
+            requestMock = new TraktEpisodeRequestMock { Id = "123", EpisodeNumber = 0 };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }

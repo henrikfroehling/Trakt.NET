@@ -64,7 +64,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(commentId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -230,7 +232,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -293,7 +297,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -362,7 +368,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -433,7 +441,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -678,7 +688,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -742,7 +754,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -812,7 +826,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -884,7 +900,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1113,7 +1131,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1173,7 +1193,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1239,7 +1261,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1307,7 +1331,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1521,7 +1547,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1583,7 +1611,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1651,7 +1681,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1721,7 +1753,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1938,7 +1972,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -1997,7 +2033,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2062,7 +2100,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2129,7 +2169,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2328,7 +2370,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2378,7 +2422,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2549,7 +2595,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -2599,7 +2647,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment, spoiler).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             var responseValue = response.Value;
 
@@ -3066,6 +3116,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
@@ -3090,6 +3141,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
@@ -3114,6 +3166,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, null, limit).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
@@ -3139,6 +3192,7 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page, limit).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);

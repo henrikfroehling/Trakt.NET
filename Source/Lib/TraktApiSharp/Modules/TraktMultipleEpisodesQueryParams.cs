@@ -24,7 +24,7 @@
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
         /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
-        public void Add(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedInfo = null)
+        public void Add(string showId, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo = null)
         {
             Add(new TraktEpisodeQueryParams(showId, seasonNumber, episodeNumber, extendedInfo));
         }
@@ -41,7 +41,7 @@
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="episodeNumber">An episode number for an episode in the season with the given season number.</param>
         /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
-        public TraktEpisodeQueryParams(string showId, int seasonNumber, int episodeNumber, TraktExtendedInfo extendedInfo)
+        public TraktEpisodeQueryParams(string showId, uint seasonNumber, uint episodeNumber, TraktExtendedInfo extendedInfo)
         {
             ShowId = showId;
             Season = seasonNumber;
@@ -53,10 +53,10 @@
         public string ShowId { get; }
 
         /// <summary>Returns the season number.</summary>
-        public int Season { get; }
+        public uint Season { get; }
 
         /// <summary>Returns the episode number.</summary>
-        public int Episode { get; }
+        public uint Episode { get; }
 
         /// <summary>
         /// Returns the optional extended info.
