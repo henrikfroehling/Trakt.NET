@@ -16,16 +16,16 @@
         internal string TranslationLanguageCode { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
-        
+
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 
         public override string UriTemplate => "shows/{id}/seasons{?extended,translations}";
-        
+
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>
             {
-                { "id", Id }
+                ["id"] = Id
             };
 
             if (!string.IsNullOrEmpty(TranslationLanguageCode))
@@ -44,6 +44,9 @@
 
             if (Id == string.Empty || Id.ContainsSpace())
                 throw new ArgumentException("show id not valid", nameof(Id));
+
+            if (TranslationLanguageCode != null && TranslationLanguageCode != "all" && TranslationLanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(TranslationLanguageCode), "translation language code has wrong length");
         }
     }
 }
