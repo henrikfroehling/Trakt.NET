@@ -94,6 +94,17 @@
             // id with spaces
             request = new TraktMovieTranslationsRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
+
+            // language code with wrong length
+            request = new TraktMovieTranslationsRequest { Id = "123", LanguageCode = "eng" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            request = new TraktMovieTranslationsRequest { Id = "123", LanguageCode = "e" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }
