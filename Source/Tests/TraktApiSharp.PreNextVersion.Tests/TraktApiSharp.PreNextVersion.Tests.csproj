@@ -375,16 +375,6 @@
     <Compile Include="Requests\Base\TraktRequestTests.cs" />
     <Compile Include="Requests\Params\TraktSearchFilterTests.cs" />
     <Compile Include="Requests\Params\TraktShowFilterTests.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserMoviesRequestTests.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserNewShowsRequestTests.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserRequestTests.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserSeasonPremieresRequestTests.cs" />
-    <Compile Include="Requests\WithOAuth\Calendars\TraktCalendarUserShowsRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllMoviesRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllNewShowsRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllSeasonPremieresRequestTests.cs" />
-    <Compile Include="Requests\WithoutOAuth\Calendars\TraktCalendarAllShowsRequestTests.cs" />
     <Compile Include="Services\TraktLanguageServiceTests.cs" />
     <Compile Include="Services\TraktSerializationServiceTests.cs" />
     <Compile Include="TraktClientTests.cs" />

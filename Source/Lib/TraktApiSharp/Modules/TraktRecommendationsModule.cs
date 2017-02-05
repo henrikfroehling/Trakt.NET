@@ -2,13 +2,13 @@
 {
     using Attributes;
     using Exceptions;
-    using Extensions;
+    using Experimental.Requests.Handler;
+    using Experimental.Requests.Recommendations.OAuth;
+    using Experimental.Responses;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
-    using Requests;
     using Requests.Params;
-    using Requests.WithOAuth.Recommendations;
     using System;
     using System.Threading.Tasks;
 
@@ -43,13 +43,17 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktMovie>> GetMovieRecommendationsAsync(int? limit = null,
-                                                                                  TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktUserMovieRecommendationsRequest(Client)
+        public async Task<TraktPagedResponse<TraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
+                                                                                       TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecutePagedRequestAsync(new TraktUserMovieRecommendationsRequest
             {
-                PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                Limit = limit
             });
+        }
 
         /// <summary>
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
@@ -62,11 +66,10 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
+        public async Task<TraktNoContentResponse> HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
         {
-            Validate(movieIdOrSlug);
-
-            await QueryAsync(new TraktUserRecommendationHideMovieRequest(Client) { Id = movieIdOrSlug });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug });
         }
 
         /// <summary>
@@ -90,13 +93,17 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktShow>> GetShowRecommendationsAsync(int? limit = null,
-                                                                                TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktUserShowRecommendationsRequest(Client)
+        public async Task<TraktPagedResponse<TraktShow>> GetShowRecommendationsAsync(uint? limit = null,
+                                                                                     TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecutePagedRequestAsync(new TraktUserShowRecommendationsRequest
             {
-                PaginationOptions = new TraktPaginationOptions(null, limit),
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                Limit = limit
             });
+        }
 
         /// <summary>
         /// Hides a show with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
@@ -109,17 +116,10 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task HideShowRecommendationAsync([NotNull] string showIdOrSlug)
+        public async Task<TraktNoContentResponse> HideShowRecommendationAsync([NotNull] string showIdOrSlug)
         {
-            Validate(showIdOrSlug);
-
-            await QueryAsync(new TraktUserRecommendationHideShowRequest(Client) { Id = showIdOrSlug });
-        }
-
-        private void Validate(string id)
-        {
-            if (string.IsNullOrEmpty(id) || id.ContainsSpace())
-                throw new ArgumentException("id not valid", nameof(id));
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug });
         }
     }
 }

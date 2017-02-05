@@ -13,6 +13,11 @@
     [Category("Requests.Calendars")]
     public class ATraktCalendarRequest_1_Tests
     {
+        internal class TraktCalendarRequestMock : ATraktCalendarRequest<int>
+        {
+            public override string UriTemplate { get { throw new NotImplementedException(); } }
+        }
+
         [Fact]
         public void Test_ATraktCalendarRequest_1_IsAbstract()
         {
@@ -68,6 +73,20 @@
             daysPropertyInfo.CanRead.Should().BeTrue();
             daysPropertyInfo.CanWrite.Should().BeTrue();
             daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
+        }
+
+        [Fact]
+        public void Test_ATraktCalendarRequest_1_Validate_Throws_Exceptions()
+        {
+            var requestMock = new TraktCalendarRequestMock { Days = 0 };
+
+            Action act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            requestMock = new TraktCalendarRequestMock { Days = 32 };
+
+            act = () => requestMock.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }

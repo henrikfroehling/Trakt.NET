@@ -44,7 +44,7 @@
         public void Test_TraktEpisodeListsRequest_Has_Valid_UriTemplate()
         {
             var request = new TraktEpisodeListsRequest();
-            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/lists{/type}{/sorting}{?page,limit}");
+            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/lists{/type}{/sort_order}{?page,limit}");
         }
 
         [Fact]

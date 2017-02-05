@@ -22,8 +22,8 @@
         public void TestTraktEpisodeNotFoundExceptionDefaultConstructor()
         {
             var showId = "show id";
-            var seasonNr = 1;
-            var episodeNr = 2;
+            var seasonNr = 1U;
+            var episodeNr = 2U;
 
             var exception = new TraktEpisodeNotFoundException(showId, seasonNr, episodeNr);
 
@@ -42,8 +42,8 @@
         {
             var message = "exception message";
             var showId = "show id";
-            var seasonNr = 1;
-            var episodeNr = 2;
+            var seasonNr = 1U;
+            var episodeNr = 2U;
 
             var exception = new TraktEpisodeNotFoundException(message, showId, seasonNr, episodeNr);
 

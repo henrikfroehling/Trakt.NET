@@ -1,12 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Objects.Get.Movies;
+    using System;
     using System.Collections.Generic;
 
     internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<TraktMovieTranslation>
     {
         internal string LanguageCode { get; set; }
-        
+
         public override string UriTemplate => "movies/{id}/translations{/language}";
 
         public override IDictionary<string, object> GetUriPathParameters()
@@ -17,6 +18,14 @@
                 uriParams.Add("language", LanguageCode);
 
             return uriParams;
+        }
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (LanguageCode != null && LanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(LanguageCode), "language code has wrong length");
         }
     }
 }

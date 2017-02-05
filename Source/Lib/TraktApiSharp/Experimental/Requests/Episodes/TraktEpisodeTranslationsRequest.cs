@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Episodes
 {
     using Objects.Get.Shows.Episodes;
+    using System;
     using System.Collections.Generic;
 
     internal sealed class TraktEpisodeTranslationsRequest : ATraktEpisodeRequest<TraktEpisodeTranslation>
@@ -17,6 +18,14 @@
                 uriParams.Add("language", LanguageCode);
 
             return uriParams;
+        }
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (LanguageCode != null && LanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(LanguageCode), "language code has wrong length");
         }
     }
 }

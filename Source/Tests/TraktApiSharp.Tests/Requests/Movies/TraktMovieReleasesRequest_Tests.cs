@@ -94,6 +94,17 @@
             // id with spaces
             request = new TraktMovieReleasesRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
+
+            // country code with wrong length
+            request = new TraktMovieReleasesRequest { Id = "123", CountryCode = "usa" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            request = new TraktMovieReleasesRequest { Id = "123", CountryCode = "a" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }

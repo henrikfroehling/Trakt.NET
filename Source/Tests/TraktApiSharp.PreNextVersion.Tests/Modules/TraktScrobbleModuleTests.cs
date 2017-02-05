@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
@@ -83,21 +84,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -137,21 +144,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -191,21 +204,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -247,21 +266,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -303,21 +328,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -342,7 +373,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -439,7 +470,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, movieStartScrobbleResponse);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -533,21 +564,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -587,21 +624,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -641,21 +684,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -697,21 +746,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -753,21 +808,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -792,7 +853,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -889,7 +950,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, moviePauseScrobbleResponse);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -983,21 +1044,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536622);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536622);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1037,21 +1104,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536622);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536622);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1091,21 +1164,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536622);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536622);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1147,21 +1226,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536622);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536622);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1203,21 +1288,27 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536622);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeFalse();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Guardians of the Galaxy");
-            response.Movie.Year.Should().Be(2014);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(28U);
-            response.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
-            response.Movie.Ids.Imdb.Should().Be("tt2015381");
-            response.Movie.Ids.Tmdb.Should().Be(118340U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536622);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeFalse();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Guardians of the Galaxy");
+            responseValue.Movie.Year.Should().Be(2014);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(28U);
+            responseValue.Movie.Ids.Slug.Should().Be("guardians-of-the-galaxy-2014");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt2015381");
+            responseValue.Movie.Ids.Tmdb.Should().Be(118340U);
         }
 
         [TestMethod]
@@ -1242,7 +1333,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1339,7 +1430,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
 
-            Func<Task<TraktMovieScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1434,23 +1525,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1495,33 +1592,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -1562,23 +1665,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1625,33 +1734,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -1692,23 +1807,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1755,33 +1876,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -1824,23 +1951,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -1889,33 +2022,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -1958,23 +2097,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2023,33 +2168,39 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Start);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Should().NotBeNull();
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Should().NotBeNull();
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -2075,7 +2226,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2168,7 +2319,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2272,7 +2423,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -2399,23 +2550,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2460,32 +2617,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -2526,23 +2689,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2589,32 +2758,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -2655,23 +2830,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2718,32 +2899,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -2786,23 +2973,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2851,32 +3044,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -2919,23 +3118,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -2984,32 +3189,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(0);
-            response.Action.Should().Be(TraktScrobbleActionType.Pause);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeFalse();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(0);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Pause);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeFalse();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3035,7 +3246,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3128,7 +3339,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3232,7 +3443,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -3359,23 +3570,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -3420,32 +3637,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3486,23 +3709,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -3549,32 +3778,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3615,23 +3850,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -3678,32 +3919,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3746,23 +3993,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -3811,32 +4064,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3879,23 +4138,29 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
         }
 
         [TestMethod]
@@ -3944,32 +4209,38 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(3373536623);
-            response.Action.Should().Be(TraktScrobbleActionType.Stop);
-            response.Progress.Should().Be(progress);
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Episode.Should().NotBeNull();
-            response.Episode.SeasonNumber.Should().Be(1);
-            response.Episode.Number.Should().Be(1);
-            response.Episode.Title.Should().Be("Pilot");
-            response.Episode.Ids.Should().NotBeNull();
-            response.Episode.Ids.Trakt.Should().Be(16U);
-            response.Episode.Ids.Tvdb.Should().Be(349232U);
-            response.Episode.Ids.Imdb.Should().Be("tt0959621");
-            response.Episode.Ids.Tmdb.Should().Be(62085U);
-            response.Episode.Ids.TvRage.Should().Be(637041U);
-            response.Show.Title.Should().Be("Breaking Bad");
-            response.Show.Year.Should().Be(2008);
-            response.Show.Ids.Should().NotBeNull();
-            response.Show.Ids.Trakt.Should().Be(1U);
-            response.Show.Ids.Slug.Should().Be("breaking-bad");
-            response.Show.Ids.Tvdb.Should().Be(81189U);
-            response.Show.Ids.Imdb.Should().Be("tt0903747");
-            response.Show.Ids.Tmdb.Should().Be(1396U);
-            response.Show.Ids.TvRage.Should().Be(18164U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(3373536623);
+            responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
+            responseValue.Progress.Should().Be(progress);
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Episode.Should().NotBeNull();
+            responseValue.Episode.SeasonNumber.Should().Be(1);
+            responseValue.Episode.Number.Should().Be(1);
+            responseValue.Episode.Title.Should().Be("Pilot");
+            responseValue.Episode.Ids.Should().NotBeNull();
+            responseValue.Episode.Ids.Trakt.Should().Be(16U);
+            responseValue.Episode.Ids.Tvdb.Should().Be(349232U);
+            responseValue.Episode.Ids.Imdb.Should().Be("tt0959621");
+            responseValue.Episode.Ids.Tmdb.Should().Be(62085U);
+            responseValue.Episode.Ids.TvRage.Should().Be(637041U);
+            responseValue.Show.Title.Should().Be("Breaking Bad");
+            responseValue.Show.Year.Should().Be(2008);
+            responseValue.Show.Ids.Should().NotBeNull();
+            responseValue.Show.Ids.Trakt.Should().Be(1U);
+            responseValue.Show.Ids.Slug.Should().Be("breaking-bad");
+            responseValue.Show.Ids.Tvdb.Should().Be(81189U);
+            responseValue.Show.Ids.Imdb.Should().Be("tt0903747");
+            responseValue.Show.Ids.Tmdb.Should().Be(1396U);
+            responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
         [TestMethod]
@@ -3995,7 +4266,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4088,7 +4359,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4192,7 +4463,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            Func<Task<TraktEpisodeScrobblePostResponse>> act =
+            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();

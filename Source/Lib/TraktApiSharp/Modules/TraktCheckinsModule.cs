@@ -2,6 +2,9 @@
 {
     using Attributes;
     using Exceptions;
+    using Experimental.Requests.Checkins.OAuth;
+    using Experimental.Requests.Handler;
+    using Experimental.Responses;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -9,7 +12,6 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
-    using Requests.WithOAuth.Checkins;
     using System;
     using System.Threading.Tasks;
 
@@ -46,9 +48,9 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktMovieCheckinPostResponse> CheckIntoMovieAsync([NotNull] TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                             string message = null, TraktSharing sharing = null,
-                                                                             string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<TraktMovieCheckinPostResponse>> CheckIntoMovieAsync([NotNull] TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                            string message = null, TraktSharing sharing = null,
+                                                                                            string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(movie);
 
@@ -72,7 +74,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            return await QueryAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>(Client)
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
             });
@@ -97,9 +101,9 @@
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeAsync([NotNull] TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                 string message = null, TraktSharing sharing = null,
-                                                                                 string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<TraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync([NotNull] TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                string message = null, TraktSharing sharing = null,
+                                                                                                string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode);
 
@@ -124,7 +128,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             });
@@ -151,10 +157,10 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeCheckinPostResponse> CheckIntoEpisodeWithShowAsync([NotNull] TraktEpisode episode, [NotNull] TraktShow show,
-                                                                                         string appVersion = null, DateTime? appBuildDate = null,
-                                                                                         string message = null, TraktSharing sharing = null,
-                                                                                         string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<TraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync([NotNull] TraktEpisode episode, [NotNull] TraktShow show,
+                                                                                                        string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                        string message = null, TraktSharing sharing = null,
+                                                                                                        string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode, show);
 
@@ -179,7 +185,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            return await QueryAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>(Client)
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             });
@@ -194,9 +202,10 @@
         /// </summary>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task DeleteAnyActiveCheckinsAsync()
+        public async Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync()
         {
-            await QueryAsync(new TraktCheckinsDeleteRequest(Client));
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest());
         }
 
         private void Validate(TraktMovie movie)

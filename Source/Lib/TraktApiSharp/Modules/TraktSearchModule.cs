@@ -3,11 +3,11 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Extensions;
+    using Experimental.Requests.Handler;
+    using Experimental.Requests.Search;
+    using Experimental.Responses;
     using Objects.Basic;
-    using Requests;
     using Requests.Params;
-    using Requests.WithoutOAuth.Search;
     using System;
     using System.Threading.Tasks;
 
@@ -55,22 +55,22 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
-                                                                                                 TraktSearchField searchFields = null, TraktSearchFilter filter = null,
-                                                                                                 TraktExtendedInfo extendedInfo = null,
-                                                                                                 int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
+                                                                                          TraktSearchField searchFields = null, TraktSearchFilter filter = null,
+                                                                                          TraktExtendedInfo extendedInfo = null,
+                                                                                          int? page = null, int? limitPerPage = null)
         {
-            Validate(searchResultTypes);
-            Validate(searchQuery);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktSearchTextQueryRequest(Client)
+            return await requestHandler.ExecutePagedRequestAsync(new TraktSearchTextQueryRequest
             {
                 ResultTypes = searchResultTypes,
                 Query = searchQuery,
                 SearchFields = searchFields,
                 Filter = filter,
                 ExtendedInfo = extendedInfo,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                Page = page,
+                Limit = limitPerPage
             });
         }
 
@@ -83,7 +83,7 @@
         /// </summary>
         /// <param name="searchIdType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdType" />.</param>
         /// <param name="lookupId">The Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id, which will be looked up.</param>
-        /// <param name="searchResultType">The object type(s), which will be looked up. See also <seealso cref="TraktSearchResultType" />.</param>
+        /// <param name="searchResultTypes">The object type(s), which will be looked up. See also <seealso cref="TraktSearchResultType" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the lookup object(s) should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -104,48 +104,22 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
-                                                                                                TraktSearchResultType searchResultType = null,
-                                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                                                int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
+                                                                                         TraktSearchResultType searchResultTypes = null,
+                                                                                         TraktExtendedInfo extendedInfo = null,
+                                                                                         int? page = null, int? limitPerPage = null)
         {
-            Validate(searchIdType, lookupId);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktSearchIdLookupRequest(Client)
+            return await requestHandler.ExecutePagedRequestAsync(new TraktSearchIdLookupRequest
             {
                 IdType = searchIdType,
                 LookupId = lookupId,
-                ResultType = searchResultType,
+                ResultTypes = searchResultTypes,
                 ExtendedInfo = extendedInfo,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                Page = page,
+                Limit = limitPerPage
             });
-        }
-
-        private void Validate(string searchQuery)
-        {
-            if (string.IsNullOrEmpty(searchQuery))
-                throw new ArgumentException("search query not valid", nameof(searchQuery));
-        }
-
-        private void Validate(TraktSearchResultType searchResultType)
-        {
-            if (searchResultType == null)
-                throw new ArgumentNullException(nameof(searchResultType), "search result type must not be null");
-
-            if (searchResultType == TraktSearchResultType.Unspecified)
-                throw new ArgumentException("search result type not valid", nameof(searchResultType));
-        }
-
-        private void Validate(TraktSearchIdType searchIdType, string lookupId)
-        {
-            if (searchIdType == null)
-                throw new ArgumentNullException(nameof(searchIdType), "search id type must not be null");
-
-            if (searchIdType == TraktSearchIdType.Unspecified)
-                throw new ArgumentException("search id lookup type not valid", nameof(searchIdType));
-
-            if (string.IsNullOrEmpty(lookupId) || lookupId.ContainsSpace())
-                throw new ArgumentException("search lookup id not valid", nameof(lookupId));
         }
     }
 }

@@ -13,7 +13,7 @@
         /// <param name="showId">The Trakt-Id or -Slug of the episode's show.</param>
         /// <param name="season">The season number of the episode.</param>
         /// <param name="episode">The episode number of the episode, which was not found.</param>
-        public TraktEpisodeNotFoundException(string showId, int season, int episode) : this("Episode Not Found - method exists, but no record found", showId, season, episode) { }
+        public TraktEpisodeNotFoundException(string showId, uint season, uint episode) : this("Episode Not Found - method exists, but no record found", showId, season, episode) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktEpisodeNotFoundException" /> class with a custom message.
@@ -22,12 +22,12 @@
         /// <param name="showId">The Trakt-Id or -Slug of the episode's show.</param>
         /// <param name="season">The season number of the episode.</param>
         /// <param name="episode">The episode number of the episode, which was not found.</param>
-        public TraktEpisodeNotFoundException(string message, string showId, int season, int episode) : base(message, showId, season)
+        public TraktEpisodeNotFoundException(string message, string showId, uint season, uint episode) : base(message, showId, season)
         {
             Episode = episode;
         }
 
         /// <summary>Gets or sets the episode number of the episode, which was not found.</summary>
-        public int Episode { get; set; }
+        public uint Episode { get; set; }
     }
 }

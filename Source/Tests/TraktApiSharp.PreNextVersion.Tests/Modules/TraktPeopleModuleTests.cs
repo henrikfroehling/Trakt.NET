@@ -8,6 +8,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Credits;
@@ -59,13 +60,19 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Bryan Cranston");
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(297737U);
-            response.Ids.Slug.Should().Be("bryan-cranston");
-            response.Ids.Imdb.Should().Be("nm0186505");
-            response.Ids.Tmdb.Should().Be(17419U);
-            response.Ids.TvRage.Should().Be(1797U);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Bryan Cranston");
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(297737U);
+            responseValue.Ids.Slug.Should().Be("bryan-cranston");
+            responseValue.Ids.Imdb.Should().Be("nm0186505");
+            responseValue.Ids.Tmdb.Should().Be(17419U);
+            responseValue.Ids.TvRage.Should().Be(1797U);
         }
 
         [TestMethod]
@@ -87,28 +94,34 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Bryan Cranston");
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(297737U);
-            response.Ids.Slug.Should().Be("bryan-cranston");
-            response.Ids.Imdb.Should().Be("nm0186505");
-            response.Ids.Tmdb.Should().Be(17419U);
-            response.Ids.TvRage.Should().Be(1797U);
-            response.Images.Should().NotBeNull();
-            response.Images.Headshot.Should().NotBeNull();
-            response.Images.Headshot.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/original/47aebaace9.jpg");
-            response.Images.Headshot.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/medium/47aebaace9.jpg");
-            response.Images.Headshot.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/thumb/47aebaace9.jpg");
-            response.Images.FanArt.Should().NotBeNull();
-            response.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/original/0e436db5dd.jpg");
-            response.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/medium/0e436db5dd.jpg");
-            response.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/thumb/0e436db5dd.jpg");
-            response.Biography.Should().Be("Bryan Lee Cranston (born March 7, 1956) is an American actor, voice actor, writer and director.He is perhaps best known for his roles as Hal, the father in the Fox situation comedy \"Malcolm in the Middle\", and as Walter White in the AMC drama series Breaking Bad, for which he has won three consecutive Outstanding Lead Actor in a Drama Series Emmy Awards. Other notable roles include Dr. Tim Whatley on Seinfeld, Doug Heffernan's neighbor in The King of Queens, Astronaut Buzz Aldrin in From the Earth to the Moon, and Ted Mosby's boss on How I Met Your Mother. Description above from the Wikipedia article Bryan Cranston, licensed under CC-BY-SA, full list of contributors on Wikipedia.");
-            response.Birthday.Should().Be(DateTime.Parse("1956-03-07T00:00:00Z").ToUniversalTime());
-            response.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
-            response.Age.Should().Be(60);
-            response.Birthplace.Should().Be("San Fernando Valley, California, USA");
-            response.Homepage.Should().Be("http://www.bryancranston.com/");
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Bryan Cranston");
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(297737U);
+            responseValue.Ids.Slug.Should().Be("bryan-cranston");
+            responseValue.Ids.Imdb.Should().Be("nm0186505");
+            responseValue.Ids.Tmdb.Should().Be(17419U);
+            responseValue.Ids.TvRage.Should().Be(1797U);
+            responseValue.Images.Should().NotBeNull();
+            responseValue.Images.Headshot.Should().NotBeNull();
+            responseValue.Images.Headshot.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/original/47aebaace9.jpg");
+            responseValue.Images.Headshot.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/medium/47aebaace9.jpg");
+            responseValue.Images.Headshot.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/thumb/47aebaace9.jpg");
+            responseValue.Images.FanArt.Should().NotBeNull();
+            responseValue.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/original/0e436db5dd.jpg");
+            responseValue.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/medium/0e436db5dd.jpg");
+            responseValue.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/thumb/0e436db5dd.jpg");
+            responseValue.Biography.Should().Be("Bryan Lee Cranston (born March 7, 1956) is an American actor, voice actor, writer and director.He is perhaps best known for his roles as Hal, the father in the Fox situation comedy \"Malcolm in the Middle\", and as Walter White in the AMC drama series Breaking Bad, for which he has won three consecutive Outstanding Lead Actor in a Drama Series Emmy Awards. Other notable roles include Dr. Tim Whatley on Seinfeld, Doug Heffernan's neighbor in The King of Queens, Astronaut Buzz Aldrin in From the Earth to the Moon, and Ted Mosby's boss on How I Met Your Mother. Description above from the Wikipedia article Bryan Cranston, licensed under CC-BY-SA, full list of contributors on Wikipedia.");
+            responseValue.Birthday.Should().Be(DateTime.Parse("1956-03-07T00:00:00Z").ToUniversalTime());
+            responseValue.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
+            responseValue.Age.Should().Be(60);
+            responseValue.Birthplace.Should().Be("San Fernando Valley, California, USA");
+            responseValue.Homepage.Should().Be("http://www.bryancranston.com/");
         }
 
         [TestMethod]
@@ -119,7 +132,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPerson>> act =
+            Func<Task<TraktResponse<TraktPerson>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -194,7 +207,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}", person);
 
-            Func<Task<TraktPerson>> act =
+            Func<Task<TraktResponse<TraktPerson>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -215,7 +228,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktPerson>>> act =
+            Func<Task<IEnumerable<TraktResponse<TraktPerson>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(null);
             act.ShouldNotThrow();
 
@@ -256,10 +269,15 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Cast.Should().NotBeNull().And.HaveCount(2);
+            var responseValue = response.Value;
 
-            var cast = response.Cast.ToArray();
+            responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
@@ -281,14 +299,14 @@
             cast[1].Movie.Ids.Imdb.Should().Be("tt0831387");
             cast[1].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Should().NotBeNull();
-            response.Crew.Art.Should().BeNull();
-            response.Crew.Camera.Should().BeNull();
-            response.Crew.CostumeAndMakeup.Should().BeNull();
-            response.Crew.Crew.Should().BeNull();
-            response.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Should().NotBeNull();
+            responseValue.Crew.Art.Should().BeNull();
+            responseValue.Crew.Camera.Should().BeNull();
+            responseValue.Crew.CostumeAndMakeup.Should().BeNull();
+            responseValue.Crew.Crew.Should().BeNull();
+            responseValue.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
 
-            var directing = response.Crew.Directing.ToArray();
+            var directing = responseValue.Crew.Directing.ToArray();
 
             directing[0].Job.Should().Be("Director");
             directing[0].Movie.Should().NotBeNull();
@@ -300,11 +318,11 @@
             directing[0].Movie.Ids.Imdb.Should().Be("tt0831387");
             directing[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Editing.Should().BeNull();
-            response.Crew.Lighting.Should().BeNull();
-            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Editing.Should().BeNull();
+            responseValue.Crew.Lighting.Should().BeNull();
+            responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = response.Crew.Production.ToArray();
+            var production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Movie.Should().NotBeNull();
@@ -316,11 +334,11 @@
             production[0].Movie.Ids.Imdb.Should().Be("tt0831387");
             production[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Sound.Should().BeNull();
-            response.Crew.VisualEffects.Should().BeNull();
-            response.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Sound.Should().BeNull();
+            responseValue.Crew.VisualEffects.Should().BeNull();
+            responseValue.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
 
-            var writing = response.Crew.Writing.ToArray();
+            var writing = responseValue.Crew.Writing.ToArray();
 
             writing[0].Job.Should().Be("Screenplay");
             writing[0].Movie.Should().NotBeNull();
@@ -353,10 +371,15 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Cast.Should().NotBeNull().And.HaveCount(2);
+            var responseValue = response.Value;
 
-            var cast = response.Cast.ToArray();
+            responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
@@ -378,14 +401,14 @@
             cast[1].Movie.Ids.Imdb.Should().Be("tt0831387");
             cast[1].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Should().NotBeNull();
-            response.Crew.Art.Should().BeNull();
-            response.Crew.Camera.Should().BeNull();
-            response.Crew.CostumeAndMakeup.Should().BeNull();
-            response.Crew.Crew.Should().BeNull();
-            response.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Should().NotBeNull();
+            responseValue.Crew.Art.Should().BeNull();
+            responseValue.Crew.Camera.Should().BeNull();
+            responseValue.Crew.CostumeAndMakeup.Should().BeNull();
+            responseValue.Crew.Crew.Should().BeNull();
+            responseValue.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
 
-            var directing = response.Crew.Directing.ToArray();
+            var directing = responseValue.Crew.Directing.ToArray();
 
             directing[0].Job.Should().Be("Director");
             directing[0].Movie.Should().NotBeNull();
@@ -397,11 +420,11 @@
             directing[0].Movie.Ids.Imdb.Should().Be("tt0831387");
             directing[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Editing.Should().BeNull();
-            response.Crew.Lighting.Should().BeNull();
-            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Editing.Should().BeNull();
+            responseValue.Crew.Lighting.Should().BeNull();
+            responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = response.Crew.Production.ToArray();
+            var production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Movie.Should().NotBeNull();
@@ -413,11 +436,11 @@
             production[0].Movie.Ids.Imdb.Should().Be("tt0831387");
             production[0].Movie.Ids.Tmdb.Should().Be(124905U);
 
-            response.Crew.Sound.Should().BeNull();
-            response.Crew.VisualEffects.Should().BeNull();
-            response.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Sound.Should().BeNull();
+            responseValue.Crew.VisualEffects.Should().BeNull();
+            responseValue.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
 
-            var writing = response.Crew.Writing.ToArray();
+            var writing = responseValue.Crew.Writing.ToArray();
 
             writing[0].Job.Should().Be("Screenplay");
             writing[0].Movie.Should().NotBeNull();
@@ -438,7 +461,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPersonMovieCredits>> act =
+            Func<Task<TraktResponse<TraktPersonMovieCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -513,7 +536,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies", personMovieCredits);
 
-            Func<Task<TraktPersonMovieCredits>> act =
+            Func<Task<TraktResponse<TraktPersonMovieCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -544,10 +567,15 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Cast.Should().NotBeNull().And.HaveCount(2);
+            var responseValue = response.Value;
 
-            var cast = response.Cast.ToArray();
+            responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Walter White");
             cast[0].Show.Should().NotBeNull();
@@ -573,17 +601,17 @@
             cast[1].Show.Ids.Tmdb.Should().Be(2004U);
             cast[1].Show.Ids.TvRage.Should().BeNull();
 
-            response.Crew.Should().NotBeNull();
-            response.Crew.Art.Should().BeNull();
-            response.Crew.Camera.Should().BeNull();
-            response.Crew.CostumeAndMakeup.Should().BeNull();
-            response.Crew.Crew.Should().BeNull();
-            response.Crew.Directing.Should().BeNull();
-            response.Crew.Editing.Should().BeNull();
-            response.Crew.Lighting.Should().BeNull();
-            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Should().NotBeNull();
+            responseValue.Crew.Art.Should().BeNull();
+            responseValue.Crew.Camera.Should().BeNull();
+            responseValue.Crew.CostumeAndMakeup.Should().BeNull();
+            responseValue.Crew.Crew.Should().BeNull();
+            responseValue.Crew.Directing.Should().BeNull();
+            responseValue.Crew.Editing.Should().BeNull();
+            responseValue.Crew.Lighting.Should().BeNull();
+            responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = response.Crew.Production.ToArray();
+            var production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Show.Should().NotBeNull();
@@ -597,9 +625,9 @@
             production[0].Show.Ids.Tmdb.Should().Be(1396U);
             production[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            response.Crew.Sound.Should().BeNull();
-            response.Crew.VisualEffects.Should().BeNull();
-            response.Crew.Writing.Should().BeNull();
+            responseValue.Crew.Sound.Should().BeNull();
+            responseValue.Crew.VisualEffects.Should().BeNull();
+            responseValue.Crew.Writing.Should().BeNull();
         }
 
         [TestMethod]
@@ -622,10 +650,15 @@
             var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId, extendedInfo).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Cast.Should().NotBeNull().And.HaveCount(2);
+            var responseValue = response.Value;
 
-            var cast = response.Cast.ToArray();
+            responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
+
+            var cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Walter White");
             cast[0].Show.Should().NotBeNull();
@@ -651,17 +684,17 @@
             cast[1].Show.Ids.Tmdb.Should().Be(2004U);
             cast[1].Show.Ids.TvRage.Should().BeNull();
 
-            response.Crew.Should().NotBeNull();
-            response.Crew.Art.Should().BeNull();
-            response.Crew.Camera.Should().BeNull();
-            response.Crew.CostumeAndMakeup.Should().BeNull();
-            response.Crew.Crew.Should().BeNull();
-            response.Crew.Directing.Should().BeNull();
-            response.Crew.Editing.Should().BeNull();
-            response.Crew.Lighting.Should().BeNull();
-            response.Crew.Production.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Crew.Should().NotBeNull();
+            responseValue.Crew.Art.Should().BeNull();
+            responseValue.Crew.Camera.Should().BeNull();
+            responseValue.Crew.CostumeAndMakeup.Should().BeNull();
+            responseValue.Crew.Crew.Should().BeNull();
+            responseValue.Crew.Directing.Should().BeNull();
+            responseValue.Crew.Editing.Should().BeNull();
+            responseValue.Crew.Lighting.Should().BeNull();
+            responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = response.Crew.Production.ToArray();
+            var production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Show.Should().NotBeNull();
@@ -675,9 +708,9 @@
             production[0].Show.Ids.Tmdb.Should().Be(1396U);
             production[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            response.Crew.Sound.Should().BeNull();
-            response.Crew.VisualEffects.Should().BeNull();
-            response.Crew.Writing.Should().BeNull();
+            responseValue.Crew.Sound.Should().BeNull();
+            responseValue.Crew.VisualEffects.Should().BeNull();
+            responseValue.Crew.Writing.Should().BeNull();
         }
 
         [TestMethod]
@@ -688,7 +721,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPersonShowCredits>> act =
+            Func<Task<TraktResponse<TraktPersonShowCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -763,7 +796,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows", personShowCredits);
 
-            Func<Task<TraktPersonShowCredits>> act =
+            Func<Task<TraktResponse<TraktPersonShowCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(null);
             act.ShouldThrow<ArgumentException>();
 

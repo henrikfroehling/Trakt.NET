@@ -14,9 +14,9 @@
 
         public string ObjectId { get; set; }
 
-        internal int? SeasonNumber { get; set; }
+        internal uint? SeasonNumber { get; set; }
 
-        internal int? EpisodeNumber { get; set; }
+        internal uint? EpisodeNumber { get; set; }
 
         public string Url { get; set; }
 

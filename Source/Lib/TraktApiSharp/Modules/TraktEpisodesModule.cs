@@ -3,15 +3,15 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Extensions;
+    using Experimental.Requests.Episodes;
+    using Experimental.Requests.Handler;
+    using Experimental.Responses;
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
-    using Requests;
     using Requests.Params;
-    using Requests.WithoutOAuth.Shows.Episodes;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -50,16 +50,16 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktEpisode> GetEpisodeAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                        TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktEpisode>> GetEpisodeAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                       TraktExtendedInfo extendedInfo = null)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeSummaryRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeSummaryRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber,
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
             });
         }
@@ -70,7 +70,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetEpisodeAsync(string, int, int, TraktExtendedInfo)" />.</para>
+        /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo)" />.</para>
         /// </summary>
         /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended infos. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
         /// <returns>A list of <see cref="TraktEpisode" /> instances with the data of each queried episode.</returns>
@@ -81,17 +81,17 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktEpisode>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams)
+        public async Task<IEnumerable<TraktResponse<TraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams)
         {
             if (episodesQueryParams == null || episodesQueryParams.Count <= 0)
-                return new List<TraktEpisode>();
+                return new List<TraktResponse<TraktEpisode>>();
 
-            var tasks = new List<Task<TraktEpisode>>();
+            var tasks = new List<Task<TraktResponse<TraktEpisode>>>();
 
             foreach (var queryParam in episodesQueryParams)
             {
-                Task<TraktEpisode> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
-                                                          queryParam.ExtendedInfo);
+                Task<TraktResponse<TraktEpisode>> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
+                                                                         queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 
@@ -126,19 +126,20 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktComment>> GetEpisodeCommentsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                                                           TraktCommentSortOrder commentSortOrder = null,
-                                                                                           int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktComment>> GetEpisodeCommentsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                    TraktCommentSortOrder commentSortOrder = null,
+                                                                                    int? page = null, int? limitPerPage = null)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeCommentsRequest(Client)
+            return await requestHandler.ExecutePagedRequestAsync(new TraktEpisodeCommentsRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber,
-                Sorting = commentSortOrder,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
+                SortOrder = commentSortOrder,
+                Page = page,
+                Limit = limitPerPage
             });
         }
 
@@ -170,20 +171,21 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPaginationListResult<TraktList>> GetEpisodeListsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                                                     TraktListType listType = null, TraktListSortOrder listSortOrder = null,
-                                                                                     int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktList>> GetEpisodeListsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                              TraktListType listType = null, TraktListSortOrder listSortOrder = null,
+                                                                              int? page = null, int? limitPerPage = null)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeListsRequest(Client)
+            return await requestHandler.ExecutePagedRequestAsync(new TraktEpisodeListsRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber,
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
                 Type = listType,
-                Sorting = listSortOrder,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                SortOrder = listSortOrder,
+                Page = page,
+                Limit = limitPerPage
             });
         }
 
@@ -205,15 +207,15 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktRating> GetEpisodeRatingsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
+        public async Task<TraktResponse<TraktRating>> GetEpisodeRatingsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeRatingsRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeRatingsRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber
             });
         }
 
@@ -235,15 +237,15 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktStatistics> GetEpisodeStatisticsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber)
+        public async Task<TraktResponse<TraktStatistics>> GetEpisodeStatisticsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeStatisticsRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeStatisticsRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber
             });
         }
 
@@ -267,19 +269,16 @@
         /// Thrown, if the given languageCode is shorter or longer than two characters.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktEpisodeTranslation>> GetEpisodeTranslationsAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                                                            string languageCode = null)
+        public async Task<TraktListResponse<TraktEpisodeTranslation>> GetEpisodeTranslationsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                                  string languageCode = null)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            if (languageCode != null && languageCode.Length != 2)
-                throw new ArgumentOutOfRangeException(nameof(languageCode), "language code has wrong length");
-
-            return await QueryAsync(new TraktEpisodeTranslationsRequest(Client)
+            return await requestHandler.ExecuteListRequestAsync(new TraktEpisodeTranslationsRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber,
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
                 LanguageCode = languageCode
             });
         }
@@ -306,30 +305,18 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, int seasonNumber, int episodeNumber,
-                                                                               TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                     TraktExtendedInfo extendedInfo = null)
         {
-            Validate(showIdOrSlug, seasonNumber, episodeNumber);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktEpisodeWatchingUsersRequest(Client)
+            return await requestHandler.ExecuteListRequestAsync(new TraktEpisodeWatchingUsersRequest
             {
                 Id = showIdOrSlug,
-                Season = seasonNumber,
-                Episode = episodeNumber,
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
             });
-        }
-
-        private void Validate(string showIdOrSlug, int seasonNumber, int episodeNumber)
-        {
-            if (string.IsNullOrEmpty(showIdOrSlug) || showIdOrSlug.ContainsSpace())
-                throw new ArgumentException("show id or slug not valid", nameof(showIdOrSlug));
-
-            if (seasonNumber < 0)
-                throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season number not valid");
-
-            if (episodeNumber < 1)
-                throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode number not valid");
         }
     }
 }

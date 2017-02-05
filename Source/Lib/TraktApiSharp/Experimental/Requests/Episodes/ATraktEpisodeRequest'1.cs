@@ -34,7 +34,7 @@
                 throw new ArgumentException("show id not valid", nameof(Id));
 
             if (EpisodeNumber == 0)
-                throw new ArgumentException("episode number must be a positive integer greater than zero", nameof(EpisodeNumber));
+                throw new ArgumentOutOfRangeException(nameof(EpisodeNumber), "episode number must be a positive integer greater than zero");
         }
     }
 }

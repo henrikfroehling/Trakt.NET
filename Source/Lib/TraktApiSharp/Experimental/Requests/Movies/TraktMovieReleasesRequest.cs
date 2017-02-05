@@ -1,12 +1,13 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Movies
 {
     using Objects.Get.Movies;
+    using System;
     using System.Collections.Generic;
 
     internal sealed class TraktMovieReleasesRequest : ATraktMovieRequest<TraktMovieRelease>
     {
         internal string CountryCode { get; set; }
-        
+
         public override string UriTemplate => "movies/{id}/releases{/country}";
 
         public override IDictionary<string, object> GetUriPathParameters()
@@ -17,6 +18,14 @@
                 uriParams.Add("country", CountryCode);
 
             return uriParams;
+        }
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (CountryCode != null && CountryCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(CountryCode), "country code has wrong length");
         }
     }
 }

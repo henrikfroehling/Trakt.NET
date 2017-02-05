@@ -3,10 +3,10 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
@@ -16,6 +16,12 @@
     [TestClass]
     public class TraktCalendarModuleTests
     {
+        private const string START_DATE = "Tue, 08 Mar 2016 00:00:00 GMT";
+        private const string END_DATE = "Mon, 14 Mar 2016 23:59:59 GMT";
+
+        private static DateTime DT_START_DATE;
+        private static DateTime DT_END_DATE;
+
         [TestMethod]
         public void TestTraktCalendarModuleIsModule()
         {
@@ -26,6 +32,12 @@
         public static void InitializeTests(TestContext context)
         {
             TestUtility.SetupMockHttpClient();
+
+            if (DateTime.TryParse(START_DATE, out DT_START_DATE))
+                DT_START_DATE = DT_START_DATE.ToUniversalTime();
+
+            if (DateTime.TryParse(END_DATE, out DT_END_DATE))
+                DT_END_DATE = DT_END_DATE.ToUniversalTime();
         }
 
         [ClassCleanup]
@@ -51,11 +63,20 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithoutOAuth("calendars/all/shows", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/shows", calendarShowsJson,
+                START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -73,11 +94,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows?{filter.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows?{filter.ToString()}", calendarShowsJson,
+                START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -88,11 +118,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}", calendarShowsJson,
+                START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -112,12 +151,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                      calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -129,11 +176,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}/{days}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -154,12 +210,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                      calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -171,11 +235,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}/{days}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -196,13 +269,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -216,11 +296,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -243,13 +332,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -265,12 +361,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
-                                                      calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -295,13 +399,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -318,12 +429,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -349,13 +468,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -372,11 +498,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -402,14 +537,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -419,7 +561,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -487,7 +629,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -508,11 +650,20 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithoutOAuth("calendars/all/shows/new", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/shows/new",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -530,11 +681,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new?{filter.ToString()}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -545,11 +705,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -569,12 +738,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                      calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -586,11 +763,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -611,12 +797,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                      calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -628,11 +822,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -653,38 +856,54 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarNewShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfo()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var extendedInfo = new TraktExtendedInfo();
 
@@ -700,20 +919,27 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndStartDate()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
 
@@ -722,18 +948,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndStartDateFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
 
@@ -751,21 +986,28 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndDays()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -775,19 +1017,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndDaysFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -806,20 +1056,27 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndStartDateAndDays()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -829,18 +1086,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsWithExtendedInfoAndStartDateAndDaysFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -859,14 +1125,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -876,7 +1149,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -944,7 +1217,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -965,11 +1238,20 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithoutOAuth("calendars/all/shows/premieres", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/shows/premieres",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -987,12 +1269,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres?{filter.ToString()}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres?{filter.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1003,12 +1293,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres/{today.ToTraktDateString()}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres/{today.ToTraktDateString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1028,13 +1326,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}?{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1046,12 +1351,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1072,13 +1385,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1090,12 +1410,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1116,13 +1444,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1136,12 +1471,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres?extended={extendedInfo.ToString()}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1164,13 +1507,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1186,12 +1536,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1216,14 +1574,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1240,13 +1605,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1272,13 +1644,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1295,12 +1674,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                                                      calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1326,14 +1713,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1343,7 +1737,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1411,7 +1805,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllSeasonPremieresArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -1432,11 +1826,20 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithoutOAuth("calendars/all/movies", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/movies",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1454,11 +1857,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies?{filter.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1469,11 +1881,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1493,12 +1914,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1510,11 +1939,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}/{days}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}/{days}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1535,12 +1973,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1552,12 +1998,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}/{days}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}/{days}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1578,13 +2032,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1598,12 +2059,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies?extended={extendedInfo.ToString()}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1626,13 +2095,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1648,12 +2124,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1678,14 +2162,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1702,13 +2193,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1734,13 +2232,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1757,12 +2262,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                                                      calendarMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1788,14 +2301,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1805,7 +2325,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1873,7 +2393,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -1894,11 +2414,20 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithoutOAuth("calendars/all/dvd", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/dvd",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1916,11 +2445,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd?{filter.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1931,11 +2469,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1955,12 +2502,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1972,11 +2527,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}/{days}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}/{days}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -1997,12 +2561,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2014,12 +2586,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}/{days}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}/{days}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2040,13 +2620,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2060,12 +2647,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd?extended={extendedInfo.ToString()}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2088,13 +2683,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2110,12 +2712,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2140,14 +2750,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2164,13 +2781,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2196,13 +2820,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2219,12 +2850,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
-                                                      calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2250,14 +2889,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithoutOAuth(
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2267,7 +2913,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -2335,7 +2981,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllDVDMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -2356,11 +3002,20 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("calendars/my/shows", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                "calendars/my/shows",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2378,11 +3033,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows?{filter.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows?{filter.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2393,11 +3057,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2417,12 +3090,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                   calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2434,11 +3115,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}/{days}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2459,12 +3149,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2476,11 +3174,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}/{days}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2501,13 +3208,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2521,11 +3235,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2548,13 +3271,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2570,11 +3300,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2599,13 +3338,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2622,12 +3368,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2653,13 +3407,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2676,11 +3437,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2706,13 +3476,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2722,7 +3499,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2790,7 +3567,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -2811,11 +3588,20 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("calendars/my/shows/new", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                "calendars/my/shows/new",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2833,11 +3619,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new?{filter.ToString()}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2848,11 +3643,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2872,12 +3676,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                   calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2889,11 +3701,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}/{days}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2914,12 +3735,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2931,11 +3760,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}/{days}", calendarNewShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -2956,38 +3794,54 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarNewShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfo()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var extendedInfo = new TraktExtendedInfo();
 
@@ -3003,20 +3857,27 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndStartDate()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
 
@@ -3025,18 +3886,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndStartDateFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
 
@@ -3054,20 +3924,27 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndDays()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -3077,19 +3954,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndDaysFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -3108,20 +3993,27 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndStartDateAndDays()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -3131,18 +4023,27 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarShowsJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsWithExtendedInfoAndStartDateAndDaysFiltered()
         {
-            var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
-            calendarShowsJson.Should().NotBeNullOrEmpty();
+            var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
+            calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
             var today = DateTime.UtcNow;
             var days = 14;
@@ -3161,14 +4062,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarShowsJson);
+                calendarNewShowsJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3178,7 +4086,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3246,7 +4154,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -3267,11 +4175,20 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("calendars/my/shows/premieres", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                "calendars/my/shows/premieres",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3289,12 +4206,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres?{filter.ToString()}",
-                                                   calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres?{filter.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3305,11 +4230,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3329,12 +4263,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                   calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3346,12 +4288,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
-                                                   calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3372,12 +4322,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                   calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3389,11 +4347,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3414,13 +4381,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3434,11 +4408,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres?extended={extendedInfo.ToString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3461,13 +4444,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3483,11 +4473,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3512,14 +4511,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3536,12 +4542,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3567,13 +4581,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3590,11 +4611,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarSeasonPremieresJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3620,14 +4650,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarSeasonPremieresJson);
+                calendarSeasonPremieresJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3637,7 +4674,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3705,7 +4742,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -3726,11 +4763,20 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("calendars/my/movies", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                "calendars/my/movies",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3748,11 +4794,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies?{filter.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3763,11 +4818,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3787,12 +4851,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                   calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3804,11 +4876,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}/{days}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3829,12 +4910,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                   calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3846,11 +4935,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}/{days}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3871,13 +4969,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3891,11 +4996,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies?extended={extendedInfo.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3918,13 +5032,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3940,11 +5061,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3969,14 +5099,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -3993,12 +5130,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4024,13 +5169,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4047,11 +5199,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4077,14 +5238,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarMoviesJson);
+                calendarMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4094,7 +5262,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4162,7 +5330,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -4183,11 +5351,20 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("calendars/my/dvd", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                "calendars/my/dvd",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4205,11 +5382,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd?{filter.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4220,11 +5406,20 @@
 
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4244,12 +5439,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}?{filter.ToString()}",
-                                                   calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4261,11 +5464,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}/{days}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4286,12 +5498,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                                                   calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4303,11 +5523,20 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}/{days}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4328,13 +5557,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, null, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4348,11 +5584,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd?extended={extendedInfo.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4375,13 +5620,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4397,11 +5649,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4426,14 +5687,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4450,12 +5718,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4481,13 +5757,20 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4504,11 +5787,20 @@
             extendedInfo.Full = true;
             extendedInfo.Images = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}", calendarDVDMoviesJson);
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
+                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4534,14 +5826,21 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuth(
+            TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo.ToString()}&{filter.ToString()}",
-                calendarDVDMoviesJson);
+                calendarDVDMoviesJson, START_DATE, END_DATE);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo, filter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -4551,7 +5850,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4619,7 +5918,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserDVDMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 

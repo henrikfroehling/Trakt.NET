@@ -29,7 +29,7 @@
         /// An optional two letter language code to query a specific translation for the returned episodes.
         /// <para>Set this to "all" to get all available translations.</para>
         /// </param>
-        public void Add(string showId, int seasonNumber, TraktExtendedInfo extendedInfo = null, string translationLanguageCode = null)
+        public void Add(string showId, uint seasonNumber, TraktExtendedInfo extendedInfo = null, string translationLanguageCode = null)
         {
             Add(new TraktSeasonsQueryParams(showId, seasonNumber, extendedInfo, translationLanguageCode));
         }
@@ -41,7 +41,7 @@
         /// An two letter language code to query a specific translation for the returned episodes.
         /// <para>Set this to "all" to get all available translations.</para>
         /// </param>
-        public void Add(string showId, int seasonNumber, string translationLanguageCode)
+        public void Add(string showId, uint seasonNumber, string translationLanguageCode)
         {
             Add(new TraktSeasonsQueryParams(showId, seasonNumber, null, translationLanguageCode));
         }
@@ -58,7 +58,7 @@
         /// <param name="seasonNumber">A season number for a season in a show with the given show id.</param>
         /// <param name="extendedInfo">An optional extended info. See also <see cref="TraktExtendedInfo" />.</param>
         /// <param name="translationLanguageCode"></param>
-        public TraktSeasonsQueryParams(string showId, int seasonNumber, TraktExtendedInfo extendedInfo, string translationLanguageCode)
+        public TraktSeasonsQueryParams(string showId, uint seasonNumber, TraktExtendedInfo extendedInfo, string translationLanguageCode)
         {
             ShowId = showId;
             Season = seasonNumber;
@@ -70,7 +70,7 @@
         public string ShowId { get; }
 
         /// <summary>Returns the season number.</summary>
-        public int Season { get; }
+        public uint Season { get; }
 
         /// <summary>
         /// Returns the optional extended info.

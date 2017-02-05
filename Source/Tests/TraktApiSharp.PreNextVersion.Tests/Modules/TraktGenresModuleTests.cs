@@ -3,12 +3,12 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using Utils;
@@ -53,10 +53,11 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(32);
-
-            var results = response.ToArray();
-            results[0].Type.Should().Be(TraktGenreType.Movies);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(32);
+            response.Value.All(g => g.Type == TraktGenreType.Movies).Should().BeTrue();
         }
 
         [TestMethod]
@@ -66,7 +67,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktGenre>>> act =
+            Func<Task<TraktListResponse<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -141,10 +142,11 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(28);
-
-            var results = response.ToArray();
-            results[0].Type.Should().Be(TraktGenreType.Shows);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(28);
+            response.Value.All(g => g.Type == TraktGenreType.Shows).Should().BeTrue();
         }
 
         [TestMethod]
@@ -154,7 +156,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktGenre>>> act =
+            Func<Task<TraktListResponse<TraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

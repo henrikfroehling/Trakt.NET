@@ -7,6 +7,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -63,16 +64,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(commentId).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(76957U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
-            response.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.UserRating.Should().Be(7.3f);
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(76957U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.UserRating.Should().Be(7.3f);
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -83,7 +90,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktComment>> act =
+            Func<Task<TraktResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(commentId);
             act.ShouldThrow<TraktCommentNotFoundException>();
 
@@ -158,7 +165,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"comments/{commentId}", comment);
 
-            Func<Task<TraktComment>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(0);
+            Func<Task<TraktResponse<TraktComment>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -172,7 +179,7 @@
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktComment>>> act =
+            Func<Task<IEnumerable<TraktResponse<TraktComment>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new uint[] { 0 });
             act.ShouldThrow<ArgumentException>();
 
@@ -225,26 +232,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -284,26 +297,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -349,26 +368,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -416,26 +441,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -460,7 +491,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -557,7 +588,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, movieCommentPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -657,26 +688,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -717,26 +754,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -783,26 +826,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -851,26 +900,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -896,7 +951,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -994,7 +1049,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1076,26 +1131,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1132,26 +1193,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1194,26 +1261,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1258,26 +1331,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1299,7 +1378,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1393,7 +1472,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1468,26 +1547,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1526,26 +1611,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1590,26 +1681,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1656,26 +1753,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1699,7 +1802,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1795,7 +1898,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, episodeCommentPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1869,26 +1972,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1924,26 +2033,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -1985,26 +2100,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, null, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2048,26 +2169,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment, spoiler, sharing).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2088,7 +2215,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2181,7 +2308,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -2243,26 +2370,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2289,26 +2422,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2326,7 +2465,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2410,7 +2549,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", postJson, commentUpdatePostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(0, comment);
 
             act.ShouldThrow<ArgumentException>();
@@ -2456,26 +2595,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2502,26 +2647,32 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment, spoiler).Result;
 
             response.Should().NotBeNull();
-            response.Id.Should().Be(190U);
-            response.ParentId.Should().Be(0U);
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
-            response.Comment.Should().Be("Oh, I wasn't really listening.");
-            response.Spoiler.Should().BeFalse();
-            response.Review.Should().BeFalse();
-            response.Replies.Should().Be(0);
-            response.Likes.Should().Be(0);
-            response.UserRating.Should().NotHaveValue();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.Sharing.Should().NotBeNull();
-            response.Sharing.Facebook.Should().BeTrue();
-            response.Sharing.Twitter.Should().BeTrue();
-            response.Sharing.Tumblr.Should().BeFalse();
-            response.Sharing.Medium.Should().BeTrue();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Id.Should().Be(190U);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(0);
+            responseValue.Likes.Should().Be(0);
+            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.Sharing.Should().NotBeNull();
+            responseValue.Sharing.Facebook.Should().BeTrue();
+            responseValue.Sharing.Twitter.Should().BeTrue();
+            responseValue.Sharing.Tumblr.Should().BeFalse();
+            responseValue.Sharing.Medium.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2539,7 +2690,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2623,7 +2774,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/replies", postJson, commentReplyPostResponse);
 
-            Func<Task<TraktCommentPostResponse>> act =
+            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(0, comment);
 
             act.ShouldThrow<ArgumentException>();
@@ -2653,8 +2804,8 @@
             var commentId = 190U;
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", HttpStatusCode.NoContent);
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId).Result;
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2666,7 +2817,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -2737,7 +2888,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(0);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2754,8 +2905,8 @@
             var commentId = 190U;
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/like", HttpStatusCode.NoContent);
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(commentId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(commentId).Result;
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2767,7 +2918,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(commentId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(commentId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -2838,7 +2989,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/like", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(0);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.LikeCommentAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2855,8 +3006,8 @@
             var commentId = 190U;
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/like", HttpStatusCode.NoContent);
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(commentId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(commentId).Result;
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -2868,7 +3019,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(commentId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(commentId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -2939,7 +3090,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/like", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(0);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UnlikeCommentAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -2965,7 +3116,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2988,7 +3141,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3011,7 +3166,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3035,7 +3192,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3050,7 +3209,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId);
             act.ShouldThrow<TraktCommentNotFoundException>();
 
@@ -3127,7 +3286,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies",
                                                                 commentReplies, 1, 10, 1, itemCount);
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(0);
             act.ShouldThrow<ArgumentException>();
         }

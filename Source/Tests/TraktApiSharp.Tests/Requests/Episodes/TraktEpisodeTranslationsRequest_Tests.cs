@@ -134,6 +134,17 @@
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
+
+            // language code with wrong length
+            request = new TraktEpisodeTranslationsRequest { Id = "123", EpisodeNumber = 1, LanguageCode = "eng" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            request = new TraktEpisodeTranslationsRequest { Id = "123", EpisodeNumber = 1, LanguageCode = "e" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Interfaces;
     using Objects.Get.Shows.Episodes;
+    using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
@@ -24,6 +25,14 @@
                 uriParams.Add("extended", ExtendedInfo.ToString());
 
             return uriParams;
+        }
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (TranslationLanguageCode != null && TranslationLanguageCode != "all" && TranslationLanguageCode.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(TranslationLanguageCode), "translation language code has wrong length");
         }
     }
 }
