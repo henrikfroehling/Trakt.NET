@@ -568,12 +568,6 @@
     <Compile Include="Requests\Base\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\Base\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentDeleteRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikeRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentPostRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentReplyRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentUnlikeRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Comments\TraktCommentUpdateRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideMovieRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideShowRequest.cs" />
@@ -634,8 +628,6 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchlistRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentRepliesRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Comments\TraktCommentSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
