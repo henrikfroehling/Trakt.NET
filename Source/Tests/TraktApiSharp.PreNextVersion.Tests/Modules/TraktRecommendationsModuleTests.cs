@@ -6,8 +6,8 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Params;
@@ -56,7 +56,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync().Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
             response.Limit.Should().HaveValue().And.Be(10);
         }
@@ -67,16 +69,18 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var limit = 4;
+            var limit = 4U;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?limit={limit}", movies, 1, limit);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?limit={limit}", movies, 1, (int)limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Limit.Should().HaveValue().And.Be((int)limit);
         }
 
         [TestMethod]
@@ -97,7 +101,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
             response.Limit.Should().HaveValue().And.Be(10);
         }
@@ -108,7 +114,7 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var limit = 4;
+            var limit = 4U;
 
             var extendedInfo = new TraktExtendedInfo
             {
@@ -118,14 +124,16 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/movies?extended={extendedInfo.ToString()}&limit={limit}",
-                movies, 1, limit);
+                movies, 1, (int)limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Limit.Should().HaveValue().And.Be((int)limit);
         }
 
         [TestMethod]
@@ -135,7 +143,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktMovie>>> act =
+            Func<Task<TraktPagedResponse<TraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -214,8 +222,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"recommendations/movies/{movieId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -226,7 +236,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -297,7 +307,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"recommendations/movies/{movieId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(null);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(null);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(string.Empty);
@@ -325,7 +335,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync().Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
             response.Limit.Should().HaveValue().And.Be(10);
         }
@@ -336,16 +348,18 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var limit = 4;
+            var limit = 4U;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?limit={limit}", shows, 1, limit);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?limit={limit}", shows, 1, (int)limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Limit.Should().HaveValue().And.Be((int)limit);
         }
 
         [TestMethod]
@@ -366,7 +380,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
             response.Limit.Should().HaveValue().And.Be(10);
         }
@@ -377,7 +393,7 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var limit = 4;
+            var limit = 4U;
 
             var extendedInfo = new TraktExtendedInfo
             {
@@ -387,14 +403,16 @@
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/shows?extended={extendedInfo.ToString()}&limit={limit}",
-                shows, 1, limit);
+                shows, 1, (int)limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(3);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
             response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(limit);
+            response.Limit.Should().HaveValue().And.Be((int)limit);
         }
 
         [TestMethod]
@@ -404,7 +422,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktShow>>> act =
+            Func<Task<TraktPagedResponse<TraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -483,8 +501,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"recommendations/shows/{showId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -495,7 +515,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -566,7 +586,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"recommendations/shows/{showId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(null);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(null);
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(string.Empty);
