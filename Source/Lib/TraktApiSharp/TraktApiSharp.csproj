@@ -545,8 +545,6 @@
     <Compile Include="Requests\Params\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\TraktMovieListsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeListsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeTranslationsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonListsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\TraktShowListsRequest.cs" />
@@ -659,12 +657,6 @@
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsPopularRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsRecentlyUpdatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsTrendingRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeCommentsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeRatingsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeStatisticsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeSummaryRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktEpisodeWatchingUsersRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Shows\Episodes\TraktGetByIdEpisodeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktGetByIdSeasonRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonCommentsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Seasons\TraktSeasonRatingsRequest.cs" />
