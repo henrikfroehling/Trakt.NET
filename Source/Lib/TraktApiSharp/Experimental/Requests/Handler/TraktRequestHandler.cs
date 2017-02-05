@@ -483,7 +483,7 @@
                 DateTime startDate;
 
                 if (DateTime.TryParse(strStartDate, out startDate))
-                    headerResults.StartDate = startDate;
+                    headerResults.StartDate = startDate.ToUniversalTime();
             }
 
             if (responseHeaders.TryGetValues(HEADER_ENDDATE_KEY, out values))
@@ -492,7 +492,7 @@
                 DateTime endDate;
 
                 if (DateTime.TryParse(strEndDate, out endDate))
-                    headerResults.EndDate = endDate;
+                    headerResults.EndDate = endDate.ToUniversalTime();
             }
         }
 
