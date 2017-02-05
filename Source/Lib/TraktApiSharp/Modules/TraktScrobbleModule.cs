@@ -2,13 +2,15 @@
 {
     using Attributes;
     using Exceptions;
+    using Experimental.Requests.Handler;
+    using Experimental.Requests.Scrobbles.OAuth;
+    using Experimental.Responses;
     using Extensions;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
-    using Requests.WithOAuth.Scrobbles;
     using System;
     using System.Threading.Tasks;
 
@@ -39,11 +41,14 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktMovieScrobblePostResponse> StartMovieAsync([NotNull] TraktMovie movie, float progress,
-                                                                          string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StartMovieAsync([NotNull] TraktMovie movie, float progress,
+                                                                                         string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -63,11 +68,14 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktMovieScrobblePostResponse> PauseMovieAsync([NotNull] TraktMovie movie, float progress,
-                                                                          string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> PauseMovieAsync([NotNull] TraktMovie movie, float progress,
+                                                                                         string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -87,11 +95,14 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktMovieScrobblePostResponse> StopMovieAsync([NotNull] TraktMovie movie, float progress,
-                                                                         string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StopMovieAsync([NotNull] TraktMovie movie, float progress,
+                                                                                        string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -115,11 +126,14 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeAsync([NotNull] TraktEpisode episode, float progress,
-                                                                              string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+                                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -143,11 +157,14 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeAsync([NotNull] TraktEpisode episode, float progress,
-                                                                              string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+                                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -171,11 +188,14 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeAsync([NotNull] TraktEpisode episode, float progress,
-                                                                             string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+                                                                                            string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -199,11 +219,14 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> StartEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
-                                                                                      string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -227,11 +250,14 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> PauseEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
-                                                                                      string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -255,21 +281,24 @@
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktEpisodeScrobblePostResponse> StopEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
-                                                                                     string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+                                                                                                    string appVersion = null, DateTime? appBuildDate = null)
         {
+            var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
-            return await QueryAsync(CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+
+            return await requestHandler.ExecuteSingleItemRequestAsync(
+                CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobbleStartRequest<T, U>(Client) { RequestBody = requestBody };
+            => new TraktScrobbleStartRequest<T, U> { RequestBody = requestBody };
 
         private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobblePauseRequest<T, U>(Client) { RequestBody = requestBody };
+            => new TraktScrobblePauseRequest<T, U> { RequestBody = requestBody };
 
         private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobbleStopRequest<T, U>(Client) { RequestBody = requestBody };
+            => new TraktScrobbleStopRequest<T, U> { RequestBody = requestBody };
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
                                                                string appVersion = null, DateTime? appDate = null)
