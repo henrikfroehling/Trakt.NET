@@ -568,8 +568,6 @@
     <Compile Include="Requests\Base\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\Base\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Checkins\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentDeleteRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentLikeRequest.cs" />
     <Compile Include="Requests\WithOAuth\Comments\TraktCommentPostRequest.cs" />
