@@ -3,9 +3,10 @@
     using Attributes;
     using Enums;
     using Exceptions;
+    using Experimental.Requests.Genres;
+    using Experimental.Requests.Handler;
+    using Experimental.Responses;
     using Objects.Basic;
-    using Requests.WithoutOAuth.Genres;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -28,14 +29,18 @@
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktGenre>> GetMovieGenresAsync()
+        public async Task<TraktListResponse<TraktGenre>> GetMovieGenresAsync()
         {
-            var movieGenres = await QueryAsync(new TraktGenresMoviesRequest(Client));
+            var requestHandler = new TraktRequestHandler(Client);
+            var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresMoviesRequest());
 
-            foreach (var genre in movieGenres)
-                genre.Type = TraktGenreType.Movies;
+            if (response)
+            {
+                foreach (var genre in response)
+                    genre.Type = TraktGenreType.Movies;
+            }
 
-            return movieGenres;
+            return response;
         }
 
         /// <summary>
@@ -48,14 +53,18 @@
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktGenre>> GetShowGenresAsync()
+        public async Task<TraktListResponse<TraktGenre>> GetShowGenresAsync()
         {
-            var showGenres = await QueryAsync(new TraktGenresShowsRequest(Client));
+            var requestHandler = new TraktRequestHandler(Client);
+            var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresShowsRequest());
 
-            foreach (var genre in showGenres)
-                genre.Type = TraktGenreType.Shows;
+            if (response)
+            {
+                foreach (var genre in response)
+                    genre.Type = TraktGenreType.Shows;
+            }
 
-            return showGenres;
+            return response;
         }
     }
 }
