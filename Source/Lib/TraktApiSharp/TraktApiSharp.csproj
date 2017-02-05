@@ -625,9 +625,6 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchlistRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\People\TraktPersonMovieCreditsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\People\TraktPersonShowCreditsRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\People\TraktPersonSummaryRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Search\TraktSearchRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Shows\Common\TraktShowsMostCollectedRequest.cs" />
