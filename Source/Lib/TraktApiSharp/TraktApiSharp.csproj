@@ -626,8 +626,6 @@
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchedShowsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchingRequest.cs" />
     <Compile Include="Requests\WithOAuth\Users\TraktUserWatchlistRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresMoviesRequest.cs" />
-    <Compile Include="Requests\WithoutOAuth\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesBoxOfficeRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostAnticipatedRequest.cs" />
     <Compile Include="Requests\WithoutOAuth\Movies\Common\TraktMoviesMostCollectedRequest.cs" />
