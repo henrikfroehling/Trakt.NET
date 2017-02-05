@@ -2,11 +2,12 @@
 {
     using Attributes;
     using Exceptions;
-    using Extensions;
+    using Experimental.Requests.Handler;
+    using Experimental.Requests.People;
+    using Experimental.Responses;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests.Params;
-    using Requests.WithoutOAuth.People;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -39,11 +40,11 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPerson> GetPersonAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktPerson>> GetPersonAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
-            Validate(personIdOrSlug);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktPersonSummaryRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonSummaryRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -63,16 +64,16 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<IEnumerable<TraktPerson>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams)
+        public async Task<IEnumerable<TraktResponse<TraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams)
         {
             if (personsQueryParams == null || personsQueryParams.Count <= 0)
-                return new List<TraktPerson>();
+                return new List<TraktResponse<TraktPerson>>();
 
-            var tasks = new List<Task<TraktPerson>>();
+            var tasks = new List<Task<TraktResponse<TraktPerson>>>();
 
             foreach (var queryParam in personsQueryParams)
             {
-                Task<TraktPerson> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo);
+                Task<TraktResponse<TraktPerson>> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 
@@ -96,11 +97,11 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPersonMovieCredits> GetPersonMovieCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktPersonMovieCredits>> GetPersonMovieCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
-            Validate(personIdOrSlug);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktPersonMovieCreditsRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonMovieCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -123,21 +124,15 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPersonShowCredits> GetPersonShowCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktPersonShowCredits>> GetPersonShowCreditsAsync([NotNull] string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
-            Validate(personIdOrSlug);
+            var requestHandler = new TraktRequestHandler(Client);
 
-            return await QueryAsync(new TraktPersonShowCreditsRequest(Client)
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonShowCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
             });
-        }
-
-        private void Validate(string personIdOrSlug)
-        {
-            if (string.IsNullOrEmpty(personIdOrSlug) || personIdOrSlug.ContainsSpace())
-                throw new ArgumentException("person id or slug not valid", nameof(personIdOrSlug));
         }
     }
 }
