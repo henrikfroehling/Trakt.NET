@@ -80,6 +80,22 @@
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
+
+            // wrong translation language code format
+            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "eng" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "e" };
+
+            act = () => request.Validate();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
+
+            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "all" };
+
+            act = () => request.Validate();
+            act.ShouldNotThrow();
         }
 
         [Theory, ClassData(typeof(TraktSeasonSingleRequest_TestData))]
