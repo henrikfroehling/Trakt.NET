@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Params;
@@ -63,7 +64,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -92,7 +95,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -117,7 +122,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -147,7 +154,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -177,7 +186,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -212,7 +223,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -244,7 +257,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, null, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -281,7 +296,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, null, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -315,7 +332,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, field, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -354,7 +373,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, field, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -393,7 +414,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query, fields, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -437,7 +460,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(types, query, fields, filter).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -477,7 +502,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -522,7 +549,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -563,7 +592,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -609,7 +640,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -655,7 +688,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -706,7 +741,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -747,7 +784,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -793,7 +832,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -835,7 +876,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -882,7 +925,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -929,7 +974,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -981,7 +1028,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1022,7 +1071,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1068,7 +1119,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1110,7 +1163,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1157,7 +1212,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1204,7 +1261,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1256,7 +1315,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1290,7 +1351,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1329,7 +1392,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1365,7 +1430,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1406,7 +1473,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1447,7 +1516,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1493,7 +1564,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1527,7 +1600,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1566,7 +1641,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1602,7 +1679,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1643,7 +1722,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1684,7 +1765,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1730,7 +1813,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1766,7 +1851,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1807,7 +1894,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1844,7 +1933,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1886,7 +1977,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1928,7 +2021,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1975,7 +2070,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2006,7 +2103,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2042,7 +2141,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2075,7 +2176,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2113,7 +2216,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2151,7 +2256,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2194,7 +2301,9 @@
                                                                                         extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2227,7 +2336,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2265,7 +2376,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2299,7 +2412,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2338,7 +2453,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2377,7 +2494,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2421,7 +2540,9 @@
                                                                                         extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2454,7 +2575,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2492,7 +2615,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2526,7 +2651,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2565,7 +2692,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2604,7 +2733,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2648,7 +2779,9 @@
                                                                                         extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2682,7 +2815,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2721,7 +2856,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2756,7 +2893,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2796,7 +2935,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2836,7 +2977,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2881,7 +3024,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2907,7 +3052,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2938,7 +3085,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2965,7 +3114,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2997,7 +3148,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3029,7 +3182,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3066,7 +3221,9 @@
                                                                                         null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3092,7 +3249,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3123,7 +3282,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3150,7 +3311,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3182,7 +3345,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3214,7 +3379,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3251,7 +3418,9 @@
                                                                                         null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3278,7 +3447,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3310,7 +3481,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3339,7 +3512,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3373,7 +3548,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3407,7 +3584,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3446,7 +3625,9 @@
                                                                                         null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3490,7 +3671,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3539,7 +3722,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3588,7 +3773,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3642,7 +3829,9 @@
                                                                                         extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3658,7 +3847,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -3736,7 +3925,7 @@
 
             var searchResultType = default(TraktSearchResultType);
 
-            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(searchResultType, null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -3774,7 +3963,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3799,7 +3990,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId, resultType).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3832,7 +4025,9 @@
                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3866,7 +4061,9 @@
                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3900,7 +4097,9 @@
                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3927,7 +4126,9 @@
                                                                                        null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3954,7 +4155,9 @@
                                                                                        null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3982,7 +4185,9 @@
                                                                                        null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4013,7 +4218,9 @@
                                                                                        extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -4046,7 +4253,9 @@
                                                                                        extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4079,7 +4288,9 @@
                                                                                        extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -4113,7 +4324,9 @@
                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4139,7 +4352,9 @@
                                                                                        null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4165,7 +4380,9 @@
                                                                                        null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -4192,7 +4409,9 @@
                                                                                        null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4228,7 +4447,9 @@
                                                                                        extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -4253,7 +4474,9 @@
                                                                                        TraktSearchResultType.Unspecified).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -4269,7 +4492,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -4347,7 +4570,7 @@
 
             var searchIdType = default(TraktSearchIdType);
 
-            Func<Task<TraktPaginationListResult<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(searchIdType, lookupId);
             act.ShouldThrow<ArgumentNullException>();
 
