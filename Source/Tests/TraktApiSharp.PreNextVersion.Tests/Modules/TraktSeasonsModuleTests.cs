@@ -65,7 +65,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -89,7 +89,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -137,7 +137,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -185,7 +185,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -314,7 +314,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -339,7 +339,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -362,7 +362,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -392,7 +392,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -415,7 +415,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -445,7 +445,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(10);
+            response.Value.Should().NotBeNull().And.HaveCount(10);
         }
 
         [TestMethod]
@@ -1679,7 +1679,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]
@@ -1705,7 +1705,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [TestMethod]

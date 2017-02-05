@@ -44,7 +44,7 @@
         public void Test_TraktShowListsRequest_Has_Valid_UriTemplate()
         {
             var request = new TraktShowListsRequest();
-            request.UriTemplate.Should().Be("shows/{id}/lists{/type}{/sorting}{?page,limit}");
+            request.UriTemplate.Should().Be("shows/{id}/lists{/type}{/sort_order}{?page,limit}");
         }
 
         [Fact]

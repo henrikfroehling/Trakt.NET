@@ -15,7 +15,7 @@
 
         public int? Limit { get; set; }
 
-        public override string UriTemplate => "shows/{id}/lists{/type}{/sorting}{?page,limit}";
+        public override string UriTemplate => "shows/{id}/lists{/type}{/sort_order}{?page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
