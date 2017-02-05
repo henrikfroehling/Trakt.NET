@@ -565,10 +565,6 @@
     <Compile Include="Requests\Base\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\Base\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideMovieRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserMovieRecommendationsRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserRecommendationHideShowRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Recommendations\TraktUserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobblePauseRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleStartRequest.cs" />
     <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleStopRequest.cs" />
