@@ -565,9 +565,6 @@
     <Compile Include="Requests\Base\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\Base\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\Base\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobblePauseRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleStartRequest.cs" />
-    <Compile Include="Requests\WithOAuth\Scrobbles\TraktScrobbleStopRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowProgressRequest.cs" />
     <Compile Include="Requests\WithOAuth\Shows\TraktShowWatchedProgressRequest.cs" />
