@@ -27,25 +27,31 @@
         public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedInfo extendedInfo = null,
                                                bool withAdditionalContent = false)
         {
-            //var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
+            var response = await Client.Movies.GetMovieAsync(movieId, extendedInfo);
 
-            //if (withAdditionalContent)
-            //{
-            //    var aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
-            //    movie.Aliases = new ObservableCollection<TraktMovieAlias>(aliases);
+            if (response)
+            {
+                var movie = response.Value as Movie;
 
-            //    var releases = await Client.Movies.GetMovieReleasesAsync(movieId);
-            //    movie.Releases = new ObservableCollection<TraktMovieRelease>(releases);
+                if (withAdditionalContent)
+                {
+                    var aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
+                    movie.Aliases = new ObservableCollection<TraktMovieAlias>(aliases);
 
-            //    var translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
-            //    movie.Translations = new ObservableCollection<TraktMovieTranslation>(translations);
+                    var releases = await Client.Movies.GetMovieReleasesAsync(movieId);
+                    movie.Releases = new ObservableCollection<TraktMovieRelease>(releases);
 
-            //    movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
-            //    movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
-            //}
+                    var translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
+                    movie.Translations = new ObservableCollection<TraktMovieTranslation>(translations);
 
-            //return movie;
-            return await Task.FromResult<Movie>(null);
+                    movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
+                    movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
+                }
+
+                return movie;
+            }
+
+            return null;
         }
 
         // -------------------------------------------------------------

@@ -27,22 +27,28 @@
         public async Task<Show> GetShowAsync(string showId, TraktExtendedInfo extendedInfo = null,
                                              bool withAdditionalContent = false)
         {
-            //var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
+            var response = await Client.Shows.GetShowAsync(showId, extendedInfo);
 
-            //if (withAdditionalContent)
-            //{
-            //    var aliases = await Client.Shows.GetShowAliasesAsync(showId);
-            //    show.Aliases = new ObservableCollection<TraktShowAlias>(aliases);
+            if (response)
+            {
+                var show = response.Value as Show;
 
-            //    var translations = await Client.Shows.GetShowTranslationsAsync(showId);
-            //    show.Translations = new ObservableCollection<TraktShowTranslation>(translations);
+                if (withAdditionalContent)
+                {
+                    var aliases = await Client.Shows.GetShowAliasesAsync(showId);
+                    show.Aliases = new ObservableCollection<TraktShowAlias>(aliases);
 
-            //    show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
-            //    show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
-            //}
+                    var translations = await Client.Shows.GetShowTranslationsAsync(showId);
+                    show.Translations = new ObservableCollection<TraktShowTranslation>(translations);
 
-            //return show;
-            return await Task.FromResult<Show>(null);
+                    show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
+                    show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
+                }
+
+                return show;
+            }
+
+            return null;
         }
 
         // -------------------------------------------------------------
