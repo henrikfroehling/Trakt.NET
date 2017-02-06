@@ -3,12 +3,10 @@
     using Objects.Get.Users;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserFollowRequestsRequest //: ATraktUsersListGetRequest<TraktUserFollowRequest>
+    internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<TraktUserFollowRequest>
     {
-        internal TraktUserFollowRequestsRequest(TraktClient client)  {}
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
-        public new TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
-
-        public string UriTemplate => "users/requests{?extended}";
+        public override string UriTemplate => "users/requests{?extended}";
     }
 }

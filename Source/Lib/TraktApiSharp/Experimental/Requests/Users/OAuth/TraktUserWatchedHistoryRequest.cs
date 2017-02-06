@@ -6,10 +6,8 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedHistoryRequest //: ATraktUsersPaginationGetRequest<TraktHistoryItem>
+    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<TraktHistoryItem>
     {
-        internal TraktUserWatchedHistoryRequest(TraktClient client)  {}
-
         internal string Username { get; set; }
 
         internal TraktSyncItemType Type { get; set; }
@@ -20,9 +18,11 @@
 
         internal DateTime? EndAt { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("username", Username);
 
@@ -35,20 +35,23 @@
                 uriParams.Add("item_id", ItemId.ToString());
 
             if (StartAt.HasValue)
-            {
-                var startAt = StartAt.Value.ToUniversalTime();
-                uriParams.Add("start_at", startAt.ToTraktLongDateTimeString());
-            }
+                uriParams.Add("start_at", StartAt.Value.ToTraktLongDateTimeString());
 
             if (EndAt.HasValue)
-            {
-                var endAt = EndAt.Value.ToUniversalTime();
-                uriParams.Add("end_at", endAt.ToTraktLongDateTimeString());
-            }
+                uriParams.Add("end_at", EndAt.Value.ToTraktLongDateTimeString());
 
             return uriParams;
         }
 
-        public string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

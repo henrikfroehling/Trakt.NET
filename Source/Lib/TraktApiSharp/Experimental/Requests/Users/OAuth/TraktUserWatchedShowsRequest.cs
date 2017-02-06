@@ -1,21 +1,32 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
+    using Extensions;
     using Objects.Get.Watched;
+    using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedShowsRequest //: ATraktUsersListGetRequest<TraktWatchedShow>
+    internal sealed class TraktUserWatchedShowsRequest : ATraktUsersGetRequest<TraktWatchedShow>
     {
-        internal TraktUserWatchedShowsRequest(TraktClient client)  {}
-
         internal string Username { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "users/{username}/watched/shows{?extended}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
             uriParams.Add("username", Username);
             return uriParams;
         }
 
-        public string UriTemplate => "users/{username}/watched/shows{?extended}";
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

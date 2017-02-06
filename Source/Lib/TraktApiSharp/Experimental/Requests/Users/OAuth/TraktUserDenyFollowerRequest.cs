@@ -2,12 +2,10 @@
 {
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserDenyFollowerRequest
+    internal sealed class TraktUserDenyFollowerRequest : ATraktUsersDeleteByIdRequest
     {
-        internal TraktUserDenyFollowerRequest(TraktClient client) { }
+        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
-
-        public string UriTemplate => "users/requests/{id}";
+        public override string UriTemplate => "users/requests/{id}";
     }
 }

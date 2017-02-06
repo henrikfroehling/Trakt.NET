@@ -1,28 +1,32 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
-    using Interfaces;
+    using Extensions;
     using Objects.Get.Users;
+    using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktUserProfileRequest //: ATraktUsersSingleItemGetRequest<TraktUser>, ITraktSupportsExtendedInfo
+    internal sealed class TraktUserProfileRequest : ATraktUsersGetRequest<TraktUser>
     {
-        internal TraktUserProfileRequest(TraktClient client)  {}
-
         internal string Username { get; set; }
 
-        public TraktExtendedInfo ExtendedInfo { get; set; }
+        public override string UriTemplate => "users/{username}{?extended}";
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
             uriParams.Add("username", Username);
             return uriParams;
         }
 
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+        public override void Validate()
+        {
+            base.Validate();
 
-        public string UriTemplate => "users/{username}{?extended}";
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

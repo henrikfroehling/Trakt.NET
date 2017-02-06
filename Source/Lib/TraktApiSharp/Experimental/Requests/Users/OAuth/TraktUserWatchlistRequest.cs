@@ -1,20 +1,22 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Enums;
+    using Extensions;
     using Objects.Get.Watchlist;
+    using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchlistRequest //: ATraktUsersPaginationGetRequest<TraktWatchlistItem>
+    internal sealed class TraktUserWatchlistRequest : ATraktUsersPagedGetRequest<TraktWatchlistItem>
     {
-        internal TraktUserWatchlistRequest(TraktClient client)  {}
-
         internal string Username { get; set; }
 
         internal TraktSyncItemType Type { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "users/{username}/watchlist{/type}{?extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("username", Username);
 
@@ -24,6 +26,15 @@
             return uriParams;
         }
 
-        public string UriTemplate => "users/{username}/watchlist{/type}{?extended,page,limit}";
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

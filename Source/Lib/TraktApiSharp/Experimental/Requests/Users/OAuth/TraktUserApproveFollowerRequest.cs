@@ -1,13 +1,34 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
+    using Base;
+    using Extensions;
+    using Interfaces;
+    using Objects.Get.Users;
+    using System;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserApproveFollowerRequest
+    internal sealed class TraktUserApproveFollowerRequest : ATraktBodylessPostRequest<TraktUserFollower>, ITraktHasId
     {
-        internal TraktUserApproveFollowerRequest(TraktClient client) {}
+        public string Id { get; set; }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
-        public string UriTemplate => "users/requests/{id}";
+        public override string UriTemplate => "users/requests/{id}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
+            => new Dictionary<string, object>
+            {
+                ["id"] = Id
+            };
+
+        public override void Validate()
+        {
+            if (Id == null)
+                throw new ArgumentNullException(nameof(Id));
+
+            if (Id == string.Empty || Id.ContainsSpace())
+                throw new ArgumentException("id not valid", nameof(Id));
+        }
     }
 }

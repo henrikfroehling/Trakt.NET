@@ -21,5 +21,7 @@
 
             return uriParams;
         }
+
+        public override void Validate() { }
     }
 }

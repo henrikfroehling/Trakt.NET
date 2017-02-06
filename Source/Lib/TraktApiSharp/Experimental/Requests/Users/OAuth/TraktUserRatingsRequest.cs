@@ -1,23 +1,25 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
     using Enums;
+    using Extensions;
     using Objects.Get.Ratings;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktUserRatingsRequest //: ATraktUsersListGetRequest<TraktRatingsItem>
+    internal sealed class TraktUserRatingsRequest : ATraktUsersGetRequest<TraktRatingsItem>
     {
-        internal TraktUserRatingsRequest(TraktClient client) {}
-
         internal string Username { get; set; }
 
         internal TraktRatingsItemType Type { get; set; }
 
         internal int[] RatingFilter { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("username", Username);
 
@@ -39,7 +41,14 @@
 
             return uriParams;
         }
-        
-        public string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
+
+        public override void Validate()
+        {
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

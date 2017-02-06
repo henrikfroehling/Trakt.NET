@@ -53,7 +53,7 @@
                 throw new ArgumentNullException(nameof(Username));
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Id));
+                throw new ArgumentException("username not valid", nameof(Username));
 
             if (Id == null)
                 throw new ArgumentNullException(nameof(Id));

@@ -1,21 +1,30 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Users.OAuth
 {
+    using Base;
+    using Extensions;
     using Objects.Post.Users.Responses;
+    using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserFollowUserRequest
+    internal sealed class TraktUserFollowUserRequest : ATraktBodylessPostRequest<TraktUserFollowUserPostResponse>
     {
-        internal TraktUserFollowUserRequest(TraktClient client) {}
-
         internal string Username { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
-        {
-            var uriParams = new Dictionary<string, object>();
-            uriParams.Add("username", Username);
-            return uriParams;
-        }
+        public override string UriTemplate => "users/{username}/follow";
 
-        public string UriTemplate => "users/{username}/follow";
+        public override IDictionary<string, object> GetUriPathParameters()
+            => new Dictionary<string, object>
+            {
+                ["username"] = Username
+            };
+
+        public override void Validate()
+        {
+            if (Username == null)
+                throw new ArgumentNullException(nameof(Username));
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new ArgumentException("username not valid", nameof(Username));
+        }
     }
 }

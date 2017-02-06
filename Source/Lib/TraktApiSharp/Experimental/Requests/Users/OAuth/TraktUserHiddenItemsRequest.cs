@@ -2,20 +2,23 @@
 {
     using Enums;
     using Objects.Get.Users;
+    using System;
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserHiddenItemsRequest //: ATraktUsersPaginationGetRequest<TraktUserHiddenItem>
+    internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPagedGetRequest<TraktUserHiddenItem>
     {
-        internal TraktUserHiddenItemsRequest(TraktClient client)  {}
-
         internal TraktHiddenItemsSection Section { get; set; }
 
         internal TraktHiddenItemType Type { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+
+        public override string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = base.GetUriPathParameters();
 
             uriParams.Add("section", Section.UriName);
 
@@ -25,8 +28,13 @@
             return uriParams;
         }
 
-        public new TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override void Validate()
+        {
+            if (Section == null)
+                throw new ArgumentNullException(nameof(Section));
 
-        public string UriTemplate => "users/hidden/{section}{?type,extended,page,limit}";
+            if (Section == TraktHiddenItemsSection.Unspecified)
+                throw new ArgumentException("section type must not be unspecified", nameof(Section));
+        }
     }
 }
