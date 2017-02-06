@@ -9,9 +9,9 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Collection;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
@@ -76,44 +76,49 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetLastActivitiesAsync().Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.All.Should().Be(DateTime.Parse("2014-11-20T07:01:32.378Z").ToUniversalTime());
-            response.Movies.Should().NotBeNull();
-            response.Movies.WatchedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.823Z").ToUniversalTime());
-            response.Movies.CollectedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.243Z").ToUniversalTime());
-            response.Movies.RatedAt.Should().Be(DateTime.Parse("2014-11-19T18:32:29.459Z").ToUniversalTime());
-            response.Movies.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.844Z").ToUniversalTime());
-            response.Movies.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
-            response.Movies.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
-            response.Movies.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            var responseValue = response.Value;
 
-            response.Episodes.Should().NotBeNull();
-            response.Episodes.WatchedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.305Z").ToUniversalTime());
-            response.Episodes.CollectedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
-            response.Episodes.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.310Z").ToUniversalTime());
-            response.Episodes.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.321Z").ToUniversalTime());
-            response.Episodes.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
-            response.Episodes.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            responseValue.All.Should().Be(DateTime.Parse("2014-11-20T07:01:32.378Z").ToUniversalTime());
+            responseValue.Movies.Should().NotBeNull();
+            responseValue.Movies.WatchedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.823Z").ToUniversalTime());
+            responseValue.Movies.CollectedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.243Z").ToUniversalTime());
+            responseValue.Movies.RatedAt.Should().Be(DateTime.Parse("2014-11-19T18:32:29.459Z").ToUniversalTime());
+            responseValue.Movies.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.844Z").ToUniversalTime());
+            responseValue.Movies.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            responseValue.Movies.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            responseValue.Movies.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
 
-            response.Shows.Should().NotBeNull();
-            response.Shows.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:50:58.557Z").ToUniversalTime());
-            response.Shows.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.262Z").ToUniversalTime());
-            response.Shows.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.281Z").ToUniversalTime());
-            response.Shows.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            responseValue.Episodes.Should().NotBeNull();
+            responseValue.Episodes.WatchedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.305Z").ToUniversalTime());
+            responseValue.Episodes.CollectedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
+            responseValue.Episodes.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.310Z").ToUniversalTime());
+            responseValue.Episodes.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.321Z").ToUniversalTime());
+            responseValue.Episodes.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
+            responseValue.Episodes.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
 
-            response.Seasons.Should().NotBeNull();
-            response.Seasons.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:54:24.537Z").ToUniversalTime());
-            response.Seasons.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.297Z").ToUniversalTime());
-            response.Seasons.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.301Z").ToUniversalTime());
-            response.Seasons.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            responseValue.Shows.Should().NotBeNull();
+            responseValue.Shows.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:50:58.557Z").ToUniversalTime());
+            responseValue.Shows.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.262Z").ToUniversalTime());
+            responseValue.Shows.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.281Z").ToUniversalTime());
+            responseValue.Shows.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
 
-            response.Comments.Should().NotBeNull();
-            response.Comments.LikedAt.Should().Be(DateTime.Parse("2014-11-20T03:38:09.122Z").ToUniversalTime());
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:54:24.537Z").ToUniversalTime());
+            responseValue.Seasons.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.297Z").ToUniversalTime());
+            responseValue.Seasons.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.301Z").ToUniversalTime());
+            responseValue.Seasons.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
 
-            response.Lists.Should().NotBeNull();
-            response.Lists.LikedAt.Should().Be(DateTime.Parse("2014-11-20T00:36:48.506Z").ToUniversalTime());
-            response.Lists.UpdatedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            response.Lists.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            responseValue.Comments.Should().NotBeNull();
+            responseValue.Comments.LikedAt.Should().Be(DateTime.Parse("2014-11-20T03:38:09.122Z").ToUniversalTime());
+
+            responseValue.Lists.Should().NotBeNull();
+            responseValue.Lists.LikedAt.Should().Be(DateTime.Parse("2014-11-20T00:36:48.506Z").ToUniversalTime());
+            responseValue.Lists.UpdatedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
+            responseValue.Lists.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
         }
 
         [TestMethod]
@@ -123,7 +128,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncLastActivities>> act =
+            Func<Task<TraktResponse<TraktSyncLastActivities>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetLastActivitiesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -205,7 +210,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -220,7 +228,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -235,7 +246,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(null, limit).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -251,7 +265,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync(type, limit).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -261,7 +278,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktSyncPlaybackProgressItem>>> act =
+            Func<Task<TraktListResponse<TraktSyncPlaybackProgressItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -340,8 +357,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"sync/playback/{playbackId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -353,7 +372,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -420,8 +439,8 @@
         [TestMethod]
         public void TestTraktSyncModuleGetRemovePlaybackItemArgumentExceptions()
         {
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
-            act.ShouldThrow<ArgumentException>();
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -441,7 +460,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -462,7 +484,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync(extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -472,7 +497,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCollectionMovie>>> act =
+            Func<Task<TraktListResponse<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -554,7 +579,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -575,7 +603,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync(extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -585,7 +616,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktCollectionShow>>> act =
+            Func<Task<TraktListResponse<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -782,29 +813,34 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(1);
-            response.Added.Episodes.Should().Be(12);
-            response.Added.Shows.Should().NotHaveValue();
-            response.Added.Seasons.Should().NotHaveValue();
+            var responseValue = response.Value;
 
-            response.Updated.Should().NotBeNull();
-            response.Updated.Movies.Should().Be(3);
-            response.Updated.Episodes.Should().Be(1);
-            response.Updated.Shows.Should().NotHaveValue();
-            response.Updated.Seasons.Should().NotHaveValue();
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(1);
+            responseValue.Added.Episodes.Should().Be(12);
+            responseValue.Added.Shows.Should().NotHaveValue();
+            responseValue.Added.Seasons.Should().NotHaveValue();
 
-            response.Existing.Should().NotBeNull();
-            response.Existing.Movies.Should().Be(2);
-            response.Existing.Episodes.Should().Be(0);
-            response.Existing.Shows.Should().NotHaveValue();
-            response.Existing.Seasons.Should().NotHaveValue();
+            responseValue.Updated.Should().NotBeNull();
+            responseValue.Updated.Movies.Should().Be(3);
+            responseValue.Updated.Episodes.Should().Be(1);
+            responseValue.Updated.Shows.Should().NotHaveValue();
+            responseValue.Updated.Seasons.Should().NotHaveValue();
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Existing.Should().NotBeNull();
+            responseValue.Existing.Movies.Should().Be(2);
+            responseValue.Existing.Episodes.Should().Be(0);
+            responseValue.Existing.Shows.Should().NotHaveValue();
+            responseValue.Existing.Seasons.Should().NotHaveValue();
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -812,9 +848,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -875,7 +911,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncCollectionPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncCollectionPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -943,7 +979,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddCollectionItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncCollectionPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncCollectionPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -1093,17 +1129,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Deleted.Should().NotBeNull();
-            response.Deleted.Movies.Should().Be(1);
-            response.Deleted.Episodes.Should().Be(12);
-            response.Deleted.Shows.Should().NotHaveValue();
-            response.Deleted.Seasons.Should().NotHaveValue();
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(1);
+            responseValue.Deleted.Episodes.Should().Be(12);
+            responseValue.Deleted.Shows.Should().NotHaveValue();
+            responseValue.Deleted.Seasons.Should().NotHaveValue();
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -1111,9 +1152,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -1174,7 +1215,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncCollectionRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncCollectionRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1242,7 +1283,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveCollectionItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncCollectionRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncCollectionRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -1277,7 +1318,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1297,7 +1341,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync(extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1307,7 +1354,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktWatchedMovie>>> act =
+            Func<Task<TraktListResponse<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1389,7 +1436,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1409,7 +1459,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync(extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1419,7 +1472,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktWatchedShow>>> act =
+            Func<Task<TraktListResponse<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1504,7 +1557,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync().Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1526,7 +1581,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1549,7 +1606,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1574,7 +1633,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1601,7 +1662,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1636,7 +1699,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1672,7 +1737,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1708,7 +1775,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1741,7 +1810,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1775,7 +1846,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1809,7 +1882,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1845,7 +1920,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1871,7 +1948,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1897,7 +1976,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1924,7 +2005,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, startAt, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1958,7 +2041,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1992,7 +2077,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2027,7 +2114,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2053,7 +2142,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2079,7 +2170,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2106,7 +2199,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, itemId, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2137,7 +2232,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2170,7 +2267,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2203,7 +2302,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2237,7 +2338,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2261,7 +2364,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2294,7 +2399,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2328,7 +2435,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2362,7 +2471,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2398,7 +2509,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2423,7 +2536,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2450,7 +2565,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2477,7 +2594,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2506,7 +2625,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, startAt, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2537,7 +2658,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2570,7 +2693,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2602,7 +2727,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2635,7 +2762,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2658,7 +2787,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2683,7 +2814,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2708,7 +2841,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2734,7 +2869,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2763,7 +2900,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2793,7 +2932,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2823,7 +2964,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2855,7 +2998,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2878,7 +3023,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2901,7 +3048,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2925,7 +3074,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(type, null, null, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2955,7 +3106,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2987,7 +3140,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3019,7 +3174,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3052,7 +3209,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3075,7 +3234,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3107,7 +3268,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3140,7 +3303,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3173,7 +3338,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3207,7 +3374,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3231,7 +3400,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3257,7 +3428,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3283,7 +3456,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3311,7 +3486,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3335,7 +3512,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3359,7 +3538,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3384,7 +3565,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, startAt, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3415,7 +3598,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3447,7 +3632,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3479,7 +3666,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3512,7 +3701,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3535,7 +3726,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3559,7 +3752,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3583,7 +3778,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3608,7 +3805,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3637,7 +3836,9 @@
                                                                                     extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3667,7 +3868,9 @@
                                                                                     extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3697,7 +3900,9 @@
                                                                                     extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3728,7 +3933,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3750,7 +3957,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3772,7 +3981,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -3795,7 +4006,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync(null, null, null, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3832,7 +4045,9 @@
                                                                                     extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -3846,7 +4061,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
+            Func<Task<TraktPagedResponse<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4046,17 +4261,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchedHistoryItemsAsync(historyPost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(2);
-            response.Added.Episodes.Should().Be(72);
-            response.Added.Shows.Should().NotHaveValue();
-            response.Added.Seasons.Should().NotHaveValue();
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(2);
+            responseValue.Added.Episodes.Should().Be(72);
+            responseValue.Added.Shows.Should().NotHaveValue();
+            responseValue.Added.Seasons.Should().NotHaveValue();
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -4064,9 +4284,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -4128,7 +4348,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncHistoryPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncHistoryPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchedHistoryItemsAsync(historyPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4196,7 +4416,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddWatchedHistoryItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncHistoryPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncHistoryPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchedHistoryItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -4345,17 +4565,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(historyRemovePost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Deleted.Should().NotBeNull();
-            response.Deleted.Movies.Should().Be(2);
-            response.Deleted.Episodes.Should().Be(72);
-            response.Deleted.Shows.Should().NotHaveValue();
-            response.Deleted.Seasons.Should().NotHaveValue();
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(2);
+            responseValue.Deleted.Episodes.Should().Be(72);
+            responseValue.Deleted.Shows.Should().NotHaveValue();
+            responseValue.Deleted.Seasons.Should().NotHaveValue();
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0U);
@@ -4363,12 +4588,12 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
-            response.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            response.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
+            responseValue.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
+            responseValue.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
         }
 
         [TestMethod]
@@ -4428,7 +4653,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncHistoryRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncHistoryRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(historyRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4496,7 +4721,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchedHistoryItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncHistoryRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncHistoryRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -4531,7 +4756,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4546,7 +4774,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4565,7 +4796,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4584,7 +4818,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4603,7 +4840,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4622,7 +4862,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4641,7 +4884,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4660,7 +4906,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4679,7 +4928,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4698,7 +4950,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4717,7 +4972,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4736,7 +4994,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4755,7 +5016,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4774,7 +5038,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4793,7 +5060,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4812,7 +5082,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4830,7 +5103,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4851,7 +5127,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4870,7 +5149,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4897,7 +5179,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -4907,7 +5192,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktRatingsItem>>> act =
+            Func<Task<TraktListResponse<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5111,17 +5396,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(ratingsPost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(1);
-            response.Added.Episodes.Should().Be(4);
-            response.Added.Shows.Should().Be(2);
-            response.Added.Seasons.Should().Be(3);
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(1);
+            responseValue.Added.Episodes.Should().Be(4);
+            responseValue.Added.Shows.Should().Be(2);
+            responseValue.Added.Seasons.Should().Be(3);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Rating.Should().Be(10);
             movies[0].Ids.Should().NotBeNull();
@@ -5130,9 +5420,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -5196,7 +5486,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncRatingsPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncRatingsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(ratingsPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5264,7 +5554,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddRatingsArgumentExceptions()
         {
-            Func<Task<TraktSyncRatingsPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncRatingsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -5413,17 +5703,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(ratingsRemovePost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Deleted.Should().NotBeNull();
-            response.Deleted.Movies.Should().Be(1);
-            response.Deleted.Episodes.Should().Be(4);
-            response.Deleted.Shows.Should().Be(2);
-            response.Deleted.Seasons.Should().Be(3);
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(1);
+            responseValue.Deleted.Episodes.Should().Be(4);
+            responseValue.Deleted.Shows.Should().Be(2);
+            responseValue.Deleted.Seasons.Should().Be(3);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -5431,9 +5726,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -5493,7 +5788,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncRatingsRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncRatingsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(ratingsRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5561,7 +5856,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveRatingsArgumentExceptions()
         {
-            Func<Task<TraktSyncRatingsRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncRatingsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -5602,7 +5897,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync().Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5628,7 +5925,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5660,7 +5959,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5694,7 +5995,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5728,7 +6031,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5759,7 +6064,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5792,7 +6099,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5825,7 +6134,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5859,7 +6170,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5885,7 +6198,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5911,7 +6226,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5939,7 +6256,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5974,7 +6293,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync(type, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5990,7 +6311,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktWatchlistItem>>> act =
+            Func<Task<TraktPagedResponse<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6186,23 +6507,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(1);
-            response.Added.Episodes.Should().Be(2);
-            response.Added.Shows.Should().Be(1);
-            response.Added.Seasons.Should().Be(1);
+            var responseValue = response.Value;
 
-            response.Existing.Should().NotBeNull();
-            response.Existing.Movies.Should().Be(0);
-            response.Existing.Episodes.Should().Be(0);
-            response.Existing.Shows.Should().Be(1);
-            response.Existing.Seasons.Should().Be(0);
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(1);
+            responseValue.Added.Episodes.Should().Be(2);
+            responseValue.Added.Shows.Should().Be(1);
+            responseValue.Added.Seasons.Should().Be(1);
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Existing.Should().NotBeNull();
+            responseValue.Existing.Movies.Should().Be(0);
+            responseValue.Existing.Episodes.Should().Be(0);
+            responseValue.Existing.Shows.Should().Be(1);
+            responseValue.Existing.Seasons.Should().Be(0);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -6210,9 +6536,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -6272,7 +6598,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncWatchlistPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncWatchlistPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6340,7 +6666,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddWatchlistItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncWatchlistPostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncWatchlistPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -6489,17 +6815,22 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Deleted.Should().NotBeNull();
-            response.Deleted.Movies.Should().Be(1);
-            response.Deleted.Episodes.Should().Be(2);
-            response.Deleted.Shows.Should().Be(1);
-            response.Deleted.Seasons.Should().Be(1);
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(1);
+            responseValue.Deleted.Episodes.Should().Be(2);
+            responseValue.Deleted.Shows.Should().Be(1);
+            responseValue.Deleted.Seasons.Should().Be(1);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -6507,9 +6838,9 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -6569,7 +6900,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktSyncWatchlistRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6637,7 +6968,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchlistItemsArgumentExceptions()
         {
-            Func<Task<TraktSyncWatchlistRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 

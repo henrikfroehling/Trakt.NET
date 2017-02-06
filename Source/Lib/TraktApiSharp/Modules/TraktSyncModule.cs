@@ -3,6 +3,9 @@
     using Attributes;
     using Enums;
     using Exceptions;
+    using Experimental.Requests.Handler;
+    using Experimental.Requests.Syncs.OAuth;
+    using Experimental.Responses;
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
@@ -19,11 +22,8 @@
     using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
-    using Requests;
     using Requests.Params;
-    using Requests.WithOAuth.Syncs;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -47,8 +47,11 @@
         /// <returns>An <see cref="TraktSyncLastActivities" /> instance with the queried last activities.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncLastActivities> GetLastActivitiesAsync()
-            => await QueryAsync(new TraktSyncLastActivitiesRequest(Client));
+        public async Task<TraktResponse<TraktSyncLastActivities>> GetLastActivitiesAsync()
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest());
+        }
 
         /// <summary>
         /// Gets the user's saved playback progress of scrobbles that are paused.
@@ -62,12 +65,16 @@
         /// <returns>A list of <see cref="TraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
-            => await QueryAsync(new TraktSyncPlaybackProgressRequest(Client)
+        public async Task<TraktListResponse<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncPlaybackProgressRequest
             {
                 Type = objectType,
-                PaginationOptions = new TraktPaginationOptions(null, limit)
+                Limit = limit
             });
+        }
 
         /// <summary>
         /// Removes a playback progress item from the user's playback progress list.
@@ -80,12 +87,13 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
         [OAuthAuthorizationRequired]
-        public async Task RemovePlaybackItemAsync(uint playbackId)
+        public async Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId)
         {
             if (playbackId == 0)
-                throw new ArgumentException("playback id not valid", nameof(playbackId));
+                throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
-            await QueryAsync(new TraktSyncPlaybackDeleteRequest(Client) { Id = playbackId.ToString() });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() });
         }
 
         /// <summary>
@@ -102,8 +110,11 @@
         /// <returns>A list of <see cref="TraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktSyncCollectionMoviesRequest(Client) { ExtendedInfo = extendedInfo });
+        public async Task<TraktListResponse<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo });
+        }
 
         /// <summary>
         /// Gets all collected shows in the user's collection.
@@ -119,8 +130,11 @@
         /// <returns>A list of <see cref="TraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktSyncCollectionShowsRequest(Client) { ExtendedInfo = extendedInfo });
+        public async Task<TraktListResponse<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo });
+        }
 
         /// <summary>
         /// Adds items to the user's collection. Accepts shows, seasons, episodes and movies.
@@ -140,11 +154,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncCollectionPostResponse> AddCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionPost)
+        public async Task<TraktResponse<TraktSyncCollectionPostResponse>> AddCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionPost)
         {
             ValidateCollectionPost(collectionPost);
-
-            return await QueryAsync(new TraktSyncCollectionAddRequest(Client) { RequestBody = collectionPost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost });
         }
 
         /// <summary>
@@ -165,11 +179,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncCollectionRemovePostResponse> RemoveCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionRemovePost)
+        public async Task<TraktResponse<TraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionRemovePost)
         {
             ValidateCollectionPost(collectionRemovePost);
-
-            return await QueryAsync(new TraktSyncCollectionRemoveRequest(Client) { RequestBody = collectionRemovePost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost });
         }
 
         /// <summary>
@@ -186,8 +200,11 @@
         /// <returns>A list of <see cref="TraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktSyncWatchedMoviesRequest(Client) { ExtendedInfo = extendedInfo });
+        public async Task<TraktListResponse<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo });
+        }
 
         /// <summary>
         /// Gets all shows the user has watched, sorted by most plays.
@@ -203,8 +220,11 @@
         /// <returns>A list of <see cref="TraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktSyncWatchedShowsRequest(Client) { ExtendedInfo = extendedInfo });
+        public async Task<TraktListResponse<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo });
+        }
 
         /// <summary>
         /// Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
@@ -232,19 +252,24 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
-                                                                                  DateTime? startAt = null, DateTime? endAt = null,
-                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                  int? page = null, int? limitPerPage = null)
-            => await QueryAsync(new TraktSyncWatchedHistoryRequest(Client)
+        public async Task<TraktPagedResponse<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
+                                                                                       DateTime? startAt = null, DateTime? endAt = null,
+                                                                                       TraktExtendedInfo extendedInfo = null,
+                                                                                       int? page = null, int? limitPerPage = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchedHistoryRequest
             {
                 Type = historyItemType,
                 ItemId = itemId,
                 StartAt = startAt,
                 EndAt = endAt,
                 ExtendedInfo = extendedInfo,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                Page = page,
+                Limit = limitPerPage
             });
+        }
 
         /// <summary>
         /// Adds items to the user's watch history. Accepts shows, seasons, episodes and movies.
@@ -264,11 +289,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncHistoryPostResponse> AddWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryPost historyPost)
+        public async Task<TraktResponse<TraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryPost historyPost)
         {
             ValidateHistoryPost(historyPost);
-
-            return await QueryAsync(new TraktSyncWatchedHistoryAddRequest(Client) { RequestBody = historyPost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost });
         }
 
         /// <summary>
@@ -289,11 +314,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncHistoryRemovePostResponse> RemoveWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryRemovePost historyRemovePost)
+        public async Task<TraktResponse<TraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryRemovePost historyRemovePost)
         {
             ValidateHistoryPost(historyRemovePost);
-
-            return await QueryAsync(new TraktSyncWatchedHistoryRemoveRequest(Client) { RequestBody = historyRemovePost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost });
         }
 
         /// <summary>
@@ -316,15 +341,19 @@
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<IEnumerable<TraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
-                                                             int[] ratingsFilter = null,
-                                                             TraktExtendedInfo extendedInfo = null)
-            => await QueryAsync(new TraktSyncRatingsRequest(Client)
+        public async Task<TraktListResponse<TraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
+                                                                               int[] ratingsFilter = null,
+                                                                               TraktExtendedInfo extendedInfo = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncRatingsRequest
             {
                 Type = ratingsItemType,
-                Rating = ratingsFilter,
+                RatingFilter = ratingsFilter,
                 ExtendedInfo = extendedInfo
             });
+        }
 
         /// <summary>
         /// Adds items to the user's ratings. Accepts shows, seasons, episodes and movies.
@@ -344,11 +373,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncRatingsPostResponse> AddRatingsAsync([NotNull] TraktSyncRatingsPost ratingsPost)
+        public async Task<TraktResponse<TraktSyncRatingsPostResponse>> AddRatingsAsync([NotNull] TraktSyncRatingsPost ratingsPost)
         {
             ValidateRatingsPost(ratingsPost);
-
-            return await QueryAsync(new TraktSyncRatingsAddRequest(Client) { RequestBody = ratingsPost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost });
         }
 
         /// <summary>
@@ -369,11 +398,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncRatingsRemovePostResponse> RemoveRatingsAsync([NotNull] TraktSyncRatingsPost ratingsRemovePost)
+        public async Task<TraktResponse<TraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync([NotNull] TraktSyncRatingsPost ratingsRemovePost)
         {
             ValidateRatingsPost(ratingsRemovePost);
-
-            return await QueryAsync(new TraktSyncRatingsRemoveRequest(Client) { RequestBody = ratingsRemovePost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost });
         }
 
         /// <summary>
@@ -399,15 +428,20 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktPaginationListResult<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
-                                                                               TraktExtendedInfo extendedInfo = null,
-                                                                               int? page = null, int? limitPerPage = null)
-            => await QueryAsync(new TraktSyncWatchlistRequest(Client)
+        public async Task<TraktPagedResponse<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
+                                                                                    TraktExtendedInfo extendedInfo = null,
+                                                                                    int? page = null, int? limitPerPage = null)
+        {
+            var requestHandler = new TraktRequestHandler(Client);
+
+            return await requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchlistRequest
             {
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,
-                PaginationOptions = new TraktPaginationOptions(page, limitPerPage)
+                Page = page,
+                Limit = limitPerPage
             });
+        }
 
         /// <summary>
         /// Adds items to the user's watchlist. Accepts shows, seasons, episodes and movies.
@@ -427,11 +461,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncWatchlistPostResponse> AddWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistPost)
+        public async Task<TraktResponse<TraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistPost)
         {
             ValidateWatchlistPost(watchlistPost);
-
-            return await QueryAsync(new TraktSyncWatchlistAddRequest(Client) { RequestBody = watchlistPost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost });
         }
 
         /// <summary>
@@ -452,11 +486,11 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
         [OAuthAuthorizationRequired]
-        public async Task<TraktSyncWatchlistRemovePostResponse> RemoveWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistRemovePost)
+        public async Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistRemovePost)
         {
             ValidateWatchlistPost(watchlistRemovePost);
-
-            return await QueryAsync(new TraktSyncWatchlistRemoveRequest(Client) { RequestBody = watchlistRemovePost });
+            var requestHandler = new TraktRequestHandler(Client);
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost });
         }
 
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
