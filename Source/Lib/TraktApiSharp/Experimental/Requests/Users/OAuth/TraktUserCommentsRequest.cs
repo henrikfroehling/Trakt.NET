@@ -4,9 +4,9 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCommentsRequest : ATraktUsersPaginationGetRequest<TraktUserComment>
+    internal sealed class TraktUserCommentsRequest //: ATraktUsersPaginationGetRequest<TraktUserComment>
     {
-        internal TraktUserCommentsRequest(TraktClient client) : base(client) {}
+        internal TraktUserCommentsRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

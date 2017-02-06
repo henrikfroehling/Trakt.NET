@@ -3,9 +3,9 @@
     using Objects.Get.Users;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserFollowRequestsRequest : ATraktUsersListGetRequest<TraktUserFollowRequest>
+    internal sealed class TraktUserFollowRequestsRequest //: ATraktUsersListGetRequest<TraktUserFollowRequest>
     {
-        internal TraktUserFollowRequestsRequest(TraktClient client) : base(client) {}
+        internal TraktUserFollowRequestsRequest(TraktClient client)  {}
 
         public new TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

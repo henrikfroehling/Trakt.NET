@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserStatisticsRequest : ATraktUsersSingleItemGetRequest<TraktUserStatistics>
+    internal sealed class TraktUserStatisticsRequest //: ATraktUsersSingleItemGetRequest<TraktUserStatistics>
     {
-        internal TraktUserStatisticsRequest(TraktClient client) : base(client) {}
+        internal TraktUserStatisticsRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

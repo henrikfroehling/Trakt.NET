@@ -24,7 +24,7 @@
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]
         public void TestTraktUserFollowRequestsRequestIsSubclassOfATraktUsersListGetRequest()
         {
-            typeof(TraktUserFollowRequestsRequest).IsSubclassOf(typeof(ATraktUsersListGetRequest<TraktUserFollowRequest>)).Should().BeTrue();
+            typeof(TraktUserFollowRequestsRequest).IsSubclassOf(typeof(ATraktUsersGetRequest<TraktUserFollowRequest>)).Should().BeTrue();
         }
 
         [TestMethod, TestCategory("Requests"), TestCategory("Users")]

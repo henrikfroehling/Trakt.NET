@@ -221,6 +221,10 @@
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\ATraktUsersDeleteByIdRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\ATraktUsersGetRequest%271_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\ATraktUsersPaginationGetRequest%271_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\ATraktUsersPostByIdRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\TraktUserListCommentsRequest_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktListResponse%271_Tests.cs" />
     <Compile Include="Responses\Interfaces\ITraktNoContentResponse_Tests.cs" />

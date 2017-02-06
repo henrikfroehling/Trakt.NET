@@ -280,10 +280,9 @@
     <Compile Include="Experimental\Requests\Syncs\OAuth\TraktSyncWatchlistRequest.cs" />
     <Compile Include="Experimental\Requests\Handler\TraktRequestHandler.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPostByIdRequest.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersSingleItemGetRequest.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersGetRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequest%271.cs" />
+    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPostByIdRequest%271.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserApproveFollowerRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequest.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequest.cs" />

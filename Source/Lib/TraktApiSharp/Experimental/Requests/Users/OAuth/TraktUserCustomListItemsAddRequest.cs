@@ -6,9 +6,9 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserCustomListItemsAddRequest : ATraktUsersPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>
+    internal sealed class TraktUserCustomListItemsAddRequest //: ATraktUsersPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>
     {
-        internal TraktUserCustomListItemsAddRequest(TraktClient client) : base(client) {}
+        internal TraktUserCustomListItemsAddRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

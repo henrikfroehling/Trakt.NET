@@ -4,9 +4,9 @@
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchlistRequest : ATraktUsersPaginationGetRequest<TraktWatchlistItem>
+    internal sealed class TraktUserWatchlistRequest //: ATraktUsersPaginationGetRequest<TraktWatchlistItem>
     {
-        internal TraktUserWatchlistRequest(TraktClient client) : base(client) {}
+        internal TraktUserWatchlistRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

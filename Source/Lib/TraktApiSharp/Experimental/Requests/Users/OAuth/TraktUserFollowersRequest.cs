@@ -3,9 +3,9 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserFollowersRequest : ATraktUsersListGetRequest<TraktUserFollower>
+    internal sealed class TraktUserFollowersRequest //: ATraktUsersListGetRequest<TraktUserFollower>
     {
-        internal TraktUserFollowersRequest(TraktClient client) : base(client) {}
+        internal TraktUserFollowersRequest(TraktClient client) {}
 
         internal string Username { get; set; }
 

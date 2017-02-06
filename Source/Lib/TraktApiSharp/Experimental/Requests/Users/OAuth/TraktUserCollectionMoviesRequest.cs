@@ -3,9 +3,9 @@
     using Objects.Get.Collection;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCollectionMoviesRequest : ATraktUsersListGetRequest<TraktCollectionMovie>
+    internal sealed class TraktUserCollectionMoviesRequest// : ATraktUsersListGetRequest<TraktCollectionMovie>
     {
-        internal TraktUserCollectionMoviesRequest(TraktClient client) : base(client) {}
+        internal TraktUserCollectionMoviesRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

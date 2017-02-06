@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPaginationGetRequest<TraktUserHiddenItem>
+    internal sealed class TraktUserHiddenItemsRequest //: ATraktUsersPaginationGetRequest<TraktUserHiddenItem>
     {
-        internal TraktUserHiddenItemsRequest(TraktClient client) : base(client) {}
+        internal TraktUserHiddenItemsRequest(TraktClient client)  {}
 
         internal TraktHiddenItemsSection Section { get; set; }
 

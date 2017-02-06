@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktUserRatingsRequest : ATraktUsersListGetRequest<TraktRatingsItem>
+    internal sealed class TraktUserRatingsRequest //: ATraktUsersListGetRequest<TraktRatingsItem>
     {
-        internal TraktUserRatingsRequest(TraktClient client) : base(client) {}
+        internal TraktUserRatingsRequest(TraktClient client) {}
 
         internal string Username { get; set; }
 

@@ -6,9 +6,9 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPaginationGetRequest<TraktHistoryItem>
+    internal sealed class TraktUserWatchedHistoryRequest //: ATraktUsersPaginationGetRequest<TraktHistoryItem>
     {
-        internal TraktUserWatchedHistoryRequest(TraktClient client) : base(client) {}
+        internal TraktUserWatchedHistoryRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

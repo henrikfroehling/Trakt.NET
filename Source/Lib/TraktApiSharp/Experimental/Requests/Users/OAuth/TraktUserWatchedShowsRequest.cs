@@ -3,9 +3,9 @@
     using Objects.Get.Watched;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedShowsRequest : ATraktUsersListGetRequest<TraktWatchedShow>
+    internal sealed class TraktUserWatchedShowsRequest //: ATraktUsersListGetRequest<TraktWatchedShow>
     {
-        internal TraktUserWatchedShowsRequest(TraktClient client) : base(client) {}
+        internal TraktUserWatchedShowsRequest(TraktClient client)  {}
 
         internal string Username { get; set; }
 

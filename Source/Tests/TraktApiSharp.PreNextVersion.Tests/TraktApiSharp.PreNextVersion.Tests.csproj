@@ -112,11 +112,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersDeleteByIdRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersListGetRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPaginationGetRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersPostByIdRequestTests.cs" />
-    <Compile Include="Experimental\Requests\Users\OAuth\ATraktUsersSingleItemGetRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserApproveFollowerRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionMoviesRequestTests.cs" />
     <Compile Include="Experimental\Requests\Users\OAuth\TraktUserCollectionShowsRequestTests.cs" />

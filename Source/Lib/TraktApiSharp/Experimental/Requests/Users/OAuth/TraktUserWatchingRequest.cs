@@ -6,9 +6,9 @@
     using TraktApiSharp.Requests;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktUserWatchingRequest : ATraktUsersSingleItemGetRequest<TraktUserWatchingItem>, ITraktSupportsExtendedInfo
+    internal sealed class TraktUserWatchingRequest //: ATraktUsersSingleItemGetRequest<TraktUserWatchingItem>, ITraktSupportsExtendedInfo
     {
-        internal TraktUserWatchingRequest(TraktClient client) : base(client) {}
+        internal TraktUserWatchingRequest(TraktClient client)  {}
 
         public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
 
