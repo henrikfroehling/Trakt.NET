@@ -3,23 +3,38 @@
     using Enums;
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncWatchlistRequest : ATraktSyncPaginationGetRequest<TraktWatchlistItem>
+    internal sealed class TraktSyncWatchlistRequest : ATraktSyncGetRequest<TraktWatchlistItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
-        internal TraktSyncWatchlistRequest(TraktClient client) : base(client) { }
-
         internal TraktSyncItemType Type { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public int? Page { get; set; }
+
+        public int? Limit { get; set; }
+
+        public override string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
             if (Type != null && Type != TraktSyncItemType.Unspecified)
                 uriParams.Add("type", Type.UriName);
 
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
+
             return uriParams;
         }
-
-        public string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
     }
 }

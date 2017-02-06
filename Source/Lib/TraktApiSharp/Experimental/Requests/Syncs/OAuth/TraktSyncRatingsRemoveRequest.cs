@@ -3,10 +3,8 @@
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
 
-    internal sealed class TraktSyncRatingsRemoveRequest : ATraktSyncSingleItemPostRequest<TraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>
+    internal sealed class TraktSyncRatingsRemoveRequest : ATraktSyncPostRequest<TraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>
     {
-        internal TraktSyncRatingsRemoveRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "sync/ratings/remove";
+        public override string UriTemplate => "sync/ratings/remove";
     }
 }

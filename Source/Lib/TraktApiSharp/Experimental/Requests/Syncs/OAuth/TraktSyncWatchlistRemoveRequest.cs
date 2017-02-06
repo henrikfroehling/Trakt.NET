@@ -3,10 +3,8 @@
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
 
-    internal sealed class TraktSyncWatchlistRemoveRequest : ATraktSyncSingleItemPostRequest<TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistPost>
+    internal sealed class TraktSyncWatchlistRemoveRequest : ATraktSyncPostRequest<TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistPost>
     {
-        internal TraktSyncWatchlistRemoveRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "sync/watchlist/remove";
+        public override string UriTemplate => "sync/watchlist/remove";
     }
 }

@@ -27,24 +27,25 @@
         public async Task<Movie> GetMovieAsync(string movieId, TraktExtendedInfo extendedInfo = null,
                                                bool withAdditionalContent = false)
         {
-            var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
+            //var movie = await Client.Movies.GetMovieAsync(movieId, extendedInfo) as Movie;
 
-            if (withAdditionalContent)
-            {
-                var aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
-                movie.Aliases = new ObservableCollection<TraktMovieAlias>(aliases);
+            //if (withAdditionalContent)
+            //{
+            //    var aliases = await Client.Movies.GetMovieAliasesAsync(movieId);
+            //    movie.Aliases = new ObservableCollection<TraktMovieAlias>(aliases);
 
-                var releases = await Client.Movies.GetMovieReleasesAsync(movieId);
-                movie.Releases = new ObservableCollection<TraktMovieRelease>(releases);
+            //    var releases = await Client.Movies.GetMovieReleasesAsync(movieId);
+            //    movie.Releases = new ObservableCollection<TraktMovieRelease>(releases);
 
-                var translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
-                movie.Translations = new ObservableCollection<TraktMovieTranslation>(translations);
+            //    var translations = await Client.Movies.GetMovieTranslationsAsync(movieId);
+            //    movie.Translations = new ObservableCollection<TraktMovieTranslation>(translations);
 
-                movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
-                movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
-            }
+            //    movie.MovieRating = await Client.Movies.GetMovieRatingsAsync(movieId);
+            //    movie.Statistics = await Client.Movies.GetMovieStatisticsAsync(movieId);
+            //}
 
-            return movie;
+            //return movie;
+            return await Task.FromResult<Movie>(null);
         }
 
         // -------------------------------------------------------------
@@ -62,7 +63,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<TrendingMovie>();
@@ -96,7 +97,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<Movie>();
@@ -128,7 +129,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCMovie>();
@@ -166,7 +167,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCMovie>();
@@ -204,7 +205,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCMovie>();
@@ -241,7 +242,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<AnticipatedMovie>();
@@ -300,7 +301,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<RecentlyUpdatedMovie>();

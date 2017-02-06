@@ -2,14 +2,14 @@
 {
     using Enums;
     using Extensions;
+    using Interfaces;
     using Objects.Get.History;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncPaginationGetRequest<TraktHistoryItem>
+    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncGetRequest<TraktHistoryItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
-        internal TraktSyncWatchedHistoryRequest(TraktClient client) : base(client) { }
-
         internal TraktSyncItemType Type { get; set; }
 
         internal uint? ItemId { get; set; }
@@ -18,7 +18,15 @@
 
         internal DateTime? EndAt { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public int? Page { get; set; }
+
+        public int? Limit { get; set; }
+
+        public override string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
@@ -31,20 +39,21 @@
                 uriParams.Add("item_id", ItemId.ToString());
 
             if (StartAt.HasValue)
-            {
-                var startAt = StartAt.Value.ToUniversalTime();
-                uriParams.Add("start_at", startAt.ToTraktLongDateTimeString());
-            }
+                uriParams.Add("start_at", StartAt.Value.ToTraktLongDateTimeString());
 
             if (EndAt.HasValue)
-            {
-                var endAt = EndAt.Value.ToUniversalTime();
-                uriParams.Add("end_at", endAt.ToTraktLongDateTimeString());
-            }
+                uriParams.Add("end_at", EndAt.Value.ToTraktLongDateTimeString());
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }
-
-        public string UriTemplate => "sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
     }
 }

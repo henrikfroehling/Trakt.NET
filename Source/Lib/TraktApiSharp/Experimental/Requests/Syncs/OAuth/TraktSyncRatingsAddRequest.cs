@@ -3,10 +3,8 @@
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
 
-    internal sealed class TraktSyncRatingsAddRequest : ATraktSyncSingleItemPostRequest<TraktSyncRatingsPostResponse, TraktSyncRatingsPost>
+    internal sealed class TraktSyncRatingsAddRequest : ATraktSyncPostRequest<TraktSyncRatingsPostResponse, TraktSyncRatingsPost>
     {
-        internal TraktSyncRatingsAddRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "sync/ratings";
+        public override string UriTemplate => "sync/ratings";
     }
 }

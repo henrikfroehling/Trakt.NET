@@ -3,10 +3,8 @@
     using Objects.Post.Syncs.History;
     using Objects.Post.Syncs.History.Responses;
 
-    internal sealed class TraktSyncWatchedHistoryRemoveRequest : ATraktSyncSingleItemPostRequest<TraktSyncHistoryRemovePostResponse, TraktSyncHistoryRemovePost>
+    internal sealed class TraktSyncWatchedHistoryRemoveRequest : ATraktSyncPostRequest<TraktSyncHistoryRemovePostResponse, TraktSyncHistoryRemovePost>
     {
-        internal TraktSyncWatchedHistoryRemoveRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "sync/history/remove";
+        public override string UriTemplate => "sync/history/remove";
     }
 }

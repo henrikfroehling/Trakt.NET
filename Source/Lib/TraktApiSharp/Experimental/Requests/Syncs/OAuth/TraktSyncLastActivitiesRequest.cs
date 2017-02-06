@@ -1,14 +1,9 @@
 ﻿namespace TraktApiSharp.Experimental.Requests.Syncs.OAuth
 {
     using Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Requests;
 
-    internal sealed class TraktSyncLastActivitiesRequest
+    internal sealed class TraktSyncLastActivitiesRequest : ATraktSyncGetRequest<TraktSyncLastActivities>
     {
-        internal TraktSyncLastActivitiesRequest(TraktClient client) { }
-
-        public TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
-
-        public string UriTemplate => "sync/last_activities";
+        public override string UriTemplate => "sync/last_activities";
     }
 }

@@ -7,17 +7,17 @@
     using System.Linq;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncRatingsRequest : ATraktSyncListGetRequest<TraktRatingsItem>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<TraktRatingsItem>, ITraktSupportsExtendedInfo
     {
-        internal TraktSyncRatingsRequest(TraktClient client) : base(client) { }
-
         internal TraktRatingsItemType Type { get; set; }
 
-        internal int[] Ratings { get; set; }
+        internal int[] RatingFilter { get; set; }
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
@@ -26,20 +26,21 @@
             if (isTypeSetAndValid)
                 uriParams.Add("type", Type.UriName);
 
-            if (Ratings != null && isTypeSetAndValid)
+            if (RatingFilter != null && isTypeSetAndValid)
             {
-                var ratingsMin = Ratings.Min();
-                var ratingsMax = Ratings.Max();
+                var ratingsMin = RatingFilter.Min();
+                var ratingsMax = RatingFilter.Max();
 
-                var isRatingsSetAndValid = Ratings.Length > 0 && Ratings.Length <= 10 && ratingsMin >= 1 && ratingsMax <= 10;
+                var isRatingsSetAndValid = RatingFilter.Length > 0 && RatingFilter.Length <= 10 && ratingsMin >= 1 && ratingsMax <= 10;
 
                 if (isRatingsSetAndValid)
-                    uriParams.Add("rating", string.Join(",", Ratings));
+                    uriParams.Add("rating", string.Join(",", RatingFilter));
             }
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
 
             return uriParams;
         }
-
-        public string UriTemplate => "sync/ratings{/type}{/rating}{?extended}";
     }
 }

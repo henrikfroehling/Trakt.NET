@@ -4,15 +4,15 @@
     using Objects.Get.Syncs.Playback;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncListGetRequest<TraktSyncPlaybackProgressItem>
+    internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncGetRequest<TraktSyncPlaybackProgressItem>
     {
-        internal TraktSyncPlaybackProgressRequest(TraktClient client) : base(client) { }
-
         internal TraktSyncType Type { get; set; }
 
         internal int? Limit { get; set; }
 
-        public IDictionary<string, object> GetUriPathParameters()
+        public override string UriTemplate => "sync/playback{/type}{?limit}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
@@ -20,11 +20,9 @@
                 uriParams.Add("type", Type.UriName);
 
             if (Limit.HasValue)
-                uriParams.Add("limit", Limit.ToString());
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }
-
-        public string UriTemplate => "sync/playback{/type}{?limit}";
     }
 }

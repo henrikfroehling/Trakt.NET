@@ -2,14 +2,23 @@
 {
     using Interfaces;
     using Objects.Get.Watched;
+    using System.Collections.Generic;
     using TraktApiSharp.Requests.Params;
 
-    internal sealed class TraktSyncWatchedMoviesRequest : ATraktSyncListGetRequest<TraktWatchedMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncWatchedMoviesRequest : ATraktSyncGetRequest<TraktWatchedMovie>, ITraktSupportsExtendedInfo
     {
-        internal TraktSyncWatchedMoviesRequest(TraktClient client) : base(client) { }
-
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public string UriTemplate => "sync/watched/movies{?extended}";
+        public override string UriTemplate => "sync/watched/movies{?extended}";
+
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = new Dictionary<string, object>();
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
+
+            return uriParams;
+        }
     }
 }

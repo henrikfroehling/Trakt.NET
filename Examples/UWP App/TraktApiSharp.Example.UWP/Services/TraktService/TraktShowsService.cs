@@ -27,21 +27,22 @@
         public async Task<Show> GetShowAsync(string showId, TraktExtendedInfo extendedInfo = null,
                                              bool withAdditionalContent = false)
         {
-            var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
+            //var show = await Client.Shows.GetShowAsync(showId, extendedInfo) as Show;
 
-            if (withAdditionalContent)
-            {
-                var aliases = await Client.Shows.GetShowAliasesAsync(showId);
-                show.Aliases = new ObservableCollection<TraktShowAlias>(aliases);
+            //if (withAdditionalContent)
+            //{
+            //    var aliases = await Client.Shows.GetShowAliasesAsync(showId);
+            //    show.Aliases = new ObservableCollection<TraktShowAlias>(aliases);
 
-                var translations = await Client.Shows.GetShowTranslationsAsync(showId);
-                show.Translations = new ObservableCollection<TraktShowTranslation>(translations);
+            //    var translations = await Client.Shows.GetShowTranslationsAsync(showId);
+            //    show.Translations = new ObservableCollection<TraktShowTranslation>(translations);
 
-                show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
-                show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
-            }
+            //    show.ShowRating = await Client.Shows.GetShowRatingsAsync(showId);
+            //    show.Statistics = await Client.Shows.GetShowStatisticsAsync(showId);
+            //}
 
-            return show;
+            //return show;
+            return await Task.FromResult<Show>(null);
         }
 
         // -------------------------------------------------------------
@@ -59,7 +60,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<TrendingShow>();
@@ -93,7 +94,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<Show>();
@@ -125,7 +126,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCShow>();
@@ -164,7 +165,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCShow>();
@@ -203,7 +204,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<MostPWCShow>();
@@ -241,7 +242,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<AnticipatedShow>();
@@ -275,7 +276,7 @@
                 TotalPages = traktResults.PageCount,
                 LimitPerPage = traktResults.Limit,
                 TotalItemCount = traktResults.ItemCount,
-                TotalUserCount = traktResults.UserCount
+                TotalUserCount = traktResults.TrendingUserCount
             };
 
             results.Items = new ObservableCollection<RecentlyUpdatedShow>();

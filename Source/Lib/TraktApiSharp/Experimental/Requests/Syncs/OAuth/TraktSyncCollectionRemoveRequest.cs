@@ -3,10 +3,8 @@
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
 
-    internal sealed class TraktSyncCollectionRemoveRequest : ATraktSyncSingleItemPostRequest<TraktSyncCollectionRemovePostResponse, TraktSyncCollectionPost>
+    internal sealed class TraktSyncCollectionRemoveRequest : ATraktSyncPostRequest<TraktSyncCollectionRemovePostResponse, TraktSyncCollectionPost>
     {
-        internal TraktSyncCollectionRemoveRequest(TraktClient client) : base(client) { }
-
-        public string UriTemplate => "sync/collection/remove";
+        public override string UriTemplate => "sync/collection/remove";
     }
 }
